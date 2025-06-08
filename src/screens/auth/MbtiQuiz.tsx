@@ -1,12 +1,11 @@
-/* eslint-disable react-native/no-inline-styles */
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {FC, useState} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { FC, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import {Button} from '../../components/ui/app-button';
+import { AppButton } from '../../components/ui/app-button';
 import CircularProgressBar from '../../components/widgets/CircularProgressbar';
-import {fontFamilies} from '../../constants/fonts';
-import {MainNavigatorParamList} from '../../navigators/MainNavigator';
+import { fontFamilies } from '../../constants/fonts';
+import { MainNavigatorParamList } from '../../navigators/types';
 
 interface QuizOption {
   id: string;
@@ -21,10 +20,10 @@ interface QuizQuestion {
 
 const MbtiQuiz: FC<{
   navigation: NativeStackNavigationProp<MainNavigatorParamList, 'MbtiQuiz'>;
-}> = ({navigation}) => {
+}> = ({ navigation }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const [answers, setAnswers] = useState<{[key: number]: string}>({});
+  const [answers, setAnswers] = useState<{ [key: number]: string }>({});
 
   const quizQuestions: QuizQuestion[] = [
     {
@@ -107,7 +106,7 @@ const MbtiQuiz: FC<{
   };
 
   return (
-    <ScreenContainer style={{marginTop: 44}}>
+    <ScreenContainer style={{ marginTop: 44 }}>
       <Text style={styles.title}>MBTI Quiz</Text>
       <Text style={styles.subtitle}>
         Before we start, let's find out your MBTI Profile.
@@ -115,7 +114,7 @@ const MbtiQuiz: FC<{
 
       {/* Question Number Circle */}
       <CircularProgressBar
-        textStyle={{fontSize: 20}}
+        textStyle={{ fontSize: 20 }}
         progress={(currentQuestion + 1 / totalQuestions) * 100}
         text={
           (currentQuestion < 9 ? '0' : '') + (currentQuestion + 1).toString()
@@ -153,7 +152,7 @@ const MbtiQuiz: FC<{
       </View>
 
       <View style={styles.buttonContainer}>
-        <Button
+        <AppButton
           title="Next"
           onPress={handleNext}
           style={
@@ -166,7 +165,7 @@ const MbtiQuiz: FC<{
         />
 
         {currentQuestion > 0 && (
-          <Button
+          <AppButton
             title="Previous"
             onPress={handlePrevious}
             style={styles.previousButton}

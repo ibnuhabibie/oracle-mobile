@@ -1,34 +1,34 @@
-/* eslint-disable react-native/no-inline-styles */
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {FC} from 'react';
-import {StyleSheet, View} from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { FC } from 'react';
+import { StyleSheet, View } from 'react-native';
+
 import CheckmarkIcon from '../../components/icons/Checkmark';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import {Button} from '../../components/ui/app-button';
-import {Text} from '../../components/ui/app-text';
+import { AppButton } from '../../components/ui/app-button';
+import { AppText } from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/ShinyContainer';
-import {COLORS} from '../../constants/colors';
-import {fontFamilies} from '../../constants/fonts';
-import {MainNavigatorParamList} from '../../navigators/AuthNavigator';
+import { COLORS } from '../../constants/colors';
+import { fontFamilies } from '../../constants/fonts';
+import { MainNavigatorParamList } from '../../navigators/types';
 
 const OtpSuccess: FC<{
   navigation: NativeStackNavigationProp<MainNavigatorParamList, 'OtpSuccess'>;
-}> = ({navigation}) => {
+}> = ({ navigation }) => {
   return (
     <ScreenContainer>
       <View style={styles.container}>
         <View
-          style={{width: '100%', alignItems: 'center', paddingHorizontal: 40}}>
+          style={{ width: '100%', alignItems: 'center', paddingHorizontal: 40 }}>
           <ShinyContainer>
             <CheckmarkIcon size={90} />
           </ShinyContainer>
-          <Text style={styles.title}>Verification Success!</Text>
-          <Text style={styles.subtitle}>
+          <AppText style={styles.title}>Verification Success!</AppText>
+          <AppText style={styles.subtitle}>
             You're all set! Your account has been verified and is ready to go.
-          </Text>
+          </AppText>
         </View>
 
-        <Button
+        <AppButton
           title="Continue"
           onPress={() => {
             navigation.push('Introduction');

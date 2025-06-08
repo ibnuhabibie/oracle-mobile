@@ -1,18 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FC} from 'react';
-import {FlatList, Modal, Pressable, StyleSheet, View} from 'react-native';
-import {COLORS} from '../../constants/colors';
-import {fontFamilies} from '../../constants/fonts';
-import {Text} from '../ui/app-text';
+import { FC } from 'react';
+import { FlatList, Modal, Pressable, StyleSheet, View } from 'react-native';
+import { COLORS } from '../../constants/colors';
+import { fontFamilies } from '../../constants/fonts';
+import { AppText } from '../ui/app-text';
 
-export const DropdownButton: FC<{onPress?: () => void; text?: string}> = ({
+export const DropdownButton: FC<{ onPress?: () => void; text?: string }> = ({
   onPress,
   text,
 }) => {
   return (
     <Pressable style={styles.dropdownButton} onPress={onPress}>
-      <Text style={styles.dropdownText}>{text}</Text>
-      <Text style={styles.dropdownIcon}>▼</Text>
+      <AppText style={styles.dropdownText}>{text}</AppText>
+      <AppText style={styles.dropdownIcon}>▼</AppText>
     </Pressable>
   );
 };
@@ -29,28 +29,28 @@ export const renderDropdownModal = (
     <View style={styles.modalOverlay}>
       <View style={styles.modalContent}>
         <View style={styles.modalHeader}>
-          <Text style={styles.modalTitle}>{title}</Text>
+          <AppText style={styles.modalTitle}>{title}</AppText>
           <Pressable onPress={onClose} style={styles.closeButton}>
-            <Text style={styles.closeButtonText}>×</Text>
+            <AppText style={styles.closeButtonText}>×</AppText>
           </Pressable>
         </View>
         <FlatList
           data={data}
           keyExtractor={item => item}
-          renderItem={({item}) => (
+          renderItem={({ item }) => (
             <Pressable
               style={[
                 styles.modalItem,
                 item === selectedValue && styles.selectedItem,
               ]}
               onPress={() => onSelect(item)}>
-              <Text
+              <AppText
                 style={[
                   styles.modalItemText,
                   item === selectedValue && styles.selectedItemText,
                 ]}>
                 {item}
-              </Text>
+              </AppText>
             </Pressable>
           )}
         />

@@ -1,22 +1,21 @@
-/* eslint-disable react-native/no-inline-styles */
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {FC, useState} from 'react';
-import {useForm} from 'react-hook-form';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { FC, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import CalendarIcon from '../../components/icons/Calendar';
 import ClockIcon from '../../components/icons/Clock';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import {Button} from '../../components/ui/app-button';
+import { AppButton } from '../../components/ui/app-button';
 import TextField from '../../components/ui/text-field';
 import {
   DropdownButton,
   renderDropdownModal,
 } from '../../components/widgets/Dropdown';
-import {CITIES, COUNTRIES} from '../../constants/countries';
-import {fontFamilies} from '../../constants/fonts';
-import {MainNavigatorParamList} from '../../navigators/MainNavigator';
-import {formatDate, formatTime} from '../../utils/formatter';
+import { CITIES, COUNTRIES } from '../../constants/countries';
+import { fontFamilies } from '../../constants/fonts';
+import { formatDate, formatTime } from '../../utils/formatter';
+import { MainNavigatorParamList } from '../../navigators/types';
 
 interface FormData {
   dateOfBirth: Date;
@@ -27,13 +26,13 @@ interface FormData {
 
 const Introduction: FC<{
   navigation: NativeStackNavigationProp<MainNavigatorParamList, 'Introduction'>;
-}> = ({navigation}) => {
+}> = ({ navigation }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [showCountryModal, setShowCountryModal] = useState(false);
   const [showCityModal, setShowCityModal] = useState(false);
 
-  const {handleSubmit, setValue, watch} = useForm<FormData>({
+  const { handleSubmit, setValue, watch } = useForm<FormData>({
     defaultValues: {
       dateOfBirth: new Date(),
       timeOfBirth: new Date(),
@@ -85,7 +84,7 @@ const Introduction: FC<{
   };
 
   return (
-    <ScreenContainer style={{marginTop: 44}}>
+    <ScreenContainer style={{ marginTop: 44 }}>
       <Text style={styles.title}>Introduce yourself</Text>
       <Text style={styles.subtitle}>
         Introduce yourself and let the universe guide you!
@@ -93,7 +92,6 @@ const Introduction: FC<{
 
       <View style={styles.formContainer}>
         {/* Birth Date Field */}
-        <Text style={styles.label}>Birth Date</Text>
         <Pressable onPress={() => setShowDatePicker(true)}>
           <View pointerEvents="none">
             <TextField
@@ -140,7 +138,7 @@ const Introduction: FC<{
         />
       </View>
 
-      <Button
+      <AppButton
         title="Save"
         onPress={handleSubmit(onSubmit)}
         style={styles.saveButton}

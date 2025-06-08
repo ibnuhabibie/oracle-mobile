@@ -24,6 +24,12 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
   const [timer, setTimer] = useState(60);
   const inputsRef = useRef<Array<TextInput | null>>([]);
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    inputsRef.current[0].current?.focus();
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer(prev => {
@@ -64,8 +70,14 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
-    const fullCode = otp.join('');
-    console.log('Entered OTP:', fullCode);
+    const finalOtp = otp.join('');
+    if (finalOtp.length === OTP_LENGTH) {
+      setErrorMessage(null);
+    } else {
+      setErrorMessage('Please fill all OTP fields.');
+      return;
+    }
+    console.log('Entered OTP:', finalOtp);
     // Validate or submit OTP
     Keyboard.dismiss();
     navigation.push('OtpSuccess');
@@ -77,37 +89,44 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
         <ShinyContainer>
           <SMSIcon />
         </ShinyContainer>
-        <AppText style={styles.title}>OTP VERIFICATION</AppText>
-        <AppText style={styles.subtitle}>
+        <AppText variant='subtitle1' color='primary' style={styles.title}>OTP VERIFICATION</AppText>
+        <AppText variant='caption1' style={styles.subtitle}>
           We have sent an OTP verification code via Email to{'\n'}
           {email}. Please enter the code.
         </AppText>
 
         <View style={styles.otpContainer}>
-          {otp.map((digit, index) => (
-            <TextInput
-              key={index}
-              ref={ref => {
-                inputsRef.current[index] = ref;
-              }}
-              style={styles.otpInput}
-              value={digit}
-              keyboardType="number-pad"
-              maxLength={1}
-              onChangeText={text => handleChange(text, index)}
-              onKeyPress={e => handleKeyPress(e, index)}
-              returnKeyType="done"
-            />
-          ))}
+          {
+            otp.map((digit, index) => (
+              <TextInput
+                key={index}
+                ref={ref => {
+                  inputsRef.current[index] = ref;
+                }}
+                style={[
+                  styles.otpInput,
+                  errorMessage && styles.inputError, // Apply error border
+                ]}
+                value={digit}
+                keyboardType="number-pad"
+                maxLength={1}
+                onChangeText={text => handleChange(text, index)}
+                onKeyPress={e => handleKeyPress(e, index)}
+                returnKeyType="done"
+              />
+            ))
+          }
         </View>
-
+        {
+          errorMessage && <AppText style={styles.errorText}>{errorMessage}</AppText>
+        }
         <AppButton title="Confirm" onPress={handleSubmit} style={styles.button} />
 
         <AppText style={styles.resendText}>
           Didn’t receive the code?{' '}
           <AppText
+            color='primary'
             onPress={resendCode}
-            style={[styles.resendLink, timer > 0 && { color: '#C0A589' }]}
             disabled={timer > 0}>
             Resend {timer > 0 ? `00:${timer.toString().padStart(2, '0')}` : ''}
           </AppText>
@@ -119,20 +138,14 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    paddingTop: 32,
     alignItems: 'center',
-    backgroundColor: '#fff',
-    width: '100%',
   },
   title: {
-    fontSize: 18,
-    color: COLORS.primary,
     marginBottom: 10,
     marginTop: 24,
   },
   subtitle: {
-    fontSize: 14,
     textAlign: 'center',
     marginBottom: 30,
   },
@@ -145,23 +158,28 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: COLORS['light-gray'],
     borderRadius: 8,
     textAlign: 'center',
     fontSize: 20,
-    color: '#000',
+    color: COLORS.black,
   },
   button: {
     marginTop: 148,
   },
   resendText: {
-    fontSize: 13,
     color: '#555',
     marginTop: 15,
   },
-  resendLink: {
-    color: '#C0A589',
-    fontWeight: '600',
+  inputError: {
+    borderColor: COLORS.red,
+  },
+  errorText: {
+    color: COLORS.red,
+    fontSize: 14,
+    marginTop: 10,
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
 
