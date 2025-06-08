@@ -4,5 +4,6 @@ export const COLORS = {
   black: '#191919',
   neutral: '#575757',
   'primary-dark': '#CB9960',
-  'light-gray': '#ccc'
+  'light-gray': '#ccc',
+  'dark-gray': '#575757'
 };

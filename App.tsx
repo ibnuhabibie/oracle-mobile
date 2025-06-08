@@ -5,18 +5,21 @@ import { enableScreens } from 'react-native-screens';
 import { AuthProvider } from './src/context/AuthContext';
 import MainNavigator from './src/navigators/MainNavigator';
 import { FloatingPreviewButton } from './src/features/component-preview/floating-preview-button';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 enableScreens(false);
 
 class App extends Component {
   render() {
     return (
-      <AuthProvider>
-        <NavigationContainer>
-          <MainNavigator />
-          <FloatingPreviewButton />
-        </NavigationContainer>
-      </AuthProvider>
+      <GestureHandlerRootView>
+        <AuthProvider>
+          <NavigationContainer>
+            <MainNavigator />
+            <FloatingPreviewButton />
+          </NavigationContainer>
+        </AuthProvider>
+      </GestureHandlerRootView>
     );
   }
 }

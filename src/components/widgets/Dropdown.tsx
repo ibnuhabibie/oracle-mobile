@@ -3,7 +3,7 @@ import {FC} from 'react';
 import {FlatList, Modal, Pressable, StyleSheet, View} from 'react-native';
 import {COLORS} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fonts';
-import {Text} from '../ui/text';
+import {Text} from '../ui/app-text';
 
 export const DropdownButton: FC<{onPress?: () => void; text?: string}> = ({
   onPress,

@@ -13,7 +13,7 @@ interface CustomTextProps extends TextProps {
 }
 
 
-class Text extends Component<CustomTextProps> {
+class AppText extends Component<CustomTextProps> {
 
   render() {
     const {
@@ -59,4 +59,4 @@ export const typographyVariants: VariantStyles = {
   tiny2: { fontSize: 10, fontFamily: fontFamilies.ARCHIVO.regular },
 };
 
-export { Text };
+export { AppText };

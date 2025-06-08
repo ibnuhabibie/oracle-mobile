@@ -1,5 +1,4 @@
-/* eslint-disable react-native/no-inline-styles */
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Keyboard, StyleSheet, TextInput, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
@@ -7,17 +6,18 @@ import { useRoute } from '@react-navigation/native';
 import SMSIcon from '../../components/icons/SMS';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import { Button } from '../../components/ui/button';
-import { Text } from '../../components/ui/text';
+import { AppText } from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/ShinyContainer';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 import { MainNavigatorParamList } from '../../navigators/AuthNavigator';
 
-const OTP_LENGTH = 5;
 
-const OtpVerification: FC<{
-  navigation: NativeStackNavigationProp<MainNavigatorParamList, 'Otp'>;
-}> = ({ navigation }) => {
+type OtpVerificationProps = NativeStackScreenProps<MainNavigatorParamList, 'Otp'>;
+
+const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
+  const OTP_LENGTH = 5;
+
   const route = useRoute();
   const { email } = route.params;
 
@@ -78,11 +78,11 @@ const OtpVerification: FC<{
         <ShinyContainer>
           <SMSIcon />
         </ShinyContainer>
-        <Text style={styles.title}>OTP VERIFICATION</Text>
-        <Text style={styles.subtitle}>
+        <AppText style={styles.title}>OTP VERIFICATION</AppText>
+        <AppText style={styles.subtitle}>
           We have sent an OTP verification code via Email to{'\n'}
           {email}. Please enter the code.
-        </Text>
+        </AppText>
 
         <View style={styles.otpContainer}>
           {otp.map((digit, index) => (
@@ -104,15 +104,15 @@ const OtpVerification: FC<{
 
         <Button title="Confirm" onPress={handleSubmit} style={styles.button} />
 
-        <Text style={styles.resendText}>
+        <AppText style={styles.resendText}>
           Didn’t receive the code?{' '}
-          <Text
+          <AppText
             onPress={resendCode}
             style={[styles.resendLink, timer > 0 && { color: '#C0A589' }]}
             disabled={timer > 0}>
             Resend {timer > 0 ? `00:${timer.toString().padStart(2, '0')}` : ''}
-          </Text>
-        </Text>
+          </AppText>
+        </AppText>
       </View>
     </ScreenContainer>
   );
@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     color: COLORS.primary,
-    fontFamily: fontFamilies.ARCHIVO.light,
     marginBottom: 10,
     marginTop: 24,
   },

@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import { Button } from '../../components/ui/button';
-import { Text } from '../../components/ui/text';
+import { AppText } from '../../components/ui/app-text';
 import { MainNavigatorParamList } from '../../navigators/types';
 
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
@@ -35,8 +35,8 @@ class Welcome extends Component<WelcomeProps> {
             source={require('../../assets/images/onboarding/onboarding.png')}
             style={{ width: 431, height: 577 }}
           />
-          <Text variant='subtitle2' color='primary' style={styles.subtitle}>WELCOME TO</Text>
-          <Text style={styles.title}>AFFINITY</Text>
+          <AppText variant='subtitle2' color='primary' style={styles.subtitle}>WELCOME TO</AppText>
+          <AppText style={styles.title}>AFFINITY</AppText>
           <Button
             title="Get Started"
             variant='primary'

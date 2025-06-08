@@ -6,11 +6,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import { Button } from '../../components/ui/button';
-import { fontFamilies } from '../../constants/fonts';
 import { MainNavigatorParamList } from '../../navigators/types';
 import i18n from '../../locales/i18n';
 import { LANGUAGES } from '../../constants/app';
-import { Text } from '../../components/ui/text';
+import { AppText } from '../../components/ui/app-text';
 import SelectableItem from '../../components/ui/selectable-item';
 
 type LanguageSelectionProps = NativeStackScreenProps<MainNavigatorParamList, 'LanguageSelection'>;
@@ -31,7 +30,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <Text variant="subtitle2" style={styles.heading}>Please Select a Language</Text>
+      <AppText variant="subtitle2" style={styles.heading}>Please Select a Language</AppText>
 
       <Controller
         control={control}
@@ -41,7 +40,11 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
             {LANGUAGES.map(lang => {
               const isSelected = value === lang.key;
               return (
-                <SelectableItem item={lang} onChange={onChange} isSelected={isSelected} />
+                <SelectableItem
+                  item={lang}
+                  onChange={onChange}
+                  isSelected={isSelected}
+                  key={lang.key} />
               );
             })}
           </View>

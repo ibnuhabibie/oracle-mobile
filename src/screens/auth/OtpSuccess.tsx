@@ -5,7 +5,7 @@ import {StyleSheet, View} from 'react-native';
 import CheckmarkIcon from '../../components/icons/Checkmark';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import {Button} from '../../components/ui/button';
-import {Text} from '../../components/ui/text';
+import {Text} from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/ShinyContainer';
 import {COLORS} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fonts';

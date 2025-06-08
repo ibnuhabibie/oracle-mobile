@@ -5,7 +5,9 @@ export type MainNavigatorParamList = {
     LanguageSelection: undefined;
     SignIn: undefined;
     SignUp: undefined;
-    Otp: undefined;
+    Otp: {
+        email: string
+    };
     OtpSuccess: undefined;
     Introduction: undefined;
     MbtiQuiz: undefined;

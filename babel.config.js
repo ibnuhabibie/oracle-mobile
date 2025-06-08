@@ -12,7 +12,8 @@ module.exports = function (api) {
           path: '.env',
         }
       ],
-      ["@babel/plugin-transform-class-static-block"]
+      ["@babel/plugin-transform-class-static-block"],
+      'react-native-reanimated/plugin'
     ]
   }
 };
