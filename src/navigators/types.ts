@@ -1,3 +1,5 @@
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 export type MainNavigatorParamList = {
     Welcome: undefined;
     LanguageSelection: undefined;
@@ -23,3 +25,9 @@ export type MainNavigatorParamList = {
     AstrologyResults: undefined;
     BaziResults: undefined;
 };
+
+declare global {
+    namespace ReactNavigation {
+        interface RootParamList extends MainNavigatorParamList { }
+    }
+}

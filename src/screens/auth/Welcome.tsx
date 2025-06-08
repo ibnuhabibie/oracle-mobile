@@ -1,4 +1,4 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -6,14 +6,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import { Button } from '../../components/ui/button';
 import { Text } from '../../components/ui/text';
-import { COLORS } from '../../constants/colors';
 import { MainNavigatorParamList } from '../../navigators/types';
 
-type Props = {
-  navigation: NativeStackNavigationProp<MainNavigatorParamList, 'Welcome'>;
-};
+type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
-class Welcome extends Component<Props> {
+class Welcome extends Component<WelcomeProps> {
   handleClick = async () => {
     try {
       const language = await AsyncStorage.getItem('language');
