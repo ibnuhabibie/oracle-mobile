@@ -4,4 +4,4 @@ export const COLORS = {
   black: '#191919',
   neutral: '#575757',
   'primary-dark': '#CB9960',
-} satisfies Record<string, `#${string}`>;
+};

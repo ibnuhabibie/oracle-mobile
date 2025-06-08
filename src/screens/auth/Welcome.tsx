@@ -17,7 +17,9 @@ class Welcome extends Component<Props> {
   handleClick = async () => {
     try {
       const language = await AsyncStorage.getItem('language');
-      if (language) {
+      console.log(language, 'language');
+
+      if (!language) {
         this.props.navigation.navigate('SignIn');
       } else {
         this.props.navigation.navigate('LanguageSelection');
@@ -36,12 +38,13 @@ class Welcome extends Component<Props> {
             source={require('../../assets/images/onboarding/onboarding.png')}
             style={{ width: 431, height: 577 }}
           />
-          <Text style={styles.subtitle}>WELCOME TO</Text>
+          <Text variant='subtitle2' color='primary' style={styles.subtitle}>WELCOME TO</Text>
           <Text style={styles.title}>AFFINITY</Text>
           <Button
             title="Get Started"
+            variant='primary'
             onPress={this.handleClick}
-            style={{ width: '100%', marginTop: 24 }}
+            style={{ marginTop: 24 }}
           />
         </View>
       </ScreenContainer>
@@ -57,13 +60,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
-    color: COLORS.black,
   },
   subtitle: {
-    fontSize: 18,
     letterSpacing: 7,
     marginTop: 26,
-    color: COLORS.primary,
   },
 });
 

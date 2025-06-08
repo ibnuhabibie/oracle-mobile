@@ -77,10 +77,15 @@ export class Button extends Component<CustomButtonProps> {
     const base: TextStyle = {
       fontSize: 16,
       fontFamily: fontFamilies.ARCHIVO.regular,
+      color: COLORS.white,
     };
 
     switch (variant) {
       case 'primary':
+        return {
+          ...base,
+          color: COLORS.white,
+        };
       case 'text':
         return {
           ...base,
