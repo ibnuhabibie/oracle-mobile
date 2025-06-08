@@ -9,8 +9,8 @@ import CheckIcon from '../../components/icons/Check';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import { Button } from '../../components/ui/button';
 import { fontFamilies } from '../../constants/fonts';
-import { MainNavigatorParamList } from '../../navigators/AuthNavigator';
-import i18n from '../../utils/i18n';
+import { MainNavigatorParamList } from '../../navigators/types';
+import i18n from '../../locales/i18n';
 
 const LANGUAGES = [
   { key: 'en', label: 'English' },

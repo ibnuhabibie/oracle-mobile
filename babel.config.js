@@ -11,7 +11,8 @@ module.exports = function (api) {
           moduleName: '@env',
           path: '.env',
         }
-      ]
+      ],
+      ["@babel/plugin-transform-class-static-block"]
     ]
   }
 };

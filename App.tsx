@@ -1,19 +1,24 @@
-import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
-import {enableScreens} from 'react-native-screens';
-import {AuthProvider} from './src/context/AuthContext';
-import RootNavigator from './src/navigators/RootNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+import React, { Component } from 'react';
+import { enableScreens } from 'react-native-screens';
+
+import { AuthProvider } from './src/context/AuthContext';
+import MainNavigator from './src/navigators/MainNavigator';
+import { FloatingPreviewButton } from './src/features/component-preview/floating-preview-button';
 
 enableScreens(false);
 
-const App = () => {
-  return (
-    <AuthProvider>
-      <NavigationContainer>
-        <RootNavigator />
-      </NavigationContainer>
-    </AuthProvider>
-  );
-};
+class App extends Component {
+  render() {
+    return (
+      <AuthProvider>
+        <NavigationContainer>
+          <MainNavigator />
+          <FloatingPreviewButton />
+        </NavigationContainer>
+      </AuthProvider>
+    );
+  }
+}
 
 export default App;

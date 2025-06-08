@@ -1,4 +1,4 @@
-import {isIOS} from '../utils/platformUtils';
+import {isIOS} from '../utils/platform';
 
 export const fontFamilies = {
   ARCHIVO: {

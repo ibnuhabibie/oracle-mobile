@@ -3,8 +3,8 @@ import { initReactI18next } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Import your JSON files
-import en from '../locales/en.json';
-import id from '../locales/id.json';
+import en from './en.json';
+import id from './id.json';
 
 const languageDetector = {
     type: 'languageDetector',

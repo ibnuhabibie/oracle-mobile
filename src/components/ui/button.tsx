@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   GestureResponderEvent,
   StyleSheet,
@@ -7,13 +7,13 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import {COLORS} from '../../constants/colors';
-import {fontFamilies} from '../../constants/fonts';
+import { COLORS } from '../../constants/colors';
+import { fontFamilies } from '../../constants/fonts';
 
 type ButtonSize = 'big' | 'small';
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text';
 
-interface CustomButtonProps {
+export interface CustomButtonProps {
   title: string;
   size?: ButtonSize;
   variant?: ButtonVariant;
@@ -23,22 +23,19 @@ interface CustomButtonProps {
   textStyle?: TextStyle;
 }
 
-export const Button: React.FC<CustomButtonProps> = ({
-  title,
-  size = 'big',
-  variant = 'primary',
-  onPress,
-  disabled = false,
-  style,
-  textStyle,
-}) => {
-  const isBig = size === 'big';
+export class Button extends Component<CustomButtonProps> {
+  static defaultProps = {
+    variant: 'primary',
+    disabled: false,
+  };
 
-  const getButtonStyle = (): ViewStyle => {
+  getButtonStyle = (): ViewStyle => {
+    const { variant } = this.props;
+
     const base: ViewStyle = {
       paddingHorizontal: 20,
       height: 47,
-      width: isBig ? 327 : 234,
+      width: '100%',
       borderRadius: 12,
       justifyContent: 'center',
       alignItems: 'center',
@@ -48,12 +45,12 @@ export const Button: React.FC<CustomButtonProps> = ({
       case 'primary':
         return {
           ...base,
-          backgroundColor: COLORS.primary, // beige
+          backgroundColor: COLORS.primary,
         };
       case 'secondary':
         return {
           ...base,
-          backgroundColor: COLORS.black, // black
+          backgroundColor: COLORS.black,
         };
       case 'outline':
         return {
@@ -62,11 +59,11 @@ export const Button: React.FC<CustomButtonProps> = ({
           borderWidth: 1,
           backgroundColor: COLORS.white,
         };
-      case 'ghost':
+      case 'text':
         return {
           ...base,
           borderColor: COLORS.black,
-          borderWidth: 1,
+          borderWidth: 0,
           backgroundColor: COLORS.white,
         };
       default:
@@ -74,7 +71,9 @@ export const Button: React.FC<CustomButtonProps> = ({
     }
   };
 
-  const getTextStyle = (): TextStyle => {
+  getTextStyle = (): TextStyle => {
+    const { variant } = this.props;
+
     const base: TextStyle = {
       fontSize: 16,
       fontFamily: fontFamilies.ARCHIVO.regular,
@@ -82,10 +81,10 @@ export const Button: React.FC<CustomButtonProps> = ({
 
     switch (variant) {
       case 'primary':
-      case 'ghost':
+      case 'text':
         return {
           ...base,
-          color: COLORS.white,
+          color: COLORS.black,
         };
       case 'secondary':
         return {
@@ -102,16 +101,20 @@ export const Button: React.FC<CustomButtonProps> = ({
     }
   };
 
-  return (
-    <TouchableOpacity
-      style={[getButtonStyle(), disabled && styles.disabled, style]}
-      onPress={onPress}
-      activeOpacity={0.8}
-      disabled={disabled}>
-      <Text style={[getTextStyle(), textStyle]}>{title}</Text>
-    </TouchableOpacity>
-  );
-};
+  render() {
+    const { title, onPress, disabled, style, textStyle } = this.props;
+
+    return (
+      <TouchableOpacity
+        style={[this.getButtonStyle(), disabled && styles.disabled, style]}
+        onPress={onPress}
+        activeOpacity={0.8}
+        disabled={disabled}>
+        <Text style={[this.getTextStyle(), textStyle]}>{title}</Text>
+      </TouchableOpacity>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   disabled: {

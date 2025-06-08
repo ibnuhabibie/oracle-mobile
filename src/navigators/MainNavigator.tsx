@@ -1,5 +1,5 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import HomeIcon from '../components/icons/Home';
@@ -8,7 +8,7 @@ import ProfileIcon from '../components/icons/Profile';
 import Introduction from '../screens/auth/Introduction';
 import LanguageSelection from '../screens/auth/LanguageSelection';
 import MbtiQuiz from '../screens/auth/MbtiQuiz';
-import Onboarding from '../screens/auth/Onboarding';
+import Welcome from '../screens/auth/Welcome';
 import OtpSuccess from '../screens/auth/OtpSuccess';
 import OtpVerification from '../screens/auth/OtpVerification';
 import SignIn from '../screens/auth/SignIn';
@@ -22,38 +22,16 @@ import PasswordSetting from '../screens/main/profile/PasswordSetting';
 import PrivacyPolicy from '../screens/main/profile/PrivacyPolicy';
 import Profile from '../screens/main/profile/Profile';
 import PurchaseHistory from '../screens/main/profile/PurchaseHistory';
+import ComponentGallery from '../screens/dev/ComponentGallery';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
-export type MainNavigatorParamList = {
-  Onboarding: undefined;
-  LanguageSelection: undefined;
-  SignIn: undefined;
-  SignUp: undefined;
-  Otp: undefined;
-  OtpSuccess: undefined;
-  Introduction: undefined;
-  MbtiQuiz: undefined;
-
-  Tabs: undefined;
-
-  Home: undefined;
-  Profile: undefined;
-  EditProfile: undefined;
-  PasswordSetting: undefined;
-  PrivacyPolicy: undefined;
-  PurchaseHistory: undefined;
-  MbtiResults: undefined;
-  AstrologyResults: undefined;
-  BaziResults: undefined;
-};
 
 const TabNavigator = () => (
   <Tab.Navigator
     screenOptions={{
       headerShown: false,
-      tabBarStyle: {backgroundColor: '#ffffff'},
+      tabBarStyle: { backgroundColor: '#ffffff' },
       tabBarActiveTintColor: '#000',
       tabBarInactiveTintColor: '#999',
     }}
@@ -62,7 +40,7 @@ const TabNavigator = () => (
       name="Home"
       component={Home}
       options={{
-        tabBarIcon: ({size, focused}) => (
+        tabBarIcon: ({ size, focused }) => (
           <HomeIcon size={size ?? 19} fill={focused} />
         ),
         tabBarLabel: 'Home',
@@ -72,7 +50,7 @@ const TabNavigator = () => (
       name="Profile"
       component={Profile}
       options={{
-        tabBarIcon: ({size, focused}) => (
+        tabBarIcon: ({ size, focused }) => (
           <ProfileIcon size={size ?? 19} fill={focused} />
         ),
         tabBarLabel: 'Profile',
@@ -84,9 +62,9 @@ const TabNavigator = () => (
 const MainNavigator = () => {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}
-      initialRouteName="Onboarding">
-      <Stack.Screen name="Onboarding" component={Onboarding} />
+      screenOptions={{ headerShown: false }}
+      initialRouteName="Welcome">
+      <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Otp" component={OtpVerification} />
@@ -95,6 +73,8 @@ const MainNavigator = () => {
       <Stack.Screen name="Introduction" component={Introduction} />
       <Stack.Screen name="MbtiQuiz" component={MbtiQuiz} />
       <Stack.Screen name="MbtiResults" component={MbtiResults} />
+      <Stack.Screen name="ComponentGallery" component={ComponentGallery} />
+
 
       <Stack.Screen name="Tabs" component={TabNavigator} />
 
