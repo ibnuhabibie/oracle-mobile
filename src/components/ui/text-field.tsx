@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, { forwardRef } from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -7,8 +7,8 @@ import {
   ViewStyle,
 } from 'react-native';
 import CalendarIcon from '../icons/Calendar';
-import {fontFamilies} from '../../constants/fonts';
-import {COLORS} from '../../constants/colors';
+import { fontFamilies } from '../../constants/fonts';
+import { COLORS } from '../../constants/colors';
 
 type TextFieldVariant = 'default' | 'error' | 'warning' | 'disabled';
 
@@ -48,7 +48,7 @@ const TextField = forwardRef<TextInput, TextFieldProps>(
       <View
         style={[
           styles.container,
-          {backgroundColor: getBackgroundColor()},
+          { backgroundColor: getBackgroundColor() },
           containerStyle,
           props.style,
         ]}>

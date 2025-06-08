@@ -1,97 +1,63 @@
-/* eslint-disable react-native/no-inline-styles */
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { FC, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { FC } from 'react';
+import { StyleSheet } from 'react-native';
+import { t } from 'i18next';
 
-import EyeIcon from '../../components/icons/Eye';
-import EyeCrossedIcon from '../../components/icons/EyeCrossed';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import { Button } from '../../components/ui/button';
-import TextField from '../../components/ui/text-field';
-import { MainNavigatorParamList } from '../../navigators/AuthNavigator';
-import { fontFamilies } from '../../constants/fonts';
-import api from '../../utils/http';
-import { API_BASE_URL } from '@env';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import SignUpForm from '../../features/auth/signup-form';
+import { MainNavigatorParamList } from '../../navigators/types';
+import { COLORS } from '../../constants/colors';
+import { AppText } from '../../components/ui/app-text';
 
-const SignUp: FC<{
-  navigation: NativeStackNavigationProp<MainNavigatorParamList, 'SignUp'>;
-}> = ({ navigation }) => {
+type SignUpProps = NativeStackScreenProps<MainNavigatorParamList, 'SignUp'>;
 
+const SignUp: FC<SignUpProps> = ({ navigation }) => {
+
+  const onSuccess = (email: string) => {
+    navigation.navigate('Otp', { email });
+  };
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <Text style={styles.intro}>DEAR SEEKERS</Text>
-      <Text style={styles.title}>Sign Up</Text>
-      <Text style={styles.subtitle}>
+      <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEAKERS')}</AppText>
+      <AppText variant='largeTitle2' style={styles.title}>Sign Up</AppText>
+      <AppText variant='caption1' style={styles.subtitle}>
         The cosmos whispers.{'\n'}Join & uncover your destiny.
-      </Text>
+      </AppText>
 
-      <SignUpForm />
+      <SignUpForm onSuccess={onSuccess} />
 
-      <Text style={styles.footer}>
+      <AppText variant='body1' style={styles.footer}>
         Already have an account?{' '}
-        <Text
-          style={styles.signIn}
+        <AppText
+          color='primary'
           onPress={() => navigation.navigate('SignIn')}>
           Sign In
-        </Text>
-      </Text>
+        </AppText>
+      </AppText>
     </ScreenContainer>
   );
 };
 
-// TODO: globalize style or make the input and error as 1 component
 const styles = StyleSheet.create({
   intro: {
-    fontSize: 14,
-    color: '#c1976b',
-    textAlign: 'center',
-    letterSpacing: 2,
-    marginBottom: 8,
-    fontFamily: fontFamilies.ARCHIVO.light,
-    width: '100%',
+    letterSpacing: 7,
+    marginTop: 26,
+    textAlign: 'center'
   },
   title: {
-    fontSize: 32,
     textAlign: 'center',
     marginBottom: 6,
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   subtitle: {
-    fontSize: 14,
     textAlign: 'center',
-    color: '#777',
     marginBottom: 24,
-    fontFamily: fontFamilies.ARCHIVO.light,
+    color: COLORS['dark-gray']
   },
   footer: {
     textAlign: 'center',
     marginTop: 16,
-    color: '#333',
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
-  signInButton: {
-    marginTop: 12,
-    width: '100%',
-  },
-  signIn: {
-    color: '#c1976b',
-    fontFamily: fontFamilies.ARCHIVO.light,
-  },
-  textField: {
-    width: '100%',
-  },
-  inputError: {
-    borderColor: 'red'
-  },
-  errorText: {
-    color: 'red',
-    fontSize: 12,
-    padding: 4
-  }
 });
 
 export default SignUp;

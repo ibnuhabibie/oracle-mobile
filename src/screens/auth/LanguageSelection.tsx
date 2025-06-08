@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import { Button } from '../../components/ui/button';
+import { AppButton } from '../../components/ui/app-button';
 import { MainNavigatorParamList } from '../../navigators/types';
 import i18n from '../../locales/i18n';
 import { LANGUAGES } from '../../constants/app';
@@ -50,7 +50,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
           </View>
         )}
       />
-      <Button
+      <AppButton
         title="Next"
         onPress={handleSubmit(onSubmit)}
         style={styles.button}

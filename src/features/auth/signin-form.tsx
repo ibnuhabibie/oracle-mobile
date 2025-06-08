@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import api from "../../utils/http";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert, StyleSheet, View } from "react-native";
-import { fontFamilies } from "../../constants/fonts";
-import TextField from "../../components/ui/text-field";
-import { Text } from "../../components/ui/app-text";
 import { Pressable } from "react-native-gesture-handler";
+
+import api from "../../utils/http";
+import { fontFamilies } from "../../constants/fonts";
 import EyeCrossedIcon from "../../components/icons/EyeCrossed";
 import EyeIcon from "../../components/icons/Eye";
-import { Button } from "../../components/ui/button";
+import TextField from "../../components/ui/text-field";
+import { AppText } from "../../components/ui/app-text";
+import { AppButton } from "../../components/ui/app-button";
 
 interface LoginDTO {
     email: string;
@@ -82,13 +83,13 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
-                                style={[styles.textField, errors.email && styles.inputError]}
+                                style={[errors.email && styles.inputError]}
                                 keyboardType="email-address"
                             />
                         )}
                     />
                     {errors.email && (
-                        <Text style={styles.errorText}>{errors.email.message}</Text>
+                        <AppText style={styles.errorText}>{errors.email.message}</AppText>
                     )}
                 </View>
                 <View>
@@ -102,7 +103,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                                 value={value}
                                 onChangeText={onChange}
                                 secureTextEntry={!showPassword}
-                                style={[styles.textField, errors.password && styles.inputError]}
+                                style={[errors.password && styles.inputError]}
                                 rightIcon={
                                     <Pressable onPress={() => setShowPassword(prev => !prev)}>
                                         {showPassword ? (
@@ -116,12 +117,12 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                         )}
                     />
                     {errors.password && (
-                        <Text style={styles.errorText}>{errors.password.message}</Text>
+                        <AppText style={styles.errorText}>{errors.password.message}</AppText>
                     )}
                 </View>
             </View>
 
-            <Button
+            <AppButton
                 title="Sign In"
                 onPress={handleSubmit(onSubmit)}
                 style={styles.signInButton}
@@ -131,43 +132,8 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 }
 
 const styles = StyleSheet.create({
-    intro: {
-        fontSize: 14,
-        color: '#c1976b',
-        textAlign: 'center',
-        letterSpacing: 2,
-        marginBottom: 8,
-        fontFamily: fontFamilies.ARCHIVO.light,
-        width: '100%',
-    },
-    title: {
-        fontSize: 32,
-        textAlign: 'center',
-        marginBottom: 6,
-        fontFamily: fontFamilies.ARCHIVO.light,
-    },
-    subtitle: {
-        fontSize: 14,
-        textAlign: 'center',
-        color: '#777',
-        marginBottom: 24,
-        fontFamily: fontFamilies.ARCHIVO.light,
-    },
-    footer: {
-        textAlign: 'center',
-        marginTop: 16,
-        color: '#333',
-        fontFamily: fontFamilies.ARCHIVO.light,
-    },
     signInButton: {
         marginTop: 12,
-        width: '100%',
-    },
-    signIn: {
-        color: '#c1976b',
-        fontFamily: fontFamilies.ARCHIVO.light,
-    },
-    textField: {
         width: '100%',
     },
     inputError: {

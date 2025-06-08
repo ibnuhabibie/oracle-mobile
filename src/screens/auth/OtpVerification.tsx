@@ -1,16 +1,15 @@
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Keyboard, StyleSheet, TextInput, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import SMSIcon from '../../components/icons/SMS';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import { Button } from '../../components/ui/button';
+import { AppButton } from '../../components/ui/app-button';
 import { AppText } from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/ShinyContainer';
 import { COLORS } from '../../constants/colors';
-import { fontFamilies } from '../../constants/fonts';
-import { MainNavigatorParamList } from '../../navigators/AuthNavigator';
+import { MainNavigatorParamList } from '../../navigators/types';
 
 
 type OtpVerificationProps = NativeStackScreenProps<MainNavigatorParamList, 'Otp'>;
@@ -102,7 +101,7 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
           ))}
         </View>
 
-        <Button title="Confirm" onPress={handleSubmit} style={styles.button} />
+        <AppButton title="Confirm" onPress={handleSubmit} style={styles.button} />
 
         <AppText style={styles.resendText}>
           Didn’t receive the code?{' '}

@@ -23,7 +23,7 @@ export interface CustomButtonProps {
   textStyle?: TextStyle;
 }
 
-export class Button extends Component<CustomButtonProps> {
+export class AppButton extends Component<CustomButtonProps> {
   static defaultProps = {
     variant: 'primary',
     disabled: false,

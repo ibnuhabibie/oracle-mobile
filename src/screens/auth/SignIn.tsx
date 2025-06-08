@@ -16,7 +16,6 @@ const SignIn: FC<SignInnProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
   const onSuccess = (email: string) => {
-    console.log(email)
     navigation.navigate('Otp', { email });
   };
 
@@ -31,7 +30,7 @@ const SignIn: FC<SignInnProps> = ({ navigation }) => {
       <SignInForm onSuccess={onSuccess} />
 
       <AppText variant='body1' style={styles.footer}>
-        Already have an account?{' '}
+        Don’t have an account?{' '}
         <AppText
           color='primary'
           onPress={() => navigation.navigate('SignUp')}>

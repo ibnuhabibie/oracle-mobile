@@ -7,7 +7,7 @@ import api from "../../utils/http";
 import TextField from "../../components/ui/text-field";
 import EyeCrossedIcon from "../../components/icons/EyeCrossed";
 import EyeIcon from "../../components/icons/Eye";
-import { Button } from "../../components/ui/button";
+import { AppButton } from "../../components/ui/app-button";
 import { AuthFormProps } from "./signin-form";
 
 const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
@@ -87,7 +87,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 value={value}
-                                style={[styles.textField, errors.full_name && styles.inputError]}
+                                style={[errors.full_name && styles.inputError]}
                             />
                         )}
                     />
@@ -105,7 +105,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                                 placeholder="Email"
                                 value={value}
                                 onChangeText={onChange}
-                                style={[styles.textField, errors.email && styles.inputError]}
+                                style={[errors.email && styles.inputError]}
                                 keyboardType="email-address"
                             />
                         )}
@@ -124,7 +124,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                                 placeholder="Password"
                                 value={value}
                                 onChangeText={onChange}
-                                style={[styles.textField, errors.password && styles.inputError]}
+                                style={[errors.password && styles.inputError]}
                                 secureTextEntry={!showPassword}
                                 rightIcon={
                                     <Pressable onPress={() => setShowPassword(prev => !prev)}>
@@ -152,7 +152,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                                 placeholder="Confirm Password"
                                 value={value}
                                 onChangeText={onChange}
-                                style={[styles.textField, errors.confirm_password && styles.inputError]}
+                                style={[errors.confirm_password && styles.inputError]}
                                 secureTextEntry={!showConfirmPassword}
                                 rightIcon={
                                     <Pressable
@@ -180,14 +180,13 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                                 placeholder="Referral Code"
                                 value={value}
                                 onChangeText={onChange}
-                                style={styles.textField}
                             />
                         )}
                     />
                 </View>
             </View>
 
-            <Button
+            <AppButton
                 title="Create Account"
                 onPress={handleSubmit(onSubmit)}
                 style={styles.signInButton}
@@ -197,38 +196,8 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 }
 
 const styles = StyleSheet.create({
-    intro: {
-        fontSize: 14,
-        color: '#c1976b',
-        textAlign: 'center',
-        letterSpacing: 2,
-        marginBottom: 8,
-        width: '100%',
-    },
-    title: {
-        fontSize: 32,
-        textAlign: 'center',
-        marginBottom: 6,
-    },
-    subtitle: {
-        fontSize: 14,
-        textAlign: 'center',
-        color: '#777',
-        marginBottom: 24,
-    },
-    footer: {
-        textAlign: 'center',
-        marginTop: 16,
-        color: '#333',
-    },
     signInButton: {
         marginTop: 12,
-        width: '100%',
-    },
-    signIn: {
-        color: '#c1976b',
-    },
-    textField: {
         width: '100%',
     },
     inputError: {

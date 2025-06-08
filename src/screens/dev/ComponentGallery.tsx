@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { Button } from '../../components/ui/button';
+import { Button } from '../../components/ui/app-button';
 import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 

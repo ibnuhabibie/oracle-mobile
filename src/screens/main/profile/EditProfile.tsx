@@ -8,7 +8,7 @@ import ArrowIcon from '../../../components/icons/Arrow';
 import CalendarIcon from '../../../components/icons/Calendar';
 import ClockIcon from '../../../components/icons/Clock';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
-import {Button} from '../../../components/ui/button';
+import {Button} from '../../../components/ui/app-button';
 import TextField from '../../../components/ui/text-field';
 import {
   DropdownButton,

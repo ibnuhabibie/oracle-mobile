@@ -4,7 +4,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import { Button } from '../../components/ui/button';
+import { AppButton } from '../../components/ui/app-button';
 import { AppText } from '../../components/ui/app-text';
 import { MainNavigatorParamList } from '../../navigators/types';
 
@@ -37,7 +37,7 @@ class Welcome extends Component<WelcomeProps> {
           />
           <AppText variant='subtitle2' color='primary' style={styles.subtitle}>WELCOME TO</AppText>
           <AppText style={styles.title}>AFFINITY</AppText>
-          <Button
+          <AppButton
             title="Get Started"
             variant='primary'
             onPress={this.handleClick}
