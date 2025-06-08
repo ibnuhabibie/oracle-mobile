@@ -5,12 +5,13 @@ import { Alert, StyleSheet, View } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
 
 import api from "../../utils/http";
-import { fontFamilies } from "../../constants/fonts";
 import EyeCrossedIcon from "../../components/icons/EyeCrossed";
 import EyeIcon from "../../components/icons/Eye";
 import TextField from "../../components/ui/text-field";
 import { AppText } from "../../components/ui/app-text";
 import { AppButton } from "../../components/ui/app-button";
+import AppInput from "../../components/ui/app-input";
+import PasswordToggle from "../../components/ui/password-toggle";
 
 interface LoginDTO {
     email: string;
@@ -72,54 +73,27 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     return (
         <View>
             <View style={{ flexDirection: 'column', gap: 12 }}>
-                <View>
-                    <Controller
-                        control={control}
-                        name="email"
-                        rules={formRules.email}
-                        render={({ field: { value, onChange, onBlur } }) => (
-                            <TextField
-                                placeholder="Email"
-                                onBlur={onBlur}
-                                onChangeText={onChange}
-                                value={value}
-                                style={[errors.email && styles.inputError]}
-                                keyboardType="email-address"
-                            />
-                        )}
-                    />
-                    {errors.email && (
-                        <AppText style={styles.errorText}>{errors.email.message}</AppText>
-                    )}
-                </View>
-                <View>
-                    <Controller
-                        control={control}
-                        name="password"
-                        rules={formRules.password}
-                        render={({ field: { value, onChange } }) => (
-                            <TextField
-                                placeholder="Password"
-                                value={value}
-                                onChangeText={onChange}
-                                secureTextEntry={!showPassword}
-                                style={[errors.password && styles.inputError]}
-                                rightIcon={
-                                    <Pressable onPress={() => setShowPassword(prev => !prev)}>
-                                        {showPassword ? (
-                                            <EyeCrossedIcon size={20} />
-                                        ) : (
-                                            <EyeIcon size={20} />
-                                        )}
-                                    </Pressable>
-                                }
-                            />
-                        )}
-                    />
-                    {errors.password && (
-                        <AppText style={styles.errorText}>{errors.password.message}</AppText>
-                    )}
-                </View>
+                <AppInput<LoginDTO>
+                    control={control}
+                    name="email"
+                    rules={formRules.email}
+                    placeholder="Email"
+                    keyboardType="email-address"
+                    errors={errors}
+                />
+                <AppInput<LoginDTO>
+                    control={control}
+                    name="password"
+                    rules={formRules.password}
+                    placeholder="Password"
+                    secureTextEntry={!showPassword}
+                    errors={errors} // Pass the errors object
+                    rightIcon={
+                        <PasswordToggle
+                            onToggle={() => setShowPassword(prev => !prev)}
+                            showPassword={showPassword} />
+                    }
+                />
             </View>
 
             <AppButton
@@ -136,14 +110,6 @@ const styles = StyleSheet.create({
         marginTop: 12,
         width: '100%',
     },
-    inputError: {
-        borderColor: 'red'
-    },
-    errorText: {
-        color: 'red',
-        fontSize: 12,
-        padding: 4
-    }
 });
 
 export default SignInForm;

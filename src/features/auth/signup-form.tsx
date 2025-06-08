@@ -9,6 +9,8 @@ import EyeCrossedIcon from "../../components/icons/EyeCrossed";
 import EyeIcon from "../../components/icons/Eye";
 import { AppButton } from "../../components/ui/app-button";
 import { AuthFormProps } from "./signin-form";
+import AppInput from "../../components/ui/app-input";
+import PasswordToggle from "../../components/ui/password-toggle";
 
 const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -76,114 +78,53 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     return (
         <>
             <View style={{ flexDirection: 'column', gap: 12 }}>
-                <View>
-                    <Controller
-                        control={control}
-                        name="full_name"
-                        rules={formRules.full_name}
-                        render={({ field: { value, onChange, onBlur } }) => (
-                            <TextField
-                                placeholder="Name"
-                                onBlur={onBlur}
-                                onChangeText={onChange}
-                                value={value}
-                                style={[errors.full_name && styles.inputError]}
-                            />
-                        )}
-                    />
-                    {errors.full_name && (
-                        <Text style={styles.errorText}>{errors.full_name.message}</Text>
-                    )}
-                </View>
-                <View>
-                    <Controller
-                        control={control}
-                        name="email"
-                        rules={formRules.email}
-                        render={({ field: { value, onChange, onBlur } }) => (
-                            <TextField
-                                placeholder="Email"
-                                value={value}
-                                onChangeText={onChange}
-                                style={[errors.email && styles.inputError]}
-                                keyboardType="email-address"
-                            />
-                        )}
-                    />
-                    {errors.email && (
-                        <Text style={styles.errorText}>{errors.email.message}</Text>
-                    )}
-                </View>
-                <View>
-                    <Controller
-                        control={control}
-                        name="password"
-                        rules={formRules.password}
-                        render={({ field: { value, onChange, onBlur } }) => (
-                            <TextField
-                                placeholder="Password"
-                                value={value}
-                                onChangeText={onChange}
-                                style={[errors.password && styles.inputError]}
-                                secureTextEntry={!showPassword}
-                                rightIcon={
-                                    <Pressable onPress={() => setShowPassword(prev => !prev)}>
-                                        {showPassword ? (
-                                            <EyeCrossedIcon size={20} />
-                                        ) : (
-                                            <EyeIcon size={20} />
-                                        )}
-                                    </Pressable>
-                                }
-                            />
-                        )}
-                    />
-                    {errors.password && (
-                        <Text style={styles.errorText}>{errors.password.message}</Text>
-                    )}
-                </View>
-                <View>
-                    <Controller
-                        control={control}
-                        name="confirm_password"
-                        rules={formRules.confirm_password}
-                        render={({ field: { value, onChange, onBlur } }) => (
-                            <TextField
-                                placeholder="Confirm Password"
-                                value={value}
-                                onChangeText={onChange}
-                                style={[errors.confirm_password && styles.inputError]}
-                                secureTextEntry={!showConfirmPassword}
-                                rightIcon={
-                                    <Pressable
-                                        onPress={() => setShowConfirmPassword(prev => !prev)}>
-                                        {showConfirmPassword ? (
-                                            <EyeCrossedIcon size={20} />
-                                        ) : (
-                                            <EyeIcon size={20} />
-                                        )}
-                                    </Pressable>
-                                }
-                            />
-                        )}
-                    />
-                    {errors.confirm_password && (
-                        <Text style={styles.errorText}>{errors.confirm_password.message}</Text>
-                    )}
-                </View>
-                <View>
-                    <Controller
-                        control={control}
-                        name="referral_code"
-                        render={({ field: { value, onChange } }) => (
-                            <TextField
-                                placeholder="Referral Code"
-                                value={value}
-                                onChangeText={onChange}
-                            />
-                        )}
-                    />
-                </View>
+                <AppInput
+                    control={control}
+                    name="full_name"
+                    rules={formRules.full_name}
+                    placeholder="Name"
+                    errors={errors}
+                />
+                <AppInput
+                    control={control}
+                    name="email"
+                    rules={formRules.email}
+                    placeholder="Email"
+                    errors={errors}
+                    keyboardType="email-address"
+                />
+                <AppInput
+                    control={control}
+                    name="password"
+                    rules={formRules.password}
+                    placeholder="Password"
+                    secureTextEntry={!showPassword}
+                    errors={errors}
+                    rightIcon={
+                        <PasswordToggle
+                            onToggle={() => setShowPassword(prev => !prev)}
+                            showPassword={showPassword} />
+                    }
+                />
+                <AppInput
+                    control={control}
+                    name="confirm_password"
+                    rules={formRules.confirm_password}
+                    placeholder="Confirm Password"
+                    secureTextEntry={!showConfirmPassword}
+                    errors={errors}
+                    rightIcon={
+                        <PasswordToggle
+                            onToggle={() => setShowConfirmPassword(prev => !prev)}
+                            showPassword={showConfirmPassword} />
+                    }
+                />
+                <AppInput
+                    control={control}
+                    name="referral_code"
+                    placeholder="Referral Code"
+                    errors={errors}
+                />
             </View>
 
             <AppButton
@@ -200,14 +141,6 @@ const styles = StyleSheet.create({
         marginTop: 12,
         width: '100%',
     },
-    inputError: {
-        borderColor: 'red'
-    },
-    errorText: {
-        color: 'red',
-        fontSize: 12,
-        padding: 4
-    }
 });
 
 
