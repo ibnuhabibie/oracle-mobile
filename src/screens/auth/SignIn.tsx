@@ -16,7 +16,7 @@ const SignIn: FC<SignInnProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
   const onSuccess = (email: string) => {
-    navigation.navigate('Otp', { email });
+    navigation.navigate('OtpVerification', { email });
   };
 
   return (

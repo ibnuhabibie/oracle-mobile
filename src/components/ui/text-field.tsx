@@ -14,7 +14,6 @@ type TextFieldVariant = 'default' | 'error' | 'warning' | 'disabled';
 
 interface TextFieldProps extends TextInputProps {
   variant?: TextFieldVariant;
-  withCalendar?: boolean;
   rightIcon?: React.ReactNode;
   containerStyle?: ViewStyle;
 }
@@ -23,7 +22,6 @@ const TextField = forwardRef<TextInput, TextFieldProps>(
   (
     {
       variant = 'default',
-      withCalendar = false,
       editable = true,
       rightIcon,
       containerStyle,
@@ -59,7 +57,6 @@ const TextField = forwardRef<TextInput, TextFieldProps>(
           editable={variant !== 'disabled'}
           placeholderTextColor="#999"
         />
-        {withCalendar && <CalendarIcon size={20} style={styles.icon} />}
         {rightIcon && <View style={styles.icon}>{rightIcon}</View>}
       </View>
     );

@@ -22,8 +22,9 @@ export const renderDropdownModal = (
   onClose: () => void,
   title: string,
   data: string[],
-  onSelect: (item: string) => void,
+  onSelect: (item) => void,
   selectedValue: string,
+  key: string
 ) => (
   <Modal visible={visible} animationType="slide" transparent>
     <View style={styles.modalOverlay}>
@@ -36,20 +37,20 @@ export const renderDropdownModal = (
         </View>
         <FlatList
           data={data}
-          keyExtractor={item => item}
+          keyExtractor={(item) => item[key]}
           renderItem={({ item }) => (
             <Pressable
               style={[
                 styles.modalItem,
-                item === selectedValue && styles.selectedItem,
+                // item === selectedValue && styles.selectedItem,
               ]}
               onPress={() => onSelect(item)}>
               <AppText
                 style={[
                   styles.modalItemText,
-                  item === selectedValue && styles.selectedItemText,
+                  // item === selectedValue && styles.selectedItemText,
                 ]}>
-                {item}
+                {item.name}
               </AppText>
             </Pressable>
           )}

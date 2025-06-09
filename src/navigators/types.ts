@@ -9,7 +9,7 @@ export type MainNavigatorParamList = {
         email: string
     };
     OtpSuccess: undefined;
-    Introduction: undefined;
+    Onboarding: undefined;
     MbtiQuiz: undefined;
 
     // dev

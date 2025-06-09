@@ -6,8 +6,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../utils/http';
 import HomeIcon from '../components/icons/Home';
 import ProfileIcon from '../components/icons/Profile';
+import EchoIcon from '../components/icons/Echo';
 
-import Introduction from '../screens/auth/onboarding';
+import Onboarding from '../screens/auth/onboarding';
 import LanguageSelection from '../screens/auth/language-selection';
 import MbtiQuiz from '../screens/auth/mbti-quiz';
 import Welcome from '../screens/auth/welcome';
@@ -27,6 +28,7 @@ import Profile from '../screens/main/profile/profile';
 import PurchaseHistory from '../screens/main/profile/purchase-history';
 
 import ComponentGallery from '../screens/dev/component-gallery';
+import AskAffinityIcon from '../components/icons/ask-affinity';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -48,6 +50,26 @@ const TabNavigator = () => (
           <HomeIcon size={size ?? 19} fill={focused} />
         ),
         tabBarLabel: 'Home',
+      }}
+    />
+    <Tab.Screen
+      name="Echo"
+      component={Profile}
+      options={{
+        tabBarIcon: ({ size, focused }) => (
+          <EchoIcon size={size ?? 19} fill={focused} />
+        ),
+        tabBarLabel: 'Echo',
+      }}
+    />
+    <Tab.Screen
+      name="AskAffinity"
+      component={Profile}
+      options={{
+        tabBarIcon: ({ size, focused }) => (
+          <AskAffinityIcon size={size ?? 19} fill={focused} />
+        ),
+        tabBarLabel: 'Ask Affinity',
       }}
     />
     <Tab.Screen
@@ -97,7 +119,7 @@ const MainNavigator = () => {
             shouldResendOtp: true,
           });
         } else if (!isProfileCompleted(profile)) {
-          setInitialRoute('Introduction');
+          setInitialRoute('Onboarding');
         } else {
           setInitialRoute('Tabs');
         }
@@ -125,7 +147,7 @@ const MainNavigator = () => {
         initialParams={routeParams} />
       <Stack.Screen name="OtpSuccess" component={OtpSuccess} />
       <Stack.Screen name="LanguageSelection" component={LanguageSelection} />
-      <Stack.Screen name="Introduction" component={Introduction} />
+      <Stack.Screen name="Onboarding" component={Onboarding} />
       <Stack.Screen name="MbtiQuiz" component={MbtiQuiz} />
       <Stack.Screen name="MbtiResults" component={MbtiResults} />
       <Stack.Screen name="ComponentGallery" component={ComponentGallery} />

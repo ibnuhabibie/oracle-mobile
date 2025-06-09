@@ -32,7 +32,7 @@ const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
     if (isProfileCompleted()) {
       navigation.replace('Tabs');
     } else {
-      navigation.replace('Introduction');
+      navigation.replace('Onboarding');
     }
   }
 
