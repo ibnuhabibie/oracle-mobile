@@ -2,7 +2,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {FC} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import {MainNavigatorParamList} from '../../navigators/MainNavigator';
+import {MainNavigatorParamList} from '../../navigators/main-navigator';
 import {COLORS} from '../../constants/colors';
 import WealthIcon from '../../components/icons/aspect/Wealth';
 import LearningIcon from '../../components/icons/aspect/Learning';

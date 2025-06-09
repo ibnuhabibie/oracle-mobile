@@ -5,7 +5,7 @@ export type MainNavigatorParamList = {
     LanguageSelection: undefined;
     SignIn: undefined;
     SignUp: undefined;
-    Otp: {
+    OtpVerification: {
         email: string
     };
     OtpSuccess: undefined;

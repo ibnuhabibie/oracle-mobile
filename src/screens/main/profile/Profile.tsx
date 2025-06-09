@@ -25,7 +25,7 @@ import TermsIcon from '../../../components/icons/Terms';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
 import {COLORS} from '../../../constants/colors';
 import {fontFamilies} from '../../../constants/fonts';
-import {MainNavigatorParamList} from '../../../navigators/MainNavigator';
+import {MainNavigatorParamList} from '../../../navigators/main-navigator';
 
 interface ProfileItemProps {
   title: string;

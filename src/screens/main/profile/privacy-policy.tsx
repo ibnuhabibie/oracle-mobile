@@ -1,7 +1,7 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {MainNavigatorParamList} from '../../../navigators/MainNavigator';
+import {MainNavigatorParamList} from '../../../navigators/main-navigator';
 import {ScreenContainer} from 'react-native-screens';
 import {COLORS} from '../../../constants/colors';
 import {fontFamilies} from '../../../constants/fonts';

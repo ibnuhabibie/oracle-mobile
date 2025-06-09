@@ -16,7 +16,7 @@ import CoinIcon from '../../../components/icons/Coin';
 import CommentsIcon from '../../../components/icons/Comments';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
 import {fontFamilies} from '../../../constants/fonts';
-import {MainNavigatorParamList} from '../../../navigators/MainNavigator';
+import {MainNavigatorParamList} from '../../../navigators/main-navigator';
 
 interface PurchaseItem {
   id: string;

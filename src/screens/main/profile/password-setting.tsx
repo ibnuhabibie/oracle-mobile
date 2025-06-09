@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {MainNavigatorParamList} from '../../../navigators/MainNavigator';
+import {MainNavigatorParamList} from '../../../navigators/main-navigator';
 import {ScreenContainer} from 'react-native-screens';
 
 const PasswordSetting: FC<{

@@ -6,7 +6,7 @@ import ArrowIcon from '../../../components/icons/Arrow';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
 import ShinyContainer from '../../../components/widgets/ShinyContainer';
 import {fontFamilies} from '../../../constants/fonts';
-import {MainNavigatorParamList} from '../../../navigators/MainNavigator';
+import {MainNavigatorParamList} from '../../../navigators/main-navigator';
 
 interface BaziResultsProps {
   navigation: NativeStackNavigationProp<

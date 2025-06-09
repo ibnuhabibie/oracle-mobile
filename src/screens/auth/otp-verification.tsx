@@ -12,7 +12,7 @@ import { COLORS } from '../../constants/colors';
 import { MainNavigatorParamList } from '../../navigators/types';
 
 
-type OtpVerificationProps = NativeStackScreenProps<MainNavigatorParamList, 'Otp'>;
+type OtpVerificationProps = NativeStackScreenProps<MainNavigatorParamList, 'OtpVerification'>;
 
 const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
   const OTP_LENGTH = 5;
