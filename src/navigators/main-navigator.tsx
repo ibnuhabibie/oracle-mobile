@@ -92,7 +92,10 @@ const MainNavigator = () => {
 
         if (!profile.is_email_verified) {
           setInitialRoute('OtpVerification');
-          setRouteParams({ email: profile.email });
+          setRouteParams({
+            email: profile.email,
+            shouldResendOtp: true,
+          });
         } else if (!isProfileCompleted(profile)) {
           setInitialRoute('Introduction');
         } else {

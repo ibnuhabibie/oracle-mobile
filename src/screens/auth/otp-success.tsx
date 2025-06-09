@@ -1,4 +1,4 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -10,10 +10,32 @@ import ShinyContainer from '../../components/widgets/ShinyContainer';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 import { MainNavigatorParamList } from '../../navigators/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const OtpSuccess: FC<{
-  navigation: NativeStackNavigationProp<MainNavigatorParamList, 'OtpSuccess'>;
-}> = ({ navigation }) => {
+type OtpSuccessProps = NativeStackScreenProps<MainNavigatorParamList, 'OtpSuccess'>;
+
+const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
+
+  const handleContinue = async () => {
+    const user_profile: any = await AsyncStorage.getItem('user_profile');
+    const profile = JSON.parse(user_profile);
+    
+    const isProfileCompleted = () => {
+      return (
+        profile.birth_date &&
+        profile.birth_time &&
+        profile.birth_city &&
+        profile.birth_country
+      );
+    };
+
+    if (isProfileCompleted()) {
+      navigation.replace('Tabs');
+    } else {
+      navigation.replace('Introduction');
+    }
+  }
+
   return (
     <ScreenContainer>
       <View style={styles.container}>
@@ -30,9 +52,7 @@ const OtpSuccess: FC<{
 
         <AppButton
           title="Continue"
-          onPress={() => {
-            navigation.push('Introduction');
-          }}
+          onPress={handleContinue}
           style={styles.button}
         />
       </View>
