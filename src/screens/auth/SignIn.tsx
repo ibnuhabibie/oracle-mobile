@@ -10,9 +10,9 @@ import SignInForm from '../../features/auth/signin-form';
 import { AppText } from '../../components/ui/app-text';
 import { COLORS } from '../../constants/colors';
 
-type SignInnProps = NativeStackScreenProps<MainNavigatorParamList, 'SignIn'>;
+type SignInProps = NativeStackScreenProps<MainNavigatorParamList, 'SignIn'>;
 
-const SignIn: FC<SignInnProps> = ({ navigation }) => {
+const SignIn: FC<SignInProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
   const onSuccess = (email: string) => {

@@ -120,6 +120,8 @@ const MainNavigator = () => {
           });
         } else if (!isProfileCompleted(profile)) {
           setInitialRoute('Onboarding');
+        } else if (!profile.mbti_profile) {
+          setInitialRoute('MbtiQuiz');
         } else {
           setInitialRoute('Tabs');
         }

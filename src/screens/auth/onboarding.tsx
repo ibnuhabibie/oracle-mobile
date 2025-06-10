@@ -18,6 +18,7 @@ import { fontFamilies } from '../../constants/fonts';
 import { formatDate, formatTime } from '../../utils/formatter';
 import { MainNavigatorParamList } from '../../navigators/types';
 import api from '../../utils/http';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface FormData {
   birth_date: Date;
@@ -78,13 +79,26 @@ const Onboarding: FC<{
 
 
   const onSubmit = async (data: FormData) => {
-    await api.put('/v1/users', {
-      birth_date: data.birth_date,
-      birth_time: data.birth_time,
-      birth_country: data.birth_country.iso3,
-      birth_city: data.birth_city.id
+
+    let birth_date = data.birth_date.toISOString().split('T')[0];
+    let birth_time = data.birth_time.toISOString().split('T')[1].split('.')[0];
+
+    const res = await api.put('/v1/users', {
+      birth_date,
+      birth_time,
+      birth_country: data.birth_country.name,
+      birth_city: data.birth_city.name,
+      birth_lat: data.birth_city.latitude,
+      birth_lng: data.birth_city.longitude
     })
-    navigation.replace('MbtiQuiz');
+
+    await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
+
+    if (!res.data.mbti_profile) {
+      navigation.replace('MbtiQuiz');
+    } else {
+      navigation.replace('Tabs');
+    }
   };
 
   const onDateChange = (event: any, selectedDate?: Date) => {
