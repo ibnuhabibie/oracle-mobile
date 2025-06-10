@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {FC} from 'react';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Pressable,
   ScrollView,
@@ -23,9 +22,12 @@ import ShieldIcon from '../../../components/icons/Shield';
 import StarIcon from '../../../components/icons/Star';
 import TermsIcon from '../../../components/icons/Terms';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
-import {COLORS} from '../../../constants/colors';
-import {fontFamilies} from '../../../constants/fonts';
-import {MainNavigatorParamList} from '../../../navigators/main-navigator';
+import { COLORS } from '../../../constants/colors';
+import { fontFamilies } from '../../../constants/fonts';
+import { MainNavigatorParamList } from '../../../navigators/types';
+
+import { APP_URL } from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface ProfileItemProps {
   title: string;
@@ -33,7 +35,7 @@ interface ProfileItemProps {
   onPress: () => void;
 }
 
-const ProfileItem: FC<ProfileItemProps> = ({title, icon, onPress}) => (
+const ProfileItem: FC<ProfileItemProps> = ({ title, icon, onPress }) => (
   <Pressable style={styles.profileItem} onPress={onPress}>
     <View style={styles.profileItemLeft}>
       {icon}
@@ -45,7 +47,19 @@ const ProfileItem: FC<ProfileItemProps> = ({title, icon, onPress}) => (
 
 const Profile: FC<{
   navigation: NativeStackNavigationProp<MainNavigatorParamList, 'Profile'>;
-}> = ({navigation}) => {
+}> = ({ navigation }) => {
+
+  const [token, setToken] = useState<string>('');
+
+
+  useEffect(() => {
+    const getToken = async () => {
+      const token = await AsyncStorage.getItem('auth_token');
+      setToken(token || '')
+    };
+    getToken();
+  }, []);
+
   const handleEditProfile = () => {
     console.log('Edit Profile pressed');
     navigation.push('EditProfile');
@@ -66,19 +80,17 @@ const Profile: FC<{
     // Handle recover purchase logic
   };
 
-  const handleAboutUs = () => {
-    console.log('About Us pressed');
-    // navigation.push('AboutUs');
-  };
-
-  const handlePrivacyPolicy = () => {
-    console.log('Privacy Policy pressed');
-    // navigation.push('PrivacyPolicy');
-  };
-
-  const handleTermsConditions = () => {
-    console.log('Terms & Conditions pressed');
-    // navigation.push('TermsConditions');
+  const handleContent = (content) => {
+    let title = 'About Us'
+    if (content === 'terms-conditions') {
+      title = 'Terms & Conditions'
+    } else if (content === 'privacy-policy') {
+      title = 'Privacy Policy'
+    }
+    navigation.push('WebviewContent', {
+      uri: `${APP_URL}/content/${content}?token=${token}`,
+      title,
+    });
   };
 
   const handleBuyCoins = () => {
@@ -92,7 +104,7 @@ const Profile: FC<{
   };
 
   return (
-    <ScreenContainer style={{marginTop: 44}}>
+    <ScreenContainer style={{ marginTop: 44 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* User Profile Card */}
         <View style={styles.userCard}>
@@ -190,17 +202,16 @@ const Profile: FC<{
           <ProfileItem
             title="About Us"
             icon={<BuildingIcon />}
-            onPress={handleAboutUs}
+            onPress={() => handleContent('about-us')}
           />
           <ProfileItem
             title="Privacy Policy"
             icon={<ShieldIcon size={20} />}
-            onPress={handlePrivacyPolicy}
-          />
+            onPress={() => handleContent('privacy-policy')} />
           <ProfileItem
             title="Terms & Conditions"
             icon={<TermsIcon size={20} />}
-            onPress={handleTermsConditions}
+            onPress={() => handleContent('terms-conditions')}
           />
         </View>
         <Pressable style={styles.logoutButton} onPress={handleLogout}>

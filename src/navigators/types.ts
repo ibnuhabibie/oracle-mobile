@@ -26,6 +26,10 @@ export type MainNavigatorParamList = {
     MbtiResults: undefined;
     AstrologyResults: undefined;
     BaziResults: undefined;
+    WebviewContent: {
+        uri: string
+        title: string
+    };
 };
 
 declare global {

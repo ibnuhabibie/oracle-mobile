@@ -29,6 +29,7 @@ import PurchaseHistory from '../screens/main/profile/purchase-history';
 
 import ComponentGallery from '../screens/dev/component-gallery';
 import AskAffinityIcon from '../components/icons/ask-affinity';
+import WebviewContent from '../screens/main/webview-content';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -156,6 +157,7 @@ const MainNavigator = () => {
 
       <Stack.Screen name="Tabs" component={TabNavigator} />
 
+      <Stack.Screen name="WebviewContent" component={WebviewContent} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="PasswordSetting" component={PasswordSetting} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
