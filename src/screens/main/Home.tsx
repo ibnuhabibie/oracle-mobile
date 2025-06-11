@@ -1,52 +1,24 @@
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {FC} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import ScreenContainer from '../../components/layouts/ScreenContainer';
-import {MainNavigatorParamList} from '../../navigators/main-navigator';
-import {COLORS} from '../../constants/colors';
-import WealthIcon from '../../components/icons/aspect/Wealth';
-import LearningIcon from '../../components/icons/aspect/Learning';
-import RelationIcon from '../../components/icons/aspect/Relation';
-import CareerIcon from '../../components/icons/aspect/Career';
-import {fontFamilies} from '../../constants/fonts';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { FC } from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
-const Home: FC<{
-  navigation: NativeStackNavigationProp<MainNavigatorParamList, 'Home'>;
-}> = ({}) => {
+import { MainNavigatorParamList } from '../../navigators/types';
+import { COLORS } from '../../constants/colors';
+import { fontFamilies } from '../../constants/fonts';
+import WealthIcon from '../../components/icons/profile-daily/Wealth';
+import LearningIcon from '../../components/icons/profile-daily/Learning';
+import RelationIcon from '../../components/icons/profile-daily/Relation';
+import CareerIcon from '../../components/icons/profile-daily/Career';
+import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ProfileDashboard from '../../features/profile/profile-dashboard';
+
+type HomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Home'>;
+
+const Home: FC<HomeProps> = ({ navigation }) => {
   return (
     <ScreenContainer>
-      <View style={styles.header}>
-        <Text style={styles.date}>Wed, 30 Apr 2025</Text>
-        <Text style={styles.greeting}>Good Day, Jessica</Text>
-      </View>
-      <View style={{width: '100%', paddingHorizontal: 25}}>
-        <Text style={styles.title}>90%</Text>
-        <Text style={styles.subtitle}>TODAY SCORE</Text>
-        <Text style={styles.paragraph}>
-          Today is ideal for activities focused on removal, cleansing, and
-          endings, such as surgeries, breaking bad habits, or starting a diet.
-        </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            width: '100%',
-          }}>
-          <Aspect text={'Wealth'}>
-            <WealthIcon />
-          </Aspect>
-          <Aspect text={'Learning'}>
-            <LearningIcon />
-          </Aspect>
-          <Aspect text={'Relation'}>
-            <RelationIcon />
-          </Aspect>
-          <Aspect text={'Career'}>
-            <CareerIcon />
-          </Aspect>
-        </View>
-      </View>
-      <Text style={{...styles.subtitle, marginTop: 40}}>
+      <ProfileDashboard />
+      <Text style={{ ...styles.subtitle, marginTop: 40 }}>
         WHAT DO YOU LIKE TO KNOW TODAY?
       </Text>
     </ScreenContainer>
@@ -57,7 +29,7 @@ const Aspect: React.FC<{
   size?: number;
   children?: React.ReactNode;
   text: string;
-}> = ({children, size = 52, text}) => (
+}> = ({ children, size = 52, text }) => (
   <View>
     <View
       style={{
@@ -73,7 +45,7 @@ const Aspect: React.FC<{
           position: 'absolute',
           top: '50%',
           left: '50%',
-          transform: [{translateX: '-50%'}, {translateY: '-50%'}],
+          transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
           zIndex: 1,
         }}
       />
@@ -82,7 +54,7 @@ const Aspect: React.FC<{
           position: 'absolute',
           top: '50%',
           left: '50%',
-          transform: [{translateX: '-50%'}, {translateY: '-50%'}],
+          transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
           zIndex: 99,
         }}>
         {children}
