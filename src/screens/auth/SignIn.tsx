@@ -15,8 +15,26 @@ type SignInProps = NativeStackScreenProps<MainNavigatorParamList, 'SignIn'>;
 const SignIn: FC<SignInProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const onSuccess = (email: string) => {
-    navigation.navigate('OtpVerification', { email });
+  // TODO: merge the logics
+  const isProfileCompleted = (user: any) => {
+    return (
+      user.birth_date &&
+      user.birth_time &&
+      user.birth_city &&
+      user.birth_country
+    );
+  };
+
+  const onSuccess = (user: any) => {
+    if (!user.is_email_verified) {
+      navigation.navigate('OtpVerification', { email: user.email });
+    } else if (!isProfileCompleted(user)) {
+      navigation.navigate('Onboarding');
+    } else if (!user.mbti_profile) {
+      navigation.navigate('MbtiQuiz');
+    } else {
+      navigation.navigate('Tabs');
+    }
   };
 
   return (

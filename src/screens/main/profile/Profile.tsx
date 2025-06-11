@@ -26,8 +26,9 @@ import { COLORS } from '../../../constants/colors';
 import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';
 
-import { APP_URL } from '@env';
+import { APP_URL, API_BASE_URL } from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../../../utils/http';
 
 interface ProfileItemProps {
   title: string;
@@ -98,9 +99,19 @@ const Profile: FC<{
     // navigation.push('BuyCoins');
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     console.log('Logout pressed');
-    // Handle logout logic
+    try {
+      await api.post(`/v1/users/auth/logout`);
+      await AsyncStorage.removeItem('user_profile');
+      await AsyncStorage.removeItem('auth_token');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Welcome' }],
+      });
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (

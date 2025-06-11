@@ -1,23 +1,23 @@
 /* eslint-disable react-native/no-inline-styles */
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {FC, useState} from 'react';
-import {Controller, useForm} from 'react-hook-form';
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { FC, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import ArrowIcon from '../../../components/icons/Arrow';
 import CalendarIcon from '../../../components/icons/Calendar';
 import ClockIcon from '../../../components/icons/Clock';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
-import {Button} from '../../../components/ui/app-button';
+import { AppButton } from '../../../components/ui/app-button';
 import TextField from '../../../components/ui/text-field';
 import {
   DropdownButton,
   renderDropdownModal,
 } from '../../../components/widgets/Dropdown';
-import {COLORS} from '../../../constants/colors';
-import {CITIES, COUNTRIES} from '../../../constants/countries';
-import {fontFamilies} from '../../../constants/fonts';
-import {formatDate, formatTime} from '../../../utils/formatter';
+import { COLORS } from '../../../constants/colors';
+import { CITIES, COUNTRIES } from '../../../constants/countries';
+import { fontFamilies } from '../../../constants/fonts';
+import { formatDate, formatTime } from '../../../utils/formatter';
 
 interface FormData {
   fullName: string;
@@ -32,13 +32,13 @@ interface FormData {
 
 const EditProfile: FC<{
   navigation: NativeStackNavigationProp<any, 'EditProfile'>;
-}> = ({navigation}) => {
+}> = ({ navigation }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [showCountryModal, setShowCountryModal] = useState(false);
   const [showCityModal, setShowCityModal] = useState(false);
 
-  const {control, handleSubmit, watch, setValue} = useForm<FormData>({
+  const { control, handleSubmit, watch, setValue } = useForm<FormData>({
     defaultValues: {
       fullName: 'Jessica Carl',
       email: 'jessicarl@gmail.com',
@@ -107,15 +107,15 @@ const EditProfile: FC<{
       </View>
 
       <ScrollView
-        style={{flex: 1, width: '100%'}}
+        style={{ flex: 1, width: '100%' }}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 32}}>
+        contentContainerStyle={{ paddingBottom: 32 }}>
         <View style={styles.formContainer}>
           <Text style={styles.label}>Full Name</Text>
           <Controller
             control={control}
             name="fullName"
-            render={({field: {value, onChange}}) => (
+            render={({ field: { value, onChange } }) => (
               <TextField
                 placeholder="Full Name"
                 value={value}
@@ -129,7 +129,7 @@ const EditProfile: FC<{
           <Controller
             control={control}
             name="email"
-            render={({field: {value, onChange}}) => (
+            render={({ field: { value, onChange } }) => (
               <TextField
                 placeholder="Email"
                 value={value}
@@ -144,7 +144,7 @@ const EditProfile: FC<{
           <Controller
             control={control}
             name="phoneNumber"
-            render={({field: {value, onChange}}) => (
+            render={({ field: { value, onChange } }) => (
               <TextField
                 placeholder="Phone Number"
                 value={value}
@@ -227,7 +227,7 @@ const EditProfile: FC<{
           />
         </View>
 
-        <Button
+        <AppButton
           title="Save"
           onPress={handleSubmit(onSubmit)}
           style={styles.saveButton}

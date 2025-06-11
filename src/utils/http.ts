@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { API_BASE_URL } from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -11,12 +12,9 @@ const api = axios.create({
     }
 });
 
-// Optional: Add token to each request if available
 api.interceptors.request.use(
     async (config) => {
-        // Example: get token from async storage
-        // const token = await AsyncStorage.getItem('token');
-        const token = null; // Replace this with real logic
+        const token = await AsyncStorage.getItem('token');
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -25,11 +23,10 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// Optional: Response error handling
 api.interceptors.response.use(
     (response) => response.data,
     (error) => {
-        console.error('API Error:', error.response.data);
+        console.error('API Error:', error);
         return Promise.reject(error.response.data);
     }
 );

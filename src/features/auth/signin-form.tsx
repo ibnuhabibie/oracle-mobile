@@ -61,8 +61,9 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
             console.log(res)
             await AsyncStorage.setItem('auth_token', res.data.token);
+            await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
 
-            onSuccess(res.data.email)
+            onSuccess(res.data)
         } catch (error) {
             Alert.alert('Login Failed', error.meta.message)
             console.log(error)
