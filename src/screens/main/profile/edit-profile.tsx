@@ -1,97 +1,53 @@
-/* eslint-disable react-native/no-inline-styles */
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { FC, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { FC } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+
 import ArrowIcon from '../../../components/icons/Arrow';
-import CalendarIcon from '../../../components/icons/Calendar';
-import ClockIcon from '../../../components/icons/Clock';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
-import { AppButton } from '../../../components/ui/app-button';
-import TextField from '../../../components/ui/text-field';
-import {
-  DropdownButton,
-  renderDropdownModal,
-} from '../../../components/widgets/Dropdown';
 import { COLORS } from '../../../constants/colors';
-import { CITIES, COUNTRIES } from '../../../constants/countries';
 import { fontFamilies } from '../../../constants/fonts';
-import { formatDate, formatTime } from '../../../utils/formatter';
+import ProfileForm from '../../../features/profile/profile-form';
+import api from '../../../utils/http';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface FormData {
-  fullName: string;
+  full_name: string;
   email: string;
-  phoneNumber: string;
-  dateOfBirth: Date;
-  timeOfBirth: Date;
+  phone_number: string;
+  birth_date: Date;
+  birth_time: Date;
   gender: 'male' | 'female';
-  countryOfBirth: string;
-  cityOfBirth: string;
+  birth_country: string;
+  birth_city: string;
 }
 
 const EditProfile: FC<{
   navigation: NativeStackNavigationProp<any, 'EditProfile'>;
 }> = ({ navigation }) => {
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
-  const [showCountryModal, setShowCountryModal] = useState(false);
-  const [showCityModal, setShowCityModal] = useState(false);
 
-  const { control, handleSubmit, watch, setValue } = useForm<FormData>({
-    defaultValues: {
-      fullName: 'Jessica Carl',
-      email: 'jessicarl@gmail.com',
-      phoneNumber: '6588841234',
-      dateOfBirth: new Date(1994, 4, 10), // May 10, 1994
-      timeOfBirth: new Date(2024, 0, 1, 10, 0), // 10:00 AM
-      gender: 'female',
-      countryOfBirth: 'Singapore',
-      cityOfBirth: 'Singapore',
-    },
-  });
+  const onSubmit = async (data: FormData) => {
+    try {
+      let birth_date = data.birth_date.toISOString().split('T')[0];
+      let birth_time = data.birth_time.toISOString().split('T')[1].split('.')[0];
 
-  const watchedCountry = watch('countryOfBirth');
-  const watchedCity = watch('cityOfBirth');
-  const watchedDate = watch('dateOfBirth');
-  const watchedTime = watch('timeOfBirth');
-  const watchedGender = watch('gender');
+      const res = await api.put('/v1/users', {
+        full_name: data.full_name,
+        email: data.email,
+        phone_number: data.phone_number,
+        gender: data.gender,
+        birth_date,
+        birth_time,
+        birth_country: data.birth_country.name,
+        birth_city: data.birth_city.name,
+        birth_lat: data.birth_city.latitude,
+        birth_lng: data.birth_city.longitude
+      })
 
-  const onSubmit = (data: FormData) => {
-    console.log('Profile data:', data);
-    // Handle save logic here
-    navigation.goBack();
-  };
-
-  const onDateChange = (event: any, selectedDate?: Date) => {
-    setShowDatePicker(false);
-    if (selectedDate) {
-      setValue('dateOfBirth', selectedDate);
+      await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
+      navigation.goBack();
+    } catch (error) {
+      console.log(error)
     }
-  };
-
-  const onTimeChange = (event: any, selectedTime?: Date) => {
-    setShowTimePicker(false);
-    if (selectedTime) {
-      setValue('timeOfBirth', selectedTime);
-    }
-  };
-
-  const selectCountry = (country: string) => {
-    setValue('countryOfBirth', country);
-    // Reset city when country changes
-    const cities = CITIES[country as keyof typeof CITIES] || [];
-    if (cities.length > 0) {
-      setValue('cityOfBirth', cities[0]);
-    } else {
-      setValue('cityOfBirth', '');
-    }
-    setShowCountryModal(false);
-  };
-
-  const selectCity = (city: string) => {
-    setValue('cityOfBirth', city);
-    setShowCityModal(false);
   };
 
   return (
@@ -106,174 +62,8 @@ const EditProfile: FC<{
         <Text style={styles.headerTitle}>Edit Profile</Text>
       </View>
 
-      <ScrollView
-        style={{ flex: 1, width: '100%' }}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 32 }}>
-        <View style={styles.formContainer}>
-          <Text style={styles.label}>Full Name</Text>
-          <Controller
-            control={control}
-            name="fullName"
-            render={({ field: { value, onChange } }) => (
-              <TextField
-                placeholder="Full Name"
-                value={value}
-                onChangeText={onChange}
-                style={styles.textField}
-              />
-            )}
-          />
+      <ProfileForm onSubmit={onSubmit} />
 
-          <Text style={styles.label}>Email Address</Text>
-          <Controller
-            control={control}
-            name="email"
-            render={({ field: { value, onChange } }) => (
-              <TextField
-                placeholder="Email"
-                value={value}
-                onChangeText={onChange}
-                style={styles.textField}
-                keyboardType="email-address"
-              />
-            )}
-          />
-
-          <Text style={styles.label}>Phone Number</Text>
-          <Controller
-            control={control}
-            name="phoneNumber"
-            render={({ field: { value, onChange } }) => (
-              <TextField
-                placeholder="Phone Number"
-                value={value}
-                onChangeText={onChange}
-                style={styles.textField}
-                keyboardType="phone-pad"
-              />
-            )}
-          />
-
-          {/* Birth Date Field */}
-          <Text style={styles.label}>Birth Date</Text>
-          <Pressable onPress={() => setShowDatePicker(true)}>
-            <View pointerEvents="none">
-              <TextField
-                placeholder="Birth Date:"
-                value={formatDate(watchedDate)}
-                style={styles.textField}
-                editable={false}
-                rightIcon={<CalendarIcon size={15} />}
-              />
-            </View>
-          </Pressable>
-
-          {/* Birth Time Field */}
-          <Text style={styles.label}>Birth Time</Text>
-          <Pressable
-            onPress={() => {
-              setShowTimePicker(true);
-            }}>
-            <View pointerEvents="none">
-              <TextField
-                placeholder="Birth Time:"
-                value={formatTime(watchedTime)}
-                style={styles.textField}
-                editable={false}
-                rightIcon={<ClockIcon />}
-              />
-            </View>
-          </Pressable>
-
-          <Text style={styles.helperText}>
-            (Not sure about your birth time? Just go with your closest guess.)
-          </Text>
-
-          <Text style={styles.label}>Gender</Text>
-          <View style={styles.radioContainer}>
-            <Pressable
-              style={styles.radioButton}
-              onPress={() => setValue('gender', 'male')}>
-              <View style={styles.radioCircle}>
-                {watchedGender === 'male' && (
-                  <View style={styles.radioSelected} />
-                )}
-              </View>
-              <Text style={styles.radioText}>Male</Text>
-            </Pressable>
-            <Pressable
-              style={styles.radioButton}
-              onPress={() => setValue('gender', 'female')}>
-              <View style={styles.radioCircle}>
-                {watchedGender === 'female' && (
-                  <View style={styles.radioSelected} />
-                )}
-              </View>
-              <Text style={styles.radioText}>Female</Text>
-            </Pressable>
-          </View>
-
-          <Text style={styles.label}>Country of Birth</Text>
-          <DropdownButton
-            onPress={() => setShowCountryModal(true)}
-            text={watchedCountry || ''}
-          />
-
-          <Text style={styles.label}>City of Birth</Text>
-          <DropdownButton
-            onPress={() => setShowCityModal(true)}
-            text={watchedCity || 'None'}
-          />
-        </View>
-
-        <AppButton
-          title="Save"
-          onPress={handleSubmit(onSubmit)}
-          style={styles.saveButton}
-        />
-      </ScrollView>
-
-      {/* Date Picker */}
-      {showDatePicker && (
-        <DateTimePicker
-          value={watchedDate}
-          mode="date"
-          display="default"
-          onChange={onDateChange}
-          maximumDate={new Date()}
-        />
-      )}
-
-      {/* Time Picker */}
-      {showTimePicker && (
-        <DateTimePicker
-          value={watchedTime}
-          mode="time"
-          display="default"
-          onChange={onTimeChange}
-        />
-      )}
-
-      {/* Country Modal */}
-      {renderDropdownModal(
-        showCountryModal,
-        () => setShowCountryModal(false),
-        'Select Country',
-        COUNTRIES,
-        selectCountry,
-        watchedCountry,
-      )}
-
-      {/* City Modal */}
-      {renderDropdownModal(
-        showCityModal,
-        () => setShowCityModal(false),
-        'Select City',
-        CITIES[watchedCountry as keyof typeof CITIES] || [],
-        selectCity,
-        watchedCity,
-      )}
     </ScreenContainer>
   );
 };

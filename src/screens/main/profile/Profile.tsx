@@ -1,4 +1,4 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
 import {
   Pressable,
@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import BuildingIcon from '../../../components/icons/Building';
 import CartIcon from '../../../components/icons/Cart';
 import CoinIcon from '../../../components/icons/Coin';
@@ -17,7 +19,6 @@ import EditIcon from '../../../components/icons/Edit';
 import EyeIcon from '../../../components/icons/Eye';
 import FerrisWheelIcon from '../../../components/icons/FerrisWheel';
 import LogoutIcon from '../../../components/icons/Logout';
-import MoneyIcon from '../../../components/icons/Money';
 import ShieldIcon from '../../../components/icons/Shield';
 import StarIcon from '../../../components/icons/Star';
 import TermsIcon from '../../../components/icons/Terms';
@@ -27,31 +28,31 @@ import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';
 
 import { APP_URL, API_BASE_URL } from '@env';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../../utils/http';
+import ProfileItem from '../../../features/profile/profile-item';
+import { useAsyncStorage } from '../../../hooks/use-storage';
 
-interface ProfileItemProps {
-  title: string;
-  icon: React.ReactNode;
-  onPress: () => void;
-}
+type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
-const ProfileItem: FC<ProfileItemProps> = ({ title, icon, onPress }) => (
-  <Pressable style={styles.profileItem} onPress={onPress}>
-    <View style={styles.profileItemLeft}>
-      {icon}
-      <Text style={styles.profileItemTitle}>{title}</Text>
-    </View>
-    <Text style={styles.chevron}>›</Text>
-  </Pressable>
-);
+const Profile: FC<ProfileProps> = ({ navigation }) => {
 
-const Profile: FC<{
-  navigation: NativeStackNavigationProp<MainNavigatorParamList, 'Profile'>;
-}> = ({ navigation }) => {
+  const { getUserProfile, getAuthToken } = useAsyncStorage();
+  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<any | null>(null);
 
-  const [token, setToken] = useState<string>('');
+  useEffect(() => {
+    const init = async () => {
+      const profile = await getUserProfile();
+      const token = await getAuthToken();
 
+      console.log(profile)
+
+      setToken(token)
+      setUser(profile)
+    };
+
+    init();
+  }, []);
 
   useEffect(() => {
     const getToken = async () => {
@@ -74,11 +75,6 @@ const Profile: FC<{
   const handlePurchaseHistory = () => {
     console.log('Purchase History pressed');
     navigation.push('PurchaseHistory');
-  };
-
-  const handleRecoverPurchase = () => {
-    console.log('Recover Purchase pressed');
-    // Handle recover purchase logic
   };
 
   const handleContent = (content) => {
@@ -120,9 +116,9 @@ const Profile: FC<{
         {/* User Profile Card */}
         <View style={styles.userCard}>
           <View style={styles.userInfo}>
-            <Text style={styles.userName}>Jessica Carl</Text>
+            <Text style={styles.userName}>{user?.full_name || 'Guest'}</Text>
             <View style={styles.userBadge}>
-              <Text style={styles.badgeText}>JC12000</Text>
+              <Text style={styles.badgeText}>{user?.referral_code}</Text>
               <CopyIcon />
             </View>
           </View>
@@ -151,7 +147,7 @@ const Profile: FC<{
               }}
               style={styles.statItem}>
               <CommentUserIcon />
-              <Text style={styles.statLabel}>INTJ</Text>
+              <Text style={styles.statLabel}>{user?.mbti_profile}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -168,16 +164,12 @@ const Profile: FC<{
 
           <View style={styles.coinsRow}>
             <View style={styles.coinItem}>
-              <Text style={styles.coinAmount}>1500</Text>
+              <Text style={styles.coinAmount}>{user?.gold_credits}</Text>
               <CoinIcon size={19} color="#FBBC05" />
             </View>
             <View style={styles.coinItem}>
-              <Text style={styles.coinAmount}>1500</Text>
+              <Text style={styles.coinAmount}>{user?.silver_credits}</Text>
               <CoinIcon size={19} color="#B9B9B9" />
-            </View>
-            <View style={styles.coinItem}>
-              <Text style={styles.coinAmount}>1500</Text>
-              <CoinIcon size={19} color="#EB4335" />
             </View>
           </View>
         </View>
@@ -199,11 +191,6 @@ const Profile: FC<{
             title="Purchase History"
             icon={<CartIcon size={20} />}
             onPress={handlePurchaseHistory}
-          />
-          <ProfileItem
-            title="Recover Purchase"
-            icon={<MoneyIcon size={20} />}
-            onPress={handleRecoverPurchase}
           />
         </View>
 
@@ -328,12 +315,12 @@ const styles = StyleSheet.create({
   },
   coinsRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
   coinItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1,
+    // flex: 1,
     marginHorizontal: 8,
   },
   coinAmount: {
