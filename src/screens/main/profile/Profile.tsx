@@ -71,7 +71,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
   const handlePasswordSettings = () => {
     console.log('Password Settings pressed');
-    // navigation.push('PasswordSettings');
+    navigation.push('PasswordSetting');
   };
 
   const handlePurchaseHistory = () => {
