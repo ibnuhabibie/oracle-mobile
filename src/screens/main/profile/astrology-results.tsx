@@ -1,21 +1,73 @@
-/* eslint-disable react-native/no-inline-styles */
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {FC} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { FC, useEffect, useState } from 'react';
+import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+
 import ArrowIcon from '../../../components/icons/Arrow';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
-import ShinyContainer from '../../../components/widgets/ShinyContainer';
-import {fontFamilies} from '../../../constants/fonts';
-import {MainNavigatorParamList} from '../../../navigators/main-navigator';
+import { fontFamilies } from '../../../constants/fonts';
+import { MainNavigatorParamList } from '../../../navigators/types';
+import ProfileCard from '../../../features/profile/report/profile-card';
+import api from '../../../utils/http';
+import ProfileItemCard from '../../../features/profile/report/profile-item-card';
 
-interface AstrologyResultsProps {
-  navigation: NativeStackNavigationProp<
-    MainNavigatorParamList,
-    'AstrologyResults'
-  >;
-}
+type AstrologyResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
 
-const AstrologyResults: FC<AstrologyResultsProps> = ({navigation}) => {
+
+const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation }) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [profile, setProfile] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const res = await api.get('/v1/users/affinity-profile');
+        setProfile(res.data?.profile_astro);
+      } catch (err: any) {
+        setError(err?.message || 'Failed to load profile');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProfile();
+  }, []);
+
+  // Static icon images for indices 1-5
+  const iconImages = [
+    require('../../../assets/icons/astro/icon-1.png'),
+    require('../../../assets/icons/astro/icon-2.png'),
+    require('../../../assets/icons/astro/icon-3.png'),
+    require('../../../assets/icons/astro/icon-4.png'),
+    require('../../../assets/icons/astro/icon-5.png'),
+    require('../../../assets/icons/astro/icon-6.png'),
+    require('../../../assets/icons/astro/icon-7.png'),
+    require('../../../assets/icons/astro/icon-8.png'),
+    require('../../../assets/icons/astro/icon-9.png'),
+    require('../../../assets/icons/astro/icon-10.png'),
+    require('../../../assets/icons/astro/icon-11.png'),
+  ];
+
+  const renderProfileItem = (item: any, fallbackTitle: string, index: number) => {
+    if (!item) return null;
+    return (
+      <ProfileItemCard
+        data={{
+          title: item.name || fallbackTitle,
+          description: item.description,
+          icon: iconImages[index - 1] ? (
+            <Image
+              source={iconImages[index - 1]}
+              style={{ width: 48, height: 48, marginBottom: 8 }}
+              resizeMode="contain"
+            />
+          ) : undefined,
+        }}
+      />
+    );
+  };
+
   return (
     <ScreenContainer>
       {/* Header */}
@@ -28,89 +80,41 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({navigation}) => {
         <Text style={styles.headerTitle}>Astrology</Text>
       </View>
 
-      {/* Main Profile Card */}
-      <View style={styles.profileCard}>
-        <ShinyContainer dark={false} size={158}>
-          <Text style={styles.zodiacIcon}>♊</Text>
-        </ShinyContainer>
+      <ProfileCard iconType="astro" />
 
-        <View style={styles.profileInfo}>
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Name</Text>
-            <Text style={styles.infoValue}>Jessica Carl</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Date of Birth</Text>
-            <Text style={styles.infoValue}>29 May 1999</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Time of Birth</Text>
-            <Text style={styles.infoValue}>10:00 AM</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Country of Birth</Text>
-            <Text style={styles.infoValue}>Singapore</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>City of Birth</Text>
-            <Text style={styles.infoValue}>Singapore</Text>
-          </View>
-        </View>
-      </View>
+      {loading ? (
+        <ActivityIndicator size="large" color="#D4A574" style={{ marginTop: 32 }} />
+      ) : error ? (
+        <Text style={{ color: 'red', margin: 16 }}>{error}</Text>
+      ) : profile ? (
+        <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
+          {Object.keys(profile).map((key, idx) => {
+            const item = profile[key];
+            // Use item.order if present and in range, else fallback to idx+1
+            const iconIdx =
+              item && typeof item.order === 'number' && item.order >= 1 && item.order <= iconImages.length
+                ? item.order
+                : ((idx % iconImages.length) + 1);
+            return (
+              <ProfileItemCard
+                key={key}
+                data={{
+                  title: item.name || key,
+                  description: item.description,
+                  icon: iconImages[iconIdx - 1] ? (
+                    <Image
+                      source={iconImages[iconIdx - 1]}
+                      // style={{ width: 48, height: 48, marginBottom: 8 }}
+                      resizeMode="contain"
+                    />
+                  ) : undefined,
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : null}
 
-      {/* Sun Sign Card */}
-      <View style={styles.card}>
-        <ShinyContainer dark={false} size={240}>
-          <Text style={styles.celestialIcon}>☀️</Text>
-        </ShinyContainer>
-        <Text style={styles.sectionTitle}>Sun: Gemini in House 10</Text>
-        <Text style={styles.sectionSubtitle}>
-          Represents your life force, purpose, and how you shine in the world.
-        </Text>
-        <Text style={styles.sectionDescription}>
-          Your life force shines through your deep emotional intelligence and
-          nurturing nature. You thrive when you feel secure and connected,
-          valuing meaningful relationships over surface-level bonds. Sensitivity
-          can sometimes lead to overprotection or moodiness, but by setting
-          healthy boundaries, you create safe spaces without feeling drained.
-        </Text>
-        <Text style={styles.sectionDescription}>
-          Your purpose is tied to your career and public image, making you
-          naturally driven to leave a lasting impact. Others see you as
-          responsible and capable, though the pressure to succeed can feel
-          overwhelming at times. Balancing personal needs with ambition ensures
-          you don't lose yourself in expectations—embrace both success and
-          self-care.
-        </Text>
-      </View>
-
-      {/* Moon Sign Card */}
-      <View style={[styles.card, {marginBottom: 32}]}>
-        <ShinyContainer dark={false} size={240}>
-          <Text style={styles.celestialIcon}>🌙</Text>
-        </ShinyContainer>
-        <Text style={styles.sectionTitle}>Moon: Libra in House 2</Text>
-        <Text style={styles.sectionSubtitle}>
-          Symbolizes emotions, subconscious patterns, and how you nurture and
-          seek comfort.
-        </Text>
-        <Text style={styles.sectionDescription}>
-          Your emotions thrive in harmony, and you feel most at ease in
-          balanced, loving relationships. You naturally seek fairness and
-          connection, often acting as the peacemaker. However, indecisiveness or
-          a fear of conflict can arise. Trusting your own emotional needs first
-          will help you create relationships that are both fulfilling and
-          stable.
-        </Text>
-        <Text style={styles.sectionDescription}>
-          Your sense of security is deeply tied to financial stability and the
-          comforts of life. You nurture yourself through beauty, art, and
-          emotional investments in what feels valuable. At times, emotions may
-          fluctuate with your financial situation, but learning to cultivate
-          inner security ensures your confidence isn't dependent on material
-          circumstances.
-        </Text>
-      </View>
     </ScreenContainer>
   );
 };

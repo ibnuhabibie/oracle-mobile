@@ -1,14 +1,13 @@
-/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
-import {Image, View, ViewStyle} from 'react-native';
+import { Image, View, ViewStyle } from 'react-native';
 
 const ShinyContainer: React.FC<{
   size?: number;
   dark?: boolean;
   style?: ViewStyle;
   children?: React.ReactNode;
-}> = ({children, style, dark = true, size = 160}) => (
-  <View style={{...style, position: 'relative', width: '100%', height: size}}>
+}> = ({ children, style, dark = true, size = 160 }) => (
+  <View style={{ ...style, position: 'relative', width: '100%', height: size }}>
     <Image
       source={
         dark
@@ -21,7 +20,7 @@ const ShinyContainer: React.FC<{
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: [{translateX: '-50%'}, {translateY: '-50%'}],
+        transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
         zIndex: 1,
       }}
     />
@@ -30,7 +29,7 @@ const ShinyContainer: React.FC<{
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: [{translateX: '-50%'}, {translateY: '-50%'}],
+        transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
         zIndex: 99,
       }}>
       {children}
