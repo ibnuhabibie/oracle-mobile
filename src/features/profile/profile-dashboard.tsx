@@ -1,17 +1,13 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { AppText } from "../../components/ui/app-text";
-import WealthIcon from "../../components/icons/profile-daily/Wealth";
-import LearningIcon from "../../components/icons/profile-daily/Learning";
-import RelationIcon from "../../components/icons/profile-daily/Relation";
-import CareerIcon from "../../components/icons/profile-daily/Career";
 import { COLORS } from "../../constants/colors";
 import { fontFamilies } from "../../constants/fonts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CircularScore from "../../components/circular-score";
 import api from "../../utils/http";
-// import CircularProgressBar from "../../components/widgets/CircularProgressbar";
 
 class ProfileDashboard extends React.Component {
     constructor(props) {
@@ -25,6 +21,7 @@ class ProfileDashboard extends React.Component {
     async componentDidMount() {
         try {
             const userData = await AsyncStorage.getItem('user_profile');
+            console.log(userData, 'userData')
             this.setState({ user: JSON.parse(userData || '') });
             this.fetchDailyProfile()
         } catch (error) {
@@ -45,19 +42,47 @@ class ProfileDashboard extends React.Component {
     }
 
     render() {
-        const { data } = this.state
+        const { data, user } = this.state;
         const today_description = data?.today_description?.split('.').slice(0, 2).join('.');
-        return (
-            <>
+
+        // i18n
+        // Use hook in a functional wrapper
+        function LocalizedHeader() {
+            const { t, i18n } = useTranslation();
+
+            // Localized date
+            const today = new Date();
+            const locale = i18n.language || "en";
+            const formattedDate = today.toLocaleDateString(locale, {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            });
+
+            return (
                 <View style={styles.header}>
-                    <AppText variant='caption1' style={styles.date}>Wed, 30 Apr 2025</AppText>
+                    <AppText variant='caption1' style={styles.date}>{formattedDate}</AppText>
                     <AppText style={styles.greeting}>
-                        Good Day, {this.state.user?.full_name || 'Guest'}
+                        {t("Good Day")}, {user?.full_name || t("Guest")}
                     </AppText>
                 </View>
+            );
+        }
+
+        function LocalizedSubtitle() {
+            const { t } = useTranslation();
+            return (
+                <AppText style={styles.subtitle}>{t("TODAY SCORE")}</AppText>
+            );
+        }
+
+        return (
+            <>
+                <LocalizedHeader />
                 <View style={{ width: '100%', paddingHorizontal: 12 }}>
                     <AppText style={styles.title}>{data?.today_points}%</AppText>
-                    <AppText style={styles.subtitle}>TODAY SCORE</AppText>
+                    <LocalizedSubtitle />
                     <AppText variant='caption1' color="neutral" style={styles.paragraph}>
                         {today_description}
                     </AppText>

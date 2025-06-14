@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import SignUpForm from '../../features/auth/signup-form';
@@ -12,6 +12,7 @@ import { AppText } from '../../components/ui/app-text';
 type SignUpProps = NativeStackScreenProps<MainNavigatorParamList, 'SignUp'>;
 
 const SignUp: FC<SignUpProps> = ({ navigation }) => {
+  const { t } = useTranslation();
 
   const onSuccess = (email: string) => {
     navigation.navigate('Otp', { email });
@@ -20,19 +21,19 @@ const SignUp: FC<SignUpProps> = ({ navigation }) => {
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
       <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEAKERS')}</AppText>
-      <AppText variant='largeTitle2' style={styles.title}>Sign Up</AppText>
+      <AppText variant='largeTitle2' style={styles.title}>{t('SIGN UP')}</AppText>
       <AppText variant='caption1' style={styles.subtitle}>
-        The cosmos whispers.{'\n'}Join & uncover your destiny.
+        {t('SIGN UP SUBTITLE').replace('{\\n}', '\n')}
       </AppText>
 
       <SignUpForm onSuccess={onSuccess} />
 
       <AppText variant='body1' style={styles.footer}>
-        Already have an account?{' '}
+        {t('ALREADY HAVE AN ACCOUNT')}{' '}
         <AppText
           color='primary'
           onPress={() => navigation.navigate('SignIn')}>
-          Sign In
+          {t('SIGN IN')}
         </AppText>
       </AppText>
     </ScreenContainer>

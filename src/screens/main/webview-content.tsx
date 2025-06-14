@@ -4,6 +4,9 @@ import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
 import { useRoute } from '@react-navigation/native';
 
+// i18n
+import { useTranslation } from "react-i18next";
+
 import { APP_URL } from '@env';
 
 import ScreenContainer from '../../components/layouts/ScreenContainer';
@@ -15,6 +18,7 @@ type WebviewContentProps = NativeStackScreenProps<MainNavigatorParamList, 'Webvi
 
 const WebviewContent: FC<WebviewContentProps> = ({ navigation }) => {
     const route = useRoute();
+    const { t } = useTranslation();
 
     return (
         <ScreenContainer>
@@ -24,7 +28,7 @@ const WebviewContent: FC<WebviewContentProps> = ({ navigation }) => {
                     style={styles.backButton}>
                     <ArrowIcon />
                 </Pressable>
-                <AppText variant='subtitle2'>{route?.params.title}</AppText>
+                <AppText variant='subtitle2'>{t(route?.params?.title)}</AppText>
             </View>
             <WebView
                 source={{ uri: route.params?.uri || APP_URL }}

@@ -1,7 +1,8 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { Component } from 'react';
+import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import { AppButton } from '../../components/ui/app-button';
@@ -10,44 +11,44 @@ import { MainNavigatorParamList } from '../../navigators/types';
 
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
-class Welcome extends Component<WelcomeProps> {
-  handleClick = async () => {
+const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
+  const { t } = useTranslation();
+
+  const handleClick = async () => {
     try {
       const language = await AsyncStorage.getItem('language');
       console.log(language, 'language');
 
       if (!language) {
-        this.props.navigation.navigate('SignIn');
+        navigation.navigate('SignIn');
       } else {
-        this.props.navigation.navigate('LanguageSelection');
+        navigation.navigate('LanguageSelection');
       }
     } catch (error) {
       console.log(error);
-      this.props.navigation.navigate('LanguageSelection');
+      navigation.navigate('LanguageSelection');
     }
   };
 
-  render() {
-    return (
-      <ScreenContainer>
-        <View style={styles.container}>
-          <Image
-            source={require('../../assets/images/onboarding/onboarding.png')}
-            style={{ width: 431, height: 577 }}
-          />
-          <AppText variant='subtitle2' color='primary' style={styles.subtitle}>WELCOME TO</AppText>
-          <AppText style={styles.title}>AFFINITY</AppText>
-          <AppButton
-            title="Get Started"
-            variant='primary'
-            onPress={this.handleClick}
-            style={{ marginTop: 24 }}
-          />
-        </View>
-      </ScreenContainer>
-    );
-  }
-}
+  return (
+    <ScreenContainer>
+      <View style={styles.container}>
+        <Image
+          source={require('../../assets/images/onboarding/onboarding.png')}
+          style={{ width: 431, height: 577 }}
+        />
+        <AppText variant='subtitle2' color='primary' style={styles.subtitle}>{t('WELCOME TO')}</AppText>
+        <AppText style={styles.title}>AFFINITY</AppText>
+        <AppButton
+          title={t('GET STARTED')}
+          variant='primary'
+          onPress={handleClick}
+          style={{ marginTop: 24 }}
+        />
+      </View>
+    </ScreenContainer>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

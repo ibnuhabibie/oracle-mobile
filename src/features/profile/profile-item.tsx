@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 interface ProfileItemProps {
@@ -7,15 +8,19 @@ interface ProfileItemProps {
     onPress: () => void;
 }
 
-const ProfileItem: FC<ProfileItemProps> = ({ title, icon, onPress }) => (
-    <Pressable style={styles.profileItem} onPress={onPress}>
-        <View style={styles.profileItemLeft}>
-            {icon}
-            <Text style={styles.profileItemTitle}>{title}</Text>
-        </View>
-        <Text style={styles.chevron}>›</Text>
-    </Pressable>
-);
+const ProfileItem: FC<ProfileItemProps> = ({ title, icon, onPress }) => {
+    const { t } = useTranslation();
+
+    return (
+        <Pressable style={styles.profileItem} onPress={onPress}>
+            <View style={styles.profileItemLeft}>
+                {icon}
+                <Text style={styles.profileItemTitle}>{t(title)}</Text>
+            </View>
+            <Text style={styles.chevron}>›</Text>
+        </Pressable>
+    )
+};
 
 
 const styles = StyleSheet.create({

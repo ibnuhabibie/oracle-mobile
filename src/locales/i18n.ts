@@ -2,9 +2,12 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Import your JSON files
 import en from './en.json';
 import id from './id.json';
+import zh from './zh.json';
+import jp from './jp.json';
+import kr from './kr.json';
+import th from './th.json';
 
 const languageDetector = {
     type: 'languageDetector',
@@ -31,6 +34,10 @@ i18n
         resources: {
             en: { translation: en },
             id: { translation: id },
+            zh: { translation: zh },
+            jp: { translation: jp },
+            kr: { translation: kr },
+            th: { translation: th },
         },
         compatibilityJSON: 'v3',
         interpolation: {

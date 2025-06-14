@@ -29,13 +29,15 @@ import { MainNavigatorParamList } from '../../../navigators/types';
 
 import { APP_URL, API_BASE_URL } from '@env';
 import api from '../../../utils/http';
+// i18n
+import { useTranslation } from "react-i18next";
 import ProfileItem from '../../../features/profile/profile-item';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 
 type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
 const Profile: FC<ProfileProps> = ({ navigation }) => {
-
+  const { t } = useTranslation();
   const { getUserProfile, getAuthToken } = useAsyncStorage();
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<any | null>(null);
@@ -116,7 +118,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         {/* User Profile Card */}
         <View style={styles.userCard}>
           <View style={styles.userInfo}>
-            <Text style={styles.userName}>{user?.full_name || 'Guest'}</Text>
+            <Text style={styles.userName}>{user?.full_name || t("Guest")}</Text>
             <View style={styles.userBadge}>
               <Text style={styles.badgeText}>{user?.referral_code}</Text>
               <CopyIcon />
@@ -155,9 +157,9 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         {/* Coins Section */}
         <View style={styles.coinsCard}>
           <View style={styles.coinsHeader}>
-            <Text style={styles.coinsTitle}>Your Coins</Text>
+            <Text style={styles.coinsTitle}>{t("Your Coins")}</Text>
             <Pressable onPress={handleBuyCoins} style={styles.buyCoinsButton}>
-              <Text style={styles.buyCoinsText}>Buy Coins</Text>
+              <Text style={styles.buyCoinsText}>{t("Buy Coins")}</Text>
               <Text style={styles.chevron}>›</Text>
             </Pressable>
           </View>
@@ -176,7 +178,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
         {/* Profile Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Profile</Text>
+          <Text style={styles.sectionTitle}>{t("Profile")}</Text>
           <ProfileItem
             title="Edit Profile"
             icon={<EditIcon size={20} />}
@@ -196,7 +198,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
         {/* Others Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Others</Text>
+          <Text style={styles.sectionTitle}>{t("Others")}</Text>
           <ProfileItem
             title="About Us"
             icon={<BuildingIcon />}
@@ -214,7 +216,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         </View>
         <Pressable style={styles.logoutButton} onPress={handleLogout}>
           <LogoutIcon />
-          <Text style={styles.logoutText}>Logout</Text>
+          <Text style={styles.logoutText}>{t("Logout")}</Text>
         </Pressable>
       </ScrollView>
     </ScreenContainer>

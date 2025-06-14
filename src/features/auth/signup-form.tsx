@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import api from "../../utils/http";
 import TextField from "../../components/ui/text-field";
@@ -15,6 +16,7 @@ import PasswordToggle from "../../components/ui/password-toggle";
 const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const { t } = useTranslation();
 
     const {
         control,
@@ -33,30 +35,30 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
     const formRules = {
         full_name: {
-            required: 'Name is required',
+            required: t('NAME IS REQUIRED'),
             minLength: {
                 value: 2,
-                message: 'Name must be at least 2 characters'
+                message: t('NAME MIN LENGTH')
             }
         },
         email: {
-            required: 'Email is required',
+            required: t('EMAIL IS REQUIRED'),
             pattern: {
                 value: /^\S+@\S+$/i,
-                message: 'Invalid email format'
+                message: t('INVALID EMAIL FORMAT')
             }
         },
         password: {
-            required: 'Password is required',
+            required: t('PASSWORD IS REQUIRED'),
             minLength: {
                 value: 6,
-                message: 'Password must be at least 6 characters'
+                message: t('PASSWORD MIN LENGTH')
             }
         },
         confirm_password: {
-            required: 'Please confirm your password',
+            required: t('PLEASE CONFIRM PASSWORD'),
             validate: (value: string) =>
-                value === getValues('password') || 'Passwords do not match'
+                value === getValues('password') || t('PASSWORDS DO NOT MATCH')
         }
     };
 
@@ -70,7 +72,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             // navigation.navigate('Otp', { email: res.data.email });
             onSuccess(res.data.email)
         } catch (error) {
-            Alert.alert('Login Failed', error.meta.message)
+            Alert.alert(t('LOGIN FAILED'), error.meta.message)
             console.log(error)
         }
     };
@@ -82,14 +84,14 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="full_name"
                     rules={formRules.full_name}
-                    placeholder="Name"
+                    placeholder={t('NAME')}
                     errors={errors}
                 />
                 <AppInput
                     control={control}
                     name="email"
                     rules={formRules.email}
-                    placeholder="Email"
+                    placeholder={t('EMAIL')}
                     errors={errors}
                     keyboardType="email-address"
                 />
@@ -97,7 +99,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="password"
                     rules={formRules.password}
-                    placeholder="Password"
+                    placeholder={t('PASSWORD')}
                     secureTextEntry={!showPassword}
                     errors={errors}
                     rightIcon={
@@ -110,7 +112,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="confirm_password"
                     rules={formRules.confirm_password}
-                    placeholder="Confirm Password"
+                    placeholder={t('CONFIRM PASSWORD')}
                     secureTextEntry={!showConfirmPassword}
                     errors={errors}
                     rightIcon={
@@ -122,13 +124,13 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                 <AppInput
                     control={control}
                     name="referral_code"
-                    placeholder="Referral Code"
+                    placeholder={t('REFERRAL CODE')}
                     errors={errors}
                 />
             </View>
 
             <AppButton
-                title="Create Account"
+                title={t('CREATE ACCOUNT')}
                 onPress={handleSubmit(onSubmit)}
                 style={styles.signInButton}
             />

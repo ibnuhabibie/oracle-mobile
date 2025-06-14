@@ -11,6 +11,7 @@ import i18n from '../../locales/i18n';
 import { LANGUAGES } from '../../constants/app';
 import { AppText } from '../../components/ui/app-text';
 import SelectableItem from '../../components/ui/selectable-item';
+import { useTranslation } from 'react-i18next';
 
 type LanguageSelectionProps = NativeStackScreenProps<MainNavigatorParamList, 'LanguageSelection'>;
 
@@ -20,6 +21,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
       language: 'en',
     },
   });
+  const { t } = useTranslation();
 
   const onSubmit = async (data: any) => {
     await i18n.changeLanguage(data.language);
@@ -30,7 +32,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <AppText variant="subtitle2" style={styles.heading}>Please Select a Language</AppText>
+      <AppText variant="subtitle2" style={styles.heading}>{t('PLEASE SELECT A LANGUAGE')}</AppText>
 
       <Controller
         control={control}
@@ -42,7 +44,10 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
               return (
                 <SelectableItem
                   item={lang}
-                  onChange={onChange}
+                  onChange={(selectedKey) => {
+                    onChange(selectedKey);
+                    i18n.changeLanguage(selectedKey);
+                  }}
                   isSelected={isSelected}
                   key={lang.key} />
               );
@@ -51,7 +56,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
         )}
       />
       <AppButton
-        title="Next"
+        title={t('NEXT')}
         onPress={handleSubmit(onSubmit)}
         style={styles.button}
       />

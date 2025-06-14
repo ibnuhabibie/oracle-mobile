@@ -3,6 +3,8 @@ import { View, Image, StyleSheet } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { COLORS } from '../constants/colors';
 import { AppText } from './ui/app-text';
+// i18n
+import { useTranslation } from 'react-i18next';
 
 class CircularScore extends Component {
     constructor(props) {
@@ -46,6 +48,17 @@ class CircularScore extends Component {
         const circumference = 2 * Math.PI * radius;
         const strokeDashoffset = circumference * (1 - value / 100);
 
+        // i18n
+        // Use hook in a functional wrapper
+        function TranslatedType() {
+            const { t } = useTranslation();
+            return (
+                <AppText color='primary' variant='body1' style={styles.iconText}>
+                    {t(type)}
+                </AppText>
+            );
+        }
+
         return (
             <View style={{ gap: 6 }}>
                 <Svg
@@ -86,9 +99,7 @@ class CircularScore extends Component {
                         resizeMode="cover"
                     />
                 </View>
-                <AppText color='primary' variant='body1' style={styles.iconText}>
-                    {type}
-                </AppText>
+                <TranslatedType />
             </View>
         );
     }

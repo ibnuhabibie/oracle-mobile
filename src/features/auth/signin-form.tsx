@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert, StyleSheet, View } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next";
 
 import api from "../../utils/http";
 import EyeCrossedIcon from "../../components/icons/EyeCrossed";
@@ -25,6 +26,24 @@ export interface AuthFormProps {
 const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
     const [showPassword, setShowPassword] = useState(false);
+    const { t } = useTranslation();
+
+    const formRules = {
+        email: {
+            required: t('EMAIL IS REQUIRED'),
+            pattern: {
+                value: /^\S+@\S+$/i,
+                message: t('INVALID EMAIL FORMAT')
+            }
+        },
+        password: {
+            required: t('PASSWORD IS REQUIRED'),
+            minLength: {
+                value: 6,
+                message: t('PASSWORD MIN LENGTH')
+            }
+        }
+    }
 
     const {
         control,
@@ -37,23 +56,6 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
         },
     });
 
-    const formRules = {
-        email: {
-            required: 'Email is required',
-            pattern: {
-                value: /^\S+@\S+$/i,
-                message: 'Invalid email format'
-            }
-        },
-        password: {
-            required: 'Password is required',
-            minLength: {
-                value: 6,
-                message: 'Password must be at least 6 characters'
-            }
-        }
-    }
-
     const onSubmit = async (data: LoginDTO) => {
         try {
             console.log('Sign in data:', data);
@@ -65,7 +67,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
             onSuccess(res.data)
         } catch (error) {
-            Alert.alert('Login Failed', error.meta.message)
+            Alert.alert(t('LOGIN FAILED'), error.meta.message)
             console.log(error)
         }
     };
@@ -77,7 +79,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="email"
                     rules={formRules.email}
-                    placeholder="Email"
+                    placeholder={t('EMAIL')}
                     keyboardType="email-address"
                     errors={errors}
                 />
@@ -85,9 +87,9 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="password"
                     rules={formRules.password}
-                    placeholder="Password"
+                    placeholder={t('PASSWORD')}
                     secureTextEntry={!showPassword}
-                    errors={errors} // Pass the errors object
+                    errors={errors}
                     rightIcon={
                         <PasswordToggle
                             onToggle={() => setShowPassword(prev => !prev)}
@@ -97,7 +99,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             </View>
 
             <AppButton
-                title="Sign In"
+                title={t('SIGN IN')}
                 onPress={handleSubmit(onSubmit)}
                 style={styles.signInButton}
             />

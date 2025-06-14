@@ -2,6 +2,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { FC, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+// i18n
+import { useTranslation } from "react-i18next";
 
 import AppInput from '../../components/ui/app-input';
 import CalendarIcon from '../../components/icons/Calendar';
@@ -15,13 +17,36 @@ import api from '../../utils/http';
 import { COLORS } from '../../constants/colors';
 import { useAsyncStorage } from '../../hooks/use-storage';
 
+export interface City {
+    name: string;
+    latitude: number;
+    longitude: number;
+}
+
+export interface Country {
+    name: string;
+    iso3: string;
+}
+
+export interface ProfileFormData {
+    full_name: string;
+    email: string;
+    phone_number: string;
+    birth_date: Date;
+    birth_time: Date;
+    gender: 'male' | 'female';
+    birth_country: Country | null;
+    birth_city: City | null;
+}
+
 interface ProfileFormProps {
-    onSubmit: (data: any) => void;
+    onSubmit: (data: ProfileFormData) => void;
 }
 
 const ProfileForm: React.FC<ProfileFormProps> = ({
     onSubmit,
 }) => {
+    const { t } = useTranslation();
 
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showTimePicker, setShowTimePicker] = useState(false);
@@ -42,14 +67,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         formState: { errors }
     } = useForm({
         defaultValues: {
-            full_name: 'Jessica Carl',
-            email: 'jessicarl@gmail.com',
-            phone_number: '6588841234',
-            birth_date: new Date(1994, 4, 10), // May 10, 1994
-            birth_time: new Date(2024, 0, 1, 10, 0), // 10:00 AM
+            full_name: '',
+            email: '',
+            phone_number: '',
+            birth_date: new Date(1994, 4, 10),
+            birth_time: new Date(2024, 0, 1, 10, 0),
             gender: 'female',
-            birth_country: null,
-            birth_city: null,
+            birth_country: null as Country | null,
+            birth_city: null as City | null,
         },
     });
 
@@ -69,22 +94,21 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             setValue('birth_time', birthTime);
             setValue('gender', profile.gender);
             setValue('birth_city', {
-                name: profile.birth_city,
-                latitude: profile.birth_lat,
-                longitude: profile.birth_lng,
+                name: profile?.birth_city,
+                latitude: profile?.birth_lat,
+                longitude: profile?.birth_lng,
             });
             setValue('birth_country', {
-                name: profile.birth_country,
-                iso3: profile.birth_country,
+                name: profile?.birth_country,
+                iso3: profile?.birth_country,
             });
         };
 
         init();
     }, []);
 
-
-    const watchedCountry = watch('birth_country');
-    const watchedCity = watch('birth_city');
+    const watchedCountry = watch('birth_country') as Country | null;
+    const watchedCity = watch('birth_city') as City | null;
     const watchedDate = watch('birth_date');
     const watchedTime = watch('birth_time');
     const watchedGender = watch('gender');
@@ -92,20 +116,19 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
     const formRules = {
         full_name: {
-            required: 'Name is required',
+            required: t('NAME IS REQUIRED'),
             minLength: {
                 value: 2,
-                message: 'Name must be at least 2 characters'
+                message: t('NAME MIN LENGTH')
             }
         },
         email: {
-            required: 'Email is required',
+            required: t('EMAIL IS REQUIRED'),
             pattern: {
                 value: /^\S+@\S+$/i,
-                message: 'Invalid email format'
+                message: t('INVALID EMAIL FORMAT')
             }
         },
-
     };
 
     const fetchCountries = async () => {
@@ -121,6 +144,11 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         try {
             console.log(watchedCountry)
             const response = await api.get(`/v1/configs/countries/${country.iso3}/cities`);
+            const cities = response.data;
+            if (cities.length > 0) {
+                console.log(cities[0])
+                setValue('birth_city', cities[0]);
+            }
             setCities(response.data);
         } catch (error) {
             console.error('Failed to fetch countries:', error);
@@ -152,9 +180,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         console.log('country', country)
         setValue('birth_country', country);
         await fetchCities(country);
-        if (cities.length > 0) {
-            setValue('birth_city', cities[0]);
-        }
+
         setShowCountryModal(false);
     };
 
@@ -170,32 +196,33 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 32 }}>
             <View style={styles.formContainer}>
-                <Text style={styles.label}>Full Name</Text>
+
+                <Text style={styles.label}>{t("Full Name")}</Text>
                 <AppInput
                     control={control}
                     name="full_name"
                     rules={formRules.full_name}
-                    placeholder="Name"
+                    placeholder={t("Name")}
                     errors={errors}
                 />
 
-                <Text style={styles.label}>Email Address</Text>
+                <Text style={styles.label}>{t("Email Address")}</Text>
                 <AppInput
                     control={control}
                     name="email"
                     rules={formRules.email}
-                    placeholder="Email"
+                    placeholder={t("Email")}
                     errors={errors}
                     keyboardType="email-address"
                 />
 
-                <Text style={styles.label}>Phone Number</Text>
+                <Text style={styles.label}>{t("Phone Number")}</Text>
                 <Controller
                     control={control}
-                    name="phoneNumber"
+                    name="phone_number"
                     render={({ field: { value, onChange } }) => (
                         <TextField
-                            placeholder="Phone Number"
+                            placeholder={t("Phone Number")}
                             value={value}
                             onChangeText={onChange}
                             style={styles.textField}
@@ -205,11 +232,11 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 />
 
                 {/* Birth Date Field */}
-                <Text style={styles.label}>Birth Date</Text>
+                <Text style={styles.label}>{t("Birth Date")}</Text>
                 <Pressable onPress={() => setShowDatePicker(true)}>
                     <View pointerEvents="none">
                         <TextField
-                            placeholder="Birth Date:"
+                            placeholder={t("Birth Date:")}
                             value={formatDate(watchedDate)}
                             style={styles.textField}
                             editable={false}
@@ -219,14 +246,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 </Pressable>
 
                 {/* Birth Time Field */}
-                <Text style={styles.label}>Birth Time</Text>
+                <Text style={styles.label}>{t("Birth Time")}</Text>
                 <Pressable
                     onPress={() => {
                         setShowTimePicker(true);
                     }}>
                     <View pointerEvents="none">
                         <TextField
-                            placeholder="Birth Time:"
+                            placeholder={t("Birth Time:")}
                             value={formatTime(watchedTime)}
                             style={styles.textField}
                             editable={false}
@@ -236,10 +263,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 </Pressable>
 
                 <Text style={styles.helperText}>
-                    (Not sure about your birth time? Just go with your closest guess.)
+                    {t("Not sure about your birth time? Just go with your closest guess.")}
                 </Text>
 
-                <Text style={styles.label}>Gender</Text>
+                <Text style={styles.label}>{t("Gender")}</Text>
                 <View style={styles.radioContainer}>
                     <Pressable
                         style={styles.radioButton}
@@ -249,7 +276,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                                 <View style={styles.radioSelected} />
                             )}
                         </View>
-                        <Text style={styles.radioText}>Male</Text>
+                        <Text style={styles.radioText}>{t("Male")}</Text>
                     </Pressable>
                     <Pressable
                         style={styles.radioButton}
@@ -259,27 +286,26 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                                 <View style={styles.radioSelected} />
                             )}
                         </View>
-                        <Text style={styles.radioText}>Female</Text>
+                        <Text style={styles.radioText}>{t("Female")}</Text>
                     </Pressable>
                 </View>
 
-                <Text style={styles.label}>Country of Birth</Text>
+                <Text style={styles.label}>{t("Country of Birth")}</Text>
                 <DropdownButton
                     onPress={() => setShowCountryModal(true)}
-                    text={watchedCountry?.name || 'Please select one'}
+                    text={watchedCountry?.name || t("Please select one")}
                 />
 
-                <Text style={styles.label}>City of Birth</Text>
+                <Text style={styles.label}>{t("City of Birth")}</Text>
                 <DropdownButton
                     onPress={() => setShowCityModal(true)}
-                    text={watchedCity?.name || 'Please select one'}
+                    text={watchedCity?.name || t("Please select one")}
                 />
             </View>
 
             <AppButton
-                title="Save"
+                title={t("Save")}
                 onPress={handleSubmit(onSubmit)}
-                style={styles.saveButton}
             />
 
             {/* Date Picker */}
@@ -329,25 +355,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 };
 
 const styles = StyleSheet.create({
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingBottom: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: '#F0F0F0',
-    },
-    backButton: {
-        padding: 8,
-        marginLeft: -8,
-    },
-    headerTitle: {
-        fontSize: 18,
-        fontWeight: '600',
-        color: '#333',
-        marginLeft: 20,
-        textAlign: 'center',
-        fontFamily: fontFamilies.ARCHIVO.light,
-    },
     formContainer: {
         width: '100%',
         marginBottom: 24,
@@ -362,25 +369,6 @@ const styles = StyleSheet.create({
     textField: {
         width: '100%',
         marginBottom: 0,
-    },
-    dateTimeButton: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 8,
-        paddingHorizontal: 16,
-        paddingVertical: 16,
-        backgroundColor: '#f9f9f9',
-    },
-    dateTimeText: {
-        fontSize: 16,
-        fontFamily: fontFamilies.ARCHIVO.light,
-        color: COLORS.black,
-    },
-    dateTimeIcon: {
-        fontSize: 16,
     },
     helperText: {
         fontSize: 12,
@@ -416,11 +404,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: fontFamilies.ARCHIVO.light,
         color: '#333',
-    },
-    saveButton: {
-        width: '100%',
-        backgroundColor: '#c1976b',
-        marginTop: 8,
     },
 });
 
