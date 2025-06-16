@@ -16,8 +16,9 @@ export type MainNavigatorParamList = {
     ComponentGallery: undefined;
 
     Tabs: undefined;
-
     Home: undefined;
+    AskAffinity: undefined;
+
     Profile: undefined;
     EditProfile: undefined;
     PasswordSetting: undefined;
@@ -25,6 +26,7 @@ export type MainNavigatorParamList = {
     PurchaseHistory: undefined;
     MbtiResults: undefined;
     AstrologyResults: undefined;
+    AffinityResults: { affinityResult: any; question: string };
     BaziResults: undefined;
     WebviewContent: {
         uri: string

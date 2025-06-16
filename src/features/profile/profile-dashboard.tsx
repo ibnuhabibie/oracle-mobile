@@ -73,7 +73,7 @@ class ProfileDashboard extends React.Component {
         function LocalizedSubtitle() {
             const { t } = useTranslation();
             return (
-                <AppText style={styles.subtitle}>{t("TODAY SCORE")}</AppText>
+                <AppText style={styles.subtitle} variant='subtitle1' color="primary">{t("TODAY SCORE")}</AppText>
             );
         }
 
@@ -121,13 +121,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     subtitle: {
-        fontSize: 18,
-        color: COLORS.primary,
         textAlign: 'center',
         letterSpacing: 5,
-        lineHeight: 24,
-        fontFamily: fontFamilies.ARCHIVO.regular,
-        width: '100%',
+        textTransform: 'uppercase'
     },
     paragraph: {
         marginTop: 10,

@@ -58,5 +58,9 @@
     "career": "Career",
     "TODAY SCORE": "Today Score",
     "Good Day": "Good Day",
-    "WHAT DO YOU LIKE TO KNOW TODAY?": "What do you like to know today?"
+    "WHAT DO YOU LIKE TO KNOW TODAY?": "What do you like to know today?",
+    "PASSWORD CHANGED SUCCESSFULLY": "Password changed successfully",
+    "FAILED TO CHANGE PASSWORD": "Failed to change password",
+    "LOADING...": "Loading...",
+    "CHANGE PASSWORD": "Change Password"
 }

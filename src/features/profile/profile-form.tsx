@@ -28,6 +28,19 @@ export interface Country {
     iso3: string;
 }
 
+interface Profile {
+    full_name: string;
+    email: string;
+    phone_number: string;
+    birth_date: string;
+    birth_time: string;
+    gender: 'male' | 'female';
+    birth_country: string;
+    birth_city: string;
+    birth_lat: string | number;
+    birth_lng: string | number;
+}
+
 export interface ProfileFormData {
     full_name: string;
     email: string;
@@ -80,7 +93,9 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
     useEffect(() => {
         const init = async () => {
-            const profile = await getUserProfile();
+            const profile = await getUserProfile() as Profile | null;
+            if (!profile) return;
+
             const [hours, minutes, seconds] = profile.birth_time.split(':').map(Number);
             const birthTime = new Date();
             birthTime.setHours(hours);
@@ -94,13 +109,13 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             setValue('birth_time', birthTime);
             setValue('gender', profile.gender);
             setValue('birth_city', {
-                name: profile?.birth_city,
-                latitude: profile?.birth_lat,
-                longitude: profile?.birth_lng,
+                name: profile.birth_city,
+                latitude: profile.birth_lat !== undefined && profile.birth_lat !== null ? parseFloat(profile.birth_lat as string) : 0,
+                longitude: profile.birth_lng !== undefined && profile.birth_lng !== null ? parseFloat(profile.birth_lng as string) : 0,
             });
             setValue('birth_country', {
-                name: profile?.birth_country,
-                iso3: profile?.birth_country,
+                name: profile.birth_country,
+                iso3: profile.birth_country,
             });
         };
 

@@ -30,6 +30,8 @@ import PurchaseHistory from '../screens/main/profile/purchase-history';
 import ComponentGallery from '../screens/dev/component-gallery';
 import AskAffinityIcon from '../components/icons/ask-affinity';
 import WebviewContent from '../screens/main/webview-content';
+import AskAffinity from '../screens/main/service/affinity/ask-affinity';
+import AffinityResults from '../screens/main/service/affinity/affinity-results';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -65,7 +67,7 @@ const TabNavigator = () => (
     />
     <Tab.Screen
       name="AskAffinity"
-      component={Profile}
+      component={AskAffinity}
       options={{
         tabBarIcon: ({ size, focused }) => (
           <AskAffinityIcon size={size ?? 19} fill={focused} />
@@ -157,6 +159,7 @@ const MainNavigator = () => {
 
       <Stack.Screen name="Tabs" component={TabNavigator} />
 
+      <Stack.Screen name="AffinityResults" component={AffinityResults} />
       <Stack.Screen name="WebviewContent" component={WebviewContent} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="PasswordSetting" component={PasswordSetting} />
