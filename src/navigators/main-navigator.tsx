@@ -32,6 +32,8 @@ import AskAffinityIcon from '../components/icons/ask-affinity';
 import WebviewContent from '../screens/main/webview-content';
 import AskAffinity from '../screens/main/service/affinity/ask-affinity';
 import AffinityResults from '../screens/main/service/affinity/affinity-results';
+import Echo from '../screens/main/service/echo/echo';
+import EchoDetail from '../screens/main/service/echo/echo-detail';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -57,7 +59,7 @@ const TabNavigator = () => (
     />
     <Tab.Screen
       name="Echo"
-      component={Profile}
+      component={Echo}
       options={{
         tabBarIcon: ({ size, focused }) => (
           <EchoIcon size={size ?? 19} fill={focused} />
@@ -159,6 +161,7 @@ const MainNavigator = () => {
 
       <Stack.Screen name="Tabs" component={TabNavigator} />
 
+      <Stack.Screen name="EchoDetail" component={EchoDetail} />
       <Stack.Screen name="AffinityResults" component={AffinityResults} />
       <Stack.Screen name="WebviewContent" component={WebviewContent} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
