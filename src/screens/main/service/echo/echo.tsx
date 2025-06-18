@@ -18,7 +18,7 @@ type EchoProps = NativeStackScreenProps<MainNavigatorParamList, 'Echo'>;
 
 const Echo: FC<EchoProps> = ({ navigation }) => {
     const { t } = useTranslation();
-    const [diary, setDiary] = useState<any>(null);
+    const [diaries, setDiaries] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [selectedMonth, setSelectedMonth] = useState<{ year: number; month: number }>(() => {
@@ -40,19 +40,20 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
 
     // Fetch all diaries for selected month and mark dates (using useState only, so fetch in body)
     const { start_date, end_date } = getMonthRange(selectedMonth.year, selectedMonth.month);
-    if (!diary && !loading && !error) {
+    if ((!diaries || diaries.length === 0) && !loading && !error) {
         setLoading(true);
         const api = require('../../../../utils/http').default;
         api.get(`/v1/secret-diaries?limit=1000&offset=0&start_date=${start_date}&end_date=${end_date}`)
             .then((res: any) => {
                 if (res && Array.isArray(res.data) && res.data.length > 0) {
-                    setDiary(res.data[0]);
+                    setDiaries(res.data);
                     // Mark all diary dates
                     const marks: any = {};
                     res.data.forEach((d: any) => {
                         marks[d.diary_date] = {
                             marked: true,
                             dotColor: COLORS.primary,
+                            diaryId: d.diary_id,
                         };
                     });
                     setMarkedDates(marks);
@@ -68,9 +69,14 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
             .finally(() => setLoading(false));
     }
 
-    const toDetail = (id) => {
-        console.log('clicked', id)
-        navigation.push('EchoDetail', { id })
+    const toDetail = (diary) => {
+        console.log('clicked', diary.diary_id)
+        navigation.push('EchoDetail', {
+            id: diary.diary_id,
+            date: {
+                dateString: diary.diary_date
+            }
+        })
     }
 
     return (
@@ -83,11 +89,16 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                 style={styles.calendar}
                 markedDates={markedDates}
                 onDayPress={day => {
-                    console.log('selected day', day);
+                    const mark = markedDates[day.dateString];
+                    if (mark && mark.diaryId) {
+                        navigation.push('EchoDetail', { id: mark.diaryId, date: day });
+                    } else {
+                        navigation.push('EchoDetail', { date: day });
+                    }
                 }}
                 onMonthChange={monthObj => {
                     // monthObj: { year: 2025, month: 6, day: 1, timestamp: ... }
-                    setDiary(null);
+                    setDiaries([]);
                     setError(null);
                     setMarkedDates({});
                     setSelectedMonth({ year: monthObj.year, month: monthObj.month });
@@ -99,20 +110,22 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     <AppText style={{ marginTop: 8 }}>{t('Loading...')}</AppText>
                 ) : error ? (
                     <AppText style={{ color: 'red', marginTop: 8 }}>{error}</AppText>
-                ) : diary ? (
-                    <Pressable onPress={() => toDetail(diary.diary_id)} style={styles.diaryItem}>
-                        <View style={styles.diaryIconContainer}>
-                            <CalendarIcon />
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <AppText variant='caption1'>
-                                {diary.diary_date}
-                            </AppText>
-                            <AppText variant='body1'>
-                                {diary.content}
-                            </AppText>
-                        </View>
-                    </Pressable>
+                ) : diaries && diaries.length > 0 ? (
+                    diaries.map((diary) => (
+                        <Pressable key={diary.diary_id} onPress={() => toDetail(diary)} style={styles.diaryItem}>
+                            <View style={styles.diaryIconContainer}>
+                                <CalendarIcon />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <AppText variant='caption1'>
+                                    {diary.diary_date}
+                                </AppText>
+                                <AppText variant='body1'>
+                                    {diary.content}
+                                </AppText>
+                            </View>
+                        </Pressable>
+                    ))
                 ) : null}
             </View>
         </ScreenContainer>

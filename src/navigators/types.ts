@@ -19,7 +19,8 @@ export type MainNavigatorParamList = {
     Home: undefined;
     AskAffinity: undefined;
     EchoDetail: {
-        id: string
+        id?: string,
+        date: Date
     };
 
     Profile: undefined;

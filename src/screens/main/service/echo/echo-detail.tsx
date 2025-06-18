@@ -7,85 +7,90 @@ import ArrowIcon from '../../../../components/icons/Arrow';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { fontFamilies } from '../../../../constants/fonts';
+import SendIcon from '../../../../components/icons/echo/send-icon';
+import AdviceIcon from '../../../../components/icons/echo/advice-icon';
+import api from '../../../../utils/http';
 
 const USER_AVATAR = 'J';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 
 
+/**
+ * Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, d MMM yyyy" (e.g., "Sat, 2 May 2025")
+ */
+function formatDateToHeader(input: object): string {
+  let _date = new Date(input.dateString);
+  const weekday = _date.toLocaleString('en-US', { weekday: 'short' });
+  const day = _date.getDate();
+  const month = _date.toLocaleString('en-US', { month: 'short' });
+  const year = _date.getFullYear();
+  return `${weekday}, ${day} ${month} ${year}`;
+}
+
+function formatDate(input: object): string {
+  let _date = new Date(input.dateString);
+  const y = _date.getFullYear();
+  const m = (_date.getMonth() + 1).toString().padStart(2, '0');
+  const d = _date.getDate().toString().padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
 const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
-  const { id } = route.params;
+  const id = route.params?.id;
+  const date = route.params?.date;
   const [messages, setMessages] = useState<any[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    const api = require('../../../../utils/http').default;
+  const fetchData = () => {
+    console.log(id)
+    if (!id) return
     api.get(`/v1/secret-diaries/${id}`)
       .then((res: any) => {
-        // Assume res.data.messages or res.data.content as array of messages
-        if (res?.data?.messages && Array.isArray(res.data.messages)) {
-          setMessages(res.data.messages);
-        } else if (res?.data?.content) {
-          // fallback: treat content as a single user message
-          setMessages([
-            {
-              id: res.data.diary_id?.toString() || '1',
-              sender: 'user',
-              text: res.data.content,
-              date: res.data.diary_date,
-            }
-          ]);
-        } else {
-          setMessages([]);
-        }
+        console.log(res.data.conversations)
+        setMessages(res.data.conversations)
       })
       .catch(() => setMessages([]))
       .finally(() => setLoading(false));
+  }
+
+  useEffect(() => {
+    if (!id) {
+      setMessages([]);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    fetchData()
   }, [id]);
 
-  const handleSend = () => {
-    if (input.trim()) {
-      setMessages([
-        ...messages,
-        {
-          id: (messages.length + 1).toString(),
-          sender: 'user',
-          text: input,
-          date: '2025-05-02',
-        },
-      ]);
+  const handleSend = async () => {
+    if (!input.trim()) return;
+    try {
+      if (!id) {
+        const res = await api.post('/v1/secret-diaries', {
+          content: input,
+          diary_date: formatDate(date)
+        });
+        console.log(res.data.diary_id)
+        const newId = res?.data?.diary_id;
+        if (newId) {
+          navigation.setParams({ id: newId });
+        }
+        fetchData()
+      } else {
+        // Send message to conversation
+        console.log({ content: input }, id)
+        await api.post(`/v1/secret-diaries/${id}/conversations`, { content: input });
+        fetchData()
+      }
       setInput('');
-      // Here you would also send the message to the backend and handle AI response
+    } catch (err) {
+      // Optionally handle error
+      console.log(err)
     }
-  };
-
-  const renderMessage = ({ item }: any) => {
-    const isUser = item.sender === 'user';
-    return (
-      <View style={[
-        styles.messageRow,
-        // isUser ? styles.messageRowUser : styles.messageRowAI
-      ]}>
-        {/* {isUser && ( */}
-        <View style={styles.avatarCircle}>
-          <AppText style={styles.avatarText}>{USER_AVATAR}</AppText>
-        </View>
-        {/* )} */}
-        <View style={[
-          styles.bubble,
-          isUser ? styles.bubbleUser : styles.bubbleAI
-        ]}>
-          <AppText style={styles.bubbleText}>{item.text}</AppText>
-        </View>
-        {!isUser && (
-          <View style={styles.aiIconCircle}>
-            {/* <Ionicons name="star" size={20} color={COLORS.primary} /> */}
-          </View>
-        )}
-      </View>
-    );
   };
 
   return (
@@ -101,7 +106,9 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           <Text style={styles.headerTitle}>Diary</Text>
         </View>
         <View style={styles.dateSeparator}>
-          <AppText style={styles.dateSeparatorText}>Sat, 2 May 2025</AppText>
+          <AppText style={styles.dateSeparatorText}>
+            {formatDateToHeader(date)}
+          </AppText>
         </View>
       </View>
       {/* Chat area with padding for header and input */}
@@ -110,10 +117,10 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           contentContainerStyle={styles.chatContainer}
           showsVerticalScrollIndicator={false}
         >
-          {messages.map((item) => {
-            const isUser = item.sender === 'user';
+          {messages.map((item, idx) => {
+            const isUser = item.type === 'user';
             return (
-              <View key={item.id} style={[styles.messageRow]}>
+              <View key={item.conversation_id} style={[styles.messageRow]}>
                 <View style={styles.avatarCircle}>
                   <AppText style={styles.avatarText}>{USER_AVATAR}</AppText>
                 </View>
@@ -121,13 +128,17 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
                   styles.bubble,
                   isUser ? styles.bubbleUser : styles.bubbleAI
                 ]}>
-                  <AppText style={styles.bubbleText}>{item.text}</AppText>
+                  <AppText style={styles.bubbleText}>{item.content}</AppText>
                 </View>
-                {!isUser && (
-                  <View style={styles.aiIconCircle}>
-                    {/* <Ionicons name="star" size={20} color={COLORS.primary} /> */}
-                  </View>
-                )}
+                {
+                  idx === messages.length - 1
+                  &&
+                  (
+                    <View style={styles.aiIconCircle}>
+                      <AdviceIcon />
+                    </View>
+                  )
+                }
               </View>
             );
           })}
@@ -148,7 +159,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
             placeholderTextColor="#BDBDBD"
           />
           <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-            {/* <Ionicons name="arrow-forward" size={24} color={COLORS.primary} /> */}
+            <SendIcon />
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -163,22 +174,15 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 10,
-    backgroundColor: '#fff',
-    // shadow for iOS
-    shadowColor: '#000',
-    shadowOpacity: 0.04,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-    // elevation for Android
-    elevation: 2,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: 12,
+    paddingLeft: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
     paddingTop: 8,
   },
   backButton: {
@@ -195,13 +199,14 @@ const styles = StyleSheet.create({
   },
   dateSeparator: {
     alignItems: 'center',
-    marginVertical: 12,
-    backgroundColor: '#fff',
+    paddingVertical: 12,
+    backgroundColor: COLORS.white,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
   },
   dateSeparatorText: {
     color: '#BDBDBD',
     fontSize: 13,
-    backgroundColor: '#fff',
     paddingHorizontal: 16,
     paddingVertical: 2,
     borderRadius: 8,
@@ -209,13 +214,13 @@ const styles = StyleSheet.create({
   chatArea: {
     flex: 1,
     position: 'relative',
-    paddingTop: 130, // header + date separator height
-    paddingBottom: 80, // input bar height
-    backgroundColor: '#fff',
+    marginTop: 105,
+    marginBottom: 70,
   },
   chatContainer: {
     paddingHorizontal: 16,
     paddingBottom: 0,
+    paddingTop: 20,
   },
   messageRow: {
     flexDirection: 'row',
@@ -249,18 +254,20 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 8,
+    marginTop: 'auto'
   },
   bubble: {
-    maxWidth: '75%',
+    maxWidth: '80%',
+    width: '100%',
     padding: 14,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: COLORS.primary,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
   },
   bubbleUser: {
     marginLeft: 0,
@@ -291,9 +298,11 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 40,
+    height: 'auto',
     borderRadius: 20,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: COLORS.white,
+    borderWidth: 1,
+    borderColor: COLORS.black,
     paddingHorizontal: 16,
     fontSize: 15,
     color: '#222',
@@ -303,7 +312,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#FAF6F2',
+    backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
