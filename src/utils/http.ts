@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
-    timeout: 10000,
+    timeout: 20000,
     headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
@@ -24,9 +24,17 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-    (response) => response.data,
+    (response) => {
+        console.log('[Axios Response]', response);
+        return response?.data
+    },
     (error) => {
-        console.error('API Error:', error);
+        console.error('[Axios Error]', error.message);
+        console.error(error.config);
+        console.error(error.code);
+        if (error.response) {
+            console.error('[Response Error Data]', error.response.data);
+        }
         return Promise.reject(error.response.data);
     }
 );

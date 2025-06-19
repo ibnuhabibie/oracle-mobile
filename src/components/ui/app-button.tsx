@@ -6,6 +6,8 @@ import {
   TextStyle,
   TouchableOpacity,
   ViewStyle,
+  ActivityIndicator,
+  View,
 } from 'react-native';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
@@ -21,12 +23,14 @@ export interface CustomButtonProps {
   disabled?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  loading?: boolean;
 }
 
 export class AppButton extends Component<CustomButtonProps> {
   static defaultProps = {
     variant: 'primary',
     disabled: false,
+    loading: false,
   };
 
   getButtonStyle = (): ViewStyle => {
@@ -107,15 +111,21 @@ export class AppButton extends Component<CustomButtonProps> {
   };
 
   render() {
-    const { title, onPress, disabled, style, textStyle } = this.props;
+    const { title, onPress, disabled, style, textStyle, loading } = this.props;
+    const isDisabled = disabled || loading;
 
     return (
       <TouchableOpacity
-        style={[this.getButtonStyle(), disabled && styles.disabled, style]}
+        style={[this.getButtonStyle(), isDisabled && styles.disabled, style]}
         onPress={onPress}
         activeOpacity={0.8}
-        disabled={disabled}>
-        <Text style={[this.getTextStyle(), textStyle]}>{title}</Text>
+        disabled={isDisabled}
+      >
+        {loading ? (
+          <ActivityIndicator color={this.getTextStyle().color || COLORS.white} />
+        ) : (
+          <Text style={[this.getTextStyle(), textStyle]}>{title}</Text>
+        )}
       </TouchableOpacity>
     );
   }

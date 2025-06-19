@@ -21,7 +21,6 @@ const CARD_HEIGHT_CENTER = 320;
 
 const Home: FC<HomeProps> = ({ navigation }) => {
   const { t } = useTranslation();
-  // Removed unused scrollX, scrollRef
 
   // Carousel data
   const carouselItems = [

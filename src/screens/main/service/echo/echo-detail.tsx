@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Text, Pressable } from 'react-native';
+import { View, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Text, Pressable, Modal, Alert } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
 import ScreenContainer from '../../../../components/layouts/ScreenContainer';
@@ -10,60 +10,54 @@ import { fontFamilies } from '../../../../constants/fonts';
 import SendIcon from '../../../../components/icons/echo/send-icon';
 import AdviceIcon from '../../../../components/icons/echo/advice-icon';
 import api from '../../../../utils/http';
+import { AppButton } from '../../../../components/ui/app-button';
+import { formatDate, formatDateToHeader } from '../../../../utils/date';
+import ChatArea from '../../../../components/widgets/ChatArea';
 
 const USER_AVATAR = 'J';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 
-
-/**
- * Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, d MMM yyyy" (e.g., "Sat, 2 May 2025")
- */
-function formatDateToHeader(input: object): string {
-  let _date = new Date(input.dateString);
-  const weekday = _date.toLocaleString('en-US', { weekday: 'short' });
-  const day = _date.getDate();
-  const month = _date.toLocaleString('en-US', { month: 'short' });
-  const year = _date.getFullYear();
-  return `${weekday}, ${day} ${month} ${year}`;
-}
-
-function formatDate(input: object): string {
-  let _date = new Date(input.dateString);
-  const y = _date.getFullYear();
-  const m = (_date.getMonth() + 1).toString().padStart(2, '0');
-  const d = _date.getDate().toString().padStart(2, '0');
-  return `${y}-${m}-${d}`;
-}
-
 const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
   const id = route.params?.id;
   const date = route.params?.date;
+
+  const [modalVisible, setModalVisible] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [lastMessage, setLastMessage] = useState<any>(null);
+  const [purchaseLoading, setPurchaseLoading] = useState(false);
 
-  const fetchData = () => {
+  const fetchData = async () => {
     console.log(id)
     if (!id) return
-    api.get(`/v1/secret-diaries/${id}`)
-      .then((res: any) => {
-        console.log(res.data.conversations)
-        setMessages(res.data.conversations)
-      })
-      .catch(() => setMessages([]))
-      .finally(() => setLoading(false));
+
+    try {
+      const res = await api.get(`/v1/secret-diaries/${id}`)
+      let conversations: { type: string; created_at: string; conversation_id: string; content: string }[] = res.data.conversations;
+      let last_userChat = conversations
+        .filter((msg) => msg.type === "user")
+        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0];
+      setLastMessage(last_userChat);
+      setMessages(conversations);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
     if (!id) {
-      setMessages([]);
-      setLoading(false);
       return;
     }
 
     setLoading(true);
-    fetchData()
+    const init = async () => {
+      await fetchData()
+    }
+
+    init()
   }, [id]);
 
   const handleSend = async () => {
@@ -93,6 +87,21 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
     }
   };
 
+  const handleContinue = async () => {
+    setPurchaseLoading(true);
+    try {
+      const res = await api.post(`/v1/secret-diaries/${id}/consult`, {});
+      console.log(res);
+      setModalVisible(false);
+      setPurchaseLoading(false);
+      fetchData();
+    } catch (error) {
+      setPurchaseLoading(false);
+      console.log(error);
+      Alert.alert('Error', 'Failed to consult. Please try again.');
+    }
+  };
+
   return (
     <>
       {/* Fixed Header */}
@@ -112,38 +121,11 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
         </View>
       </View>
       {/* Chat area with padding for header and input */}
-      <View style={styles.chatArea}>
-        <ScrollView
-          contentContainerStyle={styles.chatContainer}
-          showsVerticalScrollIndicator={false}
-        >
-          {messages.map((item, idx) => {
-            const isUser = item.type === 'user';
-            return (
-              <View key={item.conversation_id} style={[styles.messageRow]}>
-                <View style={styles.avatarCircle}>
-                  <AppText style={styles.avatarText}>{USER_AVATAR}</AppText>
-                </View>
-                <View style={[
-                  styles.bubble,
-                  isUser ? styles.bubbleUser : styles.bubbleAI
-                ]}>
-                  <AppText style={styles.bubbleText}>{item.content}</AppText>
-                </View>
-                {
-                  idx === messages.length - 1
-                  &&
-                  (
-                    <View style={styles.aiIconCircle}>
-                      <AdviceIcon />
-                    </View>
-                  )
-                }
-              </View>
-            );
-          })}
-        </ScrollView>
-      </View>
+      <ChatArea
+        messages={messages}
+        lastMessage={lastMessage}
+        setModalVisible={setModalVisible}
+      />
       {/* Fixed Input */}
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -163,6 +145,20 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
+      {/* Modal */}
+      <Modal visible={modalVisible} transparent animationType="slide">
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <AppText variant='subtitle1' color='primary' style={styles.title}>PURCHASE ALERT</AppText>
+            <AppText style={{ textAlign: 'center', lineHeight: 22 }}>To ask the Geenie, it will cost 15{'\n'}Continue?</AppText>
+            <AppText style={{ textAlign: 'center', marginTop: 14 }} color='neutral'>Your Coins: 1650</AppText>
+            <View style={styles.buttonGroup}>
+              <AppButton title="Continue to Purchase" variant='secondary' onPress={handleContinue} loading={purchaseLoading} />
+              <AppButton title="Cancel" variant='outline' onPress={() => setModalVisible(false)} />
+            </View>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 };
@@ -315,6 +311,29 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  // modal
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center'
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+  },
+  title: {
+    marginBottom: 10,
+    textAlign: 'center'
+  },
+  buttonGroup: {
+    marginTop: 20,
+    gap: 8,
+    justifyContent: 'space-between',
   },
 });
 
