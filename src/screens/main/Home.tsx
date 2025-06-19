@@ -29,18 +29,21 @@ const Home: FC<HomeProps> = ({ navigation }) => {
       image: require('../../assets/icons/services/love-forecast-icon.png'),
       title: 'Love On Pause?',
       subtitle: "DISCOVER WHAT'S COMING NEXT",
+      path: 'LoveForecast'
     },
     {
       id: 'career',
       image: require('../../assets/icons/services/love-forecast-icon.png'),
       title: 'Career Switch or Spark?',
       subtitle: "SEE YOUR PATH",
+      path: 'RelationReport'
     },
     {
       id: 'passion',
       image: require('../../assets/icons/services/love-forecast-icon.png'),
       title: 'Perfect Your Passion',
       subtitle: "UNLOCK YOUR POTENTIAL",
+      path: 'FortuneReport'
     },
   ];
 
@@ -60,6 +63,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
         cardHeight={CARD_HEIGHT}
         cardHeightCenter={CARD_HEIGHT_CENTER}
         gap={CARD_MARGIN}
+        onCardPress={(item) => navigation.push(item.path)}
         renderItem={({ item, isCenter }) => (
           <>
             <View style={styles.cardImageContainer}>

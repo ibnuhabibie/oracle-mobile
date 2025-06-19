@@ -6,7 +6,8 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
   ViewStyle,
-  Dimensions
+  Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import { COLORS } from '../../constants/colors';
 
@@ -19,6 +20,7 @@ interface CenterCarouselProps<T> {
   gap?: number;
   style?: ViewStyle;
   initialIndex?: number;
+  onCardPress?: (item: T, index: number, isCenter: boolean) => void;
 }
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -32,6 +34,7 @@ export function CenterCarousel<T>({
   gap = 24,
   style,
   initialIndex = 0,
+  onCardPress,
 }: CenterCarouselProps<T>) {
   // Infinite scroll: duplicate data at both ends
   const loopData = [...data, ...data, ...data];
@@ -98,13 +101,12 @@ export function CenterCarousel<T>({
           const cardCenter = cardStart + cardWidth / 2;
           const isCenter = Math.abs(cardCenter - centerOfScreen) < (cardWidth + gap) / 2;
 
-          return (
+          const cardContent = (
             <View
               style={{
                 width: cardWidth,
                 marginRight: gap,
                 height: isCenter ? cardHeightCenter : cardHeight,
-                // transform: [{ scale: isCenter ? 1.08 : 0.95 }],
                 borderColor: COLORS.black,
                 borderWidth: 1,
                 borderRadius: 12,
@@ -118,6 +120,19 @@ export function CenterCarousel<T>({
               {renderItem({ item, index: index % dataLength, isCenter })}
             </View>
           );
+
+          if (onCardPress) {
+            return (
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => onCardPress(item, index % dataLength, isCenter)}
+              >
+                {cardContent}
+              </TouchableOpacity>
+            );
+          }
+
+          return cardContent;
         }}
       />
     </View>

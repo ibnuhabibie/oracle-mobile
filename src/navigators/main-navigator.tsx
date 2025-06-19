@@ -34,6 +34,9 @@ import AskAffinity from '../screens/main/service/affinity/ask-affinity';
 import AffinityResults from '../screens/main/service/affinity/affinity-results';
 import Echo from '../screens/main/service/echo/echo';
 import EchoDetail from '../screens/main/service/echo/echo-detail';
+import LoveForecast from '../screens/main/service/love-forecast/love-forecase';
+import RelationReport from '../screens/main/service/relation-report/relation-report';
+import FortuneReport from '../screens/main/service/fortune-report/fortune-report';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -160,6 +163,10 @@ const MainNavigator = () => {
       <Stack.Screen name="ComponentGallery" component={ComponentGallery} />
 
       <Stack.Screen name="Tabs" component={TabNavigator} />
+
+      <Stack.Screen name="FortuneReport" component={FortuneReport} />
+      <Stack.Screen name="RelationReport" component={RelationReport} />
+      <Stack.Screen name="LoveForecast" component={LoveForecast} />
 
       <Stack.Screen name="EchoDetail" component={EchoDetail} />
       <Stack.Screen name="AffinityResults" component={AffinityResults} />
