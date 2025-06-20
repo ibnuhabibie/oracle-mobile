@@ -31,18 +31,18 @@ const Home: FC<HomeProps> = ({ navigation }) => {
       subtitle: "DISCOVER WHAT'S COMING NEXT",
       path: 'LoveForecast'
     },
-    {
-      id: 'career',
+{
+      id: 'relation',
       image: require('../../assets/icons/services/love-forecast-icon.png'),
-      title: 'Career Switch or Spark?',
-      subtitle: "SEE YOUR PATH",
+      title: 'Relationship Insights',
+      subtitle: "DISCOVER YOUR CONNECTIONS",
       path: 'RelationReport'
     },
     {
-      id: 'passion',
+      id: 'fortune',
       image: require('../../assets/icons/services/love-forecast-icon.png'),
-      title: 'Perfect Your Passion',
-      subtitle: "UNLOCK YOUR POTENTIAL",
+      title: 'Fortune Guidance',
+      subtitle: "EMBRACE YOUR FUTURE",
       path: 'FortuneReport'
     },
   ];

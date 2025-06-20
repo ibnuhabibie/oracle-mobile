@@ -94,7 +94,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
   const handleBuyCoins = () => {
     console.log('Buy Coins pressed');
-    // navigation.push('BuyCoins');
+    navigation.push('TopUp');
   };
 
   const handleLogout = async () => {

@@ -108,7 +108,7 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                 <AppText>Recent Diaries</AppText>
                 {loading ? (
                     <AppText style={{ marginTop: 8 }}>{t('Loading...')}</AppText>
-                ) : error ? (
+                ) : error && error !== 'No diary found.' ? (
                     <AppText style={{ color: 'red', marginTop: 8 }}>{error}</AppText>
                 ) : diaries && diaries.length > 0 ? (
                     diaries.map((diary) => (
@@ -126,7 +126,14 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                             </View>
                         </Pressable>
                     ))
-                ) : null}
+                ) : (
+                    <View style={styles.emptyDiaryContainer}>
+                        <AppText style={styles.emptyDiaryTitle}>No Diaries Yet</AppText>
+                        <AppText style={styles.emptyDiaryDesc}>
+                            Start your first diary entry to express your thoughts and feelings. Your journey begins here!
+                        </AppText>
+                    </View>
+                )}
             </View>
         </ScreenContainer>
     );
@@ -176,7 +183,32 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    emptyDiaryContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 32,
+        paddingHorizontal: 24,
+    },
+    emptyDiaryImage: {
+        width: 90,
+        height: 90,
+        marginBottom: 16,
+        opacity: 0.7,
+    },
+    emptyDiaryTitle: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: COLORS.primary,
+        marginBottom: 6,
+        textAlign: 'center',
+    },
+    emptyDiaryDesc: {
+        fontSize: 14,
+        color: '#888',
+        textAlign: 'center',
+        lineHeight: 20,
+    },
 });
 
 export default Echo;

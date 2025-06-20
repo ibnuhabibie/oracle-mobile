@@ -49,7 +49,7 @@ const CARD_DATA = [
 ];
 
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   return (
     <View style={styles.container}>
       {/* Fixed Header */}

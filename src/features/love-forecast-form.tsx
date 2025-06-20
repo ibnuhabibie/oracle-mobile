@@ -106,14 +106,6 @@ export const LoveForecastForm: React.FC<LoveForecastFormProps> = ({ onSubmit, on
         {errors.gender && <Text style={styles.error}>{errors.gender}</Text>}
       </View>
       <View style={styles.buttonRow}>
-        {onCancel && (
-          <AppButton
-            title="Cancel"
-            variant="outline"
-            onPress={onCancel}
-            style={styles.cancelButton}
-          />
-        )}
         <AppButton
           title="Continue"
           variant="primary"

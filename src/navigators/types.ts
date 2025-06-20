@@ -25,6 +25,7 @@ export type MainNavigatorParamList = {
     LoveForecast: undefined;
     RelationReport: undefined;
     FortuneReport: undefined;
+    TopUp: undefined;
 
     Profile: undefined;
     EditProfile: undefined;

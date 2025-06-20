@@ -9,12 +9,36 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import CircularScore from "../../components/circular-score";
 import api from "../../utils/http";
 
-class ProfileDashboard extends React.Component {
-    constructor(props) {
+interface UserProfile {
+    full_name?: string;
+    [key: string]: any;
+}
+
+interface DailyProfileData {
+    today_description?: string;
+    today_points?: number;
+    today_wealth_points?: number;
+    today_study_points?: number;
+    today_relationship_points?: number;
+    today_career_points?: number;
+    [key: string]: any;
+}
+
+interface ProfileDashboardState {
+    user: UserProfile | null;
+    data: DailyProfileData | null;
+    error: string | null;
+}
+
+type ProfileDashboardProps = {};
+
+class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDashboardState> {
+    constructor(props: ProfileDashboardProps) {
         super(props);
         this.state = {
             user: null,
-            data: null
+            data: null,
+            error: null
         };
     }
 
@@ -26,6 +50,7 @@ class ProfileDashboard extends React.Component {
             this.fetchDailyProfile()
         } catch (error) {
             console.error('Error fetching user data:', error);
+            this.setState({ error: 'Failed to load user data. Please try again later.' });
         }
     }
 
@@ -37,13 +62,30 @@ class ProfileDashboard extends React.Component {
             console.log(response.data.content)
         } catch (error) {
             console.error('Error fetching daily profile:', error);
+            this.setState({ error: 'Failed to load daily profile. Please check your connection and try again.' });
             return null;
         }
     }
 
     render() {
-        const { data, user } = this.state;
+        const { data, user, error } = this.state;
         const today_description = data?.today_description?.split('.').slice(0, 2).join('.');
+
+        if (error) {
+            return (
+                <>
+                    <LocalizedHeader />
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+                        <AppText style={{ color: COLORS.primary, fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
+                            { "This service will be available soon." }
+                        </AppText>
+                        <AppText style={{ textAlign: 'center', color: COLORS.black }}>
+                            { "Please check back later to access your daily profile dashboard." }
+                        </AppText>
+                    </View>
+                </>
+            );
+        }
 
         // i18n
         // Use hook in a functional wrapper

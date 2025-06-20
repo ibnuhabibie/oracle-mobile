@@ -37,6 +37,7 @@ import EchoDetail from '../screens/main/service/echo/echo-detail';
 import LoveForecast from '../screens/main/service/love-forecast/love-forecase';
 import RelationReport from '../screens/main/service/relation-report/relation-report';
 import FortuneReport from '../screens/main/service/fortune-report/fortune-report';
+import Topup from '../screens/main/topup';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -159,22 +160,26 @@ const MainNavigator = () => {
       <Stack.Screen name="LanguageSelection" component={LanguageSelection} />
       <Stack.Screen name="Onboarding" component={Onboarding} />
       <Stack.Screen name="MbtiQuiz" component={MbtiQuiz} />
-      <Stack.Screen name="MbtiResults" component={MbtiResults} />
+
       <Stack.Screen name="ComponentGallery" component={ComponentGallery} />
 
       <Stack.Screen name="Tabs" component={TabNavigator} />
+      <Stack.Screen name="EchoDetail" component={EchoDetail} />
+      <Stack.Screen name="AffinityResults" component={AffinityResults} />
 
       <Stack.Screen name="FortuneReport" component={FortuneReport} />
       <Stack.Screen name="RelationReport" component={RelationReport} />
       <Stack.Screen name="LoveForecast" component={LoveForecast} />
 
-      <Stack.Screen name="EchoDetail" component={EchoDetail} />
-      <Stack.Screen name="AffinityResults" component={AffinityResults} />
+
       <Stack.Screen name="WebviewContent" component={WebviewContent} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="PasswordSetting" component={PasswordSetting} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
       <Stack.Screen name="PurchaseHistory" component={PurchaseHistory} />
+      <Stack.Screen name="TopUp" component={Topup} />
+
+      <Stack.Screen name="MbtiResults" component={MbtiResults} />
       <Stack.Screen name="AstrologyResults" component={AstrologyResults} />
       <Stack.Screen name="BaziResults" component={BaziResults} />
     </Stack.Navigator>

@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, ImageSourcePropType } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { COLORS } from '../constants/colors';
 import { AppText } from './ui/app-text';
 // i18n
 import { useTranslation } from 'react-i18next';
 
-class CircularScore extends Component {
-    constructor(props) {
+export interface CircularScoreProps {
+    value?: number;
+    size?: number;
+    strokeWidth?: number;
+    type?: 'wealth' | 'learning' | 'relation' | 'career';
+}
+
+interface CircularScoreState {
+    imageSrc: ImageSourcePropType | null;
+}
+
+class CircularScore extends Component<CircularScoreProps, CircularScoreState> {
+    constructor(props: CircularScoreProps) {
         super(props);
         this.state = {
             imageSrc: null,
@@ -42,7 +53,7 @@ class CircularScore extends Component {
             type = 'wealth'
         } = this.props;
 
-        const { imageSrc } = this.state
+        const { imageSrc } = this.state;
 
         const radius = (size - strokeWidth) / 2;
         const circumference = 2 * Math.PI * radius;
@@ -58,6 +69,18 @@ class CircularScore extends Component {
                 </AppText>
             );
         }
+
+        // Dynamic styles for image container and image
+        const imageContainerStyle = {
+            ...styles.imageContainer,
+            width: size,
+            height: size,
+        };
+        const imageStyle = {
+            ...styles.image,
+            width: size / 2,
+            height: size / 2,
+        };
 
         return (
             <View style={{ gap: 6 }}>
@@ -92,10 +115,10 @@ class CircularScore extends Component {
                         strokeLinecap="round"
                     />
                 </Svg>
-                <View style={styles.imageContainer(size)}>
+                <View style={imageContainerStyle}>
                     <Image
-                        source={imageSrc}
-                        style={styles.image(size / 2)}
+                        source={imageSrc as ImageSourcePropType}
+                        style={imageStyle}
                         resizeMode="cover"
                     />
                 </View>
@@ -112,16 +135,12 @@ const styles = StyleSheet.create({
         left: 0,
         transform: [{ rotateZ: '230deg' }]
     },
-    imageContainer: (size) => ({
-        width: size,
-        height: size,
+    imageContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-    }),
-    image: (size) => ({
-        width: size,
-        height: size,
-    }),
+    },
+    image: {
+    },
     iconText: {
         textAlign: 'center',
         textTransform: 'capitalize',
