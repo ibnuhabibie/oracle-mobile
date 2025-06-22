@@ -28,6 +28,7 @@ interface ProfileDashboardState {
     user: UserProfile | null;
     data: DailyProfileData | null;
     error: string | null;
+    loading: boolean;
 }
 
 type ProfileDashboardProps = {};
@@ -38,38 +39,56 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
         this.state = {
             user: null,
             data: null,
-            error: null
+            error: null,
+            loading: false,
         };
     }
 
     async componentDidMount() {
         try {
+            this.setState({ loading: true });
             const userData = await AsyncStorage.getItem('user_profile');
-            console.log(userData, 'userData')
             this.setState({ user: JSON.parse(userData || '') });
-            this.fetchDailyProfile()
+            await this.fetchDailyProfile();
         } catch (error) {
             console.error('Error fetching user data:', error);
             this.setState({ error: 'Failed to load user data. Please try again later.' });
+        } finally {
+            this.setState({ loading: false });
         }
     }
 
-    // Add this method inside the ProfileDashboard class
     async fetchDailyProfile() {
         try {
+            this.setState({ loading: true });
             const response = await api.get('/v1/users/daily-profile');
             this.setState({ data: response.data.content });
-            console.log(response.data.content)
+            console.log(response.data.content);
         } catch (error) {
             console.error('Error fetching daily profile:', error);
             this.setState({ error: 'Failed to load daily profile. Please check your connection and try again.' });
             return null;
+        } finally {
+            this.setState({ loading: false });
         }
     }
 
     render() {
-        const { data, user, error } = this.state;
+        const { data, user, error, loading } = this.state;
         const today_description = data?.today_description?.split('.').slice(0, 2).join('.');
+
+        if (loading) {
+            return (
+                <>
+                    <LocalizedHeader />
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+                        <AppText style={{ color: COLORS.primary, fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
+                            Loading your daily profile...
+                        </AppText>
+                    </View>
+                </>
+            );
+        }
 
         if (error) {
             return (
