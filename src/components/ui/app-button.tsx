@@ -34,11 +34,11 @@ export class AppButton extends Component<CustomButtonProps> {
   };
 
   getButtonStyle = (): ViewStyle => {
-    const { variant } = this.props;
+    const { variant, size } = this.props;
 
     const base: ViewStyle = {
       paddingHorizontal: 20,
-      height: 47,
+      height: size === 'big' ? 47 : 32,
       width: '100%',
       borderRadius: 12,
       justifyContent: 'center',
@@ -76,10 +76,10 @@ export class AppButton extends Component<CustomButtonProps> {
   };
 
   getTextStyle = (): TextStyle => {
-    const { variant } = this.props;
+    const { variant, size } = this.props;
 
     const base: TextStyle = {
-      fontSize: 16,
+      fontSize: size === 'big' ? 16 : 12,
       fontFamily: fontFamilies.ARCHIVO.regular,
       color: COLORS.white,
     };

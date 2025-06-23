@@ -103,6 +103,17 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     setMarkedDates({});
                     setSelectedMonth({ year: monthObj.year, month: monthObj.month });
                 }}
+                theme={
+                    {
+                        todayBackgroundColor: COLORS.primary,
+                        todayTextColor: 'white',
+                        dotStyle: {
+                            width: 5,
+                            height: 5
+                        },
+                        arrowColor: COLORS.primary
+                    }
+                }
             />
             <View style={{ marginTop: 14 }}>
                 <AppText>Recent Diaries</AppText>

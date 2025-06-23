@@ -39,6 +39,8 @@ const MbtiQuiz: FC<{
       setUri(`${APP_URL}/quiz/mbti?token=${token}&version=${version}`);
     };
     getUri();
+
+    console.log(APP_URL)
   }, []);
 
   return (

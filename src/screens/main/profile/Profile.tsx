@@ -33,6 +33,8 @@ import api from '../../../utils/http';
 import { useTranslation } from "react-i18next";
 import ProfileItem from '../../../features/profile/profile-item';
 import { useAsyncStorage } from '../../../hooks/use-storage';
+import { AppText } from '../../../components/ui/app-text';
+import { AppButton } from '../../../components/ui/app-button';
 
 type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
@@ -97,6 +99,10 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     navigation.push('TopUp');
   };
 
+  const handleCompleteQuiz = () => {
+    navigation.push('MbtiQuiz');
+  }
+
   const handleLogout = async () => {
     console.log('Logout pressed');
     try {
@@ -143,16 +149,33 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               <StarIcon />
               <Text style={styles.statLabel}>Gemini</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.push('MbtiResults');
-              }}
-              style={styles.statItem}>
-              <CommentUserIcon />
-              <Text style={styles.statLabel}>{user?.mbti_profile}</Text>
-            </TouchableOpacity>
+            {user?.mbti_profile && (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.push('MbtiResults');
+                }}
+                style={styles.statItem}>
+                <CommentUserIcon />
+                <Text style={styles.statLabel}>{user?.mbti_profile}</Text>
+              </TouchableOpacity>
+            )}
           </View>
+
         </View>
+
+        {
+          !user?.mbti_profile &&
+          (
+            < View style={styles.mbtiQuizSection}>
+              <CommentUserIcon />
+              <View style={{ flex: 1 }}>
+                <AppText variant='caption1'>What’s your MBTI?</AppText>
+                <AppText variant='tiny1'>Quick test to discover your type!</AppText>
+              </View>
+              <AppButton style={{ width: 'auto' }} variant='primary' title='Find Out' size='small' onPress={handleCompleteQuiz} />
+            </View>
+          )
+        }
 
         {/* Coins Section */}
         <View style={styles.coinsCard}>
@@ -219,7 +242,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
           <Text style={styles.logoutText}>{t("Logout")}</Text>
         </Pressable>
       </ScrollView>
-    </ScreenContainer>
+    </ScreenContainer >
   );
 };
 
@@ -394,6 +417,16 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     fontFamily: fontFamilies.ARCHIVO.light,
   },
+  mbtiQuizSection: {
+    flexDirection: 'row',
+    padding: 12,
+    borderWidth: 1,
+    borderColor: COLORS.black,
+    borderRadius: 12,
+    marginBottom: 12,
+    alignItems: 'center',
+    gap: 8
+  }
 });
 
 export default Profile;

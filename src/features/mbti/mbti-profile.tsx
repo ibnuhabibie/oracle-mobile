@@ -43,7 +43,7 @@ class MBTIProfile extends React.Component {
                     <View style={styles.cardHeader}>
                         <View style={styles.iconPlaceholder}>
                             <Image
-                                source={require(`../../assets/icons/intj.png`)}
+                                source={require(`../../assets/icons/mbti/intj.png`)}
                             />
                         </View>
                         <View style={styles.cardHeaderText}>
