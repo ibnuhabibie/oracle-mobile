@@ -1,20 +1,28 @@
 import React, { useState, useEffect, FC } from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Text, Pressable, Modal, Alert } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+  Pressable,
+  Modal,
+  Alert
+} from 'react-native';
+
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
-import ScreenContainer from '../../../../components/layouts/ScreenContainer';
 import ArrowIcon from '../../../../components/icons/Arrow';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { fontFamilies } from '../../../../constants/fonts';
 import SendIcon from '../../../../components/icons/echo/send-icon';
-import AdviceIcon from '../../../../components/icons/echo/advice-icon';
 import api from '../../../../utils/http';
 import { AppButton } from '../../../../components/ui/app-button';
 import { formatDate, formatDateToHeader } from '../../../../utils/date';
 import ChatArea from '../../../../components/widgets/ChatArea';
-
-const USER_AVATAR = 'J';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 

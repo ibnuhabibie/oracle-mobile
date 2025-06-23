@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ScrollView, Pressable, StyleSheet } from 'react-native';
 import { AppText } from '../ui/app-text';
 import { COLORS } from '../../constants/colors';
 import AdviceIcon from '../icons/echo/advice-icon';
-
-const USER_AVATAR = 'J';
+import { useAsyncStorage } from '../../hooks/use-storage';
+import GenieIcon from '../icons/echo/genie-icon';
 
 interface Message {
   conversation_id: string;
@@ -19,37 +19,68 @@ interface ChatAreaProps {
 }
 
 const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisible }) => {
+  const [initials, setInitials] = useState('');
+  const { getUserProfile } = useAsyncStorage();
+
+  useEffect(() => {
+    const fetchInitials = async () => {
+      const profile = await getUserProfile();
+      let name = profile?.full_name;
+
+      // Get first 2 non-space characters, uppercase
+      const chars = name.replace(/\s+/g, '').slice(0, 2).toUpperCase();
+      setInitials(chars || 'U');
+    };
+    fetchInitials();
+  }, []);
+
   return (
     <View style={styles.chatArea}>
       <ScrollView
         contentContainerStyle={styles.chatContainer}
         showsVerticalScrollIndicator={false}
       >
-        {messages.map(item => {
-          const isUser = item.type === 'user';
-          return (
-            <View key={item.conversation_id} style={[styles.messageRow]}>
-              <View style={styles.avatarCircle}>
-                <AppText style={styles.avatarText}>{USER_AVATAR}</AppText>
-              </View>
-              <View style={[
-                styles.bubble,
-                isUser ? styles.bubbleUser : styles.bubbleAI
-              ]}>
-                <AppText style={styles.bubbleText}>{item.content}</AppText>
-              </View>
-              {
-                lastMessage &&
-                item.conversation_id === lastMessage.conversation_id &&
-                (
-                  <Pressable style={styles.aiIconCircle} onPress={() => setModalVisible(true)}>
-                    <AdviceIcon />
-                  </Pressable>
-                )
-              }
-            </View>
-          );
-        })}
+        {
+          messages.map(
+            item => {
+              const isUser = item.type === 'user';
+              return (
+                <View key={item.conversation_id} style={[styles.messageRow]}>
+                  <View style={[
+                    styles.avatarCircle,
+                    { backgroundColor: isUser ? COLORS.white : COLORS.primary }
+                  ]}>
+                    {
+                      isUser ? (
+                        <AppText style={styles.avatarText}>{initials}</AppText>
+                      ) : (
+                        <GenieIcon />
+                      )
+                    }
+                  </View>
+                  <View style={[
+                    styles.bubble,
+                    isUser
+                      ? styles.bubbleUser
+                      : styles.bubbleAI
+                  ]}>
+                    {!isUser && <AppText style={{ fontWeight: 'bold', color: 'white' }}>Geenie Says:</AppText>}
+                    <AppText style={[styles.bubbleText, !isUser && { color: '#fff' }]}>{item.content}</AppText>
+                  </View>
+                  {
+                    lastMessage &&
+                    item.conversation_id === lastMessage.conversation_id &&
+                    (
+                      <Pressable style={styles.aiIconCircle} onPress={() => setModalVisible(true)}>
+                        <AdviceIcon />
+                      </Pressable>
+                    )
+                  }
+                </View>
+              );
+            }
+          )
+        }
       </ScrollView>
     </View>
   );

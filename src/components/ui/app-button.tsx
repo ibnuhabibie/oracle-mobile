@@ -31,6 +31,7 @@ export class AppButton extends Component<CustomButtonProps> {
     variant: 'primary',
     disabled: false,
     loading: false,
+    size: 'big'
   };
 
   getButtonStyle = (): ViewStyle => {
