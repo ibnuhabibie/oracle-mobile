@@ -8,6 +8,7 @@ import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import TopupHistoryList from '../../../features/history/topup-history-list';
 import UsageHistoryList from '../../../features/history/usage-history-list';
+import { COLORS } from '../../../constants/colors';
 
 type PurchaseHistoryProps = NativeStackScreenProps<MainNavigatorParamList, 'PurchaseHistory'>;
 
@@ -15,17 +16,19 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
   const [activeTab, setActiveTab] = useState<'history' | 'topup'>('history');
 
   return (
-    <ScreenContainer scrollable={false}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}>
-          <ArrowIcon />
-        </Pressable>
-        <Text style={styles.headerTitle}>Purchase History</Text>
-      </View>
-
+    <ScreenContainer
+      scrollable={false}
+      header={
+        <View style={styles.header}>
+          <Pressable
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}>
+            <ArrowIcon />
+          </Pressable>
+          <Text style={styles.headerTitle}>Purchase History</Text>
+        </View>
+      }
+    >
       {/* Tab Navigation */}
       <View style={styles.tabContainer}>
         <Pressable
@@ -54,11 +57,14 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
       </View>
 
       {/* Content */}
-      {activeTab === 'history' ? (
-        <UsageHistoryList />
-      ) : (
-        <TopupHistoryList />
-      )}
+      {
+        activeTab === 'history' ?
+          (
+            <UsageHistoryList />
+          ) : (
+            <TopupHistoryList />
+          )
+      }
     </ScreenContainer>
   );
 };
@@ -67,17 +73,16 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: 12,
+    paddingLeft: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
+    backgroundColor: COLORS.white,
+    paddingTop: 8,
   },
   backButton: {
     padding: 8,
     marginLeft: -8,
-  },
-  backIcon: {
-    fontSize: 24,
-    color: '#333',
   },
   headerTitle: {
     fontSize: 18,
@@ -89,7 +94,6 @@ const styles = StyleSheet.create({
   },
   tabContainer: {
     flexDirection: 'row',
-    marginTop: 20,
     marginBottom: 20,
   },
   tab: {

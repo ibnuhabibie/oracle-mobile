@@ -11,6 +11,7 @@ import ProfileForm from '../../../features/profile/profile-form';
 import api from '../../../utils/http';
 import type { ProfileFormData } from '../../../features/profile/profile-form';
 import { MainNavigatorParamList } from '../../../navigators/types';
+import { COLORS } from '../../../constants/colors';
 
 
 type EditProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'EditProfile'>;
@@ -54,19 +55,19 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
   return (
-    <ScreenContainer>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}>
-          <ArrowIcon />
-        </Pressable>
-        <Text style={styles.headerTitle}>{t("Edit Profile")}</Text>
-      </View>
-
+    <ScreenContainer
+      header={
+        <View style={styles.header}>
+          <Pressable
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}>
+            <ArrowIcon />
+          </Pressable>
+          <Text style={styles.headerTitle}>{t("Edit Profile")}</Text>
+        </View>
+      }
+    >
       <ProfileForm onSubmit={onSubmit} />
-
     </ScreenContainer>
   );
 };
@@ -75,9 +76,12 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: 12,
+    paddingLeft: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
+    backgroundColor: COLORS.white,
+    paddingTop: 8,
   },
   backButton: {
     padding: 8,

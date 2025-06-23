@@ -22,6 +22,8 @@ import { AppText } from '../../../components/ui/app-text';
 import api from '../../../utils/http';
 import { AppButton } from '../../../components/ui/app-button';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { fontFamilies } from '../../../constants/fonts';
+import { COLORS } from '../../../constants/colors';
 
 type PasswordSettingProps = NativeStackScreenProps<MainNavigatorParamList, 'PasswordSetting'>;
 
@@ -111,17 +113,18 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
   };
 
   return (
-    <ScreenContainer>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}>
-          <ArrowIcon />
-        </Pressable>
-        <Text style={styles.headerTitle}>Password Settings</Text>
-      </View>
-
+    <ScreenContainer
+      header={
+        <View style={styles.header}>
+          <Pressable
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}>
+            <ArrowIcon />
+          </Pressable>
+          <Text style={styles.headerTitle}>Password Settings</Text>
+        </View>
+      }
+    >
       <View style={{ flexDirection: 'column', gap: 12, paddingTop: 24 }}>
         <AppText>Current Password</AppText>
         <AppInput<PasswordSettingDTO>
@@ -175,9 +178,12 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: 12,
+    paddingLeft: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
+    backgroundColor: COLORS.white,
+    paddingTop: 8,
   },
   backButton: {
     padding: 8,
@@ -189,6 +195,7 @@ const styles = StyleSheet.create({
     color: '#333',
     marginLeft: 20,
     textAlign: 'center',
+    fontFamily: fontFamilies.ARCHIVO.light,
   },
   container: {
     padding: 16,
