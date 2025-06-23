@@ -2,11 +2,8 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView,
     Text,
     Pressable,
-    TouchableOpacity,
-    Dimensions,
     Image,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
@@ -17,6 +14,7 @@ import { MainNavigatorParamList } from '../../../../navigators/types';
 import { fontFamilies } from '../../../../constants/fonts';
 import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/ShinyContainer';
+import ScreenContainer from '../../../../components/layouts/ScreenContainer';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -43,59 +41,60 @@ const CARD_DATA = [
     },
 ];
 
+const Header: React.FC<{ navigation: any }> = ({ navigation }) => (
+    <View style={styles.header}>
+        <Pressable
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}>
+            <ArrowIcon />
+        </Pressable>
+        <Text style={styles.headerTitle}>Fortune Report 2025</Text>
+    </View>
+);
+
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            {/* Fixed Header */}
-            <View style={styles.fixedHeader}>
-                <View style={styles.header}>
-                    <Pressable
-                        onPress={() => navigation.goBack()}
-                        style={styles.backButton}>
-                        <ArrowIcon />
-                    </Pressable>
-                    <Text style={styles.headerTitle}>Fortune Report 2025</Text>
+        <ScreenContainer
+            header={<Header navigation={navigation} />}
+            floatingFooter={
+                <View style={styles.purchaseButtonAbsolute}>
+                    <AppButton
+                        title="Purchase for 15 💛"
+                        variant="primary"
+                        onPress={() => { }}
+                    />
                 </View>
-            </View>
-            <ScrollView contentContainerStyle={[styles.scrollContent, { paddingBottom: 90 }]} showsVerticalScrollIndicator={false}>
-                <View style={{ height: 80 }} />
-                <AppText variant='subtitle1' style={styles.title}>Curious about your 2025? See{'\n'}your fortune now!</AppText>
-                <ShinyContainer dark={false} size={220}>
-                    <Image source={require('../../../../assets/fortune-report/service-icon.png')} />
-                </ShinyContainer>
-                <AppText style={styles.subtitle} variant='title4' color='primary'>
-                    Fortune reading meets planning for a fresh take on your 2025.
-                </AppText>
-                <AppText style={styles.description} color='neutral'>
-                    Some insights may seem simple—like timing or decision-making—but they’re personalized to your chart and 2025 path. Their guidance can make a real difference.
-                </AppText>
-                <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>What can you find out?</AppText>
+            }
+        >
+            <AppText variant='subtitle1' style={styles.title}>Curious about your 2025? See{'\n'}your fortune now!</AppText>
+            <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
+                <Image source={require('../../../../assets/fortune-report/service-icon.png')} />
+            </ShinyContainer>
+            <AppText style={styles.subtitle} variant='title4' color='primary'>
+                Fortune reading meets planning for a fresh take on your 2025.
+            </AppText>
+            <AppText style={styles.description} color='neutral'>
+                Some insights may seem simple—like timing or decision-making—but they’re personalized to your chart and 2025 path. Their guidance can make a real difference.
+            </AppText>
+            <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>What can you find out?</AppText>
 
-                <View style={styles.grid}>
-                    {
-                        CARD_DATA.map((card, idx) => (
-                            <View key={idx} style={styles.card}>
-                                <View style={styles.cardIconWrapper}>
-                                    <ShinyContainer dark={false}>
-                                        <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
-                                    </ShinyContainer>
-                                </View>
-                                <AppText style={styles.cardLabel} variant='body1'>{card.title}</AppText>
-                                <AppText color='primary' variant='caption2'>{card.subtitle}</AppText>
+            <View style={styles.grid}>
+                {
+                    CARD_DATA.map((card, idx) => (
+                        <View key={idx} style={styles.card}>
+                            <View style={styles.cardIconWrapper}>
+                                <ShinyContainer dark={false}>
+                                    <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
+                                </ShinyContainer>
                             </View>
-                        ))
-                    }
-                </View>
-                <View style={{ height: 40 }} />
-            </ScrollView>
-            <View style={styles.purchaseButtonAbsolute}>
-                <AppButton
-                    title="Purchase for 15 💛"
-                    variant="primary"
-                    onPress={() => { }}
-                />
+                            <AppText style={styles.cardLabel} variant='body1'>{card.title}</AppText>
+                            <AppText color='primary' variant='caption2'>{card.subtitle}</AppText>
+                        </View>
+                    ))
+                }
             </View>
-        </View>
+            <View style={{ height: 60 }} />
+        </ScreenContainer>
     );
 };
 
@@ -104,13 +103,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.white,
     },
-    fixedHeader: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 10,
-    },
+    // fixedHeader removed, handled by ScreenContainer
     header: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -165,12 +158,12 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         textAlign: 'center',
-        marginBottom: 8,
+        marginBottom: 12,
         marginTop: 8,
     },
     description: {
         textAlign: 'center',
-        marginBottom: 18,
+        marginBottom: 22,
         lineHeight: 18,
     },
     divider: {

@@ -2,11 +2,8 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView,
     Text,
     Pressable,
-    TouchableOpacity,
-    Dimensions,
     Image,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
@@ -17,6 +14,7 @@ import { MainNavigatorParamList } from '../../../../navigators/types';
 import { fontFamilies } from '../../../../constants/fonts';
 import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/ShinyContainer';
+import ScreenContainer from '../../../../components/layouts/ScreenContainer';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -35,59 +33,60 @@ const CARD_DATA = [
     },
 ];
 
+const Header: React.FC<{ navigation: any }> = ({ navigation }) => (
+    <View style={styles.header}>
+        <Pressable
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}>
+            <ArrowIcon />
+        </Pressable>
+        <Text style={styles.headerTitle}>Relationship Compatibility</Text>
+    </View>
+);
+
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            {/* Fixed Header */}
-            <View style={styles.fixedHeader}>
-                <View style={styles.header}>
-                    <Pressable
-                        onPress={() => navigation.goBack()}
-                        style={styles.backButton}>
-                        <ArrowIcon />
-                    </Pressable>
-                    <Text style={styles.headerTitle}>Relationship Compatibility</Text>
+        <ScreenContainer
+            header={<Header navigation={navigation} />}
+            floatingFooter={
+                <View style={styles.purchaseButtonAbsolute}>
+                    <AppButton
+                        title="Purchase for 15 💛"
+                        variant="primary"
+                        onPress={() => { }}
+                    />
                 </View>
-            </View>
-            <ScrollView contentContainerStyle={[styles.scrollContent, { paddingBottom: 90 }]} showsVerticalScrollIndicator={false}>
-                <View style={{ height: 80 }} />
-                <AppText variant='subtitle1' style={styles.title}>Curious if you're a perfect{'\n'}match? Find out now!</AppText>
-                <ShinyContainer dark={false} size={220}>
-                    <Image source={require('../../../../assets/love-forecast/service-icon.png')} />
-                </ShinyContainer>
-                <AppText style={styles.subtitle} variant='title4' color='primary'>
-                    Astrology meets Bazi for a fresh take on your love compatibility.
-                </AppText>
-                <AppText style={styles.description} color='neutral'>
-                    Some tips may sound like common sense—like improving communication or mindset—but they're tailored to your unique chart and relationship dynamics. Their impact is more powerful than they seem.
-                </AppText>
-                <AppText variant='subtitle1'>Your Love Interest Detail</AppText>
-                <AppText style={styles.sectionTitle} variant='caption2' color='primary'>Tell us more about them!</AppText>
+            }
+        >
+            <AppText variant='subtitle1' style={styles.title}>Curious if you're a perfect{'\n'}match? Find out now!</AppText>
+            <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
+                <Image source={require('../../../../assets/love-forecast/service-icon.png')} />
+            </ShinyContainer>
+            <AppText style={styles.subtitle} variant='title4' color='primary'>
+                Astrology meets Bazi for a fresh take on your love compatibility.
+            </AppText>
+            <AppText style={styles.description} color='neutral'>
+                Some tips may sound like common sense—like improving communication or mindset—but they're tailored to your unique chart and relationship dynamics. Their impact is more powerful than they seem.
+            </AppText>
+            <AppText variant='subtitle1' style={{ textAlign: 'center' }}>Your Love Interest Detail</AppText>
+            <AppText style={styles.sectionTitle} variant='caption2' color='primary'>Tell us more about them!</AppText>
 
-                <View style={styles.grid}>
-                    {
-                        CARD_DATA.map((card, idx) => (
-                            <View key={idx} style={styles.card}>
-                                <View style={styles.cardIconWrapper}>
-                                    <ShinyContainer dark={false}>
-                                        <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
-                                    </ShinyContainer>
-                                </View>
-                                <AppText style={styles.cardLabel} color='primary'>{card.label}</AppText>
+            <View style={styles.grid}>
+                {
+                    CARD_DATA.map((card, idx) => (
+                        <View key={idx} style={styles.card}>
+                            <View style={styles.cardIconWrapper}>
+                                <ShinyContainer dark={false}>
+                                    <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
+                                </ShinyContainer>
                             </View>
-                        ))
-                    }
-                </View>
-                <View style={{ height: 40 }} />
-            </ScrollView>
-            <View style={styles.purchaseButtonAbsolute}>
-                <AppButton
-                    title="Purchase for 15 💛"
-                    variant="primary"
-                    onPress={() => { }}
-                />
+                            <AppText style={styles.cardLabel} color='primary'>{card.label}</AppText>
+                        </View>
+                    ))
+                }
             </View>
-        </View>
+            <View style={{ height: 60 }} />
+        </ScreenContainer>
     );
 };
 
@@ -96,13 +95,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.white,
     },
-    fixedHeader: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 10,
-    },
+    // fixedHeader removed, handled by ScreenContainer
     header: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -164,12 +157,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 18,
         lineHeight: 18,
-    },
-    divider: {
-        height: 1,
-        backgroundColor: '#F0F0F0',
-        width: '100%',
-        marginVertical: 12,
     },
     sectionTitle: {
         textAlign: 'center',

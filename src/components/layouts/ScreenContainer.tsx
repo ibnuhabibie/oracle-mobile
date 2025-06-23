@@ -6,23 +6,28 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {COLORS} from '../../constants/colors';
+import { COLORS } from '../../constants/colors';
 
 type ScreenContainerProps = {
   children: React.ReactNode;
   style?: ViewStyle;
   scrollable?: boolean;
+  header?: React.ReactNode;
+  floatingFooter?: React.ReactNode;
 };
 
 const ScreenContainer: React.FC<ScreenContainerProps> = ({
   children,
   style,
   scrollable = true,
+  header,
+  floatingFooter,
 }) => {
   const content = <View style={[styles.content, style]}>{children}</View>;
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      {header && <View style={styles.fixedHeader}>{header}</View>}
       {scrollable ? (
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
@@ -32,6 +37,9 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
       ) : (
         content
       )}
+      {floatingFooter && (
+        <View style={styles.floatingFooterContainer}>{floatingFooter}</View>
+      )}
     </SafeAreaView>
   );
 };
@@ -40,6 +48,22 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: COLORS.white,
+  },
+  fixedHeader: {
+    width: '100%',
+    zIndex: 10,
+    backgroundColor: COLORS.white,
+    // You may want to add shadow or elevation here for effect
+  },
+  floatingFooterContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: COLORS.white,
+    padding: 12,
+    zIndex: 20,
+    // Add shadow/elevation if needed
   },
   scrollContainer: {
     flexGrow: 1,

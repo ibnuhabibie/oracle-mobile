@@ -7,6 +7,9 @@ import ScreenContainer from '../../components/layouts/ScreenContainer';
 import ArrowIcon from '../../components/icons/Arrow';
 import { AppText } from '../../components/ui/app-text';
 import api from '../../utils/http';
+import { AppButton } from '../../components/ui/app-button';
+import { COLORS } from '../../constants/colors';
+import { fontFamilies } from '../../constants/fonts';
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'Topup'>;
 
@@ -44,6 +47,98 @@ const RadioIndicator = ({ selected }: { selected: boolean }) => (
     </View>
 );
 
+// Package card list component
+const PackageCardList: FC<{
+    packages: PackageItem[];
+    selectedPackage: number | null;
+    setSelectedPackage: (id: number) => void;
+    loading: boolean;
+    error: string | null;
+}> = ({ packages, selectedPackage, setSelectedPackage, loading, error }) => (
+    <View style={{ marginBottom: 24 }}>
+        <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>Our Packages</AppText>
+        <AppText style={styles.sectionDesc}>Can be used to purchase Reports and Ask Oracle AI</AppText>
+        <View style={{ marginTop: 12 }}>
+            {loading ? (
+                <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
+            ) : error ? (
+                <AppText style={{ color: 'red', marginVertical: 16 }}>{error}</AppText>
+            ) : (
+                packages.map(pkg => (
+                    <Pressable
+                        key={pkg.package_id}
+                        style={[
+                            styles.card,
+                            selectedPackage === pkg.package_id && styles.cardSelected
+                        ]}
+                        onPress={() => setSelectedPackage(pkg.package_id)}
+                    >
+                        <RadioIndicator selected={selectedPackage === pkg.package_id} />
+                        <View style={{ flex: 1 }}>
+                            <AppText style={styles.cardTitle}>{pkg.name}</AppText>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
+                                <AppText style={styles.cardSubtitle}>Get {pkg.credits} </AppText>
+                                <CoinIcon />
+                            </View>
+                            {pkg.description ? (
+                                <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{pkg.description}</AppText>
+                            ) : null}
+                        </View>
+                        <AppText style={styles.cardPrice}>${parseFloat(pkg.price)}</AppText>
+                    </Pressable>
+                ))
+            )}
+        </View>
+    </View>
+);
+
+// Subscription card list component
+const SubscriptionCardList: FC<{
+    subscriptions: SubscriptionItem[];
+    selectedSubscription: number | null;
+    setSelectedSubscription: (id: number) => void;
+    loading: boolean;
+    error: string | null;
+}> = ({ subscriptions, selectedSubscription, setSelectedSubscription, loading, error }) => (
+    <View>
+        <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>Our Subscriptions</AppText>
+        <AppText style={styles.sectionDesc}>
+            Can be used in Ask Oracle AI and reset at the beginning of each month. You'll receive 3 silver coins free every month.
+        </AppText>
+        <View style={{ marginTop: 12 }}>
+            {loading ? (
+                <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
+            ) : error ? (
+                <AppText style={{ color: 'red', marginVertical: 16 }}>{error}</AppText>
+            ) : (
+                subscriptions.map(sub => (
+                    <Pressable
+                        key={sub.subscription_id}
+                        style={[
+                            styles.card,
+                            selectedSubscription === sub.subscription_id && styles.cardSelected
+                        ]}
+                        onPress={() => setSelectedSubscription(sub.subscription_id)}
+                    >
+                        <RadioIndicator selected={selectedSubscription === sub.subscription_id} />
+                        <View style={{ flex: 1 }}>
+                            <AppText style={styles.cardTitle}>{sub.name}</AppText>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
+                                <AppText style={styles.cardSubtitle}>Get {sub.credits} </AppText>
+                                <CoinIcon />
+                            </View>
+                            {sub.description ? (
+                                <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{sub.description}</AppText>
+                            ) : null}
+                        </View>
+                        <AppText style={styles.cardPrice}>${parseFloat(sub.price)}</AppText>
+                    </Pressable>
+                ))
+            )}
+        </View>
+    </View>
+);
+
 const Topup: FC<TopupProps> = ({ navigation }) => {
     const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
     const [selectedSubscription, setSelectedSubscription] = useState<number | null>(null);
@@ -54,124 +149,74 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     const [errorPackages, setErrorPackages] = useState<string | null>(null);
     const [errorSubscriptions, setErrorSubscriptions] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchPackages = async () => {
-            setLoadingPackages(true);
-            setErrorPackages(null);
-            try {
-                const response = await api.get('/v1/packages');
-                setPackages(response.data.rows || []);
-            } catch (err) {
-                setErrorPackages('Failed to load packages. Please try again later.');
-            } finally {
-                setLoadingPackages(false);
-            }
-        };
-        fetchPackages();
-    }, []);
+    const fetchPackages = async () => {
+        setLoadingPackages(true);
+        setErrorPackages(null);
+        try {
+            const response = await api.get('/v1/packages');
+            setPackages(response.data.rows || []);
+        } catch (err) {
+            setErrorPackages('Failed to load packages. Please try again later.');
+        } finally {
+            setLoadingPackages(false);
+        }
+    };
+
+    const fetchSubscriptions = async () => {
+        setLoadingSubscriptions(true);
+        setErrorSubscriptions(null);
+        try {
+            const response = await api.get('/v1/subscriptions');
+            setSubscriptions(response.data.rows || []);
+        } catch (err) {
+            setErrorSubscriptions('Failed to load subscriptions. Please try again later.');
+        } finally {
+            setLoadingSubscriptions(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchSubscriptions = async () => {
-            setLoadingSubscriptions(true);
-            setErrorSubscriptions(null);
-            try {
-                const response = await api.get('/v1/subscriptions');
-                setSubscriptions(response.data.rows || []);
-            } catch (err) {
-                setErrorSubscriptions('Failed to load subscriptions. Please try again later.');
-            } finally {
-                setLoadingSubscriptions(false);
-            }
-        };
-        fetchSubscriptions();
+        const init = async () => {
+            await fetchPackages()
+            await fetchSubscriptions()
+        }
+        init();
     }, []);
 
     return (
-        <ScreenContainer scrollable={true}>
-            <View style={styles.header}>
-                <Pressable
-                    onPress={() => navigation.goBack()}
-                    style={styles.backButton}>
-                    <ArrowIcon />
-                </Pressable>
-                <AppText variant='subtitle2'>Top Up</AppText>
-            </View>
-            <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-                {/* Packages */}
-                <View style={{ marginBottom: 24 }}>
-                    <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>Our Packages</AppText>
-                    <AppText style={styles.sectionDesc}>Can be used to purchase Reports and Ask Oracle AI</AppText>
-                    <View style={{ marginTop: 12 }}>
-                        {loadingPackages ? (
-                            <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
-                        ) : errorPackages ? (
-                            <AppText style={{ color: 'red', marginVertical: 16 }}>{errorPackages}</AppText>
-                        ) : (
-                            packages.map(pkg => (
-                                <Pressable
-                                    key={pkg.package_id}
-                                    style={[
-                                        styles.card,
-                                        selectedPackage === pkg.package_id && styles.cardSelected
-                                    ]}
-                                    onPress={() => setSelectedPackage(pkg.package_id)}
-                                >
-                                    <RadioIndicator selected={selectedPackage === pkg.package_id} />
-                                    <View style={{ flex: 1 }}>
-                                        <AppText style={styles.cardTitle}>{pkg.name}</AppText>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
-                                            <AppText style={styles.cardSubtitle}>Get {pkg.credits} </AppText>
-                                            <CoinIcon />
-                                        </View>
-                                        {pkg.description ? (
-                                            <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{pkg.description}</AppText>
-                                        ) : null}
-                                    </View>
-                                    <AppText style={styles.cardPrice}>${parseFloat(pkg.price)}</AppText>
-                                </Pressable>
-                            ))
-                        )}
-                    </View>
+        <ScreenContainer
+            scrollable={true}
+            floatingFooter={
+                <View style={{ padding: 12, backgroundColor: "#fff" }}>
+                    <AppButton title="Continue" variant="primary" onPress={() => { }} />
                 </View>
-                {/* Subscriptions */}
-                <View>
-                    <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>Our Subscriptions</AppText>
-                    <AppText style={styles.sectionDesc}>
-                        Can be used in Ask Oracle AI and reset at the beginning of each month. You'll receive 3 silver coins free every month.
-                    </AppText>
-                    <View style={{ marginTop: 12 }}>
-                        {loadingSubscriptions ? (
-                            <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
-                        ) : errorSubscriptions ? (
-                            <AppText style={{ color: 'red', marginVertical: 16 }}>{errorSubscriptions}</AppText>
-                        ) : (
-                            subscriptions.map(sub => (
-                                <Pressable
-                                    key={sub.subscription_id}
-                                    style={[
-                                        styles.card,
-                                        selectedSubscription === sub.subscription_id && styles.cardSelected
-                                    ]}
-                                    onPress={() => setSelectedSubscription(sub.subscription_id)}
-                                >
-                                    <RadioIndicator selected={selectedSubscription === sub.subscription_id} />
-                                    <View style={{ flex: 1 }}>
-                                        <AppText style={styles.cardTitle}>{sub.name}</AppText>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
-                                            <AppText style={styles.cardSubtitle}>Get {sub.credits} </AppText>
-                                            <CoinIcon />
-                                        </View>
-                                        {sub.description ? (
-                                            <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{sub.description}</AppText>
-                                        ) : null}
-                                    </View>
-                                    <AppText style={styles.cardPrice}>${parseFloat(sub.price)}</AppText>
-                                </Pressable>
-                            ))
-                        )}
-                    </View>
+            }
+            header={
+                <View style={styles.header}>
+                    <Pressable
+                        onPress={() => navigation.goBack()}
+                        style={styles.backButton}>
+                        <ArrowIcon />
+                    </Pressable>
+                    <AppText variant='subtitle2' style={styles.headerTitle}>Top Up</AppText>
                 </View>
-            </ScrollView>
+            }
+        >
+            <PackageCardList
+                packages={packages}
+                selectedPackage={selectedPackage}
+                setSelectedPackage={setSelectedPackage}
+                loading={loadingPackages}
+                error={errorPackages}
+            />
+            <SubscriptionCardList
+                subscriptions={subscriptions}
+                selectedSubscription={selectedSubscription}
+                setSelectedSubscription={setSelectedSubscription}
+                loading={loadingSubscriptions}
+                error={errorSubscriptions}
+            />
+            <View style={{ height: 80 }}></View>
         </ScreenContainer>
     );
 };
@@ -180,11 +225,24 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingBottom: 20,
+        paddingBottom: 12,
+        paddingLeft: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: '#F0F0F0',
+        backgroundColor: COLORS.white,
+        paddingTop: 8,
     },
     backButton: {
         padding: 8,
         marginLeft: -8,
+    },
+    headerTitle: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#333',
+        marginLeft: 20,
+        textAlign: 'center',
+        fontFamily: fontFamilies.ARCHIVO.light,
     },
     sectionTitle: {
         marginBottom: 2,

@@ -9,9 +9,10 @@ import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';
 import api from '../../../utils/http';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
+import { COLORS } from '../../../constants/colors';
+import { AppText } from '../../../components/ui/app-text';
 
 type AstrologyResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
-
 
 const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
@@ -49,71 +50,63 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation }) => {
     require('../../../assets/icons/astro/icon-11.png'),
   ];
 
-  const renderProfileItem = (item: any, fallbackTitle: string, index: number) => {
-    if (!item) return null;
+  // Card list component
+  const AstrologyCardList: FC<{ profile: any, iconImages: any[] }> = ({ profile, iconImages }) => {
+    if (!profile) return null;
     return (
-      <ProfileItemCard
-        data={{
-          title: item.name || fallbackTitle,
-          description: item.description,
-          icon: iconImages[index - 1] ? (
-            <Image
-              source={iconImages[index - 1]}
-              style={{ width: 48, height: 48, marginBottom: 8 }}
-              resizeMode="contain"
+      <>
+        {Object.keys(profile).map((key, idx) => {
+          const item = profile[key];
+          // Use item.order if present and in range, else fallback to idx+1
+          const iconIdx =
+            item && typeof item.order === 'number' && item.order >= 1 && item.order <= iconImages.length
+              ? item.order
+              : ((idx % iconImages.length) + 1);
+          return (
+            <ProfileItemCard
+              key={key}
+              data={{
+                title: item.name || key,
+                description: item.description,
+                icon: iconImages[iconIdx - 1] ? (
+                  <Image
+                    source={iconImages[iconIdx - 1]}
+                    // style={{ width: 48, height: 48, marginBottom: 8 }}
+                    resizeMode="contain"
+                  />
+                ) : undefined,
+              }}
             />
-          ) : undefined,
-        }}
-      />
+          );
+        })}
+      </>
     );
   };
 
   return (
-    <ScreenContainer>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}>
-          <ArrowIcon />
-        </Pressable>
-        <Text style={styles.headerTitle}>Astrology</Text>
-      </View>
-
+    <ScreenContainer
+      header={
+        <View style={styles.header}>
+          <Pressable
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}>
+            <ArrowIcon />
+          </Pressable>
+          <AppText style={styles.headerTitle}>Astrology</AppText>
+        </View>
+      }
+    >
       <ProfileCard iconType="astro" />
 
-      {loading ? (
-        <ActivityIndicator size="large" color="#D4A574" style={{ marginTop: 32 }} />
-      ) : error ? (
-        <Text style={{ color: 'red', margin: 16 }}>{error}</Text>
-      ) : profile ? (
-        <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-          {Object.keys(profile).map((key, idx) => {
-            const item = profile[key];
-            // Use item.order if present and in range, else fallback to idx+1
-            const iconIdx =
-              item && typeof item.order === 'number' && item.order >= 1 && item.order <= iconImages.length
-                ? item.order
-                : ((idx % iconImages.length) + 1);
-            return (
-              <ProfileItemCard
-                key={key}
-                data={{
-                  title: item.name || key,
-                  description: item.description,
-                  icon: iconImages[iconIdx - 1] ? (
-                    <Image
-                      source={iconImages[iconIdx - 1]}
-                      // style={{ width: 48, height: 48, marginBottom: 8 }}
-                      resizeMode="contain"
-                    />
-                  ) : undefined,
-                }}
-              />
-            );
-          })}
-        </ScrollView>
-      ) : null}
+      {
+        loading ? (
+          <ActivityIndicator size="large" color="#D4A574" style={{ marginTop: 32 }} />
+        ) : error ? (
+          <Text style={{ color: 'red', margin: 16 }}>{error}</Text>
+        ) : profile ? (
+          <AstrologyCardList profile={profile} iconImages={iconImages} />
+        ) : null
+      }
 
     </ScreenContainer>
   );
@@ -123,9 +116,12 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: 12,
+    paddingLeft: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
+    backgroundColor: COLORS.white,
+    paddingTop: 8,
   },
   backButton: {
     padding: 8,

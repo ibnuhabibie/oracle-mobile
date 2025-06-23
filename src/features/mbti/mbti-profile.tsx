@@ -1,6 +1,26 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
 
+// Static mapping for MBTI icons
+const mbtiIcons: { [key: string]: any } = {
+    INTP: require('../../assets/icons/mbti/intp.png'),
+    INTJ: require('../../assets/icons/mbti/intj.png'),
+    ENTP: require('../../assets/icons/mbti/entp.png'),
+    ENTJ: require('../../assets/icons/mbti/entj.png'),
+    INFJ: require('../../assets/icons/mbti/infj.png'),
+    INFP: require('../../assets/icons/mbti/infp.png'),
+    ENFJ: require('../../assets/icons/mbti/enfj.png'),
+    ENFP: require('../../assets/icons/mbti/enfp.png'),
+    ISTJ: require('../../assets/icons/mbti/istj.png'),
+    ISFJ: require('../../assets/icons/mbti/isfj.png'),
+    ESTJ: require('../../assets/icons/mbti/estj.png'),
+    ESFJ: require('../../assets/icons/mbti/esfj.png'),
+    ISTP: require('../../assets/icons/mbti/istp.png'),
+    ISFP: require('../../assets/icons/mbti/isfp.png'),
+    ESTP: require('../../assets/icons/mbti/estp.png'),
+    ESFP: require('../../assets/icons/mbti/esfp.png'),
+};
+
 import ShinyContainer from "../../components/widgets/ShinyContainer";
 import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
@@ -39,19 +59,21 @@ class MBTIProfile extends React.Component {
                 </ShinyContainer>
 
                 {/* The Architect Card */}
-                <View style={styles.card}>
-                    <View style={styles.cardHeader}>
-                        <View style={styles.iconPlaceholder}>
-                            <Image
-                                source={require(`../../assets/icons/mbti/intj.png`)}
-                            />
+                {
+                    profile?.mbti_type && (
+                        <View style={styles.card}>
+                            <View style={styles.cardHeader}>
+                                <View style={styles.iconPlaceholder}>
+                                    <Image source={mbtiIcons[profile.mbti_type]} style={{ width: 45, height: 45 }} />
+                                </View>
+                                <View style={styles.cardHeaderText}>
+                                    <AppText variant='title3'>{profile?.name}</AppText>
+                                    <AppText variant='body1'>{profile?.description}</AppText>
+                                </View>
+                            </View>
                         </View>
-                        <View style={styles.cardHeaderText}>
-                            <AppText variant='title3'>{profile?.name}</AppText>
-                            <AppText variant='body1'>{profile?.description}</AppText>
-                        </View>
-                    </View>
-                </View>
+                    )
+                }
 
                 {/* Strengths Card */}
                 <View style={styles.card}>

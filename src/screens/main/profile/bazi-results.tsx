@@ -10,6 +10,7 @@ import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
 import api from '../../../utils/http';
+import { COLORS } from '../../../constants/colors';
 
 type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
 
@@ -43,37 +44,55 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
     require('../../../assets/icons/bazi/icon-5.png'),
   ];
 
-  const renderProfileItem = (item: any, fallbackTitle: string, index: number) => {
-    if (!item) return null;
+  // Card list component
+  const BaziCardList: FC<{ profile: any, iconImages: any[] }> = ({ profile, iconImages }) => {
+    if (!profile) return null;
+    const items = [
+      { key: 'day_master', label: 'Day Master', iconIdx: 1 },
+      { key: 'pillar_day', label: 'Day Pillar', iconIdx: 2 },
+      { key: 'pillar_month', label: 'Month Pillar', iconIdx: 3 },
+      { key: 'pillar_year', label: 'Year Pillar', iconIdx: 4 },
+      { key: 'pillar_hour', label: 'Hour Pillar', iconIdx: 5 },
+    ];
     return (
-      <ProfileItemCard
-        data={{
-          title: item.name || fallbackTitle,
-          description: item.description,
-          icon: iconImages[index - 1] ? (
-            <Image
-              source={iconImages[index - 1]}
-              style={{ width: 48, height: 48, marginBottom: 8 }}
-              resizeMode="contain"
+      <>
+        {items.map(({ key, label, iconIdx }) => {
+          const item = profile[key];
+          if (!item) return null;
+          return (
+            <ProfileItemCard
+              key={key}
+              data={{
+                title: item.name || label,
+                description: item.description,
+                icon: iconImages[iconIdx - 1] ? (
+                  <Image
+                    source={iconImages[iconIdx - 1]}
+                    style={{ width: 48, height: 48, marginBottom: 8 }}
+                    resizeMode="contain"
+                  />
+                ) : undefined,
+              }}
             />
-          ) : undefined,
-        }}
-      />
+          );
+        })}
+      </>
     );
   };
 
   return (
-    <ScreenContainer>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}>
-          <ArrowIcon />
-        </Pressable>
-        <Text style={styles.headerTitle}>BaZi Profile</Text>
-      </View>
-
+    <ScreenContainer
+      header={
+        <View style={styles.header}>
+          <Pressable
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}>
+            <ArrowIcon />
+          </Pressable>
+          <Text style={styles.headerTitle}>BaZi Profile</Text>
+        </View>
+      }
+    >
       <ProfileCard iconType="bazi" />
 
       {loading ? (
@@ -81,13 +100,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
       ) : error ? (
         <Text style={{ color: 'red', margin: 16 }}>{error}</Text>
       ) : profile ? (
-        <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-          {renderProfileItem(profile.day_master, 'Day Master', 1)}
-          {renderProfileItem(profile.pillar_day, 'Day Pillar', 2)}
-          {renderProfileItem(profile.pillar_month, 'Month Pillar', 3)}
-          {renderProfileItem(profile.pillar_year, 'Year Pillar', 4)}
-          {renderProfileItem(profile.pillar_hour, 'Hour Pillar', 5)}
-        </ScrollView>
+        <BaziCardList profile={profile} iconImages={iconImages} />
       ) : null}
     </ScreenContainer>
   );
@@ -97,9 +110,12 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: 12,
+    paddingLeft: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
+    backgroundColor: COLORS.white,
+    paddingTop: 8,
   },
   backButton: {
     padding: 8,

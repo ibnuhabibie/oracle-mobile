@@ -55,23 +55,25 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
     };
 
     return (
-        <ScreenContainer>
-            {/* Header */}
-            <View style={styles.header}>
-                <Pressable
-                    onPress={() => navigation.goBack()}
-                    style={styles.backButton}>
-                    <ArrowIcon />
-                </Pressable>
-                <Text style={styles.headerTitle}>Ask Affinity</Text>
-            </View>
+        <ScreenContainer
+            header={
+                <View style={styles.header}>
+                    <Pressable
+                        onPress={() => navigation.goBack()}
+                        style={styles.backButton}>
+                        <ArrowIcon />
+                    </Pressable>
+                    <Text style={styles.headerTitle}>Ask Affinity</Text>
+                </View>
+            }
+        >
             <View style={styles.resultContainer}>
                 <AppText variant='title4' color='primary' style={styles.resultTitle}>
                     {route.params?.question || ''}
                 </AppText>
-                {sectionOrder.map(section =>
-                    renderCardSection(section.key, section.label)
-                )}
+                {
+                    sectionOrder.map(section => renderCardSection(section.key, section.label))
+                }
             </View>
         </ScreenContainer>
     );
@@ -81,9 +83,12 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingBottom: 20,
+        paddingBottom: 12,
+        paddingLeft: 12,
         borderBottomWidth: 1,
         borderBottomColor: '#F0F0F0',
+        backgroundColor: COLORS.white,
+        paddingTop: 8,
     },
     backButton: {
         padding: 8,
