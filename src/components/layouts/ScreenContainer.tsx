@@ -14,6 +14,7 @@ type ScreenContainerProps = {
   scrollable?: boolean;
   header?: React.ReactNode;
   floatingFooter?: React.ReactNode;
+  fluid?: boolean; // If true, removes default padding
 };
 
 const ScreenContainer: React.FC<ScreenContainerProps> = ({
@@ -22,8 +23,19 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   scrollable = true,
   header,
   floatingFooter,
+  fluid = false,
 }) => {
-  const content = <View style={[styles.content, style]}>{children}</View>;
+  const content = (
+    <View
+      style={[
+        styles.content,
+        fluid && styles.contentFluid,
+        style,
+      ]}
+    >
+      {children}
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -73,6 +85,9 @@ const styles = StyleSheet.create({
     padding: 16,
     width: '100%',
     position: 'relative',
+  },
+  contentFluid: {
+    padding: 0,
   },
 });
 

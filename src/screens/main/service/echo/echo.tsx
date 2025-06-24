@@ -1,13 +1,14 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useState } from 'react';
-import { Alert, Dimensions, Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+    Pressable,
+    StyleSheet,
+    View
+} from 'react-native';
 import { useTranslation } from "react-i18next";
-import { useForm } from 'react-hook-form';
 
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppText } from '../../../../components/ui/app-text';
-import AppInput from '../../../../components/ui/app-input';
-import { AppButton } from '../../../../components/ui/app-button';
 import { COLORS } from '../../../../constants/colors';
 import { Calendar } from 'react-native-calendars';
 import ScreenContainer from '../../../../components/layouts/ScreenContainer';
@@ -97,7 +98,6 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     }
                 }}
                 onMonthChange={monthObj => {
-                    // monthObj: { year: 2025, month: 6, day: 1, timestamp: ... }
                     setDiaries([]);
                     setError(null);
                     setMarkedDates({});
@@ -151,13 +151,6 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        backgroundColor: COLORS.white,
-    },
-    scrollContainer: {
-        flexGrow: 1,
-    },
     title: {
         textAlign: 'center',
         letterSpacing: 5,

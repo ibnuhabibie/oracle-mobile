@@ -1,14 +1,16 @@
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
 import {
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from "react-i18next";
+
+import { APP_URL } from '@env';
 
 import BuildingIcon from '../../../components/icons/Building';
 import CartIcon from '../../../components/icons/Cart';
@@ -26,11 +28,7 @@ import ScreenContainer from '../../../components/layouts/ScreenContainer';
 import { COLORS } from '../../../constants/colors';
 import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';
-
-import { APP_URL, API_BASE_URL } from '@env';
 import api from '../../../utils/http';
-// i18n
-import { useTranslation } from "react-i18next";
 import ProfileItem from '../../../features/profile/profile-item';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import { AppText } from '../../../components/ui/app-text';
@@ -120,128 +118,126 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* User Profile Card */}
-        <View style={styles.userCard}>
-          <View style={styles.userInfo}>
-            <Text style={styles.userName}>{user?.full_name || t("Guest")}</Text>
-            <View style={styles.userBadge}>
-              <Text style={styles.badgeText}>{user?.referral_code}</Text>
-              <CopyIcon />
-            </View>
+      {/* User Profile Card */}
+      <View style={styles.userCard}>
+        <View style={styles.userInfo}>
+          <Text style={styles.userName}>{user?.full_name || t("Guest")}</Text>
+          <View style={styles.userBadge}>
+            <Text style={styles.badgeText}>{user?.referral_code}</Text>
+            <CopyIcon />
           </View>
-
-          {/* User Stats */}
-          <View style={styles.userStats}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.push('BaziResults');
-              }}
-              style={styles.statItem}>
-              <FerrisWheelIcon />
-              <Text style={styles.statLabel}>手辰</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.push('AstrologyResults');
-              }}
-              style={styles.statItem}>
-              <StarIcon />
-              <Text style={styles.statLabel}>Gemini</Text>
-            </TouchableOpacity>
-            {user?.mbti_profile && (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.push('MbtiResults');
-                }}
-                style={styles.statItem}>
-                <CommentUserIcon />
-                <Text style={styles.statLabel}>{user?.mbti_profile}</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-
         </View>
 
-        {
-          !user?.mbti_profile &&
-          (
-            < View style={styles.mbtiQuizSection}>
+        {/* User Stats */}
+        <View style={styles.userStats}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.push('BaziResults');
+            }}
+            style={styles.statItem}>
+            <FerrisWheelIcon />
+            <Text style={styles.statLabel}>手辰</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.push('AstrologyResults');
+            }}
+            style={styles.statItem}>
+            <StarIcon />
+            <Text style={styles.statLabel}>Gemini</Text>
+          </TouchableOpacity>
+          {user?.mbti_profile && (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.push('MbtiResults');
+              }}
+              style={styles.statItem}>
               <CommentUserIcon />
-              <View style={{ flex: 1 }}>
-                <AppText variant='caption1'>What’s your MBTI?</AppText>
-                <AppText variant='tiny1'>Quick test to discover your type!</AppText>
-              </View>
-              <AppButton style={{ width: 'auto' }} variant='primary' title='Find Out' size='small' onPress={handleCompleteQuiz} />
-            </View>
-          )
-        }
+              <Text style={styles.statLabel}>{user?.mbti_profile}</Text>
+            </TouchableOpacity>
+          )}
+        </View>
 
-        {/* Coins Section */}
-        <View style={styles.coinsCard}>
-          <View style={styles.coinsHeader}>
-            <Text style={styles.coinsTitle}>{t("Your Coins")}</Text>
-            <Pressable onPress={handleBuyCoins} style={styles.buyCoinsButton}>
-              <Text style={styles.buyCoinsText}>{t("Buy Coins")}</Text>
-              <Text style={styles.chevron}>›</Text>
-            </Pressable>
+      </View>
+
+      {
+        !user?.mbti_profile &&
+        (
+          < View style={styles.mbtiQuizSection}>
+            <CommentUserIcon />
+            <View style={{ flex: 1 }}>
+              <AppText variant='caption1'>What’s your MBTI?</AppText>
+              <AppText variant='tiny1'>Quick test to discover your type!</AppText>
+            </View>
+            <AppButton style={{ width: 'auto' }} variant='primary' title='Find Out' size='small' onPress={handleCompleteQuiz} />
           </View>
+        )
+      }
 
-          <View style={styles.coinsRow}>
-            <View style={styles.coinItem}>
-              <Text style={styles.coinAmount}>{user?.gold_credits}</Text>
-              <CoinIcon size={19} color="#FBBC05" />
-            </View>
-            <View style={styles.coinItem}>
-              <Text style={styles.coinAmount}>{user?.silver_credits}</Text>
-              <CoinIcon size={19} color="#B9B9B9" />
-            </View>
+      {/* Coins Section */}
+      <View style={styles.coinsCard}>
+        <View style={styles.coinsHeader}>
+          <Text style={styles.coinsTitle}>{t("Your Coins")}</Text>
+          <Pressable onPress={handleBuyCoins} style={styles.buyCoinsButton}>
+            <Text style={styles.buyCoinsText}>{t("Buy Coins")}</Text>
+            <Text style={styles.chevron}>›</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.coinsRow}>
+          <View style={styles.coinItem}>
+            <Text style={styles.coinAmount}>{user?.gold_credits}</Text>
+            <CoinIcon size={19} color="#FBBC05" />
+          </View>
+          <View style={styles.coinItem}>
+            <Text style={styles.coinAmount}>{user?.silver_credits}</Text>
+            <CoinIcon size={19} color="#B9B9B9" />
           </View>
         </View>
+      </View>
 
-        {/* Profile Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t("Profile")}</Text>
-          <ProfileItem
-            title="Edit Profile"
-            icon={<EditIcon size={20} />}
-            onPress={handleEditProfile}
-          />
-          <ProfileItem
-            title="Password Settings"
-            icon={<EyeIcon size={20} />}
-            onPress={handlePasswordSettings}
-          />
-          <ProfileItem
-            title="Purchase History"
-            icon={<CartIcon size={20} />}
-            onPress={handlePurchaseHistory}
-          />
-        </View>
+      {/* Profile Section */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>{t("Profile")}</Text>
+        <ProfileItem
+          title="Edit Profile"
+          icon={<EditIcon size={20} />}
+          onPress={handleEditProfile}
+        />
+        <ProfileItem
+          title="Password Settings"
+          icon={<EyeIcon size={20} />}
+          onPress={handlePasswordSettings}
+        />
+        <ProfileItem
+          title="Purchase History"
+          icon={<CartIcon size={20} />}
+          onPress={handlePurchaseHistory}
+        />
+      </View>
 
-        {/* Others Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t("Others")}</Text>
-          <ProfileItem
-            title="About Us"
-            icon={<BuildingIcon />}
-            onPress={() => handleContent('about-us')}
-          />
-          <ProfileItem
-            title="Privacy Policy"
-            icon={<ShieldIcon size={20} />}
-            onPress={() => handleContent('privacy-policy')} />
-          <ProfileItem
-            title="Terms & Conditions"
-            icon={<TermsIcon size={20} />}
-            onPress={() => handleContent('terms-conditions')}
-          />
-        </View>
-        <Pressable style={styles.logoutButton} onPress={handleLogout}>
-          <LogoutIcon />
-          <Text style={styles.logoutText}>{t("Logout")}</Text>
-        </Pressable>
-      </ScrollView>
+      {/* Others Section */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>{t("Others")}</Text>
+        <ProfileItem
+          title="About Us"
+          icon={<BuildingIcon />}
+          onPress={() => handleContent('about-us')}
+        />
+        <ProfileItem
+          title="Privacy Policy"
+          icon={<ShieldIcon size={20} />}
+          onPress={() => handleContent('privacy-policy')} />
+        <ProfileItem
+          title="Terms & Conditions"
+          icon={<TermsIcon size={20} />}
+          onPress={() => handleContent('terms-conditions')}
+        />
+      </View>
+      <Pressable style={styles.logoutButton} onPress={handleLogout}>
+        <LogoutIcon />
+        <Text style={styles.logoutText}>{t("Logout")}</Text>
+      </Pressable>
     </ScreenContainer >
   );
 };
@@ -281,9 +277,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginRight: 4,
     fontFamily: fontFamilies.ARCHIVO.light,
-  },
-  badgeIcon: {
-    fontSize: 12,
   },
   userStats: {
     flexDirection: 'row',

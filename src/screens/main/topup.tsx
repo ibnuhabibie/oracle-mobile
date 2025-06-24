@@ -4,14 +4,14 @@ import { Pressable, ScrollView, StyleSheet, View, ActivityIndicator } from 'reac
 
 import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
-import ArrowIcon from '../../components/icons/Arrow';
+import Header from '../../components/ui/header';
 import { AppText } from '../../components/ui/app-text';
 import api from '../../utils/http';
 import { AppButton } from '../../components/ui/app-button';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 
-type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'Topup'>;
+type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
 
 interface PackageItem {
     package_id: number;
@@ -192,14 +192,10 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 </View>
             }
             header={
-                <View style={styles.header}>
-                    <Pressable
-                        onPress={() => navigation.goBack()}
-                        style={styles.backButton}>
-                        <ArrowIcon />
-                    </Pressable>
-                    <AppText variant='subtitle2' style={styles.headerTitle}>Top Up</AppText>
-                </View>
+                <Header
+                    title="Top Up"
+                    onBack={() => navigation.goBack()}
+                />
             }
         >
             <PackageCardList
@@ -222,28 +218,6 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingBottom: 12,
-        paddingLeft: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#F0F0F0',
-        backgroundColor: COLORS.white,
-        paddingTop: 8,
-    },
-    backButton: {
-        padding: 8,
-        marginLeft: -8,
-    },
-    headerTitle: {
-        fontSize: 18,
-        fontWeight: '600',
-        color: '#333',
-        marginLeft: 20,
-        textAlign: 'center',
-        fontFamily: fontFamilies.ARCHIVO.light,
-    },
     sectionTitle: {
         marginBottom: 2,
     },
@@ -284,18 +258,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#D4A574',
         marginLeft: 12,
-    },
-    cardOriginalPrice: {
-        fontSize: 13,
-        color: '#B0B0B0',
-        textDecorationLine: 'line-through',
-        marginRight: 6,
-    },
-    cardNote: {
-        fontSize: 11,
-        color: '#B0B0B0',
-        marginTop: 2,
-        textAlign: 'right',
     },
     radioOuter: {
         width: 22,

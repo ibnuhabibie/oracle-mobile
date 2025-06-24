@@ -1,16 +1,17 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View, ActivityIndicator, ScrollView, Image } from 'react-native';
+import {
+  Text,
+  ActivityIndicator,
+  Image
+} from 'react-native';
 
-import ArrowIcon from '../../../components/icons/Arrow';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
-import ShinyContainer from '../../../components/widgets/ShinyContainer';
-import { fontFamilies } from '../../../constants/fonts';
+import Header from '../../../components/ui/header';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
 import api from '../../../utils/http';
-import { COLORS } from '../../../constants/colors';
 
 type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
 
@@ -54,28 +55,31 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
       { key: 'pillar_year', label: 'Year Pillar', iconIdx: 4 },
       { key: 'pillar_hour', label: 'Hour Pillar', iconIdx: 5 },
     ];
+
     return (
       <>
-        {items.map(({ key, label, iconIdx }) => {
-          const item = profile[key];
-          if (!item) return null;
-          return (
-            <ProfileItemCard
-              key={key}
-              data={{
-                title: item.name || label,
-                description: item.description,
-                icon: iconImages[iconIdx - 1] ? (
-                  <Image
-                    source={iconImages[iconIdx - 1]}
-                    style={{ width: 48, height: 48, marginBottom: 8 }}
-                    resizeMode="contain"
-                  />
-                ) : undefined,
-              }}
-            />
-          );
-        })}
+        {
+          items.map(({ key, label, iconIdx }) => {
+            const item = profile[key];
+            if (!item) return null;
+            return (
+              <ProfileItemCard
+                key={key}
+                data={{
+                  title: item.name || label,
+                  description: item.description,
+                  icon: iconImages[iconIdx - 1] ? (
+                    <Image
+                      source={iconImages[iconIdx - 1]}
+                      style={{ width: 48, height: 48, marginBottom: 8 }}
+                      resizeMode="contain"
+                    />
+                  ) : undefined,
+                }}
+              />
+            );
+          })
+        }
       </>
     );
   };
@@ -83,14 +87,10 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
   return (
     <ScreenContainer
       header={
-        <View style={styles.header}>
-          <Pressable
-            onPress={() => navigation.goBack()}
-            style={styles.backButton}>
-            <ArrowIcon />
-          </Pressable>
-          <Text style={styles.headerTitle}>BaZi Profile</Text>
-        </View>
+        <Header
+          title="BaZi Profile"
+          onBack={() => navigation.goBack()}
+        />
       }
     >
       <ProfileCard iconType="bazi" />
@@ -105,105 +105,5 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
     </ScreenContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingBottom: 12,
-    paddingLeft: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
-    backgroundColor: COLORS.white,
-    paddingTop: 8,
-  },
-  backButton: {
-    padding: 8,
-    marginLeft: -8,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-    marginLeft: 20,
-    textAlign: 'center',
-    fontFamily: fontFamilies.ARCHIVO.light,
-  },
-  profileCard: {
-    backgroundColor: 'rgba(255, 200, 138, 0.22)',
-    borderRadius: 10,
-    padding: 20,
-    marginTop: 32,
-    marginBottom: 16,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E0D0C0',
-  },
-  zodiacIcon: {
-    fontSize: 32,
-    color: '#333',
-  },
-  profileInfo: {
-    width: '100%',
-    marginTop: 20,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 8,
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#D0C0B0',
-  },
-  infoLabel: {
-    fontSize: 14,
-    fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#666',
-  },
-  infoValue: {
-    fontSize: 14,
-    fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#333',
-    fontWeight: '500',
-  },
-  card: {
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 16,
-    marginTop: 16,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-  },
-  celestialIcon: {
-    fontSize: 32,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#D4A574',
-    fontWeight: '600',
-    marginTop: 16,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  sectionSubtitle: {
-    fontSize: 14,
-    fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#999',
-    textAlign: 'center',
-    marginBottom: 16,
-    fontStyle: 'italic',
-  },
-  sectionDescription: {
-    fontSize: 14,
-    fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#666',
-    textAlign: 'center',
-    lineHeight: 22,
-    marginBottom: 12,
-  },
-});
 
 export default BaziResults;

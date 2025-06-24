@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
-import { Dimensions, Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, View, ScrollView } from 'react-native';
 import { useTranslation } from "react-i18next";
 import { useForm } from 'react-hook-form';
 
@@ -9,7 +9,8 @@ import { AppText } from '../../../../components/ui/app-text';
 import AppInput from '../../../../components/ui/app-input';
 import { AppButton } from '../../../../components/ui/app-button';
 import { COLORS } from '../../../../constants/colors';
-
+import ScreenContainer from '../../../../components/layouts/ScreenContainer';
+import api from '../../../../utils/http';
 
 type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffinity'>;
 
@@ -41,9 +42,6 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     const [loading, setLoading] = React.useState(false);
     const [apiError, setApiError] = React.useState<string | null>(null);
 
-    // Lazy import to avoid circular deps
-    const api = require('../../../../utils/http').default;
-
     const onSubmit = async (data) => {
         console.log(data, 'data')
 
@@ -60,54 +58,53 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView style={styles.safeArea}>
-            <ScrollView
-                contentContainerStyle={styles.scrollContainer}
-                keyboardShouldPersistTaps="handled">
-                <AppText style={styles.title} color='primary' variant='subtitle1'>
-                    {t("ASK AFFINITY")}
+        <ScreenContainer fluid={true}>
+            <AppText style={styles.title} color='primary' variant='subtitle1'>
+                {t("ASK AFFINITY")}
+            </AppText>
+            <AppText style={styles.subtitle} variant='caption1'>{t('Unsure what to do next? Affinity is here to help —  ask anything.')}</AppText>
+            <Image
+                source={localImage}
+                style={{
+                    width: screenWidth,
+                    height: undefined,
+                    aspectRatio,
+                    marginTop: 20,
+                }}
+                resizeMode="contain"
+            />
+            <View style={styles.infoCard}>
+                <AppText color='primary'>How to ask the question?</AppText>
+                <AppText style={{ lineHeight: 22 }} variant='caption3'>
+                    1. Keep a calm state of mind{'\n'}
+                    2. Think about the question you have{'\n'}
+                    3. Enter the question{'\n'}
+                    4. Breathe and press the ask button
                 </AppText>
-                <AppText style={styles.subtitle} variant='caption1'>{t('Unsure what to do next? Affinity is here to help —  ask anything.')}</AppText>
-                <Image source={localImage}
-                    style={styles.bannerImage(screenWidth, aspectRatio)}
-                    resizeMode="contain" />
-                <View style={styles.infoCard}>
-                    <AppText color='primary'>How to ask the question?</AppText>
-                    <AppText style={{ lineHeight: 22 }} variant='caption3'>
-                        1. Keep a calm state of mind{'\n'}
-                        2. Think about the question you have{'\n'}
-                        3. Enter the question{'\n'}
-                        4. Breathe and press the ask button
-                    </AppText>
-                </View>
-                <View style={{ padding: 14 }}>
-                    <AppText style={{ textAlign: 'center', marginTop: 36, marginBottom: 8 }}>Type your question</AppText>
-                    <AppInput
-                        control={control}
-                        name="question"
-                        rules={formRules.question}
-                        placeholder=''
-                        errors={errors}
-                    />
-                    {apiError ? (
-                        <AppText style={{ color: 'red', textAlign: 'center', marginVertical: 8 }}>{apiError}</AppText>
-                    ) : null}
-                    <AppButton
-                        title={loading ? 'Loading...' : 'Purchase for 14'}
-                        onPress={handleSubmit(onSubmit)}
-                        disabled={loading}
-                    />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+            </View>
+            <View style={{ padding: 14 }}>
+                <AppText style={{ textAlign: 'center', marginTop: 36, marginBottom: 8 }}>Type your question</AppText>
+                <AppInput
+                    control={control}
+                    name="question"
+                    rules={formRules.question}
+                    placeholder=''
+                    errors={errors}
+                />
+                {apiError ? (
+                    <AppText style={{ color: 'red', textAlign: 'center', marginVertical: 8 }}>{apiError}</AppText>
+                ) : null}
+                <AppButton
+                    title={loading ? 'Loading...' : 'Purchase for 14'}
+                    onPress={handleSubmit(onSubmit)}
+                    disabled={loading}
+                />
+            </View>
+        </ScreenContainer>
     );
 };
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        backgroundColor: COLORS.white,
-    },
     scrollContainer: {
         flexGrow: 1,
     },
@@ -122,15 +119,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 10,
         maxWidth: '80%',
-        marginHorizontal: 'auto'
-    },
-    bannerImage: (screenWidth, aspectRatio) => {
-        return {
-            width: screenWidth,
-            height: undefined,
-            aspectRatio,
-            marginTop: 20
-        }
+        alignSelf: 'center'
     },
     infoCard: {
         marginHorizontal: 16,

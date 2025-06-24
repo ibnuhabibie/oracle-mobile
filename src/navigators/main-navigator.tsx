@@ -34,7 +34,7 @@ import AskAffinity from '../screens/main/service/affinity/ask-affinity';
 import AffinityResults from '../screens/main/service/affinity/affinity-results';
 import Echo from '../screens/main/service/echo/echo';
 import EchoDetail from '../screens/main/service/echo/echo-detail';
-import LoveForecast from '../screens/main/service/love-forecast/love-forecase';
+import LoveForecast from '../screens/main/service/love-forecast/love-forecast';
 import RelationReport from '../screens/main/service/relation-report/relation-report';
 import FortuneReport from '../screens/main/service/fortune-report/fortune-report';
 import Topup from '../screens/main/topup';

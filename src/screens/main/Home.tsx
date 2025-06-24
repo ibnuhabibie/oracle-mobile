@@ -1,11 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import CenterCarousel from '../../components/widgets/CenterCarousel';
-
-// i18n
 import { useTranslation } from "react-i18next";
 
+import CenterCarousel from '../../components/widgets/CenterCarousel';
 import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/ScreenContainer';
 import ProfileDashboard from '../../features/profile/profile-dashboard';
@@ -22,7 +20,6 @@ const CARD_HEIGHT_CENTER = 320;
 const Home: FC<HomeProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
-  // Carousel data
   const carouselItems = [
     {
       id: 'love',
@@ -31,7 +28,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
       subtitle: "DISCOVER WHAT'S COMING NEXT",
       path: 'LoveForecast'
     },
-{
+    {
       id: 'relation',
       image: require('../../assets/icons/services/love-forecast-icon.png'),
       title: 'Relationship Insights',
@@ -46,8 +43,6 @@ const Home: FC<HomeProps> = ({ navigation }) => {
       path: 'FortuneReport'
     },
   ];
-
-  // Removed unused getCenterIndex
 
   return (
     <ScreenContainer style={{ padding: 0 }}>
@@ -95,15 +90,10 @@ const styles = StyleSheet.create({
     marginTop: 40,
     textTransform: 'uppercase',
   },
-  // carouselCard: removed, now handled in CenterCarousel
   cardImageContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 18,
-  },
-  cardImage: {
-    width: 48,
-    height: 48,
   },
   cardTitle: {
     marginBottom: 6,

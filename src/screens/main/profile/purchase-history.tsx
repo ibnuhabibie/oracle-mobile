@@ -2,13 +2,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import ArrowIcon from '../../../components/icons/Arrow';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import Header from '../../../components/ui/header';
 import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import TopupHistoryList from '../../../features/history/topup-history-list';
 import UsageHistoryList from '../../../features/history/usage-history-list';
-import { COLORS } from '../../../constants/colors';
 
 type PurchaseHistoryProps = NativeStackScreenProps<MainNavigatorParamList, 'PurchaseHistory'>;
 
@@ -19,14 +18,10 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
     <ScreenContainer
       scrollable={false}
       header={
-        <View style={styles.header}>
-          <Pressable
-            onPress={() => navigation.goBack()}
-            style={styles.backButton}>
-            <ArrowIcon />
-          </Pressable>
-          <Text style={styles.headerTitle}>Purchase History</Text>
-        </View>
+        <Header
+          title="Purchase History"
+          onBack={() => navigation.goBack()}
+        />
       }
     >
       {/* Tab Navigation */}
@@ -70,28 +65,6 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingBottom: 12,
-    paddingLeft: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
-    backgroundColor: COLORS.white,
-    paddingTop: 8,
-  },
-  backButton: {
-    padding: 8,
-    marginLeft: -8,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-    marginLeft: 20,
-    textAlign: 'center',
-    fontFamily: fontFamilies.ARCHIVO.light,
-  },
   tabContainer: {
     flexDirection: 'row',
     marginBottom: 20,

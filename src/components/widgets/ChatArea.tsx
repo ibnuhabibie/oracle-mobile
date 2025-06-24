@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
   chatArea: {
     flex: 1,
     position: 'relative',
-    marginTop: 105,
     marginBottom: 70,
   },
   chatContainer: {

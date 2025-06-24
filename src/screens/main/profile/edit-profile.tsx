@@ -1,17 +1,17 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Alert,
+} from 'react-native';
 import { useTranslation } from "react-i18next";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import ArrowIcon from '../../../components/icons/Arrow';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
-import { fontFamilies } from '../../../constants/fonts';
+import Header from '../../../components/ui/header';
 import ProfileForm from '../../../features/profile/profile-form';
 import api from '../../../utils/http';
 import type { ProfileFormData } from '../../../features/profile/profile-form';
 import { MainNavigatorParamList } from '../../../navigators/types';
-import { COLORS } from '../../../constants/colors';
 
 
 type EditProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'EditProfile'>;
@@ -57,44 +57,15 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
   return (
     <ScreenContainer
       header={
-        <View style={styles.header}>
-          <Pressable
-            onPress={() => navigation.goBack()}
-            style={styles.backButton}>
-            <ArrowIcon />
-          </Pressable>
-          <Text style={styles.headerTitle}>{t("Edit Profile")}</Text>
-        </View>
+        <Header
+          title={t("Edit Profile")}
+          onBack={() => navigation.goBack()}
+        />
       }
     >
       <ProfileForm onSubmit={onSubmit} />
     </ScreenContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingBottom: 12,
-    paddingLeft: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
-    backgroundColor: COLORS.white,
-    paddingTop: 8,
-  },
-  backButton: {
-    padding: 8,
-    marginLeft: -8,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-    marginLeft: 20,
-    textAlign: 'center',
-    fontFamily: fontFamilies.ARCHIVO.light,
-  },
-});
 
 export default EditProfile;

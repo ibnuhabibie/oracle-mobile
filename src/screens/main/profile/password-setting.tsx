@@ -14,6 +14,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import ArrowIcon from '../../../components/icons/Arrow';
 import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import Header from '../../../components/ui/header';
 import PasswordToggle from '../../../components/ui/password-toggle';
 import AppInput from '../../../components/ui/app-input';
 import { useForm } from 'react-hook-form';
@@ -115,17 +116,13 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
   return (
     <ScreenContainer
       header={
-        <View style={styles.header}>
-          <Pressable
-            onPress={() => navigation.goBack()}
-            style={styles.backButton}>
-            <ArrowIcon />
-          </Pressable>
-          <Text style={styles.headerTitle}>Password Settings</Text>
-        </View>
+        <Header
+          title="Password Settings"
+          onBack={() => navigation.goBack()}
+        />
       }
     >
-      <View style={{ flexDirection: 'column', gap: 12, paddingTop: 24 }}>
+      <View style={styles.formContainer}>
         <AppText>Current Password</AppText>
         <AppInput<PasswordSettingDTO>
           control={control}
@@ -175,41 +172,10 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingBottom: 12,
-    paddingLeft: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
-    backgroundColor: COLORS.white,
-    paddingTop: 8,
-  },
-  backButton: {
-    padding: 8,
-    marginLeft: -8,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-    marginLeft: 20,
-    textAlign: 'center',
-    fontFamily: fontFamilies.ARCHIVO.light,
-  },
-  container: {
-    padding: 16,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  input: {
-    flex: 1,
-    padding: 10,
+  formContainer: {
+    flexDirection: 'column',
+    gap: 12,
+    paddingTop: 12
   },
 });
 

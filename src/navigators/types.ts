@@ -18,6 +18,7 @@ export type MainNavigatorParamList = {
     Tabs: undefined;
     Home: undefined;
     AskAffinity: undefined;
+    Echo: undefined;
     EchoDetail: {
         id?: string,
         date: Date
