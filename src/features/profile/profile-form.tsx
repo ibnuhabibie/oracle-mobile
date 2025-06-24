@@ -6,10 +6,10 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from "react-i18next";
 
 import AppInput from '../../components/ui/app-input';
-import CalendarIcon from '../../components/icons/Calendar';
-import ClockIcon from '../../components/icons/Clock';
+import CalendarIcon from '../../components/icons/auth/calendar-icon';
+import ClockIcon from '../../components/icons/auth/clock-icon';
 import TextField from '../../components/ui/text-field';
-import { DropdownButton, renderDropdownModal } from '../../components/widgets/Dropdown';
+import { DropdownButton, renderDropdownModal } from '../../components/widgets/dropdown';
 import { AppButton } from '../../components/ui/app-button';
 import { fontFamilies } from '../../constants/fonts';
 import { formatDate, formatTime } from '../../utils/formatter';

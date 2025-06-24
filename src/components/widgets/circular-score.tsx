@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, ImageSourcePropType } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import { COLORS } from '../constants/colors';
-import { AppText } from './ui/app-text';
+import { COLORS } from '../../constants/colors';
+import { AppText } from '../ui/app-text';
 // i18n
 import { useTranslation } from 'react-i18next';
 
@@ -28,19 +28,19 @@ class CircularScore extends Component<CircularScoreProps, CircularScoreState> {
     componentDidMount(): void {
         if (this.props.type === 'wealth') {
             this.setState({
-                imageSrc: require('../assets/icons/daily-dashboard/wealth-daily.png')
+                imageSrc: require('../../assets/icons/daily-dashboard/wealth-daily.png')
             });
         } else if (this.props.type === 'learning') {
             this.setState({
-                imageSrc: require('../assets/icons/daily-dashboard/learning-daily.png')
+                imageSrc: require('../../assets/icons/daily-dashboard/learning-daily.png')
             });
         } else if (this.props.type === 'relation') {
             this.setState({
-                imageSrc: require('../assets/icons/daily-dashboard/relation-daily.png')
+                imageSrc: require('../../assets/icons/daily-dashboard/relation-daily.png')
             });
         } else if (this.props.type === 'career') {
             this.setState({
-                imageSrc: require('../assets/icons/daily-dashboard/career-daily.png')
+                imageSrc: require('../../assets/icons/daily-dashboard/career-daily.png')
             });
         }
     }

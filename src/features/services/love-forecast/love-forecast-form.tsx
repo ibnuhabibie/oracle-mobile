@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity, Platform } from 'react-native';
-import { AppText } from '../components/ui/app-text';
-import { AppButton } from '../components/ui/app-button';
-import { COLORS } from '../constants/colors';
+import { AppText } from '../../../components/ui/app-text';
+import { AppButton } from '../../../components/ui/app-button';
+import { COLORS } from '../../../constants/colors';
 
 interface LoveForecastFormProps {
   onSubmit: (values: LoveForecastFormValues) => void;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Pressable, Text, View, ActivityIndicator } from "react-native";
-import CommentsIcon from "../../components/icons/Comments";
-import CoinIcon from "../../components/icons/Coin";
+import CommentsIcon from "../../components/icons/profile/comments-icon";
+import CoinIcon from "../../components/icons/profile/coin-icon";
 import { fontFamilies } from "../../constants/fonts";
 import api from "../../utils/http";
 

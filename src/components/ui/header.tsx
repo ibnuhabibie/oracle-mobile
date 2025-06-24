@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Pressable, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-import ArrowIcon from '../icons/Arrow';
+import ArrowIcon from '../icons/arrow-icon';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 

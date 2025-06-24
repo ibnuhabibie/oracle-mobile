@@ -12,18 +12,19 @@ import { useTranslation } from "react-i18next";
 
 import { APP_URL } from '@env';
 
-import BuildingIcon from '../../../components/icons/Building';
-import CartIcon from '../../../components/icons/Cart';
-import CoinIcon from '../../../components/icons/Coin';
-import CommentUserIcon from '../../../components/icons/CommentUser';
-import CopyIcon from '../../../components/icons/Copy';
-import EditIcon from '../../../components/icons/Edit';
-import EyeIcon from '../../../components/icons/Eye';
-import FerrisWheelIcon from '../../../components/icons/FerrisWheel';
-import LogoutIcon from '../../../components/icons/Logout';
-import ShieldIcon from '../../../components/icons/Shield';
-import StarIcon from '../../../components/icons/Star';
-import TermsIcon from '../../../components/icons/Terms';
+import CoinIcon from '../../../components/icons/profile/coin-icon';
+import CommentUserIcon from '../../../components/icons/profile/comment-user-icon';
+import CopyIcon from '../../../components/icons/profile/copy-icon';
+import EyeIcon from '../../../components/icons/profile/eye-icon';
+import BuildingIcon from '../../../components/icons/profile/building-icon';
+import CartIcon from '../../../components/icons/profile/cart-icon';
+import EditIcon from '../../../components/icons/profile/edit-icon';
+import FerrisWheelIcon from '../../../components/icons/profile/ferris-wheel-icon';
+import LogoutIcon from '../../../components/icons/profile/logout-icon';
+import ShieldIcon from '../../../components/icons/profile/shield-icon';
+import StarIcon from '../../../components/icons/profile/star-icon';
+import TermsIcon from '../../../components/icons/profile/terms-icon';
+
 import ScreenContainer from '../../../components/layouts/screen-container';
 import { COLORS } from '../../../constants/colors';
 import { fontFamilies } from '../../../constants/fonts';

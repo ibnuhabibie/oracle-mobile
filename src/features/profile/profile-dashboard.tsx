@@ -6,7 +6,7 @@ import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
 import { fontFamilies } from "../../constants/fonts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import CircularScore from "../../components/circular-score";
+import CircularScore from "../../components/widgets/circular-score";
 import api from "../../utils/http";
 
 interface UserProfile {
@@ -96,10 +96,10 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
                     <LocalizedHeader />
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
                         <AppText style={{ color: COLORS.primary, fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
-                            { "This service will be available soon." }
+                            {"This service will be available soon."}
                         </AppText>
                         <AppText style={{ textAlign: 'center', color: COLORS.black }}>
-                            { "Please check back later to access your daily profile dashboard." }
+                            {"Please check back later to access your daily profile dashboard."}
                         </AppText>
                     </View>
                 </>

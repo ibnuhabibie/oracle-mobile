@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import ShinyContainer from '../../../components/widgets/ShinyContainer';
+import ShinyContainer from '../../../components/widgets/shiny-container';
 
 type ProfileItemCardData = {
     icon?: React.ReactNode;

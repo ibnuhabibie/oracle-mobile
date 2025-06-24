@@ -18,7 +18,7 @@ import SendIcon from '../../../../components/icons/echo/send-icon';
 import api from '../../../../utils/http';
 import { AppButton } from '../../../../components/ui/app-button';
 import { formatDate, formatDateToHeader } from '../../../../utils/date';
-import ChatArea from '../../../../components/widgets/ChatArea';
+import ChatArea from '../../../../features/services/echo/chat-area';
 import Header from '../../../../components/ui/header';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     borderRadius: 8,
   },
-  
+
   inputBar: {
     flexDirection: 'row',
     alignItems: 'center',

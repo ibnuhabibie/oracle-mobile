@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import { useAsyncStorage } from '../../../hooks/use-storage';
-import ShinyContainer from '../../../components/widgets/ShinyContainer';
+import ShinyContainer from '../../../components/widgets/shiny-container';
 import { fontFamilies } from '../../../constants/fonts';
 
 type UserProfile = {

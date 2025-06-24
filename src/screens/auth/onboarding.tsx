@@ -4,8 +4,8 @@ import React, { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import CalendarIcon from '../../components/icons/Calendar';
-import ClockIcon from '../../components/icons/Clock';
+import CalendarIcon from '../../components/icons/auth/calendar-icon';
+import ClockIcon from '../../components/icons/auth/clock-icon';
 
 import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
@@ -13,7 +13,7 @@ import TextField from '../../components/ui/text-field';
 import {
   DropdownButton,
   renderDropdownModal,
-} from '../../components/widgets/Dropdown';
+} from '../../components/widgets/dropdown';
 import { fontFamilies } from '../../constants/fonts';
 import { formatDate, formatTime } from '../../utils/formatter';
 import { MainNavigatorParamList } from '../../navigators/types';

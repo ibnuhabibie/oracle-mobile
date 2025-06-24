@@ -3,12 +3,12 @@ import React, { FC } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from "react-i18next";
 
-import CenterCarousel from '../../components/widgets/CenterCarousel';
+import CenterCarousel from '../../components/widgets/center-carousel';
 import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/screen-container';
 import ProfileDashboard from '../../features/profile/profile-dashboard';
 import { AppText } from '../../components/ui/app-text';
-import ShinyContainer from '../../components/widgets/ShinyContainer';
+import ShinyContainer from '../../components/widgets/shiny-container';
 
 type HomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Home'>;
 

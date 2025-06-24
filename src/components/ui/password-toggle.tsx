@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable } from 'react-native';
-import EyeIcon from '../icons/Eye';
-import EyeCrossedIcon from '../icons/EyeCrossed';
+import EyeIcon from '../icons/profile/eye-icon';
+import EyeCrossedIcon from '../icons/auth/eye-crossed-icon';
 
 interface PasswordToggleProps {
     showPassword: boolean;

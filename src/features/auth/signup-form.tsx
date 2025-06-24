@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 
 import api from "../../utils/http";
 import TextField from "../../components/ui/text-field";
-import EyeCrossedIcon from "../../components/icons/EyeCrossed";
-import EyeIcon from "../../components/icons/Eye";
+import EyeCrossedIcon from "../../components/icons/auth/eye-crossed-icon";
+import EyeIcon from "../../components/icons/profile/eye-icon";
 import { AppButton } from "../../components/ui/app-button";
 import { AuthFormProps } from "./signin-form";
 import AppInput from "../../components/ui/app-input";

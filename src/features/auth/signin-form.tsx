@@ -6,8 +6,8 @@ import { Pressable } from "react-native-gesture-handler";
 import { useTranslation } from "react-i18next";
 
 import api from "../../utils/http";
-import EyeCrossedIcon from "../../components/icons/EyeCrossed";
-import EyeIcon from "../../components/icons/Eye";
+import EyeCrossedIcon from "../../components/icons/auth/eye-crossed-icon";
+import EyeIcon from "../../components/icons/profile/eye-icon";
 import TextField from "../../components/ui/text-field";
 import { AppText } from "../../components/ui/app-text";
 import { AppButton } from "../../components/ui/app-button";

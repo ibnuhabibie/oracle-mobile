@@ -2,11 +2,11 @@ import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-naviga
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import CheckmarkIcon from '../../components/icons/Checkmark';
+import CheckmarkIcon from '../../components/icons/auth/checkmark-icon';
 import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
 import { AppText } from '../../components/ui/app-text';
-import ShinyContainer from '../../components/widgets/ShinyContainer';
+import ShinyContainer from '../../components/widgets/shiny-container';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 import { MainNavigatorParamList } from '../../navigators/types';
@@ -19,7 +19,7 @@ const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
   const handleContinue = async () => {
     const user_profile: any = await AsyncStorage.getItem('user_profile');
     const profile = JSON.parse(user_profile);
-    
+
     const isProfileCompleted = () => {
       return (
         profile.birth_date &&

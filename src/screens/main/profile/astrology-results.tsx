@@ -10,7 +10,7 @@ import {
   View
 } from 'react-native';
 
-import ArrowIcon from '../../../components/icons/Arrow';
+import ArrowIcon from '../../../components/icons/arrow-icon';
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import { fontFamilies } from '../../../constants/fonts';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Pressable, Text, View, StyleSheet } from 'react-native';
 
-import CheckIcon from '../../components/icons/Check';
+import CheckIcon from '../icons/auth/check-icon';
 import { COLORS } from '../../constants/colors'; // Assuming you have COLORS defined
 
 // Define the shape of your selectable item's data

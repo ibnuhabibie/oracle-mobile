@@ -8,13 +8,13 @@ import {
     View
 } from 'react-native';
 
-import ArrowIcon from '../../../../components/icons/Arrow';
+import ArrowIcon from '../../../../components/icons/arrow-icon';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import { fontFamilies } from '../../../../constants/fonts';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
-import ShinyContainer from '../../../../components/widgets/ShinyContainer';
+import ShinyContainer from '../../../../components/widgets/shiny-container';
 
 type AffinityResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AffinityResults'>;
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, ScrollView, Pressable, StyleSheet } from 'react-native';
-import { AppText } from '../ui/app-text';
-import { COLORS } from '../../constants/colors';
-import AdviceIcon from '../icons/echo/advice-icon';
-import { useAsyncStorage } from '../../hooks/use-storage';
-import GenieIcon from '../icons/echo/genie-icon';
+import { AppText } from '../../../components/ui/app-text';
+import { COLORS } from '../../../constants/colors';
+import AdviceIcon from '../../../components/icons/echo/advice-icon';
+import { useAsyncStorage } from '../../../hooks/use-storage';
+import GenieIcon from '../../../components/icons/echo/genie-icon';
 
 interface Message {
   conversation_id: string;

@@ -6,7 +6,6 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import CalendarIcon from '../icons/Calendar';
 import { fontFamilies } from '../../constants/fonts';
 import { COLORS } from '../../constants/colors';
 

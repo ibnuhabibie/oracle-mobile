@@ -21,7 +21,7 @@ const mbtiIcons: { [key: string]: any } = {
     ESFP: require('../../assets/icons/mbti/esfp.png'),
 };
 
-import ShinyContainer from "../../components/widgets/ShinyContainer";
+import ShinyContainer from "../../components/widgets/shiny-container";
 import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
 import api from "../../utils/http";

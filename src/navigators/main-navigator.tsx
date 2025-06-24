@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import api from '../utils/http';
-import HomeIcon from '../components/icons/Home';
-import ProfileIcon from '../components/icons/Profile';
-import EchoIcon from '../components/icons/Echo';
+import HomeIcon from '../components/icons/home-icon';
+import ProfileIcon from '../components/icons/profile/profile-icon';
+import EchoIcon from '../components/icons/echo/echo-icon';
 
 import Onboarding from '../screens/auth/onboarding';
 import LanguageSelection from '../screens/auth/language-selection';
@@ -27,7 +27,7 @@ import Profile from '../screens/main/profile/profile';
 import PurchaseHistory from '../screens/main/profile/purchase-history';
 
 import ComponentGallery from '../screens/dev/component-gallery';
-import AskAffinityIcon from '../components/icons/ask-affinity';
+import AskAffinityIcon from '../components/icons/ask-affinity/ask-affinity-icon';
 import WebviewContent from '../screens/main/webview-content';
 import AskAffinity from '../screens/main/service/affinity/ask-affinity';
 import AffinityResults from '../screens/main/service/affinity/affinity-results';

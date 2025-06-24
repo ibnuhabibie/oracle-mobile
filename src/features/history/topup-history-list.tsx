@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Pressable, Text, View, ActivityIndicator } from "react-native";
-import CartIcon from "../../components/icons/Cart";
-import CoinIcon from "../../components/icons/Coin";
+import CartIcon from "../../components/icons/profile/cart-icon";
+import CoinIcon from "../../components/icons/profile/coin-icon";
 import { fontFamilies } from "../../constants/fonts";
 import api from "../../utils/http";
 

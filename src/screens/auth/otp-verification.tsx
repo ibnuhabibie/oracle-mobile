@@ -3,11 +3,11 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { Alert, Keyboard, StyleSheet, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
-import SMSIcon from '../../components/icons/SMS';
+import SMSIcon from '../../components/icons/auth/sms-icon';
 import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
 import { AppText } from '../../components/ui/app-text';
-import ShinyContainer from '../../components/widgets/ShinyContainer';
+import ShinyContainer from '../../components/widgets/shiny-container';
 import { MainNavigatorParamList } from '../../navigators/types';
 import api from '../../utils/http';
 import { useOtpTimer } from '../../hooks/use-otp-timer';

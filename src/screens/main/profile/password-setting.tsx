@@ -12,7 +12,7 @@ import {
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../navigators/types';
-import ArrowIcon from '../../../components/icons/Arrow';
+import ArrowIcon from '../../../components/icons/arrow-icon';
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import PasswordToggle from '../../../components/ui/password-toggle';
