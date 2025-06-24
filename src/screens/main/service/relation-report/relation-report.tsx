@@ -17,16 +17,16 @@ type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Relat
 
 const CARD_DATA = [
     {
-        icon: require('../../../../assets/relation-report/icon-1.png'), label: 'What is your perspective on love?'
+        icon: require('../../../../assets/icons/services/relation-report/icon-1.png'), label: 'What is your perspective on love?'
     },
     {
-        icon: require('../../../../assets/relation-report/icon-2.png'), label: 'How does your love interest sees you?'
+        icon: require('../../../../assets/icons/services/relation-report/icon-2.png'), label: 'How does your love interest sees you?'
     },
     {
-        icon: require('../../../../assets/relation-report/icon-3.png'), label: 'What kind of person your love interest is?'
+        icon: require('../../../../assets/icons/services/relation-report/icon-3.png'), label: 'What kind of person your love interest is?'
     },
     {
-        icon: require('../../../../assets/relation-report/icon-4.png'), label: 'What are the personality traits, preferences and deal-breakers?'
+        icon: require('../../../../assets/icons/services/relation-report/icon-4.png'), label: 'What are the personality traits, preferences and deal-breakers?'
     },
 ];
 
@@ -49,7 +49,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         >
             <AppText variant='subtitle1' style={styles.title}>Curious if you're a perfect{'\n'}match? Find out now!</AppText>
             <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
-                <Image source={require('../../../../assets/love-forecast/service-icon.png')} />
+                <Image source={require('../../../../assets/icons/services/relation-report/service-icon.png')} />
             </ShinyContainer>
             <AppText style={styles.subtitle} variant='title4' color='primary'>
                 Astrology meets Bazi for a fresh take on your love compatibility.

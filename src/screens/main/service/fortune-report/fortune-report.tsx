@@ -17,22 +17,22 @@ type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Fortun
 
 const CARD_DATA = [
     {
-        icon: require('../../../../assets/fortune-report/icon-1.png'),
+        icon: require('../../../../assets/icons/services/fortune-report/icon-1.png'),
         title: 'Health',
         subtitle: 'Using Astro and Bazi, analyze your health condition to help you take timely preventive measures.'
     },
     {
-        icon: require('../../../../assets/fortune-report/icon-2.png'),
+        icon: require('../../../../assets/icons/services/fortune-report/icon-2.png'),
         title: 'Finance',
         subtitle: 'Using Astro and Bazi, Analyze yearly Wealth Palace trends to spot the best times for wealth opportunities.'
     },
     {
-        icon: require('../../../../assets/fortune-report/icon-3.png'),
+        icon: require('../../../../assets/icons/services/fortune-report/icon-3.png'),
         title: 'Career',
         subtitle: 'Using Astro and Bazi, reveal yourcareer luck and challenges through your Career Palace stars.'
     },
     {
-        icon: require('../../../../assets/fortune-report/icon-4.png'),
+        icon: require('../../../../assets/icons/services/fortune-report/icon-4.png'),
         title: 'Relationship',
         subtitle: 'Using Astro and Bazi, Track yearly love trends through your Marriage Palace.'
     },

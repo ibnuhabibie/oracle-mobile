@@ -79,7 +79,7 @@ class MBTIProfile extends React.Component {
                 <View style={styles.card}>
                     <ShinyContainer dark={false} size={240} style={{ marginTop: 8 }}>
                         <Image
-                            source={require(`../../assets/icons/strength.png`)}
+                            source={require(`../../assets/icons/mbti-profile/strength.png`)}
                         />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Strengths</AppText>
@@ -92,7 +92,7 @@ class MBTIProfile extends React.Component {
                 <View style={styles.card}>
                     <ShinyContainer dark={false} size={240} style={{ marginTop: 8 }}>
                         <Image
-                            source={require(`../../assets/icons/weakness.png`)}
+                            source={require(`../../assets/icons/mbti-profile/weakness.png`)}
                         />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Weaknesses</AppText>
@@ -105,7 +105,7 @@ class MBTIProfile extends React.Component {
                 <View style={styles.card}>
                     <ShinyContainer dark={false} size={240} style={{ marginTop: 8 }}>
                         <Image
-                            source={require(`../../assets/icons/relationship.png`)}
+                            source={require(`../../assets/icons/mbti-profile/relationship.png`)}
                         />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Relationships</AppText>
@@ -118,7 +118,7 @@ class MBTIProfile extends React.Component {
                 <View style={styles.card}>
                     <ShinyContainer dark={false} size={240} style={{ marginTop: 8 }}>
                         <Image
-                            source={require(`../../assets/icons/career.png`)}
+                            source={require(`../../assets/icons/mbti-profile/career.png`)}
                         />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Career</AppText>

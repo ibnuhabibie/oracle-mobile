@@ -11,8 +11,8 @@ const ShinyContainer: React.FC<{
     <Image
       source={
         dark
-          ? require('../../assets/images/shiny-background.png')
-          : require('../../assets/images/shiny-background-white.png')
+          ? require('../../assets/images/shiny/shiny-background.png')
+          : require('../../assets/images/shiny/shiny-background-white.png')
       }
       style={{
         width: size,

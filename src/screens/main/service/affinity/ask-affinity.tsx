@@ -18,7 +18,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     const { t } = useTranslation();
 
     const screenWidth = Dimensions.get('window').width;
-    const localImage = require('../../../../assets/images/banner-ask-affinity.png');
+    const localImage = require('../../../../assets/images/ask-affinity/banner.png');
     const { width, height } = Image.resolveAssetSource(localImage);
     const aspectRatio = width / height;
 

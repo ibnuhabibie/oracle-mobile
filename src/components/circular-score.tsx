@@ -28,19 +28,19 @@ class CircularScore extends Component<CircularScoreProps, CircularScoreState> {
     componentDidMount(): void {
         if (this.props.type === 'wealth') {
             this.setState({
-                imageSrc: require('../assets/icons/wealth-daily.png')
+                imageSrc: require('../assets/icons/daily-dashboard/wealth-daily.png')
             });
         } else if (this.props.type === 'learning') {
             this.setState({
-                imageSrc: require('../assets/icons/learning-daily.png')
+                imageSrc: require('../assets/icons/daily-dashboard/learning-daily.png')
             });
         } else if (this.props.type === 'relation') {
             this.setState({
-                imageSrc: require('../assets/icons/relation-daily.png')
+                imageSrc: require('../assets/icons/daily-dashboard/relation-daily.png')
             });
         } else if (this.props.type === 'career') {
             this.setState({
-                imageSrc: require('../assets/icons/career-daily.png')
+                imageSrc: require('../assets/icons/daily-dashboard/career-daily.png')
             });
         }
     }
