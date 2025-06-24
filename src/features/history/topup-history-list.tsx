@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Pressable, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet } from "react-native";
+
+import { fontFamilies } from "../../constants/fonts";
 import CartIcon from "../../components/icons/profile/cart-icon";
 import CoinIcon from "../../components/icons/profile/coin-icon";
-import { fontFamilies } from "../../constants/fonts";
 import api from "../../utils/http";
+import { formatDateTime } from "../../utils/date";
 
 interface TopUpItem {
     topup_history_id: number;
@@ -26,8 +29,12 @@ interface TopUpItem {
         package_id: number;
         name: string;
         price: string;
-    };
-    subscription: any | null;
+    } | null;
+    subscription: {
+        subscription_id: number;
+        name: string;
+        price: number;
+    } | null;
 }
 
 interface TopupHistoryListProps {
@@ -37,6 +44,10 @@ interface TopupHistoryListProps {
 const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
     const [data, setData] = useState<TopUpItem[]>([]);
     const [loading, setLoading] = useState(true);
+
+    const handleItemPress = (item: TopUpItem) => {
+        onItemPress?.(item);
+    };
 
     useEffect(() => {
         const fetchTopupHistories = async () => {
@@ -54,63 +65,37 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
     }, []);
 
     const renderTopUpItem = ({ item }: { item: TopUpItem }) => {
-        // Format date
-        const dateObj = new Date(item.created_at);
-        // Format: 25 Jan 2025 10:00
-        const day = dateObj.getDate().toString().padStart(2, '0');
-        const month = dateObj.toLocaleString('en-US', { month: 'short' });
-        const year = dateObj.getFullYear();
-        const hour = dateObj.getHours().toString().padStart(2, '0');
-        const minute = dateObj.getMinutes().toString().padStart(2, '0');
-        const formattedDate = `${day} ${month} ${year} ${hour}:${minute}`;
+        const formattedDate = formatDateTime(item.created_at);
 
         return (
             <Pressable
-                style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    paddingVertical: 16,
-                    borderBottomWidth: 1,
-                    borderBottomColor: "#F8F8F8",
-                }}
-                onPress={() => onItemPress?.(item)}
+                style={styles.pressable}
+                onPress={() => handleItemPress(item)}
             >
-                <View
-                    style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 20,
-                        backgroundColor: "#F5F5F5",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginRight: 16,
-                    }}
-                >
+                <View style={styles.iconContainer}>
                     <CartIcon size={24} />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
-                        <Text style={{ fontSize: 16, fontWeight: "600", color: "#333", marginRight: 8, fontFamily: fontFamilies.ARCHIVO.light }}>
-                            {item.package?.name || item.topup_type}
+                    <View style={styles.row}>
+                        <Text style={styles.packageName}>
+                            {item.package?.name || item.subscription?.name || item.topup_type}
                         </Text>
-                        <CoinIcon size={19} />
+                        <CoinIcon size={19} color={item.package ? "#EB4335" : "#E0AE1E"} />
                     </View>
-                    <Text style={{ fontSize: 14, color: "#666", fontFamily: fontFamilies.ARCHIVO.light }}>
-                        Transaction: {item.transaction_id}
-                    </Text>
+                    <Text style={styles.transaction}>Top-up complete! You’re good to go.</Text>
                 </View>
-                <View style={{ alignItems: "flex-end" }}>
-                    <Text style={{ fontSize: 12, color: "#999", fontFamily: fontFamilies.ARCHIVO.light }}>
+                <View style={styles.dateContainer}>
+                    <Text style={styles.date}>
                         {formattedDate}
                     </Text>
                 </View>
-            </Pressable>
+            </Pressable >
         );
     };
 
     if (loading) {
         return (
-            <View style={{ padding: 24, alignItems: "center" }}>
+            <View style={styles.loading}>
                 <ActivityIndicator size="small" />
             </View>
         );
@@ -122,14 +107,74 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
             renderItem={renderTopUpItem}
             keyExtractor={(item) => String(item.topup_history_id)}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 20 }}
+            contentContainerStyle={styles.listContent}
             ListEmptyComponent={
-                <View style={{ alignItems: "center", marginTop: 32 }}>
-                    <Text style={{ color: "#999", fontFamily: fontFamilies.ARCHIVO.light }}>No top up history found.</Text>
+                <View style={styles.empty}>
+                    <Text style={styles.emptyText}>No top up history found.</Text>
                 </View>
             }
         />
     );
 };
+
+const styles = StyleSheet.create({
+    pressable: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: "#F8F8F8",
+    },
+    iconContainer: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: "#F5F5F5",
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 16,
+    },
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 4,
+    },
+    packageName: {
+        fontSize: 16,
+        fontWeight: "600",
+        color: "#333",
+        marginRight: 8,
+        fontFamily: fontFamilies.ARCHIVO.light,
+    },
+    transaction: {
+        fontSize: 14,
+        color: "#666",
+        fontFamily: fontFamilies.ARCHIVO.light,
+    },
+    dateContainer: {
+        alignItems: "flex-end",
+    },
+    date: {
+        fontSize: 12,
+        color: "#999",
+        fontFamily: fontFamilies.ARCHIVO.light,
+    },
+    loading: {
+        padding: 24,
+        alignItems: "center",
+    },
+    empty: {
+        alignItems: "center",
+        marginTop: 32,
+    },
+    emptyText: {
+        color: "#999",
+        fontFamily: fontFamilies.ARCHIVO.light,
+    },
+    listContent: {
+        paddingBottom: 20,
+    },
+    // ...existing styles
+});
 
 export default TopupHistoryList;

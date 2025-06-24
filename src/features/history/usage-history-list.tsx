@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Pressable, Text, View, ActivityIndicator } from "react-native";
 import CommentsIcon from "../../components/icons/profile/comments-icon";
-import CoinIcon from "../../components/icons/profile/coin-icon";
 import { fontFamilies } from "../../constants/fonts";
 import api from "../../utils/http";
+import { formatDateTime } from "../../utils/date";
+import { StyleSheet } from "react-native";
 
 interface UsageItem {
     usage_history_id: number;
@@ -22,6 +23,70 @@ interface UsageItem {
 interface UsageHistoryListProps {
     onItemPress?: (item: UsageItem) => void;
 }
+
+const serviceTypeLabels: Record<string, string> = {
+    ask_any_question: "Ask Affinity",
+    love_forecast: "Love Forecast",
+    transit_report: "Fortune Report",
+    relationship_compatibility: "Relation Compatibility",
+    advice_genie: "Advice Genie",
+};
+
+const getServiceTypeLabel = (type: string) => serviceTypeLabels[type] || type;
+
+const styles = StyleSheet.create({
+    pressable: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: "#F8F8F8",
+    },
+    iconContainer: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: "#F5F5F5",
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 16,
+    },
+    serviceType: {
+        fontSize: 16,
+        fontWeight: "600",
+        color: "#333",
+        marginBottom: 4,
+        fontFamily: fontFamilies.ARCHIVO.light,
+    },
+    details: {
+        fontSize: 14,
+        color: "#666",
+        fontFamily: fontFamilies.ARCHIVO.light,
+    },
+    dateContainer: {
+        alignItems: "flex-end",
+    },
+    date: {
+        fontSize: 12,
+        color: "#999",
+        fontFamily: fontFamilies.ARCHIVO.light,
+    },
+    loading: {
+        padding: 24,
+        alignItems: "center",
+    },
+    empty: {
+        alignItems: "center",
+        marginTop: 32,
+    },
+    emptyText: {
+        color: "#999",
+        fontFamily: fontFamilies.ARCHIVO.light,
+    },
+    listContent: {
+        paddingBottom: 20,
+    },
+});
 
 const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
     const [data, setData] = useState<UsageItem[]>([]);
@@ -43,61 +108,27 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
     }, []);
 
     const renderUsageItem = ({ item }: { item: UsageItem }) => {
-        // Parse request_data for display (example: show partner1/partner2 birth dates)
-        let requestSummary = "";
-        try {
-            const req = JSON.parse(item.request_data);
-            if (req.partner1_birth_date && req.partner2_birth_date) {
-                requestSummary = `Partner1: ${req.partner1_birth_date}, Partner2: ${req.partner2_birth_date}`;
-            } else {
-                requestSummary = item.request_data;
-            }
-        } catch {
-            requestSummary = item.request_data;
-        }
-
         // Format date
-        const dateObj = new Date(item.created_at);
-        // Format: 25 Jan 2025 10:00
-        const day = dateObj.getDate().toString().padStart(2, '0');
-        const month = dateObj.toLocaleString('en-US', { month: 'short' });
-        const year = dateObj.getFullYear();
-        const hour = dateObj.getHours().toString().padStart(2, '0');
-        const minute = dateObj.getMinutes().toString().padStart(2, '0');
-        const formattedDate = `${day} ${month} ${year} ${hour}:${minute}`;
+        const formattedDate = formatDateTime(item.created_at);
 
         return (
             <Pressable
-                style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    paddingVertical: 16,
-                    borderBottomWidth: 1,
-                    borderBottomColor: "#F8F8F8",
-                }}
+                style={styles.pressable}
                 onPress={() => onItemPress?.(item)}
             >
-                <View
-                    style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 20,
-                        backgroundColor: "#F5F5F5",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginRight: 16,
-                    }}
-                >
+                <View style={styles.iconContainer}>
                     <CommentsIcon />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 16, fontWeight: "600", color: "#333", marginBottom: 4, fontFamily: fontFamilies.ARCHIVO.light }}>
-                        {item.service_type}
+                    <Text style={styles.serviceType}>
+                        {getServiceTypeLabel(item.service_type)}
                     </Text>
-                    <Text style={{ fontSize: 14, color: "#666", fontFamily: fontFamilies.ARCHIVO.light }}>{requestSummary}</Text>
+                    <Text style={styles.details}>
+                        Your purchase is in, see the details!
+                    </Text>
                 </View>
-                <View style={{ alignItems: "flex-end" }}>
-                    <Text style={{ fontSize: 12, color: "#999", fontFamily: fontFamilies.ARCHIVO.light }}>
+                <View style={styles.dateContainer}>
+                    <Text style={styles.date}>
                         {formattedDate}
                     </Text>
                 </View>
@@ -107,7 +138,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
 
     if (loading) {
         return (
-            <View style={{ padding: 24, alignItems: "center" }}>
+            <View style={styles.loading}>
                 <ActivityIndicator size="small" />
             </View>
         );
@@ -119,10 +150,10 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
             renderItem={renderUsageItem}
             keyExtractor={(item) => String(item.usage_history_id)}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 20 }}
+            contentContainerStyle={styles.listContent}
             ListEmptyComponent={
-                <View style={{ alignItems: "center", marginTop: 32 }}>
-                    <Text style={{ color: "#999", fontFamily: fontFamilies.ARCHIVO.light }}>No usage history found.</Text>
+                <View style={styles.empty}>
+                    <Text style={styles.emptyText}>No usage history found.</Text>
                 </View>
             }
         />

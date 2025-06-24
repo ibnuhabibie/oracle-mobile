@@ -1,8 +1,7 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-// i18n
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from "react-i18next";
 
 import AppInput from '../../components/ui/app-input';
@@ -128,7 +127,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     const watchedTime = watch('birth_time');
     const watchedGender = watch('gender');
 
-
     const formRules = {
         full_name: {
             required: t('NAME IS REQUIRED'),
@@ -175,8 +173,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         fetchCountries();
     }, []);
 
-
-
     const onDateChange = (event: any, selectedDate?: Date) => {
         setShowDatePicker(false);
         if (selectedDate) {
@@ -206,12 +202,8 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     };
 
     return (
-        <ScrollView
-            style={{ flex: 1, width: '100%' }}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 32 }}>
+        <>
             <View style={styles.formContainer}>
-
                 <Text style={styles.label}>{t("Full Name")}</Text>
                 <AppInput
                     control={control}
@@ -345,15 +337,17 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             )}
 
             {/* Country Modal */}
-            {renderDropdownModal(
-                showCountryModal,
-                () => setShowCountryModal(false),
-                'Select Country',
-                countries,
-                selectCountry,
-                watchedCountry,
-                'iso3'
-            )}
+            {
+                renderDropdownModal(
+                    showCountryModal,
+                    () => setShowCountryModal(false),
+                    'Select Country',
+                    countries,
+                    selectCountry,
+                    watchedCountry,
+                    'iso3'
+                )
+            }
 
             {/* City Modal */}
             {renderDropdownModal(
@@ -365,7 +359,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 watchedCity,
                 'name'
             )}
-        </ScrollView>
+        </>
     );
 };
 

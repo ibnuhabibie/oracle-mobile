@@ -13,7 +13,7 @@ import ProfileCard from '../../../features/profile/report/profile-card';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
 import api from '../../../utils/http';
 
-type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
+type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'BaziResults'>;
 
 const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
   const [loading, setLoading] = useState(true);

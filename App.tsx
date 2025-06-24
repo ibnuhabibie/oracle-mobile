@@ -7,7 +7,7 @@ import MainNavigator from './src/navigators/main-navigator';
 import { FloatingPreviewButton } from './src/features/component-preview/floating-preview-button';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-enableScreens(false);
+enableScreens(true);
 
 class App extends Component {
   render() {

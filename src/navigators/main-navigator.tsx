@@ -24,7 +24,7 @@ import EditProfile from '../screens/main/profile/edit-profile';
 import MbtiResults from '../screens/main/profile/mbti-results';
 import PasswordSetting from '../screens/main/profile/password-setting';
 import Profile from '../screens/main/profile/profile';
-import PurchaseHistory from '../screens/main/profile/purchase-history';
+import PurchaseHistory from '../screens/main/history/purchase-history';
 
 import ComponentGallery from '../screens/dev/component-gallery';
 import AskAffinityIcon from '../components/icons/ask-affinity/ask-affinity-icon';
