@@ -18,28 +18,28 @@ type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveFor
 
 const CARD_DATA = [
   {
-    icon: require('../../../../assets/love-forecast/icon-1.png'), label: 'Introduction: Your love blueprint'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-1.png'), label: 'Introduction: Your love blueprint'
   },
   {
-    icon: require('../../../../assets/love-forecast/icon-2.png'), label: 'What are you lacking in love?'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-2.png'), label: 'What are you lacking in love?'
   },
   {
-    icon: require('../../../../assets/love-forecast/icon-3.png'), label: 'What you look out for in a partner'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-3.png'), label: 'What you look out for in a partner'
   },
   {
-    icon: require('../../../../assets/love-forecast/icon-4.png'), label: 'What type of partner suits you'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-4.png'), label: 'What type of partner suits you'
   },
   {
-    icon: require('../../../../assets/love-forecast/icon-5.png'), label: 'Love outlook for the year'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-5.png'), label: 'Love outlook for the year'
   },
   {
-    icon: require('../../../../assets/love-forecast/icon-6.png'), label: 'Where to find love'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-6.png'), label: 'Where to find love'
   },
   {
-    icon: require('../../../../assets/love-forecast/icon-7.png'), label: 'Personalized questions'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-7.png'), label: 'Personalized questions'
   },
   {
-    icon: require('../../../../assets/love-forecast/icon-8.png'), label: 'Conclusion: Your love story ahead'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-8.png'), label: 'Conclusion: Your love story ahead'
   },
 ];
 
@@ -75,7 +75,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
     >
       <AppText variant='subtitle1' style={styles.title}>EMOTIONAL CONFUSION? GET IT{'\n'}RESOLVED IN ONE GO.</AppText>
       <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
-        <Image source={require('../../../../assets/love-forecast/service-icon.png')} />
+        <Image source={require('../../../../assets/icons/services/love-forecast/service-icon.png')} />
       </ShinyContainer>
       <AppText style={styles.subtitle} variant='title4' color='primary'>
         Four key directions to help you{'\n'}overcome emotional{'\n'}challenges.

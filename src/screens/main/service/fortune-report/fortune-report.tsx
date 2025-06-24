@@ -11,7 +11,7 @@ import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/ShinyContainer';
 import ScreenContainer from '../../../../components/layouts/ScreenContainer';
-import Header from '../../../../components/ui/Header';
+import Header from '../../../../components/ui/header';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -57,7 +57,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         >
             <AppText variant='subtitle1' style={styles.title}>Curious about your 2025? See{'\n'}your fortune now!</AppText>
             <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
-                <Image source={require('../../../../assets/fortune-report/service-icon.png')} />
+                <Image source={require('../../../../assets/icons/services/fortune-report/service-icon.png')} />
             </ShinyContainer>
             <AppText style={styles.subtitle} variant='title4' color='primary'>
                 Fortune reading meets planning for a fresh take on your 2025.

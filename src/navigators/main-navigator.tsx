@@ -23,7 +23,6 @@ import BaziResults from '../screens/main/profile/bazi-results';
 import EditProfile from '../screens/main/profile/edit-profile';
 import MbtiResults from '../screens/main/profile/mbti-results';
 import PasswordSetting from '../screens/main/profile/password-setting';
-import PrivacyPolicy from '../screens/main/profile/privacy-policy';
 import Profile from '../screens/main/profile/profile';
 import PurchaseHistory from '../screens/main/profile/purchase-history';
 
@@ -175,7 +174,6 @@ const MainNavigator = () => {
       <Stack.Screen name="WebviewContent" component={WebviewContent} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="PasswordSetting" component={PasswordSetting} />
-      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
       <Stack.Screen name="PurchaseHistory" component={PurchaseHistory} />
       <Stack.Screen name="TopUp" component={Topup} />
 
