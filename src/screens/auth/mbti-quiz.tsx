@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { APP_URL } from '@env';
 
-import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../components/layouts/screen-container';
 import { MainNavigatorParamList } from '../../navigators/types';
 import { Text } from 'react-native-svg';
 

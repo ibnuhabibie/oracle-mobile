@@ -6,7 +6,7 @@ import {
 import { useTranslation } from "react-i18next";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import ProfileForm from '../../../features/profile/profile-form';
 import api from '../../../utils/http';

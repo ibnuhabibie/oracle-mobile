@@ -11,7 +11,7 @@ import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
 import { Calendar } from 'react-native-calendars';
-import ScreenContainer from '../../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../../components/layouts/screen-container';
 import CalendarIcon from '../../../../components/icons/echo/calendar-icon';
 
 

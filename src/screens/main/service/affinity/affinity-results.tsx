@@ -10,7 +10,7 @@ import {
 
 import ArrowIcon from '../../../../components/icons/Arrow';
 import { MainNavigatorParamList } from '../../../../navigators/types';
-import ScreenContainer from '../../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../../components/layouts/screen-container';
 import { fontFamilies } from '../../../../constants/fonts';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';

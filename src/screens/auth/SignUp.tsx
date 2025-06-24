@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../components/layouts/screen-container';
 import SignUpForm from '../../features/auth/signup-form';
 import { MainNavigatorParamList } from '../../navigators/types';
 import { COLORS } from '../../constants/colors';

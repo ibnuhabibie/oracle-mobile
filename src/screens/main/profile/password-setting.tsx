@@ -13,7 +13,7 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import ArrowIcon from '../../../components/icons/Arrow';
-import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import PasswordToggle from '../../../components/ui/password-toggle';
 import AppInput from '../../../components/ui/app-input';

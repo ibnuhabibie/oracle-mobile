@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import ArrowIcon from '../../../components/icons/Arrow';
-import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';

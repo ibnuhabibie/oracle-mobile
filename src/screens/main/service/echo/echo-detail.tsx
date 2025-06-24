@@ -20,7 +20,7 @@ import { AppButton } from '../../../../components/ui/app-button';
 import { formatDate, formatDateToHeader } from '../../../../utils/date';
 import ChatArea from '../../../../components/widgets/ChatArea';
 import Header from '../../../../components/ui/header';
-import ScreenContainer from '../../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../../components/layouts/screen-container';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 

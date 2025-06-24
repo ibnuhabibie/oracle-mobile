@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import CheckmarkIcon from '../../components/icons/Checkmark';
-import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
 import { AppText } from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/ShinyContainer';

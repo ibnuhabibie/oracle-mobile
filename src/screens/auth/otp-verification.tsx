@@ -4,7 +4,7 @@ import { Alert, Keyboard, StyleSheet, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import SMSIcon from '../../components/icons/SMS';
-import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
 import { AppText } from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/ShinyContainer';

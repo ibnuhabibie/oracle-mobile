@@ -24,7 +24,7 @@ import LogoutIcon from '../../../components/icons/Logout';
 import ShieldIcon from '../../../components/icons/Shield';
 import StarIcon from '../../../components/icons/Star';
 import TermsIcon from '../../../components/icons/Terms';
-import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../components/layouts/screen-container';
 import { COLORS } from '../../../constants/colors';
 import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';

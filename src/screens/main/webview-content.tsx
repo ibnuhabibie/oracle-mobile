@@ -5,7 +5,7 @@ import WebView from 'react-native-webview';
 import { useRoute } from '@react-navigation/native';
 import { useTranslation } from "react-i18next";
 
-import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../components/layouts/screen-container';
 import { MainNavigatorParamList } from '../../navigators/types';
 import Header from '../../components/ui/header';
 

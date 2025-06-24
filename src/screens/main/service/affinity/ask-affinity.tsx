@@ -9,7 +9,7 @@ import { AppText } from '../../../../components/ui/app-text';
 import AppInput from '../../../../components/ui/app-input';
 import { AppButton } from '../../../../components/ui/app-button';
 import { COLORS } from '../../../../constants/colors';
-import ScreenContainer from '../../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../../components/layouts/screen-container';
 import api from '../../../../utils/http';
 
 type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffinity'>;

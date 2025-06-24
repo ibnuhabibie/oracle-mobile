@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';

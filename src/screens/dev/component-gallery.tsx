@@ -4,7 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { AppButton } from '../../components/ui/app-button';
 import { MainNavigatorParamList } from '../../navigators/types';
-import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../components/layouts/screen-container';
 
 type Props = {
     navigation: NativeStackNavigationProp<MainNavigatorParamList, 'ComponentGalery'>;

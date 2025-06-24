@@ -6,7 +6,7 @@ import {
   Image
 } from 'react-native';
 
-import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';

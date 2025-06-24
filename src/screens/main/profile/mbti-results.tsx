@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 
-import ScreenContainer from '../../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../../components/layouts/screen-container';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import MBTIProfile from '../../../features/mbti/mbti-profile';
 import Header from '../../../components/ui/header';

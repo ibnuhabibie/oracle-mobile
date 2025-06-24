@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import CenterCarousel from '../../components/widgets/CenterCarousel';
 import { MainNavigatorParamList } from '../../navigators/types';
-import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../components/layouts/screen-container';
 import ProfileDashboard from '../../features/profile/profile-dashboard';
 import { AppText } from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/ShinyContainer';

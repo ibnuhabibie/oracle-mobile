@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, ActivityIndicator } from 'react-native';
 
 import { MainNavigatorParamList } from '../../navigators/types';
-import ScreenContainer from '../../components/layouts/ScreenContainer';
+import ScreenContainer from '../../components/layouts/screen-container';
 import Header from '../../components/ui/header';
 import { AppText } from '../../components/ui/app-text';
 import api from '../../utils/http';
