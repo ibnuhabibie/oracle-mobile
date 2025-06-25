@@ -1,6 +1,10 @@
 import React from "react";
 import { Modal, SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import CoinIcon from "../../components/icons/profile/coin-icon";
+import CommentsIcon from "../../components/icons/profile/comments-icon";
+import { COLORS } from "../../constants/colors";
+import { AppButton } from "../../components/ui/app-button";
+import { useNavigation } from "@react-navigation/native";
 
 interface UsageReceiptModalProps {
   visible: boolean;
@@ -31,6 +35,26 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     return `${day} ${month} ${year}, ${hour}:${min} ${date.getHours() >= 12 ? "PM" : "AM"}`;
   };
 
+  const serviceTypeLabels: Record<string, string> = {
+    ask_any_question: "Ask Affinity",
+    love_forecast: "Love Forecast",
+    transit_report: "Fortune Report",
+    relationship_compatibility: "Relation Compatibility",
+    advice_genie: "Advice Genie",
+  };
+
+  const getServiceTypeLabel = (type: string) => serviceTypeLabels[type] || type;
+
+  const navigation = useNavigation()
+
+  const handleResult = () => {
+    let data = JSON.parse(item.response_data)
+    navigation.push('AffinityResults', {
+      question: data.question,
+      affinityResult: { data }
+    })
+  }
+
   return (
     <Modal
       visible={visible}
@@ -48,7 +72,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           </View>
           <View style={styles.modalRow}>
             <Text style={styles.modalLabel}>Order Number</Text>
-            <Text style={styles.modalValue}>{item.transaction_id}</Text>
+            <Text style={styles.modalValue}>{item.usage_history_id}</Text>
           </View>
           <View style={styles.modalRow}>
             <Text style={styles.modalLabel}>Date Purchased</Text>
@@ -58,39 +82,38 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           <Text style={styles.modalSectionTitle}>Order Item(s)</Text>
           <View style={styles.modalRow}>
             <View style={styles.modalItemIcon}>
-              {item.item_icon || <CoinIcon size={20} color="#E0AE1E" />}
+              <CommentsIcon />
             </View>
-            <Text style={styles.modalItemName}>{item.item_name}</Text>
-            <Text style={styles.modalItemPoints}>
-              {item.points} <CoinIcon size={16} color="#E0AE1E" />
-            </Text>
-          </View>
-          <View style={styles.modalRow}>
-            <View style={{ flex: 1 }} />
-            <Text style={styles.modalTotalLabel}>Total:</Text>
-            <Text style={styles.modalTotalValue}>
-              {item.points} <CoinIcon size={16} color="#E0AE1E" />
-            </Text>
+            <Text style={styles.modalItemName}>{getServiceTypeLabel(item.service_type)}</Text>
+            <View style={styles.modalItemPoints}>
+              <Text>{item.credit_journal.credits_used}</Text>
+              <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+            </View>
           </View>
           <View style={styles.modalSectionDivider} />
           <View style={styles.modalRow}>
             <Text style={styles.modalLabel}>Previous Points</Text>
-            <Text style={styles.modalPoints}>
-              {item.previous_points} <CoinIcon size={14} color="#E0AE1E" />
-            </Text>
+            <View style={styles.modalItemPoints}>
+              <Text>{item.credit_journal.credits_before}</Text>
+              <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+            </View>
           </View>
           <View style={styles.modalRow}>
             <Text style={styles.modalLabel}>Points Used</Text>
-            <Text style={styles.modalPointsUsed}>
-              -{item.points_used} <CoinIcon size={14} color="#E0AE1E" />
-            </Text>
+            <View style={styles.modalItemPoints}>
+              <Text style={{ color: 'red' }}>{item.credit_journal.credits_used}</Text>
+              <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+            </View>
           </View>
           <View style={styles.modalRow}>
             <Text style={styles.modalLabel}>Remaining Points</Text>
-            <Text style={styles.modalPointsTotal}>
-              {item.remaining_points} <CoinIcon size={14} color="#E0AE1E" />
-            </Text>
+            <View style={styles.modalItemPoints}>
+              <Text>{item.credit_journal.credits_after}</Text>
+              <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+            </View>
           </View>
+
+          <AppButton title="See Results" style={{ marginTop: 18 }} onPress={handleResult} />
         </View>
       </SafeAreaView>
     </Modal>
@@ -120,7 +143,6 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 18,
-    fontWeight: "bold",
     color: "#C1976B",
     letterSpacing: 1,
     flex: 1,
@@ -163,6 +185,10 @@ const styles = StyleSheet.create({
   },
   modalItemIcon: {
     marginRight: 8,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: COLORS.neutral,
+    borderRadius: 8
   },
   modalItemName: {
     fontSize: 15,
@@ -170,12 +196,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   modalItemPoints: {
-    fontSize: 15,
-    color: "#222",
-    fontWeight: "600",
-    marginLeft: 8,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4
   },
   modalTotalLabel: {
     fontSize: 15,
@@ -187,13 +210,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#222",
     fontWeight: "bold",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  modalPoints: {
-    color: "#222",
-    fontWeight: "bold",
-    fontSize: 14,
     flexDirection: "row",
     alignItems: "center",
   },
