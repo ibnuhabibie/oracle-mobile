@@ -40,7 +40,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     love_forecast: "Love Forecast",
     transit_report: "Fortune Report",
     relationship_compatibility: "Relation Compatibility",
-    advice_genie: "Advice Genie",
+    ask_secret_diary: "Advice Genie",
   };
 
   const getServiceTypeLabel = (type: string) => serviceTypeLabels[type] || type;
@@ -53,7 +53,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
       question: data.question,
       affinityResult: { data }
     })
-  }
+  } 
 
   return (
     <Modal

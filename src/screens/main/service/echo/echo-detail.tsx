@@ -21,6 +21,7 @@ import { formatDate, formatDateToHeader } from '../../../../utils/date';
 import ChatArea from '../../../../features/services/echo/chat-area';
 import Header from '../../../../components/ui/header';
 import ScreenContainer from '../../../../components/layouts/screen-container';
+import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 
@@ -146,19 +147,12 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
         lastMessage={lastMessage}
         setModalVisible={setModalVisible}
       />
-      <Modal visible={modalVisible} transparent animationType="slide">
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <AppText variant='subtitle1' color='primary' style={styles.title}>PURCHASE ALERT</AppText>
-            <AppText style={{ textAlign: 'center', lineHeight: 22 }}>To ask the Geenie, it will cost 15{'\n'}Continue?</AppText>
-            <AppText style={{ textAlign: 'center', marginTop: 14 }} color='neutral'>Your Coins: 1650</AppText>
-            <View style={styles.buttonGroup}>
-              <AppButton title="Continue to Purchase" variant='secondary' onPress={handleContinue} loading={purchaseLoading} />
-              <AppButton title="Cancel" variant='outline' onPress={() => setModalVisible(false)} />
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <PurchaseAlertModal
+        visible={modalVisible}
+        onContinue={handleContinue}
+        onCancel={() => setModalVisible(false)}
+        service='secret_diary'
+      />
     </ScreenContainer>
   );
 };

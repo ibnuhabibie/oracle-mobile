@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
@@ -10,7 +10,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
-import LoveForecastForm, { LoveForecastFormValues } from '../../../../features/services/love-forecast/love-forecast-form';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 
@@ -43,9 +42,7 @@ const CARD_DATA = [
   },
 ];
 
-
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
-  const [showForm, setShowForm] = useState(false);
   return (
     <ScreenContainer
       header={
@@ -55,22 +52,11 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         />
       }
       floatingFooter={
-        <>
-          {!showForm ? (
-            <AppButton
-              title="Purchase for 15 💛"
-              variant="primary"
-              onPress={() => setShowForm(true)}
-            />
-          ) : (
-            <LoveForecastForm
-              onSubmit={(values: LoveForecastFormValues) => {
-                setShowForm(false);
-              }}
-              onCancel={() => setShowForm(false)}
-            />
-          )}
-        </>
+        <AppButton
+          title="Purchase for 15 💛"
+          variant="primary"
+          onPress={() => {}}
+        />
       }
     >
       <AppText variant='subtitle1' style={styles.title}>EMOTIONAL CONFUSION? GET IT{'\n'}RESOLVED IN ONE GO.</AppText>

@@ -18,7 +18,7 @@ interface UsageItem {
         full_name: string;
         email: string;
     };
-}
+} 
 
 interface UsageHistoryListProps {
     onItemPress?: (item: UsageItem) => void;
@@ -29,7 +29,7 @@ const serviceTypeLabels: Record<string, string> = {
     love_forecast: "Love Forecast",
     transit_report: "Fortune Report",
     relationship_compatibility: "Relation Compatibility",
-    advice_genie: "Advice Genie",
+    ask_secret_diary: "Advice Genie",
 };
 
 const getServiceTypeLabel = (type: string) => serviceTypeLabels[type] || type;

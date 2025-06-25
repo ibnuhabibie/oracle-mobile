@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
@@ -12,6 +12,7 @@ import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
+import RelationReportForm, { RelationReportFormValues } from './relation-report-form';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -31,6 +32,7 @@ const CARD_DATA = [
 ];
 
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
+    const [showForm, setShowForm] = useState(false);
     return (
         <ScreenContainer
             header={
@@ -40,11 +42,20 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 />
             }
             floatingFooter={
-                <AppButton
-                    title="Purchase for 15 💛"
-                    variant="primary"
-                    onPress={() => { }}
-                />
+                !showForm ? (
+                    <AppButton
+                        title="Purchase for 15 💛"
+                        variant="primary"
+                        onPress={() => setShowForm(true)}
+                    />
+                ) : (
+                    <RelationReportForm
+                        onSubmit={(values: RelationReportFormValues) => {
+                            setShowForm(false);
+                        }}
+                        onCancel={() => setShowForm(false)}
+                    />
+                )
             }
         >
             <AppText variant='subtitle1' style={styles.title}>Curious if you're a perfect{'\n'}match? Find out now!</AppText>
@@ -120,6 +131,6 @@ const styles = StyleSheet.create({
     cardLabel: {
         marginTop: 12
     },
-});
+}); 
 
 export default RelationReport;
