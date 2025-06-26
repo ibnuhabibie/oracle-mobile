@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Dimensions, Image, StyleSheet, View, ScrollView } from 'react-native';
 import { useTranslation } from "react-i18next";
 import { useForm } from 'react-hook-form';
@@ -8,14 +8,50 @@ import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppText } from '../../../../components/ui/app-text';
 import AppInput from '../../../../components/ui/app-input';
 import { AppButton } from '../../../../components/ui/app-button';
+import CoinIcon from '../../../../components/icons/profile/coin-icon';
 import { COLORS } from '../../../../constants/colors';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import api from '../../../../utils/http';
+import { useAsyncStorage } from '../../../../hooks/use-storage';
+import { Text } from 'react-native-svg';
+import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 
 type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffinity'>;
 
 const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     const { t } = useTranslation();
+
+    // --- API integration and state ---
+    const [loading, setLoading] = useState(false);
+    const [apiError, setApiError] = useState<string | null>(null);
+    const [cost, setCost] = useState<number>(0);
+    const [creditType, setCreditType] = useState<string>('');
+    const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+    const { getConfig } = useAsyncStorage()
+
+    const getConfigValue = (key: string, config) => {
+        const found = config.find((c: any) => c.key === key);
+        return found ? Number(found.value) : 0;
+    };
+
+    useEffect(() => {
+        const init = async () => {
+            const config = await getConfig()
+
+            let creditType = 'silver';
+            let cost = getConfigValue('ask_affinity_cost_using_silver_credit', config);
+
+            if (cost <= 0) {
+                cost = getConfigValue('ask_affinity_cost_using_gold_credit', config);
+                creditType = 'gold';
+            }
+
+            setCost(cost)
+            setCreditType(creditType)
+        }
+
+        init()
+    }, [])
 
     const screenWidth = Dimensions.get('window').width;
     const localImage = require('../../../../assets/images/ask-affinity/banner.png');
@@ -31,20 +67,15 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     const {
         control,
         handleSubmit,
-        formState: { errors }
+        formState: { errors },
+        trigger
     } = useForm({
         defaultValues: {
             question: '',
         },
     });
 
-    // --- API integration and state ---
-    const [loading, setLoading] = React.useState(false);
-    const [apiError, setApiError] = React.useState<string | null>(null);
-
     const onSubmit = async (data) => {
-        console.log(data, 'data')
-
         setApiError(null);
         setLoading(true);
         try {
@@ -95,11 +126,28 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                     <AppText style={{ color: 'red', textAlign: 'center', marginVertical: 8 }}>{apiError}</AppText>
                 ) : null}
                 <AppButton
-                    title={loading ? 'Loading...' : 'Purchase for 14'}
-                    onPress={handleSubmit(onSubmit)}
+                    title={
+                        loading ? 'Loading...' : (
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+                                <CoinIcon color={creditType === 'gold' ? '#FFD700' : '#C0C0C0'} size={18} />
+                            </View>
+                        )
+                    }
+                    onPress={async () => {
+                        const valid = await trigger("question");
+                        if (valid) setShowPurchaseModal(true);
+                    }}
                     disabled={loading}
                 />
             </View>
+            
+            <PurchaseAlertModal
+                visible={showPurchaseModal}
+                onContinue={handleSubmit(onSubmit)}
+                onCancel={() => setShowPurchaseModal(false)}
+                service="ask_affinity"
+            />
         </ScreenContainer>
     );
 };

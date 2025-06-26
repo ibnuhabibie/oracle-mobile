@@ -40,7 +40,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
         let cost = getConfigValue(`${key}_cost_using_silver_credit`, data.config);
 
         if (cost <= 0) {
-          cost = getConfigValue('secret_diary_cost_using_gold_credit', data.config);
+          cost = getConfigValue(`${key}_cost_using_gold_credit`, data.config);
           creditType = 'gold';
         }
 

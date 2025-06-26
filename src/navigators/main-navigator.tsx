@@ -37,6 +37,7 @@ import LoveForecast from '../screens/main/service/love-forecast/love-forecast';
 import RelationReport from '../screens/main/service/relation-report/relation-report';
 import FortuneReport from '../screens/main/service/fortune-report/fortune-report';
 import Topup from '../screens/main/topup';
+import { useAsyncStorage } from '../hooks/use-storage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -97,6 +98,8 @@ const MainNavigator = () => {
   const [initialRoute, setInitialRoute] = useState<string | null>(null);
   const [routeParams, setRouteParams] = useState<any>(null);
 
+  const { sync, clearStorage } = useAsyncStorage();
+
   useEffect(() => {
     const checkAuthState = async () => {
       const auth_token = await AsyncStorage.getItem('auth_token');
@@ -107,9 +110,8 @@ const MainNavigator = () => {
       }
 
       try {
-        const res = await api.get('/v1/users/me')
-        const profile = res.data
-        await AsyncStorage.setItem('user_profile', JSON.stringify(profile));
+        const data = await sync()
+        const profile = data?.user
 
         const isProfileCompleted = (profile: any) => {
           return (
@@ -134,7 +136,7 @@ const MainNavigator = () => {
           setInitialRoute('Tabs');
         }
       } catch (err) {
-        await AsyncStorage.removeItem('auth_token');
+        await clearStorage()
         setInitialRoute('Welcome');
       }
     };

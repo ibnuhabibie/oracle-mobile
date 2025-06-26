@@ -16,7 +16,7 @@ type ButtonSize = 'big' | 'small';
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text';
 
 export interface CustomButtonProps {
-  title: string;
+  title: React.ReactNode | string;
   size?: ButtonSize;
   variant?: ButtonVariant;
   onPress?: (event: GestureResponderEvent) => void;
@@ -122,11 +122,17 @@ export class AppButton extends Component<CustomButtonProps> {
         activeOpacity={0.8}
         disabled={isDisabled}
       >
-        {loading ? (
-          <ActivityIndicator color={this.getTextStyle().color || COLORS.white} />
-        ) : (
-          <Text style={[this.getTextStyle(), textStyle]}>{title}</Text>
-        )}
+        {
+          loading ? (
+            <ActivityIndicator color={this.getTextStyle().color || COLORS.white} />
+          ) : (
+            typeof title === 'string' ? (
+              <Text style={[this.getTextStyle(), textStyle]}>{title}</Text>
+            ) : (
+              title
+            )
+          )
+        }
       </TouchableOpacity>
     );
   }

@@ -107,6 +107,8 @@ export const useAsyncStorage = () => {
             await setUserProfile(user.data);
 
             const config = await api.get('/v1/configs?locale=null');
+            await setConfig(config.data)
+
             return {
                 user: user.data,
                 config: config.data,
