@@ -12,8 +12,7 @@ import CoinIcon from '../../../../components/icons/profile/coin-icon';
 import { COLORS } from '../../../../constants/colors';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import api from '../../../../utils/http';
-import { useAsyncStorage } from '../../../../hooks/use-storage';
-import { Text } from 'react-native-svg';
+import { useServiceCost } from '../../../../hooks/use-service-cost';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 
 type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffinity'>;
@@ -21,37 +20,10 @@ type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffin
 const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     const { t } = useTranslation();
 
-    // --- API integration and state ---
     const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState<string | null>(null);
-    const [cost, setCost] = useState<number>(0);
-    const [creditType, setCreditType] = useState<string>('');
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-    const { getConfig } = useAsyncStorage()
-
-    const getConfigValue = (key: string, config) => {
-        const found = config.find((c: any) => c.key === key);
-        return found ? Number(found.value) : 0;
-    };
-
-    useEffect(() => {
-        const init = async () => {
-            const config = await getConfig()
-
-            let creditType = 'silver';
-            let cost = getConfigValue('ask_affinity_cost_using_silver_credit', config);
-
-            if (cost <= 0) {
-                cost = getConfigValue('ask_affinity_cost_using_gold_credit', config);
-                creditType = 'gold';
-            }
-
-            setCost(cost)
-            setCreditType(creditType)
-        }
-
-        init()
-    }, [])
+    const { cost, creditType, loading: costLoading } = useServiceCost('ask_affinity');
 
     const screenWidth = Dimensions.get('window').width;
     const localImage = require('../../../../assets/images/ask-affinity/banner.png');
@@ -138,10 +110,9 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                         const valid = await trigger("question");
                         if (valid) setShowPurchaseModal(true);
                     }}
-                    disabled={loading}
                 />
             </View>
-            
+
             <PurchaseAlertModal
                 visible={showPurchaseModal}
                 onContinue={handleSubmit(onSubmit)}

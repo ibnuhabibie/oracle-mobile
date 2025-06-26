@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   Image,
+  Alert,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -12,6 +13,10 @@ import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
+import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
+import { useServiceCost } from '../../../../hooks/use-service-cost';
+import CoinIcon from '../../../../components/icons/profile/coin-icon';
+import api from '../../../../utils/http';
 
 type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveForecast'>;
 
@@ -43,6 +48,30 @@ const CARD_DATA = [
 ];
 
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
+  const [showPurchaseModal, setShowPurchaseModal] = React.useState(false);
+  const [purchaseLoading, setPurchaseLoading] = React.useState(false);
+  const { cost, creditType, loading: costLoading } = useServiceCost('love_report');
+
+  const handleContinue = async () => {
+    setPurchaseLoading(true);
+    try {
+      // You may want to pass user input as needed
+      const response = await api.post('/v1/affinity/love-report', {});
+      setShowPurchaseModal(false);
+      // navigation.navigate('LoveForecastResult', { result: response });
+      Alert.alert('Title', response.meta.message)
+    } catch (err) {
+      setShowPurchaseModal(false);
+      // Optionally show error to user
+    } finally {
+      setPurchaseLoading(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setShowPurchaseModal(false);
+  };
+
   return (
     <ScreenContainer
       header={
@@ -53,9 +82,14 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
       }
       floatingFooter={
         <AppButton
-          title="Purchase for 15 💛"
+          title={
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+              <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
+            </View>
+          }
           variant="primary"
-          onPress={() => {}}
+          onPress={() => setShowPurchaseModal(true)}
         />
       }
     >
@@ -86,6 +120,13 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         }
       </View>
       <View style={{ height: 80 }} />
+      <PurchaseAlertModal
+        visible={showPurchaseModal}
+        onContinue={handleContinue}
+        onCancel={handleCancel}
+        service="love_report"
+        loading={purchaseLoading}
+      />
     </ScreenContainer>
   );
 };

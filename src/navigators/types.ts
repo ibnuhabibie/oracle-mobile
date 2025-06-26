@@ -24,6 +24,7 @@ export type MainNavigatorParamList = {
         date: Date
     };
     LoveForecast: undefined;
+    LoveForecastResult: { result: any };
     RelationReport: undefined;
     FortuneReport: undefined;
     TopUp: undefined;
