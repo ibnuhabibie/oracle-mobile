@@ -1,89 +1,74 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useMemo } from 'react';
 import {
-  ActivityIndicator,
   Image,
-  Pressable,
-  ScrollView,
-  StyleSheet,
   Text,
-  View
 } from 'react-native';
 
-import ArrowIcon from '../../../components/icons/arrow-icon';
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
-import { fontFamilies } from '../../../constants/fonts';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';
-import api from '../../../utils/http';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
-import { COLORS } from '../../../constants/colors';
-import { AppText } from '../../../components/ui/app-text';
 
 type AstrologyResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
 
-const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [profile, setProfile] = useState<any>(null);
+const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
+  // Get profile_astro from route params
+  const profile = useMemo(() => {
+    // Sort by order if present
+    const profileAstro = route.params?.profile_astro;
+    if (profileAstro && typeof profileAstro === "object") {
+      const sortedEntries = Object.entries(profileAstro)
+        .sort(([, a], [, b]) => {
+          const orderA = typeof a.order === "number" ? a.order : Number.MAX_SAFE_INTEGER;
+          const orderB = typeof b.order === "number" ? b.order : Number.MAX_SAFE_INTEGER;
+          return orderA - orderB;
+        });
+      return Object.fromEntries(sortedEntries);
+    }
+    return profileAstro;
+  }, [route.params?.profile_astro]);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const res = await api.get('/v1/users/affinity-profile');
-        setProfile(res.data?.profile_astro);
-      } catch (err: any) {
-        setError(err?.message || 'Failed to load profile');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProfile();
-  }, []);
-
-  // Static icon images for indices 1-5
-  const iconImages = [
-    require('../../../assets/icons/astro/icon-1.png'),
-    require('../../../assets/icons/astro/icon-2.png'),
-    require('../../../assets/icons/astro/icon-3.png'),
-    require('../../../assets/icons/astro/icon-4.png'),
-    require('../../../assets/icons/astro/icon-5.png'),
-    require('../../../assets/icons/astro/icon-6.png'),
-    require('../../../assets/icons/astro/icon-7.png'),
-    require('../../../assets/icons/astro/icon-8.png'),
-    require('../../../assets/icons/astro/icon-9.png'),
-    require('../../../assets/icons/astro/icon-10.png'),
-    require('../../../assets/icons/astro/icon-11.png'),
-  ];
+  // Planet icon mapping for dynamic icon loading
+  const planetIcons: Record<string, any> = {
+    ascendant: require('../../../assets/icons/planet/ascendant.png'),
+    jupiter: require('../../../assets/icons/planet/jupiter.png'),
+    mars: require('../../../assets/icons/planet/mars.png'),
+    mercury: require('../../../assets/icons/planet/mercury.png'),
+    moon: require('../../../assets/icons/planet/moon.png'),
+    neptune: require('../../../assets/icons/planet/neptune.png'),
+    'north node': require('../../../assets/icons/planet/north_node.png'),
+    pluto: require('../../../assets/icons/planet/pluto.png'),
+    saturn: require('../../../assets/icons/planet/saturn.png'),
+    sun: require('../../../assets/icons/planet/sun.png'),
+    uranus: require('../../../assets/icons/planet/uranus.png'),
+    venus: require('../../../assets/icons/planet/venus.png'),
+  };
+  const defaultPlanetIcon = require('../../../assets/icons/planet/sun.png');
 
   // Card list component
-  const AstrologyCardList: FC<{ profile: any, iconImages: any[] }> = ({ profile, iconImages }) => {
+  const AstrologyCardList: FC<{ profile: any }> = ({ profile }) => {
     if (!profile) return null;
     return (
       <>
-        {Object.keys(profile).map((key, idx) => {
+        {Object.keys(profile).map((key) => {
           const item = profile[key];
-          // Use item.order if present and in range, else fallback to idx+1
-          const iconIdx =
-            item && typeof item.order === 'number' && item.order >= 1 && item.order <= iconImages.length
-              ? item.order
-              : ((idx % iconImages.length) + 1);
+          const iconKey = (item.icon || '').toLowerCase();
+          const iconSource = planetIcons[iconKey] || defaultPlanetIcon;
           return (
             <ProfileItemCard
               key={key}
               data={{
                 title: item.name || key,
                 description: item.description,
-                icon: iconImages[iconIdx - 1] ? (
+                icon: (
                   <Image
-                    source={iconImages[iconIdx - 1]}
-                    // style={{ width: 48, height: 48, marginBottom: 8 }}
+                    source={iconSource}
                     resizeMode="contain"
+                    style={{ width: 100, height: 100 }}
                   />
-                ) : undefined,
+                ),
               }}
             />
           );
@@ -101,18 +86,13 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation }) => {
         />
       }
     >
-      <ProfileCard iconType="astro" />
+      <ProfileCard iconKey={profile?.sun?.zodiac || ""} />
 
-      {
-        loading ? (
-          <ActivityIndicator size="large" color="#D4A574" style={{ marginTop: 32 }} />
-        ) : error ? (
-          <Text style={{ color: 'red', margin: 16 }}>{error}</Text>
-        ) : profile ? (
-          <AstrologyCardList profile={profile} iconImages={iconImages} />
-        ) : null
-      }
-
+      {profile ? (
+        <AstrologyCardList profile={profile} />
+      ) : (
+        <Text style={{ color: 'red', margin: 16 }}>No profile data found.</Text>
+      )}
     </ScreenContainer>
   );
 };

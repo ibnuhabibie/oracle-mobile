@@ -1,6 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
 import {
+  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -34,6 +35,7 @@ import ProfileItem from '../../../features/profile/profile-item';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
+import { iconMap, useAffinityProfile } from './useAffinityProfile';
 
 type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
@@ -117,6 +119,8 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     }
   };
 
+  const { loading: profileLoading, error: profileError, data: affinityProfile } = useAffinityProfile();
+
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
       {/* User Profile Card */}
@@ -133,19 +137,29 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         <View style={styles.userStats}>
           <TouchableOpacity
             onPress={() => {
-              navigation.push('BaziResults');
+              navigation.push('BaziResults', { profile_bazi: affinityProfile?.profile_bazi });
             }}
             style={styles.statItem}>
-            <FerrisWheelIcon />
-            <Text style={styles.statLabel}>手辰</Text>
+            {/* <FerrisWheelIcon /> */}
+            <Image
+              source={iconMap[affinityProfile?.profile_bazi?.day_master?.icon]}
+              resizeMode="contain"
+              style={{ width: 75, height: 75 }}
+            />
+            <Text style={styles.statLabel}>{affinityProfile?.profile_bazi?.day_master?.name}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.push('AstrologyResults');
+              navigation.push('AstrologyResults', { profile_astro: affinityProfile?.profile_astro });
             }}
             style={styles.statItem}>
-            <StarIcon />
-            <Text style={styles.statLabel}>Gemini</Text>
+            {/* <StarIcon /> */}
+            <Image
+              source={iconMap[affinityProfile?.profile_astro?.sun?.zodiac]}
+              resizeMode="contain"
+              style={{ width: 75, height: 75 }}
+            />
+            <Text style={styles.statLabel}>{affinityProfile?.profile_astro?.sun?.zodiac_name}</Text>
           </TouchableOpacity>
           {user?.mbti_profile && (
             <TouchableOpacity
@@ -153,7 +167,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
                 navigation.push('MbtiResults');
               }}
               style={styles.statItem}>
-              <CommentUserIcon />
+              <CommentUserIcon size={75} />
               <Text style={styles.statLabel}>{user?.mbti_profile}</Text>
             </TouchableOpacity>
           )}

@@ -1,8 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Text,
-  ActivityIndicator,
   Image
 } from 'react-native';
 
@@ -11,30 +10,12 @@ import Header from '../../../components/ui/header';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
-import api from '../../../utils/http';
+import { iconMap } from './useAffinityProfile';
 
 type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'BaziResults'>;
 
-const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [profile, setProfile] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const res = await api.get('/v1/users/affinity-profile');
-        setProfile(res.data?.profile_bazi);
-      } catch (err: any) {
-        setError(err?.message || 'Failed to load profile');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProfile();
-  }, []);
+const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
+  const profile = route.params?.profile_bazi;
 
   // Static icon images for indices 1-5
   const iconImages = [
@@ -70,8 +51,8 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
                   description: item.description,
                   icon: iconImages[iconIdx - 1] ? (
                     <Image
-                      source={iconImages[iconIdx - 1]}
-                      style={{ width: 48, height: 48, marginBottom: 8 }}
+                      source={iconMap[item.icon]}
+                      style={{ width: 75, height: 75, marginBottom: 8 }}
                       resizeMode="contain"
                     />
                   ) : undefined,
@@ -93,15 +74,13 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation }) => {
         />
       }
     >
-      <ProfileCard iconType="bazi" />
+      <ProfileCard iconKey={profile?.day_master?.icon} />
 
-      {loading ? (
-        <ActivityIndicator size="large" color="#D4A574" style={{ marginTop: 32 }} />
-      ) : error ? (
-        <Text style={{ color: 'red', margin: 16 }}>{error}</Text>
-      ) : profile ? (
+      {profile ? (
         <BaziCardList profile={profile} iconImages={iconImages} />
-      ) : null}
+      ) : (
+        <Text style={{ color: 'red', margin: 16 }}>No profile data found.</Text>
+      )}
     </ScreenContainer>
   );
 };

@@ -13,15 +13,12 @@ type UserProfile = {
 };
 
 type ProfileCardProps = {
-    iconType: 'bazi' | 'astro';
+    iconKey: string; // e.g., "sagittarius", "jia_wood", etc.
 };
 
-const iconMap = {
-    bazi: require('../../../assets/icons/bazi/header-icon.png'),
-    astro: require('../../../assets/icons/astro/header-icon.png'),
-};
+import { iconMap } from '../../../screens/main/profile/useAffinityProfile';
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ iconType }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey }) => {
     const { getUserProfile } = useAsyncStorage();
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
@@ -54,7 +51,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconType }) => {
     return (
         <View style={styles.profileCard}>
             <ShinyContainer dark={false} size={160}>
-                <Image source={iconMap[iconType]} />
+                <Image source={iconMap[iconKey]} style={{ width: 80, height: 80, resizeMode: 'contain' }} />
             </ShinyContainer>
 
             <View style={styles.profileInfo}>
