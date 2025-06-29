@@ -26,7 +26,7 @@ interface UsageHistoryListProps {
 
 const serviceTypeLabels: Record<string, string> = {
     ask_any_question: "Ask Affinity",
-    love_forecast: "Love Forecast",
+    personalized_love_forecast_12mth: "Love Forecast",
     transit_report: "Fortune Report",
     relationship_compatibility: "Relation Compatibility",
     ask_secret_diary: "Advice Genie",

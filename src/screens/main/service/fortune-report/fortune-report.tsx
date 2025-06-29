@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
     Image,
+    Alert,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -12,6 +13,10 @@ import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
+import { useServiceCost } from '../../../../hooks/use-service-cost';
+import CoinIcon from '../../../../components/icons/profile/coin-icon';
+import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
+import api from '../../../../utils/http';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -39,6 +44,27 @@ const CARD_DATA = [
 ];
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
+    const { cost, creditType, loading: costLoading } = useServiceCost('transit_report');
+    const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+    const [purchaseLoading, setPurchaseLoading] = useState(false);
+
+    const handleCancel = () => {
+        setShowPurchaseModal(false);
+    };
+
+    const handleContinue = async () => {
+        setPurchaseLoading(true);
+        try {
+            const response = await api.post('/v1/affinity/transit-report', {});
+            setShowPurchaseModal(false);
+            Alert.alert('Title', response.meta.message)
+        } catch (err) {
+            setShowPurchaseModal(false);
+        } finally {
+            setPurchaseLoading(false);
+        }
+    };
+
     return (
         <ScreenContainer
             header={
@@ -49,9 +75,13 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
             }
             floatingFooter={
                 <AppButton
-                    title="Purchase for 15 💛"
-                    variant="primary"
-                    onPress={() => { }}
+                    title={
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+                            <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
+                        </View>
+                    }
+                    onPress={() => setShowPurchaseModal(true)}
                 />
             }
         >
@@ -83,6 +113,13 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 }
             </View>
             <View style={{ height: 60 }} />
+            <PurchaseAlertModal
+                visible={showPurchaseModal}
+                onContinue={handleContinue}
+                onCancel={handleCancel}
+                service="love_report"
+                loading={purchaseLoading}
+            />
         </ScreenContainer>
     );
 };
@@ -90,6 +127,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
+        marginTop: 32,
         marginBottom: 18,
         letterSpacing: 0.2,
         textTransform: 'uppercase'

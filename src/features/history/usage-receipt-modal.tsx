@@ -11,6 +11,7 @@ interface UsageReceiptModalProps {
   onClose: () => void;
   item: {
     transaction_id: string;
+    usage_history_id: string;
     created_at: string;
     item_name: string;
     item_icon?: React.ReactNode;
@@ -18,6 +19,14 @@ interface UsageReceiptModalProps {
     previous_points: number;
     points_used: number;
     remaining_points: number;
+    service_type: string;
+    response_data: string;
+    credit_journal?: {
+      credits_used: number;
+      credits_before: number;
+      credits_after: number;
+      credit_type: string;
+    };
   };
 }
 
@@ -37,7 +46,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
 
   const serviceTypeLabels: Record<string, string> = {
     ask_any_question: "Ask Affinity",
-    love_forecast: "Love Forecast",
+    personalized_love_forecast_12mth: "Love Forecast",
     transit_report: "Fortune Report",
     relationship_compatibility: "Relation Compatibility",
     ask_secret_diary: "Advice Genie",
@@ -49,11 +58,25 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
 
   const handleResult = () => {
     let data = JSON.parse(item.response_data)
-    navigation.push('AffinityResults', {
-      question: data.question,
-      affinityResult: { data }
-    })
-  } 
+    let payload = {}
+    let pageName = ''
+
+    if (item.service_type == 'personalized_love_forecast_12mth') {
+      pageName = 'LoveReportResult'
+      payload = { result: data }
+    } else if (item.service_type == 'ask_any_question') {
+      pageName = 'AffinityResults'
+      payload = {
+        question: data.question,
+        affinityResult: { data }
+      }
+    } else if (item.service_type == 'transit_report') {
+      pageName = 'FortuneReportResult'
+      payload = { result: data }
+    }
+
+    navigation.push(pageName, payload)
+  }
 
   return (
     <Modal
@@ -78,42 +101,55 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
             <Text style={styles.modalLabel}>Date Purchased</Text>
             <Text style={styles.modalValue}>{formatDate(item.created_at)}</Text>
           </View>
-          <View style={styles.modalSectionDivider} />
-          <Text style={styles.modalSectionTitle}>Order Item(s)</Text>
-          <View style={styles.modalRow}>
-            <View style={styles.modalItemIcon}>
-              <CommentsIcon />
+          {item.credit_journal ? (
+            <>
+              <View style={styles.modalSectionDivider} />
+              <Text style={styles.modalSectionTitle}>Order Item(s)</Text>
+              <View style={styles.modalRow}>
+                <View style={styles.modalItemIcon}>
+                  <CommentsIcon />
+                </View>
+                <Text style={styles.modalItemName}>{getServiceTypeLabel(item.service_type)}</Text>
+                <View style={styles.modalItemPoints}>
+                  <Text>{item.credit_journal.credits_used}</Text>
+                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+                </View>
+              </View>
+              <View style={styles.modalSectionDivider} />
+              <View style={styles.modalRow}>
+                <Text style={styles.modalLabel}>Previous Points</Text>
+                <View style={styles.modalItemPoints}>
+                  <Text>{item.credit_journal.credits_before}</Text>
+                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+                </View>
+              </View>
+              <View style={styles.modalRow}>
+                <Text style={styles.modalLabel}>Points Used</Text>
+                <View style={styles.modalItemPoints}>
+                  <Text style={{ color: 'red' }}>{item.credit_journal.credits_used}</Text>
+                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+                </View>
+              </View>
+              <View style={styles.modalRow}>
+                <Text style={styles.modalLabel}>Remaining Points</Text>
+                <View style={styles.modalItemPoints}>
+                  <Text>{item.credit_journal.credits_after}</Text>
+                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+                </View>
+              </View>
+              {
+                item.response_data && (
+                  <AppButton title="See Results" style={{ marginTop: 18 }} onPress={handleResult} />
+                )
+              }
+            </>
+          ) : (
+            <View style={{ marginVertical: 16 }}>
+              <Text style={{ textAlign: "center", color: "#888", fontSize: 15 }}>
+                Report is still being processed. Please check back later.
+              </Text>
             </View>
-            <Text style={styles.modalItemName}>{getServiceTypeLabel(item.service_type)}</Text>
-            <View style={styles.modalItemPoints}>
-              <Text>{item.credit_journal.credits_used}</Text>
-              <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
-            </View>
-          </View>
-          <View style={styles.modalSectionDivider} />
-          <View style={styles.modalRow}>
-            <Text style={styles.modalLabel}>Previous Points</Text>
-            <View style={styles.modalItemPoints}>
-              <Text>{item.credit_journal.credits_before}</Text>
-              <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
-            </View>
-          </View>
-          <View style={styles.modalRow}>
-            <Text style={styles.modalLabel}>Points Used</Text>
-            <View style={styles.modalItemPoints}>
-              <Text style={{ color: 'red' }}>{item.credit_journal.credits_used}</Text>
-              <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
-            </View>
-          </View>
-          <View style={styles.modalRow}>
-            <Text style={styles.modalLabel}>Remaining Points</Text>
-            <View style={styles.modalItemPoints}>
-              <Text>{item.credit_journal.credits_after}</Text>
-              <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
-            </View>
-          </View>
-
-          <AppButton title="See Results" style={{ marginTop: 18 }} onPress={handleResult} />
+          )}
         </View>
       </SafeAreaView>
     </Modal>

@@ -38,6 +38,8 @@ import RelationReport from '../screens/main/service/relation-report/relation-rep
 import FortuneReport from '../screens/main/service/fortune-report/fortune-report';
 import Topup from '../screens/main/topup';
 import { useAsyncStorage } from '../hooks/use-storage';
+import LoveReportResult from '../screens/main/service/love-forecast/love-report-result';
+import FortuneReportResult from '../screens/main/service/fortune-report/fortune-report-result';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -169,8 +171,12 @@ const MainNavigator = () => {
       <Stack.Screen name="AffinityResults" component={AffinityResults} />
 
       <Stack.Screen name="FortuneReport" component={FortuneReport} />
+      <Stack.Screen name="FortuneReportResult" component={FortuneReportResult} />
+
       <Stack.Screen name="RelationReport" component={RelationReport} />
+
       <Stack.Screen name="LoveForecast" component={LoveForecast} />
+      <Stack.Screen name="LoveReportResult" component={LoveReportResult} />
 
 
       <Stack.Screen name="WebviewContent" component={WebviewContent} />

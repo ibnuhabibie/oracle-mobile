@@ -23,10 +23,14 @@ export type MainNavigatorParamList = {
         id?: string,
         date: Date
     };
+
     LoveForecast: undefined;
-    LoveForecastResult: { result: any };
-    RelationReport: undefined;
+    LoveReportResult: { result: any };
+
     FortuneReport: undefined;
+    FortuneReportResult: { result: any };
+
+    RelationReport: undefined;
     TopUp: undefined;
 
     Profile: undefined;
