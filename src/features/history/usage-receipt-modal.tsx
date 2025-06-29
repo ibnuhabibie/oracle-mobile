@@ -73,6 +73,21 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     } else if (item.service_type == 'transit_report') {
       pageName = 'FortuneReportResult'
       payload = { result: data }
+    } else if (item.service_type == 'relationship_compatibility') {
+      pageName = 'RelationReportResult'
+      payload = {
+        result: data,
+        love_profile: JSON.parse(item.request_data).partner
+      }
+    } else if (item.service_type == 'ask_secret_diary') {
+      console.log(data, new Date(data.date))
+      pageName = 'EchoDetail'
+      payload = {
+        id: data.id,
+        date: {
+          dateString: data.date
+        }
+      }
     }
 
     navigation.push(pageName, payload)

@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Text, TouchableOpacity, Platform } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Text, Platform, Pressable } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { AppText } from '../../../../components/ui/app-text';
 import { AppButton } from '../../../../components/ui/app-button';
 import { COLORS } from '../../../../constants/colors';
+import AppInput from '../../../../components/ui/app-input';
+import TextField from '../../../../components/ui/text-field';
+import { DropdownButton, renderDropdownModal } from '../../../../components/widgets/dropdown';
+import api from '../../../../utils/http';
+import { t } from 'i18next';
+import CalendarIcon from '../../../../components/icons/auth/calendar-icon';
+import { formatDate } from '../../../../utils/formatter';
+
+interface Country {
+  name: string;
+  iso3: string;
+}
+interface City {
+  name: string;
+  latitude: number;
+  longitude: number;
+}
 
 interface RelationReportFormProps {
   onSubmit: (values: RelationReportFormValues) => void;
@@ -12,107 +31,221 @@ interface RelationReportFormProps {
 
 export interface RelationReportFormValues {
   full_name: string;
-  birth_date: string;
-  country_birth: string;
-  city_birth: string;
+  birth_date: Date;
+  birth_country: Country | null;
+  birth_city: City | null;
   gender: string;
 }
 
-const initialState: RelationReportFormValues = {
+const defaultValues: RelationReportFormValues = {
   full_name: '',
-  birth_date: '',
-  country_birth: '',
-  city_birth: '',
-  gender: '',
-}; 
+  birth_date: new Date(),
+  birth_country: null,
+  birth_city: null,
+  gender: 'Male',
+};
 
 export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit, onCancel, loading }) => {
-  const [values, setValues] = useState<RelationReportFormValues>(initialState);
-  const [errors, setErrors] = useState<Partial<RelationReportFormValues>>({});
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors } } = useForm<RelationReportFormValues>({
+      defaultValues,
+    });
 
-  const validate = (): boolean => {
-    const newErrors: Partial<RelationReportFormValues> = {};
-    if (!values.full_name.trim()) newErrors.full_name = 'Full name is required';
-    if (!values.birth_date.trim()) newErrors.birth_date = 'Birth date is required';
-    if (!values.country_birth.trim()) newErrors.country_birth = 'Country of birth is required';
-    if (!values.city_birth.trim()) newErrors.city_birth = 'City of birth is required';
-    if (!values.gender.trim()) newErrors.gender = 'Gender is required';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const formRules = {
+    full_name: {
+      required: t('NAME IS REQUIRED'),
+      minLength: {
+        value: 2,
+        message: t('NAME MIN LENGTH')
+      }
+    },
   };
 
-  const handleChange = (field: keyof RelationReportFormValues, value: string) => {
-    setValues({ ...values, [field]: value });
-    setErrors({ ...errors, [field]: undefined });
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showCountryModal, setShowCountryModal] = useState(false);
+  const [showCityModal, setShowCityModal] = useState(false);
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [cities, setCities] = useState<City[]>([]);
+
+  const watchedCountry = watch('birth_country');
+  const watchedCity = watch('birth_city');
+  const watchedDate = watch('birth_date');
+  const watchedGender = watch('gender');
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await api.get('/v1/configs/countries');
+        setCountries(response.data);
+        const country = response.data[0]
+        setValue('birth_country', {
+          name: country.name,
+          iso3: country.iso3,
+        });
+        await fetchCities(country)
+      } catch (error) {
+        setCountries([]);
+      }
+    };
+    fetchCountries();
+  }, []);
+
+  const fetchCities = async (country: Country) => {
+    try {
+      const response = await api.get(`/v1/configs/countries/${country.iso3}/cities`);
+      setCities(response.data);
+      if (response.data.length > 0) {
+        const city = response.data[0]
+        console.log(city, 'city')
+        setValue('birth_city', {
+          name: city.name,
+          latitude: city.latitude,
+          longitude: city.longitude,
+        });
+
+      }
+    } catch (error) {
+      setCities([]);
+    }
   };
 
-  const handleSubmit = () => {
-    if (validate()) {
-      onSubmit(values);
+  const selectCountry = async (country: Country) => {
+    setValue('birth_country', country);
+    await fetchCities(country);
+    setShowCountryModal(false);
+  };
+
+  const selectCity = (city: City) => {
+    setValue('birth_city', city);
+    setShowCityModal(false);
+  };
+
+  const onDateChange = (event: any, selectedDate?: Date) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      setValue('birth_date', selectedDate);
     }
   };
 
   return (
     <View style={styles.formContainer}>
-      <AppText style={styles.formTitle}>Fill in your details</AppText>
+      <AppText style={styles.formTitle} color='primary'>Fill in your details</AppText>
       <View style={styles.formGroup}>
-        <AppText style={styles.label}>Full Name</AppText>
-        <TextInput
-          style={styles.input}
-          value={values.full_name}
-          onChangeText={text => handleChange('full_name', text)}
-          placeholder="Enter your full name"
+        <Text style={styles.label}>{t("Name")}</Text>
+        <AppInput
+          control={control}
+          name="full_name"
+          rules={formRules.full_name}
+          placeholder={t("Name")}
+          errors={errors}
         />
-        {errors.full_name && <Text style={styles.error}>{errors.full_name}</Text>}
       </View>
       <View style={styles.formGroup}>
-        <AppText style={styles.label}>Birth Date</AppText>
-        <TextInput
-          style={styles.input}
-          value={values.birth_date}
-          onChangeText={text => handleChange('birth_date', text)}
-          placeholder="YYYY-MM-DD"
-        />
-        {errors.birth_date && <Text style={styles.error}>{errors.birth_date}</Text>}
+        <Text style={styles.label}>{t("Birth Date")}</Text>
+        <Pressable onPress={() => setShowDatePicker(true)}>
+          <View pointerEvents="none">
+            <TextField
+              placeholder={t("Birth Date:")}
+              value={formatDate(watchedDate)}
+              style={styles.textField}
+              editable={false}
+              rightIcon={<CalendarIcon size={15} />}
+            />
+          </View>
+        </Pressable>
+        {showDatePicker && (
+          <DateTimePicker
+            value={watchedDate}
+            mode="date"
+            display="default"
+            onChange={onDateChange}
+            maximumDate={new Date()}
+          />
+        )}
       </View>
       <View style={styles.formGroup}>
         <AppText style={styles.label}>Country of Birth</AppText>
-        <TextInput
-          style={styles.input}
-          value={values.country_birth}
-          onChangeText={text => handleChange('country_birth', text)}
-          placeholder="Enter country of birth"
+        <DropdownButton
+          onPress={() => setShowCountryModal(true)}
+          text={watchedCountry?.name || "Please select one"}
         />
-        {errors.country_birth && <Text style={styles.error}>{errors.country_birth}</Text>}
+        {renderDropdownModal(
+          showCountryModal,
+          () => setShowCountryModal(false),
+          'Select Country',
+          countries as any[],
+          selectCountry,
+          watchedCountry as any,
+          'iso3'
+        )}
       </View>
       <View style={styles.formGroup}>
         <AppText style={styles.label}>City of Birth</AppText>
-        <TextInput
-          style={styles.input}
-          value={values.city_birth}
-          onChangeText={text => handleChange('city_birth', text)}
-          placeholder="Enter city of birth"
+        <DropdownButton
+          onPress={() => setShowCityModal(true)}
+          text={watchedCity?.name || "Please select one"}
         />
-        {errors.city_birth && <Text style={styles.error}>{errors.city_birth}</Text>}
+        {renderDropdownModal(
+          showCityModal,
+          () => setShowCityModal(false),
+          'Select City',
+          cities as any[],
+          selectCity,
+          watchedCity as any,
+          'name'
+        )}
       </View>
       <View style={styles.formGroup}>
         <AppText style={styles.label}>Gender</AppText>
-        <TextInput
-          style={styles.input}
-          value={values.gender}
-          onChangeText={text => handleChange('gender', text)}
-          placeholder="Enter gender"
-        />
-        {errors.gender && <Text style={styles.error}>{errors.gender}</Text>}
+        <View style={{ flexDirection: 'row', gap: 24 }}>
+          <Pressable
+            style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
+            onPress={() => setValue('gender', 'Male')}
+          >
+            <View style={{
+              width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: '#c1976b',
+              alignItems: 'center', justifyContent: 'center'
+            }}>
+              {watchedGender === 'Male' && (
+                <View style={{
+                  width: 10, height: 10, borderRadius: 5, backgroundColor: '#c1976b'
+                }} />
+              )}
+            </View>
+            <Text>Male</Text>
+          </Pressable>
+          <Pressable
+            style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
+            onPress={() => setValue('gender', 'Female')}
+          >
+            <View style={{
+              width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: '#c1976b',
+              alignItems: 'center', justifyContent: 'center'
+            }}>
+              {watchedGender === 'Female' && (
+                <View style={{
+                  width: 10, height: 10, borderRadius: 5, backgroundColor: '#c1976b'
+                }} />
+              )}
+            </View>
+            <Text>Female</Text>
+          </Pressable>
+        </View>
+        {errors.gender && <Text style={styles.error}>{errors.gender.message}</Text>}
       </View>
       <View style={styles.buttonRow}>
         <AppButton
           title="Continue"
           variant="primary"
-          onPress={handleSubmit}
+          onPress={handleSubmit(onSubmit)}
           loading={loading}
         />
       </View>
+
     </View>
   );
 };
@@ -130,11 +263,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   formTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
     marginBottom: 16,
     textAlign: 'center',
-    color: COLORS.primary,
   },
   formGroup: {
     marginBottom: 14,
@@ -166,6 +296,10 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     marginRight: 8,
+  },
+  textField: {
+    width: '100%',
+    marginBottom: 0,
   },
 });
 

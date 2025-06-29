@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
     Image,
+    Alert,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -13,6 +14,10 @@ import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 import RelationReportForm, { RelationReportFormValues } from './relation-report-form';
+import { useServiceCost } from '../../../../hooks/use-service-cost';
+import CoinIcon from '../../../../components/icons/profile/coin-icon';
+import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
+import api from '../../../../utils/http';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -33,6 +38,42 @@ const CARD_DATA = [
 
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const [showForm, setShowForm] = useState(false);
+    const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+    const [purchaseLoading, setPurchaseLoading] = useState(false);
+    const { cost, creditType, loading: costLoading } = useServiceCost('relationship_report');
+
+    const handleContinue = async (values) => {
+        setPurchaseLoading(true);
+        try {
+            // Convert birth_date to YYYY-MM-DD
+            const birthDateStr = values.birth_date instanceof Date
+                ? values.birth_date.toISOString().split('T')[0]
+                : values.birth_date;
+            // Convert gender to "M"/"F"
+            const genderShort = values.gender === "Male" ? "M" : values.gender === "Female" ? "F" : values.gender;
+
+            const response = await api.post('/v1/affinity/relationship-report', {
+                name: values.full_name,
+                birth_date: birthDateStr,
+                gender: genderShort,
+                birth_location: `${values.birth_country.name}, ${values.birth_city.name}`,
+                lat: `${values.birth_city.latitude}`,
+                lng: `${values.birth_city.longitude}`
+            });
+            setShowPurchaseModal(false);
+            setShowForm(false)
+            Alert.alert('Title', response.meta.message)
+        } catch (err) {
+            setShowPurchaseModal(false);
+        } finally {
+            setPurchaseLoading(false);
+        }
+    };
+
+    const handleCancel = () => {
+        setShowPurchaseModal(false);
+    };
+
     return (
         <ScreenContainer
             header={
@@ -44,14 +85,19 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             floatingFooter={
                 !showForm ? (
                     <AppButton
-                        title="Purchase for 15 💛"
+                        title={
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+                                <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
+                            </View>
+                        }
                         variant="primary"
                         onPress={() => setShowForm(true)}
                     />
                 ) : (
                     <RelationReportForm
                         onSubmit={(values: RelationReportFormValues) => {
-                            setShowForm(false);
+                            handleContinue(values)
                         }}
                         onCancel={() => setShowForm(false)}
                     />
@@ -86,6 +132,13 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 }
             </View>
             <View style={{ height: 60 }} />
+            <PurchaseAlertModal
+                visible={showPurchaseModal}
+                onContinue={handleContinue}
+                onCancel={handleCancel}
+                service="love_report"
+                loading={purchaseLoading}
+            />
         </ScreenContainer>
     );
 };
@@ -131,6 +184,6 @@ const styles = StyleSheet.create({
     cardLabel: {
         marginTop: 12
     },
-}); 
+});
 
 export default RelationReport;

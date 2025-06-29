@@ -43,6 +43,8 @@ export const iconMap: Record<string, any> = {
   wu_earth: require('../../../assets/affinity/wu_earth.png'),
   xin_metal: require('../../../assets/affinity/xin_metal.png'),
   yi_wood: require('../../../assets/affinity/yi_wood.png'),
+  // static
+  relation: require('../../../assets/affinity/relation.png'),
 };
 
 export function useAffinityProfile() {

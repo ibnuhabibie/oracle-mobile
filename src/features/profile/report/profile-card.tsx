@@ -13,20 +13,33 @@ type UserProfile = {
 };
 
 type ProfileCardProps = {
-    iconKey: string; // e.g., "sagittarius", "jia_wood", etc.
+    iconKey: string;
+    cardTitle?: string;
+    profileData?: UserProfile
 };
 
 import { iconMap } from '../../../screens/main/profile/useAffinityProfile';
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileData }) => {
     const { getUserProfile } = useAsyncStorage();
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        console.log(profileData, 'profileData')
+
         const fetchProfile = async () => {
-            const data = await getUserProfile();
-            setProfile(data as UserProfile);
+            if (profileData) {
+                setProfile({
+                    full_name: profileData.name,
+                    birth_date: profileData.birth_date,
+                    birth_country: profileData.birth_location.split(',')[0],
+                    birth_city: profileData.birth_location.split(',')[1]
+                })
+            } else {
+                const data = await getUserProfile();
+                setProfile(data as UserProfile);
+            }
             setLoading(false);
         };
         fetchProfile();
@@ -51,8 +64,16 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey }) => {
     return (
         <View style={styles.profileCard}>
             <ShinyContainer dark={false} size={160}>
-                <Image source={iconMap[iconKey]} style={{ width: 80, height: 80, resizeMode: 'contain' }} />
+                <Image
+                    source={iconMap[iconKey]}
+                    style={{
+                        width: iconKey == 'relation' ? 40 : 80,
+                        height: iconKey == 'relation' ? 40 : 80,
+                        resizeMode: 'contain'
+                    }} />
             </ShinyContainer>
+
+            {cardTitle ? <Text style={styles.cardTitle}>{cardTitle}</Text> : null}
 
             <View style={styles.profileInfo}>
                 <View style={styles.infoRow}>
@@ -71,10 +92,14 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey }) => {
                             : ''}
                     </Text>
                 </View>
-                <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>Time of Birth</Text>
-                    <Text style={styles.infoValue}>{profile.birth_time}</Text>
-                </View>
+                {
+                    profile.birth_time &&
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoLabel}>Time of Birth</Text>
+                        <Text style={styles.infoValue}>{profile.birth_time}</Text>
+                    </View>
+                }
+
                 <View style={styles.infoRow}>
                     <Text style={styles.infoLabel}>Country of Birth</Text>
                     <Text style={styles.infoValue}>{profile.birth_country}</Text>
@@ -98,6 +123,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 1,
         borderColor: '#E0D0C0',
+    },
+    cardTitle: {
+        marginTop: 12
     },
     profileInfo: {
         width: '100%',
