@@ -16,12 +16,12 @@ import { COLORS } from '../../../../constants/colors';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import SendIcon from '../../../../components/icons/echo/send-icon';
 import api from '../../../../utils/http';
-import { AppButton } from '../../../../components/ui/app-button';
 import { formatDate, formatDateToHeader } from '../../../../utils/date';
 import ChatArea from '../../../../features/services/echo/chat-area';
 import Header from '../../../../components/ui/header';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
+import { useServiceCost } from '../../../../hooks/use-service-cost';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 
@@ -32,9 +32,12 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
   const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
   const [lastMessage, setLastMessage] = useState<any>(null);
-  const [purchaseLoading, setPurchaseLoading] = useState(false);
+
+  const {
+    loading: costLoading,
+    setLoading: setCostLoading
+  } = useServiceCost('ask_affinity');
 
   const fetchData = async () => {
     console.log(id)
@@ -48,9 +51,9 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
         .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0];
       setLastMessage(last_userChat);
       setMessages(conversations);
-      setLoading(false);
+      setCostLoading(false);
     } catch (error) {
-      setLoading(false)
+      setCostLoading(false)
     }
   }
 
@@ -59,7 +62,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
       return;
     }
 
-    setLoading(true);
+    setCostLoading(true);
     const init = async () => {
       await fetchData()
     }
@@ -93,15 +96,15 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
   };
 
   const handleContinue = async () => {
-    setPurchaseLoading(true);
+    setCostLoading(true);
     try {
       const res = await api.post(`/v1/secret-diaries/${id}/consult`, {});
       console.log(res);
       setModalVisible(false);
-      setPurchaseLoading(false);
+      setCostLoading(false);
       fetchData();
     } catch (error) {
-      setPurchaseLoading(false);
+      setCostLoading(false);
       console.log(error);
       Alert.alert('Error', 'Failed to consult. Please try again.');
     }
@@ -148,6 +151,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
         setModalVisible={setModalVisible}
       />
       <PurchaseAlertModal
+        loading={costLoading}
         visible={modalVisible}
         onContinue={handleContinue}
         onCancel={() => setModalVisible(false)}
