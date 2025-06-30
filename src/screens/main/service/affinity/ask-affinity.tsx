@@ -20,10 +20,14 @@ type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffin
 const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     const { t } = useTranslation();
 
-    const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState<string | null>(null);
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-    const { cost, creditType, loading: costLoading } = useServiceCost('ask_affinity');
+    const {
+        cost,
+        creditType,
+        loading: costLoading,
+        setLoading: setCostLoading
+    } = useServiceCost('ask_affinity');
 
     const screenWidth = Dimensions.get('window').width;
     const localImage = require('../../../../assets/images/ask-affinity/banner.png');
@@ -40,7 +44,8 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
         control,
         handleSubmit,
         formState: { errors },
-        trigger
+        trigger,
+        setValue
     } = useForm({
         defaultValues: {
             question: '',
@@ -49,13 +54,17 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
 
     const onSubmit = async (data) => {
         setApiError(null);
-        setLoading(true);
+        setCostLoading(true);
         try {
             const response = await api.post('/v1/users/ask-affinity', { question: data.question });
-            setLoading(false);
+            setCostLoading(false);
             navigation.navigate('AffinityResults', { affinityResult: response, question: data.question });
+            setShowPurchaseModal(false);
+            setValue('question', '')
         } catch (err) {
-            setLoading(false);
+            setShowPurchaseModal(false);
+            setCostLoading(false);
+            setValue('question', '')
             setApiError(err?.message || 'Something went wrong');
         }
     };
@@ -99,12 +108,10 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                 ) : null}
                 <AppButton
                     title={
-                        loading ? 'Loading...' : (
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
-                                <CoinIcon color={creditType === 'gold' ? '#FFD700' : '#C0C0C0'} size={18} />
-                            </View>
-                        )
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+                            <CoinIcon color={creditType === 'gold' ? '#FFD700' : '#C0C0C0'} size={18} />
+                        </View>
                     }
                     onPress={async () => {
                         const valid = await trigger("question");
@@ -114,6 +121,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             </View>
 
             <PurchaseAlertModal
+                loading={costLoading}
                 visible={showPurchaseModal}
                 onContinue={handleSubmit(onSubmit)}
                 onCancel={() => setShowPurchaseModal(false)}

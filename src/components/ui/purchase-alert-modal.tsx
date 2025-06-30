@@ -12,6 +12,7 @@ interface PurchaseAlertModalProps {
   onContinue: () => void;
   onCancel: () => void;
   service: string;
+  loading?: boolean;
 }
 
 const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
@@ -19,20 +20,24 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
   onContinue,
   onCancel,
   service,
+  loading, // new prop
 }) => {
   const { sync } = useAsyncStorage();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [internalLoading, setInternalLoading] = useState<boolean>(false);
   const [userCredit, setUserCredit] = useState<number>(0);
   const [isSufficient, setIsSufficient] = useState<boolean>(false);
   const [creditType, setCreditType] = useState<string>('');
   const [cost, setCost] = useState<number>(0);
+
+  // Use external loading if provided, else internal
+  const effectiveLoading = loading !== undefined ? loading : internalLoading;
 
   const navigation = useNavigation()
 
   useEffect(() => {
     const syncAndLoad = async () => {
       try {
-        setLoading(true);
+        setInternalLoading(true);
         const data = await sync();
 
         let key = service;
@@ -52,10 +57,10 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
         setCost(cost)
         setCreditType(creditType)
 
-        setLoading(false);
+        setInternalLoading(false);
       } catch (error) {
         console.log(error)
-        setLoading(false);
+        setInternalLoading(false);
       }
     };
 
@@ -88,7 +93,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
                   title="Continue to Purchase"
                   variant="secondary"
                   onPress={onContinue}
-                  loading={loading}
+                  loading={effectiveLoading}
                 />
                 <AppButton title="Cancel" variant="outline" onPress={onCancel} />
               </View>
@@ -107,7 +112,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
                   title="Purchase Credits"
                   variant="secondary"
                   onPress={() => navigation.navigate('TopUp')}
-                  loading={loading}
+                  loading={effectiveLoading}
                 />
                 <AppButton title="Cancel" variant="outline" onPress={onCancel} />
               </View>

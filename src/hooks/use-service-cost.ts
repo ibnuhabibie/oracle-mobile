@@ -36,5 +36,5 @@ export function useServiceCost(serviceKey: string) {
     return found ? Number(found.value) : 0;
   }
 
-  return { cost, creditType, loading };
+  return { cost, creditType, loading, setLoading };
 }
