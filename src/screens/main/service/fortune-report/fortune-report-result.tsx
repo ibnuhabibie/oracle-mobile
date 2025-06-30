@@ -14,13 +14,13 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
     const { result } = route.params;
 
     const iconImages = [
-        require('../../../../assets/icons/services/fortune-report/icon-1.png'),
-        require('../../../../assets/icons/services/fortune-report/icon-2.png'),
-        require('../../../../assets/icons/services/fortune-report/icon-3.png'),
-        require('../../../../assets/icons/services/fortune-report/icon-4.png'),
-        require('../../../../assets/icons/services/fortune-report/icon-5.png'),
-        require('../../../../assets/icons/services/fortune-report/icon-6.png'),
-        require('../../../../assets/icons/services/fortune-report/icon-7.png'),
+        require('../../../../assets/icons/reports/fortune-report/icon-1.png'),
+        require('../../../../assets/icons/reports/fortune-report/icon-2.png'),
+        require('../../../../assets/icons/reports/fortune-report/icon-3.png'),
+        require('../../../../assets/icons/reports/fortune-report/icon-4.png'),
+        require('../../../../assets/icons/reports/fortune-report/icon-5.png'),
+        require('../../../../assets/icons/reports/fortune-report/icon-6.png'),
+        require('../../../../assets/icons/reports/fortune-report/icon-7.png'),
     ];
 
     const CardList: FC<{ content: any[] }> = ({ content }) => {

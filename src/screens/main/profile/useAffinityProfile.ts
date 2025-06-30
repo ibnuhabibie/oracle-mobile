@@ -28,7 +28,7 @@ export const iconMap: Record<string, any> = {
   leo: require('../../../assets/affinity/leo.png'),
   libra: require('../../../assets/affinity/libra.png'),
   monkey: require('../../../assets/affinity/monkey.png'),
-  mouse: require('../../../assets/affinity/mouse.png'),
+  rat: require('../../../assets/affinity/rat.png'),
   pig: require('../../../assets/affinity/pig.png'),
   pisces: require('../../../assets/affinity/pisces.png'),
   rabbit: require('../../../assets/affinity/rabbit.png'),

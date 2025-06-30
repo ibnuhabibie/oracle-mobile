@@ -183,13 +183,26 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         init();
     }, []);
 
+    // Mutually exclusive selection handlers
+    const handleSelectPackage = (id: number) => {
+        setSelectedPackage(id);
+        setSelectedSubscription(null);
+    };
+
+    const handleSelectSubscription = (id: number) => {
+        setSelectedSubscription(id);
+        setSelectedPackage(null);
+    };
+
     return (
         <ScreenContainer
             scrollable={true}
             floatingFooter={
-                <View style={{ padding: 12, backgroundColor: "#fff" }}>
-                    <AppButton title="Continue" variant="primary" onPress={() => { }} />
-                </View>
+                (selectedPackage !== null || selectedSubscription !== null) && (
+                    <View style={{ padding: 12, backgroundColor: "#fff" }}>
+                        <AppButton title="Continue" variant="primary" onPress={() => { }} />
+                    </View>
+                )
             }
             header={
                 <Header
@@ -201,14 +214,14 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             <PackageCardList
                 packages={packages}
                 selectedPackage={selectedPackage}
-                setSelectedPackage={setSelectedPackage}
+                setSelectedPackage={handleSelectPackage}
                 loading={loadingPackages}
                 error={errorPackages}
             />
             <SubscriptionCardList
                 subscriptions={subscriptions}
                 selectedSubscription={selectedSubscription}
-                setSelectedSubscription={setSelectedSubscription}
+                setSelectedSubscription={handleSelectSubscription}
                 loading={loadingSubscriptions}
                 error={errorSubscriptions}
             />

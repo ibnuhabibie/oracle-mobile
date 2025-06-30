@@ -16,14 +16,14 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
     console.log(result)
 
     const iconImages = [
-        require('../../../../assets/icons/services/love-forecast/icon-1.png'),
-        require('../../../../assets/icons/services/love-forecast/icon-2.png'),
-        require('../../../../assets/icons/services/love-forecast/icon-3.png'),
-        require('../../../../assets/icons/services/love-forecast/icon-4.png'),
-        require('../../../../assets/icons/services/love-forecast/icon-5.png'),
-        require('../../../../assets/icons/services/love-forecast/icon-6.png'),
-        require('../../../../assets/icons/services/love-forecast/icon-7.png'),
-        require('../../../../assets/icons/services/love-forecast/icon-8.png'),
+        require('../../../../assets/icons/reports/love-forecast/icon-1.png'),
+        require('../../../../assets/icons/reports/love-forecast/icon-2.png'),
+        require('../../../../assets/icons/reports/love-forecast/icon-3.png'),
+        require('../../../../assets/icons/reports/love-forecast/icon-4.png'),
+        require('../../../../assets/icons/reports/love-forecast/icon-5.png'),
+        require('../../../../assets/icons/reports/love-forecast/icon-6.png'),
+        require('../../../../assets/icons/reports/love-forecast/icon-7.png'),
+        require('../../../../assets/icons/reports/love-forecast/icon-8.png'),
     ];
 
     // Format date_range if present, else fallback
