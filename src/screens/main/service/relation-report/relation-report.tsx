@@ -39,40 +39,48 @@ const CARD_DATA = [
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const [showForm, setShowForm] = useState(false);
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-    const [purchaseLoading, setPurchaseLoading] = useState(false);
-    const { cost, creditType, loading: costLoading } = useServiceCost('relationship_report');
+    const {
+        cost,
+        creditType,
+        loading: costLoading,
+        setLoading: setCostLoading
+    } = useServiceCost('relationship_report');
+    const [payload, setPayload] = useState(null);
 
     const handleContinue = async (values) => {
-        setPurchaseLoading(true);
+        setCostLoading(true);
         try {
-            // Convert birth_date to YYYY-MM-DD
-            const birthDateStr = values.birth_date instanceof Date
-                ? values.birth_date.toISOString().split('T')[0]
-                : values.birth_date;
-            // Convert gender to "M"/"F"
-            const genderShort = values.gender === "Male" ? "M" : values.gender === "Female" ? "F" : values.gender;
-
-            const response = await api.post('/v1/affinity/relationship-report', {
-                name: values.full_name,
-                birth_date: birthDateStr,
-                gender: genderShort,
-                birth_location: `${values.birth_country.name}, ${values.birth_city.name}`,
-                lat: `${values.birth_city.latitude}`,
-                lng: `${values.birth_city.longitude}`
-            });
+            const response = await api.post('/v1/affinity/relationship-report', payload);
             setShowPurchaseModal(false);
             setShowForm(false)
             Alert.alert('Title', response.meta.message)
         } catch (err) {
             setShowPurchaseModal(false);
         } finally {
-            setPurchaseLoading(false);
+            setCostLoading(false);
         }
     };
 
     const handleCancel = () => {
         setShowPurchaseModal(false);
     };
+
+    const handleFormContinue = (values) => {
+        setShowPurchaseModal(true)
+
+        const birthDateStr = values.birth_date instanceof Date
+            ? values.birth_date.toISOString().split('T')[0]
+            : values.birth_date;
+        const genderShort = values.gender === "Male" ? "M" : values.gender === "Female" ? "F" : values.gender;
+        setPayload({
+            name: values.full_name,
+            birth_date: birthDateStr,
+            gender: genderShort,
+            birth_location: `${values.birth_country.name}, ${values.birth_city.name}`,
+            lat: `${values.birth_city.latitude}`,
+            lng: `${values.birth_city.longitude}`
+        })
+    }
 
     return (
         <ScreenContainer
@@ -96,9 +104,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                     />
                 ) : (
                     <RelationReportForm
-                        onSubmit={(values: RelationReportFormValues) => {
-                            handleContinue(values)
-                        }}
+                        onSubmit={(values: RelationReportFormValues) => handleFormContinue(values)}
                         onCancel={() => setShowForm(false)}
                     />
                 )
@@ -137,7 +143,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 onContinue={handleContinue}
                 onCancel={handleCancel}
                 service="love_report"
-                loading={purchaseLoading}
+                loading={costLoading}
             />
         </ScreenContainer>
     );
