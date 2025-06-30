@@ -5,6 +5,7 @@ import {
   Image,
   Alert,
 } from 'react-native';
+
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -22,49 +23,58 @@ type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveFor
 
 const CARD_DATA = [
   {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-1.png'), label: 'Introduction: Your love blueprint'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-1.png'),
+    label: 'Introduction: Your love blueprint'
   },
   {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-2.png'), label: 'What are you lacking in love?'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-2.png'),
+    label: 'What are you lacking in love?'
   },
   {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-3.png'), label: 'What you look out for in a partner'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-3.png'),
+    label: 'What you look out for in a partner'
   },
   {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-4.png'), label: 'What type of partner suits you'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-4.png'),
+    label: 'What type of partner suits you'
   },
   {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-5.png'), label: 'Love outlook for the year'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-5.png'),
+    label: 'Love outlook for the year'
   },
   {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-6.png'), label: 'Where to find love'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-6.png'),
+    label: 'Where to find love'
   },
   {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-7.png'), label: 'Personalized questions'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-7.png'),
+    label: 'Personalized questions'
   },
   {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-8.png'), label: 'Conclusion: Your love story ahead'
+    icon: require('../../../../assets/icons/services/love-forecast/icon-8.png'),
+    label: 'Conclusion: Your love story ahead'
   },
 ];
 
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
   const [showPurchaseModal, setShowPurchaseModal] = React.useState(false);
-  const [purchaseLoading, setPurchaseLoading] = React.useState(false);
-  const { cost, creditType, loading: costLoading } = useServiceCost('love_report');
+  const {
+    cost,
+    creditType,
+    loading: costLoading,
+    setLoading: setCostLoading
+  } = useServiceCost('love_report');
 
   const handleContinue = async () => {
-    setPurchaseLoading(true);
+    setCostLoading(true);
     try {
-      // You may want to pass user input as needed
       const response = await api.post('/v1/affinity/love-report', {});
       setShowPurchaseModal(false);
-      // navigation.navigate('LoveForecastResult', { result: response });
       Alert.alert('Title', response.meta.message)
     } catch (err) {
       setShowPurchaseModal(false);
-      // Optionally show error to user
     } finally {
-      setPurchaseLoading(false);
+      setCostLoading(false);
     }
   };
 
@@ -125,7 +135,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         onContinue={handleContinue}
         onCancel={handleCancel}
         service="love_report"
-        loading={purchaseLoading}
+        loading={costLoading}
       />
     </ScreenContainer>
   );
