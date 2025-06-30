@@ -44,16 +44,20 @@ const CARD_DATA = [
 ];
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
-    const { cost, creditType, loading: costLoading } = useServiceCost('transit_report');
+    const {
+        cost,
+        creditType,
+        loading: costLoading,
+        setLoading: setCostLoading
+    } = useServiceCost('transit_report');
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-    const [purchaseLoading, setPurchaseLoading] = useState(false);
 
     const handleCancel = () => {
         setShowPurchaseModal(false);
     };
 
     const handleContinue = async () => {
-        setPurchaseLoading(true);
+        setCostLoading(true);
         try {
             const response = await api.post('/v1/affinity/transit-report', {});
             setShowPurchaseModal(false);
@@ -61,7 +65,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         } catch (err) {
             setShowPurchaseModal(false);
         } finally {
-            setPurchaseLoading(false);
+            setCostLoading(false);
         }
     };
 
@@ -117,8 +121,8 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 visible={showPurchaseModal}
                 onContinue={handleContinue}
                 onCancel={handleCancel}
-                service="love_report"
-                loading={purchaseLoading}
+                service="transit_report"
+                loading={costLoading}
             />
         </ScreenContainer>
     );
