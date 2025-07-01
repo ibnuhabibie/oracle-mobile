@@ -35,14 +35,6 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
     const { t } = useTranslation();
 
-    useEffect(() => {
-        const init = async () => {
-            const status = await notifee.requestPermission();
-            console.log(status)
-        }
-        init()
-    }, [])
-
     const formRules = {
         email: {
             required: t('EMAIL IS REQUIRED'),

@@ -18,6 +18,7 @@ import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
 import CoinIcon from '../../../../components/icons/profile/coin-icon';
 import api from '../../../../utils/http';
+import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 
 type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveForecast'>;
 
@@ -58,6 +59,8 @@ const CARD_DATA = [
 
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
   const [showPurchaseModal, setShowPurchaseModal] = React.useState(false);
+  const [showPollingModal, setShowPollingModal] = React.useState(false);
+  const [pollingJobId, setPollingJobId] = React.useState<string | null>(null);
   const {
     cost,
     creditType,
@@ -70,7 +73,15 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
     try {
       const response = await api.post('/v1/affinity/love-report', {});
       setShowPurchaseModal(false);
-      Alert.alert('Title', response.meta.message)
+      // Expecting response.meta.job_id or response.data.job_id
+      console.log(response)
+      const jobId = response?.data?.job_id;
+      if (jobId) {
+        setPollingJobId(jobId);
+        setShowPollingModal(true);
+      } else {
+        Alert.alert('Error', 'No job_id returned from server.');
+      }
     } catch (err) {
       setShowPurchaseModal(false);
     } finally {
@@ -80,6 +91,20 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
 
   const handleCancel = () => {
     setShowPurchaseModal(false);
+  };
+
+  const handlePollingResult = (usageHistory: any) => {
+    setShowPollingModal(false);
+    setPollingJobId(null);
+    navigation.navigate('LoveReportResult', {
+      result: JSON.parse(usageHistory.response_data)
+    });
+  };
+
+  const handlePollingError = (error: any) => {
+    setShowPollingModal(false);
+    setPollingJobId(null);
+    Alert.alert('Error', 'Failed to fetch report status.');
   };
 
   return (
@@ -137,6 +162,19 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         service="love_report"
         loading={costLoading}
       />
+      {pollingJobId && (
+        <PollingLoadingModal
+          job_id={pollingJobId}
+          visible={showPollingModal}
+          message="Generating your love report..."
+          onResult={handlePollingResult}
+          onError={handlePollingError}
+          onClose={() => {
+            setShowPollingModal(false);
+            setPollingJobId(null);
+          }}
+        />
+      )}
     </ScreenContainer>
   );
 };
