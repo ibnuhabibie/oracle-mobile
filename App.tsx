@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { getMessaging, onMessage } from '@react-native-firebase/messaging';
 import { getApp } from '@react-native-firebase/app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StripeProvider } from '@stripe/stripe-react-native';
 
 import { AuthProvider } from './src/context/auth-context';
 import { NotificationProvider, useNotification } from './src/context/notification-context';
@@ -31,7 +32,7 @@ const App: React.FC = () => {
       pageName = 'LoveReportResult'
       payload = { result: data }
     } else if (item.service_type == 'ask_any_question') {
-      pageName = 'AffinityResults'  
+      pageName = 'AffinityResults'
       payload = {
         question: data.question,
         affinityResult: { data }
@@ -141,10 +142,14 @@ const App: React.FC = () => {
     <GestureHandlerRootView>
       {/* <NotificationProvider> */}
       {/* <AuthProvider> */}
-      <NavigationContainer ref={navigationRef}>
-        <MainNavigator />
-        <FloatingPreviewButton />
-      </NavigationContainer>
+      <StripeProvider
+        publishableKey="pk_test_51PVG0tIYVaNsBhG4lSzSsK0Aytevy88pZWHAEyeRTOx8I8sJzF954qzrvsEIaHlnoKoixSZpm427IEptSgbKYGGF00A4eoUNga"
+      >
+        <NavigationContainer ref={navigationRef}>
+          <MainNavigator />
+          <FloatingPreviewButton />
+        </NavigationContainer>
+      </StripeProvider>
       {/* </AuthProvider> */}
       {/* </NotificationProvider> */}
     </GestureHandlerRootView>

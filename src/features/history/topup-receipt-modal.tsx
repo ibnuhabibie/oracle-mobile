@@ -43,40 +43,66 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                     <Text style={styles.modalSectionTitle}>Order Item(s)</Text>
                     <View style={styles.modalRow}>
                         <View style={styles.modalItemIcon}>
-                            <CoinIcon size={20} color="#E0AE1E" />
+                            <CoinIcon size={20} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
                         </View>
                         <Text style={styles.modalItemQty}>
                             {item.package?.name || item.subscription?.name || item.topup_type}
                         </Text>
                         <Text style={styles.modalItemPrice}>
-                            ${item.package?.price || item.subscription?.price || item.amount_paid}
+                            ${item.amount}
                         </Text>
                     </View>
                     <View style={styles.modalRow}>
                         <View style={{ flex: 1 }} />
                         <Text style={styles.modalTotalLabel}>Total:</Text>
                         <Text style={styles.modalTotalValue}>
-                            ${item.amount_paid}
+                            ${item.amount}
                         </Text>
                     </View>
                     <View style={styles.modalSectionDivider} />
-                    <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>Payment Method</Text>
-                        <Text style={styles.modalValue}>{item.payment_method}</Text>
-                    </View>
-                    <View style={styles.modalSectionDivider} />
-                    <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>Previous Points</Text>
-                        <Text style={styles.modalPoints}>150 <CoinIcon size={14} color="#E0AE1E" /></Text>
-                    </View>
-                    <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>Points Added</Text>
-                        <Text style={styles.modalPointsAdded}>+55 <CoinIcon size={14} color="#E0AE1E" /></Text>
-                    </View>
-                    <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>Total Points</Text>
-                        <Text style={styles.modalPointsTotal}>205 <CoinIcon size={14} color="#E0AE1E" /></Text>
-                    </View>
+
+                    {
+                        item.credit_journal ?
+                            (
+                                <>
+                                    <View style={styles.modalRow}>
+                                        <Text style={styles.modalLabel}>Payment Method</Text>
+                                        <Text style={styles.modalValue}>{JSON.parse(item.payment_method).type}</Text>
+                                    </View>
+                                    <View style={styles.modalSectionDivider} />
+                                    <View style={styles.modalRow}>
+                                        <Text style={styles.modalLabel}>Previous Points</Text>
+                                        <View style={styles.textCoinWrapper}>
+                                            <Text style={styles.modalPoints}>{item.credit_journal.credits_before}</Text>
+                                            <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                        </View>
+                                    </View>
+                                    <View style={styles.modalRow}>
+                                        <Text style={styles.modalLabel}>Points Added</Text>
+                                        <View style={styles.textCoinWrapper}>
+                                            <Text style={styles.modalPointsAdded}>+{item.credit_journal.credits_used}</Text>
+                                            <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                        </View>
+                                    </View>
+                                    <View style={styles.modalRow}>
+                                        <Text style={styles.modalLabel}>Total Points</Text>
+                                        <View style={styles.textCoinWrapper}>
+                                            <Text style={styles.modalPointsTotal}>{item.credit_journal.credits_after}</Text>
+                                            <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                        </View>
+                                    </View>
+                                </>
+                            ) :
+                            (
+                                <>
+                                    <View style={{ marginVertical: 16 }}>
+                                        <Text style={{ textAlign: "center", color: "#888", fontSize: 15 }}>
+                                            Your payment is not yet completed. It may still be processing, or you haven't finished the payment. Please check back later.
+                                        </Text>
+                                    </View>
+                                </>
+                            )
+                    }
                 </View>
             </View>
         </Modal>
@@ -136,6 +162,7 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         flex: 1,
         textAlign: "right",
+        textTransform: 'capitalize'
     },
     modalSectionDivider: {
         height: 1,
@@ -194,6 +221,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
+    textCoinWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4
+    }
 });
 
 export default TopupReceiptModal;

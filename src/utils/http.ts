@@ -18,6 +18,13 @@ api.interceptors.request.use(
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+        // Add user_id as a query parameter if available
+        const user = await AsyncStorage.getItem('user_profile');
+        const userData = JSON.parse(user)
+        if (userData.user_id) {
+            if (!config.params) config.params = {};
+            config.params.user_id = userData.user_id;
+        }
         return config;
     },
     (error) => Promise.reject(error)

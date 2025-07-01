@@ -1,6 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, View, ActivityIndicator } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View, ActivityIndicator, Alert } from 'react-native';
+import {
+    initPaymentSheet,
+    presentPaymentSheet,
+} from '@stripe/stripe-react-native';
+
 
 import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/screen-container';
@@ -10,6 +15,7 @@ import api from '../../utils/http';
 import { AppButton } from '../../components/ui/app-button';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
+import CoinIcon from '../../components/icons/profile/coin-icon';
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
 
@@ -32,13 +38,8 @@ interface SubscriptionItem {
     is_active: boolean;
 }
 
-const CoinIcon = () => (
-    <View style={{
-        width: 16, height: 16, borderRadius: 8, backgroundColor: '#FFD700',
-        alignItems: 'center', justifyContent: 'center', marginRight: 2
-    }}>
-        <AppText style={{ color: '#fff', fontWeight: 'bold', fontSize: 12 }}>🪙</AppText>
-    </View>
+const Coin = ({ type = 'silver' }) => (
+    <CoinIcon size={19} color={type === 'silver' ? "#EB4335" : "#E0AE1E"} />
 );
 
 const RadioIndicator = ({ selected }: { selected: boolean }) => (
@@ -78,7 +79,7 @@ const PackageCardList: FC<{
                             <AppText style={styles.cardTitle}>{pkg.name}</AppText>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
                                 <AppText style={styles.cardSubtitle}>Get {pkg.credits} </AppText>
-                                <CoinIcon />
+                                <Coin />
                             </View>
                             {pkg.description ? (
                                 <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{pkg.description}</AppText>
@@ -125,7 +126,7 @@ const SubscriptionCardList: FC<{
                             <AppText style={styles.cardTitle}>{sub.name}</AppText>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
                                 <AppText style={styles.cardSubtitle}>Get {sub.credits} </AppText>
-                                <CoinIcon />
+                                <Coin type='gold' />
                             </View>
                             {sub.description ? (
                                 <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{sub.description}</AppText>
@@ -148,6 +149,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     const [loadingSubscriptions, setLoadingSubscriptions] = useState<boolean>(true);
     const [errorPackages, setErrorPackages] = useState<string | null>(null);
     const [errorSubscriptions, setErrorSubscriptions] = useState<string | null>(null);
+    const [processing, setProcessing] = useState<boolean>(false);
 
     const fetchPackages = async () => {
         setLoadingPackages(true);
@@ -183,6 +185,26 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         init();
     }, []);
 
+    const openPaymentSheet = async (clientSecret: string) => {
+        const { error: errorInit } = await initPaymentSheet({
+            paymentIntentClientSecret: clientSecret,
+            merchantDisplayName: 'Your App Name',
+        });
+
+        if (errorInit) {
+            Alert.alert('Payment failed', errorInit.message);
+        }
+
+        const { error } = await presentPaymentSheet();
+
+        if (error) {
+            console.log(error)
+            Alert.alert('Payment failed', error.message);
+        } else {
+            Alert.alert('Success', 'Payment complete!');
+        }
+    };
+
     // Mutually exclusive selection handlers
     const handleSelectPackage = (id: number) => {
         setSelectedPackage(id);
@@ -194,13 +216,41 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         setSelectedPackage(null);
     };
 
+    const handleContinue = async () => {
+        try {
+            setProcessing(true);
+            let client_secret = null
+            if (selectedPackage !== null) {
+                const res = await api.post('/v1/payments/topup', { package_id: selectedPackage });
+                console.log('res', res)
+                client_secret = res.data.client_secret;
+                // Alert.alert('Success', 'Top up successful!');
+            } else if (selectedSubscription !== null) {
+                const res = await api.post('/v1/payments/subscribe', { subscription_id: selectedSubscription });
+                client_secret = res.data.client_secret
+                // Alert.alert('Success', 'Subscription successful!');
+            }
+
+            await openPaymentSheet(client_secret)
+        } catch (err: any) {
+            Alert.alert('Error', err?.response?.data?.message || 'An error occurred. Please try again.');
+        } finally {
+            setProcessing(false);
+        }
+    };
+
     return (
         <ScreenContainer
             scrollable={true}
             floatingFooter={
                 (selectedPackage !== null || selectedSubscription !== null) && (
                     <View style={{ padding: 12, backgroundColor: "#fff" }}>
-                        <AppButton title="Continue" variant="primary" onPress={() => { }} />
+                        <AppButton
+                            title={processing ? "Processing..." : "Continue"}
+                            variant="primary"
+                            disabled={processing}
+                            onPress={handleContinue}
+                        />
                     </View>
                 )
             }
