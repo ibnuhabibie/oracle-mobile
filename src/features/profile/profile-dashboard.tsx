@@ -63,7 +63,6 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
             this.setState({ loading: true });
             const response = await api.get('/v1/users/daily-profile');
             this.setState({ data: response.data.content });
-            console.log(response.data.content);
         } catch (error) {
             console.error('Error fetching daily profile:', error);
             this.setState({ error: 'Failed to load daily profile. Please check your connection and try again.' });

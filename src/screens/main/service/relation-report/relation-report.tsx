@@ -18,6 +18,7 @@ import { useServiceCost } from '../../../../hooks/use-service-cost';
 import CoinIcon from '../../../../components/icons/profile/coin-icon';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import api from '../../../../utils/http';
+import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -39,21 +40,29 @@ const CARD_DATA = [
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const [showForm, setShowForm] = useState(false);
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+    const [showPollingModal, setShowPollingModal] = useState(false);
+    const [pollingJobId, setPollingJobId] = useState<string | null>(null);
     const {
         cost,
         creditType,
         loading: costLoading,
         setLoading: setCostLoading
     } = useServiceCost('relationship_report');
-    const [payload, setPayload] = useState(null);
+    const [payload, setPayload] = useState<any>(null);
 
-    const handleContinue = async (values) => {
+    const handleContinue = async () => {
         setCostLoading(true);
         try {
             const response = await api.post('/v1/affinity/relationship-report', payload);
             setShowPurchaseModal(false);
-            setShowForm(false)
-            Alert.alert('Title', response.meta.message)
+            // Expecting response.data.job_id
+            const jobId = response?.data?.job_id;
+            if (jobId) {
+                setPollingJobId(jobId);
+                setShowPollingModal(true);
+            } else {
+                Alert.alert('Error', 'No job_id returned from server.');
+            }
         } catch (err) {
             setShowPurchaseModal(false);
         } finally {
@@ -65,8 +74,8 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         setShowPurchaseModal(false);
     };
 
-    const handleFormContinue = (values) => {
-        setShowPurchaseModal(true)
+    const handleFormContinue = (values: RelationReportFormValues) => {
+        setShowPurchaseModal(true);
 
         const birthDateStr = values.birth_date instanceof Date
             ? values.birth_date.toISOString().split('T')[0]
@@ -76,11 +85,29 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             name: values.full_name,
             birth_date: birthDateStr,
             gender: genderShort,
-            birth_location: `${values.birth_country.name}, ${values.birth_city.name}`,
-            lat: `${values.birth_city.latitude}`,
-            lng: `${values.birth_city.longitude}`
-        })
-    }
+            birth_location: `${values.birth_country?.name}, ${values.birth_city?.name}`,
+            lat: `${values.birth_city?.latitude}`,
+            lng: `${values.birth_city?.longitude}`
+        });
+    };
+
+    const handlePollingResult = (usageHistory: any) => {
+        setShowPollingModal(false);
+        setPollingJobId(null);
+
+        console.log(payload)
+
+        navigation.navigate('RelationReportResult', {
+            result: JSON.parse(usageHistory.response_data),
+            love_profile: payload // fix: match navigation param type
+        });
+    };
+
+    const handlePollingError = (error: any) => {
+        setShowPollingModal(false);
+        setPollingJobId(null);
+        Alert.alert('Error', 'Failed to fetch report status.');
+    };
 
     return (
         <ScreenContainer
@@ -145,6 +172,19 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 service="love_report"
                 loading={costLoading}
             />
+            {pollingJobId && (
+                <PollingLoadingModal
+                    job_id={pollingJobId}
+                    visible={showPollingModal}
+                    message="Generating your relationship report..."
+                    onResult={handlePollingResult}
+                    onError={handlePollingError}
+                    onClose={() => {
+                        setShowPollingModal(false);
+                        setPollingJobId(null);
+                    }}
+                />
+            )}
         </ScreenContainer>
     );
 };

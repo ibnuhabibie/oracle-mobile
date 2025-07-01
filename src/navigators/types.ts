@@ -38,7 +38,7 @@ export type MainNavigatorParamList = {
     RelationReport: undefined;
     RelationReportResult: {
         result: any
-        love_profie: any
+        love_profile: any
     };
 
     TopUp: undefined;

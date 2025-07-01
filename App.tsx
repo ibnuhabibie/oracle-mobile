@@ -5,18 +5,81 @@ import notifee, { EventType } from '@notifee/react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { getMessaging, onMessage } from '@react-native-firebase/messaging';
 import { getApp } from '@react-native-firebase/app';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { AuthProvider } from './src/context/auth-context';
 import { NotificationProvider, useNotification } from './src/context/notification-context';
 import MainNavigator from './src/navigators/main-navigator';
 import { FloatingPreviewButton } from './src/features/component-preview/floating-preview-button';
+import api from './src/utils/http';
+import { navigationRef, navigate } from './src/navigators/navigation-ref';
+
 
 enableScreens(true);
 
 const App: React.FC = () => {
+
+  const handleNotif = async (notifData) => {
+    const response = await api.get(`/v1/usage-histories/${notifData.job_id}`);
+    const item = response.data
+
+    let data = JSON.parse(item.response_data)
+    let payload = {}
+    let pageName = ''
+
+    if (item.service_type == 'personalized_love_forecast_12mth') {
+      pageName = 'LoveReportResult'
+      payload = { result: data }
+    } else if (item.service_type == 'ask_any_question') {
+      pageName = 'AffinityResults'  
+      payload = {
+        question: data.question,
+        affinityResult: { data }
+      }
+    } else if (item.service_type == 'transit_report') {
+      pageName = 'FortuneReportResult'
+      payload = { result: data }
+    } else if (item.service_type == 'relationship_compatibility') {
+      pageName = 'RelationReportResult'
+      payload = {
+        result: data,
+        love_profile: JSON.parse(item.request_data).partner
+      }
+    } else if (item.service_type == 'ask_secret_diary') {
+      pageName = 'EchoDetail'
+      payload = {
+        id: data.id,
+        date: {
+          dateString: data.date
+        }
+      }
+    }
+
+    console.log(pageName, payload)
+
+    navigate(pageName, payload)
+  }
+
   useEffect(() => {
     console.log('triggered')
+
+    const init = async () => {
+      try {
+        const settings = await notifee.requestPermission();
+        console.log('Notification permission status:', settings.authorizationStatus);
+
+        const dataString = await AsyncStorage.getItem('pendingNotificationTap');
+        if (dataString) {
+          const notifData = JSON.parse(dataString);
+          handleNotif(notifData)
+          await AsyncStorage.removeItem('pendingNotificationTap');
+        }
+      } catch (error) {
+        console.log(error, 'app')
+      }
+    }
+
+    init()
 
     notifee.getInitialNotification().then(initialNotification => {
       console.log(initialNotification)
@@ -24,28 +87,19 @@ const App: React.FC = () => {
       if (initialNotification) {
         console.log('App opened from quit state via notification', initialNotification);
         const { data } = initialNotification.notification;
+        handleNotif(data)
       }
     });
   }, []);
 
   useEffect(() => {
-    const init = async () => {
-      const settings = await notifee.requestPermission();
-      console.log('Notification permission status:', settings.authorizationStatus);
-    }
 
-    init()
-
-    const unsubscribeNotifee = notifee.onForegroundEvent(({ type, detail }) => {
+    const unsubscribeNotifee = notifee.onForegroundEvent(async ({ type, detail }) => {
       if (type === EventType.PRESS) {
         console.log('User tapped notification (FOREGROUND):', detail);
 
-        const data = detail.notification?.data;
-        if (data?.screen === 'Details') {
-          // Example navigation if you’re using navigation ref
-          // navigationRef.current?.navigate('Details', { id: data.id });
-          console.log('Navigate to Details screen with ID:', data.id);
-        }
+        const notifData = detail.notification?.data;
+        handleNotif(notifData)
       }
     });
 
@@ -87,7 +141,7 @@ const App: React.FC = () => {
     <GestureHandlerRootView>
       {/* <NotificationProvider> */}
       {/* <AuthProvider> */}
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <MainNavigator />
         <FloatingPreviewButton />
       </NavigationContainer>
