@@ -17,6 +17,7 @@ import { useServiceCost } from '../../../../hooks/use-service-cost';
 import CoinIcon from '../../../../components/icons/profile/coin-icon';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import api from '../../../../utils/http';
+import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -51,6 +52,8 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         setLoading: setCostLoading
     } = useServiceCost('transit_report');
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+    const [showPollingModal, setShowPollingModal] = useState(false);
+    const [pollingJobId, setPollingJobId] = useState<string | null>(null);
 
     const handleCancel = () => {
         setShowPurchaseModal(false);
@@ -61,12 +64,33 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         try {
             const response = await api.post('/v1/affinity/transit-report', {});
             setShowPurchaseModal(false);
-            Alert.alert('Title', response.meta.message)
+            // Expecting response.data.job_id
+            const jobId = response?.data?.job_id;
+            if (jobId) {
+                setPollingJobId(jobId);
+                setShowPollingModal(true);
+            } else {
+                Alert.alert('Error', 'No job_id returned from server.');
+            }
         } catch (err) {
             setShowPurchaseModal(false);
         } finally {
             setCostLoading(false);
         }
+    };
+
+    const handlePollingResult = (usageHistory: any) => {
+        setShowPollingModal(false);
+        setPollingJobId(null);
+        navigation.navigate('FortuneReportResult', {
+            result: JSON.parse(usageHistory.response_data)
+        });
+    };
+
+    const handlePollingError = (error: any) => {
+        setShowPollingModal(false);
+        setPollingJobId(null);
+        Alert.alert('Error', 'Failed to fetch report status.');
     };
 
     return (
@@ -124,6 +148,19 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 service="transit_report"
                 loading={costLoading}
             />
+            {pollingJobId && (
+                <PollingLoadingModal
+                    job_id={pollingJobId}
+                    visible={showPollingModal}
+                    message="Generating your fortune report..."
+                    onResult={handlePollingResult}
+                    onError={handlePollingError}
+                    onClose={() => {
+                        setShowPollingModal(false);
+                        setPollingJobId(null);
+                    }}
+                />
+            )}
         </ScreenContainer>
     );
 };

@@ -18,7 +18,7 @@ export type MainNavigatorParamList = {
     Tabs: undefined;
     Home: undefined;
     AskAffinity: undefined;
-    
+
     Echo: undefined;
     EchoDetail: {
         id?: string,
@@ -26,10 +26,14 @@ export type MainNavigatorParamList = {
     };
 
     LoveForecast: undefined;
-    LoveReportResult: { result: any };
+    LoveReportResult: {
+        result: any
+    };
 
     FortuneReport: undefined;
-    FortuneReportResult: { result: any };
+    FortuneReportResult: {
+        result: any
+    };
 
     RelationReport: undefined;
     RelationReportResult: {
