@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1060211516953",
+    "project_id": "affinity-6ad69",
+    "storage_bucket": "affinity-6ad69.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060211516953:android:708283ca8a416d7d8eec88",
+        "android_client_info": {
+          "package_name": "com.oracleapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-Y5iJ10s53XjiDwxePz57gUGihLXZqok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
