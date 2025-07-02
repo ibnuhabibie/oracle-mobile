@@ -6,7 +6,7 @@
     "NEXT": "Next",
     "SIGN IN": "Sign In",
     "SIGN UP": "Sign Up",
-    "THE COSMOS WHISPERS": "The cosmos whispers.{\\n}Discover what’s meant for you.",
+    "THE COSMOS WHISPERS": "The cosmos whispers.{\n}Discover what’s meant for you.",
     "DONT HAVE AN ACCOUNT": "Don’t have an account?",
     "EMAIL IS REQUIRED": "Email is required",
     "INVALID EMAIL FORMAT": "Invalid email format",
@@ -15,7 +15,7 @@
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "LOGIN FAILED": "Login Failed",
-    "SIGN UP SUBTITLE": "The cosmos whispers.{\\n}Join & uncover your destiny.",
+    "SIGN UP SUBTITLE": "The cosmos whispers.{\n}Join & uncover your destiny.",
     "ALREADY HAVE AN ACCOUNT": "Already have an account?",
     "NAME IS REQUIRED": "Name is required",
     "NAME MIN LENGTH": "Name must be at least 2 characters",
@@ -62,5 +62,19 @@
     "PASSWORD CHANGED SUCCESSFULLY": "Password changed successfully",
     "FAILED TO CHANGE PASSWORD": "Failed to change password",
     "LOADING...": "Loading...",
-    "CHANGE PASSWORD": "Change Password"
+    "CHANGE PASSWORD": "Change Password",
+    "carousel": {
+        "love": {
+            "title": "Love On Pause?",
+            "subtitle": "DISCOVER WHAT'S COMING NEXT"
+        },
+        "relation": {
+            "title": "Relationship Insights",
+            "subtitle": "DISCOVER YOUR CONNECTIONS"
+        },
+        "fortune": {
+            "title": "Fortune Guidance",
+            "subtitle": "EMBRACE YOUR FUTURE"
+        }
+    }
 }

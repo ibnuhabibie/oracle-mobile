@@ -6,7 +6,7 @@
     "NEXT": "Berikutnya",
     "SIGN IN": "Masuk",
     "SIGN UP": "Daftar",
-    "THE COSMOS WHISPERS": "Kosmos berbisik.{\\n}Temukan apa yang ditakdirkan untukmu.",
+    "THE COSMOS WHISPERS": "Kosmos berbisik.{\n}Temukan apa yang ditakdirkan untukmu.",
     "DONT HAVE AN ACCOUNT": "Belum punya akun?",
     "EMAIL IS REQUIRED": "Email wajib diisi",
     "INVALID EMAIL FORMAT": "Format email tidak valid",
@@ -15,7 +15,7 @@
     "EMAIL": "Email",
     "PASSWORD": "Kata Sandi",
     "LOGIN FAILED": "Gagal Masuk",
-    "SIGN UP SUBTITLE": "Kosmos berbisik.{\\n}Bergabung & temukan takdirmu.",
+    "SIGN UP SUBTITLE": "Kosmos berbisik.{\n}Bergabung & temukan takdirmu.",
     "ALREADY HAVE AN ACCOUNT": "Sudah punya akun?",
     "NAME IS REQUIRED": "Nama wajib diisi",
     "NAME MIN LENGTH": "Nama minimal 2 karakter",
@@ -58,5 +58,19 @@
     "career": "Karier",
     "TODAY SCORE": "Skor Hari Ini",
     "Good Day": "Selamat Hari",
-    "WHAT DO YOU LIKE TO KNOW TODAY?": "Apa yang ingin Anda ketahui hari ini?"
+    "WHAT DO YOU LIKE TO KNOW TODAY?": "Apa yang ingin Anda ketahui hari ini?",
+    "carousel": {
+        "love": {
+            "title": "Cinta Sedang Tertunda?",
+            "subtitle": "TEMUKAN APA YANG AKAN TERJADI SELANJUTNYA"
+        },
+        "relation": {
+            "title": "Wawasan Hubungan",
+            "subtitle": "TEMUKAN KONEKSI ANDA"
+        },
+        "fortune": {
+            "title": "Panduan Keberuntungan",
+            "subtitle": "SAMBUT MASA DEPANMU"
+        }
+    }
 }

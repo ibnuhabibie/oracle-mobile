@@ -24,22 +24,22 @@ const Home: FC<HomeProps> = ({ navigation }) => {
     {
       id: 'love',
       image: require('../../assets/icons/services/love-forecast/service-icon.png'),
-      title: 'Love On Pause?',
-      subtitle: "DISCOVER WHAT'S COMING NEXT",
+      title: t('carousel.love.title'),
+      subtitle: t('carousel.love.subtitle'),
       path: 'LoveForecast'
     },
     {
       id: 'relation',
       image: require('../../assets/icons/services/relation-report/service-icon.png'),
-      title: 'Relationship Insights',
-      subtitle: "DISCOVER YOUR CONNECTIONS",
+      title: t('carousel.relation.title'),
+      subtitle: t('carousel.relation.subtitle'),
       path: 'RelationReport'
     },
     {
       id: 'fortune',
       image: require('../../assets/icons/services/fortune-report/service-icon.png'),
-      title: 'Fortune Guidance',
-      subtitle: "EMBRACE YOUR FUTURE",
+      title: t('carousel.fortune.title'),
+      subtitle: t('carousel.fortune.subtitle'),
       path: 'FortuneReport'
     },
   ];

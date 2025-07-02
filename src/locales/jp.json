@@ -6,7 +6,7 @@
     "NEXT": "次へ",
     "SIGN IN": "サインイン",
     "SIGN UP": "サインアップ",
-    "THE COSMOS WHISPERS": "宇宙がささやく。{\\n}あなたに与えられたものを見つけましょう。",
+    "THE COSMOS WHISPERS": "宇宙がささやく。{\n}あなたに与えられたものを見つけましょう。",
     "DONT HAVE AN ACCOUNT": "アカウントをお持ちでないですか？",
     "EMAIL IS REQUIRED": "メールアドレスは必須です",
     "INVALID EMAIL FORMAT": "無効なメール形式です",
@@ -15,7 +15,7 @@
     "EMAIL": "メールアドレス",
     "PASSWORD": "パスワード",
     "LOGIN FAILED": "ログインに失敗しました",
-    "SIGN UP SUBTITLE": "宇宙がささやく。{\\n}参加して運命を見つけましょう。",
+    "SIGN UP SUBTITLE": "宇宙がささやく。{\n}参加して運命を見つけましょう。",
     "ALREADY HAVE AN ACCOUNT": "すでにアカウントをお持ちですか？",
     "NAME IS REQUIRED": "名前は必須です",
     "NAME MIN LENGTH": "名前は2文字以上である必要があります",
@@ -58,5 +58,19 @@
     "career": "キャリア",
     "TODAY SCORE": "今日のスコア",
     "Good Day": "良い一日を",
-    "WHAT DO YOU LIKE TO KNOW TODAY?": "今日は何を知りたいですか？"
+    "WHAT DO YOU LIKE TO KNOW TODAY?": "今日は何を知りたいですか？",
+    "carousel": {
+        "love": {
+            "title": "愛が止まっている？",
+            "subtitle": "次に何が起こるかを発見しよう"
+        },
+        "relation": {
+            "title": "関係の洞察",
+            "subtitle": "あなたのつながりを見つけよう"
+        },
+        "fortune": {
+            "title": "運勢ガイダンス",
+            "subtitle": "未来を受け入れよう"
+        }
+    }
 }
