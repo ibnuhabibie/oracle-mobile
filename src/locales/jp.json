@@ -72,5 +72,38 @@
             "title": "運勢ガイダンス",
             "subtitle": "未来を受け入れよう"
         }
+        ,
+        "downloadPdf": "PDFとしてダウンロード"
+    },
+    "loveForecast": {
+        "header": "今後12ヶ月の恋愛予報",
+        "purchase": "{{cost}}で購入",
+        "title": "感情の混乱？一度で解決しよう。",
+        "subtitle": "感情的な課題を乗り越えるための\n4つの重要な方向性。",
+        "description": "あなたの感情的な混乱の原因を見つけ、恋愛の正しい方向性を見つけましょう。マインドセット、恋愛予報、恋愛の見つけ方、そしてこれからの展望など、すべての側面の答えが一度に得られます。",
+        "sectionTitle": "あなたが知ることができる内容：",
+        "cards": {
+            "intro": "はじめに：あなたの恋愛設計図",
+            "lacking": "恋愛で足りないものは？",
+            "lookout": "パートナーに求めるもの",
+            "suits": "あなたに合うパートナーのタイプ",
+            "outlook": "今年の恋愛運",
+            "where": "恋愛を見つける場所",
+            "questions": "パーソナルな質問",
+            "conclusion": "まとめ：これからの恋愛ストーリー"
+        },
+        "pollingMessage": "恋愛レポートを生成中...",
+        "error": "エラー",
+        "noJobId": "サーバーからjob_idが返されませんでした。",
+        "fetchStatusFailed": "レポートのステータス取得に失敗しました。"
+    },
+    "purchaseAlert": {
+        "title": "購入アラート",
+        "askGeenie": "ジーニーに質問するには、{{cost}} <coin/>が必要です。\n続行しますか？",
+        "yourCredits": "あなたの{{creditType}}クレジット: {{userCredit}} <coin/>",
+        "continue": "購入を続ける",
+        "cancel": "キャンセル",
+        "insufficient": "このレポートには{{cost}}が必要です。\n現在の{{creditType}}クレジットが不足しています。チャージしてから続行してください。",
+        "purchaseCredits": "クレジットを購入"
     }
 }

@@ -6,6 +6,7 @@ import { COLORS } from '../../constants/colors';
 import { useAsyncStorage } from '../../hooks/use-storage';
 import CoinIcon from '../icons/profile/coin-icon';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation, Trans } from 'react-i18next';
 
 interface PurchaseAlertModalProps {
   visible: boolean;
@@ -20,8 +21,9 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
   onContinue,
   onCancel,
   service,
-  loading, // new prop
+  loading,
 }) => {
+  const { t } = useTranslation();
   const { sync } = useAsyncStorage();
   const [internalLoading, setInternalLoading] = useState<boolean>(false);
   const [userCredit, setUserCredit] = useState<number>(0);
@@ -32,13 +34,18 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
   // Use external loading if provided, else internal
   const effectiveLoading = loading !== undefined ? loading : internalLoading;
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   useEffect(() => {
     const syncAndLoad = async () => {
       try {
         setInternalLoading(true);
         const data = await sync();
+
+        if (!data || !data.config || !data.user) {
+          setInternalLoading(false);
+          return;
+        }
 
         let key = service;
         let creditType = 'silver';
@@ -50,16 +57,16 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
         }
 
         let userCredit = creditType === 'silver' ? data.user?.silver_credits : data.user?.gold_credits;
-        setUserCredit(userCredit)
-        const isSufficient = userCredit >= cost;
-        setIsSufficient(isSufficient)
+        setUserCredit(userCredit ?? 0);
+        const isSufficient = (userCredit ?? 0) >= cost;
+        setIsSufficient(isSufficient);
 
-        setCost(cost)
-        setCreditType(creditType)
+        setCost(cost);
+        setCreditType(creditType);
 
         setInternalLoading(false);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         setInternalLoading(false);
       }
     };
@@ -67,7 +74,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
     if (visible) syncAndLoad();
   }, [visible]);
 
-  const getConfigValue = (key: string, config) => {
+  const getConfigValue = (key: string, config: any[]): number => {
     const found = config.find((c: any) => c.key === key);
     return found ? Number(found.value) : 0;
   };
@@ -77,44 +84,72 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <AppText variant="subtitle1" color="primary" style={styles.title}>
-            PURCHASE ALERT
+            {t('purchaseAlert.title')}
           </AppText>
           {isSufficient ? (
             <>
               <AppText style={{ textAlign: 'center', lineHeight: 22 }}>
-                To ask the Geenie, it will cost {cost} <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
-                {'\n'}Continue?
+                <Trans
+                  i18nKey="purchaseAlert.askGeenie"
+                  values={{ cost }}
+                  components={{
+                    coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+                  }}
+                />
               </AppText>
               <AppText style={{ textAlign: 'center', marginTop: 14 }} color="neutral">
-                Your {creditType === 'gold' ? 'Gold' : 'Silver'} Credits: {userCredit} <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+                <Trans
+                  i18nKey="purchaseAlert.yourCredits"
+                  values={{
+                    creditType: creditType === 'gold' ? t('Gold') : t('Silver'),
+                    userCredit
+                  }}
+                  components={{
+                    coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+                  }}
+                />
               </AppText>
               <View style={styles.buttonGroup}>
                 <AppButton
-                  title="Continue to Purchase"
+                  title={t('purchaseAlert.continue')}
                   variant="secondary"
                   onPress={onContinue}
                   loading={effectiveLoading}
                 />
-                <AppButton title="Cancel" variant="outline" onPress={onCancel} />
+                <AppButton title={t('purchaseAlert.cancel')} variant="outline" onPress={onCancel} />
               </View>
             </>
           ) : (
             <>
               <AppText style={{ textAlign: 'center', lineHeight: 22 }}>
-                This report will cost {cost}
-                {'\n'}Your current {creditType} credits are insufficient. Please top up to proceed.
+                <Trans
+                  i18nKey="purchaseAlert.insufficient"
+                  values={{
+                    cost,
+                    creditType: creditType === 'gold' ? t('Gold') : t('Silver')
+                  }}
+                />
               </AppText>
               <AppText style={{ textAlign: 'center', marginTop: 14 }} color="neutral">
-                Your {creditType === 'gold' ? 'Gold' : 'Silver'} Credits: {userCredit}
+                <Trans
+                  i18nKey="purchaseAlert.yourCredits"
+                  values={{
+                    creditType: creditType === 'gold' ? t('Gold') : t('Silver'),
+                    userCredit
+                  }}
+                  components={{
+                    coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+                  }}
+                />
               </AppText>
               <View style={styles.buttonGroup}>
                 <AppButton
-                  title="Purchase Credits"
+                  title={t('purchaseAlert.purchaseCredits')}
                   variant="secondary"
                   onPress={() => navigation.navigate('TopUp')}
                   loading={effectiveLoading}
                 />
-                <AppButton title="Cancel" variant="outline" onPress={onCancel} />
+                <AppButton title={t('purchaseAlert.cancel')} variant="outline" onPress={onCancel} />
               </View>
             </>
           )}

@@ -76,5 +76,38 @@
             "title": "Fortune Guidance",
             "subtitle": "EMBRACE YOUR FUTURE"
         }
+        ,
+        "downloadPdf": "Download as PDF"
+    },
+    "loveForecast": {
+        "header": "Love Forecast for Next 12 Months",
+        "purchase": "Purchase for {{cost}}",
+        "title": "EMOTIONAL CONFUSION? GET IT\nRESOLVED IN ONE GO.",
+        "subtitle": "Four key directions to help you\novercome emotional\nchallenges.",
+        "description": "Discover the basis of your emotional confusion and find the right direction for your love life. Get answers on all aspects in one go: mindset, love forecast, how to find love, and a glimpse of things ahead.",
+        "sectionTitle": "WHAT YOU WILL FIND OUT:",
+        "cards": {
+            "intro": "Introduction: Your love blueprint",
+            "lacking": "What are you lacking in love?",
+            "lookout": "What you look out for in a partner",
+            "suits": "What type of partner suits you",
+            "outlook": "Love outlook for the year",
+            "where": "Where to find love",
+            "questions": "Personalized questions",
+            "conclusion": "Conclusion: Your love story ahead"
+        },
+        "pollingMessage": "Generating your love report...",
+        "error": "Error",
+        "noJobId": "No job_id returned from server.",
+        "fetchStatusFailed": "Failed to fetch report status."
+    },
+    "purchaseAlert": {
+        "title": "PURCHASE ALERT",
+        "askGeenie": "To ask the Geenie, it will cost {{cost}} <coin/>\nContinue?",
+        "yourCredits": "Your {{creditType}} Credits: {{userCredit}} <coin/>",
+        "continue": "Continue to Purchase",
+        "cancel": "Cancel",
+        "insufficient": "This report will cost {{cost}}\nYour current {{creditType}} credits are insufficient. Please top up to proceed.",
+        "purchaseCredits": "Purchase Credits"
     }
 }

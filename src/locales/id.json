@@ -72,5 +72,38 @@
             "title": "Panduan Keberuntungan",
             "subtitle": "SAMBUT MASA DEPANMU"
         }
+        ,
+        "downloadPdf": "Unduh sebagai PDF"
+    },
+    "loveForecast": {
+        "header": "Ramalan Cinta 12 Bulan Mendatang",
+        "purchase": "Beli seharga {{cost}}",
+        "title": "BINGUNG SECARA EMOSIONAL? SELESAIKAN SEKARANG JUGA.",
+        "subtitle": "Empat arahan utama untuk membantumu\nmengatasi tantangan emosional.",
+        "description": "Temukan akar kebingungan emosionalmu dan temukan arah yang tepat untuk kehidupan cintamu. Dapatkan jawaban untuk semua aspek sekaligus: pola pikir, ramalan cinta, cara menemukan cinta, dan gambaran masa depan.",
+        "sectionTitle": "APA YANG AKAN ANDA TEMUKAN:",
+        "cards": {
+            "intro": "Pendahuluan: Cetak Biru Cintamu",
+            "lacking": "Apa yang kurang dalam cinta?",
+            "lookout": "Apa yang kamu cari pada pasangan",
+            "suits": "Tipe pasangan yang cocok untukmu",
+            "outlook": "Ramalan cinta tahun ini",
+            "where": "Di mana menemukan cinta",
+            "questions": "Pertanyaan personal",
+            "conclusion": "Penutup: Kisah cinta ke depan"
+        },
+        "pollingMessage": "Membuat laporan cinta Anda...",
+        "error": "Kesalahan",
+        "noJobId": "job_id tidak dikembalikan dari server.",
+        "fetchStatusFailed": "Gagal mengambil status laporan."
+    },
+    "purchaseAlert": {
+        "title": "PERINGATAN PEMBELIAN",
+        "askGeenie": "Untuk bertanya pada Geenie, akan dikenakan biaya {{cost}} <coin/> \nLanjutkan?",
+        "yourCredits": "Kredit {{creditType}} Anda: {{userCredit}} <coin/>",
+        "continue": "Lanjutkan Pembelian",
+        "cancel": "Batal",
+        "insufficient": "Laporan ini akan dikenakan biaya {{cost}}\nKredit {{creditType}} Anda saat ini tidak mencukupi. Silakan isi ulang untuk melanjutkan.",
+        "purchaseCredits": "Beli Kredit"
     }
 }

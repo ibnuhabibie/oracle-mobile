@@ -5,6 +5,7 @@ import {
   Image,
   Alert,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -22,42 +23,45 @@ import PollingLoadingModal from '../../../../components/ui/polling-loading-modal
 
 type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveForecast'>;
 
-const CARD_DATA = [
-  {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-1.png'),
-    label: 'Introduction: Your love blueprint'
-  },
-  {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-2.png'),
-    label: 'What are you lacking in love?'
-  },
-  {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-3.png'),
-    label: 'What you look out for in a partner'
-  },
-  {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-4.png'),
-    label: 'What type of partner suits you'
-  },
-  {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-5.png'),
-    label: 'Love outlook for the year'
-  },
-  {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-6.png'),
-    label: 'Where to find love'
-  },
-  {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-7.png'),
-    label: 'Personalized questions'
-  },
-  {
-    icon: require('../../../../assets/icons/services/love-forecast/icon-8.png'),
-    label: 'Conclusion: Your love story ahead'
-  },
-];
+/* CARD_DATA is now created inside the component */
 
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
+  const { t } = useTranslation();
+
+  const CARD_DATA = [
+    {
+      icon: require('../../../../assets/icons/services/love-forecast/icon-1.png'),
+      label: t('loveForecast.cards.intro')
+    },
+    {
+      icon: require('../../../../assets/icons/services/love-forecast/icon-2.png'),
+      label: t('loveForecast.cards.lacking')
+    },
+    {
+      icon: require('../../../../assets/icons/services/love-forecast/icon-3.png'),
+      label: t('loveForecast.cards.lookout')
+    },
+    {
+      icon: require('../../../../assets/icons/services/love-forecast/icon-4.png'),
+      label: t('loveForecast.cards.suits')
+    },
+    {
+      icon: require('../../../../assets/icons/services/love-forecast/icon-5.png'),
+      label: t('loveForecast.cards.outlook')
+    },
+    {
+      icon: require('../../../../assets/icons/services/love-forecast/icon-6.png'),
+      label: t('loveForecast.cards.where')
+    },
+    {
+      icon: require('../../../../assets/icons/services/love-forecast/icon-7.png'),
+      label: t('loveForecast.cards.questions')
+    },
+    {
+      icon: require('../../../../assets/icons/services/love-forecast/icon-8.png'),
+      label: t('loveForecast.cards.conclusion')
+    },
+  ];
   const [showPurchaseModal, setShowPurchaseModal] = React.useState(false);
   const [showPollingModal, setShowPollingModal] = React.useState(false);
   const [pollingJobId, setPollingJobId] = React.useState<string | null>(null);
@@ -80,7 +84,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         setPollingJobId(jobId);
         setShowPollingModal(true);
       } else {
-        Alert.alert('Error', 'No job_id returned from server.');
+        Alert.alert(t('loveForecast.error'), t('loveForecast.noJobId'));
       }
     } catch (err) {
       setShowPurchaseModal(false);
@@ -104,14 +108,14 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
   const handlePollingError = (error: any) => {
     setShowPollingModal(false);
     setPollingJobId(null);
-    Alert.alert('Error', 'Failed to fetch report status.');
+    Alert.alert(t('loveForecast.error'), t('loveForecast.fetchStatusFailed'));
   };
 
   return (
     <ScreenContainer
       header={
         <Header
-          title="Love Forecast for Next 12 Months"
+          title={t('loveForecast.header')}
           onBack={() => navigation.goBack()}
         />
       }
@@ -119,7 +123,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         <AppButton
           title={
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+              <AppText color='white' style={{ marginRight: 4 }}>{t('loveForecast.purchase', { cost })}</AppText>
               <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
             </View>
           }
@@ -128,17 +132,17 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         />
       }
     >
-      <AppText variant='subtitle1' style={styles.title}>EMOTIONAL CONFUSION? GET IT{'\n'}RESOLVED IN ONE GO.</AppText>
+      <AppText variant='subtitle1' style={styles.title}>{t('loveForecast.title')}</AppText>
       <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
         <Image source={require('../../../../assets/icons/services/love-forecast/service-icon.png')} />
       </ShinyContainer>
       <AppText style={styles.subtitle} variant='title4' color='primary'>
-        Four key directions to help you{'\n'}overcome emotional{'\n'}challenges.
+        {t('loveForecast.subtitle')}
       </AppText>
       <AppText style={styles.description} color='neutral'>
-        Discover the basis of your emotional confusion and find the right direction for your love life. Get answers on all aspects in one go: mindset, love forecast, how to find love, and a glimpse of things ahead.
+        {t('loveForecast.description')}
       </AppText>
-      <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>WHAT YOU WILL FIND OUT:</AppText>
+      <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('loveForecast.sectionTitle')}</AppText>
 
       <View style={styles.grid}>
         {
@@ -166,7 +170,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         <PollingLoadingModal
           job_id={pollingJobId}
           visible={showPollingModal}
-          message="Generating your love report..."
+          message={t('loveForecast.pollingMessage')}
           onResult={handlePollingResult}
           onError={handlePollingError}
           onClose={() => {

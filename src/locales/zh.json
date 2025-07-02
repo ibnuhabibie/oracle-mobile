@@ -72,5 +72,38 @@
             "title": "Fortune Guidance",
             "subtitle": "EMBRACE YOUR FUTURE"
         }
+        ,
+        "downloadPdf": "下载为PDF"
+    },
+    "loveForecast": {
+        "header": "未来12个月的爱情预测",
+        "purchase": "以{{cost}}购买",
+        "title": "情感困惑？一次性解决",
+        "subtitle": "帮助你克服情感挑战的四个关键方向",
+        "description": "发现你情感困惑的根源，找到适合你的爱情方向。一次性获得所有方面的答案：心态、爱情预测、如何找到爱情，以及未来的展望。",
+        "sectionTitle": "你将会了解：",
+        "cards": {
+            "intro": "介绍：你的爱情蓝图",
+            "lacking": "你在爱情中缺少什么？",
+            "lookout": "你在伴侣中看重什么",
+            "suits": "什么类型的伴侣适合你",
+            "outlook": "今年的爱情展望",
+            "where": "在哪里可以找到爱情",
+            "questions": "个性化问题",
+            "conclusion": "结论：你未来的爱情故事"
+        },
+        "pollingMessage": "正在生成你的爱情报告...",
+        "error": "错误",
+        "noJobId": "服务器未返回 job_id。",
+        "fetchStatusFailed": "获取报告状态失败。"
+    },
+    "purchaseAlert": {
+        "title": "购买提醒",
+        "askGeenie": "向Geenie提问将花费{{cost}} <coin/>\n继续吗？",
+        "yourCredits": "你的{{creditType}}积分: {{userCredit}} <coin/>",
+        "continue": "继续购买",
+        "cancel": "取消",
+        "insufficient": "本报告将花费{{cost}}\n你当前的{{creditType}}积分不足，请充值后再试。",
+        "purchaseCredits": "购买积分"
     }
 }
