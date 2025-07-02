@@ -21,7 +21,9 @@ api.interceptors.request.use(
         // Add user_id as a query parameter if available
         const user = await AsyncStorage.getItem('user_profile');
         const userData = JSON.parse(user)
-        if (userData.user_id) {
+        console.log(userData)
+
+        if (userData?.user_id) {
             if (!config.params) config.params = {};
             config.params.user_id = userData.user_id;
         }
