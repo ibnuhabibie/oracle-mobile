@@ -33,6 +33,7 @@ export interface AuthFormProps {
 const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
 
     const formRules = {
@@ -64,6 +65,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     });
 
     const onSubmit = async (data: LoginDTO) => {
+        setLoading(true);
         try {
             const locale = await AsyncStorage.getItem('language') || 'en';
             console.log(locale)
@@ -112,6 +114,8 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             }
             Alert.alert(t('LOGIN FAILED'), message);
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -145,6 +149,8 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                 title={t('SIGN IN')}
                 onPress={handleSubmit(onSubmit)}
                 style={styles.signInButton}
+                loading={loading}
+                disabled={loading}
             />
         </View>
     )
