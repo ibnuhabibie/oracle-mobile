@@ -16,6 +16,7 @@ import { AppButton } from '../../components/ui/app-button';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 import CoinIcon from '../../components/icons/profile/coin-icon';
+import { useTranslation } from 'react-i18next';
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
 
@@ -55,43 +56,46 @@ const PackageCardList: FC<{
     setSelectedPackage: (id: number) => void;
     loading: boolean;
     error: string | null;
-}> = ({ packages, selectedPackage, setSelectedPackage, loading, error }) => (
-    <View style={{ marginBottom: 24 }}>
-        <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>Our Packages</AppText>
-        <AppText style={styles.sectionDesc}>Can be used to purchase Reports and Ask Oracle AI</AppText>
-        <View style={{ marginTop: 12 }}>
-            {loading ? (
-                <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
-            ) : error ? (
-                <AppText style={{ color: 'red', marginVertical: 16 }}>{error}</AppText>
-            ) : (
-                packages.map(pkg => (
-                    <Pressable
-                        key={pkg.package_id}
-                        style={[
-                            styles.card,
-                            selectedPackage === pkg.package_id && styles.cardSelected
-                        ]}
-                        onPress={() => setSelectedPackage(pkg.package_id)}
-                    >
-                        <RadioIndicator selected={selectedPackage === pkg.package_id} />
-                        <View style={{ flex: 1 }}>
-                            <AppText style={styles.cardTitle}>{pkg.name}</AppText>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
-                                <AppText style={styles.cardSubtitle}>Get {pkg.credits} </AppText>
-                                <Coin />
+}> = ({ packages, selectedPackage, setSelectedPackage, loading, error }) => {
+    const { t } = useTranslation();
+    return (
+        <View style={{ marginBottom: 24 }}>
+            <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('OUR PACKAGES')}</AppText>
+            <AppText style={styles.sectionDesc}>{t('PACKAGES DESC')}</AppText>
+            <View style={{ marginTop: 12 }}>
+                {loading ? (
+                    <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
+                ) : error ? (
+                    <AppText style={{ color: 'red', marginVertical: 16 }}>{t(error)}</AppText>
+                ) : (
+                    packages.map(pkg => (
+                        <Pressable
+                            key={pkg.package_id}
+                            style={[
+                                styles.card,
+                                selectedPackage === pkg.package_id && styles.cardSelected
+                            ]}
+                            onPress={() => setSelectedPackage(pkg.package_id)}
+                        >
+                            <RadioIndicator selected={selectedPackage === pkg.package_id} />
+                            <View style={{ flex: 1 }}>
+                                <AppText style={styles.cardTitle}>{pkg.name}</AppText>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
+                                    <AppText style={styles.cardSubtitle}>{t('GET COINS', { count: pkg.credits })} </AppText>
+                                    <Coin />
+                                </View>
+                                {pkg.description ? (
+                                    <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{pkg.description}</AppText>
+                                ) : null}
                             </View>
-                            {pkg.description ? (
-                                <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{pkg.description}</AppText>
-                            ) : null}
-                        </View>
-                        <AppText style={styles.cardPrice}>${parseFloat(pkg.price)}</AppText>
-                    </Pressable>
-                ))
-            )}
+                            <AppText style={styles.cardPrice}>${parseFloat(pkg.price)}</AppText>
+                        </Pressable>
+                    ))
+                )}
+            </View>
         </View>
-    </View>
-);
+    );
+};
 
 // Subscription card list component
 const SubscriptionCardList: FC<{
@@ -100,47 +104,51 @@ const SubscriptionCardList: FC<{
     setSelectedSubscription: (id: number) => void;
     loading: boolean;
     error: string | null;
-}> = ({ subscriptions, selectedSubscription, setSelectedSubscription, loading, error }) => (
-    <View>
-        <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>Our Subscriptions</AppText>
-        <AppText style={styles.sectionDesc}>
-            Can be used in Ask Oracle AI and reset at the beginning of each month. You'll receive 3 silver coins free every month.
-        </AppText>
-        <View style={{ marginTop: 12 }}>
-            {loading ? (
-                <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
-            ) : error ? (
-                <AppText style={{ color: 'red', marginVertical: 16 }}>{error}</AppText>
-            ) : (
-                subscriptions.map(sub => (
-                    <Pressable
-                        key={sub.subscription_id}
-                        style={[
-                            styles.card,
-                            selectedSubscription === sub.subscription_id && styles.cardSelected
-                        ]}
-                        onPress={() => setSelectedSubscription(sub.subscription_id)}
-                    >
-                        <RadioIndicator selected={selectedSubscription === sub.subscription_id} />
-                        <View style={{ flex: 1 }}>
-                            <AppText style={styles.cardTitle}>{sub.name}</AppText>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
-                                <AppText style={styles.cardSubtitle}>Get {sub.credits} </AppText>
-                                <Coin type='gold' />
+}> = ({ subscriptions, selectedSubscription, setSelectedSubscription, loading, error }) => {
+    const { t } = useTranslation();
+    return (
+        <View>
+            <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('OUR SUBSCRIPTIONS')}</AppText>
+            <AppText style={styles.sectionDesc}>
+                {t('SUBSCRIPTIONS DESC')}
+            </AppText>
+            <View style={{ marginTop: 12 }}>
+                {loading ? (
+                    <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
+                ) : error ? (
+                    <AppText style={{ color: 'red', marginVertical: 16 }}>{t(error)}</AppText>
+                ) : (
+                    subscriptions.map(sub => (
+                        <Pressable
+                            key={sub.subscription_id}
+                            style={[
+                                styles.card,
+                                selectedSubscription === sub.subscription_id && styles.cardSelected
+                            ]}
+                            onPress={() => setSelectedSubscription(sub.subscription_id)}
+                        >
+                            <RadioIndicator selected={selectedSubscription === sub.subscription_id} />
+                            <View style={{ flex: 1 }}>
+                                <AppText style={styles.cardTitle}>{sub.name}</AppText>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
+                                    <AppText style={styles.cardSubtitle}>{t('GET COINS', { count: sub.credits })} </AppText>
+                                    <Coin type='gold' />
+                                </View>
+                                {sub.description ? (
+                                    <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{sub.description}</AppText>
+                                ) : null}
                             </View>
-                            {sub.description ? (
-                                <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{sub.description}</AppText>
-                            ) : null}
-                        </View>
-                        <AppText style={styles.cardPrice}>${parseFloat(sub.price)}</AppText>
-                    </Pressable>
-                ))
-            )}
+                            <AppText style={styles.cardPrice}>${parseFloat(sub.price)}</AppText>
+                        </Pressable>
+                    ))
+                )}
+            </View>
         </View>
-    </View>
-);
+    );
+};
 
 const Topup: FC<TopupProps> = ({ navigation }) => {
+    const { t } = useTranslation();
     const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
     const [selectedSubscription, setSelectedSubscription] = useState<number | null>(null);
     const [packages, setPackages] = useState<PackageItem[]>([]);
@@ -158,7 +166,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             const response = await api.get('/v1/packages');
             setPackages(response.data.rows || []);
         } catch (err) {
-            setErrorPackages('Failed to load packages. Please try again later.');
+            setErrorPackages('FAILED TO LOAD PACKAGES');
         } finally {
             setLoadingPackages(false);
         }
@@ -171,7 +179,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             const response = await api.get('/v1/subscriptions');
             setSubscriptions(response.data.rows || []);
         } catch (err) {
-            setErrorSubscriptions('Failed to load subscriptions. Please try again later.');
+            setErrorSubscriptions('FAILED TO LOAD SUBSCRIPTIONS');
         } finally {
             setLoadingSubscriptions(false);
         }
@@ -192,16 +200,16 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         });
 
         if (errorInit) {
-            Alert.alert('Payment failed', errorInit.message);
+            Alert.alert(t('PAYMENT FAILED'), errorInit.message);
         }
 
         const { error } = await presentPaymentSheet();
 
         if (error) {
             console.log(error)
-            Alert.alert('Payment failed', error.message);
+            Alert.alert(t('PAYMENT FAILED'), error.message);
         } else {
-            Alert.alert('Success', 'Payment complete!');
+            Alert.alert(t('SUCCESS'), t('PAYMENT COMPLETE'));
         }
     };
 
@@ -233,7 +241,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
             await openPaymentSheet(client_secret)
         } catch (err: any) {
-            Alert.alert('Error', err?.response?.data?.message || 'An error occurred. Please try again.');
+            Alert.alert(t('ERROR'), err?.response?.data?.message || t('GENERIC ERROR'));
         } finally {
             setProcessing(false);
         }
@@ -246,7 +254,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 (selectedPackage !== null || selectedSubscription !== null) && (
                     <View style={{ padding: 12, backgroundColor: "#fff" }}>
                         <AppButton
-                            title={processing ? "Processing..." : "Continue"}
+                            title={processing ? t("PROCESSING") : t("CONTINUE")}
                             variant="primary"
                             disabled={processing}
                             onPress={handleContinue}
@@ -256,7 +264,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             }
             header={
                 <Header
-                    title="Top Up"
+                    title={t("TOP UP")}
                     onBack={() => navigation.goBack()}
                 />
             }
