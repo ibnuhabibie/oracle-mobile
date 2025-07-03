@@ -2,6 +2,7 @@ import React from "react";
 import { Modal, SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import CoinIcon from "../../components/icons/profile/coin-icon";
 import { formatDateTime } from "../../utils/date";
+import { useTranslation } from "react-i18next";
 
 interface TopupReceiptModalProps {
     visible: boolean;
@@ -10,6 +11,8 @@ interface TopupReceiptModalProps {
 }
 
 const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose, item }) => {
+    const { t } = useTranslation();
+
     if (!item) {
         return null;
     }
@@ -24,23 +27,23 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
             <View style={styles.modalContainer}>
                 <View style={styles.modalContent}>
                     <View style={styles.modalHeader}>
-                        <Text style={styles.modalTitle}>RECEIPT</Text>
+                        <Text style={styles.modalTitle}>{t("RECEIPT")}</Text>
                         <TouchableOpacity onPress={onClose}>
                             <Text style={styles.closeButtonText}>×</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>Order Number</Text>
+                        <Text style={styles.modalLabel}>{t("ORDER NUMBER")}</Text>
                         <Text style={styles.modalValue}>{item.transaction_id}</Text>
                     </View>
                     <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>Date Purchased</Text>
+                        <Text style={styles.modalLabel}>{t("DATE PURCHASED")}</Text>
                         <Text style={styles.modalValue}>
                             {formatDateTime(item.created_at)}
                         </Text>
                     </View>
                     <View style={styles.modalSectionDivider} />
-                    <Text style={styles.modalSectionTitle}>Order Item(s)</Text>
+                    <Text style={styles.modalSectionTitle}>{t("ORDER ITEMS")}</Text>
                     <View style={styles.modalRow}>
                         <View style={styles.modalItemIcon}>
                             <CoinIcon size={20} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
@@ -54,7 +57,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                     </View>
                     <View style={styles.modalRow}>
                         <View style={{ flex: 1 }} />
-                        <Text style={styles.modalTotalLabel}>Total:</Text>
+                        <Text style={styles.modalTotalLabel}>{t("TOTAL")}</Text>
                         <Text style={styles.modalTotalValue}>
                             ${item.amount}
                         </Text>
@@ -66,26 +69,26 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                             (
                                 <>
                                     <View style={styles.modalRow}>
-                                        <Text style={styles.modalLabel}>Payment Method</Text>
+                                        <Text style={styles.modalLabel}>{t("PAYMENT METHOD")}</Text>
                                         <Text style={styles.modalValue}>{JSON.parse(item.payment_method).type}</Text>
                                     </View>
                                     <View style={styles.modalSectionDivider} />
                                     <View style={styles.modalRow}>
-                                        <Text style={styles.modalLabel}>Previous Points</Text>
+                                        <Text style={styles.modalLabel}>{t("PREVIOUS POINTS")}</Text>
                                         <View style={styles.textCoinWrapper}>
                                             <Text style={styles.modalPoints}>{item.credit_journal.credits_before}</Text>
                                             <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
                                         </View>
                                     </View>
                                     <View style={styles.modalRow}>
-                                        <Text style={styles.modalLabel}>Points Added</Text>
+                                        <Text style={styles.modalLabel}>{t("POINTS ADDED")}</Text>
                                         <View style={styles.textCoinWrapper}>
                                             <Text style={styles.modalPointsAdded}>+{item.credit_journal.credits_used}</Text>
                                             <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
                                         </View>
                                     </View>
                                     <View style={styles.modalRow}>
-                                        <Text style={styles.modalLabel}>Total Points</Text>
+                                        <Text style={styles.modalLabel}>{t("TOTAL POINTS")}</Text>
                                         <View style={styles.textCoinWrapper}>
                                             <Text style={styles.modalPointsTotal}>{item.credit_journal.credits_after}</Text>
                                             <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
@@ -97,7 +100,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                 <>
                                     <View style={{ marginVertical: 16 }}>
                                         <Text style={{ textAlign: "center", color: "#888", fontSize: 15 }}>
-                                            Your payment is not yet completed. It may still be processing, or you haven't finished the payment. Please check back later.
+                                            {t("PAYMENT NOT COMPLETED")}
                                         </Text>
                                     </View>
                                 </>

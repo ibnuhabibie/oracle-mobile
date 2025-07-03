@@ -7,6 +7,7 @@ import CartIcon from "../../components/icons/profile/cart-icon";
 import CoinIcon from "../../components/icons/profile/coin-icon";
 import api from "../../utils/http";
 import { formatDateTime } from "../../utils/date";
+import { useTranslation } from "react-i18next";
 
 interface TopUpItem {
     topup_history_id: number;
@@ -42,6 +43,7 @@ interface TopupHistoryListProps {
 }
 
 const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
+    const { t } = useTranslation();
     const [data, setData] = useState<TopUpItem[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -82,7 +84,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                         </Text>
                         <CoinIcon size={19} color={item.package ? "#EB4335" : "#E0AE1E"} />
                     </View>
-                    <Text style={styles.transaction}>Top-up complete! You’re good to go.</Text>
+                    <Text style={styles.transaction}>{t("TOPUP COMPLETE")}</Text>
                 </View>
                 <View style={styles.dateContainer}>
                     <Text style={styles.date}>
@@ -110,7 +112,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
             contentContainerStyle={styles.listContent}
             ListEmptyComponent={
                 <View style={styles.empty}>
-                    <Text style={styles.emptyText}>No top up history found.</Text>
+                    <Text style={styles.emptyText}>{t("NO TOPUP HISTORY FOUND")}</Text>
                 </View>
             }
         />
