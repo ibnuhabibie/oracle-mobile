@@ -19,25 +19,34 @@ import CoinIcon from '../../../../components/icons/profile/coin-icon';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import api from '../../../../utils/http';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
+import { useTranslation } from 'react-i18next';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
-const CARD_DATA = [
-    {
-        icon: require('../../../../assets/icons/services/relation-report/icon-1.png'), label: 'What is your perspective on love?'
-    },
-    {
-        icon: require('../../../../assets/icons/services/relation-report/icon-2.png'), label: 'How does your love interest sees you?'
-    },
-    {
-        icon: require('../../../../assets/icons/services/relation-report/icon-3.png'), label: 'What kind of person your love interest is?'
-    },
-    {
-        icon: require('../../../../assets/icons/services/relation-report/icon-4.png'), label: 'What are the personality traits, preferences and deal-breakers?'
-    },
-];
+
 
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
+    const { t } = useTranslation();
+
+    const CARD_DATA = [
+        {
+            icon: require('../../../../assets/icons/services/relation-report/icon-1.png'),
+            label: t('relationReport.cards.perspective')
+        },
+        {
+            icon: require('../../../../assets/icons/services/relation-report/icon-2.png'),
+            label: t('relationReport.cards.seeYou')
+        },
+        {
+            icon: require('../../../../assets/icons/services/relation-report/icon-3.png'),
+            label: t('relationReport.cards.kindOfPerson')
+        },
+        {
+            icon: require('../../../../assets/icons/services/relation-report/icon-4.png'),
+            label: t('relationReport.cards.traits')
+        },
+    ];
+
     const [showForm, setShowForm] = useState(false);
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
     const [showPollingModal, setShowPollingModal] = useState(false);
@@ -113,7 +122,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         <ScreenContainer
             header={
                 <Header
-                    title="Relationship Compatibility"
+                    title={t('relationReport.header')}
                     onBack={() => navigation.goBack()}
                 />
             }
@@ -122,7 +131,9 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                     <AppButton
                         title={
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+                                <AppText color='white' style={{ marginRight: 4 }}>
+                                    {t('relationReport.purchase', { cost })}
+                                </AppText>
                                 <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
                             </View>
                         }
@@ -137,18 +148,18 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 )
             }
         >
-            <AppText variant='subtitle1' style={styles.title}>Curious if you're a perfect{'\n'}match? Find out now!</AppText>
+            <AppText variant='subtitle1' style={styles.title}>{t('relationReport.title')}</AppText>
             <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
                 <Image source={require('../../../../assets/icons/services/relation-report/service-icon.png')} />
             </ShinyContainer>
             <AppText style={styles.subtitle} variant='title4' color='primary'>
-                Astrology meets Bazi for a fresh take on your love compatibility.
+                {t('relationReport.subtitle')}
             </AppText>
             <AppText style={styles.description} color='neutral'>
-                Some tips may sound like common sense—like improving communication or mindset—but they're tailored to your unique chart and relationship dynamics. Their impact is more powerful than they seem.
+                {t('relationReport.description')}
             </AppText>
-            <AppText variant='subtitle1' style={{ textAlign: 'center' }}>Your Love Interest Detail</AppText>
-            <AppText style={styles.sectionTitle} variant='caption2' color='primary'>Tell us more about them!</AppText>
+            <AppText variant='subtitle1' style={{ textAlign: 'center' }}>{t('relationReport.loveInterestDetail')}</AppText>
+            <AppText style={styles.sectionTitle} variant='caption2' color='primary'>{t('relationReport.tellUsMore')}</AppText>
 
             <View style={styles.grid}>
                 {
@@ -176,7 +187,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 <PollingLoadingModal
                     job_id={pollingJobId}
                     visible={showPollingModal}
-                    message="Generating your relationship report..."
+                    message={t('relationReport.pollingMessage')}
                     onResult={handlePollingResult}
                     onError={handlePollingError}
                     onClose={() => {

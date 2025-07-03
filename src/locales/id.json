@@ -96,6 +96,26 @@
         "noJobId": "job_id tidak dikembalikan dari server.",
         "fetchStatusFailed": "Gagal mengambil status laporan."
     },
+    "relationReport": {
+        "header": "Kecocokan Hubungan",
+        "purchase": "Beli seharga {{cost}}",
+        "title": "Penasaran apakah kalian pasangan sempurna\nCari tahu sekarang!",
+        "subtitle": "Astrologi bertemu Bazi untuk sudut pandang baru tentang kecocokan cinta Anda.",
+        "description": "Beberapa tips mungkin terdengar seperti akal sehat—seperti meningkatkan komunikasi atau pola pikir—tetapi semuanya disesuaikan dengan bagan unik dan dinamika hubungan Anda. Dampaknya lebih besar dari yang terlihat.",
+        "loveInterestDetail": "Detail Orang yang Anda Sukai",
+        "tellUsMore": "Ceritakan lebih banyak tentang mereka!",
+        "pollingMessage": "Membuat laporan hubungan Anda...",
+        "cards": {
+            "perspective": "Bagaimana pandangan Anda tentang cinta?",
+            "seeYou": "Bagaimana orang yang Anda sukai melihat Anda?",
+            "kindOfPerson": "Orang seperti apa yang dia sukai?",
+            "traits": "Apa sifat, preferensi, dan hal yang tidak disukai?"
+        }
+    },
+    "Continue": "Lanjutkan",
+    "Fill in your details": "Lengkapi detail Anda",
+    "Select Country": "Pilih Negara",
+    "Select City": "Pilih Kota",
     "fortuneReport": {
         "header": "Laporan Keberuntungan 2025",
         "purchase": "Beli seharga {{cost}}",

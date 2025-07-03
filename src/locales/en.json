@@ -101,6 +101,26 @@
         "noJobId": "No job_id returned from server.",
         "fetchStatusFailed": "Failed to fetch report status."
     },
+    "relationReport": {
+        "header": "Relationship Compatibility",
+        "purchase": "Purchase for {{cost}}",
+        "title": "Curious if you're a perfect{\\n}match? Find out now!",
+        "subtitle": "Astrology meets Bazi for a fresh take on your love compatibility.",
+        "description": "Some tips may sound like common sense—like improving communication or mindset—but they're tailored to your unique chart and relationship dynamics. Their impact is more powerful than they seem.",
+        "loveInterestDetail": "Your Love Interest Detail",
+        "tellUsMore": "Tell us more about them!",
+        "pollingMessage": "Generating your relationship report...",
+        "cards": {
+            "perspective": "What is your perspective on love?",
+            "seeYou": "How does your love interest sees you?",
+            "kindOfPerson": "What kind of person your love interest is?",
+            "traits": "What are the personality traits, preferences and deal-breakers?"
+        }
+    },
+    "Continue": "Continue",
+    "Fill in your details": "Fill in your details",
+    "Select Country": "Select Country",
+    "Select City": "Select City",
     "fortuneReport": {
         "header": "Fortune Report 2025",
         "purchase": "Purchase for {{cost}}",

@@ -75,6 +75,26 @@
         "noJobId": "서버에서 job_id가 반환되지 않았습니다.",
         "fetchStatusFailed": "리포트 상태를 가져오지 못했습니다."
     },
+    "relationReport": {
+        "header": "관계 궁합",
+        "purchase": "{{cost}}에 구매",
+        "title": "완벽한 커플인지 궁금하신가요?{\\n}지금 확인해보세요!",
+        "subtitle": "별자리와 사주가 만나 새로운 사랑 궁합을 제시합니다.",
+        "description": "일부 조언은 상식처럼 들릴 수 있지만(예: 소통이나 마인드셋 개선), 모두 당신만의 차트와 관계 역학에 맞춘 맞춤형입니다. 그 영향력은 생각보다 큽니다.",
+        "loveInterestDetail": "상대방 정보",
+        "tellUsMore": "상대에 대해 더 알려주세요!",
+        "pollingMessage": "관계 리포트를 생성 중...",
+        "cards": {
+            "perspective": "사랑에 대한 당신의 관점은?",
+            "seeYou": "상대방은 당신을 어떻게 볼까요?",
+            "kindOfPerson": "상대방은 어떤 사람인가요?",
+            "traits": "성격, 선호, 피해야 할 점은?"
+        }
+    },
+    "Continue": "계속",
+    "Fill in your details": "정보를 입력하세요",
+    "Select Country": "국가 선택",
+    "Select City": "도시 선택",
     "fortuneReport": {
         "header": "2025년 운세 리포트",
         "purchase": "{{cost}}에 구매",

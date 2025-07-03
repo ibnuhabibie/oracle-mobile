@@ -133,7 +133,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
 
   return (
     <View style={styles.formContainer}>
-      <AppText style={styles.formTitle} color='primary'>Fill in your details</AppText>
+      <AppText style={styles.formTitle} color='primary'>{t('Fill in your details')}</AppText>
       <View style={styles.formGroup}>
         <Text style={styles.label}>{t("Name")}</Text>
         <AppInput
@@ -168,15 +168,15 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText style={styles.label}>Country of Birth</AppText>
+        <AppText style={styles.label}>{t("Country of Birth")}</AppText>
         <DropdownButton
           onPress={() => setShowCountryModal(true)}
-          text={watchedCountry?.name || "Please select one"}
+          text={watchedCountry?.name || t("Please select one")}
         />
         {renderDropdownModal(
           showCountryModal,
           () => setShowCountryModal(false),
-          'Select Country',
+          t('Select Country'),
           countries as any[],
           selectCountry,
           watchedCountry as any,
@@ -184,15 +184,15 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText style={styles.label}>City of Birth</AppText>
+        <AppText style={styles.label}>{t("City of Birth")}</AppText>
         <DropdownButton
           onPress={() => setShowCityModal(true)}
-          text={watchedCity?.name || "Please select one"}
+          text={watchedCity?.name || t("Please select one")}
         />
         {renderDropdownModal(
           showCityModal,
           () => setShowCityModal(false),
-          'Select City',
+          t('Select City'),
           cities as any[],
           selectCity,
           watchedCity as any,
@@ -200,7 +200,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText style={styles.label}>Gender</AppText>
+        <AppText style={styles.label}>{t("Gender")}</AppText>
         <View style={{ flexDirection: 'row', gap: 24 }}>
           <Pressable
             style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
@@ -216,7 +216,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
                 }} />
               )}
             </View>
-            <Text>Male</Text>
+            <Text>{t("Male")}</Text>
           </Pressable>
           <Pressable
             style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
@@ -232,14 +232,14 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
                 }} />
               )}
             </View>
-            <Text>Female</Text>
+            <Text>{t("Female")}</Text>
           </Pressable>
         </View>
         {errors.gender && <Text style={styles.error}>{errors.gender.message}</Text>}
       </View>
       <View style={styles.buttonRow}>
         <AppButton
-          title="Continue"
+          title={t("Continue")}
           variant="primary"
           onPress={handleSubmit(onSubmit)}
           loading={loading}

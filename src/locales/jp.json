@@ -97,6 +97,26 @@
         "noJobId": "サーバーからjob_idが返されませんでした。",
         "fetchStatusFailed": "レポートのステータス取得に失敗しました。"
     },
+    "relationReport": {
+        "header": "関係の相性",
+        "purchase": "{{cost}}で購入",
+        "title": "あなたたちは完璧なカップル？{\\n}今すぐチェック！",
+        "subtitle": "占星術と四柱推命が融合し、愛の相性に新たな視点を。",
+        "description": "一部のアドバイスは常識のように聞こえるかもしれません（例：コミュニケーションやマインドセットの改善など）が、すべてあなた独自のチャートと関係性に合わせてパーソナライズされています。その効果は想像以上です。",
+        "loveInterestDetail": "お相手の詳細",
+        "tellUsMore": "お相手についてもっと教えてください！",
+        "pollingMessage": "関係レポートを生成中...",
+        "cards": {
+            "perspective": "あなたの愛に対する考えは？",
+            "seeYou": "お相手はあなたをどう見ていますか？",
+            "kindOfPerson": "お相手はどんな人？",
+            "traits": "性格・好み・NGポイントは？"
+        }
+    },
+    "Continue": "続行",
+    "Fill in your details": "詳細を入力してください",
+    "Select Country": "国を選択",
+    "Select City": "都市を選択",
     "fortuneReport": {
         "header": "2025年運勢レポート",
         "purchase": "{{cost}}で購入",

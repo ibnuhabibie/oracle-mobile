@@ -97,6 +97,26 @@
         "noJobId": "服务器未返回 job_id。",
         "fetchStatusFailed": "获取报告状态失败。"
     },
+    "relationReport": {
+        "header": "关系匹配度",
+        "purchase": "以{{cost}}购买",
+        "title": "好奇你们是否是完美{\\n}匹配？现在就揭晓！",
+        "subtitle": "星盘结合八字，为你的爱情匹配带来新视角。",
+        "description": "有些建议听起来像常识——比如改善沟通或心态——但它们都是根据你独特的命盘和关系动态量身定制的。它们的影响比看起来更强大。",
+        "loveInterestDetail": "你的心仪对象详情",
+        "tellUsMore": "告诉我们更多关于他们的信息！",
+        "pollingMessage": "正在生成你的关系报告...",
+        "cards": {
+            "perspective": "你对爱情的看法是什么？",
+            "seeYou": "你的心仪对象如何看待你？",
+            "kindOfPerson": "你的心仪对象是怎样的人？",
+            "traits": "有哪些性格特征、偏好和禁忌？"
+        }
+    },
+    "Continue": "继续",
+    "Fill in your details": "填写您的详细信息",
+    "Select Country": "选择国家",
+    "Select City": "选择城市",
     "fortuneReport": {
         "header": "2025年运势报告",
         "purchase": "以{{cost}}购买",
