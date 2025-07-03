@@ -1,30 +1,30 @@
 {
     "WELCOME TO": "ようこそ",
     "GET STARTED": "始める",
-    "DEAR SEAKERS": "親愛なる探求者たち",
+    "DEAR SEAKERS": "親愛なる探求者の皆様",
     "PLEASE SELECT A LANGUAGE": "言語を選択してください",
     "NEXT": "次へ",
     "SIGN IN": "サインイン",
     "SIGN UP": "サインアップ",
-    "THE COSMOS WHISPERS": "宇宙がささやく。{\\n}あなたに与えられたものを見つけましょう。",
+    "THE COSMOS WHISPERS": "宇宙がささやく。{\\n}あなたの運命を見つけましょう。",
     "DONT HAVE AN ACCOUNT": "アカウントをお持ちでないですか？",
     "EMAIL IS REQUIRED": "メールアドレスは必須です",
     "INVALID EMAIL FORMAT": "無効なメール形式です",
     "PASSWORD IS REQUIRED": "パスワードは必須です",
-    "PASSWORD MIN LENGTH": "パスワードは6文字以上である必要があります",
+    "PASSWORD MIN LENGTH": "パスワードは6文字以上で入力してください",
     "EMAIL": "メールアドレス",
     "PASSWORD": "パスワード",
     "LOGIN FAILED": "ログインに失敗しました",
     "SIGN UP SUBTITLE": "宇宙がささやく。{\\n}参加して運命を見つけましょう。",
     "ALREADY HAVE AN ACCOUNT": "すでにアカウントをお持ちですか？",
     "NAME IS REQUIRED": "名前は必須です",
-    "NAME MIN LENGTH": "名前は2文字以上である必要があります",
+    "NAME MIN LENGTH": "名前は2文字以上で入力してください",
     "PLEASE CONFIRM PASSWORD": "パスワードを確認してください",
     "PASSWORDS DO NOT MATCH": "パスワードが一致しません",
     "NAME": "名前",
-    "CONFIRM PASSWORD": "パスワードの確認",
+    "CONFIRM PASSWORD": "パスワード確認",
     "REFERRAL CODE": "紹介コード",
-    "CREATE ACCOUNT": "アカウントを作成",
+    "CREATE ACCOUNT": "アカウント作成",
     "Guest": "ゲスト",
     "Profile": "プロフィール",
     "Edit Profile": "プロフィール編集",
@@ -37,14 +37,18 @@
     "Privacy Policy": "プライバシーポリシー",
     "Terms & Conditions": "利用規約",
     "Logout": "ログアウト",
+    "Current Password": "現在のパスワード",
+    "New Password": "新しいパスワード",
+    "Confirm Password": "パスワード確認",
+    "CHANGE PASSWORD": "パスワードを変更",
     "Full Name": "氏名",
     "Email Address": "メールアドレス",
     "Phone Number": "電話番号",
     "Birth Date": "生年月日",
-    "Birth Date:": "生年月日：",
+    "Birth Date:": "生年月日:",
     "Birth Time": "出生時刻",
-    "Birth Time:": "出生時刻：",
-    "Not sure about your birth time? Just go with your closest guess.": "出生時刻がわからない場合は、最も近いと思う時間を選択してください。",
+    "Birth Time:": "出生時刻:",
+    "Not sure about your birth time? Just go with your closest guess.": "出生時刻がわからない場合は、最も近いと思う時刻を選択してください。",
     "Gender": "性別",
     "Male": "男性",
     "Female": "女性",
@@ -57,20 +61,20 @@
     "relation": "関係",
     "career": "キャリア",
     "TODAY SCORE": "今日のスコア",
-    "Good Day": "良い一日を",
+    "Good Day": "良い一日",
     "WHAT DO YOU LIKE TO KNOW TODAY?": "今日は何を知りたいですか？",
     "carousel": {
         "love": {
-            "title": "愛が止まっている？",
-            "subtitle": "次に何が起こるかを発見しよう"
+            "title": "Love On Pause?",
+            "subtitle": "DISCOVER WHAT'S COMING NEXT"
         },
         "relation": {
-            "title": "関係の洞察",
-            "subtitle": "あなたのつながりを見つけよう"
+            "title": "Relationship Insights",
+            "subtitle": "DISCOVER YOUR CONNECTIONS"
         },
         "fortune": {
-            "title": "運勢ガイダンス",
-            "subtitle": "未来を受け入れよう"
+            "title": "Fortune Guidance",
+            "subtitle": "EMBRACE YOUR FUTURE"
         }
         ,
         "downloadPdf": "PDFとしてダウンロード"
@@ -78,21 +82,21 @@
     "loveForecast": {
         "header": "今後12ヶ月の恋愛予報",
         "purchase": "{{cost}}で購入",
-        "title": "感情の混乱？一度で解決しよう。",
-        "subtitle": "感情的な課題を乗り越えるための\n4つの重要な方向性。",
-        "description": "あなたの感情的な混乱の原因を見つけ、恋愛の正しい方向性を見つけましょう。マインドセット、恋愛予報、恋愛の見つけ方、そしてこれからの展望など、すべての側面の答えが一度に得られます。",
-        "sectionTitle": "あなたが知ることができる内容：",
+        "title": "感情が混乱していますか？一度に解決しましょう。",
+        "subtitle": "感情的な課題を克服するための4つの主要な方向性",
+        "description": "感情の混乱の根本を見つけ、あなたの恋愛の正しい方向を見つけましょう。すべての側面の答えを一度に得られます：マインドセット、恋愛予報、恋愛の見つけ方、そして将来の展望。",
+        "sectionTitle": "あなたが知ること：",
         "cards": {
-            "intro": "はじめに：あなたの恋愛設計図",
+            "intro": "紹介：あなたの恋愛設計図",
             "lacking": "恋愛で足りないものは？",
             "lookout": "パートナーに求めるもの",
             "suits": "あなたに合うパートナーのタイプ",
-            "outlook": "今年の恋愛運",
-            "where": "恋愛を見つける場所",
+            "outlook": "今年の恋愛予報",
+            "where": "どこで恋愛を見つけるか",
             "questions": "パーソナルな質問",
-            "conclusion": "まとめ：これからの恋愛ストーリー"
+            "conclusion": "結論：これからの恋愛ストーリー"
         },
-        "pollingMessage": "恋愛レポートを生成中...",
+        "pollingMessage": "恋愛レポートを作成中...",
         "error": "エラー",
         "noJobId": "サーバーからjob_idが返されませんでした。",
         "fetchStatusFailed": "レポートのステータス取得に失敗しました。"
@@ -101,21 +105,21 @@
         "header": "関係の相性",
         "purchase": "{{cost}}で購入",
         "title": "あなたたちは完璧なカップル？{\\n}今すぐチェック！",
-        "subtitle": "占星術と四柱推命が融合し、愛の相性に新たな視点を。",
-        "description": "一部のアドバイスは常識のように聞こえるかもしれません（例：コミュニケーションやマインドセットの改善など）が、すべてあなた独自のチャートと関係性に合わせてパーソナライズされています。その効果は想像以上です。",
+        "subtitle": "占星術と四柱推命が出会い、あなたの恋愛相性に新たな視点をもたらします。",
+        "description": "いくつかのアドバイスは常識のように聞こえるかもしれません（例：コミュニケーションやマインドセットの改善）が、すべてあなた独自のチャートと関係のダイナミクスに合わせて調整されています。その影響は見た目以上に大きいです。",
         "loveInterestDetail": "お相手の詳細",
         "tellUsMore": "お相手についてもっと教えてください！",
-        "pollingMessage": "関係レポートを生成中...",
+        "pollingMessage": "関係レポートを作成中...",
         "cards": {
-            "perspective": "あなたの愛に対する考えは？",
-            "seeYou": "お相手はあなたをどう見ていますか？",
+            "perspective": "あなたの恋愛観は？",
+            "seeYou": "お相手はあなたをどう見ている？",
             "kindOfPerson": "お相手はどんな人？",
-            "traits": "性格・好み・NGポイントは？"
+            "traits": "性格、好み、苦手なことは？"
         }
     },
-    "ask_affinity_instructions": "1. 心を落ち着かせる\n2. 質問したい内容を考える\n3. 質問を入力する\n4. 深呼吸して質問ボタンを押す",
+    "ask_affinity_instructions": "1. 心を落ち着かせてください\n2. 質問したいことを考えてください\n3. 質問を入力してください\n4. 深呼吸して質問ボタンを押してください",
     "ASK AFFINITY": "Affinityに質問",
-    "Unsure what to do next? Affinity is here to help —  ask anything.": "次に何をすればいいか分からない？Affinityがサポートします — 何でも質問してください。",
+    "Unsure what to do next? Affinity is here to help —  ask anything.": "次に何をすべきかわからない？Affinityがサポートします — 何でも質問してください。",
     "How to ask the question?": "質問の仕方",
     "Type your question": "質問を入力してください",
     "Purchase for {{cost}}": "{{cost}}で購入",
@@ -124,51 +128,54 @@
     "Present Situation": "現在の状況",
     "Likely Outcome": "予想される結果",
     "Recommended Action": "推奨される行動",
-    "Tell us anything...": "何でも話してください...",
+    "Tell us anything...": "何でもお話しください...",
     "Error": "エラー",
     "Failed to consult. Please try again.": "相談に失敗しました。もう一度お試しください。",
     "DIARY": "日記",
-    "A safe space to express your thoughts and emotions.": "あなたの思いや感情を安心して表現できる場所です。",
+    "A safe space to express your thoughts and emotions.": "あなたの思いや感情を表現する安全な空間です。",
     "Recent Diaries": "最近の日記",
     "No Diaries Yet": "まだ日記がありません",
-    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "最初の日記を書いて、あなたの思いや気持ちを表現しましょう。あなたの旅はここから始まります！",
-    "Continue": "続行",
+    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "あなたの思いや気持ちを表現する最初の日記を書きましょう。あなたの旅はここから始まります！",
+    "Continue": "続ける",
     "Fill in your details": "詳細を入力してください",
     "Select Country": "国を選択",
     "Select City": "都市を選択",
+    "PASSWORD CHANGED SUCCESSFULLY": "パスワードが正常に変更されました",
+    "FAILED TO CHANGE PASSWORD": "パスワードの変更に失敗しました",
+    "LOADING...": "読み込み中...",
     "fortuneReport": {
         "header": "2025年運勢レポート",
         "purchase": "{{cost}}で購入",
-        "title": "2025年が気になりますか？今すぐ{\\n}あなたの運勢をチェック！",
-        "subtitle": "運勢鑑定と計画が融合し、2025年に新たな視点をもたらします。",
-        "description": "一部の洞察はシンプルに見えるかもしれません（タイミングや意思決定など）が、すべてあなたのチャートと2025年の道筋に合わせてパーソナライズされています。これらのガイダンスは本当の違いを生み出します。",
-        "sectionTitle": "何が分かるの？",
+        "title": "2025年が気になりますか？今すぐ{\\n}運勢をチェック！",
+        "subtitle": "運勢解読と計画が出会い、2025年に新たな視点をもたらします。",
+        "description": "いくつかの洞察はシンプルに見えるかもしれません（タイミングや意思決定など）が、すべてあなたのチャートと2025年の道筋に合わせてパーソナライズされています。これらのガイドは本当に大きな違いを生み出すことができます。",
+        "sectionTitle": "何がわかるのか？",
         "cards": {
             "health": {
                 "title": "健康",
-                "subtitle": "アストロと四柱推命を使い、健康状態を分析し、タイムリーな予防策をサポートします。"
+                "subtitle": "占星術と四柱推命を活用し、健康状態を分析してタイムリーな予防策をサポートします。"
             },
             "finance": {
                 "title": "財運",
-                "subtitle": "アストロと四柱推命で毎年の財帛宮の傾向を分析し、最適な財運チャンスを見つけます。"
+                "subtitle": "占星術と四柱推命で年間財帛宮の傾向を分析し、最適な財運のチャンスを見つけましょう。"
             },
             "career": {
                 "title": "キャリア",
-                "subtitle": "アストロと四柱推命でキャリア宮の星を通じて、今年のキャリア運と課題を明らかにします。"
+                "subtitle": "占星術と四柱推命でキャリア宮の星を通じて今年のキャリア運と課題を明らかにします。"
             },
             "relationship": {
                 "title": "関係",
-                "subtitle": "アストロと四柱推命で毎年の恋愛傾向を配偶者宮から追跡します。"
+                "subtitle": "占星術と四柱推命で年間の恋愛トレンドを夫妻宮で追跡します。"
             }
         }
     },
     "purchaseAlert": {
         "title": "購入アラート",
-        "askGeenie": "ジーニーに質問するには、{{cost}} <coin/>が必要です。\n続行しますか？",
+        "askGeenie": "Geenieに質問するには{{cost}} <coin/>が必要です。\n続行しますか？",
         "yourCredits": "あなたの{{creditType}}クレジット: {{userCredit}} <coin/>",
         "continue": "購入を続ける",
         "cancel": "キャンセル",
-        "insufficient": "このレポートには{{cost}}が必要です。\n現在の{{creditType}}クレジットが不足しています。チャージしてから続行してください。",
+        "insufficient": "このレポートには{{cost}}が必要です\n現在の{{creditType}}クレジットが不足しています。チャージしてから続行してください。",
         "purchaseCredits": "クレジットを購入"
     }
 }

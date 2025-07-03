@@ -37,6 +37,10 @@
     "Privacy Policy": "개인정보 처리방침",
     "Terms & Conditions": "이용 약관",
     "Logout": "로그아웃",
+    "Current Password": "현재 비밀번호",
+    "New Password": "새 비밀번호",
+    "Confirm Password": "비밀번호 확인",
+    "CHANGE PASSWORD": "비밀번호 변경",
     "carousel": {
         "love": {
             "title": "Love On Pause?",

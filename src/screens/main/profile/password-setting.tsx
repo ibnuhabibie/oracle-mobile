@@ -117,13 +117,13 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
     <ScreenContainer
       header={
         <Header
-          title="Password Settings"
+          title={t('Password Settings')}
           onBack={() => navigation.goBack()}
         />
       }
     >
       <View style={styles.formContainer}>
-        <AppText>Current Password</AppText>
+        <AppText>{t('Current Password')}</AppText>
         <AppInput<PasswordSettingDTO>
           control={control}
           name="current_password"
@@ -137,7 +137,7 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
               showPassword={showCurrentPassword} />
           }
         />
-        <AppText>New Password</AppText>
+        <AppText>{t('New Password')}</AppText>
         <AppInput<PasswordSettingDTO>
           control={control}
           name="new_password"
@@ -151,7 +151,7 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
               showPassword={showNewPassword} />
           }
         />
-        <AppText>Confirm Password</AppText>
+        <AppText>{t('Confirm Password')}</AppText>
         <AppInput<PasswordSettingDTO>
           control={control}
           name="confirm_password"
