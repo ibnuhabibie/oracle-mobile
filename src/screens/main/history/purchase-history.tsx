@@ -5,6 +5,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import { fontFamilies } from '../../../constants/fonts';
+import { useTranslation } from 'react-i18next';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import TopupHistoryList from '../../../features/history/topup-history-list';
 import UsageHistoryList from '../../../features/history/usage-history-list';
@@ -14,6 +15,7 @@ import UsageReceiptModal from '../../../features/history/usage-receipt-modal';
 type PurchaseHistoryProps = NativeStackScreenProps<MainNavigatorParamList, 'PurchaseHistory'>;
 
 const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'history' | 'topup'>('history');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
@@ -37,7 +39,7 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
         scrollable={false}
         header={
           <Header
-            title="Purchase History"
+            title={t('PURCHASE HISTORY')}
             onBack={() => navigation.goBack()}
           />
         }
@@ -52,7 +54,7 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
                 styles.tabText,
                 activeTab === 'history' && styles.activeTabText,
               ]}>
-              Purchase History
+              {t('PURCHASE HISTORY')}
             </Text>
           </Pressable>
 
@@ -64,7 +66,7 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
                 styles.tabText,
                 activeTab === 'topup' && styles.activeTabText,
               ]}>
-              Top Up History
+              {t('TOP UP HISTORY')}
             </Text>
           </Pressable>
         </View>

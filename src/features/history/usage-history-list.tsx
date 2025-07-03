@@ -5,6 +5,7 @@ import { fontFamilies } from "../../constants/fonts";
 import api from "../../utils/http";
 import { formatDateTime } from "../../utils/date";
 import { StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 
 interface UsageItem {
     usage_history_id: number;
@@ -25,11 +26,11 @@ interface UsageHistoryListProps {
 }
 
 const serviceTypeLabels: Record<string, string> = {
-    ask_any_question: "Ask Affinity",
-    personalized_love_forecast_12mth: "Love Forecast",
-    transit_report: "Fortune Report",
-    relationship_compatibility: "Relation Compatibility",
-    ask_secret_diary: "Advice Genie",
+    ask_any_question: "ASK AFFINITY",
+    personalized_love_forecast_12mth: "LOVE FORECAST",
+    transit_report: "FORTUNE REPORT",
+    relationship_compatibility: "RELATION COMPATIBILITY",
+    ask_secret_diary: "ADVICE GENIE",
 };
 
 const getServiceTypeLabel = (type: string) => serviceTypeLabels[type] || type;
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
 });
 
 const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
+    const { t } = useTranslation();
     const [data, setData] = useState<UsageItem[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -121,10 +123,10 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
                 </View>
                 <View style={{ flex: 1 }}>
                     <Text style={styles.serviceType}>
-                        {getServiceTypeLabel(item.service_type)}
+                        {t(getServiceTypeLabel(item.service_type))}
                     </Text>
                     <Text style={styles.details}>
-                        Your purchase is in, see the details!
+                        {t("USAGE HISTORY DETAILS")}
                     </Text>
                 </View>
                 <View style={styles.dateContainer}>
@@ -153,7 +155,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
             contentContainerStyle={styles.listContent}
             ListEmptyComponent={
                 <View style={styles.empty}>
-                    <Text style={styles.emptyText}>No usage history found.</Text>
+                    <Text style={styles.emptyText}>{t("NO USAGE HISTORY FOUND")}</Text>
                 </View>
             }
         />
