@@ -6,7 +6,7 @@
     "NEXT": "下一步",
     "SIGN IN": "登录",
     "SIGN UP": "注册",
-    "THE COSMOS WHISPERS": "宇宙在低语。{\n}发现属于你的命运。",
+    "THE COSMOS WHISPERS": "宇宙在低语。{\\n}发现属于你的命运。",
     "DONT HAVE AN ACCOUNT": "还没有账号？",
     "EMAIL IS REQUIRED": "邮箱为必填项",
     "INVALID EMAIL FORMAT": "邮箱格式无效",
@@ -15,7 +15,7 @@
     "EMAIL": "邮箱",
     "PASSWORD": "密码",
     "LOGIN FAILED": "登录失败",
-    "SIGN UP SUBTITLE": "宇宙在低语。{\n}加入并发现你的命运。",
+    "SIGN UP SUBTITLE": "宇宙在低语。{\\n}加入并发现你的命运。",
     "ALREADY HAVE AN ACCOUNT": "已经有账号了？",
     "NAME IS REQUIRED": "姓名为必填项",
     "NAME MIN LENGTH": "姓名至少2个字符",
@@ -96,6 +96,32 @@
         "error": "错误",
         "noJobId": "服务器未返回 job_id。",
         "fetchStatusFailed": "获取报告状态失败。"
+    },
+    "fortuneReport": {
+        "header": "2025年运势报告",
+        "purchase": "以{{cost}}购买",
+        "title": "好奇你的2025年？现在就查看{\\n}你的运势！",
+        "subtitle": "运势解读结合规划，为你的2025年带来新视角。",
+        "description": "有些见解看似简单——比如时机或决策——但它们是根据你的命盘和2025年路径量身定制的。这些指引能带来真正的改变。",
+        "sectionTitle": "你可以了解什么？",
+        "cards": {
+            "health": {
+                "title": "健康",
+                "subtitle": "结合星盘和八字，分析你的健康状况，帮助你及时采取预防措施。"
+            },
+            "finance": {
+                "title": "财富",
+                "subtitle": "结合星盘和八字，分析年度财帛宫趋势，抓住最佳财富机会。"
+            },
+            "career": {
+                "title": "事业",
+                "subtitle": "结合星盘和八字，通过事业宫星曜揭示你的事业运势与挑战。"
+            },
+            "relationship": {
+                "title": "感情",
+                "subtitle": "结合星盘和八字，通过夫妻宫追踪年度感情趋势。"
+            }
+        }
     },
     "purchaseAlert": {
         "title": "购买提醒",

@@ -6,7 +6,7 @@
     "NEXT": "Next",
     "SIGN IN": "Sign In",
     "SIGN UP": "Sign Up",
-    "THE COSMOS WHISPERS": "The cosmos whispers.{\n}Discover what’s meant for you.",
+    "THE COSMOS WHISPERS": "The cosmos whispers.{\\n}Discover what’s meant for you.",
     "DONT HAVE AN ACCOUNT": "Don’t have an account?",
     "EMAIL IS REQUIRED": "Email is required",
     "INVALID EMAIL FORMAT": "Invalid email format",
@@ -15,7 +15,7 @@
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "LOGIN FAILED": "Login Failed",
-    "SIGN UP SUBTITLE": "The cosmos whispers.{\n}Join & uncover your destiny.",
+    "SIGN UP SUBTITLE": "The cosmos whispers.{\\n}Join & uncover your destiny.",
     "ALREADY HAVE AN ACCOUNT": "Already have an account?",
     "NAME IS REQUIRED": "Name is required",
     "NAME MIN LENGTH": "Name must be at least 2 characters",
@@ -100,6 +100,32 @@
         "error": "Error",
         "noJobId": "No job_id returned from server.",
         "fetchStatusFailed": "Failed to fetch report status."
+    },
+    "fortuneReport": {
+        "header": "Fortune Report 2025",
+        "purchase": "Purchase for {{cost}}",
+        "title": "Curious about your 2025? See{\\n}your fortune now!",
+        "subtitle": "Fortune reading meets planning for a fresh take on your 2025.",
+        "description": "Some insights may seem simple—like timing or decision-making—but they’re personalized to your chart and 2025 path. Their guidance can make a real difference.",
+        "sectionTitle": "What can you find out?",
+        "cards": {
+            "health": {
+                "title": "Health",
+                "subtitle": "Using Astro and Bazi, analyze your health condition to help you take timely preventive measures."
+            },
+            "finance": {
+                "title": "Finance",
+                "subtitle": "Using Astro and Bazi, Analyze yearly Wealth Palace trends to spot the best times for wealth opportunities."
+            },
+            "career": {
+                "title": "Career",
+                "subtitle": "Using Astro and Bazi, reveal your career luck and challenges through your Career Palace stars."
+            },
+            "relationship": {
+                "title": "Relationship",
+                "subtitle": "Using Astro and Bazi, Track yearly love trends through your Marriage Palace."
+            }
+        }
     },
     "purchaseAlert": {
         "title": "PURCHASE ALERT",

@@ -6,7 +6,7 @@
     "NEXT": "次へ",
     "SIGN IN": "サインイン",
     "SIGN UP": "サインアップ",
-    "THE COSMOS WHISPERS": "宇宙がささやく。{\n}あなたに与えられたものを見つけましょう。",
+    "THE COSMOS WHISPERS": "宇宙がささやく。{\\n}あなたに与えられたものを見つけましょう。",
     "DONT HAVE AN ACCOUNT": "アカウントをお持ちでないですか？",
     "EMAIL IS REQUIRED": "メールアドレスは必須です",
     "INVALID EMAIL FORMAT": "無効なメール形式です",
@@ -15,7 +15,7 @@
     "EMAIL": "メールアドレス",
     "PASSWORD": "パスワード",
     "LOGIN FAILED": "ログインに失敗しました",
-    "SIGN UP SUBTITLE": "宇宙がささやく。{\n}参加して運命を見つけましょう。",
+    "SIGN UP SUBTITLE": "宇宙がささやく。{\\n}参加して運命を見つけましょう。",
     "ALREADY HAVE AN ACCOUNT": "すでにアカウントをお持ちですか？",
     "NAME IS REQUIRED": "名前は必須です",
     "NAME MIN LENGTH": "名前は2文字以上である必要があります",
@@ -96,6 +96,32 @@
         "error": "エラー",
         "noJobId": "サーバーからjob_idが返されませんでした。",
         "fetchStatusFailed": "レポートのステータス取得に失敗しました。"
+    },
+    "fortuneReport": {
+        "header": "2025年運勢レポート",
+        "purchase": "{{cost}}で購入",
+        "title": "2025年が気になりますか？今すぐ{\\n}あなたの運勢をチェック！",
+        "subtitle": "運勢鑑定と計画が融合し、2025年に新たな視点をもたらします。",
+        "description": "一部の洞察はシンプルに見えるかもしれません（タイミングや意思決定など）が、すべてあなたのチャートと2025年の道筋に合わせてパーソナライズされています。これらのガイダンスは本当の違いを生み出します。",
+        "sectionTitle": "何が分かるの？",
+        "cards": {
+            "health": {
+                "title": "健康",
+                "subtitle": "アストロと四柱推命を使い、健康状態を分析し、タイムリーな予防策をサポートします。"
+            },
+            "finance": {
+                "title": "財運",
+                "subtitle": "アストロと四柱推命で毎年の財帛宮の傾向を分析し、最適な財運チャンスを見つけます。"
+            },
+            "career": {
+                "title": "キャリア",
+                "subtitle": "アストロと四柱推命でキャリア宮の星を通じて、今年のキャリア運と課題を明らかにします。"
+            },
+            "relationship": {
+                "title": "関係",
+                "subtitle": "アストロと四柱推命で毎年の恋愛傾向を配偶者宮から追跡します。"
+            }
+        }
     },
     "purchaseAlert": {
         "title": "購入アラート",

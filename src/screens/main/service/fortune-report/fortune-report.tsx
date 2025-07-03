@@ -18,33 +18,38 @@ import CoinIcon from '../../../../components/icons/profile/coin-icon';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import api from '../../../../utils/http';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
+import { useTranslation } from 'react-i18next';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
-const CARD_DATA = [
-    {
-        icon: require('../../../../assets/icons/services/fortune-report/icon-1.png'),
-        title: 'Health',
-        subtitle: 'Using Astro and Bazi, analyze your health condition to help you take timely preventive measures.'
-    },
-    {
-        icon: require('../../../../assets/icons/services/fortune-report/icon-2.png'),
-        title: 'Finance',
-        subtitle: 'Using Astro and Bazi, Analyze yearly Wealth Palace trends to spot the best times for wealth opportunities.'
-    },
-    {
-        icon: require('../../../../assets/icons/services/fortune-report/icon-3.png'),
-        title: 'Career',
-        subtitle: 'Using Astro and Bazi, reveal yourcareer luck and challenges through your Career Palace stars.'
-    },
-    {
-        icon: require('../../../../assets/icons/services/fortune-report/icon-4.png'),
-        title: 'Relationship',
-        subtitle: 'Using Astro and Bazi, Track yearly love trends through your Marriage Palace.'
-    },
-];
+
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
+    const { t } = useTranslation();
+
+    const CARD_DATA = [
+        {
+            icon: require('../../../../assets/icons/services/fortune-report/icon-1.png'),
+            title: t('fortuneReport.cards.health.title'),
+            subtitle: t('fortuneReport.cards.health.subtitle')
+        },
+        {
+            icon: require('../../../../assets/icons/services/fortune-report/icon-2.png'),
+            title: t('fortuneReport.cards.finance.title'),
+            subtitle: t('fortuneReport.cards.finance.subtitle')
+        },
+        {
+            icon: require('../../../../assets/icons/services/fortune-report/icon-3.png'),
+            title: t('fortuneReport.cards.career.title'),
+            subtitle: t('fortuneReport.cards.career.subtitle')
+        },
+        {
+            icon: require('../../../../assets/icons/services/fortune-report/icon-4.png'),
+            title: t('fortuneReport.cards.relationship.title'),
+            subtitle: t('fortuneReport.cards.relationship.subtitle')
+        },
+    ];
+
     const {
         cost,
         creditType,
@@ -97,7 +102,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         <ScreenContainer
             header={
                 <Header
-                    title="Fortune Report 2025"
+                    title={t('fortuneReport.header')}
                     onBack={() => navigation.goBack()}
                 />
             }
@@ -105,7 +110,9 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 <AppButton
                     title={
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+                            <AppText color='white' style={{ marginRight: 4 }}>
+                                {t('fortuneReport.purchase', { cost })}
+                            </AppText>
                             <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
                         </View>
                     }
@@ -113,17 +120,17 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 />
             }
         >
-            <AppText variant='subtitle1' style={styles.title}>Curious about your 2025? See{'\n'}your fortune now!</AppText>
+            <AppText variant='subtitle1' style={styles.title}>{t('fortuneReport.title')}</AppText>
             <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
                 <Image source={require('../../../../assets/icons/services/fortune-report/service-icon.png')} />
             </ShinyContainer>
             <AppText style={styles.subtitle} variant='title4' color='primary'>
-                Fortune reading meets planning for a fresh take on your 2025.
+                {t('fortuneReport.subtitle')}
             </AppText>
             <AppText style={styles.description} color='neutral'>
-                Some insights may seem simple—like timing or decision-making—but they’re personalized to your chart and 2025 path. Their guidance can make a real difference.
+                {t('fortuneReport.description')}
             </AppText>
-            <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>What can you find out?</AppText>
+            <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('fortuneReport.sectionTitle')}</AppText>
 
             <View style={styles.grid}>
                 {
