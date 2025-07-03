@@ -117,6 +117,17 @@
             "traits": "What are the personality traits, preferences and deal-breakers?"
         }
     },
+    "ask_affinity_instructions": "1. Keep a calm state of mind\n2. Think about the question you have\n3. Enter the question\n4. Breathe and press the ask button",
+    "ASK AFFINITY": "ASK AFFINITY",
+    "Unsure what to do next? Affinity is here to help —  ask anything.": "Unsure what to do next? Affinity is here to help —  ask anything.",
+    "How to ask the question?": "How to ask the question?",
+    "Type your question": "Type your question",
+    "Purchase for {{cost}}": "Purchase for {{cost}}",
+    "Question is required": "Question is required",
+    "Ask Affinity": "Ask Affinity",
+    "Present Situation": "Present Situation",
+    "Likely Outcome": "Likely Outcome",
+    "Recommended Action": "Recommended Action",
     "Tell us anything...": "Tell us anything...",
     "Error": "Error",
     "Failed to consult. Please try again.": "Failed to consult. Please try again.",

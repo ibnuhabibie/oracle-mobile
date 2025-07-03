@@ -91,6 +91,17 @@
             "traits": "성격, 선호, 피해야 할 점은?"
         }
     },
+    "ask_affinity_instructions": "1. 마음을 차분히 가라앉히세요\n2. 질문할 내용을 생각하세요\n3. 질문을 입력하세요\n4. 숨을 고르고 질문 버튼을 누르세요",
+    "ASK AFFINITY": "어피니티 질문",
+    "Unsure what to do next? Affinity is here to help —  ask anything.": "무엇을 해야 할지 모르겠나요? 어피니티가 도와드립니다 — 무엇이든 질문하세요.",
+    "How to ask the question?": "질문하는 방법",
+    "Type your question": "질문을 입력하세요",
+    "Purchase for {{cost}}": "{{cost}}에 구매",
+    "Question is required": "질문은 필수입니다",
+    "Ask Affinity": "어피니티 질문",
+    "Present Situation": "현재 상황",
+    "Likely Outcome": "예상 결과",
+    "Recommended Action": "추천 행동",
     "Tell us anything...": "무엇이든 말씀해 주세요...",
     "Error": "오류",
     "Failed to consult. Please try again.": "상담에 실패했습니다. 다시 시도해 주세요.",

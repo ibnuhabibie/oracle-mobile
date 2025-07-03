@@ -52,7 +52,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
         },
     });
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: { question: string }) => {
         setApiError(null);
         setCostLoading(true);
         try {
@@ -61,11 +61,11 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             navigation.navigate('AffinityResults', { affinityResult: response, question: data.question });
             setShowPurchaseModal(false);
             setValue('question', '')
-        } catch (err) {
+        } catch (err: any) {
             setShowPurchaseModal(false);
             setCostLoading(false);
             setValue('question', '')
-            setApiError(err?.message || 'Something went wrong');
+            setApiError(typeof err === 'object' && err !== null && typeof err.message === 'string' ? err.message : t('Something went wrong'));
         }
     };
 
@@ -86,16 +86,13 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                 resizeMode="contain"
             />
             <View style={styles.infoCard}>
-                <AppText color='primary'>How to ask the question?</AppText>
+                <AppText color='primary'>{t('How to ask the question?')}</AppText>
                 <AppText style={{ lineHeight: 22 }} variant='caption3'>
-                    1. Keep a calm state of mind{'\n'}
-                    2. Think about the question you have{'\n'}
-                    3. Enter the question{'\n'}
-                    4. Breathe and press the ask button
+                    {t('ask_affinity_instructions')}
                 </AppText>
             </View>
             <View style={{ padding: 14 }}>
-                <AppText style={{ textAlign: 'center', marginTop: 36, marginBottom: 8 }}>Type your question</AppText>
+                <AppText style={{ textAlign: 'center', marginTop: 36, marginBottom: 8 }}>{t('Type your question')}</AppText>
                 <AppInput
                     control={control}
                     name="question"
@@ -104,12 +101,12 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                     errors={errors}
                 />
                 {apiError ? (
-                    <AppText style={{ color: 'red', textAlign: 'center', marginVertical: 8 }}>{apiError}</AppText>
+                    <AppText style={{ color: 'red', textAlign: 'center', marginVertical: 8 }}>{t(apiError)}</AppText>
                 ) : null}
                 <AppButton
                     title={
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <AppText color='white' style={{ marginRight: 4 }}>Purchase for {cost}</AppText>
+                            <AppText color='white' style={{ marginRight: 4 }}>{t('Purchase for {{cost}}', { cost })}</AppText>
                             <CoinIcon color={creditType === 'gold' ? '#FFD700' : '#C0C0C0'} size={18} />
                         </View>
                     }

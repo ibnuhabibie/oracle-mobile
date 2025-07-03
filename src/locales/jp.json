@@ -113,6 +113,17 @@
             "traits": "性格・好み・NGポイントは？"
         }
     },
+    "ask_affinity_instructions": "1. 心を落ち着かせる\n2. 質問したい内容を考える\n3. 質問を入力する\n4. 深呼吸して質問ボタンを押す",
+    "ASK AFFINITY": "Affinityに質問",
+    "Unsure what to do next? Affinity is here to help —  ask anything.": "次に何をすればいいか分からない？Affinityがサポートします — 何でも質問してください。",
+    "How to ask the question?": "質問の仕方",
+    "Type your question": "質問を入力してください",
+    "Purchase for {{cost}}": "{{cost}}で購入",
+    "Question is required": "質問は必須です",
+    "Ask Affinity": "Affinityに質問",
+    "Present Situation": "現在の状況",
+    "Likely Outcome": "予想される結果",
+    "Recommended Action": "推奨される行動",
     "Tell us anything...": "何でも話してください...",
     "Error": "エラー",
     "Failed to consult. Please try again.": "相談に失敗しました。もう一度お試しください。",

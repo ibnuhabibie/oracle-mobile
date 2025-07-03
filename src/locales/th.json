@@ -113,6 +113,17 @@
             "traits": "ลักษณะนิสัย ความชอบ และสิ่งที่รับไม่ได้คืออะไร?"
         }
     },
+    "ask_affinity_instructions": "1. ตั้งสติให้สงบ\n2. คิดถึงคำถามที่ต้องการถาม\n3. พิมพ์คำถาม\n4. หายใจลึก ๆ แล้วกดปุ่มถาม",
+    "ASK AFFINITY": "ถาม Affinity",
+    "Unsure what to do next? Affinity is here to help —  ask anything.": "ไม่แน่ใจว่าควรทำอะไรต่อ? Affinity พร้อมช่วยเหลือ — ถามได้ทุกเรื่อง",
+    "How to ask the question?": "วิธีการถามคำถาม",
+    "Type your question": "พิมพ์คำถามของคุณ",
+    "Purchase for {{cost}}": "ซื้อในราคา {{cost}}",
+    "Question is required": "ต้องระบุคำถาม",
+    "Ask Affinity": "ถาม Affinity",
+    "Present Situation": "สถานการณ์ปัจจุบัน",
+    "Likely Outcome": "ผลลัพธ์ที่เป็นไปได้",
+    "Recommended Action": "ข้อแนะนำที่ควรทำ",
     "Tell us anything...": "บอกเราอะไรก็ได้...",
     "Error": "ข้อผิดพลาด",
     "Failed to consult. Please try again.": "ปรึกษาไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",

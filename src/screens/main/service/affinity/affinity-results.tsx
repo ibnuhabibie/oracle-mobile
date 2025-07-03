@@ -16,6 +16,7 @@ import { fontFamilies } from '../../../../constants/fonts';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
+import { useTranslation } from 'react-i18next';
 
 type AffinityResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AffinityResults'>;
 
@@ -106,6 +107,7 @@ const getTarotImage = (cardName: string) => {
 };
 
 const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
+    const { t } = useTranslation();
     // Get the result from navigation params
     const affinityResult = route.params?.affinityResult;
 
@@ -114,9 +116,9 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
 
     // Group cards by section for display order
     const sectionOrder = [
-        { key: 'present_situation', label: 'Present Situation' },
-        { key: 'likely_outcome', label: 'Likely Outcome' },
-        { key: 'recommended_action', label: 'Recommended Action' }
+        { key: 'present_situation', label: t('Present Situation') },
+        { key: 'likely_outcome', label: t('Likely Outcome') },
+        { key: 'recommended_action', label: t('Recommended Action') }
     ];
 
     const renderCardSection = (sectionKey: string, sectionLabel: string) => {
@@ -155,7 +157,7 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
                         style={styles.backButton}>
                         <ArrowIcon />
                     </Pressable>
-                    <Text style={styles.headerTitle}>Ask Affinity</Text>
+                    <Text style={styles.headerTitle}>{t('Ask Affinity')}</Text>
                 </View>
             }
         >

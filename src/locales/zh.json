@@ -113,6 +113,17 @@
             "traits": "有哪些性格特征、偏好和禁忌？"
         }
     },
+    "ask_affinity_instructions": "1. 保持平静的心态\n2. 想好你要问的问题\n3. 输入问题\n4. 深呼吸并按下提问按钮",
+    "ASK AFFINITY": "提问 Affinity",
+    "Unsure what to do next? Affinity is here to help —  ask anything.": "不知道接下来该做什么？Affinity 帮你解答——随便问吧。",
+    "How to ask the question?": "如何提问？",
+    "Type your question": "输入你的问题",
+    "Purchase for {{cost}}": "购买需 {{cost}}",
+    "Question is required": "问题为必填项",
+    "Ask Affinity": "提问 Affinity",
+    "Present Situation": "当前状况",
+    "Likely Outcome": "可能结果",
+    "Recommended Action": "建议行动",
     "Tell us anything...": "随便说点什么……",
     "Error": "错误",
     "Failed to consult. Please try again.": "咨询失败，请重试。",
