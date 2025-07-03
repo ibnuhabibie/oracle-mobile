@@ -91,6 +91,14 @@
             "traits": "성격, 선호, 피해야 할 점은?"
         }
     },
+    "Tell us anything...": "무엇이든 말씀해 주세요...",
+    "Error": "오류",
+    "Failed to consult. Please try again.": "상담에 실패했습니다. 다시 시도해 주세요.",
+    "DIARY": "다이어리",
+    "A safe space to express your thoughts and emotions.": "생각과 감정을 안전하게 표현할 수 있는 공간입니다.",
+    "Recent Diaries": "최근 일기",
+    "No Diaries Yet": "아직 일기가 없습니다",
+    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "생각과 감정을 표현하는 첫 일기를 시작하세요. 당신의 여정이 여기서 시작됩니다!",
     "Continue": "계속",
     "Fill in your details": "정보를 입력하세요",
     "Select Country": "국가 선택",

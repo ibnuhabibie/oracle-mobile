@@ -113,6 +113,14 @@
             "traits": "ลักษณะนิสัย ความชอบ และสิ่งที่รับไม่ได้คืออะไร?"
         }
     },
+    "Tell us anything...": "บอกเราอะไรก็ได้...",
+    "Error": "ข้อผิดพลาด",
+    "Failed to consult. Please try again.": "ปรึกษาไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
+    "DIARY": "ไดอารี่",
+    "A safe space to express your thoughts and emotions.": "พื้นที่ปลอดภัยสำหรับถ่ายทอดความคิดและความรู้สึกของคุณ",
+    "Recent Diaries": "ไดอารี่ล่าสุด",
+    "No Diaries Yet": "ยังไม่มีไดอารี่",
+    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "เริ่มเขียนไดอารี่แรกของคุณเพื่อถ่ายทอดความคิดและความรู้สึก การเดินทางของคุณเริ่มต้นที่นี่!",
     "Continue": "ดำเนินการต่อ",
     "Fill in your details": "กรอกข้อมูลของคุณ",
     "Select Country": "เลือกประเทศ",

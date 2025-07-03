@@ -19,6 +19,7 @@ type EchoProps = NativeStackScreenProps<MainNavigatorParamList, 'Echo'>;
 
 const Echo: FC<EchoProps> = ({ navigation }) => {
     const { t } = useTranslation();
+    
     const [diaries, setDiaries] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -116,7 +117,7 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                 }
             />
             <View style={{ marginTop: 14 }}>
-                <AppText>Recent Diaries</AppText>
+                <AppText>{t('Recent Diaries')}</AppText>
                 {loading ? (
                     <AppText style={{ marginTop: 8 }}>{t('Loading...')}</AppText>
                 ) : error && error !== 'No diary found.' ? (
@@ -139,9 +140,9 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     ))
                 ) : (
                     <View style={styles.emptyDiaryContainer}>
-                        <AppText style={styles.emptyDiaryTitle}>No Diaries Yet</AppText>
+                        <AppText style={styles.emptyDiaryTitle}>{t('No Diaries Yet')}</AppText>
                         <AppText style={styles.emptyDiaryDesc}>
-                            Start your first diary entry to express your thoughts and feelings. Your journey begins here!
+                            {t('Start your first diary entry to express your thoughts and feelings. Your journey begins here!')}
                         </AppText>
                     </View>
                 )}

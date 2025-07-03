@@ -10,6 +10,7 @@ import {
   Alert
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from "react-i18next";
 
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -26,6 +27,7 @@ import { useServiceCost } from '../../../../hooks/use-service-cost';
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 
 const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const id = route.params?.id;
   const date = route.params?.date;
 
@@ -106,7 +108,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
     } catch (error) {
       setCostLoading(false);
       console.log(error);
-      Alert.alert('Error', 'Failed to consult. Please try again.');
+      Alert.alert(t('Error'), t('Failed to consult. Please try again.'));
     }
   };
 
@@ -115,7 +117,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
       header={
         <>
           <Header
-            title="Diary"
+            title={t("DIARY")}
             onBack={() => navigation.goBack()}
           />
           <View style={styles.dateSeparator}>
@@ -133,7 +135,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           <View style={styles.inputBar}>
             <TextInput
               style={styles.input}
-              placeholder="Tell us anything..."
+              placeholder={t("Tell us anything...")}
               value={input}
               onChangeText={setInput}
               placeholderTextColor="#BDBDBD"

@@ -113,6 +113,14 @@
             "traits": "性格・好み・NGポイントは？"
         }
     },
+    "Tell us anything...": "何でも話してください...",
+    "Error": "エラー",
+    "Failed to consult. Please try again.": "相談に失敗しました。もう一度お試しください。",
+    "DIARY": "日記",
+    "A safe space to express your thoughts and emotions.": "あなたの思いや感情を安心して表現できる場所です。",
+    "Recent Diaries": "最近の日記",
+    "No Diaries Yet": "まだ日記がありません",
+    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "最初の日記を書いて、あなたの思いや気持ちを表現しましょう。あなたの旅はここから始まります！",
     "Continue": "続行",
     "Fill in your details": "詳細を入力してください",
     "Select Country": "国を選択",
