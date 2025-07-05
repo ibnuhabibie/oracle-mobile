@@ -154,7 +154,6 @@
         }
     },
     "ask_affinity_instructions": "1. ตั้งสติให้สงบ\n2. คิดถึงคำถามที่ต้องการถาม\n3. พิมพ์คำถาม\n4. หายใจลึก ๆ แล้วกดปุ่มถาม",
-    "ASK AFFINITY": "ถาม Affinity",
     "Unsure what to do next? Affinity is here to help —  ask anything.": "ไม่แน่ใจว่าควรทำอะไรต่อ? Affinity พร้อมช่วยเหลือ — ถามได้ทุกเรื่อง",
     "How to ask the question?": "วิธีการถามคำถาม",
     "Type your question": "พิมพ์คำถามของคุณ",
@@ -221,6 +220,23 @@
         "timeOfBirth": "เวลาเกิด",
         "countryOfBirth": "ประเทศที่เกิด",
         "cityOfBirth": "เมืองที่เกิด"
+    },
+    "usageReceiptModal": {
+        "receipt": "ใบเสร็จ",
+        "datePurchased": "วันที่ซื้อ",
+        "orderItems": "รายการสั่งซื้อ",
+        "previousPoints": "คะแนนก่อนหน้า",
+        "pointsUsed": "คะแนนที่ใช้",
+        "remainingPoints": "คะแนนคงเหลือ",
+        "seeResults": "ดูผลลัพธ์",
+        "processing": "รายงานกำลังดำเนินการ โปรดกลับมาตรวจสอบอีกครั้งในภายหลัง",
+        "serviceType": {
+            "ask_any_question": "ถาม Affinity",
+            "personalized_love_forecast_12mth": "พยากรณ์ความรัก",
+            "transit_report": "รายงานโชคลาภ",
+            "relationship_compatibility": "ความเข้ากันได้ของความสัมพันธ์",
+            "ask_secret_diary": "Genie ที่ปรึกษา"
+        }
     },
     "loveReportResult": {
         "title": "พยากรณ์ความรัก 12 เดือนข้างหน้า",

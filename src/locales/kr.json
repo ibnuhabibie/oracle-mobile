@@ -132,7 +132,6 @@
         }
     },
     "ask_affinity_instructions": "1. 마음을 차분히 가라앉히세요\n2. 질문할 내용을 생각하세요\n3. 질문을 입력하세요\n4. 숨을 고르고 질문 버튼을 누르세요",
-    "ASK AFFINITY": "어피니티 질문",
     "Unsure what to do next? Affinity is here to help —  ask anything.": "무엇을 해야 할지 모르겠나요? 어피니티가 도와드립니다 — 무엇이든 질문하세요.",
     "How to ask the question?": "질문하는 방법",
     "Type your question": "질문을 입력하세요",
@@ -196,6 +195,23 @@
         "timeOfBirth": "출생 시각",
         "countryOfBirth": "출생 국가",
         "cityOfBirth": "출생 도시"
+    },
+    "usageReceiptModal": {
+        "receipt": "영수증",
+        "datePurchased": "구매 일자",
+        "orderItems": "주문 항목",
+        "previousPoints": "이전 포인트",
+        "pointsUsed": "사용 포인트",
+        "remainingPoints": "남은 포인트",
+        "seeResults": "결과 보기",
+        "processing": "리포트가 아직 처리 중입니다. 나중에 다시 확인해 주세요.",
+        "serviceType": {
+            "ask_any_question": "어피니티 질문",
+            "personalized_love_forecast_12mth": "사랑 운세",
+            "transit_report": "운세 리포트",
+            "relationship_compatibility": "관계 궁합",
+            "ask_secret_diary": "조언 지니"
+        }
     },
     "loveReportResult": {
         "title": "향후 12개월 사랑 운세",

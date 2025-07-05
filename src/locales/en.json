@@ -120,8 +120,7 @@
         "title": "Love Forecast for Next 12 Months",
         "downloadPdf": "Download as PDF",
         "forecastFor": "Forecast for {{range}}"
-    }
-}
+    },
     "loveForecast": {
         "header": "Love Forecast for Next 12 Months",
         "purchase": "Purchase for {{cost}}",
@@ -161,7 +160,6 @@
         }
     },
     "ask_affinity_instructions": "1. Keep a calm state of mind\n2. Think about the question you have\n3. Enter the question\n4. Breathe and press the ask button",
-    "ASK AFFINITY": "ASK AFFINITY",
     "Unsure what to do next? Affinity is here to help —  ask anything.": "Unsure what to do next? Affinity is here to help —  ask anything.",
     "How to ask the question?": "How to ask the question?",
     "Type your question": "Type your question",
@@ -225,5 +223,22 @@
         "timeOfBirth": "Time of Birth",
         "countryOfBirth": "Country of Birth",
         "cityOfBirth": "City of Birth"
+    },
+    "usageReceiptModal": {
+        "receipt": "RECEIPT",
+        "datePurchased": "Date Purchased",
+        "orderItems": "Order Item(s)",
+        "previousPoints": "Previous Points",
+        "pointsUsed": "Points Used",
+        "remainingPoints": "Remaining Points",
+        "seeResults": "See Results",
+        "processing": "Report is still being processed. Please check back later.",
+        "serviceType": {
+            "ask_any_question": "Ask Affinity",
+            "personalized_love_forecast_12mth": "Love Forecast",
+            "transit_report": "Fortune Report",
+            "relationship_compatibility": "Relation Compatibility",
+            "ask_secret_diary": "Advice Genie"
+        }
     }
 }

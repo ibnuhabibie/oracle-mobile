@@ -152,7 +152,6 @@
         }
     },
     "ask_affinity_instructions": "1. Tenangkan pikiran Anda\n2. Pikirkan pertanyaan yang ingin diajukan\n3. Masukkan pertanyaan\n4. Tarik napas dan tekan tombol tanya",
-    "ASK AFFINITY": "TANYA AFFINITY",
     "Unsure what to do next? Affinity is here to help —  ask anything.": "Bingung harus apa? Affinity siap membantu — tanya apa saja.",
     "How to ask the question?": "Bagaimana cara bertanya?",
     "Type your question": "Ketik pertanyaan Anda",
@@ -220,6 +219,23 @@
         "timeOfBirth": "Waktu Lahir",
         "countryOfBirth": "Negara Lahir",
         "cityOfBirth": "Kota Lahir"
+    },
+    "usageReceiptModal": {
+        "receipt": "STRUK",
+        "datePurchased": "Tanggal Pembelian",
+        "orderItems": "Item Pesanan",
+        "previousPoints": "Poin Sebelumnya",
+        "pointsUsed": "Poin Digunakan",
+        "remainingPoints": "Poin Tersisa",
+        "seeResults": "Lihat Hasil",
+        "processing": "Laporan masih diproses. Silakan cek kembali nanti.",
+        "serviceType": {
+            "ask_any_question": "Tanya Affinity",
+            "personalized_love_forecast_12mth": "Ramalan Cinta",
+            "transit_report": "Laporan Keberuntungan",
+            "relationship_compatibility": "Kecocokan Hubungan",
+            "ask_secret_diary": "Genie Saran"
+        }
     },
     "loveReportResult": {
         "title": "Ramalan Cinta 12 Bulan Mendatang",

@@ -4,4 +4,3 @@ TODO:
 - pull to refresh
 - passing service to purchase alert
 - download pdf report
--

@@ -154,7 +154,6 @@
         }
     },
     "ask_affinity_instructions": "1. 心を落ち着かせてください\n2. 質問したいことを考えてください\n3. 質問を入力してください\n4. 深呼吸して質問ボタンを押してください",
-    "ASK AFFINITY": "Affinityに質問",
     "Unsure what to do next? Affinity is here to help —  ask anything.": "次に何をすべきかわからない？Affinityがサポートします — 何でも質問してください。",
     "How to ask the question?": "質問の仕方",
     "Type your question": "質問を入力してください",
@@ -221,6 +220,23 @@
         "timeOfBirth": "出生時刻",
         "countryOfBirth": "出生国",
         "cityOfBirth": "出生都市"
+    },
+    "usageReceiptModal": {
+        "receipt": "領収書",
+        "datePurchased": "購入日",
+        "orderItems": "注文商品",
+        "previousPoints": "前回のポイント",
+        "pointsUsed": "使用ポイント",
+        "remainingPoints": "残りポイント",
+        "seeResults": "結果を見る",
+        "processing": "レポートはまだ処理中です。後でもう一度ご確認ください。",
+        "serviceType": {
+            "ask_any_question": "Affinityに質問",
+            "personalized_love_forecast_12mth": "恋愛予報",
+            "transit_report": "運勢レポート",
+            "relationship_compatibility": "関係の相性",
+            "ask_secret_diary": "アドバイスジーニー"
+        }
     },
     "loveReportResult": {
         "title": "今後12ヶ月の恋愛予報",
