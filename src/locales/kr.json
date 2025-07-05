@@ -196,6 +196,9 @@
         "countryOfBirth": "출생 국가",
         "cityOfBirth": "출생 도시"
     },
+    "chatArea": {
+        "geenieSays": "지니가 말합니다:"
+    },
     "usageReceiptModal": {
         "receipt": "영수증",
         "datePurchased": "구매 일자",
@@ -212,6 +215,16 @@
             "relationship_compatibility": "관계 궁합",
             "ask_secret_diary": "조언 지니"
         }
+    },
+    "fortuneReportResult": {
+        "header": "운세 리포트 {{year}}",
+        "downloadPdf": "PDF로 다운로드"
+    },
+    "relationReportResult": {
+        "header": "관계 궁합",
+        "downloadPdf": "PDF로 다운로드",
+        "you": "나",
+        "yourLoveInterest": "상대방"
     },
     "loveReportResult": {
         "title": "향후 12개월 사랑 운세",

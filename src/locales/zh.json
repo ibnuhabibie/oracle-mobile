@@ -220,6 +220,9 @@
         "countryOfBirth": "出生国家",
         "cityOfBirth": "出生城市"
     },
+    "chatArea": {
+        "geenieSays": "精灵说："
+    },
     "usageReceiptModal": {
         "receipt": "收据",
         "datePurchased": "购买日期",
@@ -236,6 +239,16 @@
             "relationship_compatibility": "关系匹配度",
             "ask_secret_diary": "建议精灵"
         }
+    },
+    "fortuneReportResult": {
+        "header": "运势报告 {{year}}",
+        "downloadPdf": "下载为PDF"
+    },
+    "relationReportResult": {
+        "header": "关系匹配度",
+        "downloadPdf": "下载为PDF",
+        "you": "你",
+        "yourLoveInterest": "你的心仪对象"
     },
     "loveReportResult": {
         "title": "未来12个月的爱情预测",

@@ -221,6 +221,9 @@
         "countryOfBirth": "出生国",
         "cityOfBirth": "出生都市"
     },
+    "chatArea": {
+        "geenieSays": "ジーニーの言葉："
+    },
     "usageReceiptModal": {
         "receipt": "領収書",
         "datePurchased": "購入日",
@@ -237,6 +240,16 @@
             "relationship_compatibility": "関係の相性",
             "ask_secret_diary": "アドバイスジーニー"
         }
+    },
+    "fortuneReportResult": {
+        "header": "運勢レポート {{year}}",
+        "downloadPdf": "PDFとしてダウンロード"
+    },
+    "relationReportResult": {
+        "header": "関係の相性",
+        "downloadPdf": "PDFとしてダウンロード",
+        "you": "あなた",
+        "yourLoveInterest": "お相手"
     },
     "loveReportResult": {
         "title": "今後12ヶ月の恋愛予報",

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, ScrollView, Pressable, StyleSheet } from 'react-native';
 import { AppText } from '../../../components/ui/app-text';
 import { COLORS } from '../../../constants/colors';
@@ -22,6 +23,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
   const [initials, setInitials] = useState('');
   const { getUserProfile } = useAsyncStorage();
 
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchInitials = async () => {
       const profile = await getUserProfile();
@@ -64,7 +66,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
                       ? styles.bubbleUser
                       : styles.bubbleAI
                   ]}>
-                    {!isUser && <AppText style={{ fontWeight: 'bold', color: 'white' }}>Geenie Says:</AppText>}
+                    {!isUser && <AppText style={{ fontWeight: 'bold', color: 'white' }}>{t("chatArea.geenieSays")}</AppText>}
                     <AppText style={[styles.bubbleText, !isUser && { color: '#fff' }]}>{item.content}</AppText>
                   </View>
                   {

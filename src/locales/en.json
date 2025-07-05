@@ -116,6 +116,16 @@
             "subtitle": "EMBRACE YOUR FUTURE"
         }
     },
+    "fortuneReportResult": {
+        "header": "Fortune Report {{year}}",
+        "downloadPdf": "Download as PDF"
+    },
+    "relationReportResult": {
+        "header": "Relationship Compatibility",
+        "downloadPdf": "Download as PDF",
+        "you": "You",
+        "yourLoveInterest": "Your Love Interest"
+    },
     "loveReportResult": {
         "title": "Love Forecast for Next 12 Months",
         "downloadPdf": "Download as PDF",
@@ -223,6 +233,9 @@
         "timeOfBirth": "Time of Birth",
         "countryOfBirth": "Country of Birth",
         "cityOfBirth": "City of Birth"
+    },
+    "chatArea": {
+        "geenieSays": "Geenie Says:"
     },
     "usageReceiptModal": {
         "receipt": "RECEIPT",

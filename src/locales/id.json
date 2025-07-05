@@ -220,6 +220,9 @@
         "countryOfBirth": "Negara Lahir",
         "cityOfBirth": "Kota Lahir"
     },
+    "chatArea": {
+        "geenieSays": "Geenie berkata:"
+    },
     "usageReceiptModal": {
         "receipt": "STRUK",
         "datePurchased": "Tanggal Pembelian",
@@ -236,6 +239,16 @@
             "relationship_compatibility": "Kecocokan Hubungan",
             "ask_secret_diary": "Genie Saran"
         }
+    },
+    "fortuneReportResult": {
+        "header": "Laporan Keberuntungan {{year}}",
+        "downloadPdf": "Unduh sebagai PDF"
+    },
+    "relationReportResult": {
+        "header": "Kecocokan Hubungan",
+        "downloadPdf": "Unduh sebagai PDF",
+        "you": "Anda",
+        "yourLoveInterest": "Orang yang Anda Sukai"
     },
     "loveReportResult": {
         "title": "Ramalan Cinta 12 Bulan Mendatang",

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, StyleSheet, Image } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
@@ -13,6 +14,7 @@ type RelationReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 
 
 const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation, route }) => {
     const { result, love_profile } = route.params;
+    const { t } = useTranslation();
     console.log(result?.content, 'result')
 
     const iconImages = [
@@ -53,16 +55,16 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
         <ScreenContainer
             header={
                 <Header
-                    title='Relationship Compatibility'
+                    title={t('relationReportResult.header')}
                     onBack={() => navigation.goBack()}
                 />
             }
             floatingFooter={
-                <AppButton title="Download as PDF" />
+                <AppButton title={t('relationReportResult.downloadPdf')} />
             }
         >
-            <ProfileCard cardTitle='You' iconKey={'relation'} />
-            <ProfileCard cardTitle='Your Love Interest' iconKey={'relation'} profileData={love_profile} />
+            <ProfileCard cardTitle={t('relationReportResult.you')} iconKey={'relation'} />
+            <ProfileCard cardTitle={t('relationReportResult.yourLoveInterest')} iconKey={'relation'} profileData={love_profile} />
             <CardList content={result?.content} />
         </ScreenContainer>
     );

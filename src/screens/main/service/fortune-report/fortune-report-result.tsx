@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, StyleSheet, Image } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
@@ -12,6 +13,7 @@ type FortuneReportResultProps = NativeStackScreenProps<MainNavigatorParamList, '
 
 const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, route }) => {
     const { result } = route.params;
+    const { t } = useTranslation();
 
     const iconImages = [
         require('../../../../assets/icons/reports/fortune-report/icon-1.png'),
@@ -52,12 +54,12 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
         <ScreenContainer
             header={
                 <Header
-                    title={'Fortune Report ' + result.transit_year}
+                    title={t('fortuneReportResult.header', { year: result.transit_year })}
                     onBack={() => navigation.goBack()}
                 />
             }
             floatingFooter={
-                <AppButton title="Download as PDF" />
+                <AppButton title={t('fortuneReportResult.downloadPdf')} />
             }
         >
             <CardList content={result?.content} />
