@@ -63,6 +63,7 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
             }
         >
             <CardList content={result?.content} />
+            <View style={{ height: 60 }} />
         </ScreenContainer>
     );
 };

@@ -66,6 +66,7 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
             <ProfileCard cardTitle={t('relationReportResult.you')} iconKey={'relation'} />
             <ProfileCard cardTitle={t('relationReportResult.yourLoveInterest')} iconKey={'relation'} profileData={love_profile} />
             <CardList content={result?.content} />
+            <View style={{ height: 60 }} />
         </ScreenContainer>
     );
 };

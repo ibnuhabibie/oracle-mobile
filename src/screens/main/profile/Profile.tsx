@@ -202,11 +202,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         <View style={styles.coinsRow}>
           <View style={styles.coinItem}>
             <Text style={styles.coinAmount}>{user?.gold_credits}</Text>
-            <CoinIcon size={19} color="#FBBC05" />
+            <CoinIcon size={19} color="#E0AE1E" />
           </View>
           <View style={styles.coinItem}>
             <Text style={styles.coinAmount}>{user?.silver_credits}</Text>
-            <CoinIcon size={19} color="#B9B9B9" />
+            <CoinIcon size={19} color="#EB4335" />
           </View>
         </View>
       </View>

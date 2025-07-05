@@ -107,7 +107,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                     title={
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <AppText color='white' style={{ marginRight: 4 }}>{t('Purchase for {{cost}}', { cost })}</AppText>
-                            <CoinIcon color={creditType === 'gold' ? '#FFD700' : '#C0C0C0'} size={18} />
+                            <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
                         </View>
                     }
                     onPress={async () => {

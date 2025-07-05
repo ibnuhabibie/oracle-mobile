@@ -48,22 +48,24 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
 
         return (
             <>
-                {content.map((item, idx) => (
-                    <ProfileItemCard
-                        key={item.order || idx}
-                        data={{
-                            title: item.title,
-                            description: item.content,
-                            icon: iconImages[item.order - 1] ? (
-                                <Image
-                                    source={iconImages[item.order - 1]}
-                                    style={{ width: 65, height: 65 }}
-                                    resizeMode="contain"
-                                />
-                            ) : undefined,
-                        }}
-                    />
-                ))}
+                {
+                    content.map((item, idx) => (
+                        <ProfileItemCard
+                            key={item.order || idx}
+                            data={{
+                                title: item.title,
+                                description: item.content,
+                                icon: iconImages[item.order - 1] ? (
+                                    <Image
+                                        source={iconImages[item.order - 1]}
+                                        style={{ width: 65, height: 65 }}
+                                        resizeMode="contain"
+                                    />
+                                ) : undefined,
+                            }}
+                        />
+                    ))
+                }
             </>
         );
     };
@@ -84,6 +86,7 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
                 {t('loveReportResult.forecastFor', { range: forecastRange })}
             </AppText>
             <CardList content={result?.content} />
+            <View style={{ height: 60 }} />
         </ScreenContainer>
     );
 };
