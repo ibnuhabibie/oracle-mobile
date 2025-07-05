@@ -196,5 +196,10 @@
         "timeOfBirth": "출생 시각",
         "countryOfBirth": "출생 국가",
         "cityOfBirth": "출생 도시"
+    },
+    "loveReportResult": {
+        "title": "향후 12개월 사랑 운세",
+        "downloadPdf": "PDF로 다운로드",
+        "forecastFor": "{{range}}의 운세"
     }
 }

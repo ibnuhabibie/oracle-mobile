@@ -221,5 +221,10 @@
         "timeOfBirth": "出生時刻",
         "countryOfBirth": "出生国",
         "cityOfBirth": "出生都市"
+    },
+    "loveReportResult": {
+        "title": "今後12ヶ月の恋愛予報",
+        "downloadPdf": "PDFとしてダウンロード",
+        "forecastFor": "{{range}}の予報"
     }
 }

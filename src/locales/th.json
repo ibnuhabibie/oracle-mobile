@@ -221,5 +221,10 @@
         "timeOfBirth": "เวลาเกิด",
         "countryOfBirth": "ประเทศที่เกิด",
         "cityOfBirth": "เมืองที่เกิด"
+    },
+    "loveReportResult": {
+        "title": "พยากรณ์ความรัก 12 เดือนข้างหน้า",
+        "downloadPdf": "ดาวน์โหลดเป็น PDF",
+        "forecastFor": "พยากรณ์สำหรับ {{range}}"
     }
 }

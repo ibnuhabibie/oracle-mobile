@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, StyleSheet, Image } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
@@ -11,6 +12,7 @@ import { AppButton } from '../../../../components/ui/app-button';
 type LoveReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveReportResult'>;
 
 const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }) => {
+    const { t } = useTranslation();
     const { result } = route.params;
 
     console.log(result)
@@ -38,7 +40,7 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
             const year = date.getFullYear();
             return `${day} ${month} ${year}`;
         };
-        forecastRange = `${formatDate(start)} to ${formatDate(end)}`;
+        forecastRange = `${formatDate(start)} - ${formatDate(end)}`;
     }
 
     const CardList: FC<{ content: any[] }> = ({ content }) => {
@@ -70,16 +72,16 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
         <ScreenContainer
             header={
                 <Header
-                    title="Love Forecast for Next 12 Months"
+                    title={t('loveReportResult.title')}
                     onBack={() => navigation.goBack()}
                 />
             }
             floatingFooter={
-                <AppButton title="Download as PDF" />
+                <AppButton title={t('loveReportResult.downloadPdf')} />
             }
         >
             <AppText style={styles.forecastRange} color="neutral">
-                Forecast for {forecastRange}
+                {t('loveReportResult.forecastFor', { range: forecastRange })}
             </AppText>
             <CardList content={result?.content} />
         </ScreenContainer>

@@ -115,9 +115,13 @@
             "title": "Fortune Guidance",
             "subtitle": "EMBRACE YOUR FUTURE"
         }
-        ,
-        "downloadPdf": "Download as PDF"
     },
+    "loveReportResult": {
+        "title": "Love Forecast for Next 12 Months",
+        "downloadPdf": "Download as PDF",
+        "forecastFor": "Forecast for {{range}}"
+    }
+}
     "loveForecast": {
         "header": "Love Forecast for Next 12 Months",
         "purchase": "Purchase for {{cost}}",

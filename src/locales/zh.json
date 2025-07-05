@@ -220,5 +220,10 @@
         "timeOfBirth": "出生时间",
         "countryOfBirth": "出生国家",
         "cityOfBirth": "出生城市"
+    },
+    "loveReportResult": {
+        "title": "未来12个月的爱情预测",
+        "downloadPdf": "下载为PDF",
+        "forecastFor": "{{range}}的预测"
     }
 }

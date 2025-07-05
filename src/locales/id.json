@@ -220,5 +220,10 @@
         "timeOfBirth": "Waktu Lahir",
         "countryOfBirth": "Negara Lahir",
         "cityOfBirth": "Kota Lahir"
+    },
+    "loveReportResult": {
+        "title": "Ramalan Cinta 12 Bulan Mendatang",
+        "downloadPdf": "Unduh sebagai PDF",
+        "forecastFor": "Ramalan untuk {{range}}"
     }
 }
