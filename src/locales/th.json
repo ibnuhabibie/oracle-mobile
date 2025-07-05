@@ -213,5 +213,13 @@
         "cancel": "ยกเลิก",
         "insufficient": "รายงานนี้จะมีค่าใช้จ่าย {{cost}}\nเครดิต{{creditType}}ของคุณไม่เพียงพอ กรุณาเติมเงินเพื่อดำเนินการต่อ",
         "purchaseCredits": "ซื้อเครดิต"
+    },
+    "profileCard": {
+        "noProfileData": "ไม่พบข้อมูลโปรไฟล์",
+        "name": "ชื่อ",
+        "dateOfBirth": "วันเกิด",
+        "timeOfBirth": "เวลาเกิด",
+        "countryOfBirth": "ประเทศที่เกิด",
+        "cityOfBirth": "เมืองที่เกิด"
     }
 }

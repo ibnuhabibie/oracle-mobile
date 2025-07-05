@@ -213,5 +213,13 @@
         "cancel": "Cancel",
         "insufficient": "This report will cost {{cost}}\nYour current {{creditType}} credits are insufficient. Please top up to proceed.",
         "purchaseCredits": "Purchase Credits"
+    },
+    "profileCard": {
+        "noProfileData": "No profile data found.",
+        "name": "Name",
+        "dateOfBirth": "Date of Birth",
+        "timeOfBirth": "Time of Birth",
+        "countryOfBirth": "Country of Birth",
+        "cityOfBirth": "City of Birth"
     }
 }

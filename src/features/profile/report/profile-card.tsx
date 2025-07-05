@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import ShinyContainer from '../../../components/widgets/shiny-container';
 import { fontFamilies } from '../../../constants/fonts';
+import { useTranslation } from 'react-i18next';
 
 type UserProfile = {
     full_name?: string;
@@ -21,6 +22,7 @@ type ProfileCardProps = {
 import { iconMap } from '../../../screens/main/profile/useAffinityProfile';
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileData }) => {
+    const { t } = useTranslation();
     const { getUserProfile } = useAsyncStorage();
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
@@ -56,7 +58,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
     if (!profile) {
         return (
             <View style={styles.profileCard}>
-                <Text style={styles.infoValue}>No profile data found.</Text>
+                <Text style={styles.infoValue}>{t('profileCard.noProfileData')}</Text>
             </View>
         );
     }
@@ -77,11 +79,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
 
             <View style={styles.profileInfo}>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>Name</Text>
+                    <Text style={styles.infoLabel}>{t('profileCard.name')}</Text>
                     <Text style={styles.infoValue}>{profile.full_name}</Text>
                 </View>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>Date of Birth</Text>
+                    <Text style={styles.infoLabel}>{t('profileCard.dateOfBirth')}</Text>
                     <Text style={styles.infoValue}>
                         {profile.birth_date
                             ? (profile.birth_date instanceof Date
@@ -95,17 +97,17 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
                 {
                     profile.birth_time &&
                     <View style={styles.infoRow}>
-                        <Text style={styles.infoLabel}>Time of Birth</Text>
-                        <Text style={styles.infoValue}>{profile.birth_time}</Text>
+                    <Text style={styles.infoLabel}>{t('profileCard.timeOfBirth')}</Text>
+                    <Text style={styles.infoValue}>{profile.birth_time}</Text>
                     </View>
                 }
 
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>Country of Birth</Text>
+                    <Text style={styles.infoLabel}>{t('profileCard.countryOfBirth')}</Text>
                     <Text style={styles.infoValue}>{profile.birth_country}</Text>
                 </View>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>City of Birth</Text>
+                    <Text style={styles.infoLabel}>{t('profileCard.cityOfBirth')}</Text>
                     <Text style={styles.infoValue}>{profile.birth_city}</Text>
                 </View>
             </View>

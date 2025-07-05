@@ -212,5 +212,13 @@
         "cancel": "取消",
         "insufficient": "本报告将花费{{cost}}\n你当前的{{creditType}}积分不足，请充值后再试。",
         "purchaseCredits": "购买积分"
+    },
+    "profileCard": {
+        "noProfileData": "未找到个人资料数据。",
+        "name": "姓名",
+        "dateOfBirth": "出生日期",
+        "timeOfBirth": "出生时间",
+        "countryOfBirth": "出生国家",
+        "cityOfBirth": "出生城市"
     }
 }

@@ -213,5 +213,13 @@
         "cancel": "キャンセル",
         "insufficient": "このレポートには{{cost}}が必要です\n現在の{{creditType}}クレジットが不足しています。チャージしてから続行してください。",
         "purchaseCredits": "クレジットを購入"
+    },
+    "profileCard": {
+        "noProfileData": "プロフィールデータが見つかりません。",
+        "name": "名前",
+        "dateOfBirth": "生年月日",
+        "timeOfBirth": "出生時刻",
+        "countryOfBirth": "出生国",
+        "cityOfBirth": "出生都市"
     }
 }

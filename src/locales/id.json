@@ -212,5 +212,13 @@
         "cancel": "Batal",
         "insufficient": "Laporan ini akan dikenakan biaya {{cost}}\nKredit {{creditType}} Anda saat ini tidak mencukupi. Silakan isi ulang untuk melanjutkan.",
         "purchaseCredits": "Beli Kredit"
+    },
+    "profileCard": {
+        "noProfileData": "Tidak ada data profil ditemukan.",
+        "name": "Nama",
+        "dateOfBirth": "Tanggal Lahir",
+        "timeOfBirth": "Waktu Lahir",
+        "countryOfBirth": "Negara Lahir",
+        "cityOfBirth": "Kota Lahir"
     }
 }
