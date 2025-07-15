@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
 
 // Static mapping for MBTI icons
-const mbtiIcons: { [key: string]: any } = {
+export const mbtiIcons: { [key: string]: any } = {
     INTP: require('../../assets/icons/mbti/intp.png'),
     INTJ: require('../../assets/icons/mbti/intj.png'),
     ENTP: require('../../assets/icons/mbti/entp.png'),

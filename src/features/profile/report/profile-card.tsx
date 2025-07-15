@@ -20,6 +20,7 @@ type ProfileCardProps = {
 };
 
 import { iconMap } from '../../../screens/main/profile/useAffinityProfile';
+import { formatDateOfBirth, formatTimeOfBirth } from '../../../utils/date';
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileData }) => {
     const { t } = useTranslation();
@@ -85,22 +86,15 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
                 <View style={styles.infoRow}>
                     <Text style={styles.infoLabel}>{t('profileCard.dateOfBirth')}</Text>
                     <Text style={styles.infoValue}>
-                        {profile.birth_date
-                            ? (profile.birth_date instanceof Date
-                                ? profile.birth_date.toLocaleDateString()
-                                : typeof profile.birth_date === 'string'
-                                    ? profile.birth_date
-                                    : '')
-                            : ''}
+                        {profile.birth_date ? formatDateOfBirth(profile.birth_date) : ''}
                     </Text>
                 </View>
-                {
-                    profile.birth_time &&
+                {profile.birth_time && (
                     <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>{t('profileCard.timeOfBirth')}</Text>
-                    <Text style={styles.infoValue}>{profile.birth_time}</Text>
+                        <Text style={styles.infoLabel}>{t('profileCard.timeOfBirth')}</Text>
+                        <Text style={styles.infoValue}>{formatTimeOfBirth(profile.birth_time)}</Text>
                     </View>
-                }
+                )}
 
                 <View style={styles.infoRow}>
                     <Text style={styles.infoLabel}>{t('profileCard.countryOfBirth')}</Text>

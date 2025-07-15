@@ -36,6 +36,7 @@ import { useAsyncStorage } from '../../../hooks/use-storage';
 import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
 import { iconMap, useAffinityProfile } from './useAffinityProfile';
+import { mbtiIcons } from '../../../features/mbti/mbti-profile';
 
 type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
