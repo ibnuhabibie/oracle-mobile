@@ -6,7 +6,7 @@
     "NEXT": "次へ",
     "SIGN IN": "サインイン",
     "SIGN UP": "サインアップ",
-    "THE COSMOS WHISPERS": "宇宙がささやく。{\\n}あなたの運命を見つけましょう。",
+    "THE COSMOS WHISPERS": "宇宙がささやく。\nあなたの運命を見つけましょう。",
     "DONT HAVE AN ACCOUNT": "アカウントをお持ちでないですか？",
     "EMAIL IS REQUIRED": "メールアドレスは必須です",
     "INVALID EMAIL FORMAT": "無効なメール形式です",
@@ -15,7 +15,7 @@
     "EMAIL": "メールアドレス",
     "PASSWORD": "パスワード",
     "LOGIN FAILED": "ログインに失敗しました",
-    "SIGN UP SUBTITLE": "宇宙がささやく。{\\n}参加して運命を見つけましょう。",
+    "SIGN UP SUBTITLE": "宇宙がささやく。\n参加して運命を見つけましょう。",
     "ALREADY HAVE AN ACCOUNT": "すでにアカウントをお持ちですか？",
     "NAME IS REQUIRED": "名前は必須です",
     "NAME MIN LENGTH": "名前は2文字以上で入力してください",
@@ -40,10 +40,10 @@
     "USAGE HISTORY DETAILS": "ご購入が完了しました。詳細をご覧ください！",
     "NO USAGE HISTORY FOUND": "利用履歴が見つかりません。",
     "OUR PACKAGES": "パッケージ一覧",
-    "PACKAGES DESC": "レポート購入やOracle AIへの質問に利用できます",
+    "PACKAGES DESC": "レポート購入や Affinity AI への質問に利用できます",
     "GET COINS": "{{count}}を獲得",
     "OUR SUBSCRIPTIONS": "サブスクリプション一覧",
-    "SUBSCRIPTIONS DESC": "Ask Oracle AIで利用でき、毎月初めにリセットされます。毎月3枚のシルバーコインが無料でもらえます。",
+    "SUBSCRIPTIONS DESC": "Ask Affinity AI で利用でき、毎月初めにリセットされます。毎月3枚のシルバーコインが無料でもらえます。",
     "FAILED TO LOAD PACKAGES": "パッケージの読み込みに失敗しました。しばらくしてから再度お試しください。",
     "FAILED TO LOAD SUBSCRIPTIONS": "サブスクリプションの読み込みに失敗しました。しばらくしてから再度お試しください。",
     "PAYMENT FAILED": "支払いに失敗しました",
@@ -111,8 +111,7 @@
         "fortune": {
             "title": "Fortune Guidance",
             "subtitle": "EMBRACE YOUR FUTURE"
-        }
-        ,
+        },
         "downloadPdf": "PDFとしてダウンロード"
     },
     "loveForecast": {
@@ -140,7 +139,7 @@
     "relationReport": {
         "header": "関係の相性",
         "purchase": "{{cost}}で購入",
-        "title": "あなたたちは完璧なカップル？{\\n}今すぐチェック！",
+        "title": "あなたたちは完璧なカップル？\n今すぐチェック！",
         "subtitle": "占星術と四柱推命が出会い、あなたの恋愛相性に新たな視点をもたらします。",
         "description": "いくつかのアドバイスは常識のように聞こえるかもしれません（例：コミュニケーションやマインドセットの改善）が、すべてあなた独自のチャートと関係のダイナミクスに合わせて調整されています。その影響は見た目以上に大きいです。",
         "loveInterestDetail": "お相手の詳細",
@@ -181,7 +180,7 @@
     "fortuneReport": {
         "header": "2025年運勢レポート",
         "purchase": "{{cost}}で購入",
-        "title": "2025年が気になりますか？今すぐ{\\n}運勢をチェック！",
+        "title": "2025年が気になりますか？今すぐ\n運勢をチェック！",
         "subtitle": "運勢解読と計画が出会い、2025年に新たな視点をもたらします。",
         "description": "いくつかの洞察はシンプルに見えるかもしれません（タイミングや意思決定など）が、すべてあなたのチャートと2025年の道筋に合わせてパーソナライズされています。これらのガイドは本当に大きな違いを生み出すことができます。",
         "sectionTitle": "何がわかるのか？",

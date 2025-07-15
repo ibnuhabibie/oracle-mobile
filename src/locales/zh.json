@@ -6,7 +6,7 @@
     "NEXT": "下一步",
     "SIGN IN": "登录",
     "SIGN UP": "注册",
-    "THE COSMOS WHISPERS": "宇宙在低语。{\\n}发现属于你的命运。",
+    "THE COSMOS WHISPERS": "宇宙在低语。\n发现属于你的命运。",
     "DONT HAVE AN ACCOUNT": "还没有账号？",
     "EMAIL IS REQUIRED": "邮箱为必填项",
     "INVALID EMAIL FORMAT": "邮箱格式无效",
@@ -15,7 +15,7 @@
     "EMAIL": "邮箱",
     "PASSWORD": "密码",
     "LOGIN FAILED": "登录失败",
-    "SIGN UP SUBTITLE": "宇宙在低语。{\\n}加入并发现你的命运。",
+    "SIGN UP SUBTITLE": "宇宙在低语。\n加入并发现你的命运。",
     "ALREADY HAVE AN ACCOUNT": "已经有账号了？",
     "NAME IS REQUIRED": "姓名为必填项",
     "NAME MIN LENGTH": "姓名至少2个字符",
@@ -40,10 +40,10 @@
     "USAGE HISTORY DETAILS": "您的购买已完成，查看详情！",
     "NO USAGE HISTORY FOUND": "未找到使用记录。",
     "OUR PACKAGES": "我们的套餐",
-    "PACKAGES DESC": "可用于购买报告和提问 Oracle AI",
+    "PACKAGES DESC": "可用于购买报告和提问 Affinity AI",
     "GET COINS": "获得 {{count}}",
     "OUR SUBSCRIPTIONS": "我们的订阅",
-    "SUBSCRIPTIONS DESC": "可用于提问 Oracle AI，并在每月初重置。每月可免费获得3枚银币。",
+    "SUBSCRIPTIONS DESC": "可用于提问 Affinity AI，并在每月初重置。每月可免费获得3枚银币。",
     "FAILED TO LOAD PACKAGES": "加载套餐失败，请稍后再试。",
     "FAILED TO LOAD SUBSCRIPTIONS": "加载订阅失败，请稍后再试。",
     "PAYMENT FAILED": "支付失败",
@@ -110,8 +110,7 @@
         "fortune": {
             "title": "Fortune Guidance",
             "subtitle": "EMBRACE YOUR FUTURE"
-        }
-        ,
+        },
         "downloadPdf": "下载为PDF"
     },
     "loveForecast": {
@@ -139,7 +138,7 @@
     "relationReport": {
         "header": "关系匹配度",
         "purchase": "以{{cost}}购买",
-        "title": "好奇你们是否是完美{\\n}匹配？现在就揭晓！",
+        "title": "好奇你们是否是完美\n匹配？现在就揭晓！",
         "subtitle": "星盘结合八字，为你的爱情匹配带来新视角。",
         "description": "有些建议听起来像常识——比如改善沟通或心态——但它们都是根据你独特的命盘和关系动态量身定制的。它们的影响比看起来更强大。",
         "loveInterestDetail": "你的心仪对象详情",
@@ -180,7 +179,7 @@
     "fortuneReport": {
         "header": "2025年运势报告",
         "purchase": "以{{cost}}购买",
-        "title": "好奇你的2025年？现在就查看{\\n}你的运势！",
+        "title": "好奇你的2025年？现在就查看\n你的运势！",
         "subtitle": "运势解读结合规划，为你的2025年带来新视角。",
         "description": "有些见解看似简单——比如时机或决策——但它们是根据你的命盘和2025年路径量身定制的。这些指引能带来真正的改变。",
         "sectionTitle": "你可以了解什么？",

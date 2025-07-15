@@ -42,7 +42,7 @@ const SignIn: FC<SignInProps> = ({ navigation }) => {
       <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEEKERS')}</AppText>
       <AppText variant='largeTitle2' style={styles.title}>{t('SIGN IN')}</AppText>
       <AppText variant='caption1' style={styles.subtitle}>
-        {t('THE COSMOS WHISPERS').replace('{\\n}', '\n')}
+        {t('THE COSMOS WHISPERS')}
       </AppText>
 
       <SignInForm onSuccess={onSuccess} />

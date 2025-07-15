@@ -23,7 +23,7 @@ const SignUp: FC<SignUpProps> = ({ navigation }) => {
       <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEEKERS')}</AppText>
       <AppText variant='largeTitle2' style={styles.title}>{t('SIGN UP')}</AppText>
       <AppText variant='caption1' style={styles.subtitle}>
-        {t('SIGN UP SUBTITLE').replace('{\\n}', '\n')}
+        {t('SIGN UP SUBTITLE')}
       </AppText>
 
       <SignUpForm onSuccess={onSuccess} />
