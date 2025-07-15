@@ -1,5 +1,6 @@
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
+import Toast from 'react-native-toast-message';
 import { enableScreens } from 'react-native-screens';
 import notifee, { EventType } from '@notifee/react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -152,6 +153,7 @@ const App: React.FC = () => {
       </StripeProvider>
       {/* </AuthProvider> */}
       {/* </NotificationProvider> */}
+      <Toast />
     </GestureHandlerRootView>
   );
 };

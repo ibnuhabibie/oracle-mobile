@@ -1,6 +1,9 @@
 TODO:
-- lazy loading usage and topup history
+- handle copy referral
 - handle click overlay to close modal
 - pull to refresh
 - passing service to purchase alert
 - download pdf report
+
+DONE
+- lazy loading usage and topup history

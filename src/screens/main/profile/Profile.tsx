@@ -1,6 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
+import Clipboard from '@react-native-clipboard/clipboard';
+import Toast from 'react-native-toast-message';
 import {
+  Alert,
   Image,
   Pressable,
   StyleSheet,
@@ -41,6 +44,16 @@ import { mbtiIcons } from '../../../features/mbti/mbti-profile';
 type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
 const Profile: FC<ProfileProps> = ({ navigation }) => {
+  // ...
+  const handleCopyReferralCode = () => {
+    if (user?.referral_code) {
+      Clipboard.setString(user.referral_code);
+      Toast.show({
+        type: 'success',
+        text1: 'Copied to clipboard',
+      });
+    }
+  };
   const { t } = useTranslation();
   const { getUserProfile, getAuthToken } = useAsyncStorage();
   const [token, setToken] = useState<string | null>(null);
@@ -128,10 +141,10 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       <View style={styles.userCard}>
         <View style={styles.userInfo}>
           <Text style={styles.userName}>{user?.full_name || t("Guest")}</Text>
-          <View style={styles.userBadge}>
+          <Pressable style={styles.userBadge} onPress={handleCopyReferralCode}>
             <Text style={styles.badgeText}>{user?.referral_code}</Text>
             <CopyIcon />
-          </View>
+          </Pressable>
         </View>
 
         {/* User Stats */}
