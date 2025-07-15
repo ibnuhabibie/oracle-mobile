@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { getMbtiIconComponent } from "./mbti-profile";
 
 // Static mapping for MBTI icons
 export const mbtiIcons: { [key: string]: any } = {
@@ -64,7 +65,10 @@ class MBTIProfile extends React.Component {
                         <View style={styles.card}>
                             <View style={styles.cardHeader}>
                                 <View style={styles.iconPlaceholder}>
-                                    <Image source={mbtiIcons[profile.mbti_type]} style={{ width: 45, height: 45 }} />
+                                    {(() => {
+                                        const MbtiIcon = getMbtiIconComponent(profile?.mbti_type);
+                                        return MbtiIcon ? <MbtiIcon width={50} height={50} /> : null;
+                                    })()}
                                 </View>
                                 <View style={styles.cardHeaderText}>
                                     <AppText variant='title3'>{profile?.name}</AppText>

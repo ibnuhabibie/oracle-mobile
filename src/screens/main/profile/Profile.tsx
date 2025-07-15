@@ -18,6 +18,7 @@ import { APP_URL } from '@env';
 
 import CoinIcon from '../../../components/icons/profile/coin-icon';
 import CommentUserIcon from '../../../components/icons/profile/comment-user-icon';
+import { getMbtiIconComponent } from '../../../features/mbti/mbti-profile';
 import CopyIcon from '../../../components/icons/profile/copy-icon';
 import EyeIcon from '../../../components/icons/profile/eye-icon';
 import BuildingIcon from '../../../components/icons/profile/building-icon';
@@ -39,7 +40,6 @@ import { useAsyncStorage } from '../../../hooks/use-storage';
 import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
 import { iconMap, useAffinityProfile } from './useAffinityProfile';
-import { mbtiIcons } from '../../../features/mbti/mbti-profile';
 
 type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
@@ -181,7 +181,10 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
                 navigation.push('MbtiResults');
               }}
               style={styles.statItem}>
-              <CommentUserIcon size={75} />
+              {(() => {
+                const MbtiIcon = getMbtiIconComponent(user?.mbti_profile);
+                return MbtiIcon ? <MbtiIcon width={50} height={75} color="black" /> : <CommentUserIcon size={75} />;
+              })()}
               <Text style={styles.statLabel}>{user?.mbti_profile}</Text>
             </TouchableOpacity>
           )}
