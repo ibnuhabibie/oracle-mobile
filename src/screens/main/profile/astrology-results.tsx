@@ -60,7 +60,8 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
             <ProfileItemCard
               key={key}
               data={{
-                title: `${item.name}: ${item.zodiac_name} in ${item.house_name}` || key,
+                title: `${item.title}`,
+                subtitle: `${item.subtitle}`,
                 description: item.description,
                 icon: (
                   <Image

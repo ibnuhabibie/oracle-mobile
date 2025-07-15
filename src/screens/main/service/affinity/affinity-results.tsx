@@ -133,7 +133,10 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
                     {card.card_name ? (
                         <Image
                             source={getTarotImage(card.card_name)}
-                            style={{ width: 150, height: 288, alignSelf: 'center', borderRadius: 8 }}
+                            style={[
+                                { width: 150, height: 288, alignSelf: 'center', borderRadius: 8 },
+                                card.orientation === 'reversed' ? { transform: [{ rotate: '180deg' }] } : null
+                            ]}
                             resizeMode="contain"
                         />
                     ) : null}

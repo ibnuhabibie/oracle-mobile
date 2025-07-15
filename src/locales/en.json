@@ -232,7 +232,8 @@
         "dateOfBirth": "Date of Birth",
         "timeOfBirth": "Time of Birth",
         "countryOfBirth": "Country of Birth",
-        "cityOfBirth": "City of Birth"
+        "cityOfBirth": "City of Birth",
+        "gender": "Gender"
     },
     "chatArea": {
         "geenieSays": "Geenie Says:"

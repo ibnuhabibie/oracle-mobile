@@ -3,10 +3,11 @@ import { View, Text, StyleSheet } from 'react-native';
 import ShinyContainer from '../../../components/widgets/shiny-container';
 
 type ProfileItemCardData = {
+    isDark?: boolean;
     icon?: React.ReactNode;
     title: string;
     subtitle?: string;
-    description: string | string[];
+    description: string | React.ReactNode;
 };
 
 type ProfileItemCardProps = {
@@ -19,7 +20,7 @@ const ProfileItemCard: React.FC<ProfileItemCardProps> = ({ data }) => {
 
     return (
         <View style={styles.card}>
-            <ShinyContainer dark={false} size={240}>
+            <ShinyContainer dark={data.isDark ?? false} size={240}>
                 {data.icon}
             </ShinyContainer>
             <Text style={styles.sectionTitle}>{data.title}</Text>

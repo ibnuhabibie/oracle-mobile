@@ -104,6 +104,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
                     <Text style={styles.infoLabel}>{t('profileCard.cityOfBirth')}</Text>
                     <Text style={styles.infoValue}>{profile.birth_city}</Text>
                 </View>
+                <View style={styles.infoRow}>
+                    <Text style={styles.infoLabel}>{t('profileCard.gender')}</Text>
+                    <Text style={styles.infoValue}>{profile.gender}</Text>
+                </View>
             </View>
         </View>
     );
