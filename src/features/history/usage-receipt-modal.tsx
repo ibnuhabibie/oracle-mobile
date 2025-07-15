@@ -123,7 +123,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                 <Text style={styles.modalItemName}>{getServiceTypeLabel(item.service_type)}</Text>
                 <View style={styles.modalItemPoints}>
                   <Text>{item.credit_journal.credits_used}</Text>
-                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                 </View>
               </View>
               <View style={styles.modalSectionDivider} />
@@ -131,21 +131,21 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                 <Text style={styles.modalLabel}>{t("usageReceiptModal.previousPoints")}</Text>
                 <View style={styles.modalItemPoints}>
                   <Text>{item.credit_journal.credits_before}</Text>
-                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                 </View>
               </View>
               <View style={styles.modalRow}>
                 <Text style={styles.modalLabel}>{t("usageReceiptModal.pointsUsed")}</Text>
                 <View style={styles.modalItemPoints}>
                   <Text style={{ color: 'red' }}>{item.credit_journal.credits_used}</Text>
-                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                 </View>
               </View>
               <View style={styles.modalRow}>
                 <Text style={styles.modalLabel}>{t("usageReceiptModal.remainingPoints")}</Text>
                 <View style={styles.modalItemPoints}>
                   <Text>{item.credit_journal.credits_after}</Text>
-                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? '#EB4335' : '#E0AE1E'} />
+                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                 </View>
               </View>
               {

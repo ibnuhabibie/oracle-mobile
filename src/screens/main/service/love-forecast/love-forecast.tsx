@@ -124,7 +124,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
           title={
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <AppText color='white' style={{ marginRight: 4 }}>{t('loveForecast.purchase', { cost })}</AppText>
-              <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
+              <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={18} />
             </View>
           }
           variant="primary"

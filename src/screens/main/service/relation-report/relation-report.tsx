@@ -134,7 +134,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                                 <AppText color='white' style={{ marginRight: 4 }}>
                                     {t('relationReport.purchase', { cost })}
                                 </AppText>
-                                <CoinIcon color={creditType === 'gold' ? '#E0AE1E' : '#EB4335'} size={18} />
+                                <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={18} />
                             </View>
                         }
                         variant="primary"
