@@ -147,7 +147,7 @@ const App: React.FC = () => {
       >
         <NavigationContainer ref={navigationRef}>
           <MainNavigator />
-          <FloatingPreviewButton />
+          {/* <FloatingPreviewButton /> */}
         </NavigationContainer>
       </StripeProvider>
       {/* </AuthProvider> */}

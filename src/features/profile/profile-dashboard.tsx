@@ -8,6 +8,7 @@ import { fontFamilies } from "../../constants/fonts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CircularScore from "../../components/widgets/circular-score";
 import api from "../../utils/http";
+import { formatDateToShortHeader } from "../../utils/date";
 
 interface UserProfile {
     full_name?: string;
@@ -74,7 +75,7 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
 
     render() {
         const { data, user, error, loading } = this.state;
-        const today_description = data?.today_description?.split('.').slice(0, 2).join('.');
+        const today_description = data?.today_description;
 
         if (loading) {
             return (
@@ -108,17 +109,11 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
         // i18n
         // Use hook in a functional wrapper
         function LocalizedHeader() {
-            const { t, i18n } = useTranslation();
+            const { t } = useTranslation();
 
             // Localized date
             const today = new Date();
-            const locale = i18n.language || "en";
-            const formattedDate = today.toLocaleDateString(locale, {
-                weekday: "short",
-                year: "numeric",
-                month: "short",
-                day: "numeric"
-            });
+            const formattedDate = formatDateToShortHeader(today);
 
             return (
                 <View style={styles.header}>

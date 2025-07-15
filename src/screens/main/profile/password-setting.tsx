@@ -54,7 +54,7 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
     getValues
   } = useForm({
     defaultValues: {
-      current_password: 'password123',
+      current_password: '',
       new_password: '',
       confirm_password: ''
     },

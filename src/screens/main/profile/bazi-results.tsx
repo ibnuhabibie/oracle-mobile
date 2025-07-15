@@ -31,9 +31,9 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
     if (!profile) return null;
     const items = [
       { key: 'day_master', label: 'Day Master', iconIdx: 1 },
-      { key: 'pillar_day', label: 'Day Pillar', iconIdx: 2 },
-      { key: 'pillar_month', label: 'Month Pillar', iconIdx: 3 },
       { key: 'pillar_year', label: 'Year Pillar', iconIdx: 4 },
+      { key: 'pillar_month', label: 'Month Pillar', iconIdx: 3 },
+      { key: 'pillar_day', label: 'Day Pillar', iconIdx: 2 },
       { key: 'pillar_hour', label: 'Hour Pillar', iconIdx: 5 },
     ];
 
@@ -47,7 +47,8 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
               <ProfileItemCard
                 key={key}
                 data={{
-                  title: item.name || label,
+                  title: item.title || label,
+                  subtitle: item.subtitle,
                   description: item.description,
                   icon: iconImages[iconIdx - 1] ? (
                     <Image

@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         color: '#999',
         textAlign: 'center',
         marginBottom: 16,
-        fontStyle: 'italic',
+        // fontStyle: 'italic',
     },
     sectionDescription: {
         fontSize: 14,

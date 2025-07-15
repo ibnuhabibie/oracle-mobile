@@ -32,6 +32,23 @@ export const formatDateTime = (input: string | Date): string => {
 };
 
 /**
+ * Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, MMM dd yyyy" (e.g., "Tue, Jul 15 2025")
+ */
+export const formatDateToShortHeader = (input: string | Date): string => {
+    let _date: Date;
+    if (typeof input === 'string') {
+        _date = new Date(input);
+    } else {
+        _date = input;
+    }
+    const weekday = _date.toLocaleString('en-US', { weekday: 'short' });
+    const month = _date.toLocaleString('en-US', { month: 'short' });
+    const day = _date.getDate().toString().padStart(2, '0');
+    const year = _date.getFullYear();
+    return `${weekday}, ${month} ${day} ${year}`;
+};
+
+/**
  * Format a date of birth to "dd MMM yyyy" (e.g., "29 May 1999")
  */
 export const formatDateOfBirth = (input: string | Date | { dateString: string }): string => {
