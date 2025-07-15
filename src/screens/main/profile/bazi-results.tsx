@@ -53,7 +53,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
                   icon: iconImages[iconIdx - 1] ? (
                     <Image
                       source={iconMap[item.icon]}
-                      style={{ width: 75, height: 75, marginBottom: 8 }}
+                      style={{ width: 90, height: 90 }}
                       resizeMode="contain"
                     />
                   ) : undefined,

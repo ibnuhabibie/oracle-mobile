@@ -11,6 +11,7 @@ type UserProfile = {
     birth_time?: string;
     birth_country?: string;
     birth_city?: string;
+    gender?: string;
 };
 
 type ProfileCardProps = {
@@ -37,7 +38,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
                     full_name: profileData.name,
                     birth_date: profileData.birth_date,
                     birth_country: profileData.birth_location.split(',')[0],
-                    birth_city: profileData.birth_location.split(',')[1]
+                    birth_city: profileData.birth_location.split(',')[1],
+                    gender: profileData.gender == 'F' ? 'Female' : 'Male'
                 })
             } else {
                 const data = await getUserProfile();
