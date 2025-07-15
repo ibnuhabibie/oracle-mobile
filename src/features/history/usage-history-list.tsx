@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FlatList, Pressable, Text, View, ActivityIndicator } from "react-native";
 import CommentsIcon from "../../components/icons/profile/comments-icon";
 import { fontFamilies } from "../../constants/fonts";
@@ -19,7 +19,7 @@ interface UsageItem {
         full_name: string;
         email: string;
     };
-} 
+}
 
 interface UsageHistoryListProps {
     onItemPress?: (item: UsageItem) => void;
@@ -89,30 +89,50 @@ const styles = StyleSheet.create({
     },
 });
 
+const LIMIT = 10;
+
 const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
     const { t } = useTranslation();
     const [data, setData] = useState<UsageItem[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [offset, setOffset] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [endReached, setEndReached] = useState(false);
 
+    // Fetch page (initial and paginated)
+    const fetchPage = useCallback(async () => {
+        console.log('called')
+        if (loading || endReached) return;
+        setLoading(true);
+        try {
+            const res = await api.get(`/v1/usage-histories?limit=${LIMIT}&offset=${offset}`);
+            const rows: UsageItem[] = res.data?.rows || [];
+
+            if (rows.length < LIMIT) setEndReached(true);
+            setData(prev => {
+                const merged = [...prev, ...rows];
+                const uniqueMap = new Map<number, UsageItem>();
+                for (const item of merged) {
+                    uniqueMap.set(item.usage_history_id, item);
+                }
+                return Array.from(uniqueMap.values());
+            });
+            setOffset(prev => prev + LIMIT);
+        } catch (err) {
+            // Optionally handle error
+        } finally {
+            setLoading(false);
+        }
+    }, [offset, loading, endReached]);
+
+    // Initial load
     useEffect(() => {
-        const fetchUsageHistories = async () => {
-            setLoading(true);
-            try {
-                const res = await api.get("/v1/usage-histories?limit=10&offset=0");
-                setData(res.data?.rows || []);
-            } catch {
-                setData([]);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchUsageHistories();
+        if (data.length) return;
+        fetchPage();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const renderUsageItem = ({ item }: { item: UsageItem }) => {
-        // Format date
         const formattedDate = formatDateTime(item.created_at);
-
         return (
             <Pressable
                 style={styles.pressable}
@@ -138,13 +158,14 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
         );
     };
 
-    if (loading) {
+    const renderFooter = () => {
+        if (!loading || data.length === 0) return null;
         return (
             <View style={styles.loading}>
                 <ActivityIndicator size="small" />
             </View>
         );
-    }
+    };
 
     return (
         <FlatList
@@ -158,6 +179,9 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
                     <Text style={styles.emptyText}>{t("NO USAGE HISTORY FOUND")}</Text>
                 </View>
             }
+            onEndReached={fetchPage}
+            onEndReachedThreshold={0.6}
+            ListFooterComponent={renderFooter}
         />
     );
 };

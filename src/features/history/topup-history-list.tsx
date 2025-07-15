@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FlatList, Pressable, Text, View, ActivityIndicator } from "react-native";
 import { StyleSheet } from "react-native";
 
@@ -42,28 +42,44 @@ interface TopupHistoryListProps {
     onItemPress?: (item: TopUpItem) => void;
 }
 
+const LIMIT = 10;
+
 const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
     const { t } = useTranslation();
     const [data, setData] = useState<TopUpItem[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [offset, setOffset] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [endReached, setEndReached] = useState(false);
 
-    const handleItemPress = (item: TopUpItem) => {
-        onItemPress?.(item);
-    };
+    // Fetch page (initial and paginated)
+    const fetchPage = useCallback(async () => {
+        if (loading || endReached) return;
+        setLoading(true);
+        try {
+            const res = await api.get(`/v1/topup-histories?limit=${LIMIT}&offset=${offset}`);
+            const rows: TopUpItem[] = res.data?.rows || [];
+            if (rows.length < LIMIT) setEndReached(true);
+            setData(prev => {
+                const merged = [...prev, ...rows];
+                const uniqueMap = new Map<number, TopUpItem>();
+                for (const item of merged) {
+                    uniqueMap.set(item.topup_history_id, item);
+                }
+                return Array.from(uniqueMap.values());
+            });
+            setOffset(prev => prev + LIMIT);
+        } catch (err) {
+            // Optionally handle error
+        } finally {
+            setLoading(false);
+        }
+    }, [offset, loading, endReached]);
 
+    // Initial load
     useEffect(() => {
-        const fetchTopupHistories = async () => {
-            setLoading(true);
-            try {
-                const res = await api.get("/v1/topup-histories?limit=10&offset=0");
-                setData(res.data?.rows || []);
-            } catch {
-                setData([]);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchTopupHistories();
+        if (data.length) return;
+        fetchPage();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const renderTopUpItem = ({ item }: { item: TopUpItem }) => {
@@ -72,7 +88,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
         return (
             <Pressable
                 style={styles.pressable}
-                onPress={() => handleItemPress(item)}
+                onPress={() => onItemPress?.(item)}
             >
                 <View style={styles.iconContainer}>
                     <CartIcon size={24} />
@@ -95,13 +111,33 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
         );
     };
 
-    if (loading) {
+    const renderFooter = () => {
+        if (!loading || data.length === 0) return null;
         return (
             <View style={styles.loading}>
                 <ActivityIndicator size="small" />
             </View>
         );
-    }
+    };
+
+    // Debounce for onEndReached
+    const debounceRef = useRef<NodeJS.Timeout | null>(null);
+    const debouncedOnEndReached = useCallback(() => {
+        if (debounceRef.current) {
+            clearTimeout(debounceRef.current);
+        }
+        debounceRef.current = setTimeout(() => {
+            fetchPage();
+        }, 300); // 300ms debounce
+    }, [fetchPage]);
+
+    useEffect(() => {
+        return () => {
+            if (debounceRef.current) {
+                clearTimeout(debounceRef.current);
+            }
+        };
+    }, []);
 
     return (
         <FlatList
@@ -115,6 +151,9 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                     <Text style={styles.emptyText}>{t("NO TOPUP HISTORY FOUND")}</Text>
                 </View>
             }
+            onEndReached={debouncedOnEndReached}
+            onEndReachedThreshold={0.6}
+            ListFooterComponent={renderFooter}
         />
     );
 };
