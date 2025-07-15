@@ -4,6 +4,7 @@ import { Modal, SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from "r
 import CoinIcon from "../../components/icons/profile/coin-icon";
 import CommentsIcon from "../../components/icons/profile/comments-icon";
 import { COLORS } from "../../constants/colors";
+import { serviceTypeTranslationKeys } from "../../constants/app";
 import { AppButton } from "../../components/ui/app-button";
 import { useNavigation } from "@react-navigation/native";
 
@@ -46,15 +47,8 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     return `${day} ${month} ${year}, ${hour}:${min} ${date.getHours() >= 12 ? "PM" : "AM"}`;
   };
 
-  const serviceTypeLabels: Record<string, string> = {
-    ask_any_question: t("usageReceiptModal.serviceType.ask_any_question"),
-    personalized_love_forecast_12mth: t("usageReceiptModal.serviceType.personalized_love_forecast_12mth"),
-    transit_report: t("usageReceiptModal.serviceType.transit_report"),
-    relationship_compatibility: t("usageReceiptModal.serviceType.relationship_compatibility"),
-    ask_secret_diary: t("usageReceiptModal.serviceType.ask_secret_diary"),
-  };
-
-  const getServiceTypeLabel = (type: string) => serviceTypeLabels[type] || type;
+  const getServiceTypeLabel = (type: string) =>
+    t(serviceTypeTranslationKeys[type] || type);
 
   const navigation = useNavigation()
 

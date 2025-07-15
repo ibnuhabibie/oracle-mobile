@@ -219,7 +219,7 @@
     },
     "purchaseAlert": {
         "title": "PURCHASE ALERT",
-        "askGeenie": "To ask the Geenie, it will cost {{cost}} <coin/>\nContinue?",
+        "askGeenie": "To use {{service}}, it will cost {{cost}} <coin/>, Continue?",
         "yourCredits": "Your {{creditType}} Credits: {{userCredit}} <coin/>",
         "continue": "Continue to Purchase",
         "cancel": "Cancel",

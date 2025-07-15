@@ -180,7 +180,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 visible={showPurchaseModal}
                 onContinue={handleContinue}
                 onCancel={handleCancel}
-                service="love_report"
+                service="relationship_compatibility"
                 loading={costLoading}
             />
             {pollingJobId && (

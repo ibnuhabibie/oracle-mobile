@@ -6,6 +6,7 @@ import { COLORS } from '../../constants/colors';
 import { useAsyncStorage } from '../../hooks/use-storage';
 import CoinIcon from '../icons/profile/coin-icon';
 import { useNavigation } from '@react-navigation/native';
+import { serviceTypeTranslationKeys } from '../../constants/app';
 import { useTranslation, Trans } from 'react-i18next';
 
 interface PurchaseAlertModalProps {
@@ -79,6 +80,9 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
     return found ? Number(found.value) : 0;
   };
 
+  const getServiceTypeLabel = (type: string) =>
+    t(serviceTypeTranslationKeys[type] || type);
+
   return (
     <Modal visible={visible} transparent animationType="slide">
       <View style={styles.modalContainer}>
@@ -91,7 +95,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
               <AppText style={{ textAlign: 'center', lineHeight: 22 }}>
                 <Trans
                   i18nKey="purchaseAlert.askGeenie"
-                  values={{ cost }}
+                  values={{ cost, service: getServiceTypeLabel(service) }}
                   components={{
                     coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
                   }}
