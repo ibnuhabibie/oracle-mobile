@@ -18,7 +18,7 @@ import { APP_URL } from '@env';
 
 import CoinIcon from '../../../components/icons/profile/coin-icon';
 import CommentUserIcon from '../../../components/icons/profile/comment-user-icon';
-import { getMbtiIconComponent } from '../../../features/mbti/mbti-profile';
+import { getMbtiIconComponent } from '../../../features/mbti/mbti-profile-item';
 import CopyIcon from '../../../components/icons/profile/copy-icon';
 import EyeIcon from '../../../components/icons/profile/eye-icon';
 import BuildingIcon from '../../../components/icons/profile/building-icon';

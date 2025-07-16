@@ -35,6 +35,7 @@ export const mbtiIconMap: Record<string, React.FC<{ size?: number; color?: strin
 };
 
 export function getMbtiIconComponent(type: string | undefined) {
+  console.log(type)
   if (!type) return null;
   const key = type.toUpperCase();
   return mbtiIconMap[key] || null;

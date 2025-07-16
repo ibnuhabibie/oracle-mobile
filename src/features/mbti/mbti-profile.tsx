@@ -1,27 +1,7 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { getMbtiIconComponent } from "./mbti-profile";
 
-// Static mapping for MBTI icons
-export const mbtiIcons: { [key: string]: any } = {
-    INTP: require('../../assets/icons/mbti/intp.png'),
-    INTJ: require('../../assets/icons/mbti/intj.png'),
-    ENTP: require('../../assets/icons/mbti/entp.png'),
-    ENTJ: require('../../assets/icons/mbti/entj.png'),
-    INFJ: require('../../assets/icons/mbti/infj.png'),
-    INFP: require('../../assets/icons/mbti/infp.png'),
-    ENFJ: require('../../assets/icons/mbti/enfj.png'),
-    ENFP: require('../../assets/icons/mbti/enfp.png'),
-    ISTJ: require('../../assets/icons/mbti/istj.png'),
-    ISFJ: require('../../assets/icons/mbti/isfj.png'),
-    ESTJ: require('../../assets/icons/mbti/estj.png'),
-    ESFJ: require('../../assets/icons/mbti/esfj.png'),
-    ISTP: require('../../assets/icons/mbti/istp.png'),
-    ISFP: require('../../assets/icons/mbti/isfp.png'),
-    ESTP: require('../../assets/icons/mbti/estp.png'),
-    ESFP: require('../../assets/icons/mbti/esfp.png'),
-};
-
+import { getMbtiIconComponent } from "./mbti-profile-item";
 import ShinyContainer from "../../components/widgets/shiny-container";
 import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
