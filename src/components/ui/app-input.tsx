@@ -52,7 +52,7 @@ function AppInput<TFieldValues extends FieldValues>({
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value as string} // Ensure value is a string for TextInput/TextField
-                        style={[inputStyle, fieldError && styles.inputError]} // Apply error style
+                        style={[styles.defaultInput, inputStyle, fieldError && styles.inputError]} // Apply error style
                         keyboardType={keyboardType}
                         secureTextEntry={secureTextEntry}
                         rightIcon={rightIcon}
@@ -70,6 +70,9 @@ function AppInput<TFieldValues extends FieldValues>({
 const styles = StyleSheet.create({
     container: {
         marginBottom: 12, // Add some vertical spacing between fields
+    },
+    defaultInput: {
+        backgroundColor: 'rgba(255, 255, 255, 0.13)',
     },
     label: {
         fontSize: 16,

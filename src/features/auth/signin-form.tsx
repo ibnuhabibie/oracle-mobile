@@ -17,6 +17,7 @@ import { AppText } from "../../components/ui/app-text";
 import { AppButton } from "../../components/ui/app-button";
 import AppInput from "../../components/ui/app-input";
 import PasswordToggle from "../../components/ui/password-toggle";
+import { opacity } from "react-native-reanimated/lib/typescript/Colors";
 
 interface LoginDTO {
     email: string;
@@ -129,6 +130,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     placeholder={t('EMAIL')}
                     keyboardType="email-address"
                     errors={errors}
+                    inputStyle={styles.appInput}
                 />
                 <AppInput<LoginDTO>
                     control={control}
@@ -142,6 +144,8 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                             onToggle={() => setShowPassword(prev => !prev)}
                             showPassword={showPassword} />
                     }
+                    inputStyle={styles.appInput}
+
                 />
             </View>
 
@@ -161,6 +165,10 @@ const styles = StyleSheet.create({
         marginTop: 12,
         width: '100%',
     },
+    appInput: {
+        borderColor: '#BDBDBD',
+        color: 'red'
+    }
 });
 
 export default SignInForm;

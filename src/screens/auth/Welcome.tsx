@@ -8,6 +8,7 @@ import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
 import { AppText } from '../../components/ui/app-text';
 import { MainNavigatorParamList } from '../../navigators/types';
+import WelcomeIllustration from '../../assets/images/welcome-illustration';
 
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
@@ -19,11 +20,13 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
       const language = await AsyncStorage.getItem('language');
       console.log(language, 'language');
 
-      if (!language) {
-        navigation.navigate('SignIn');
-      } else {
-        navigation.navigate('LanguageSelection');
-      }
+      navigation.navigate('SignIn');
+
+      // if (!language) {
+      //   navigation.navigate('SignIn');
+      // } else {
+      //   navigation.navigate('LanguageSelection');
+      // }
     } catch (error) {
       console.log(error);
       navigation.navigate('LanguageSelection');
@@ -33,18 +36,16 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   return (
     <ScreenContainer>
       <View style={styles.container}>
-        <Image
-          source={require('../../assets/images/onboarding/onboarding.png')}
-          style={{ width: 431, height: 577 }}
-        />
         <AppText variant='subtitle2' color='primary' style={styles.subtitle}>{t('WELCOME TO')}</AppText>
         <AppText style={styles.title}>AFFINITY</AppText>
-        <AppButton
-          title={t('GET STARTED')}
-          variant='primary'
-          onPress={handleClick}
-          style={{ marginTop: 24 }}
-        />
+        <WelcomeIllustration />
+        <View style={styles.buttonContainer}>
+          <AppButton
+            title={t('GET STARTED')}
+            variant='primary'
+            onPress={handleClick}
+          />
+        </View>
       </View>
     </ScreenContainer>
   );
@@ -57,12 +58,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 40,
+    fontSize: 43,
+    color: '#D5D5D5',
+    letterSpacing: 9
   },
   subtitle: {
     letterSpacing: 7,
     marginTop: 26,
   },
+  buttonContainer: {
+    width: '80%',
+    marginTop: 32,
+  }
 });
 
 export default Welcome;

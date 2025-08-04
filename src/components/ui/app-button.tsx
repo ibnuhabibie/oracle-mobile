@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   View,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 
@@ -44,13 +45,14 @@ export class AppButton extends Component<CustomButtonProps> {
       borderRadius: 12,
       justifyContent: 'center',
       alignItems: 'center',
+      overflow: 'hidden', // for gradient border radius
     };
 
     switch (variant) {
       case 'primary':
         return {
           ...base,
-          backgroundColor: COLORS.primary,
+          backgroundColor: undefined, // background handled by gradient
         };
       case 'secondary':
         return {
@@ -112,8 +114,35 @@ export class AppButton extends Component<CustomButtonProps> {
   };
 
   render() {
-    const { title, onPress, disabled, style, textStyle, loading } = this.props;
+    const { title, onPress, disabled, style, textStyle, loading, variant } = this.props;
     const isDisabled = disabled || loading;
+
+    if (variant === 'primary') {
+      return (
+        <LinearGradient
+          colors={['#C68D14', '#F0AF24', '#C68D14']}
+          start={{ x: 0, y: 0.5 }}
+          end={{ x: 1, y: 0.5 }}
+          locations={[0, 0.476, 0.9712]}
+          style={[this.getButtonStyle(), isDisabled && styles.disabled, style]}
+        >
+          <TouchableOpacity
+            style={[StyleSheet.absoluteFill, { justifyContent: 'center', alignItems: 'center' }]}
+            onPress={onPress}
+            activeOpacity={0.8}
+            disabled={isDisabled}
+          >
+            {loading ? (
+              <ActivityIndicator color={this.getTextStyle().color || COLORS.white} />
+            ) : typeof title === 'string' ? (
+              <Text style={[this.getTextStyle(), textStyle]}>{title}</Text>
+            ) : (
+              title
+            )}
+          </TouchableOpacity>
+        </LinearGradient>
+      );
+    }
 
     return (
       <TouchableOpacity
@@ -122,17 +151,13 @@ export class AppButton extends Component<CustomButtonProps> {
         activeOpacity={0.8}
         disabled={isDisabled}
       >
-        {
-          loading ? (
-            <ActivityIndicator color={this.getTextStyle().color || COLORS.white} />
-          ) : (
-            typeof title === 'string' ? (
-              <Text style={[this.getTextStyle(), textStyle]}>{title}</Text>
-            ) : (
-              title
-            )
-          )
-        }
+        {loading ? (
+          <ActivityIndicator color={this.getTextStyle().color || COLORS.white} />
+        ) : typeof title === 'string' ? (
+          <Text style={[this.getTextStyle(), textStyle]}>{title}</Text>
+        ) : (
+          title
+        )}
       </TouchableOpacity>
     );
   }

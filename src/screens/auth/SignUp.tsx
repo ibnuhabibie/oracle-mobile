@@ -19,7 +19,7 @@ const SignUp: FC<SignUpProps> = ({ navigation }) => {
   };
 
   return (
-    <ScreenContainer style={{ marginTop: 44 }}>
+    <ScreenContainer style={{ marginTop: 44 }} starAnimation={true}>
       <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEEKERS')}</AppText>
       <AppText variant='largeTitle2' style={styles.title}>{t('SIGN UP')}</AppText>
       <AppText variant='caption1' style={styles.subtitle}>
@@ -49,15 +49,17 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: 6,
+    color: '#D5D5D5'
   },
   subtitle: {
     textAlign: 'center',
     marginBottom: 24,
-    color: COLORS['dark-gray']
+    color: '#D5D5D5'
   },
   footer: {
     textAlign: 'center',
     marginTop: 16,
+    color: '#D5D5D5'
   },
 });
 

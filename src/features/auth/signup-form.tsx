@@ -86,6 +86,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     rules={formRules.full_name}
                     placeholder={t('NAME')}
                     errors={errors}
+                    inputStyle={styles.appInput}
                 />
                 <AppInput
                     control={control}
@@ -94,6 +95,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     placeholder={t('EMAIL')}
                     errors={errors}
                     keyboardType="email-address"
+                    inputStyle={styles.appInput}
                 />
                 <AppInput
                     control={control}
@@ -107,6 +109,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                             onToggle={() => setShowPassword(prev => !prev)}
                             showPassword={showPassword} />
                     }
+                    inputStyle={styles.appInput}
                 />
                 <AppInput
                     control={control}
@@ -120,12 +123,14 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                             onToggle={() => setShowConfirmPassword(prev => !prev)}
                             showPassword={showConfirmPassword} />
                     }
+                    inputStyle={styles.appInput}
                 />
                 <AppInput
                     control={control}
                     name="referral_code"
                     placeholder={t('REFERRAL CODE')}
                     errors={errors}
+                    inputStyle={styles.appInput}
                 />
             </View>
 
@@ -143,6 +148,10 @@ const styles = StyleSheet.create({
         marginTop: 12,
         width: '100%',
     },
+    appInput: {
+        backgroundColor: 'rgba(255, 255, 255, 0.13)',
+        borderColor: '#BDBDBD'
+    }
 });
 
 

@@ -12,7 +12,7 @@ interface PasswordToggleProps {
 const PasswordToggle: React.FC<PasswordToggleProps> = ({
     showPassword,
     onToggle,
-    iconSize = 20,
+    iconSize = 24,
 }) => {
     return (
         <Pressable onPress={onToggle}>

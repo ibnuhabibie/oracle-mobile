@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color: COLORS.neutral,
+    color: COLORS.white,
     width: '100%',
     fontFamily: fontFamilies.ARCHIVO.light,
   },
