@@ -110,14 +110,26 @@ export function CenterCarousel<T>({
                 borderColor: COLORS.black,
                 borderWidth: 1,
                 borderRadius: 12,
-                backgroundColor: '#fff',
+                backgroundColor: 'transparent',
                 shadowOpacity: isCenter ? 0.12 : 0.06,
                 shadowRadius: 8,
                 shadowOffset: { width: 0, height: 2 },
                 marginVertical: 10,
+                overflow: 'hidden',
               }}
             >
-              {renderItem({ item, index: index % dataLength, isCenter })}
+              <View
+                style={{
+                  ...StyleSheet.absoluteFillObject,
+                  backgroundColor: 'rgba(255,255,255,0.08)',
+                  borderRadius: 12,
+                  zIndex: 0,
+                }}
+                pointerEvents="none"
+              />
+              <View style={{ flex: 1, zIndex: 1 }}>
+                {renderItem({ item, index: index % dataLength, isCenter })}
+              </View>
             </View>
           );
 

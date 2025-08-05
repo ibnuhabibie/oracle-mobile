@@ -3,8 +3,12 @@ import { View, Image, StyleSheet, ImageSourcePropType } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { COLORS } from '../../constants/colors';
 import { AppText } from '../ui/app-text';
+import WealthIcon from '../icons/daily-dashboard/wealth-icon';
+import RelationIcon from '../icons/daily-dashboard/relation-icon';
+import CareerIcon from '../icons/daily-dashboard/career-icon';
 // i18n
 import { useTranslation } from 'react-i18next';
+import LearningIcon from '../icons/daily-dashboard/learning-icon';
 
 export interface CircularScoreProps {
     value?: number;
@@ -13,38 +17,7 @@ export interface CircularScoreProps {
     type?: 'wealth' | 'learning' | 'relation' | 'career';
 }
 
-interface CircularScoreState {
-    imageSrc: ImageSourcePropType | null;
-}
-
-class CircularScore extends Component<CircularScoreProps, CircularScoreState> {
-    constructor(props: CircularScoreProps) {
-        super(props);
-        this.state = {
-            imageSrc: null,
-        };
-    }
-
-    componentDidMount(): void {
-        if (this.props.type === 'wealth') {
-            this.setState({
-                imageSrc: require('../../assets/icons/daily-dashboard/wealth-daily.png')
-            });
-        } else if (this.props.type === 'learning') {
-            this.setState({
-                imageSrc: require('../../assets/icons/daily-dashboard/learning-daily.png')
-            });
-        } else if (this.props.type === 'relation') {
-            this.setState({
-                imageSrc: require('../../assets/icons/daily-dashboard/relation-daily.png')
-            });
-        } else if (this.props.type === 'career') {
-            this.setState({
-                imageSrc: require('../../assets/icons/daily-dashboard/career-daily.png')
-            });
-        }
-    }
-
+class CircularScore extends Component<CircularScoreProps> {
     render() {
         const {
             value = 50,
@@ -52,8 +25,6 @@ class CircularScore extends Component<CircularScoreProps, CircularScoreState> {
             strokeWidth = 2,
             type = 'wealth'
         } = this.props;
-
-        const { imageSrc } = this.state;
 
         const radius = (size - strokeWidth) / 2;
         const circumference = 2 * Math.PI * radius;
@@ -82,6 +53,18 @@ class CircularScore extends Component<CircularScoreProps, CircularScoreState> {
             height: size / 2,
         };
 
+        // Dynamic icon rendering
+        let iconElement = null;
+        if (type === 'wealth') {
+            iconElement = <WealthIcon width={size / 2} height={size / 2} />;
+        } else if (type === 'learning') {
+            iconElement = <LearningIcon width={size / 2} height={size / 2} />;
+        } else if (type === 'relation') {
+            iconElement = <RelationIcon width={size / 2} height={size / 2} />;
+        } else if (type === 'career') {
+            iconElement = <CareerIcon width={size / 2} height={size / 2} />;
+        }
+
         return (
             <View style={{ gap: 6 }}>
                 <Svg
@@ -97,7 +80,7 @@ class CircularScore extends Component<CircularScoreProps, CircularScoreState> {
                         cx={size / 2}
                         cy={size / 2}
                         r={radius}
-                        stroke="#e6e6e6"
+                        stroke="transparent"
                         strokeWidth={strokeWidth}
                         fill="none"
                     />
@@ -116,11 +99,7 @@ class CircularScore extends Component<CircularScoreProps, CircularScoreState> {
                     />
                 </Svg>
                 <View style={imageContainerStyle}>
-                    <Image
-                        source={imageSrc as ImageSourcePropType}
-                        style={imageStyle}
-                        resizeMode="cover"
-                    />
+                    {iconElement}
                 </View>
                 <TranslatedType />
             </View>
@@ -142,6 +121,7 @@ const styles = StyleSheet.create({
     image: {
     },
     iconText: {
+        marginTop: 12,
         textAlign: 'center',
         textTransform: 'capitalize',
     }

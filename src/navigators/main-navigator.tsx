@@ -41,6 +41,7 @@ import { useAsyncStorage } from '../hooks/use-storage';
 import LoveReportResult from '../screens/main/service/love-forecast/love-report-result';
 import FortuneReportResult from '../screens/main/service/fortune-report/fortune-report-result';
 import RelationReportResult from '../screens/main/service/relation-report/relation-report-result';
+import { COLORS } from '../constants/colors';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -49,9 +50,23 @@ const TabNavigator = () => (
   <Tab.Navigator
     screenOptions={{
       headerShown: false,
-      tabBarStyle: { backgroundColor: '#ffffff' },
-      tabBarActiveTintColor: '#000',
-      tabBarInactiveTintColor: '#999',
+      tabBarStyle: {
+        backgroundColor: '#121010',
+        height: 76,
+        alignItems: 'center',
+        borderTopWidth: 0,
+        borderColor: 'transparent',
+      },
+      // tabBarActiveTintColor: '#000',
+      // tabBarInactiveTintColor: '#999',
+      tabBarIconStyle: {
+        marginTop: 8,
+      },
+      tabBarLabelStyle: {
+        color: COLORS.white,
+        marginTop: 4,
+        fontSize: 14
+      }
     }}
     initialRouteName="Home">
     <Tab.Screen

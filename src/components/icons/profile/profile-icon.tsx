@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Svg, {ClipPath, Defs, G, Path, Rect} from 'react-native-svg';
+import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
+import { COLORS } from '../../../constants/colors';
 
-const ProfileIcon: React.FC<{size?: number; fill?: boolean}> = ({
+const ProfileIcon: React.FC<{ size?: number; fill?: boolean }> = ({
   size = 18,
   fill = false,
 }) =>
@@ -9,11 +10,11 @@ const ProfileIcon: React.FC<{size?: number; fill?: boolean}> = ({
     <Svg width={size} height={size} viewBox="0 0 19 18" fill="none">
       <Path
         d="M9.875 9C12.3603 9 14.375 6.98528 14.375 4.5C14.375 2.01472 12.3603 0 9.875 0C7.38972 0 5.375 2.01472 5.375 4.5C5.375 6.98528 7.38972 9 9.875 9Z"
-        fill="#191919"
+        fill={COLORS.white}
       />
       <Path
         d="M9.875 10.499C6.14879 10.5032 3.12915 13.5228 3.125 17.249C3.125 17.6632 3.46078 17.999 3.87499 17.999H15.875C16.2892 17.999 16.625 17.6632 16.625 17.249C16.6208 13.5228 13.6012 10.5031 9.875 10.499Z"
-        fill="#191919"
+        fill={COLORS.white}
       />
     </Svg>
   ) : (

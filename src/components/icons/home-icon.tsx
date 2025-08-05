@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Svg, {ClipPath, Defs, G, Path, Rect} from 'react-native-svg';
+import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
+import { COLORS } from '../../constants/colors';
 
-const HomeIcon: React.FC<{size?: number; fill?: boolean}> = ({
+const HomeIcon: React.FC<{ size?: number; fill?: boolean }> = ({
   size = 18,
   fill = false,
 }) =>
@@ -9,16 +10,12 @@ const HomeIcon: React.FC<{size?: number; fill?: boolean}> = ({
     <Svg width={size} height={size} viewBox="0 0 19 18" fill="none">
       <G clipPath="url(#clip0_562_287)">
         <Path
-          d="M9.125 11.2437C7.88237 11.2437 6.875 12.251 6.875 13.4937V17.9937H11.375V13.4937C11.375 12.251 10.3676 11.2437 9.125 11.2437Z"
-          fill="#6A6A6A"
-        />
-        <Path
           d="M12.875 13.4942V17.9942H15.875C17.1176 17.9942 18.125 16.9868 18.125 15.7442V8.90342C18.1252 8.51379 17.9738 8.13937 17.7027 7.85942L11.3293 0.969152C10.2047 -0.247606 8.30667 -0.322313 7.08991 0.802265C7.03211 0.855702 6.97643 0.911355 6.92302 0.969152L0.560762 7.85717C0.281551 8.13828 0.124895 8.51846 0.125 8.91467V15.7442C0.125 16.9868 1.13237 17.9942 2.375 17.9942H5.37499V13.4942C5.38902 11.4491 7.0402 9.77899 9.0338 9.7309C11.0941 9.68119 12.8593 11.3797 12.875 13.4942Z"
-          fill="#191919"
+          fill={COLORS.white}
         />
         <Path
           d="M9.125 11.2437C7.88237 11.2437 6.875 12.251 6.875 13.4937V17.9937H11.375V13.4937C11.375 12.251 10.3676 11.2437 9.125 11.2437Z"
-          fill="#191919"
+          fill={COLORS.white}
         />
       </G>
       <Defs>

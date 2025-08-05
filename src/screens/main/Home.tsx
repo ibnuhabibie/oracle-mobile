@@ -48,7 +48,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
     <ScreenContainer style={{ padding: 0 }}>
       <View style={{ padding: 18 }}>
         <ProfileDashboard />
-        <AppText style={styles.subtitle} color='primary' variant='subtitle1'>
+        <AppText style={styles.subtitle} color='neutral' variant='subtitle1'>
           {t("WHAT DO YOU LIKE TO KNOW TODAY?")}
         </AppText>
       </View>
@@ -67,10 +67,10 @@ const Home: FC<HomeProps> = ({ navigation }) => {
               </ShinyContainer>
             </View>
             <View style={{ padding: 12 }}>
-              <AppText variant='subtitle1' style={styles.cardTitle}>{item.title}</AppText>
+              <AppText variant='subtitle1' style={styles.cardTitle} color='white'>{item.title}</AppText>
               {
                 isCenter
-                  ? <AppText style={styles.cardSubtitle}>{item.subtitle}</AppText>
+                  ? <AppText style={styles.cardSubtitle} color='primary'>{item.subtitle}</AppText>
                   : null
               }
             </View>
@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
   },
   cardSubtitle: {
     fontSize: 12,
-    color: '#D4A574',
     textTransform: 'uppercase',
     letterSpacing: 1,
   },

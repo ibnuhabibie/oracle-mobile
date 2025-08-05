@@ -82,7 +82,7 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
                 <>
                     <LocalizedHeader />
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-                        <AppText style={{ color: COLORS.primary, fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
+                        <AppText style={{ color: COLORS["light-gray"], fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
                             Loading your daily profile...
                         </AppText>
                     </View>
@@ -117,8 +117,8 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
 
             return (
                 <View style={styles.header}>
-                    <AppText variant='caption1' style={styles.date}>{formattedDate}</AppText>
-                    <AppText style={styles.greeting}>
+                    <AppText variant='caption1' style={styles.date} color="light-gray">{formattedDate}</AppText>
+                    <AppText style={styles.greeting} color="white">
                         {t("Good Day")}, {user?.full_name || t("Guest")}
                     </AppText>
                 </View>
@@ -128,7 +128,7 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
         function LocalizedSubtitle() {
             const { t } = useTranslation();
             return (
-                <AppText style={styles.subtitle} variant='subtitle1' color="primary">{t("TODAY SCORE")}</AppText>
+                <AppText style={styles.subtitle} variant='subtitle1' color="white">{t("TODAY SCORE")}</AppText>
             );
         }
 
@@ -136,9 +136,9 @@ class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDas
             <>
                 <LocalizedHeader />
                 <View style={{ width: '100%', paddingHorizontal: 12 }}>
-                    <AppText style={styles.title}>{data?.today_points}%</AppText>
+                    <AppText style={styles.title} color="white">{data?.today_points}%</AppText>
                     <LocalizedSubtitle />
-                    <AppText variant='caption1' color="neutral" style={styles.paragraph}>
+                    <AppText variant='caption1' color="light-gray" style={styles.paragraph}>
                         {today_description}
                     </AppText>
                     <View
@@ -164,12 +164,10 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
     },
     date: {
-        color: '#B0B0B0',
         marginBottom: 4,
     },
     greeting: {
         fontSize: 18,
-        color: COLORS.black,
     },
     title: {
         fontSize: 40,
