@@ -33,7 +33,7 @@ class SelectableItem extends Component<SelectableItemProps> {
                         isSelected && styles.checkboxSelected,
                     ]}
                 >
-                    {isSelected && <CheckIcon size={20} />}
+                    {isSelected && <CheckIcon size={20} color={COLORS.white} />}
                 </View>
             </Pressable>
         );
@@ -47,17 +47,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingVertical: 15,
         paddingHorizontal: 20,
-        borderRadius: 8,
+        borderRadius: 12,
         borderWidth: 1,
-        borderColor: COLORS['light-gray'],
+        backgroundColor: '#FFFFFF21'
     },
     itemSelected: {
-        backgroundColor: '#f9eadf',
-        borderColor: '#d7b894',
+        borderColor: COLORS.neutral,
     },
     itemText: {
         fontSize: 16,
-        color: COLORS.black,
+        color: COLORS.white,
         flex: 1,
     },
     checkbox: {
@@ -65,15 +64,11 @@ const styles = StyleSheet.create({
         height: 15,
         borderRadius: 4,
         borderWidth: 2,
-        borderColor: '#888',
+        borderColor: COLORS.white,
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 15,
     },
-    checkboxSelected: {
-        borderColor: 'rgba(52, 52, 52, 0)',
-        backgroundColor: COLORS.primary,
-    }
 });
 
 export default SelectableItem;

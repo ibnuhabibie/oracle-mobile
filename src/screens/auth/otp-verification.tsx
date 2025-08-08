@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Alert, Keyboard, StyleSheet, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 import SMSIcon from '../../components/icons/auth/sms-icon';
 import ScreenContainer from '../../components/layouts/screen-container';
@@ -23,6 +24,7 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
     shouldResendOtp?: boolean;
   };
 
+  const { t } = useTranslation();
   const { formatted, start, timeLeft } = useOtpTimer(5);
   const otpInputRef = useRef();
 
@@ -52,14 +54,14 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
       await AsyncStorage.setItem('user_profile', JSON.stringify(profile));
 
     } catch (error) {
-      Alert.alert('Error', error?.meta?.message || 'Something went wrong');
+      Alert.alert(t('ERROR'), error?.meta?.message || t('GENERIC ERROR'));
     }
   };
 
   const handleSubmit = async () => {
     try {
       if (!otp) {
-        setErrorMessage('Please fill all OTP fields.');
+        setErrorMessage(t('FILL ALL OTP FIELDS'));
         return;
       }
 
@@ -69,7 +71,7 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
       await api.post('/v1/users/verify-email', { email, otp });
       navigation.replace('OtpSuccess');
     } catch (error) {
-      setErrorMessage(error?.meta?.message || 'Something went wrong');
+      setErrorMessage(error?.meta?.message || t('GENERIC ERROR'));
     }
   };
 
@@ -79,25 +81,24 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
         <ShinyContainer>
           <SMSIcon />
         </ShinyContainer>
-        <AppText variant='subtitle1' color='primary' style={styles.title}>OTP VERIFICATION</AppText>
-        <AppText variant='caption1' style={styles.subtitle}>
-          We have sent an OTP verification code via Email to{'\n'}
-          {email}. Please enter the code.
+        <AppText variant='subtitle1' color='primary' style={styles.title}>{t('OTP VERIFICATION')}</AppText>
+        <AppText variant='caption1' style={styles.subtitle} color='white'>
+          {t('OTP SENT MESSAGE', { email })}
         </AppText>
 
         <OtpInput
           onChangeOtp={(otp) => setOtp(otp)}
           error={errorMessage}
           ref={otpInputRef} />
-        <AppButton title="Continue" onPress={handleSubmit} style={styles.button} />
+        <AppButton title={t('CONTINUE')} onPress={handleSubmit} style={styles.button} />
 
-        <AppText style={styles.resendText}>
-          Didn’t receive the code?{' '}
+        <AppText style={styles.resendText} color='white'>
+          {t('DIDNT RECEIVE CODE')}{' '}
           <AppText
             color='primary'
             onPress={resendOtp}
             disabled={timeLeft > 0}>
-            Resend {formatted}
+            {t('RESEND')} {formatted}
           </AppText>
         </AppText>
       </View>
@@ -117,6 +118,8 @@ const styles = StyleSheet.create({
   subtitle: {
     textAlign: 'center',
     marginBottom: 30,
+    fontSize: 14,
+    lineHeight: 20
   },
   button: {
     marginTop: 148,

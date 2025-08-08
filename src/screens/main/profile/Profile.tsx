@@ -140,7 +140,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       {/* User Profile Card */}
       <View style={styles.userCard}>
         <View style={styles.userInfo}>
-          <Text style={styles.userName}>{user?.full_name || t("Guest")}</Text>
+          <AppText variant='subtitle1' style={styles.userName} color='white'>{user?.full_name || t("Guest")}</AppText>
           <Pressable style={styles.userBadge} onPress={handleCopyReferralCode}>
             <Text style={styles.badgeText}>{user?.referral_code}</Text>
             <CopyIcon />
@@ -154,26 +154,28 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               navigation.push('BaziResults', { profile_bazi: affinityProfile?.profile_bazi });
             }}
             style={styles.statItem}>
-            {/* <FerrisWheelIcon /> */}
             <Image
               source={iconMap[affinityProfile?.profile_bazi?.day_master?.icon]}
               resizeMode="contain"
               style={{ width: 75, height: 75 }}
             />
-            <Text style={styles.statLabel}>{affinityProfile?.profile_bazi?.day_master?.name}</Text>
+            <AppText variant='caption2' style={styles.statLabel} color='white'>
+              {affinityProfile?.profile_bazi?.day_master?.name}
+            </AppText>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               navigation.push('AstrologyResults', { profile_astro: affinityProfile?.profile_astro });
             }}
             style={styles.statItem}>
-            {/* <StarIcon /> */}
             <Image
               source={iconMap[affinityProfile?.profile_astro?.sun?.zodiac]}
               resizeMode="contain"
               style={{ width: 75, height: 75 }}
             />
-            <Text style={styles.statLabel}>{affinityProfile?.profile_astro?.sun?.zodiac_name}</Text>
+            <AppText variant='caption2' style={styles.statLabel} color='white'>
+              {affinityProfile?.profile_astro?.sun?.zodiac_name}
+            </AppText>
           </TouchableOpacity>
           {user?.mbti_profile && (
             <TouchableOpacity
@@ -183,9 +185,12 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               style={styles.statItem}>
               {(() => {
                 const MbtiIcon = getMbtiIconComponent(user?.mbti_profile);
-                return MbtiIcon ? <MbtiIcon width={50} height={75} color="black" /> : <CommentUserIcon size={75} />;
+                return MbtiIcon ? <MbtiIcon width={50} height={75} color={COLORS.neutral} /> : <CommentUserIcon size={75} />;
               })()}
-              <Text style={styles.statLabel}>{user?.mbti_profile}</Text>
+
+              <AppText variant='caption2' style={styles.statLabel} color='white'>
+                {user?.mbti_profile}
+              </AppText>
             </TouchableOpacity>
           )}
         </View>
@@ -209,20 +214,20 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       {/* Coins Section */}
       <View style={styles.coinsCard}>
         <View style={styles.coinsHeader}>
-          <Text style={styles.coinsTitle}>{t("Your Coins")}</Text>
+          <AppText variant='body2' color='white'>{t("Your Coins")}</AppText>
           <Pressable onPress={handleBuyCoins} style={styles.buyCoinsButton}>
-            <Text style={styles.buyCoinsText}>{t("Buy Coins")}</Text>
-            <Text style={styles.chevron}>›</Text>
+            <AppText variant='caption4' style={styles.buyCoinsText} color='white'>{t("Buy Coins")}</AppText>
+            <AppText variant='subtitle2' color='white'>›</AppText>
           </Pressable>
         </View>
 
         <View style={styles.coinsRow}>
           <View style={styles.coinItem}>
-            <Text style={styles.coinAmount}>{user?.gold_credits}</Text>
+            <AppText color='white' style={styles.coinAmount} variant='subtitle1'>{user?.gold_credits}</AppText>
             <CoinIcon size={19} color="#E0AE1E" />
           </View>
           <View style={styles.coinItem}>
-            <Text style={styles.coinAmount}>{user?.silver_credits}</Text>
+            <AppText color='white' style={styles.coinAmount} variant='subtitle1'>{user?.silver_credits}</AppText>
             <CoinIcon size={19} color="#EB4335" />
           </View>
         </View>
@@ -230,7 +235,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
       {/* Profile Section */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>{t("Profile")}</Text>
+        <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("Profile")}</AppText>
         <ProfileItem
           title="Edit Profile"
           icon={<EditIcon size={20} />}
@@ -245,12 +250,13 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
           title="Purchase History"
           icon={<CartIcon size={20} />}
           onPress={handlePurchaseHistory}
+          isLast
         />
       </View>
 
       {/* Others Section */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>{t("Others")}</Text>
+        <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("Others")}</AppText>
         <ProfileItem
           title="About Us"
           icon={<BuildingIcon />}
@@ -264,11 +270,12 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
           title="Terms & Conditions"
           icon={<TermsIcon size={20} />}
           onPress={() => handleContent('terms-conditions')}
+          isLast
         />
       </View>
       <Pressable style={styles.logoutButton} onPress={handleLogout}>
         <LogoutIcon />
-        <Text style={styles.logoutText}>{t("Logout")}</Text>
+        <AppText style={styles.logoutText} variant='subtitle2' color='white'>{t("Logout")}</AppText>
       </Pressable>
     </ScreenContainer >
   );
@@ -276,9 +283,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   userCard: {
-    backgroundColor: 'rgba(255, 200, 138, 0.14)',
-    borderWidth: 1,
-    borderColor: COLORS.neutral,
+    backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
@@ -291,9 +296,6 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#333',
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   userBadge: {
     flexDirection: 'row',
@@ -315,9 +317,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   statItem: {
-    backgroundColor: '#FFF',
-    borderWidth: 1,
-    borderColor: 'rgba(208, 175, 138, 0.5)',
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
@@ -330,17 +330,12 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     marginTop: 12,
-    fontSize: 14,
-    color: '#333',
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   coinsCard: {
-    backgroundColor: '#FFF',
+    backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
   },
   coinsHeader: {
     flexDirection: 'row',
@@ -348,20 +343,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  coinsTitle: {
-    fontSize: 16,
-    color: '#666',
-    fontFamily: fontFamilies.ARCHIVO.light,
-  },
   buyCoinsButton: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   buyCoinsText: {
-    fontSize: 14,
-    color: '#333',
     marginRight: 4,
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   coinsRow: {
     flexDirection: 'row',
@@ -374,28 +361,20 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   coinAmount: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
     marginRight: 8,
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   coinIcon: {
     fontSize: 16,
   },
   section: {
-    backgroundColor: '#FFF',
+    backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
     padding: 20,
+    paddingBottom: 10,
     marginBottom: 16,
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
   },
   sectionTitle: {
-    fontSize: 16,
-    color: '#666',
     marginBottom: 16,
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   profileItem: {
     flexDirection: 'row',
@@ -423,7 +402,6 @@ const styles = StyleSheet.create({
   },
   chevron: {
     fontSize: 18,
-    color: '#CCC',
   },
   logoutButton: {
     flexDirection: 'row',
@@ -437,10 +415,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   logoutText: {
-    fontSize: 16,
-    color: '#333',
     marginLeft: 12,
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   mbtiQuizSection: {
     flexDirection: 'row',

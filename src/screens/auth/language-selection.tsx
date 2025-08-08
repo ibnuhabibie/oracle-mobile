@@ -32,7 +32,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <AppText variant="subtitle2" style={styles.heading}>{t('PLEASE SELECT A LANGUAGE')}</AppText>
+      <AppText variant="subtitle2" style={styles.heading} color='white'>{t('PLEASE SELECT A LANGUAGE')}</AppText>
 
       <Controller
         control={control}

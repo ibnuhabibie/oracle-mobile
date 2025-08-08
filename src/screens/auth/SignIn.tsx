@@ -38,7 +38,7 @@ const SignIn: FC<SignInProps> = ({ navigation }) => {
   };
 
   return (
-    <ScreenContainer style={{ marginTop: 44 }} starAnimation={true}>
+    <ScreenContainer style={{ marginTop: 44 }}>
       <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEEKERS')}</AppText>
       <AppText variant='largeTitle2' style={styles.title}>{t('SIGN IN')}</AppText>
       <AppText variant='caption1' style={styles.subtitle}>

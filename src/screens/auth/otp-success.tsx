@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import CheckmarkIcon from '../../components/icons/auth/checkmark-icon';
 import ScreenContainer from '../../components/layouts/screen-container';
@@ -15,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 type OtpSuccessProps = NativeStackScreenProps<MainNavigatorParamList, 'OtpSuccess'>;
 
 const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
+  const { t } = useTranslation();
 
   const handleContinue = async () => {
     const user_profile: any = await AsyncStorage.getItem('user_profile');
@@ -44,14 +46,14 @@ const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
           <ShinyContainer>
             <CheckmarkIcon size={90} />
           </ShinyContainer>
-          <AppText style={styles.title}>Verification Success!</AppText>
-          <AppText style={styles.subtitle}>
-            You're all set! Your account has been verified and is ready to go.
+          <AppText style={styles.title}>{t('VERIFICATION SUCCESS')}</AppText>
+          <AppText style={styles.subtitle} color='white'>
+            {t('VERIFICATION SUCCESS SUBTITLE')}
           </AppText>
         </View>
 
         <AppButton
-          title="Continue"
+          title={t('Continue')}
           onPress={handleContinue}
           style={styles.button}
         />
@@ -65,8 +67,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    width: '100%',
   },
   title: {
     fontSize: 18,
@@ -78,34 +78,11 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     textAlign: 'center',
-  },
-  otpContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    columnGap: 12,
-  },
-  otpInput: {
-    width: 48,
-    height: 48,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    textAlign: 'center',
-    fontSize: 20,
-    color: '#000',
+    lineHeight: 20
   },
   button: {
     marginTop: 126,
     width: '100%',
-  },
-  resendText: {
-    fontSize: 13,
-    color: '#555',
-    marginTop: 15,
-  },
-  resendLink: {
-    color: '#C0A589',
-    fontWeight: '600',
   },
 });
 

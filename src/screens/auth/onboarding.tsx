@@ -19,6 +19,9 @@ import { formatDate, formatTime } from '../../utils/formatter';
 import { MainNavigatorParamList } from '../../navigators/types';
 import api from '../../utils/http';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AppText } from '../../components/ui/app-text';
+import { COLORS } from '../../constants/colors';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   birth_date: Date;
@@ -38,6 +41,8 @@ const Onboarding: FC<{
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [showCountryModal, setShowCountryModal] = useState(false);
   const [showCityModal, setShowCityModal] = useState(false);
+
+  const { t } = useTranslation();
 
   const { handleSubmit, setValue, watch } = useForm<FormData>({
     defaultValues: {
@@ -133,16 +138,16 @@ const Onboarding: FC<{
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <Text style={styles.title}>Introduce yourself</Text>
+      <AppText style={styles.title} color='white'>{t('Introduce yourself')}</AppText>
       <Text style={styles.subtitle}>
-        Introduce yourself and let the universe guide you!
+        {t('Introduce yourself and let the universe guide you!')}
       </Text>
 
       <View style={styles.formContainer}>
         <Pressable onPress={() => setShowDatePicker(true)}>
           <View pointerEvents="none">
             <TextField
-              placeholder="Birth Date:"
+              placeholder={t('Birth Date:')}
               value={formatDate(watchedDate)}
               style={styles.textField}
               editable={false}
@@ -157,7 +162,7 @@ const Onboarding: FC<{
           }}>
           <View pointerEvents="none">
             <TextField
-              placeholder="Birth Time:"
+              placeholder={t('Birth Time:')}
               value={formatTime(watchedTime)}
               style={styles.textField}
               editable={false}
@@ -166,23 +171,23 @@ const Onboarding: FC<{
           </View>
         </Pressable>
 
-        <Text style={styles.helpText}>
-          (Not sure about your birth time? Just go with your closest guess.)
-        </Text>
+        <AppText variant='caption4' style={styles.helpText}>
+          {t('Not sure about your birth time? Just go with your closest guess.')}
+        </AppText>
 
         <DropdownButton
           onPress={() => setShowCountryModal(true)}
-          text={watchedCountry?.name || 'Please select one'}
+          text={watchedCountry?.name || t('Please select one')}
         />
 
         <DropdownButton
           onPress={() => setShowCityModal(true)}
-          text={watchedCity?.name || 'Please select one'}
+          text={watchedCity?.name || t('Please select one')}
         />
       </View>
 
       <AppButton
-        title="Save"
+        title={t('Save')}
         onPress={handleSubmit(onSubmit)}
         style={styles.saveButton}
       />
@@ -195,6 +200,7 @@ const Onboarding: FC<{
           display="default"
           onChange={onDateChange}
           maximumDate={new Date()}
+          style={{ backgroundColor: 'red' }}
         />
       )}
 
@@ -212,7 +218,7 @@ const Onboarding: FC<{
       {renderDropdownModal(
         showCountryModal,
         () => setShowCountryModal(false),
-        'Select Country',
+        t('Select Country'),
         countries,
         selectCountry,
         watchedCountry,
@@ -223,7 +229,7 @@ const Onboarding: FC<{
       {renderDropdownModal(
         showCityModal,
         () => setShowCityModal(false),
-        'Select City',
+        t('Select City'),
         cities,
         selectCity,
         watchedCity,
@@ -246,15 +252,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 8,
-    fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#333',
   },
   subtitle: {
-    fontSize: 14,
     textAlign: 'center',
-    color: '#777',
+    color: COLORS.neutral,
     marginBottom: 32,
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   formContainer: {
     width: '100%',
@@ -263,16 +265,15 @@ const styles = StyleSheet.create({
   },
   textField: {
     width: '100%',
+    backgroundColor: '#FFFFFF22'
   },
   marginedTextField: {
     width: '100%',
     marginBottom: 16,
   },
   helpText: {
-    fontSize: 12,
-    color: '#999',
+    color: COLORS['light-gray'],
     marginTop: 8,
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   saveButton: {
     width: '100%',

@@ -4,6 +4,8 @@ import { FlatList, Modal, Pressable, StyleSheet, View } from 'react-native';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 import { AppText } from '../ui/app-text';
+import ArrowIcon from '../icons/arrow-icon';
+import ChevronDownIcon from '../icons/profile/chevron-down-icon';
 
 export const DropdownButton: FC<{ onPress?: () => void; text?: string }> = ({
   onPress,
@@ -12,7 +14,7 @@ export const DropdownButton: FC<{ onPress?: () => void; text?: string }> = ({
   return (
     <Pressable style={styles.dropdownButton} onPress={onPress}>
       <AppText style={styles.dropdownText}>{text}</AppText>
-      <AppText style={styles.dropdownIcon}>▼</AppText>
+      <ChevronDownIcon />
     </Pressable>
   );
 };
@@ -127,9 +129,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#6A6A6A',
     borderRadius: 12,
-    paddingHorizontal: 20,
+    paddingLeft: 20,
+    paddingRight: 32,
     paddingVertical: 16,
-    backgroundColor: COLORS.white,
+    backgroundColor: '#FFFFFF22',
   },
   dropdownText: {
     width: '100%',

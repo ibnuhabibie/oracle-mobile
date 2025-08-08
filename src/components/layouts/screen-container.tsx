@@ -25,8 +25,8 @@ const { width, height } = Dimensions.get('window');
 
 // StarField component for animated stars
 const NUM_STARS = 50;
-const STAR_MIN_SIZE = 2;
-const STAR_MAX_SIZE = 5;
+const STAR_MIN_SIZE = 1;
+const STAR_MAX_SIZE = 3;
 const STAR_COLORS = ['#FFF8E1', '#FFE082', '#FFD700', '#FFF', '#F0EAD6'];
 
 const getRandom = (min: number, max: number) =>
@@ -218,7 +218,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   header,
   floatingFooter,
   fluid = false,
-  starAnimation = false,
+  starAnimation = true,
 }) => {
   const content = (
     <View

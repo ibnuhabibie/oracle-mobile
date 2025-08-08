@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-const CheckIcon: React.FC<{size?: number; color?: string}> = ({
+const CheckIcon: React.FC<{ size?: number; color?: string }> = ({
   size = 15,
   color = '#191919',
 }) => (
