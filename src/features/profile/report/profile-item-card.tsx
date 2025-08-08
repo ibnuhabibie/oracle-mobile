@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ShinyContainer from '../../../components/widgets/shiny-container';
+import { COLORS } from '../../../constants/colors';
 
 type ProfileItemCardData = {
     isDark?: boolean;
@@ -36,19 +37,17 @@ const ProfileItemCard: React.FC<ProfileItemCardProps> = ({ data }) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: '#FFF',
+        backgroundColor: 'rgba(255,255,255,0.08)',
         borderRadius: 10,
         padding: 20,
         marginBottom: 16,
         marginTop: 16,
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#E0E0E0',
     },
     sectionTitle: {
         fontSize: 18,
         fontFamily: 'Archivo-Light',
-        color: '#D4A574',
+        color: COLORS.primary,
         fontWeight: '600',
         marginTop: 16,
         marginBottom: 8,
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     sectionSubtitle: {
         fontSize: 14,
         fontFamily: 'Archivo-Light',
-        color: '#999',
+        color: COLORS.neutral,
         textAlign: 'center',
         marginBottom: 16,
         // fontStyle: 'italic',
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
     sectionDescription: {
         fontSize: 14,
         fontFamily: 'Archivo-Light',
-        color: '#666',
+        color: COLORS.neutral,
         textAlign: 'center',
         lineHeight: 22,
         marginBottom: 12,

@@ -19,7 +19,7 @@ type EchoProps = NativeStackScreenProps<MainNavigatorParamList, 'Echo'>;
 
 const Echo: FC<EchoProps> = ({ navigation }) => {
     const { t } = useTranslation();
-    
+
     const [diaries, setDiaries] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -86,7 +86,7 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
             <AppText style={styles.title} color='primary' variant='subtitle1'>
                 {t("DIARY")}
             </AppText>
-            <AppText style={styles.subtitle} variant='caption1'>{t('A safe space to express your thoughts and emotions.')}</AppText>
+            <AppText style={styles.subtitle} variant='caption1' color='white'>{t('A safe space to express your thoughts and emotions.')}</AppText>
             <Calendar
                 style={styles.calendar}
                 markedDates={markedDates}
@@ -107,12 +107,16 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                 theme={
                     {
                         todayBackgroundColor: COLORS.primary,
-                        todayTextColor: 'white',
+                        todayTextColor: COLORS.white,
                         dotStyle: {
                             width: 5,
                             height: 5
                         },
-                        arrowColor: COLORS.primary
+                        arrowColor: COLORS.white,
+                        calendarBackground: 'transparent',
+                        monthTextColor: COLORS.white,
+                        dayTextColor: COLORS.white
+                        // backgroundColor: 'rgba(255,255,255,0.14)',
                     }
                 }
             />
@@ -166,10 +170,11 @@ const styles = StyleSheet.create({
         marginHorizontal: 'auto'
     },
     calendar: {
-        borderColor: COLORS.primary,
+        borderColor: 'rgba(255,255,255,0.14)',
         borderWidth: 1,
         borderRadius: 12,
-        marginTop: 24
+        marginTop: 24,
+        backgroundColor: '#FFFFFF22',
     },
     diaryItem: {
         padding: 14,

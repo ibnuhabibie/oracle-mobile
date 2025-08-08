@@ -22,6 +22,8 @@ type ProfileCardProps = {
 
 import { iconMap } from '../../../screens/main/profile/useAffinityProfile';
 import { formatDateOfBirth, formatTimeOfBirth } from '../../../utils/date';
+import { COLORS } from '../../../constants/colors';
+import { AppText } from '../../../components/ui/app-text';
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileData }) => {
     const { t } = useTranslation();
@@ -78,7 +80,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
                     }} />
             </ShinyContainer>
 
-            {cardTitle ? <Text style={styles.cardTitle}>{cardTitle}</Text> : null}
+            {cardTitle ? <AppText variant='body1' color='primary' style={styles.cardTitle}>{cardTitle}</AppText> : null}
 
             <View style={styles.profileInfo}>
                 <View style={styles.infoRow}>
@@ -106,7 +108,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
                     <Text style={styles.infoLabel}>{t('profileCard.cityOfBirth')}</Text>
                     <Text style={styles.infoValue}>{profile.birth_city}</Text>
                 </View>
-                <View style={styles.infoRow}>
+                <View style={[styles.infoRow, { borderBottomWidth: 0 }]}>
                     <Text style={styles.infoLabel}>{t('profileCard.gender')}</Text>
                     <Text style={styles.infoValue}>{profile.gender}</Text>
                 </View>
@@ -117,17 +119,15 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
 
 const styles = StyleSheet.create({
     profileCard: {
-        backgroundColor: 'rgba(255, 200, 138, 0.22)',
+        backgroundColor: 'rgba(255, 255, 255, 0.08)',
         borderRadius: 10,
         padding: 20,
         marginTop: 32,
         marginBottom: 16,
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#E0D0C0',
     },
     cardTitle: {
-        marginTop: 12
+        marginTop: 12,
     },
     profileInfo: {
         width: '100%',
@@ -137,19 +137,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 8,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#D0C0B0',
+        paddingVertical: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#5B5441',
     },
     infoLabel: {
         fontSize: 14,
         fontFamily: fontFamilies.ARCHIVO.light,
-        color: '#666',
+        color: COLORS.neutral,
     },
     infoValue: {
         fontSize: 14,
         fontFamily: fontFamilies.ARCHIVO.light,
-        color: '#333',
+        color: COLORS.neutral,
         fontWeight: '500',
     },
 });

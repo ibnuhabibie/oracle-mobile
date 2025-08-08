@@ -33,9 +33,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 12,
         paddingLeft: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#F0F0F0',
-        backgroundColor: COLORS.white,
         paddingTop: 8,
     },
     backButton: {

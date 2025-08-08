@@ -14,6 +14,7 @@ import ScreenContainer from '../../../../components/layouts/screen-container';
 import api from '../../../../utils/http';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
+import { rgbaColor } from 'react-native-reanimated/lib/typescript/Colors';
 
 type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffinity'>;
 
@@ -74,7 +75,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             <AppText style={styles.title} color='primary' variant='subtitle1'>
                 {t("ASK AFFINITY")}
             </AppText>
-            <AppText style={styles.subtitle} variant='caption1'>{t('Unsure what to do next? Affinity is here to help —  ask anything.')}</AppText>
+            <AppText style={styles.subtitle} variant='caption1' color='white'>{t('Unsure what to do next? Affinity is here to help —  ask anything.')}</AppText>
             <Image
                 source={localImage}
                 style={{
@@ -87,12 +88,12 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             />
             <View style={styles.infoCard}>
                 <AppText color='primary'>{t('How to ask the question?')}</AppText>
-                <AppText style={{ lineHeight: 22 }} variant='caption3'>
+                <AppText style={{ lineHeight: 24 }} variant='caption3' color='white'>
                     {t('ask_affinity_instructions')}
                 </AppText>
             </View>
-            <View style={{ padding: 14 }}>
-                <AppText style={{ textAlign: 'center', marginTop: 36, marginBottom: 8 }}>{t('Type your question')}</AppText>
+            <View style={styles.formContainer}>
+                <AppText style={styles.formTitle} color='white'>{t('Type your question')}</AppText>
                 <AppInput
                     control={control}
                     name="question"
@@ -147,11 +148,17 @@ const styles = StyleSheet.create({
     },
     infoCard: {
         marginHorizontal: 16,
-        borderColor: COLORS.black,
-        borderWidth: 1,
         padding: 14,
         borderRadius: 8,
-        backgroundColor: COLORS.white
+        backgroundColor: 'rgba(255, 255, 255, 0.14)'
+    },
+    formContainer: {
+        padding: 12
+    },
+    formTitle: {
+        textAlign: 'center',
+        marginTop: 36,
+        marginBottom: 14
     }
 });
 

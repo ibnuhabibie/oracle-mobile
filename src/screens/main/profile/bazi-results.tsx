@@ -75,7 +75,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
         />
       }
     >
-      <ProfileCard iconKey={profile?.day_master?.icon} />
+      <ProfileCard iconKey={profile?.day_master?.icon} cardTitle='You' />
 
       {profile ? (
         <BaziCardList profile={profile} iconImages={iconImages} />
