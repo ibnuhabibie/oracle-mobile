@@ -7,6 +7,8 @@ import { COLORS } from "../../constants/colors";
 import { serviceTypeTranslationKeys } from "../../constants/app";
 import { AppButton } from "../../components/ui/app-button";
 import { useNavigation } from "@react-navigation/native";
+import { AppText } from "../../components/ui/app-text";
+import CloseIcon from "../../components/icons/close-icon";
 
 interface UsageReceiptModalProps {
   visible: boolean;
@@ -101,7 +103,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           <View style={styles.modalHeader}>
             <Text style={styles.modalTitle}>{t("usageReceiptModal.receipt")}</Text>
             <TouchableOpacity onPress={onClose}>
-              <Text style={styles.closeButtonText}>×</Text>
+              <CloseIcon />
             </TouchableOpacity>
           </View>
           {/* <View style={styles.modalRow}>
@@ -118,11 +120,11 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
               <Text style={styles.modalSectionTitle}>{t("usageReceiptModal.orderItems")}</Text>
               <View style={styles.modalRow}>
                 <View style={styles.modalItemIcon}>
-                  <CommentsIcon />
+                  <CommentsIcon color={COLORS.primary} />
                 </View>
                 <Text style={styles.modalItemName}>{getServiceTypeLabel(item.service_type)}</Text>
                 <View style={styles.modalItemPoints}>
-                  <Text>{item.credit_journal.credits_used}</Text>
+                  <AppText color="white" variant='caption2'>{item.credit_journal.credits_used}</AppText>
                   <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                 </View>
               </View>
@@ -130,7 +132,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
               <View style={styles.modalRow}>
                 <Text style={styles.modalLabel}>{t("usageReceiptModal.previousPoints")}</Text>
                 <View style={styles.modalItemPoints}>
-                  <Text>{item.credit_journal.credits_before}</Text>
+                  <AppText color="white" variant='caption2'>{item.credit_journal.credits_before}</AppText>
                   <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                 </View>
               </View>
@@ -144,7 +146,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
               <View style={styles.modalRow}>
                 <Text style={styles.modalLabel}>{t("usageReceiptModal.remainingPoints")}</Text>
                 <View style={styles.modalItemPoints}>
-                  <Text>{item.credit_journal.credits_after}</Text>
+                  <AppText color="white" variant='caption2'>{item.credit_journal.credits_after}</AppText>
                   <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                 </View>
               </View>
@@ -170,12 +172,14 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.4)",
+    backgroundColor: 'rgba(30,30,30,0.8)',
     justifyContent: "center",
     alignItems: "center",
   },
   modalContent: {
-    backgroundColor: "#fff",
+    backgroundColor: '#3F3F3F80',
+    borderWidth: 1,
+    borderColor: COLORS.neutral,
     borderRadius: 16,
     padding: 20,
     width: "90%",
@@ -195,12 +199,6 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "center",
   },
-  closeButtonText: {
-    fontSize: 24,
-    color: "#222",
-    paddingHorizontal: 8,
-    fontWeight: "bold",
-  },
   modalRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -208,12 +206,12 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   modalLabel: {
-    color: "#888",
+    color: COLORS.neutral,
     fontSize: 14,
     flex: 1,
   },
   modalValue: {
-    color: "#222",
+    color: COLORS.white,
     fontSize: 14,
     fontWeight: "600",
     flex: 1,
@@ -227,19 +225,18 @@ const styles = StyleSheet.create({
   modalSectionTitle: {
     fontSize: 15,
     fontWeight: "bold",
-    color: "#222",
+    color: COLORS.neutral,
     marginBottom: 6,
   },
   modalItemIcon: {
     marginRight: 8,
     padding: 8,
-    borderWidth: 1,
-    borderColor: COLORS.neutral,
-    borderRadius: 8
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF22'
   },
   modalItemName: {
     fontSize: 15,
-    color: "#222",
+    color: COLORS.neutral,
     flex: 1,
   },
   modalItemPoints: {

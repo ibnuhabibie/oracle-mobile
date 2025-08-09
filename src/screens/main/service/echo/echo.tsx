@@ -121,7 +121,7 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                 }
             />
             <View style={{ marginTop: 14 }}>
-                <AppText>{t('Recent Diaries')}</AppText>
+                <AppText color='neutral'>{t('Recent Diaries')}</AppText>
                 {loading ? (
                     <AppText style={{ marginTop: 8 }}>{t('Loading...')}</AppText>
                 ) : error && error !== 'No diary found.' ? (
@@ -133,10 +133,10 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                                 <CalendarIcon />
                             </View>
                             <View style={{ flex: 1 }}>
-                                <AppText variant='caption1'>
+                                <AppText variant='caption1' color='light-gray'>
                                     {diary.diary_date}
                                 </AppText>
-                                <AppText variant='body1'>
+                                <AppText variant='body1' color='neutral'>
                                     {diary.content}
                                 </AppText>
                             </View>
@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
         flexDirection: 'row',
         gap: 14,
+        backgroundColor: 'rgba(255,255,255,0.13)'
         // alignItems: 'center',
     },
     diaryIconContainer: {

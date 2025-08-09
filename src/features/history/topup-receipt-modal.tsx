@@ -3,6 +3,8 @@ import { Modal, SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from "r
 import CoinIcon from "../../components/icons/profile/coin-icon";
 import { formatDateTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
+import { COLORS } from "../../constants/colors";
+import CloseIcon from "../../components/icons/close-icon";
 
 interface TopupReceiptModalProps {
     visible: boolean;
@@ -29,7 +31,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                     <View style={styles.modalHeader}>
                         <Text style={styles.modalTitle}>{t("RECEIPT")}</Text>
                         <TouchableOpacity onPress={onClose}>
-                            <Text style={styles.closeButtonText}>×</Text>
+                            <CloseIcon />
                         </TouchableOpacity>
                     </View>
                     <View style={styles.modalRow}>
@@ -99,7 +101,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                             (
                                 <>
                                     <View style={{ marginVertical: 16 }}>
-                                        <Text style={{ textAlign: "center", color: "#888", fontSize: 15 }}>
+                                        <Text style={{ textAlign: "center", color: COLORS.neutral, fontSize: 15 }}>
                                             {t("PAYMENT NOT COMPLETED")}
                                         </Text>
                                     </View>
@@ -115,13 +117,15 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
 const styles = StyleSheet.create({
     modalContainer: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'rgba(30,30,30,0.8)',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center'
     },
     modalContent: {
-        backgroundColor: "#fff",
+        backgroundColor: '#3F3F3F80',
+        borderWidth: 1,
+        borderColor: COLORS.neutral,
         borderRadius: 16,
         padding: 20,
         width: "90%",
@@ -136,17 +140,12 @@ const styles = StyleSheet.create({
     },
     modalTitle: {
         fontSize: 18,
-        fontWeight: "bold",
-        color: "#222",
-        letterSpacing: 1,
+        fontWeight: "light",
+        color: COLORS.primary,
+        letterSpacing: 1.3,
         flex: 1,
         textAlign: "center",
-    },
-    closeButtonText: {
-        fontSize: 28,
-        color: "#999",
-        paddingHorizontal: 8,
-        fontWeight: "bold",
+        textTransform: 'uppercase'
     },
     modalRow: {
         flexDirection: "row",
@@ -155,12 +154,11 @@ const styles = StyleSheet.create({
         marginVertical: 4,
     },
     modalLabel: {
-        color: "#888",
+        color: COLORS.neutral,
         fontSize: 14,
-        flex: 1,
     },
     modalValue: {
-        color: "#222",
+        color: COLORS.white,
         fontSize: 14,
         fontWeight: "600",
         flex: 1,
@@ -169,13 +167,13 @@ const styles = StyleSheet.create({
     },
     modalSectionDivider: {
         height: 1,
-        backgroundColor: "#F0F0F0",
+        backgroundColor: "#686868",
         marginVertical: 10,
     },
     modalSectionTitle: {
         fontSize: 15,
         fontWeight: "bold",
-        color: "#222",
+        color: COLORS.neutral,
         marginBottom: 6,
     },
     modalItemIcon: {
@@ -183,24 +181,24 @@ const styles = StyleSheet.create({
     },
     modalItemQty: {
         fontSize: 15,
-        color: "#222",
+        color: COLORS.neutral,
         flex: 1,
     },
     modalItemPrice: {
         fontSize: 15,
-        color: "#222",
+        color: COLORS.neutral,
         fontWeight: "600",
         marginLeft: 8,
     },
     modalTotalLabel: {
         fontSize: 15,
-        color: "#888",
+        color: COLORS.neutral,
         fontWeight: "bold",
         marginRight: 4,
     },
     modalTotalValue: {
         fontSize: 15,
-        color: "#222",
+        color: COLORS.neutral,
         fontWeight: "bold",
     },
     modalPoints: {

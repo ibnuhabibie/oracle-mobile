@@ -50,7 +50,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
                 <View key={item.conversation_id} style={[styles.messageRow]}>
                   <View style={[
                     styles.avatarCircle,
-                    { backgroundColor: isUser ? COLORS.white : COLORS.primary }
+                    { backgroundColor: isUser ? 'rgba(255,255,255,0.24)' : COLORS.primary }
                   ]}>
                     {
                       isUser ? (
@@ -67,7 +67,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
                       : styles.bubbleAI
                   ]}>
                     {!isUser && <AppText style={{ fontWeight: 'bold', color: 'white' }}>{t("chatArea.geenieSays")}</AppText>}
-                    <AppText style={[styles.bubbleText, !isUser && { color: '#fff' }]}>{item.content}</AppText>
+                    <AppText style={[styles.bubbleText, !isUser && { color: COLORS.white }]}>{item.content}</AppText>
                   </View>
                   {
                     lastMessage &&
@@ -108,15 +108,13 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: COLORS.white,
-    borderColor: COLORS.primary,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 8,
+    marginTop: 8
   },
   avatarText: {
-    color: '#BDBDBD',
+    color: COLORS.neutral,
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -135,9 +133,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 14,
     borderRadius: 16,
-    borderWidth: 1,
-    borderColor: COLORS.primary,
-    backgroundColor: COLORS.white,
+    backgroundColor: 'rgba(255,255,255,0.28)',
   },
   bubbleUser: {
     marginLeft: 0,
@@ -148,7 +144,8 @@ const styles = StyleSheet.create({
   },
   bubbleText: {
     fontSize: 15,
-    color: '#222',
+    color: COLORS.neutral,
+    lineHeight: 18
   },
 });
 

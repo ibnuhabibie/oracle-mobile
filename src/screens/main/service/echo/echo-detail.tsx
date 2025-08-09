@@ -167,12 +167,9 @@ const styles = StyleSheet.create({
   dateSeparator: {
     alignItems: 'center',
     paddingVertical: 12,
-    backgroundColor: COLORS.white,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
   },
   dateSeparatorText: {
-    color: '#BDBDBD',
+    color: COLORS.neutral,
     fontSize: 13,
     paddingHorizontal: 16,
     paddingVertical: 2,
@@ -182,16 +179,13 @@ const styles = StyleSheet.create({
   inputBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
-    padding: 12,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
   },
   input: {
     flex: 1,
     height: 'auto',
-    borderRadius: 20,
-    backgroundColor: COLORS.white,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.13)',
     borderWidth: 1,
     borderColor: COLORS.black,
     paddingHorizontal: 16,

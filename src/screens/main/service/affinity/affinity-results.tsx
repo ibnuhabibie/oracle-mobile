@@ -17,6 +17,7 @@ import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
 import { useTranslation } from 'react-i18next';
+import Header from '../../../../components/ui/header';
 
 type AffinityResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AffinityResults'>;
 
@@ -144,7 +145,7 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
                 <AppText variant='subtitle1' color='primary' style={styles.resultTitle}>
                     {card.card} {card.orientation ? `(${card.orientation})` : ''}
                 </AppText>
-                <AppText variant='caption2' style={styles.resultCardContent}>
+                <AppText variant='caption2' style={styles.resultCardContent} color='neutral'>
                     {card.result}
                 </AppText>
             </View>
@@ -154,14 +155,10 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
     return (
         <ScreenContainer
             header={
-                <View style={styles.header}>
-                    <Pressable
-                        onPress={() => navigation.goBack()}
-                        style={styles.backButton}>
-                        <ArrowIcon />
-                    </Pressable>
-                    <Text style={styles.headerTitle}>{t('Ask Affinity')}</Text>
-                </View>
+                <Header
+                    title={t("Ask Affinity")}
+                    onBack={() => navigation.goBack()}
+                />
             }
         >
             <View style={styles.resultContainer}>
@@ -182,9 +179,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 12,
         paddingLeft: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#F0F0F0',
-        backgroundColor: COLORS.white,
         paddingTop: 8,
     },
     backButton: {
@@ -212,10 +206,12 @@ const styles = StyleSheet.create({
         padding: 12,
         borderColor: COLORS.black,
         borderRadius: 12,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: 'rgba(255,255,255,0.14)'
     },
     resultCardContent: {
         textAlign: 'center',
+        lineHeight: 18
     }
 });
 
