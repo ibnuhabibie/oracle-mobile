@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333',
+        color: COLORS.white,
         marginLeft: 20,
         textAlign: 'center',
         fontFamily: fontFamilies.ARCHIVO.light,

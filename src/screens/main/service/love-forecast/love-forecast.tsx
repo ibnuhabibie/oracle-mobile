@@ -132,7 +132,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         />
       }
     >
-      <AppText variant='subtitle1' style={styles.title}>{t('loveForecast.title')}</AppText>
+      <AppText variant='subtitle1' style={styles.title} color='white'>{t('loveForecast.title')}</AppText>
       <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
         <Image source={require('../../../../assets/icons/services/love-forecast/service-icon.png')} />
       </ShinyContainer>
@@ -153,7 +153,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
                   <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
                 </ShinyContainer>
               </View>
-              <AppText style={styles.cardLabel} color='primary'>{card.label}</AppText>
+              <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
             </View>
           ))
         }
@@ -196,12 +196,12 @@ const styles = StyleSheet.create({
   },
   description: {
     textAlign: 'center',
-    marginBottom: 18,
+    marginVertical: 22,
     lineHeight: 18,
   },
   sectionTitle: {
     textAlign: 'center',
-    marginBottom: 16,
+    marginVertical: 32,
     letterSpacing: 0.2,
   },
   grid: {
@@ -214,7 +214,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: COLORS.black,
-    width: '48%'
+    width: '48%',
+    backgroundColor: 'rgba(255,255,255,0.08)'
   },
   cardIconWrapper: {
     marginBottom: 10,

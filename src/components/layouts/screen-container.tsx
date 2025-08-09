@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   fixedHeader: {
     width: '100%',
     zIndex: 10,
-    backgroundColor: COLORS.white,
+    // backgroundColor: 't',
     // You may want to add shadow or elevation here for effect
   },
   floatingFooterContainer: {
@@ -275,8 +275,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: COLORS.white,
-    padding: 12,
+    backgroundColor: '#121010',
+    padding: 14,
     zIndex: 20,
     // Add shadow/elevation if needed
   },

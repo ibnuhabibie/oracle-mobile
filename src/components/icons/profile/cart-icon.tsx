@@ -5,7 +5,7 @@ import { COLORS } from '../../../constants/colors';
 const DEFAULT_COLOR = COLORS.neutral
 
 const CartIcon: React.FC<{ size?: number, color?: string }> = ({ size = 18, color = DEFAULT_COLOR }) => (
-  <Svg width={size} height={size} viewBox="0 0 19 18" fill="none">
+  <Svg width={size} height={size} viewBox="0 0 19 19" fill="none">
     <G clipPath="url(#clip0_97_17192)">
       <Path
         d="M4.66683 16.0006C5.40321 16.0006 6.00016 15.4037 6.00016 14.6673C6.00016 13.9309 5.40321 13.334 4.66683 13.334C3.93045 13.334 3.3335 13.9309 3.3335 14.6673C3.3335 15.4037 3.93045 16.0006 4.66683 16.0006Z"

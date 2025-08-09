@@ -120,7 +120,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 />
             }
         >
-            <AppText variant='subtitle1' style={styles.title}>{t('fortuneReport.title')}</AppText>
+            <AppText variant='subtitle1' style={styles.title} color='neutral'>{t('fortuneReport.title')}</AppText>
             <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
                 <Image source={require('../../../../assets/icons/services/fortune-report/service-icon.png')} />
             </ShinyContainer>
@@ -141,7 +141,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                                     <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
                                 </ShinyContainer>
                             </View>
-                            <AppText style={styles.cardLabel} variant='body1'>{card.title}</AppText>
+                            <AppText style={styles.cardLabel} variant='body1' color='white'>{card.title}</AppText>
                             <AppText color='primary' variant='caption2'>{card.subtitle}</AppText>
                         </View>
                     ))
@@ -206,7 +206,8 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderWidth: 1,
         borderColor: COLORS.black,
-        width: '48%'
+        width: '48%',
+        backgroundColor: 'rgba(255,255,255,0.08)'
     },
     cardIconWrapper: {
         marginBottom: 10,

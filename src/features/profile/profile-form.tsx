@@ -373,15 +373,16 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         marginTop: 16,
         fontFamily: fontFamilies.ARCHIVO.light,
-        color: '#333',
+        color: COLORS.neutral,
     },
     textField: {
         width: '100%',
         marginBottom: 0,
+        backgroundColor: 'rgba(255, 255, 255, 0.13)'
     },
     helperText: {
         fontSize: 12,
-        color: '#777',
+        color: COLORS.neutral,
         marginTop: 4,
         fontFamily: fontFamilies.ARCHIVO.light,
     },
@@ -412,7 +413,7 @@ const styles = StyleSheet.create({
     radioText: {
         fontSize: 16,
         fontFamily: fontFamilies.ARCHIVO.light,
-        color: '#333',
+        color: COLORS.neutral,
     },
 });
 

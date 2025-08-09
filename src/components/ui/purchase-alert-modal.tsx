@@ -92,7 +92,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
           </AppText>
           {isSufficient ? (
             <>
-              <AppText style={{ textAlign: 'center', lineHeight: 22 }}>
+              <AppText style={{ textAlign: 'center', lineHeight: 22 }} color='white'>
                 <Trans
                   i18nKey="purchaseAlert.askGeenie"
                   values={{ cost, service: getServiceTypeLabel(service) }}
@@ -116,7 +116,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
               <View style={styles.buttonGroup}>
                 <AppButton
                   title={t('purchaseAlert.continue')}
-                  variant="secondary"
+                  variant="primary"
                   onPress={onContinue}
                   loading={effectiveLoading}
                 />
@@ -166,12 +166,14 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    backgroundColor: 'rgba(30,30,30,0.35)',
+    backgroundColor: 'rgba(30,30,30,0.8)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContent: {
-    backgroundColor: COLORS.white,
+    backgroundColor: '#3F3F3F80',
+    borderWidth: 1,
+    borderColor: COLORS.neutral,
     borderRadius: 16,
     padding: 24,
     width: 320,

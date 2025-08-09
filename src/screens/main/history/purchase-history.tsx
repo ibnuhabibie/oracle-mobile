@@ -11,6 +11,7 @@ import TopupHistoryList from '../../../features/history/topup-history-list';
 import UsageHistoryList from '../../../features/history/usage-history-list';
 import TopupReceiptModal from '../../../features/history/topup-receipt-modal';
 import UsageReceiptModal from '../../../features/history/usage-receipt-modal';
+import { COLORS } from '../../../constants/colors';
 
 type PurchaseHistoryProps = NativeStackScreenProps<MainNavigatorParamList, 'PurchaseHistory'>;
 
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
   },
   activeTab: {
-    borderBottomColor: '#D4A574',
+    borderBottomColor: COLORS.primary,
   },
   tabText: {
     fontSize: 16,
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamilies.ARCHIVO.light,
   },
   activeTabText: {
-    color: '#333',
+    color: COLORS.white,
     fontWeight: '500',
   },
 });

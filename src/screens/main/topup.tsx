@@ -61,7 +61,7 @@ const PackageCardList: FC<{
     return (
         <View style={{ marginBottom: 24 }}>
             <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('OUR PACKAGES')}</AppText>
-            <AppText style={styles.sectionDesc}>{t('PACKAGES DESC')}</AppText>
+            <AppText style={styles.sectionDesc} color='neutral'>{t('PACKAGES DESC')}</AppText>
             <View style={{ marginTop: 12 }}>
                 {loading ? (
                     <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
@@ -79,13 +79,13 @@ const PackageCardList: FC<{
                         >
                             <RadioIndicator selected={selectedPackage === pkg.package_id} />
                             <View style={{ flex: 1 }}>
-                                <AppText style={styles.cardTitle}>{pkg.name}</AppText>
+                                <AppText style={styles.cardTitle} color='white'>{pkg.name}</AppText>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
-                                    <AppText style={styles.cardSubtitle}>{t('GET COINS', { count: pkg.credits })} </AppText>
+                                    <AppText style={styles.cardSubtitle} color='neutral'>{t('GET COINS', { count: pkg.credits })} </AppText>
                                     <Coin />
                                 </View>
                                 {pkg.description ? (
-                                    <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{pkg.description}</AppText>
+                                    <AppText style={[styles.cardSubtitle, { marginTop: 2 }]} color='neutral'>{pkg.description}</AppText>
                                 ) : null}
                             </View>
                             <AppText style={styles.cardPrice}>${parseFloat(pkg.price)}</AppText>
@@ -109,7 +109,7 @@ const SubscriptionCardList: FC<{
     return (
         <View>
             <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('OUR SUBSCRIPTIONS')}</AppText>
-            <AppText style={styles.sectionDesc}>
+            <AppText style={styles.sectionDesc} color='neutral'>
                 {t('SUBSCRIPTIONS DESC')}
             </AppText>
             <View style={{ marginTop: 12 }}>
@@ -129,13 +129,13 @@ const SubscriptionCardList: FC<{
                         >
                             <RadioIndicator selected={selectedSubscription === sub.subscription_id} />
                             <View style={{ flex: 1 }}>
-                                <AppText style={styles.cardTitle}>{sub.name}</AppText>
+                                <AppText style={styles.cardTitle} color='white'>{sub.name}</AppText>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
-                                    <AppText style={styles.cardSubtitle}>{t('GET COINS', { count: sub.credits })} </AppText>
+                                    <AppText style={styles.cardSubtitle} color='neutral'>{t('GET COINS', { count: sub.credits })} </AppText>
                                     <Coin type='gold' />
                                 </View>
                                 {sub.description ? (
-                                    <AppText style={[styles.cardSubtitle, { marginTop: 2 }]}>{sub.description}</AppText>
+                                    <AppText style={[styles.cardSubtitle, { marginTop: 2 }]} color='neutral'>{sub.description}</AppText>
                                 ) : null}
                             </View>
                             <AppText style={styles.cardPrice}>${parseFloat(sub.price)}</AppText>
@@ -252,7 +252,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             scrollable={true}
             floatingFooter={
                 (selectedPackage !== null || selectedSubscription !== null) && (
-                    <View style={{ padding: 12, backgroundColor: "#fff" }}>
+                    <View style={{  backgroundColor: "#121010" }}>
                         <AppButton
                             title={processing ? t("PROCESSING") : t("CONTINUE")}
                             variant="primary"
@@ -293,41 +293,37 @@ const styles = StyleSheet.create({
         marginBottom: 2,
     },
     sectionDesc: {
-        color: '#888',
         fontSize: 13,
         marginBottom: 2,
     },
     card: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: 'rgba(255,255,255,0.14)',
         borderRadius: 12,
-        borderWidth: 1,
-        borderColor: '#E5E5E5',
         padding: 16,
         marginBottom: 12,
+        borderWidth: 1,
+        borderColor: 'transparent'
     },
     cardSelected: {
         borderColor: '#D4A574',
-        backgroundColor: '#FDF7F0',
     },
     cardBestValue: {
-        borderColor: '#D4A574',
+        borderColor: COLORS.neutral,
         backgroundColor: '#FDF7F0',
     },
     cardTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#222',
     },
     cardSubtitle: {
         fontSize: 13,
-        color: '#888',
     },
     cardPrice: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#D4A574',
+        color: COLORS.primary,
         marginLeft: 12,
     },
     radioOuter: {
@@ -335,14 +331,14 @@ const styles = StyleSheet.create({
         height: 22,
         borderRadius: 11,
         borderWidth: 2,
-        borderColor: '#E5E5E5',
+        borderColor: 'rgba(255,255,255,0.14)',
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 14,
-        backgroundColor: '#fff',
+        backgroundColor: 'rgba(255,255,255,0.14)',
     },
     radioOuterSelected: {
-        borderColor: '#D4A574',
+        borderColor: COLORS.primary,
     },
     radioInner: {
         width: 10,

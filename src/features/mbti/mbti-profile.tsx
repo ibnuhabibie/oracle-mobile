@@ -51,8 +51,8 @@ class MBTIProfile extends React.Component {
                                     })()}
                                 </View>
                                 <View style={styles.cardHeaderText}>
-                                    <AppText variant='title3'>{profile?.name}</AppText>
-                                    <AppText variant='body1'>{profile?.description}</AppText>
+                                    <AppText variant='title3' color="neutral">{profile?.name}</AppText>
+                                    <AppText variant='body1' color="neutral">{profile?.description}</AppText>
                                 </View>
                             </View>
                         </View>
@@ -67,7 +67,7 @@ class MBTIProfile extends React.Component {
                         />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Strengths</AppText>
-                    <AppText variant='caption1' style={{ textAlign: 'center' }}>
+                    <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
                         {profile?.strengths.join(',')}
                     </AppText>
                 </View>
@@ -80,7 +80,7 @@ class MBTIProfile extends React.Component {
                         />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Weaknesses</AppText>
-                    <AppText variant='caption1' style={{ textAlign: 'center' }}>
+                    <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
                         {profile?.weaknesses.join(',')}
                     </AppText>
                 </View>
@@ -93,7 +93,7 @@ class MBTIProfile extends React.Component {
                         />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Relationships</AppText>
-                    <AppText variant='caption1' style={{ textAlign: 'center' }}>
+                    <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
                         {profile?.relationships}
                     </AppText>
                 </View>
@@ -106,7 +106,7 @@ class MBTIProfile extends React.Component {
                         />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Career</AppText>
-                    <AppText variant='caption1' style={{ textAlign: 'center' }}>
+                    <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
                         {profile?.career}
                     </AppText>
                 </View>
@@ -121,15 +121,13 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     card: {
-        backgroundColor: '#FFF',
+        backgroundColor: 'rgba(255,255,255,0.08)',
         borderRadius: 10,
         padding: 14,
         marginBottom: 16,
         marginTop: 16,
         gap: 12,
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#6A6A6A',
     },
     cardHeader: {
         flexDirection: 'row',

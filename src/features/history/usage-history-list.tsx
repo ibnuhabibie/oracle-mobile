@@ -6,6 +6,7 @@ import api from "../../utils/http";
 import { formatDateTime } from "../../utils/date";
 import { StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
+import { COLORS } from "../../constants/colors";
 
 interface UsageItem {
     usage_history_id: number;
@@ -40,14 +41,12 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         paddingVertical: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: "#F8F8F8",
     },
     iconContainer: {
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: "#F5F5F5",
+        backgroundColor: "rgba(255,255,255,0.2)",
         justifyContent: "center",
         alignItems: "center",
         marginRight: 16,
@@ -55,13 +54,13 @@ const styles = StyleSheet.create({
     serviceType: {
         fontSize: 16,
         fontWeight: "600",
-        color: "#333",
+        color: COLORS.neutral,
         marginBottom: 4,
         fontFamily: fontFamilies.ARCHIVO.light,
     },
     details: {
         fontSize: 14,
-        color: "#666",
+        color: COLORS.neutral,
         fontFamily: fontFamilies.ARCHIVO.light,
     },
     dateContainer: {

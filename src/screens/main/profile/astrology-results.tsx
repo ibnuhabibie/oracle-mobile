@@ -87,7 +87,7 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
         />
       }
     >
-      <ProfileCard iconKey={profile?.sun?.zodiac || ""} />
+      <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle='You' />
 
       {profile ? (
         <AstrologyCardList profile={profile} />
