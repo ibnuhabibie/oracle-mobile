@@ -24,6 +24,7 @@ import { iconMap } from '../../../screens/main/profile/useAffinityProfile';
 import { formatDateOfBirth, formatTimeOfBirth } from '../../../utils/date';
 import { COLORS } from '../../../constants/colors';
 import { AppText } from '../../../components/ui/app-text';
+import RelationIcon from '../../../components/icons/affinity/relation-icon';
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileData }) => {
     const { t } = useTranslation();
@@ -37,11 +38,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
         const fetchProfile = async () => {
             if (profileData) {
                 setProfile({
-                    full_name: profileData.name,
+                    full_name: profileData.full_name,
                     birth_date: profileData.birth_date,
-                    birth_country: profileData.birth_location.split(',')[0],
-                    birth_city: profileData.birth_location.split(',')[1],
-                    gender: profileData.gender == 'F' ? 'Female' : 'Male'
+                    birth_country: profileData.birth_country,
+                    birth_city: profileData.birth_city,
+                    gender: profileData.gender == 'F' ? 'Female' : profileData.gender == 'M' ? 'Male' : profileData.gender
                 })
             } else {
                 const data = await getUserProfile();
@@ -70,14 +71,19 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
 
     return (
         <View style={styles.profileCard}>
-            <ShinyContainer dark={false} size={160}>
-                <Image
-                    source={iconMap[iconKey]}
-                    style={{
-                        width: iconKey == 'relation' ? 40 : 80,
-                        height: iconKey == 'relation' ? 40 : 80,
-                        resizeMode: 'contain'
-                    }} />
+            <ShinyContainer size={160}>
+                {iconKey === 'relation' ? (
+                    <RelationIcon size={40} />
+                ) : (
+                    <Image
+                        source={iconMap[iconKey]}
+                        style={{
+                            width: 80,
+                            height: 80,
+                            resizeMode: 'contain'
+                        }}
+                    />
+                )}
             </ShinyContainer>
 
             {cardTitle ? <AppText variant='body1' color='primary' style={styles.cardTitle}>{cardTitle}</AppText> : null}

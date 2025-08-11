@@ -103,8 +103,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     } else if (content === 'privacy-policy') {
       title = 'Privacy Policy'
     }
+    
+    console.log(token)
+
     navigation.push('WebviewContent', {
-      uri: `${APP_URL}/content/${content}?token=${token}`,
+      uri: `${APP_URL}/content/${content}?v=1.0.0&token=${token}`,
       title,
     });
   };

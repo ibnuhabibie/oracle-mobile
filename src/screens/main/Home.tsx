@@ -9,6 +9,9 @@ import ScreenContainer from '../../components/layouts/screen-container';
 import ProfileDashboard from '../../features/profile/profile-dashboard';
 import { AppText } from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/shiny-container';
+import LoveReportIcon from '../../components/icons/services/love-report/love-report-icon';
+import FortuneReportIcon from '../../components/icons/services/fortune-report/fortune-report-icon';
+import RelationReportIcon from '../../components/icons/services/relation-report/relation-report-icon';
 
 type HomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Home'>;
 
@@ -62,8 +65,10 @@ const Home: FC<HomeProps> = ({ navigation }) => {
         renderItem={({ item, isCenter }) => (
           <>
             <View style={styles.cardImageContainer}>
-              <ShinyContainer dark={false} size={190}>
-                <Image source={item.image} />
+              <ShinyContainer size={190}>
+                {item.id === 'love' && <LoveReportIcon size={60} />}
+                {item.id === 'fortune' && <FortuneReportIcon size={60} />}
+                {item.id === 'relation' && <RelationReportIcon size={60} />}
               </ShinyContainer>
             </View>
             <View style={{ padding: 12 }}>

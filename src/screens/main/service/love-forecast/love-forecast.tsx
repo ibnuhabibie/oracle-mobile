@@ -20,6 +20,15 @@ import { useServiceCost } from '../../../../hooks/use-service-cost';
 import CoinIcon from '../../../../components/icons/profile/coin-icon';
 import api from '../../../../utils/http';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
+import LoveReportIcon from '../../../../components/icons/services/love-report/love-report-icon';
+import LoveReportIcon1 from '../../../../components/icons/services/love-report/love-report-icon-1';
+import LoveReportIcon2 from '../../../../components/icons/services/love-report/love-report-icon-2';
+import LoveReportIcon3 from '../../../../components/icons/services/love-report/love-report-icon-3';
+import LoveReportIcon4 from '../../../../components/icons/services/love-report/love-report-icon-4';
+import LoveReportIcon5 from '../../../../components/icons/services/love-report/love-report-icon-5';
+import LoveReportIcon6 from '../../../../components/icons/services/love-report/love-report-icon-6';
+import LoveReportIcon7 from '../../../../components/icons/services/love-report/love-report-icon-7';
+import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
 
 type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveForecast'>;
 
@@ -30,35 +39,35 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
 
   const CARD_DATA = [
     {
-      icon: require('../../../../assets/icons/services/love-forecast/icon-1.png'),
+      icon: LoveReportIcon1,
       label: t('loveForecast.cards.intro')
     },
     {
-      icon: require('../../../../assets/icons/services/love-forecast/icon-2.png'),
+      icon: LoveReportIcon2,
       label: t('loveForecast.cards.lacking')
     },
     {
-      icon: require('../../../../assets/icons/services/love-forecast/icon-3.png'),
+      icon: LoveReportIcon3,
       label: t('loveForecast.cards.lookout')
     },
     {
-      icon: require('../../../../assets/icons/services/love-forecast/icon-4.png'),
+      icon: LoveReportIcon4,
       label: t('loveForecast.cards.suits')
     },
     {
-      icon: require('../../../../assets/icons/services/love-forecast/icon-5.png'),
+      icon: LoveReportIcon5,
       label: t('loveForecast.cards.outlook')
     },
     {
-      icon: require('../../../../assets/icons/services/love-forecast/icon-6.png'),
+      icon: LoveReportIcon6,
       label: t('loveForecast.cards.where')
     },
     {
-      icon: require('../../../../assets/icons/services/love-forecast/icon-7.png'),
+      icon: LoveReportIcon7,
       label: t('loveForecast.cards.questions')
     },
     {
-      icon: require('../../../../assets/icons/services/love-forecast/icon-8.png'),
+      icon: LoveReportIcon8,
       label: t('loveForecast.cards.conclusion')
     },
   ];
@@ -133,8 +142,8 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
       }
     >
       <AppText variant='subtitle1' style={styles.title} color='white'>{t('loveForecast.title')}</AppText>
-      <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
-        <Image source={require('../../../../assets/icons/services/love-forecast/service-icon.png')} />
+      <ShinyContainer size={220} style={{ marginVertical: 20 }}>
+        <LoveReportIcon />
       </ShinyContainer>
       <AppText style={styles.subtitle} variant='title4' color='primary'>
         {t('loveForecast.subtitle')}
@@ -150,7 +159,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
             <View key={idx} style={styles.card}>
               <View style={styles.cardIconWrapper}>
                 <ShinyContainer dark={false}>
-                  <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
+                  {React.createElement(card.icon, { size: 44, color: 'white' })}
                 </ShinyContainer>
               </View>
               <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>

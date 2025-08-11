@@ -8,6 +8,14 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import ProfileItemCard from '../../../../features/profile/report/profile-item-card';
 import { AppButton } from '../../../../components/ui/app-button';
+import LoveReportIcon1 from '../../../../components/icons/services/love-report/love-report-icon-1';
+import LoveReportIcon2 from '../../../../components/icons/services/love-report/love-report-icon-2';
+import LoveReportIcon3 from '../../../../components/icons/services/love-report/love-report-icon-3';
+import LoveReportIcon4 from '../../../../components/icons/services/love-report/love-report-icon-4';
+import LoveReportIcon5 from '../../../../components/icons/services/love-report/love-report-icon-5';
+import LoveReportIcon6 from '../../../../components/icons/services/love-report/love-report-icon-6';
+import LoveReportIcon7 from '../../../../components/icons/services/love-report/love-report-icon-7';
+import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
 
 type LoveReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveReportResult'>;
 
@@ -18,14 +26,14 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
     console.log(result)
 
     const iconImages = [
-        require('../../../../assets/icons/reports/love-forecast/icon-1.png'),
-        require('../../../../assets/icons/reports/love-forecast/icon-2.png'),
-        require('../../../../assets/icons/reports/love-forecast/icon-3.png'),
-        require('../../../../assets/icons/reports/love-forecast/icon-4.png'),
-        require('../../../../assets/icons/reports/love-forecast/icon-5.png'),
-        require('../../../../assets/icons/reports/love-forecast/icon-6.png'),
-        require('../../../../assets/icons/reports/love-forecast/icon-7.png'),
-        require('../../../../assets/icons/reports/love-forecast/icon-8.png'),
+        LoveReportIcon1,
+        LoveReportIcon2,
+        LoveReportIcon3,
+        LoveReportIcon4,
+        LoveReportIcon5,
+        LoveReportIcon6,
+        LoveReportIcon7,
+        LoveReportIcon8,
     ];
 
     // Format date_range if present, else fallback
@@ -50,18 +58,14 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
             <>
                 {
                     content.map((item, idx) => (
-                        <ProfileItemCard
+                    <ProfileItemCard
                             key={item.order || idx}
                             data={{
                                 title: item.title,
                                 description: item.content,
-                                icon: iconImages[item.order - 1] ? (
-                                    <Image
-                                        source={iconImages[item.order - 1]}
-                                        style={{ width: 65, height: 65 }}
-                                        resizeMode="contain"
-                                    />
-                                ) : undefined,
+                                icon: iconImages[item.order - 1]
+                                    ? React.createElement(iconImages[item.order - 1], { size: 65 })
+                                    : undefined,
                             }}
                         />
                     ))

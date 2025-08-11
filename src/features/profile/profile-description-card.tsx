@@ -38,11 +38,9 @@ const ProfileDescriptionCard: React.FC<ProfileDescriptionCardProps> = ({ data })
 
 const styles = StyleSheet.create({
     card: {
-        borderWidth: 1,
-        borderColor: "#E5E5E5",
         borderRadius: 8,
         padding: 16,
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255,255,255,0.14)",
         marginVertical: 12,
         width: '100%'
     },
@@ -58,20 +56,20 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
     },
     label: {
-        color: "#222",
+        color: COLORS.neutral,
         fontSize: 14,
         fontWeight: "400",
         flex: 1.6,
     },
     value: {
-        color: "#222",
+        color: COLORS.neutral,
         fontSize: 14,
         fontWeight: "400",
         flex: 2,
     },
     separator: {
         height: 1,
-        backgroundColor: "#F0F0F0",
+        backgroundColor: COLORS["dark-gray"],
         marginVertical: 2,
     },
 });

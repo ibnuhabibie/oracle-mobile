@@ -20,6 +20,12 @@ import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import api from '../../../../utils/http';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 import { useTranslation } from 'react-i18next';
+import RelationReportIcon from '../../../../components/icons/services/relation-report/relation-report-icon';
+import RelationReportIcon1 from '../../../../components/icons/services/relation-report/relation-report-icon-1';
+import RelationReportIcon2 from '../../../../components/icons/services/relation-report/relation-report-icon-2';
+import RelationReportIcon3 from '../../../../components/icons/services/relation-report/relation-report-icon-3';
+import RelationReportIcon4 from '../../../../components/icons/services/relation-report/relation-report-icon-4';
+import RelationIcon from '../../../../components/icons/affinity/relation-icon';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -30,19 +36,23 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
 
     const CARD_DATA = [
         {
-            icon: require('../../../../assets/icons/services/relation-report/icon-1.png'),
+            icon: RelationReportIcon1,
+            iconKey: 'perspective',
             label: t('relationReport.cards.perspective')
         },
         {
-            icon: require('../../../../assets/icons/services/relation-report/icon-2.png'),
+            icon: RelationReportIcon2,
+            iconKey: 'seeYou',
             label: t('relationReport.cards.seeYou')
         },
         {
-            icon: require('../../../../assets/icons/services/relation-report/icon-3.png'),
+            icon: RelationReportIcon3,
+            iconKey: 'kindOfPerson',
             label: t('relationReport.cards.kindOfPerson')
         },
         {
-            icon: require('../../../../assets/icons/services/relation-report/icon-4.png'),
+            icon: RelationReportIcon4,
+            iconKey: 'traits',
             label: t('relationReport.cards.traits')
         },
     ];
@@ -149,8 +159,8 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             }
         >
             <AppText variant='subtitle1' style={styles.title} color='neutral'>{t('relationReport.title')}</AppText>
-            <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
-                <Image source={require('../../../../assets/icons/services/relation-report/service-icon.png')} />
+            <ShinyContainer size={220} style={{ marginVertical: 20 }}>
+                <RelationReportIcon />
             </ShinyContainer>
             <AppText style={styles.subtitle} variant='title4' color='primary'>
                 {t('relationReport.subtitle')}
@@ -166,8 +176,10 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                     CARD_DATA.map((card, idx) => (
                         <View key={idx} style={styles.card}>
                             <View style={styles.cardIconWrapper}>
-                                <ShinyContainer dark={false}>
-                                    <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
+                                <ShinyContainer>
+                                    {card.iconKey === 'relation'
+                                        ? <RelationIcon size={44} />
+                                        : React.createElement(card.icon, { size: 44 })}
                                 </ShinyContainer>
                             </View>
                             <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>

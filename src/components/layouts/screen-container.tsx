@@ -32,33 +32,40 @@ const STAR_COLORS = ['#FFF8E1', '#FFE082', '#FFD700', '#FFF', '#F0EAD6'];
 const getRandom = (min: number, max: number) =>
   Math.random() * (max - min) + min;
 
-const StarField: React.FC = () => {
+const TWINKLE_DURATION = 2500; // ms, steady twinkle speed
+const METEOR_SPEED = 1800; // ms, steady meteor speed
+
+const StarField: React.FC = React.memo(() => {
   // Each star: { left, top, size, color, twinkleAnim }
-  const stars = useRef(
-    Array.from({ length: NUM_STARS }).map(() => {
-      const left = getRandom(0, width);
-      const top = getRandom(0, height);
-      const size = getRandom(STAR_MIN_SIZE, STAR_MAX_SIZE);
-      const color = STAR_COLORS[Math.floor(getRandom(0, STAR_COLORS.length))];
-      const twinkleAnim = new Animated.Value(getRandom(0.2, 1));
-      return { left, top, size, color, twinkleAnim };
-    })
-  ).current;
+  const stars = React.useMemo(
+    () =>
+      Array.from({ length: NUM_STARS }).map(() => {
+        const left = getRandom(0, width);
+        const top = getRandom(0, height);
+        const size = getRandom(STAR_MIN_SIZE, STAR_MAX_SIZE);
+        const color = STAR_COLORS[Math.floor(getRandom(0, STAR_COLORS.length))];
+        const twinkleAnim = new Animated.Value(getRandom(0.2, 1));
+        return { left, top, size, color, twinkleAnim };
+      }),
+    []
+  );
 
   // Meteor logic
   const NUM_METEORS = 2;
-  const meteors = useRef(
-    Array.from({ length: NUM_METEORS }).map(() => ({
-      startX: getRandom(width * 0.3, width * 0.7),
-      startY: getRandom(-height * 0.05, height * 0.2),
-      length: getRandom(80, 140),
-      angle: getRandom(18, 28), // degrees, for a diagonal streak
-      anim: new Animated.Value(0),
-      opacity: new Animated.Value(0),
-      speed: getRandom(1200, 2200),
-      delay: getRandom(0, 4000),
-    }))
-  ).current;
+  const meteors = React.useMemo(
+    () =>
+      Array.from({ length: NUM_METEORS }).map(() => ({
+        startX: getRandom(width * 0.3, width * 0.7),
+        startY: getRandom(-height * 0.05, height * 0.2),
+        length: getRandom(80, 140),
+        angle: getRandom(18, 28), // degrees, for a diagonal streak
+        anim: new Animated.Value(0),
+        opacity: new Animated.Value(0),
+        speed: METEOR_SPEED,
+        delay: getRandom(0, 4000),
+      })),
+    []
+  );
 
   // Global offset for all stars (diagonal movement)
   const globalOffset = useRef(new Animated.Value(0)).current;
@@ -79,12 +86,12 @@ const StarField: React.FC = () => {
         Animated.sequence([
           Animated.timing(star.twinkleAnim, {
             toValue: 0.2,
-            duration: getRandom(1200, 2200),
+            duration: TWINKLE_DURATION,
             useNativeDriver: true,
           }),
           Animated.timing(star.twinkleAnim, {
             toValue: 1,
-            duration: getRandom(1200, 2200),
+            duration: TWINKLE_DURATION,
             useNativeDriver: true,
           }),
         ])
@@ -98,7 +105,7 @@ const StarField: React.FC = () => {
         meteor.startY = getRandom(-height * 0.05, height * 0.2);
         meteor.length = getRandom(80, 140);
         meteor.angle = getRandom(18, 28);
-        meteor.speed = getRandom(1200, 2200);
+        meteor.speed = METEOR_SPEED;
         meteor.delay = getRandom(0, 4000);
         meteor.anim.setValue(0);
         meteor.opacity.setValue(0);
@@ -107,7 +114,7 @@ const StarField: React.FC = () => {
           Animated.parallel([
             Animated.timing(meteor.anim, {
               toValue: 1,
-              duration: meteor.speed,
+              duration: METEOR_SPEED,
               useNativeDriver: true,
             }),
             Animated.sequence([
@@ -118,7 +125,7 @@ const StarField: React.FC = () => {
               }),
               Animated.timing(meteor.opacity, {
                 toValue: 0,
-                duration: meteor.speed - 100,
+                duration: METEOR_SPEED - 100,
                 useNativeDriver: true,
               }),
             ]),
@@ -157,7 +164,7 @@ const StarField: React.FC = () => {
               width: meteor.length,
               height: 1,
               borderRadius: 0.5,
-              backgroundColor: 'rgba(255,255,255,0.85)',
+              backgroundColor: COLORS.primary,
               opacity: meteor.opacity,
               transform: [
                 { translateX },
@@ -209,7 +216,7 @@ const StarField: React.FC = () => {
       })}
     </View>
   );
-};
+});
 
 const ScreenContainer: React.FC<ScreenContainerProps> = ({
   children,
@@ -257,7 +264,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
       )}
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   safeArea: {

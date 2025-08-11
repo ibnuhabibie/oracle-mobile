@@ -20,8 +20,6 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
       const language = await AsyncStorage.getItem('language');
       console.log(language, 'language');
 
-      // navigation.navigate('MbtiQuiz');
-
       if (!language) {
         navigation.navigate('SignIn');
       } else {
