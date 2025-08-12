@@ -103,7 +103,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     } else if (content === 'privacy-policy') {
       title = 'Privacy Policy'
     }
-    
+
     console.log(token)
 
     navigation.push('WebviewContent', {
@@ -204,12 +204,12 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         !user?.mbti_profile &&
         (
           < View style={styles.mbtiQuizSection}>
-            <CommentUserIcon />
-            <View style={{ flex: 1 }}>
-              <AppText variant='caption1'>What’s your MBTI?</AppText>
-              <AppText variant='tiny1'>Quick test to discover your type!</AppText>
+            <CommentUserIcon size={26} />
+            <View style={{ flex: 1, marginLeft: 4 }}>
+              <AppText variant='caption1' color='neutral'>What’s your MBTI?</AppText>
+              <AppText variant='tiny1' color='neutral'>Quick test to discover your type!</AppText>
             </View>
-            <AppButton style={{ width: 'auto' }} variant='primary' title='Find Out' size='small' onPress={handleCompleteQuiz} />
+            <AppButton style={{ width: '100' }} variant='primary' title='Find Out' size='small' onPress={handleCompleteQuiz} />
           </View>
         )
       }
@@ -428,7 +428,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 12,
     alignItems: 'center',
-    gap: 8
+    gap: 8,
+    backgroundColor: 'rgba(255,255,255,0.14)'
   }
 });
 

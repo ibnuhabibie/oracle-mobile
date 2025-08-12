@@ -12,6 +12,7 @@ import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 import { MainNavigatorParamList } from '../../navigators/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SMSIcon from '../../components/icons/auth/sms-icon';
 
 type OtpSuccessProps = NativeStackScreenProps<MainNavigatorParamList, 'OtpSuccess'>;
 
@@ -44,7 +45,7 @@ const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
         <View
           style={{ width: '100%', alignItems: 'center', paddingHorizontal: 40 }}>
           <ShinyContainer>
-            <CheckmarkIcon size={90} />
+            <SMSIcon />
           </ShinyContainer>
           <AppText style={styles.title}>{t('VERIFICATION SUCCESS')}</AppText>
           <AppText style={styles.subtitle} color='white'>

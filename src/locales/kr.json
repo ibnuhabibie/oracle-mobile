@@ -156,6 +156,7 @@
     "FILL ALL OTP FIELDS": "모든 OTP 칸을 입력해 주세요.",
     "DIDNT RECEIVE CODE": "코드를 받지 못하셨나요?",
     "RESEND": "재전송",
+    "OTP RESENT SUCCESSFULLY": "OTP 코드가 성공적으로 재전송되었습니다.",
     "Fill in your details": "정보를 입력하세요",
     "Select Country": "국가 선택",
     "Select City": "도시 선택",

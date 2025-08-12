@@ -12,11 +12,13 @@ import { AppButton } from "../../components/ui/app-button";
 import { AuthFormProps } from "./signin-form";
 import AppInput from "../../components/ui/app-input";
 import PasswordToggle from "../../components/ui/password-toggle";
+import { useAsyncStorage } from "../../hooks/use-storage";
 
 const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { t } = useTranslation();
+    const { sync } = useAsyncStorage();
 
     const {
         control,
@@ -68,6 +70,8 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             console.log('Sign up data:', data);
             const res = await api.post('/v1/users/register', data)
             await AsyncStorage.setItem('auth_token', res.data.token);
+
+            await sync();
 
             // navigation.navigate('Otp', { email: res.data.email });
             onSuccess(res.data.email)

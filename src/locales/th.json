@@ -178,6 +178,7 @@
     "FILL ALL OTP FIELDS": "กรุณากรอก OTP ให้ครบทุกช่อง",
     "DIDNT RECEIVE CODE": "ไม่ได้รับรหัสใช่ไหม?",
     "RESEND": "ส่งใหม่",
+    "OTP RESENT SUCCESSFULLY": "ส่งรหัส OTP ใหม่สำเร็จแล้ว",
     "Fill in your details": "กรอกรายละเอียดของคนที่คุณสนใจ",
     "Select Country": "เลือกประเทศ",
     "Select City": "เลือกเมือง",

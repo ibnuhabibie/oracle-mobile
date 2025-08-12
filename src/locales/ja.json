@@ -178,6 +178,7 @@
     "FILL ALL OTP FIELDS": "すべてのOTP欄を入力してください。",
     "DIDNT RECEIVE CODE": "コードが届いていませんか？",
     "RESEND": "再送信",
+    "OTP RESENT SUCCESSFULLY": "OTPコードが正常に再送信されました。",
     "Fill in your details": "お相手の詳細を入力してください",
     "Select Country": "国を選択",
     "Select City": "都市を選択",

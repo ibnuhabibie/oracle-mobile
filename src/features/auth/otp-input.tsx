@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         textAlign: 'center',
         fontSize: 20,
-        color: COLORS.black
+        color: COLORS.neutral
     },
     inputError: {
         borderColor: COLORS.red,

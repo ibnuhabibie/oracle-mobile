@@ -3,6 +3,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { Alert, Keyboard, StyleSheet, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
 
 import SMSIcon from '../../components/icons/auth/sms-icon';
 import ScreenContainer from '../../components/layouts/screen-container';
@@ -45,15 +46,24 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
   const resendOtp = async () => {
     try {
       start()
-      await api.post('/v1/users/resend-otp', { email });
+      const res = await api.post('/v1/users/resend-otp', { email });
       otpInputRef.current?.reset();
 
       const storedProfile = await AsyncStorage.getItem('user_profile');
       const profile = JSON.parse(storedProfile);
+      console.log(profile, res)
+
       profile.is_email_verified = true;
       await AsyncStorage.setItem('user_profile', JSON.stringify(profile));
 
+      Toast.show({
+        type: 'success',
+        text1: t('SUCCESS'),
+        text2: t('OTP RESENT SUCCESSFULLY'),
+      });
+
     } catch (error) {
+      console.log(error)
       Alert.alert(t('ERROR'), error?.meta?.message || t('GENERIC ERROR'));
     }
   };
@@ -98,7 +108,7 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
             color='primary'
             onPress={resendOtp}
             disabled={timeLeft > 0}>
-            {t('RESEND')} {formatted}
+            {t('RESEND')}{timeLeft > 0 ? ` ${formatted}` : ''}
           </AppText>
         </AppText>
       </View>
