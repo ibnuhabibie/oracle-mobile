@@ -6,6 +6,10 @@ import ShinyContainer from "../../components/widgets/shiny-container";
 import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
 import api from "../../utils/http";
+import StrengthIcon from "../../components/icons/mbti-result/strength-icon";
+import WeaknessIcon from "../../components/icons/mbti-result/weakness-icon";
+import RelationshipIcon from "../../components/icons/mbti-result/relationship-icon";
+import CareerIcon from "../../components/icons/mbti-result/career-icon";
 
 class MBTIProfile extends React.Component {
 
@@ -61,10 +65,8 @@ class MBTIProfile extends React.Component {
 
                 {/* Strengths Card */}
                 <View style={styles.card}>
-                    <ShinyContainer dark={false} size={240} style={{ marginTop: 8 }}>
-                        <Image
-                            source={require(`../../assets/icons/mbti-profile/strength.png`)}
-                        />
+                    <ShinyContainer size={240} style={{ marginTop: 8 }}>
+                        <StrengthIcon />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Strengths</AppText>
                     <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
@@ -74,10 +76,8 @@ class MBTIProfile extends React.Component {
 
                 {/* Weaknesses Card */}
                 <View style={styles.card}>
-                    <ShinyContainer dark={false} size={240} style={{ marginTop: 8 }}>
-                        <Image
-                            source={require(`../../assets/icons/mbti-profile/weakness.png`)}
-                        />
+                    <ShinyContainer size={240} style={{ marginTop: 8 }}>
+                        <WeaknessIcon />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Weaknesses</AppText>
                     <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
@@ -87,10 +87,8 @@ class MBTIProfile extends React.Component {
 
                 {/* Relationships Card */}
                 <View style={styles.card}>
-                    <ShinyContainer dark={false} size={240} style={{ marginTop: 8 }}>
-                        <Image
-                            source={require(`../../assets/icons/mbti-profile/relationship.png`)}
-                        />
+                    <ShinyContainer size={240} style={{ marginTop: 8 }}>
+                        <RelationshipIcon />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Relationships</AppText>
                     <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
@@ -100,10 +98,8 @@ class MBTIProfile extends React.Component {
 
                 {/* Career Card */}
                 <View style={styles.card}>
-                    <ShinyContainer dark={false} size={240} style={{ marginTop: 8 }}>
-                        <Image
-                            source={require(`../../assets/icons/mbti-profile/career.png`)}
-                        />
+                    <ShinyContainer size={240} style={{ marginTop: 8 }}>
+                        <CareerIcon />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Career</AppText>
                     <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">

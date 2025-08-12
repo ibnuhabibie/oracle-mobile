@@ -25,6 +25,7 @@ interface UsageReceiptModalProps {
     remaining_points: number;
     service_type: string;
     response_data: string;
+    request_data?: string;
     credit_journal?: {
       credits_used: number;
       credits_before: number;
@@ -36,7 +37,6 @@ interface UsageReceiptModalProps {
 
 const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose, item }) => {
   const { t } = useTranslation();
-  if (!item) return null;
 
   // Format date as "1 May 2025, 19:27 PM"
   const formatDate = (dateStr: string) => {
@@ -75,7 +75,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
       pageName = 'RelationReportResult'
       payload = {
         result: data,
-        love_profile: JSON.parse(item.request_data).partner
+        love_profile: item.request_data ? JSON.parse(item.request_data).partner : undefined
       }
     } else if (item.service_type == 'ask_secret_diary') {
       console.log(data, new Date(data.date))
@@ -88,7 +88,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
       }
     }
 
-    navigation.push(pageName, payload)
+    navigation.navigate(pageName as any, payload as any)
   }
 
   return (
@@ -106,62 +106,72 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
               <CloseIcon />
             </TouchableOpacity>
           </View>
-          {/* <View style={styles.modalRow}>
-            <Text style={styles.modalLabel}>Order Number</Text>
-            <Text style={styles.modalValue}>{item.usage_history_id}</Text>
-          </View> */}
-          <View style={styles.modalRow}>
-            <Text style={styles.modalLabel}>{t("usageReceiptModal.datePurchased")}</Text>
-            <Text style={styles.modalValue}>{formatDate(item.created_at)}</Text>
-          </View>
-          {item.credit_journal ? (
-            <>
-              <View style={styles.modalSectionDivider} />
-              <Text style={styles.modalSectionTitle}>{t("usageReceiptModal.orderItems")}</Text>
-              <View style={styles.modalRow}>
-                <View style={styles.modalItemIcon}>
-                  <CommentsIcon color={COLORS.primary} />
-                </View>
-                <Text style={styles.modalItemName}>{getServiceTypeLabel(item.service_type)}</Text>
-                <View style={styles.modalItemPoints}>
-                  <AppText color="white" variant='caption2'>{item.credit_journal.credits_used}</AppText>
-                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
-                </View>
-              </View>
-              <View style={styles.modalSectionDivider} />
-              <View style={styles.modalRow}>
-                <Text style={styles.modalLabel}>{t("usageReceiptModal.previousPoints")}</Text>
-                <View style={styles.modalItemPoints}>
-                  <AppText color="white" variant='caption2'>{item.credit_journal.credits_before}</AppText>
-                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
-                </View>
-              </View>
-              <View style={styles.modalRow}>
-                <Text style={styles.modalLabel}>{t("usageReceiptModal.pointsUsed")}</Text>
-                <View style={styles.modalItemPoints}>
-                  <Text style={{ color: 'red' }}>{item.credit_journal.credits_used}</Text>
-                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
-                </View>
-              </View>
-              <View style={styles.modalRow}>
-                <Text style={styles.modalLabel}>{t("usageReceiptModal.remainingPoints")}</Text>
-                <View style={styles.modalItemPoints}>
-                  <AppText color="white" variant='caption2'>{item.credit_journal.credits_after}</AppText>
-                  <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
-                </View>
-              </View>
-              {
-                item.response_data && (
-                  <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: 18 }} onPress={handleResult} />
-                )
-              }
-            </>
-          ) : (
-            <View style={{ marginVertical: 16 }}>
-              <Text style={{ textAlign: "center", color: "#888", fontSize: 15 }}>
-                {t("usageReceiptModal.processing")}
+          {!item ? (
+            <View style={{ marginVertical: 32 }}>
+              <Text style={{ textAlign: "center", color: "#888", fontSize: 16 }}>
+                {t("usageReceiptModal.noData")}
               </Text>
             </View>
+          ) : (
+            <>
+              {/* <View style={styles.modalRow}>
+                <Text style={styles.modalLabel}>Order Number</Text>
+                <Text style={styles.modalValue}>{item.usage_history_id}</Text>
+              </View> */}
+              <View style={styles.modalRow}>
+                <Text style={styles.modalLabel}>{t("usageReceiptModal.datePurchased")}</Text>
+                <Text style={styles.modalValue}>{formatDate(item.created_at)}</Text>
+              </View>
+              {item.credit_journal ? (
+                <>
+                  <View style={styles.modalSectionDivider} />
+                  <Text style={styles.modalSectionTitle}>{t("usageReceiptModal.orderItems")}</Text>
+                  <View style={styles.modalRow}>
+                    <View style={styles.modalItemIcon}>
+                      <CommentsIcon color={COLORS.primary} />
+                    </View>
+                    <Text style={styles.modalItemName}>{getServiceTypeLabel(item.service_type)}</Text>
+                    <View style={styles.modalItemPoints}>
+                      <AppText color="white" variant='caption2'>{item.credit_journal.credits_used}</AppText>
+                      <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                    </View>
+                  </View>
+                  <View style={styles.modalSectionDivider} />
+                  <View style={styles.modalRow}>
+                    <Text style={styles.modalLabel}>{t("usageReceiptModal.previousPoints")}</Text>
+                    <View style={styles.modalItemPoints}>
+                      <AppText color="white" variant='caption2'>{item.credit_journal.credits_before}</AppText>
+                      <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                    </View>
+                  </View>
+                  <View style={styles.modalRow}>
+                    <Text style={styles.modalLabel}>{t("usageReceiptModal.pointsUsed")}</Text>
+                    <View style={styles.modalItemPoints}>
+                      <Text style={{ color: 'red' }}>{item.credit_journal.credits_used}</Text>
+                      <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                    </View>
+                  </View>
+                  <View style={styles.modalRow}>
+                    <Text style={styles.modalLabel}>{t("usageReceiptModal.remainingPoints")}</Text>
+                    <View style={styles.modalItemPoints}>
+                      <AppText color="white" variant='caption2'>{item.credit_journal.credits_after}</AppText>
+                      <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                    </View>
+                  </View>
+                  {
+                    item.response_data && (
+                      <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: 18 }} onPress={handleResult} />
+                    )
+                  }
+                </>
+              ) : (
+                <View style={{ marginVertical: 16 }}>
+                  <Text style={{ textAlign: "center", color: "#888", fontSize: 15 }}>
+                    {t("usageReceiptModal.processing")}
+                  </Text>
+                </View>
+              )}
+            </>
           )}
         </View>
       </SafeAreaView>

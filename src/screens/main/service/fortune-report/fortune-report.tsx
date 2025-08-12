@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
-    Image,
     Alert,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
@@ -19,6 +18,12 @@ import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import api from '../../../../utils/http';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 import { useTranslation } from 'react-i18next';
+import FortuneReportIcon from '../../../../components/icons/services/fortune-report/fortune-report-icon';
+
+import FortuneReportIcon1 from '../../../../components/icons/services/fortune-report/fortune-report-icon-1';
+import FortuneReportIcon2 from '../../../../components/icons/services/fortune-report/fortune-report-icon-2';
+import FortuneReportIcon3 from '../../../../components/icons/services/fortune-report/fortune-report-icon-3';
+import FortuneReportIcon4 from '../../../../components/icons/services/fortune-report/fortune-report-icon-4';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -27,28 +32,28 @@ type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Fortun
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
 
-    const CARD_DATA = [
-        {
-            icon: require('../../../../assets/icons/services/fortune-report/icon-1.png'),
-            title: t('fortuneReport.cards.health.title'),
-            subtitle: t('fortuneReport.cards.health.subtitle')
-        },
-        {
-            icon: require('../../../../assets/icons/services/fortune-report/icon-2.png'),
-            title: t('fortuneReport.cards.finance.title'),
-            subtitle: t('fortuneReport.cards.finance.subtitle')
-        },
-        {
-            icon: require('../../../../assets/icons/services/fortune-report/icon-3.png'),
-            title: t('fortuneReport.cards.career.title'),
-            subtitle: t('fortuneReport.cards.career.subtitle')
-        },
-        {
-            icon: require('../../../../assets/icons/services/fortune-report/icon-4.png'),
-            title: t('fortuneReport.cards.relationship.title'),
-            subtitle: t('fortuneReport.cards.relationship.subtitle')
-        },
-    ];
+const CARD_DATA = [
+    {
+        icon: <FortuneReportIcon1 size={44} />,
+        title: t('fortuneReport.cards.health.title'),
+        subtitle: t('fortuneReport.cards.health.subtitle')
+    },
+    {
+        icon: <FortuneReportIcon2 size={44} />,
+        title: t('fortuneReport.cards.finance.title'),
+        subtitle: t('fortuneReport.cards.finance.subtitle')
+    },
+    {
+        icon: <FortuneReportIcon3 size={44} />,
+        title: t('fortuneReport.cards.career.title'),
+        subtitle: t('fortuneReport.cards.career.subtitle')
+    },
+    {
+        icon: <FortuneReportIcon4 size={44} />,
+        title: t('fortuneReport.cards.relationship.title'),
+        subtitle: t('fortuneReport.cards.relationship.subtitle')
+    },
+];
 
     const {
         cost,
@@ -121,8 +126,8 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
             }
         >
             <AppText variant='subtitle1' style={styles.title} color='neutral'>{t('fortuneReport.title')}</AppText>
-            <ShinyContainer dark={false} size={220} style={{ marginVertical: 20 }}>
-                <Image source={require('../../../../assets/icons/services/fortune-report/service-icon.png')} />
+            <ShinyContainer size={220} style={{ marginVertical: 20 }}>
+                <FortuneReportIcon />
             </ShinyContainer>
             <AppText style={styles.subtitle} variant='title4' color='primary'>
                 {t('fortuneReport.subtitle')}
@@ -137,8 +142,8 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                     CARD_DATA.map((card, idx) => (
                         <View key={idx} style={styles.card}>
                             <View style={styles.cardIconWrapper}>
-                                <ShinyContainer dark={false}>
-                                    <Image source={card.icon} style={{ width: 44, height: 44, resizeMode: 'contain' }} />
+                                <ShinyContainer>
+                                    {card.icon}
                                 </ShinyContainer>
                             </View>
                             <AppText style={styles.cardLabel} variant='body1' color='white'>{card.title}</AppText>

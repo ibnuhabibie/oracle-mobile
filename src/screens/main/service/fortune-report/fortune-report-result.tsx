@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
@@ -9,21 +9,29 @@ import { MainNavigatorParamList } from '../../../../navigators/types';
 import ProfileItemCard from '../../../../features/profile/report/profile-item-card';
 import { AppButton } from '../../../../components/ui/app-button';
 
+import FortuneReportIcon11 from '../../../../components/icons/services/fortune-report/fortune-report-icon-11';
+import FortuneReportIcon12 from '../../../../components/icons/services/fortune-report/fortune-report-icon-12';
+import FortuneReportIcon13 from '../../../../components/icons/services/fortune-report/fortune-report-icon-13';
+import FortuneReportIcon14 from '../../../../components/icons/services/fortune-report/fortune-report-icon-14';
+import FortuneReportIcon15 from '../../../../components/icons/services/fortune-report/fortune-report-icon-15';
+import FortuneReportIcon16 from '../../../../components/icons/services/fortune-report/fortune-report-icon-16';
+import FortuneReportIcon17 from '../../../../components/icons/services/fortune-report/fortune-report-icon-17';
+
+const iconImages = [
+    FortuneReportIcon11,
+    FortuneReportIcon12,
+    FortuneReportIcon13,
+    FortuneReportIcon14,
+    FortuneReportIcon15,
+    FortuneReportIcon16,
+    FortuneReportIcon17,
+];
+
 type FortuneReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReportResult'>;
 
 const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, route }) => {
     const { result } = route.params;
     const { t } = useTranslation();
-
-    const iconImages = [
-        require('../../../../assets/icons/reports/fortune-report/icon-1.png'),
-        require('../../../../assets/icons/reports/fortune-report/icon-2.png'),
-        require('../../../../assets/icons/reports/fortune-report/icon-3.png'),
-        require('../../../../assets/icons/reports/fortune-report/icon-4.png'),
-        require('../../../../assets/icons/reports/fortune-report/icon-5.png'),
-        require('../../../../assets/icons/reports/fortune-report/icon-6.png'),
-        require('../../../../assets/icons/reports/fortune-report/icon-7.png'),
-    ];
 
     const CardList: FC<{ content: any[] }> = ({ content }) => {
         if (!content) return null;
@@ -36,13 +44,9 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
                         data={{
                             title: item.title,
                             description: item.content,
-                            icon: iconImages[item.order - 1] ? (
-                                <Image
-                                    source={iconImages[item.order - 1]}
-                                    style={{ width: 65, height: 65 }}
-                                    resizeMode="contain"
-                                />
-                            ) : undefined,
+                            icon: iconImages[item.order - 1]
+                                ? React.createElement(iconImages[item.order - 1], { size: 65 })
+                                : undefined,
                         }}
                     />
                 ))}

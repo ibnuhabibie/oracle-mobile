@@ -21,7 +21,7 @@ const ProfileItemCard: React.FC<ProfileItemCardProps> = ({ data }) => {
 
     return (
         <View style={styles.card}>
-            <ShinyContainer dark={data.isDark ?? false} size={240}>
+            <ShinyContainer size={240}>
                 {data.icon}
             </ShinyContainer>
             <Text style={styles.sectionTitle}>{data.title}</Text>
