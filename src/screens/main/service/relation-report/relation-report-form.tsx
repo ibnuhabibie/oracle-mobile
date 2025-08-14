@@ -147,7 +147,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
       <View style={styles.formGroup}>
         <Text style={styles.label}>{t("Birth Date")}</Text>
         <Pressable onPress={() => setShowDatePicker(true)}>
-          <View pointerEvents="none">
+          <View>
             <TextField
               placeholder={t("Birth Date:")}
               value={formatDate(watchedDate)}
@@ -170,7 +170,10 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
       <View style={styles.formGroup}>
         <AppText style={styles.label}>{t("Country of Birth")}</AppText>
         <DropdownButton
-          onPress={() => setShowCountryModal(true)}
+          onPress={() => {
+            console.log('Country dropdown pressed');
+            setShowCountryModal(true);
+          }}
           text={watchedCountry?.name || t("Please select one")}
         />
         {renderDropdownModal(
@@ -186,7 +189,10 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
       <View style={styles.formGroup}>
         <AppText style={styles.label}>{t("City of Birth")}</AppText>
         <DropdownButton
-          onPress={() => setShowCityModal(true)}
+          onPress={() => {
+            console.log('City dropdown pressed');
+            setShowCityModal(true);
+          }}
           text={watchedCity?.name || t("Please select one")}
         />
         {renderDropdownModal(
@@ -216,7 +222,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
                 }} />
               )}
             </View>
-            <Text>{t("Male")}</Text>
+            <Text style={{ color: COLORS.neutral }}>{t("Male")}</Text>
           </Pressable>
           <Pressable
             style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
@@ -232,7 +238,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
                 }} />
               )}
             </View>
-            <Text>{t("Female")}</Text>
+            <Text style={{ color: COLORS.neutral }}>{t("Female")}</Text>
           </Pressable>
         </View>
         {errors.gender && <Text style={styles.error}>{errors.gender.message}</Text>}
@@ -252,13 +258,14 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
 
 const styles = StyleSheet.create({
   formContainer: {
-    backgroundColor: COLORS.white,
-    borderRadius: 12,
+    // backgroundColor: 'rgba(255,255,255,0.14)',
+    // borderRadius: 12,
+    // shadowColor: COLORS.primary,
+    // shadowOpacity: 0.08,
+    // shadowRadius: 12,
+    // shadowOffset: { width: 0, height: 2 },
+    zIndex: 99,
     padding: 20,
-    shadowColor: COLORS.primary,
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 2 },
     width: '100%',
     marginTop: 8,
   },
@@ -272,7 +279,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 13,
     marginBottom: 4,
-    color: COLORS.black,
+    color: COLORS.neutral,
   },
   input: {
     borderWidth: 1,
@@ -300,6 +307,7 @@ const styles = StyleSheet.create({
   textField: {
     width: '100%',
     marginBottom: 0,
+    backgroundColor: 'rgba(255,255,255,0.14)'
   },
 });
 

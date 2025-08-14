@@ -20,7 +20,7 @@ interface CenterCarouselProps<T> {
   gap?: number;
   style?: ViewStyle;
   initialIndex?: number;
-  onCardPress?: (item: T, index: number, isCenter: boolean) => void;
+  onCardPress?: (item: T) => void;
 }
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -94,7 +94,7 @@ export function CenterCarousel<T>({
         onScroll={handleScroll}
         scrollEventThrottle={16}
         renderItem={({ item, index }) => {
-          // Calculate the center of the screen
+          // Calculate the center of the screen using scrollX state
           const centerOfScreen = scrollX + SCREEN_WIDTH / 2;
           // Calculate the center of this card
           const cardStart = index * (cardWidth + gap) + sidePadding;
@@ -137,7 +137,7 @@ export function CenterCarousel<T>({
             return (
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() => onCardPress(item, index % dataLength, isCenter)}
+                onPress={() => onCardPress(item)}
               >
                 {cardContent}
               </TouchableOpacity>

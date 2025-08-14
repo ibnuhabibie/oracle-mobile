@@ -168,7 +168,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             <AppText style={styles.description} color='neutral'>
                 {t('relationReport.description')}
             </AppText>
-            <AppText variant='subtitle1' style={{ textAlign: 'center' }}>{t('relationReport.loveInterestDetail')}</AppText>
+            {/* <AppText variant='subtitle1' style={{ textAlign: 'center' }} color='neutral'>{t('relationReport.loveInterestDetail')}</AppText> */}
             <AppText style={styles.sectionTitle} variant='caption2' color='primary'>{t('relationReport.tellUsMore')}</AppText>
 
             <View style={styles.grid}>

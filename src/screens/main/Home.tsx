@@ -23,29 +23,35 @@ const CARD_HEIGHT_CENTER = 320;
 const Home: FC<HomeProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const carouselItems = [
-    {
-      id: 'love',
-      image: require('../../assets/icons/services/love-forecast/service-icon.png'),
-      title: t('carousel.love.title'),
-      subtitle: t('carousel.love.subtitle'),
-      path: 'LoveForecast'
-    },
-    {
-      id: 'relation',
-      image: require('../../assets/icons/services/relation-report/service-icon.png'),
-      title: t('carousel.relation.title'),
-      subtitle: t('carousel.relation.subtitle'),
-      path: 'RelationReport'
-    },
-    {
-      id: 'fortune',
-      image: require('../../assets/icons/services/fortune-report/service-icon.png'),
-      title: t('carousel.fortune.title'),
-      subtitle: t('carousel.fortune.subtitle'),
-      path: 'FortuneReport'
-    },
-  ];
+  const carouselItems: Array<{
+    id: string;
+    image: any;
+    title: string;
+    subtitle: string;
+    path: keyof MainNavigatorParamList;
+  }> = [
+      {
+        id: 'love',
+        image: require('../../assets/icons/services/love-forecast/service-icon.png'),
+        title: t('carousel.love.title'),
+        subtitle: t('carousel.love.subtitle'),
+        path: 'LoveForecast'
+      },
+      {
+        id: 'relation',
+        image: require('../../assets/icons/services/relation-report/service-icon.png'),
+        title: t('carousel.relation.title'),
+        subtitle: t('carousel.relation.subtitle'),
+        path: 'RelationReport'
+      },
+      {
+        id: 'fortune',
+        image: require('../../assets/icons/services/fortune-report/service-icon.png'),
+        title: t('carousel.fortune.title'),
+        subtitle: t('carousel.fortune.subtitle'),
+        path: 'FortuneReport'
+      },
+    ];
 
   return (
     <ScreenContainer style={{ padding: 0 }}>
@@ -73,11 +79,15 @@ const Home: FC<HomeProps> = ({ navigation }) => {
             </View>
             <View style={{ padding: 12 }}>
               <AppText variant='subtitle1' style={styles.cardTitle} color='white'>{item.title}</AppText>
-              {
-                isCenter
-                  ? <AppText style={styles.cardSubtitle} color='primary'>{item.subtitle}</AppText>
-                  : null
-              }
+              <AppText
+                style={[
+                  styles.cardSubtitle,
+                  // { opacity: isCenter ? 1 : 0 }
+                ]}
+                color='primary'
+              >
+                {item.subtitle}
+              </AppText>
             </View>
           </>
         )}
