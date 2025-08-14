@@ -49,9 +49,9 @@ export type MainNavigatorParamList = {
     PrivacyPolicy: undefined;
     PurchaseHistory: undefined;
     MbtiResults: undefined;
-    AstrologyResults: undefined;
+    AstrologyResults: { profile_astro?: Record<string, any> };
     AffinityResults: { affinityResult: any; question: string };
-    BaziResults: undefined;
+    BaziResults: { profile_bazi: any };
     WebviewContent: {
         uri: string
         title: string

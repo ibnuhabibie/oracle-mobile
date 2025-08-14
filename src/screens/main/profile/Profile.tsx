@@ -39,7 +39,7 @@ import ProfileItem from '../../../features/profile/profile-item';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
-import { iconMap, useAffinityProfile } from './useAffinityProfile';
+import { iconMap, ProfileIcon, useAffinityProfile } from './useAffinityProfile';
 
 type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
@@ -157,11 +157,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               navigation.push('BaziResults', { profile_bazi: affinityProfile?.profile_bazi });
             }}
             style={styles.statItem}>
-            <Image
-              source={iconMap[affinityProfile?.profile_bazi?.day_master?.icon]}
-              resizeMode="contain"
-              style={{ width: 75, height: 75 }}
-            />
+            <ProfileIcon name={affinityProfile?.profile_bazi?.day_master?.icon} />
             <AppText variant='caption2' style={styles.statLabel} color='white'>
               {affinityProfile?.profile_bazi?.day_master?.name}
             </AppText>
@@ -171,11 +167,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               navigation.push('AstrologyResults', { profile_astro: affinityProfile?.profile_astro });
             }}
             style={styles.statItem}>
-            <Image
-              source={iconMap[affinityProfile?.profile_astro?.sun?.zodiac]}
-              resizeMode="contain"
-              style={{ width: 75, height: 75 }}
-            />
+            <ProfileIcon name={affinityProfile?.profile_astro?.sun?.zodiac} />
             <AppText variant='caption2' style={styles.statLabel} color='white'>
               {affinityProfile?.profile_astro?.sun?.zodiac_name}
             </AppText>

@@ -11,19 +11,24 @@ import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
 import { iconMap } from './useAffinityProfile';
+import BaziResultIcon1 from '../../../components/icons/bazi-result/bazi-result-icon-1';
+import BaziResultIcon2 from '../../../components/icons/bazi-result/bazi-result-icon-2';
+import BaziResultIcon3 from '../../../components/icons/bazi-result/bazi-result-icon-3';
+import BaziResultIcon4 from '../../../components/icons/bazi-result/bazi-result-icon-4';
+import BaziResultIcon5 from '../../../components/icons/bazi-result/bazi-result-icon-5';
 
 type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'BaziResults'>;
 
 const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
   const profile = route.params?.profile_bazi;
 
-  // Static icon images for indices 1-5
+  // Static icon components for indices 1-5
   const iconImages = [
-    require('../../../assets/icons/bazi/icon-1.png'),
-    require('../../../assets/icons/bazi/icon-2.png'),
-    require('../../../assets/icons/bazi/icon-3.png'),
-    require('../../../assets/icons/bazi/icon-4.png'),
-    require('../../../assets/icons/bazi/icon-5.png'),
+    BaziResultIcon1,
+    BaziResultIcon2,
+    BaziResultIcon3,
+    BaziResultIcon4,
+    BaziResultIcon5,
   ];
 
   // Card list component
@@ -50,13 +55,9 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
                   title: item.title || label,
                   subtitle: item.subtitle,
                   description: item.description,
-                  icon: iconImages[iconIdx - 1] ? (
-                    <Image
-                      source={iconMap[item.icon]}
-                      style={{ width: 90, height: 90 }}
-                      resizeMode="contain"
-                    />
-                  ) : undefined,
+                  icon: iconImages[iconIdx - 1]
+                    ? React.createElement(iconImages[iconIdx - 1], { size: 90 })
+                    : undefined,
                 }}
               />
             );

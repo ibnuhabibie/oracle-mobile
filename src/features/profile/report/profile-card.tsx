@@ -20,7 +20,7 @@ type ProfileCardProps = {
     profileData?: UserProfile
 };
 
-import { iconMap } from '../../../screens/main/profile/useAffinityProfile';
+import { iconMap, ProfileIcon } from '../../../screens/main/profile/useAffinityProfile';
 import { formatDateOfBirth, formatTimeOfBirth } from '../../../utils/date';
 import { COLORS } from '../../../constants/colors';
 import { AppText } from '../../../components/ui/app-text';
@@ -72,18 +72,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
     return (
         <View style={styles.profileCard}>
             <ShinyContainer size={160}>
-                {iconKey === 'relation' ? (
-                    <RelationIcon size={40} />
-                ) : (
-                    <Image
-                        source={iconMap[iconKey]}
-                        style={{
-                            width: 80,
-                            height: 80,
-                            resizeMode: 'contain'
-                        }}
-                    />
-                )}
+                <ProfileIcon name={iconKey} />
             </ShinyContainer>
 
             {cardTitle ? <AppText variant='body1' color='primary' style={styles.cardTitle}>{cardTitle}</AppText> : null}

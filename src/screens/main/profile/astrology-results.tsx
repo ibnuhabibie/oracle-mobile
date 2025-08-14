@@ -10,6 +10,19 @@ import Header from '../../../components/ui/header';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
+import Ascendant from '../../../components/icons/planet/ascendant';
+import Chiron from '../../../components/icons/planet/chiron';
+import Jupiter from '../../../components/icons/planet/jupiter';
+import Mars from '../../../components/icons/planet/mars';
+import Mercury from '../../../components/icons/planet/mercury';
+import Moon from '../../../components/icons/planet/moon';
+import Neptune from '../../../components/icons/planet/neptune';
+import NorthNode from '../../../components/icons/planet/northnode';
+import Pluto from '../../../components/icons/planet/pluto';
+import Saturn from '../../../components/icons/planet/saturn';
+import Sun from '../../../components/icons/planet/sun';
+import Uranus from '../../../components/icons/planet/uranus';
+import Venus from '../../../components/icons/planet/venus';
 
 type AstrologyResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
 
@@ -17,7 +30,7 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
   // Get profile_astro from route params
   const profile = useMemo(() => {
     // Sort by order if present
-    const profileAstro = route.params?.profile_astro;
+    const profileAstro = route.params?.profile_astro as Record<string, any> | undefined;
     if (profileAstro && typeof profileAstro === "object") {
       const sortedEntries = Object.entries(profileAstro)
         .sort(([, a], [, b]) => {
@@ -31,21 +44,23 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
   }, [route.params?.profile_astro]);
 
   // Planet icon mapping for dynamic icon loading
-  const planetIcons: Record<string, any> = {
-    ascendant: require('../../../assets/icons/planet/ascendant.png'),
-    jupiter: require('../../../assets/icons/planet/jupiter.png'),
-    mars: require('../../../assets/icons/planet/mars.png'),
-    mercury: require('../../../assets/icons/planet/mercury.png'),
-    moon: require('../../../assets/icons/planet/moon.png'),
-    neptune: require('../../../assets/icons/planet/neptune.png'),
-    'north node': require('../../../assets/icons/planet/north_node.png'),
-    pluto: require('../../../assets/icons/planet/pluto.png'),
-    saturn: require('../../../assets/icons/planet/saturn.png'),
-    sun: require('../../../assets/icons/planet/sun.png'),
-    uranus: require('../../../assets/icons/planet/uranus.png'),
-    venus: require('../../../assets/icons/planet/venus.png'),
+  const planetIcons = {
+    ascendant: Ascendant,
+    chiron: Chiron,
+    jupiter: Jupiter,
+    mars: Mars,
+    mercury: Mercury,
+    moon: Moon,
+    neptune: Neptune,
+    'north node': NorthNode,
+    pluto: Pluto,
+    saturn: Saturn,
+    sun: Sun,
+    uranus: Uranus,
+    venus: Venus,
   };
-  const defaultPlanetIcon = require('../../../assets/icons/planet/sun.png');
+
+  const defaultPlanetIcon = Sun;
 
   // Card list component
   const AstrologyCardList: FC<{ profile: any }> = ({ profile }) => {
@@ -64,11 +79,7 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
                 subtitle: `${item.subtitle}`,
                 description: item.description,
                 icon: (
-                  <Image
-                    source={iconSource}
-                    resizeMode="contain"
-                    style={{ width: 100, height: 100 }}
-                  />
+                  React.createElement(iconSource, { size: 140 })
                 ),
               }}
             />

@@ -225,7 +225,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   header,
   floatingFooter,
   fluid = false,
-  starAnimation = true,
+  starAnimation = false,
 }) => {
   const content = (
     <View

@@ -26,7 +26,7 @@ const ShinyContainer: React.FC<{
         position: 'absolute',
         top: '50%',
         left: '50%',
-        transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
+        transform: [{ translateX: '-52%' }, { translateY: '-47%' }],
         zIndex: 99,
       }}>
       {children}

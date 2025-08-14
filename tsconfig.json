@@ -4,5 +4,9 @@
     "types": [
       "@storybook/react-native"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
 }
