@@ -4,19 +4,17 @@ import { COLORS } from "../../../constants/colors";
 
 export interface CareerIconProps extends SvgProps {
     color?: string;
-    width?: number;
-    height?: number;
+    size?: number;
 }
 
 const CareerIcon: React.FC<CareerIconProps> = ({
     color = COLORS.primary,
-    width = 26,
-    height = 25,
+    size = 26,
     ...props
 }) => (
     <Svg
-        width={width}
-        height={height}
+        width={size}
+        height={size}
         viewBox="0 0 26 25"
         fill="none"
         {...props}

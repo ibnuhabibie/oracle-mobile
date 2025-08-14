@@ -4,19 +4,17 @@ import { COLORS } from "../../../constants/colors";
 
 export interface RelationIconProps extends SvgProps {
   color?: string;
-  width?: number;
-  height?: number;
+  size?: number;
 }
 
 const RelationIcon: React.FC<RelationIconProps> = ({
   color = COLORS.primary,
-  width = 25,
-  height = 26,
+  size = 25,
   ...props
 }) => (
   <Svg
-    width={width}
-    height={height}
+    width={size}
+    height={size}
     viewBox="0 0 25 26"
     fill="none"
     {...props}

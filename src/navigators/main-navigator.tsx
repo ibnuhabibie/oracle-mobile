@@ -25,6 +25,7 @@ import MbtiResults from '../screens/main/profile/mbti-results';
 import PasswordSetting from '../screens/main/profile/password-setting';
 import Profile from '../screens/main/profile/profile';
 import PurchaseHistory from '../screens/main/history/purchase-history';
+import DailyProfileDetail from '../screens/main/profile/daily-profile-detail';
 
 import ComponentGallery from '../screens/dev/component-gallery';
 import AskAffinityIcon from '../components/icons/ask-affinity/ask-affinity-icon';
@@ -205,6 +206,7 @@ const MainNavigator = () => {
       <Stack.Screen name="MbtiResults" component={MbtiResults} />
       <Stack.Screen name="AstrologyResults" component={AstrologyResults} />
       <Stack.Screen name="BaziResults" component={BaziResults} />
+      <Stack.Screen name="DailyProfileDetail" component={DailyProfileDetail} />
     </Stack.Navigator>
   );
 };

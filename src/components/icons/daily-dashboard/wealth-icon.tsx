@@ -4,19 +4,17 @@ import { COLORS } from "../../../constants/colors"
 
 interface WealthIconProps extends SvgProps {
     color?: string;
-    width?: number;
-    height?: number;
+    size?: number;
 }
 
 const WealthIcon: React.FC<WealthIconProps> = ({
     color = COLORS.primary,
-    width = 29,
-    height = 24,
+    size = 29,
     ...props
 }) => (
     <Svg
-        width={width}
-        height={height}
+        width={size}
+        height={size}
         viewBox="0 0 29 24"
         fill="none"
         {...props}

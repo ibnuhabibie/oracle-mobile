@@ -1,6 +1,7 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 
 import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
@@ -25,138 +26,113 @@ interface DailyProfileData {
     [key: string]: any;
 }
 
-interface ProfileDashboardState {
-    user: UserProfile | null;
-    data: DailyProfileData | null;
-    error: string | null;
-    loading: boolean;
-}
+const ProfileDashboard: React.FC = () => {
+    const [user, setUser] = useState<UserProfile | null>(null);
+    const [data, setData] = useState<DailyProfileData | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+    const navigation = useNavigation();
 
-type ProfileDashboardProps = {};
-
-class ProfileDashboard extends React.Component<ProfileDashboardProps, ProfileDashboardState> {
-    constructor(props: ProfileDashboardProps) {
-        super(props);
-        this.state = {
-            user: null,
-            data: null,
-            error: null,
-            loading: false,
+    useEffect(() => {
+        const fetchUserAndProfile = async () => {
+            try {
+                setLoading(true);
+                const userData = await AsyncStorage.getItem('user_profile');
+                setUser(JSON.parse(userData || ''));
+                const response = await api.get('/v1/users/daily-profile');
+                setData(response.data.content);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                setError('Failed to load user data. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
         };
+        fetchUserAndProfile();
+    }, []);
+
+    const today_description = data?.today_description;
+
+    function LocalizedHeader() {
+        const { t } = useTranslation();
+        const today = new Date();
+        const formattedDate = formatDateToShortHeader(today);
+
+        return (
+            <View style={styles.header}>
+                <AppText variant='caption1' style={styles.date} color="light-gray">{formattedDate}</AppText>
+                <AppText style={styles.greeting} color="white">
+                    {t("Good Day")}, {user?.full_name || t("Guest")}
+                </AppText>
+            </View>
+        );
     }
 
-    async componentDidMount() {
-        try {
-            this.setState({ loading: true });
-            const userData = await AsyncStorage.getItem('user_profile');
-            this.setState({ user: JSON.parse(userData || '') });
-            await this.fetchDailyProfile();
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-            this.setState({ error: 'Failed to load user data. Please try again later.' });
-        } finally {
-            this.setState({ loading: false });
-        }
+    function LocalizedSubtitle() {
+        const { t } = useTranslation();
+        return (
+            <AppText style={styles.subtitle} variant='subtitle1' color="white">{t("TODAY SCORE")}</AppText>
+        );
     }
 
-    async fetchDailyProfile() {
-        try {
-            this.setState({ loading: true });
-            const response = await api.get('/v1/users/daily-profile');
-            this.setState({ data: response.data.content });
-        } catch (error) {
-            console.error('Error fetching daily profile:', error);
-            this.setState({ error: 'Failed to load daily profile. Please check your connection and try again.' });
-            return null;
-        } finally {
-            this.setState({ loading: false });
-        }
-    }
-
-    render() {
-        const { data, user, error, loading } = this.state;
-        const today_description = data?.today_description;
-
-        if (loading) {
-            return (
-                <>
-                    <LocalizedHeader />
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-                        <AppText style={{ color: COLORS["light-gray"], fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
-                            Loading your daily profile...
-                        </AppText>
-                    </View>
-                </>
-            );
-        }
-
-        if (error) {
-            return (
-                <>
-                    <LocalizedHeader />
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-                        <AppText style={{ color: COLORS.primary, fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
-                            {"This service will be available soon."}
-                        </AppText>
-                        <AppText style={{ textAlign: 'center', color: COLORS.black }}>
-                            {"Please check back later to access your daily profile dashboard."}
-                        </AppText>
-                    </View>
-                </>
-            );
-        }
-
-        // i18n
-        // Use hook in a functional wrapper
-        function LocalizedHeader() {
-            const { t } = useTranslation();
-
-            // Localized date
-            const today = new Date();
-            const formattedDate = formatDateToShortHeader(today);
-
-            return (
-                <View style={styles.header}>
-                    <AppText variant='caption1' style={styles.date} color="light-gray">{formattedDate}</AppText>
-                    <AppText style={styles.greeting} color="white">
-                        {t("Good Day")}, {user?.full_name || t("Guest")}
-                    </AppText>
-                </View>
-            );
-        }
-
-        function LocalizedSubtitle() {
-            const { t } = useTranslation();
-            return (
-                <AppText style={styles.subtitle} variant='subtitle1' color="white">{t("TODAY SCORE")}</AppText>
-            );
-        }
-
+    if (loading) {
         return (
             <>
                 <LocalizedHeader />
-                <View style={{ width: '100%', paddingHorizontal: 12 }}>
-                    <AppText style={styles.title} color="white">{data?.today_points}%</AppText>
-                    <LocalizedSubtitle />
-                    <AppText variant='caption1' color="light-gray" style={styles.paragraph}>
-                        {today_description}
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+                    <AppText style={{ color: COLORS["light-gray"], fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
+                        Loading your daily profile...
                     </AppText>
-                    <View
-                        style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            width: '100%',
-                        }}>
-                        <CircularScore value={data?.today_wealth_points} type="wealth" />
-                        <CircularScore value={data?.today_study_points} type="learning" />
-                        <CircularScore value={data?.today_relationship_points} type="relation" />
-                        <CircularScore value={data?.today_career_points} type="career" />
-                    </View>
                 </View>
             </>
         );
     }
-}
+
+    if (error) {
+        return (
+            <>
+                <LocalizedHeader />
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+                    <AppText style={{ color: COLORS.primary, fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
+                        {"This service will be available soon."}
+                    </AppText>
+                    <AppText style={{ textAlign: 'center', color: COLORS.black }}>
+                        {"Please check back later to access your daily profile dashboard."}
+                    </AppText>
+                </View>
+            </>
+        );
+    }
+
+    return (
+        <TouchableOpacity
+            activeOpacity={0.85}
+            onPress={() => {
+                if (data) {
+                    navigation.navigate("DailyProfileDetail", { data });
+                }
+            }}
+            style={{ width: "100%" }}
+        >
+            <LocalizedHeader />
+            <View style={{ width: '100%', paddingHorizontal: 12 }}>
+                <AppText style={styles.title} color="white">{data?.today_points}%</AppText>
+                <LocalizedSubtitle />
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        width: '100%',
+                    }}>
+                    <CircularScore value={data?.today_wealth_points} type="wealth" />
+                    <CircularScore value={data?.today_study_points} type="learning" />
+                    <CircularScore value={data?.today_relationship_points} type="relation" />
+                    <CircularScore value={data?.today_career_points} type="career" />
+                </View>
+            </View>
+        </TouchableOpacity>
+    );
+};
 
 const styles = StyleSheet.create({
     header: {
@@ -176,7 +152,8 @@ const styles = StyleSheet.create({
     subtitle: {
         textAlign: 'center',
         letterSpacing: 5,
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        marginBottom: 32
     },
     paragraph: {
         marginTop: 10,
@@ -190,5 +167,4 @@ const styles = StyleSheet.create({
     },
 });
 
-
-export default ProfileDashboard
+export default ProfileDashboard;

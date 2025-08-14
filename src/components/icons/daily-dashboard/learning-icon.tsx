@@ -4,19 +4,17 @@ import { COLORS } from "../../../constants/colors";
 
 export interface LearningIconProps extends SvgProps {
     color?: string;
-    width?: number;
-    height?: number;
+    size?: number;
 }
 
 const LearningIcon: React.FC<LearningIconProps> = ({
     color = COLORS.primary,
-    width = 25,
-    height = 24,
+    size = 25,
     ...props
 }) => (
     <Svg
-        width={width}
-        height={height}
+        width={size}
+        height={size}
         viewBox="0 0 25 24"
         fill="none"
         {...props}

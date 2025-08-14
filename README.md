@@ -1,10 +1,13 @@
 TODO:
-- handle click overlay to close modal
 - pull to refresh
 - download pdf report
-- default value gender
+- referral credit journal
+- handle subscription, only allow 1 subs
+- 
 
 DONE
+- handle click overlay to close modal
+- default value gender
 - lazy loading usage and topup history
 - handle copy referral
 - passing service to purchase alert
