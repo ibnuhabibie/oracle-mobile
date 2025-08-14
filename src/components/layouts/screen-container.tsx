@@ -17,6 +17,7 @@ type ScreenContainerProps = {
   scrollable?: boolean;
   header?: React.ReactNode;
   floatingFooter?: React.ReactNode;
+  floatingButton?: React.ReactNode; // New prop for FAB
   fluid?: boolean; // If true, removes default padding
   starAnimation?: boolean; // Enable animated stars
 };
@@ -224,6 +225,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   scrollable = true,
   header,
   floatingFooter,
+  floatingButton,
   fluid = false,
   starAnimation = false,
 }) => {
@@ -262,6 +264,9 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
       {floatingFooter && (
         <View style={styles.floatingFooterContainer}>{floatingFooter}</View>
       )}
+      {floatingButton && (
+        <View style={styles.fabContainer}>{floatingButton}</View>
+      )}
     </SafeAreaView>
   );
 }
@@ -298,6 +303,12 @@ const styles = StyleSheet.create({
   },
   contentFluid: {
     padding: 0,
+  },
+  fabContainer: {
+    position: 'absolute',
+    right: 24,
+    bottom: 36,
+    zIndex: 200,
   },
 });
 

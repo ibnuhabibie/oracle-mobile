@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.black,
     paddingHorizontal: 16,
     fontSize: 15,
-    color: '#222',
+    color: COLORS.neutral,
     marginRight: 8,
   },
   sendButton: {

@@ -3,7 +3,9 @@ import React, { FC, useState } from 'react';
 import {
     Pressable,
     StyleSheet,
-    View
+    View,
+    TouchableOpacity,
+    Text
 } from 'react-native';
 import { useTranslation } from "react-i18next";
 
@@ -71,6 +73,7 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
             .finally(() => setLoading(false));
     }
 
+
     const toDetail = (diary) => {
         console.log('clicked', diary.diary_id)
         navigation.push('EchoDetail', {
@@ -81,8 +84,21 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
         })
     }
 
+    // Handler for FAB
+    const newEdit = () => {
+        const today = new Date();
+        const pad = (n: number) => n.toString().padStart(2, '0');
+        const todayStr = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+        const todayDiary = diaries.find(d => d.diary_date === todayStr);
+        if (todayDiary) {
+            navigation.push('EchoDetail', { id: todayDiary.diary_id, date: { dateString: todayStr } });
+        } else {
+            navigation.push('EchoDetail', { date: { dateString: todayStr } });
+        }
+    };
+
     return (
-        <ScreenContainer>
+        <ScreenContainer floatingButton={<FloatingAddButton onPress={newEdit} />}>
             <AppText style={styles.title} color='primary' variant='subtitle1'>
                 {t("DIARY")}
             </AppText>
@@ -94,8 +110,6 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     const mark = markedDates[day.dateString];
                     if (mark && mark.diaryId) {
                         navigation.push('EchoDetail', { id: mark.diaryId, date: day });
-                    } else {
-                        navigation.push('EchoDetail', { date: day });
                     }
                 }}
                 onMonthChange={monthObj => {
@@ -154,6 +168,12 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
         </ScreenContainer>
     );
 };
+
+const FloatingAddButton = ({ onPress }) => (
+    <TouchableOpacity style={styles.fab} onPress={onPress}>
+        <Text style={styles.fabIcon}>+</Text>
+    </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
     title: {
@@ -219,6 +239,31 @@ const styles = StyleSheet.create({
         color: '#888',
         textAlign: 'center',
         lineHeight: 20,
+    },
+    fabContainer: {
+        position: 'absolute',
+        right: 24,
+        top: '80%',
+        zIndex: 200,
+    },
+    fab: {
+        backgroundColor: COLORS.primary,
+        width: 56,
+        height: 56,
+        borderRadius: 28,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 6,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+    },
+    fabIcon: {
+        fontSize: 32,
+        color: '#222',
+        fontWeight: 'bold',
+        marginTop: -2,
     },
 });
 
