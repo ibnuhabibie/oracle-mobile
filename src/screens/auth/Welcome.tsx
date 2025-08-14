@@ -1,8 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
+import Video from 'react-native-video';
 
 import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
@@ -14,6 +15,7 @@ type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
 const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   const { t } = useTranslation();
+  const [videoEnded, setVideoEnded] = useState(false);
 
   const handleClick = async () => {
     try {
@@ -32,18 +34,21 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   };
 
   return (
-    <ScreenContainer>
+    <ScreenContainer starAnimation={false} fluid={true}>
       <View style={styles.container}>
-        <AppText variant='subtitle2' color='primary' style={styles.subtitle}>{t('WELCOME TO')}</AppText>
-        <AppText style={styles.title}>AFFINITY</AppText>
-        <WelcomeIllustration />
-        <View style={styles.buttonContainer}>
-          <AppButton
-            title={t('GET STARTED')}
-            variant='primary'
-            onPress={handleClick}
+        {!videoEnded && (
+          <Video
+            source={require('../../assets/splash-screen.mp4')}
+            style={styles.video}
+            resizeMode="cover"
+            onEnd={() => {
+              handleClick();
+            }}
+            controls={false}
+            repeat={false}
+            paused={false}
           />
-        </View>
+        )}
       </View>
     </ScreenContainer>
   );
@@ -67,7 +72,16 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: '80%',
     marginTop: 32,
-  }
+  },
+  video: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#000',
+    zIndex: 100,
+  },
 });
 
 export default Welcome;
