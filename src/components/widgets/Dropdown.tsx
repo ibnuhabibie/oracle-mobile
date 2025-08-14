@@ -6,6 +6,7 @@ import { fontFamilies } from '../../constants/fonts';
 import { AppText } from '../ui/app-text';
 import ArrowIcon from '../icons/arrow-icon';
 import ChevronDownIcon from '../icons/profile/chevron-down-icon';
+import CloseIcon from '../icons/close-icon';
 
 export const DropdownButton: FC<{ onPress?: () => void; text?: string }> = ({
   onPress,
@@ -33,8 +34,8 @@ export const renderDropdownModal = (
       <View style={styles.modalContent}>
         <View style={styles.modalHeader}>
           <AppText style={styles.modalTitle}>{title}</AppText>
-          <Pressable onPress={onClose} style={styles.closeButton}>
-            <AppText style={styles.closeButtonText}>×</AppText>
+          <Pressable onPress={onClose}>
+            <CloseIcon size={24} />
           </Pressable>
         </View>
         <FlatList
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalContent: {
-    backgroundColor: 'white',
+    backgroundColor: '#121010',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingTop: 20,
@@ -82,20 +83,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: COLORS['dark-gray'],
   },
   modalTitle: {
     fontSize: 18,
     fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#333',
-  },
-  closeButton: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: '#f0f0f0',
-    alignItems: 'center',
-    justifyContent: 'center',
+    color: COLORS.neutral,
   },
   closeButtonText: {
     fontSize: 20,
@@ -106,7 +99,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: COLORS['dark-gray']
   },
   selectedItem: {
     backgroundColor: '#f5f5f5',
@@ -114,7 +107,7 @@ const styles = StyleSheet.create({
   modalItemText: {
     fontSize: 16,
     fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#333',
+    color: COLORS.neutral,
   },
   selectedItemText: {
     color: '#c1976b',

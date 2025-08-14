@@ -1,15 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import {
-    ActivityIndicator,
-    Pressable,
     StyleSheet,
-    Text,
     View,
     Image
 } from 'react-native';
 
-import ArrowIcon from '../../../../components/icons/arrow-icon';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import { fontFamilies } from '../../../../constants/fonts';
@@ -130,18 +126,16 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
                 <AppText variant='subtitle1' color='primary' style={styles.resultTitle}>
                     {sectionLabel}
                 </AppText>
-                <ShinyContainer dark={false} size={288}>
-                    {card.card_name ? (
-                        <Image
-                            source={getTarotImage(card.card_name)}
-                            style={[
-                                { width: 150, height: 288, alignSelf: 'center', borderRadius: 8 },
-                                card.orientation === 'reversed' ? { transform: [{ rotate: '180deg' }] } : null
-                            ]}
-                            resizeMode="contain"
-                        />
-                    ) : null}
-                </ShinyContainer>
+                {card.card_name ? (
+                    <Image
+                        source={getTarotImage(card.card_name)}
+                        style={[
+                            { width: 150, height: 288, alignSelf: 'center', borderRadius: 8 },
+                            card.orientation === 'reversed' ? { transform: [{ rotate: '180deg' }] } : null
+                        ]}
+                        resizeMode="contain"
+                    />
+                ) : null}
                 <AppText variant='subtitle1' color='primary' style={styles.resultTitle}>
                     {card.card} {card.orientation ? `(${card.orientation})` : ''}
                 </AppText>
@@ -211,7 +205,8 @@ const styles = StyleSheet.create({
     },
     resultCardContent: {
         textAlign: 'center',
-        lineHeight: 18
+        lineHeight: 20,
+        marginBottom: 12
     }
 });
 
