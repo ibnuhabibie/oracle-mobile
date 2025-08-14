@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Modal, SafeAreaView, View, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import CoinIcon from "../../components/icons/profile/coin-icon";
 import { formatDateTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
@@ -26,90 +26,94 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
             animationType="fade"
             onRequestClose={onClose}
         >
-            <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                    <View style={styles.modalHeader}>
-                        <Text style={styles.modalTitle}>{t("RECEIPT")}</Text>
-                        <TouchableOpacity onPress={onClose}>
-                            <CloseIcon />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>{t("ORDER NUMBER")}</Text>
-                        <Text style={styles.modalValue}>{item.transaction_id}</Text>
-                    </View>
-                    <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>{t("DATE PURCHASED")}</Text>
-                        <Text style={styles.modalValue}>
-                            {formatDateTime(item.created_at)}
-                        </Text>
-                    </View>
-                    <View style={styles.modalSectionDivider} />
-                    <Text style={styles.modalSectionTitle}>{t("ORDER ITEMS")}</Text>
-                    <View style={styles.modalRow}>
-                        <View style={styles.modalItemIcon}>
-                            <CoinIcon size={20} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
-                        </View>
-                        <Text style={styles.modalItemQty}>
-                            {item.package?.name || item.subscription?.name || item.topup_type}
-                        </Text>
-                        <Text style={styles.modalItemPrice}>
-                            ${item.amount}
-                        </Text>
-                    </View>
-                    <View style={styles.modalRow}>
-                        <View style={{ flex: 1 }} />
-                        <Text style={styles.modalTotalLabel}>{t("TOTAL")}</Text>
-                        <Text style={styles.modalTotalValue}>
-                            ${item.amount}
-                        </Text>
-                    </View>
-                    <View style={styles.modalSectionDivider} />
+            <TouchableWithoutFeedback onPress={onClose}>
+                <View style={styles.modalContainer}>
+                    <TouchableWithoutFeedback>
+                        <View style={styles.modalContent}>
+                            <View style={styles.modalHeader}>
+                                <Text style={styles.modalTitle}>{t("RECEIPT")}</Text>
+                                <TouchableOpacity onPress={onClose}>
+                                    <CloseIcon />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.modalRow}>
+                                <Text style={styles.modalLabel}>{t("ORDER NUMBER")}</Text>
+                                <Text style={styles.modalValue}>{item.transaction_id}</Text>
+                            </View>
+                            <View style={styles.modalRow}>
+                                <Text style={styles.modalLabel}>{t("DATE PURCHASED")}</Text>
+                                <Text style={styles.modalValue}>
+                                    {formatDateTime(item.created_at)}
+                                </Text>
+                            </View>
+                            <View style={styles.modalSectionDivider} />
+                            <Text style={styles.modalSectionTitle}>{t("ORDER ITEMS")}</Text>
+                            <View style={styles.modalRow}>
+                                <View style={styles.modalItemIcon}>
+                                    <CoinIcon size={20} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
+                                </View>
+                                <Text style={styles.modalItemQty}>
+                                    {item.package?.name || item.subscription?.name || item.topup_type}
+                                </Text>
+                                <Text style={styles.modalItemPrice}>
+                                    ${item.amount}
+                                </Text>
+                            </View>
+                            <View style={styles.modalRow}>
+                                <View style={{ flex: 1 }} />
+                                <Text style={styles.modalTotalLabel}>{t("TOTAL")}</Text>
+                                <Text style={styles.modalTotalValue}>
+                                    ${item.amount}
+                                </Text>
+                            </View>
+                            <View style={styles.modalSectionDivider} />
 
-                    {
-                        item.credit_journal ?
-                            (
-                                <>
-                                    <View style={styles.modalRow}>
-                                        <Text style={styles.modalLabel}>{t("PAYMENT METHOD")}</Text>
-                                        <Text style={styles.modalValue}>{JSON.parse(item.payment_method).type}</Text>
-                                    </View>
-                                    <View style={styles.modalSectionDivider} />
-                                    <View style={styles.modalRow}>
-                                        <Text style={styles.modalLabel}>{t("PREVIOUS POINTS")}</Text>
-                                        <View style={styles.textCoinWrapper}>
-                                            <Text style={styles.modalPoints}>{item.credit_journal.credits_before}</Text>
-                                            <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
-                                        </View>
-                                    </View>
-                                    <View style={styles.modalRow}>
-                                        <Text style={styles.modalLabel}>{t("POINTS ADDED")}</Text>
-                                        <View style={styles.textCoinWrapper}>
-                                            <Text style={styles.modalPointsAdded}>+{item.credit_journal.credits_used}</Text>
-                                            <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
-                                        </View>
-                                    </View>
-                                    <View style={styles.modalRow}>
-                                        <Text style={styles.modalLabel}>{t("TOTAL POINTS")}</Text>
-                                        <View style={styles.textCoinWrapper}>
-                                            <Text style={styles.modalPointsTotal}>{item.credit_journal.credits_after}</Text>
-                                            <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
-                                        </View>
-                                    </View>
-                                </>
-                            ) :
-                            (
-                                <>
-                                    <View style={{ marginVertical: 16 }}>
-                                        <Text style={{ textAlign: "center", color: COLORS.neutral, fontSize: 15 }}>
-                                            {t("PAYMENT NOT COMPLETED")}
-                                        </Text>
-                                    </View>
-                                </>
-                            )
-                    }
+                            {
+                                item.credit_journal ?
+                                    (
+                                        <>
+                                            <View style={styles.modalRow}>
+                                                <Text style={styles.modalLabel}>{t("PAYMENT METHOD")}</Text>
+                                                <Text style={styles.modalValue}>{JSON.parse(item.payment_method).type}</Text>
+                                            </View>
+                                            <View style={styles.modalSectionDivider} />
+                                            <View style={styles.modalRow}>
+                                                <Text style={styles.modalLabel}>{t("PREVIOUS POINTS")}</Text>
+                                                <View style={styles.textCoinWrapper}>
+                                                    <Text style={styles.modalPoints}>{item.credit_journal.credits_before}</Text>
+                                                    <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                </View>
+                                            </View>
+                                            <View style={styles.modalRow}>
+                                                <Text style={styles.modalLabel}>{t("POINTS ADDED")}</Text>
+                                                <View style={styles.textCoinWrapper}>
+                                                    <Text style={styles.modalPointsAdded}>+{item.credit_journal.credits_used}</Text>
+                                                    <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                </View>
+                                            </View>
+                                            <View style={styles.modalRow}>
+                                                <Text style={styles.modalLabel}>{t("TOTAL POINTS")}</Text>
+                                                <View style={styles.textCoinWrapper}>
+                                                    <Text style={styles.modalPointsTotal}>{item.credit_journal.credits_after}</Text>
+                                                    <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                </View>
+                                            </View>
+                                        </>
+                                    ) :
+                                    (
+                                        <>
+                                            <View style={{ marginVertical: 16 }}>
+                                                <Text style={{ textAlign: "center", color: COLORS.neutral, fontSize: 15 }}>
+                                                    {t("PAYMENT NOT COMPLETED")}
+                                                </Text>
+                                            </View>
+                                        </>
+                                    )
+                            }
+                        </View>
+                    </TouchableWithoutFeedback>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         </Modal>
     );
 };
