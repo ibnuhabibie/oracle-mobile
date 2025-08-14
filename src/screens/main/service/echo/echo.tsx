@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
     Pressable,
     StyleSheet,
@@ -42,10 +43,13 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
         };
     };
 
-    // Fetch all diaries for selected month and mark dates (using useState only, so fetch in body)
+    // Fetch all diaries for selected month and mark dates
     const { start_date, end_date } = getMonthRange(selectedMonth.year, selectedMonth.month);
-    if ((!diaries || diaries.length === 0) && !loading && !error) {
+
+    const fetchDiaries = useCallback(() => {
         setLoading(true);
+        setError(null);
+        setMarkedDates({});
         const api = require('../../../../utils/http').default;
         api.get(`/v1/secret-diaries?limit=1000&offset=0&start_date=${start_date}&end_date=${end_date}`)
             .then((res: any) => {
@@ -62,16 +66,24 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     });
                     setMarkedDates(marks);
                 } else {
+                    setDiaries([]);
                     setError('No diary found.');
                     setMarkedDates({});
                 }
             })
             .catch((err: any) => {
+                setDiaries([]);
                 setError(err?.message || 'Failed to fetch diary');
                 setMarkedDates({});
             })
             .finally(() => setLoading(false));
-    }
+    }, [start_date, end_date]);
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchDiaries();
+        }, [fetchDiaries])
+    );
 
 
     const toDetail = (diary) => {
@@ -111,11 +123,11 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     if (mark && mark.diaryId) {
                         navigation.push('EchoDetail', { id: mark.diaryId, date: day });
                     }
+                    // else {
+                    //     navigation.push('EchoDetail', { date: day });
+                    // }
                 }}
                 onMonthChange={monthObj => {
-                    setDiaries([]);
-                    setError(null);
-                    setMarkedDates({});
                     setSelectedMonth({ year: monthObj.year, month: monthObj.month });
                 }}
                 theme={
