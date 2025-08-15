@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     modalPoints: {
-        color: "#222",
+        color: COLORS.neutral,
         fontWeight: "bold",
         fontSize: 14,
         flexDirection: "row",
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     modalPointsTotal: {
-        color: "#222",
+        color: COLORS.neutral,
         fontWeight: "bold",
         fontSize: 14,
         flexDirection: "row",

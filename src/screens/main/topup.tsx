@@ -17,6 +17,7 @@ import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 import CoinIcon from '../../components/icons/profile/coin-icon';
 import { useTranslation } from 'react-i18next';
+import { useAsyncStorage } from '../../hooks/use-storage';
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
 
@@ -158,6 +159,9 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     const [errorPackages, setErrorPackages] = useState<string | null>(null);
     const [errorSubscriptions, setErrorSubscriptions] = useState<string | null>(null);
     const [processing, setProcessing] = useState<boolean>(false);
+    const [userSubscriptionId, setUserSubscriptionId] = useState<number | null>(null);
+
+    const { getUserProfile } = useAsyncStorage();
 
     const fetchPackages = async () => {
         setLoadingPackages(true);
@@ -187,9 +191,16 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
     useEffect(() => {
         const init = async () => {
-            await fetchPackages()
-            await fetchSubscriptions()
-        }
+            await fetchPackages();
+            await fetchSubscriptions();
+            // Get user profile and subscription_id
+            const profile = await getUserProfile();
+            if (profile && typeof profile === 'object' && 'subscription_id' in profile) {
+                setUserSubscriptionId(
+                    typeof profile.subscription_id === 'number' ? profile.subscription_id : null
+                );
+            }
+        };
         init();
     }, []);
 
@@ -276,13 +287,15 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 loading={loadingPackages}
                 error={errorPackages}
             />
-            <SubscriptionCardList
-                subscriptions={subscriptions}
-                selectedSubscription={selectedSubscription}
-                setSelectedSubscription={handleSelectSubscription}
-                loading={loadingSubscriptions}
-                error={errorSubscriptions}
-            />
+            {userSubscriptionId == null && (
+                <SubscriptionCardList
+                    subscriptions={subscriptions}
+                    selectedSubscription={selectedSubscription}
+                    setSelectedSubscription={handleSelectSubscription}
+                    loading={loadingSubscriptions}
+                    error={errorSubscriptions}
+                />
+            )}
             <View style={{ height: 80 }}></View>
         </ScreenContainer>
     );

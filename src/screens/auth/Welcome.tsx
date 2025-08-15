@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Animated, Image, StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 import Video from 'react-native-video';
@@ -14,9 +14,15 @@ import WelcomeIllustration from '../../assets/images/welcome-illustration';
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
 const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
-  const { t } = useTranslation();
-  const [videoEnded, setVideoEnded] = useState(false);
+  const [opacity] = useState(new Animated.Value(0));
 
+  const fadeIn = () => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 150, // quick fade to avoid visible controls
+      useNativeDriver: true,
+    }).start();
+  };
   const handleClick = async () => {
     try {
       const language = await AsyncStorage.getItem('language');
@@ -34,27 +40,32 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   };
 
   return (
-    <ScreenContainer starAnimation={false} fluid={true}>
-      <View style={styles.container}>
-        {!videoEnded && (
-          <Video
-            source={require('../../assets/splash-screen.mp4')}
-            style={styles.video}
-            resizeMode="cover"
-            onEnd={() => {
-              handleClick();
-            }}
-            controls={false}
-            repeat={false}
-            paused={false}
-          />
-        )}
-      </View>
-    </ScreenContainer>
+    <View style={styles.container}>
+      <Animated.View style={[styles.videoWrapper, { opacity }]}>
+        <Video
+          source={require('../../assets/splash-screen.mp4')}
+          style={styles.video}
+          resizeMode="cover"
+          controls={false}
+          repeat={false}
+          paused={false}
+          pointerEvents="none"
+          playInBackground={false}
+          playWhenInactive={false}
+          ignoreSilentSwitch="ignore"
+          onLoad={fadeIn} // only fade in after video is loaded
+          onEnd={() => setTimeout(handleClick, 1000)}
+        />
+      </Animated.View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  videoWrapper: {
+    flex: 1,
+    width: '100%',
+  },
   container: {
     flex: 1,
     alignItems: 'center',
