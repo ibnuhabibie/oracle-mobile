@@ -34,7 +34,7 @@ const getRandom = (min: number, max: number) =>
   Math.random() * (max - min) + min;
 
 const TWINKLE_DURATION = 2500; // ms, steady twinkle speed
-const METEOR_SPEED = 1800; // ms, steady meteor speed
+const METEOR_SPEED = 2500; // ms, steady meteor speed
 
 const StarField: React.FC = React.memo(() => {
   // Each star: { left, top, size, color, twinkleAnim }
@@ -227,7 +227,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   floatingFooter,
   floatingButton,
   fluid = false,
-  starAnimation = false,
+  starAnimation = true,
 }) => {
   const content = (
     <View

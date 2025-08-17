@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Modal, View, ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import api from '../../utils/http';
+import { COLORS } from '../../constants/colors';
 
 type PollingLoadingModalProps = {
   job_id: string;
@@ -57,7 +58,7 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.container}>
-          <ActivityIndicator size="large" color="#000" />
+          <ActivityIndicator size="large" color={COLORS.neutral} />
           <Text style={styles.text}>{message}</Text>
           <Text style={styles.info}>
             You can close this modal and just wait, our system will notify you when the report is ready.
@@ -74,26 +75,30 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    backgroundColor: 'rgba(30,30,30,0.8)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#3F3F3F80',
+    borderWidth: 1,
+    borderColor: COLORS.neutral,
     padding: 24,
     borderRadius: 12,
     alignItems: 'center',
     maxWidth: 350,
+
   },
   text: {
     marginTop: 16,
     fontSize: 16,
     textAlign: 'center',
+    color: COLORS.neutral
   },
   info: {
     marginTop: 12,
     fontSize: 14,
-    color: '#666',
+    color: COLORS.neutral,
     textAlign: 'center',
   },
   closeButton: {

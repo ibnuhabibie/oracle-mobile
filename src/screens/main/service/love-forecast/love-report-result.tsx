@@ -16,12 +16,14 @@ import LoveReportIcon5 from '../../../../components/icons/services/love-report/l
 import LoveReportIcon6 from '../../../../components/icons/services/love-report/love-report-icon-6';
 import LoveReportIcon7 from '../../../../components/icons/services/love-report/love-report-icon-7';
 import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
+import { downloadPdf } from '../../../../utils/http';
 
 type LoveReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveReportResult'>;
 
 const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }) => {
     const { t } = useTranslation();
-    const { result } = route.params;
+    const { result, job_id } = route.params;
+    const [loading, setLoading] = React.useState(false);
 
     console.log(result)
 
@@ -58,7 +60,7 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
             <>
                 {
                     content.map((item, idx) => (
-                    <ProfileItemCard
+                        <ProfileItemCard
                             key={item.order || idx}
                             data={{
                                 title: item.title,
@@ -74,6 +76,17 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
         );
     };
 
+    const handleDownload = async () => {
+        setLoading(true);
+        setTimeout(async () => {
+            try {
+                await downloadPdf(job_id, t, true);
+            } finally {
+                setLoading(false);
+            }
+        }, 0);
+    };
+
     return (
         <ScreenContainer
             header={
@@ -83,7 +96,12 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
                 />
             }
             floatingFooter={
-                <AppButton title={t('loveReportResult.downloadPdf')} />
+                <AppButton
+                    title={t('loveReportResult.downloadPdf')}
+                    onPress={handleDownload}
+                    loading={loading}
+                    disabled={loading}
+                />
             }
         >
             <AppText style={styles.forecastRange} color="neutral">

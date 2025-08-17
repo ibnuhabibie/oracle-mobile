@@ -123,6 +123,8 @@
     "relationReportResult": {
         "header": "Relationship Compatibility",
         "downloadPdf": "Download as PDF",
+        "downloadSuccess": "PDF downloaded successfully.",
+        "downloadedTo": "Saved to: {{path}}",
         "you": "You",
         "yourLoveInterest": "Your Love Interest"
     },
@@ -237,10 +239,10 @@
     "purchaseAlert": {
         "title": "PURCHASE ALERT",
         "askGeenie": "To use {{service}}, it will cost {{cost}} <coin/>, Continue?",
-        "yourCredits": "Your {{creditType}} Credits: {{userCredit}} <coin/>",
+        "yourCredits": "Your {{creditType}} Credits: {{userCredit}}",
         "continue": "Continue to Purchase",
         "cancel": "Cancel",
-        "insufficient": "This report will cost {{cost}}\nYour current {{creditType}} credits are insufficient. Please top up to proceed.",
+        "insufficient": "This report will cost {{cost}} {{creditType}} coin.\n\nYour current {{creditType}} credits are insufficient. Please top up to proceed.",
         "purchaseCredits": "Purchase Credits"
     },
     "profileCard": {

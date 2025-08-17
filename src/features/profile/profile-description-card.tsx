@@ -54,12 +54,13 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "flex-start",
         paddingVertical: 6,
+        width: '100%'
     },
     label: {
         color: COLORS.neutral,
         fontSize: 14,
         fontWeight: "400",
-        flex: 1.6,
+        flex: 1.3,
     },
     value: {
         color: COLORS.neutral,

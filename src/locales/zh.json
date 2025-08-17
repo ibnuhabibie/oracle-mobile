@@ -222,7 +222,7 @@
     "purchaseAlert": {
         "title": "购买提醒",
         "askGeenie": "向Geenie提问将花费{{cost}} <coin/>\n继续吗？",
-        "yourCredits": "你的{{creditType}}积分: {{userCredit}} <coin/>",
+        "yourCredits": "你的{{creditType}}积分: {{userCredit}}",
         "continue": "继续购买",
         "cancel": "取消",
         "insufficient": "本报告将花费{{cost}}\n你当前的{{creditType}}积分不足，请充值后再试。",
@@ -263,6 +263,8 @@
     "relationReportResult": {
         "header": "关系匹配度",
         "downloadPdf": "下载为PDF",
+        "downloadSuccess": "PDF已成功下载！",
+        "downloadedTo": "文件已下载到: {{path}}",
         "you": "你",
         "yourLoveInterest": "你的心仪对象"
     },

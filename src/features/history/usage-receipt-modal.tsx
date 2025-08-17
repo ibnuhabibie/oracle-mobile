@@ -14,7 +14,7 @@ interface UsageReceiptModalProps {
   visible: boolean;
   onClose: () => void;
   item: {
-    transaction_id: string;
+    job_id: string;
     usage_history_id: string;
     created_at: string;
     item_name: string;
@@ -61,7 +61,10 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
 
     if (item.service_type == 'personalized_love_forecast_12mth') {
       pageName = 'LoveReportResult'
-      payload = { result: data }
+      payload = {
+        result: data,
+        job_id: item.job_id
+      }
     } else if (item.service_type == 'ask_any_question') {
       pageName = 'AffinityResults'
       payload = {
@@ -70,12 +73,16 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
       }
     } else if (item.service_type == 'transit_report') {
       pageName = 'FortuneReportResult'
-      payload = { result: data }
+      payload = {
+        result: data,
+        job_id: item.job_id
+      }
     } else if (item.service_type == 'relationship_compatibility') {
       pageName = 'RelationReportResult'
       payload = {
         result: data,
-        love_profile: item.request_data ? JSON.parse(item.request_data).partner : undefined
+        love_profile: item.request_data ? JSON.parse(item.request_data).partner : undefined,
+        job_id: item.job_id
       }
     } else if (item.service_type == 'ask_secret_diary') {
       console.log(data, new Date(data.date))

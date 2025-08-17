@@ -13,6 +13,7 @@ export const serviceTypeTranslationKeys: Record<string, string> = {
   personalized_love_forecast_12mth: "usageReceiptModal.serviceType.personalized_love_forecast_12mth",
   love_report: "usageReceiptModal.serviceType.personalized_love_forecast_12mth",
   transit_report: "usageReceiptModal.serviceType.transit_report",
+  relationship_report: "usageReceiptModal.serviceType.relationship_compatibility",
   relationship_compatibility: "usageReceiptModal.serviceType.relationship_compatibility",
   ask_secret_diary: "usageReceiptModal.serviceType.ask_secret_diary",
   secret_diary: "usageReceiptModal.serviceType.ask_secret_diary",

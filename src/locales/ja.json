@@ -223,7 +223,7 @@
     "purchaseAlert": {
         "title": "購入アラート",
         "askGeenie": "Geenieに質問するには{{cost}} <coin/>が必要です。\n続行しますか？",
-        "yourCredits": "あなたの{{creditType}}クレジット: {{userCredit}} <coin/>",
+"yourCredits": "あなたの{{creditType}}クレジット: {{userCredit}}",
         "continue": "購入を続ける",
         "cancel": "キャンセル",
         "insufficient": "このレポートには{{cost}}が必要です\n現在の{{creditType}}クレジットが不足しています。チャージしてから続行してください。",
@@ -264,6 +264,8 @@
     "relationReportResult": {
         "header": "関係の相性",
         "downloadPdf": "PDFとしてダウンロード",
+        "downloadSuccess": "PDFのダウンロードが成功しました",
+        "downloadedTo": "ファイルは {{path}} に保存されました",
         "you": "あなた",
         "yourLoveInterest": "お相手"
     },

@@ -28,17 +28,20 @@ export type MainNavigatorParamList = {
     LoveForecast: undefined;
     LoveReportResult: {
         result: any
+        job_id: string
     };
 
     FortuneReport: undefined;
     FortuneReportResult: {
         result: any
+        job_id: string
     };
 
     RelationReport: undefined;
     RelationReportResult: {
         result: any
         love_profile: any
+        job_id: string
     };
 
     TopUp: undefined;

@@ -223,7 +223,7 @@
     "purchaseAlert": {
         "title": "PERINGATAN PEMBELIAN",
         "askGeenie": "Untuk bertanya pada Geenie, akan dikenakan biaya {{cost}} <coin/> \nLanjutkan?",
-        "yourCredits": "Kredit {{creditType}} Anda: {{userCredit}} <coin/>",
+        "yourCredits": "Kredit {{creditType}} Anda: {{userCredit}}",
         "continue": "Lanjutkan Pembelian",
         "cancel": "Batal",
         "insufficient": "Laporan ini akan dikenakan biaya {{cost}}\nKredit {{creditType}} Anda saat ini tidak mencukupi. Silakan isi ulang untuk melanjutkan.",
@@ -264,6 +264,8 @@
     "relationReportResult": {
         "header": "Kecocokan Hubungan",
         "downloadPdf": "Unduh sebagai PDF",
+        "downloadSuccess": "PDF berhasil diunduh!",
+        "downloadedTo": "File diunduh ke: {{path}}",
         "you": "Anda",
         "yourLoveInterest": "Orang yang Anda Sukai"
     },

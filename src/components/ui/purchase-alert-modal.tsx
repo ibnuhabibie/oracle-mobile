@@ -83,6 +83,24 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
   const getServiceTypeLabel = (type: string) =>
     t(serviceTypeTranslationKeys[type] || type);
 
+  const PurchaseAlertCreditText: React.FC<{
+    creditType: string;
+    userCredit: number;
+  }> = ({ creditType, userCredit }) => (
+    <View style={{ alignItems: 'center', display: 'flex', flexDirection: 'row', marginTop: 14 }}>
+      <AppText style={{ textAlign: 'center' }} color='neutral'>
+        <Trans
+          i18nKey="purchaseAlert.yourCredits"
+          values={{
+            creditType: creditType === 'gold' ? t('Gold') : t('Silver'),
+            userCredit
+          }}
+        />
+      </AppText>
+      <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+    </View>
+  );
+
   return (
     <Modal visible={visible} transparent animationType="slide">
       <TouchableWithoutFeedback onPress={onCancel}>
@@ -92,73 +110,61 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
               <AppText variant="subtitle1" color="primary" style={styles.title}>
                 {t('purchaseAlert.title')}
               </AppText>
-              {isSufficient ? (
-                <>
-                  <AppText style={{ textAlign: 'center', lineHeight: 22 }} color='white'>
-                    <Trans
-                      i18nKey="purchaseAlert.askGeenie"
-                      values={{ cost, service: getServiceTypeLabel(service) }}
-                      components={{
-                        coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
-                      }}
-                    />
-                  </AppText>
-                  <AppText style={{ textAlign: 'center', marginTop: 14 }} color="neutral">
-                    <Trans
-                      i18nKey="purchaseAlert.yourCredits"
-                      values={{
-                        creditType: creditType === 'gold' ? t('Gold') : t('Silver'),
-                        userCredit
-                      }}
-                      components={{
-                        coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
-                      }}
-                    />
-                  </AppText>
-                  <View style={styles.buttonGroup}>
-                    <AppButton
-                      title={t('purchaseAlert.continue')}
-                      variant="primary"
-                      onPress={onContinue}
-                      loading={effectiveLoading}
-                    />
-                    <AppButton title={t('purchaseAlert.cancel')} variant="outline" onPress={onCancel} />
-                  </View>
-                </>
-              ) : (
-                <>
-                  <AppText style={{ textAlign: 'center', lineHeight: 22 }}>
-                    <Trans
-                      i18nKey="purchaseAlert.insufficient"
-                      values={{
-                        cost,
-                        creditType: creditType === 'gold' ? t('Gold') : t('Silver')
-                      }}
-                    />
-                  </AppText>
-                  <AppText style={{ textAlign: 'center', marginTop: 14 }} color="neutral">
-                    <Trans
-                      i18nKey="purchaseAlert.yourCredits"
-                      values={{
-                        creditType: creditType === 'gold' ? t('Gold') : t('Silver'),
-                        userCredit
-                      }}
-                      components={{
-                        coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
-                      }}
-                    />
-                  </AppText>
-                  <View style={styles.buttonGroup}>
-                    <AppButton
-                      title={t('purchaseAlert.purchaseCredits')}
-                      variant="secondary"
-                      onPress={() => navigation.navigate('TopUp')}
-                      loading={effectiveLoading}
-                    />
-                    <AppButton title={t('purchaseAlert.cancel')} variant="outline" onPress={onCancel} />
-                  </View>
-                </>
-              )}
+              {
+                isSufficient ?
+                  (
+                    <>
+                      <AppText style={{ textAlign: 'center', lineHeight: 22 }} color='white'>
+                        <Trans
+                          i18nKey="purchaseAlert.askGeenie"
+                          values={{ cost, service: getServiceTypeLabel(service) }}
+                          components={{
+                            coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+                          }}
+                        />
+                      </AppText>
+                      <PurchaseAlertCreditText
+                        creditType={creditType}
+                        userCredit={userCredit}
+                      />
+                      <View style={styles.buttonGroup}>
+                        <AppButton
+                          title={t('purchaseAlert.continue')}
+                          variant="primary"
+                          onPress={onContinue}
+                          loading={effectiveLoading}
+                        />
+                        <AppButton title={t('purchaseAlert.cancel')} variant="outline" onPress={onCancel} />
+                      </View>
+                    </>
+                  ) :
+                  (
+                    <>
+                      <AppText style={{ textAlign: 'center', lineHeight: 22 }} color='neutral'>
+                        <Trans
+                          i18nKey="purchaseAlert.insufficient"
+                          values={{
+                            cost,
+                            creditType: creditType === 'gold' ? t('Gold') : t('Silver')
+                          }}
+                        />
+                      </AppText>
+                      <PurchaseAlertCreditText
+                        creditType={creditType}
+                        userCredit={userCredit}
+                      />
+                      <View style={styles.buttonGroup}>
+                        <AppButton
+                          title={t('purchaseAlert.purchaseCredits')}
+                          variant="secondary"
+                          onPress={() => navigation.navigate('TopUp')}
+                          loading={effectiveLoading}
+                        />
+                        <AppButton title={t('purchaseAlert.cancel')} variant="outline" onPress={onCancel} />
+                      </View>
+                    </>
+                  )
+              }
             </View>
           </TouchableWithoutFeedback>
         </View>

@@ -11,6 +11,7 @@ import ProfileDescriptionCard from '../../../../features/profile/profile-descrip
 import ProfileCard from '../../../../features/profile/report/profile-card';
 import { COLORS } from '../../../../constants/colors';
 import { AppButton } from '../../../../components/ui/app-button';
+import { downloadPdf } from '../../../../utils/http';
 
 import RelationReportIcon11 from '../../../../components/icons/services/relation-report/relation-report-icon-11';
 import RelationReportIcon12 from '../../../../components/icons/services/relation-report/relation-report-icon-12';
@@ -42,16 +43,12 @@ const iconImages = [
 type RelationReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReportResult'>;
 
 const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation, route }) => {
-    const { result, love_profile } = route.params;
+    const { result, love_profile, job_id } = route.params;
     const { t } = useTranslation();
-    console.log(result?.content, 'result')
-
-    /* Duplicate import and iconImages array removed */
+    const [loading, setLoading] = React.useState(false);
 
     const CardList: FC<{ content: any[] }> = ({ content }) => {
-        console.log(content, 'content')
         if (!content) return null;
-
         return (
             <>
                 {content.map((item, idx) => (
@@ -79,6 +76,17 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
         );
     };
 
+    const handleDownload = async () => {
+        setLoading(true);
+        setTimeout(async () => {
+            try {
+                await downloadPdf(job_id, t, true);
+            } finally {
+                setLoading(false);
+            }
+        }, 0);
+    };
+
     return (
         <ScreenContainer
             header={
@@ -88,7 +96,12 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
                 />
             }
             floatingFooter={
-                <AppButton title={t('relationReportResult.downloadPdf')} />
+                <AppButton
+                    title={t('relationReportResult.downloadPdf')}
+                    onPress={handleDownload}
+                    loading={loading}
+                    disabled={loading}
+                />
             }
         >
             <ProfileCard cardTitle={t('relationReportResult.you')} iconKey={'relation'} />

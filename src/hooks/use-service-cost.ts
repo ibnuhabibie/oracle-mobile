@@ -5,7 +5,7 @@ export function useServiceCost(serviceKey: string) {
   const { getConfig } = useAsyncStorage();
   const [cost, setCost] = useState<number>(0);
   const [creditType, setCreditType] = useState<string>('silver');
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCost = async () => {

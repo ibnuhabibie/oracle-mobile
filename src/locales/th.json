@@ -223,7 +223,7 @@
     "purchaseAlert": {
         "title": "แจ้งเตือนการซื้อ",
         "askGeenie": "การถาม Geenie จะมีค่าใช้จ่าย {{cost}} <coin/>\nดำเนินการต่อหรือไม่?",
-        "yourCredits": "เครดิต{{creditType}}ของคุณ: {{userCredit}} <coin/>",
+        "yourCredits": "เครดิต{{creditType}}ของคุณ: {{userCredit}}",
         "continue": "ดำเนินการซื้อ",
         "cancel": "ยกเลิก",
         "insufficient": "รายงานนี้จะมีค่าใช้จ่าย {{cost}}\nเครดิต{{creditType}}ของคุณไม่เพียงพอ กรุณาเติมเงินเพื่อดำเนินการต่อ",
@@ -264,6 +264,8 @@
     "relationReportResult": {
         "header": "ความเข้ากันได้ของความสัมพันธ์",
         "downloadPdf": "ดาวน์โหลดเป็น PDF",
+        "downloadSuccess": "PDF ดาวน์โหลดสำเร็จ!",
+        "downloadedTo": "ไฟล์ถูกดาวน์โหลดไปที่: {{path}}",
         "you": "คุณ",
         "yourLoveInterest": "คนที่คุณสนใจ"
     },

@@ -192,7 +192,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 visible={showPurchaseModal}
                 onContinue={handleContinue}
                 onCancel={handleCancel}
-                service="relationship_compatibility"
+                service="relationship_report"
                 loading={costLoading}
             />
             {pollingJobId && (

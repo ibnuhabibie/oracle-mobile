@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import ScreenContainer from '../../components/layouts/screen-container';
 import { MainNavigatorParamList } from '../../navigators/types';
 import Header from '../../components/ui/header';
+import { COLORS } from '../../constants/colors';
 
 type WebviewContentProps = NativeStackScreenProps<MainNavigatorParamList, 'WebviewContent'>;
 
@@ -32,7 +33,7 @@ const WebviewContent: FC<WebviewContentProps> = ({ navigation }) => {
                 startInLoadingState={true}
                 renderLoading={() => (
                     <ActivityIndicator
-                        color="#000000"
+                        color={COLORS.neutral}
                         size="large"
                         style={StyleSheet.absoluteFill}
                     />

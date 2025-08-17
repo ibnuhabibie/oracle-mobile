@@ -72,7 +72,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
     return (
         <View style={styles.profileCard}>
             <ShinyContainer size={160}>
-                <ProfileIcon name={iconKey} />
+                <ProfileIcon name={iconKey} size={50} />
             </ShinyContainer>
 
             {cardTitle ? <AppText variant='body1' color='primary' style={styles.cardTitle}>{cardTitle}</AppText> : null}

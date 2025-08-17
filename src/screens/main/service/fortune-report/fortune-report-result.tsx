@@ -8,6 +8,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import ProfileItemCard from '../../../../features/profile/report/profile-item-card';
 import { AppButton } from '../../../../components/ui/app-button';
+import { downloadPdf } from '../../../../utils/http';
 
 import FortuneReportIcon11 from '../../../../components/icons/services/fortune-report/fortune-report-icon-11';
 import FortuneReportIcon12 from '../../../../components/icons/services/fortune-report/fortune-report-icon-12';
@@ -30,8 +31,9 @@ const iconImages = [
 type FortuneReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReportResult'>;
 
 const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, route }) => {
-    const { result } = route.params;
+    const { result, job_id } = route.params;
     const { t } = useTranslation();
+    const [loading, setLoading] = React.useState(false);
 
     const CardList: FC<{ content: any[] }> = ({ content }) => {
         if (!content) return null;
@@ -54,6 +56,17 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
         );
     };
 
+    const handleDownload = async () => {
+        setLoading(true);
+        setTimeout(async () => {
+            try {
+                await downloadPdf(job_id, t, true);
+            } finally {
+                setLoading(false);
+            }
+        }, 0);
+    };
+
     return (
         <ScreenContainer
             header={
@@ -63,7 +76,12 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
                 />
             }
             floatingFooter={
-                <AppButton title={t('fortuneReportResult.downloadPdf')} />
+                <AppButton
+                    title={t('fortuneReportResult.downloadPdf')}
+                    onPress={handleDownload}
+                    loading={loading}
+                    disabled={loading || !job_id}
+                />
             }
         >
             <CardList content={result?.content} />
