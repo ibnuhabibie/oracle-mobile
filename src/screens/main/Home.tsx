@@ -25,28 +25,24 @@ const Home: FC<HomeProps> = ({ navigation }) => {
 
   const carouselItems: Array<{
     id: string;
-    image: any;
     title: string;
     subtitle: string;
     path: keyof MainNavigatorParamList;
   }> = [
       {
         id: 'love',
-        image: require('../../assets/icons/services/love-forecast/service-icon.png'),
         title: t('carousel.love.title'),
         subtitle: t('carousel.love.subtitle'),
         path: 'LoveForecast'
       },
       {
         id: 'relation',
-        image: require('../../assets/icons/services/relation-report/service-icon.png'),
         title: t('carousel.relation.title'),
         subtitle: t('carousel.relation.subtitle'),
         path: 'RelationReport'
       },
       {
         id: 'fortune',
-        image: require('../../assets/icons/services/fortune-report/service-icon.png'),
         title: t('carousel.fortune.title'),
         subtitle: t('carousel.fortune.subtitle'),
         path: 'FortuneReport'
