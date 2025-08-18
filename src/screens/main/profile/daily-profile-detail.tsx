@@ -60,6 +60,13 @@ export default function DailyProfileDetail() {
       }
       style={styles.container}>
       {/* Score */}
+      <AppText style={styles.date} color="white">
+        {new Date().toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        })}, {new Date().toLocaleDateString('en-GB', { weekday: 'long' })}
+      </AppText>
       <AppText style={styles.score} color="white">{data?.today_points}%</AppText>
       <AppText style={styles.subtitle} color="neutral">TODAY SCORE</AppText>
 
@@ -93,7 +100,7 @@ export default function DailyProfileDetail() {
       <AppText variant='caption1' color="neutral" style={styles.description}>
         {data.today_description}
       </AppText>
-    </ScreenContainer>
+    </ScreenContainer >
   );
 }
 
@@ -101,6 +108,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
+  },
+  date: {
+    fontSize: 32,
+    textAlign: 'center',
   },
   score: {
     marginBottom: 8,
