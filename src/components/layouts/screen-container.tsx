@@ -20,6 +20,7 @@ type ScreenContainerProps = {
   floatingButton?: React.ReactNode; // New prop for FAB
   fluid?: boolean; // If true, removes default padding
   starAnimation?: boolean; // Enable animated stars
+  meteorAnimation?: boolean; // Enable meteor animation
 };
 
 const { width, height } = Dimensions.get('window');
@@ -34,9 +35,13 @@ const getRandom = (min: number, max: number) =>
   Math.random() * (max - min) + min;
 
 const TWINKLE_DURATION = 2500; // ms, steady twinkle speed
-const METEOR_SPEED = 2500; // ms, steady meteor speed
+const METEOR_SPEED = 3500; // ms, steady meteor speed
 
-const StarField: React.FC = React.memo(() => {
+type StarFieldProps = {
+  meteorAnimation?: boolean;
+};
+
+const StarField: React.FC<StarFieldProps> = React.memo(({ meteorAnimation = true }) => {
   // Each star: { left, top, size, color, twinkleAnim }
   const stars = React.useMemo(
     () =>
@@ -99,87 +104,90 @@ const StarField: React.FC = React.memo(() => {
       ).start();
     });
 
-    // Animate meteors
-    meteors.forEach((meteor) => {
-      const animateMeteor = () => {
-        meteor.startX = getRandom(width * 0.3, width * 0.7);
-        meteor.startY = getRandom(-height * 0.05, height * 0.2);
-        meteor.length = getRandom(80, 140);
-        meteor.angle = getRandom(18, 28);
-        meteor.speed = METEOR_SPEED;
-        meteor.delay = getRandom(0, 4000);
-        meteor.anim.setValue(0);
-        meteor.opacity.setValue(0);
-        Animated.sequence([
-          Animated.delay(meteor.delay),
-          Animated.parallel([
-            Animated.timing(meteor.anim, {
-              toValue: 1,
-              duration: METEOR_SPEED,
-              useNativeDriver: true,
-            }),
-            Animated.sequence([
-              Animated.timing(meteor.opacity, {
+    // Animate meteors only if enabled
+    if (meteorAnimation) {
+      meteors.forEach((meteor) => {
+        const animateMeteor = () => {
+          meteor.startX = getRandom(width * 0.3, width * 0.7);
+          meteor.startY = getRandom(-height * 0.05, height * 0.2);
+          meteor.length = getRandom(80, 140);
+          meteor.angle = getRandom(18, 28);
+          meteor.speed = METEOR_SPEED;
+          meteor.delay = getRandom(0, 4000);
+          meteor.anim.setValue(0);
+          meteor.opacity.setValue(0);
+          Animated.sequence([
+            Animated.delay(meteor.delay),
+            Animated.parallel([
+              Animated.timing(meteor.anim, {
                 toValue: 1,
-                duration: 100,
+                duration: METEOR_SPEED,
                 useNativeDriver: true,
               }),
-              Animated.timing(meteor.opacity, {
-                toValue: 0,
-                duration: METEOR_SPEED - 100,
-                useNativeDriver: true,
-              }),
+              Animated.sequence([
+                Animated.timing(meteor.opacity, {
+                  toValue: 1,
+                  duration: 100,
+                  useNativeDriver: true,
+                }),
+                Animated.timing(meteor.opacity, {
+                  toValue: 0,
+                  duration: METEOR_SPEED - 100,
+                  useNativeDriver: true,
+                }),
+              ]),
             ]),
-          ]),
-        ]).start(() => animateMeteor());
-      };
-      animateMeteor();
-    });
-  }, [stars, globalOffset, meteors]);
+          ]).start(() => animateMeteor());
+        };
+        animateMeteor();
+      });
+    }
+  }, [stars, globalOffset, meteors, meteorAnimation]);
 
   // Move all stars diagonally (down-right), wrap around screen
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       {/* Meteors */}
-      {meteors.map((meteor, idx) => {
-        // Meteor moves diagonally down-right
-        const meteorTranslate = meteor.anim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0, width + height],
-        });
-        // Calculate x/y based on angle and progress
-        const rad = (meteor.angle * Math.PI) / 180;
-        const translateX = Animated.add(
-          new Animated.Value(meteor.startX),
-          Animated.multiply(meteorTranslate, Math.cos(rad))
-        );
-        const translateY = Animated.add(
-          new Animated.Value(meteor.startY),
-          Animated.multiply(meteorTranslate, Math.sin(rad))
-        );
-        return (
-          <Animated.View
-            key={`meteor-${idx}`}
-            style={{
-              position: 'absolute',
-              width: meteor.length,
-              height: 1,
-              borderRadius: 0.5,
-              backgroundColor: COLORS.primary,
-              opacity: meteor.opacity,
-              transform: [
-                { translateX },
-                { translateY },
-                { rotateZ: `${meteor.angle}deg` },
-              ],
-              shadowColor: '#FFF',
-              shadowOffset: { width: 0, height: 0 },
-              shadowOpacity: 0.7,
-              shadowRadius: 6,
-            }}
-          />
-        );
-      })}
+      {meteorAnimation &&
+        meteors.map((meteor, idx) => {
+          // Meteor moves diagonally down-right
+          const meteorTranslate = meteor.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, width + height],
+          });
+          // Calculate x/y based on angle and progress
+          const rad = (meteor.angle * Math.PI) / 180;
+          const translateX = Animated.add(
+            new Animated.Value(meteor.startX),
+            Animated.multiply(meteorTranslate, Math.cos(rad))
+          );
+          const translateY = Animated.add(
+            new Animated.Value(meteor.startY),
+            Animated.multiply(meteorTranslate, Math.sin(rad))
+          );
+          return (
+            <Animated.View
+              key={`meteor-${idx}`}
+              style={{
+                position: 'absolute',
+                width: meteor.length,
+                height: 1,
+                borderRadius: 0.5,
+                backgroundColor: COLORS.primary,
+                opacity: meteor.opacity,
+                transform: [
+                  { translateX },
+                  { translateY },
+                  { rotateZ: `${meteor.angle}deg` },
+                ],
+                shadowColor: '#FFF',
+                shadowOffset: { width: 0, height: 0 },
+                shadowOpacity: 0.7,
+                shadowRadius: 6,
+              }}
+            />
+          );
+        })}
       {/* Stars */}
       {stars.map((star, idx) => {
         // Interpolate offset for this star (move diagonally, wrap)
@@ -228,6 +236,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   floatingButton,
   fluid = false,
   starAnimation = true,
+  meteorAnimation = true,
 }) => {
   const content = (
     <View
@@ -250,7 +259,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
         center={[width / 2, height / 2]}
         radius={Math.max(width, height) / 1.2}
       />
-      {starAnimation && <StarField />}
+      {starAnimation && <StarField meteorAnimation={meteorAnimation} />}
       {header && <View style={styles.fixedHeader}>{header}</View>}
       {scrollable ? (
         <ScrollView

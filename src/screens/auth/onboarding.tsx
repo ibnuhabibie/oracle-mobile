@@ -1,8 +1,8 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Pressable, StyleSheet, Text, View, Alert } from 'react-native';
 
 import CalendarIcon from '../../components/icons/auth/calendar-icon';
 import ClockIcon from '../../components/icons/auth/clock-icon';
@@ -23,11 +23,22 @@ import { AppText } from '../../components/ui/app-text';
 import { COLORS } from '../../constants/colors';
 import { useTranslation } from 'react-i18next';
 
+interface Country {
+  name: string;
+  iso3: string;
+}
+
+interface City {
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
 interface FormData {
   birth_date: Date;
   birth_time: Date;
-  birth_country: string;
-  birth_city: string;
+  birth_country: Country | null;
+  birth_city: City | null;
 }
 
 const Onboarding: FC<{
@@ -36,6 +47,7 @@ const Onboarding: FC<{
 
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
@@ -44,13 +56,14 @@ const Onboarding: FC<{
 
   const { t } = useTranslation();
 
-  const { handleSubmit, setValue, watch } = useForm<FormData>({
+  const { handleSubmit, setValue, watch, formState, setError } = useForm<FormData>({
     defaultValues: {
       birth_date: new Date,
       birth_time: new Date,
       birth_country: null,
       birth_city: null,
     },
+    mode: 'onSubmit',
   });
 
   const watchedCountry = watch('birth_country');
@@ -67,7 +80,7 @@ const Onboarding: FC<{
     }
   };
 
-  const fetchCities = async (country) => {
+  const fetchCities = async (country: Country) => {
     try {
       console.log(watchedCountry)
       const response = await api.get(`/v1/configs/countries/${country.iso3}/cities`);
@@ -83,26 +96,43 @@ const Onboarding: FC<{
   }, []);
 
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    // Validation: all fields required
+    if (
+      !data.birth_date ||
+      !data.birth_time ||
+      !data.birth_country ||
+      !data.birth_city
+    ) {
+      Alert.alert(t('Register Failed'), t('All fields are required.'));
+      return;
+    }
 
-    let birth_date = data.birth_date.toISOString().split('T')[0];
-    let birth_time = data.birth_time.toISOString().split('T')[1].split('.')[0];
+    setLoading(true);
+    try {
+      let birth_date = data.birth_date.toISOString().split('T')[0];
+      let birth_time = data.birth_time.toISOString().split('T')[1].split('.')[0];
 
-    const res = await api.put('/v1/users', {
-      birth_date,
-      birth_time,
-      birth_country: data.birth_country.name,
-      birth_city: data.birth_city.name,
-      birth_lat: data.birth_city.latitude,
-      birth_lng: data.birth_city.longitude
-    })
+      const res = await api.put('/v1/users', {
+        birth_date,
+        birth_time,
+        birth_country: data.birth_country.name,
+        birth_city: data.birth_city.name,
+        birth_lat: data.birth_city.latitude,
+        birth_lng: data.birth_city.longitude
+      })
 
-    await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
+      await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
 
-    if (!res.data.mbti_profile) {
-      navigation.replace('MbtiQuiz');
-    } else {
-      navigation.replace('Tabs');
+      if (!res.data.mbti_profile) {
+        navigation.replace('MbtiQuiz');
+      } else {
+        navigation.replace('Tabs');
+      }
+    } catch (error) {
+      Alert.alert(t('Register Failed'), t('An error occurred. Please try again.'));
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -120,7 +150,7 @@ const Onboarding: FC<{
     }
   };
 
-  const selectCountry = async (country) => {
+  const selectCountry = async (country: Country) => {
     console.log('country', country)
     setValue('birth_country', country);
     await fetchCities(country);
@@ -130,7 +160,7 @@ const Onboarding: FC<{
     setShowCountryModal(false);
   };
 
-  const selectCity = (city) => {
+  const selectCity = (city: City) => {
     console.log('city', city)
     setValue('birth_city', city);
     setShowCityModal(false);
@@ -177,12 +207,12 @@ const Onboarding: FC<{
 
         <DropdownButton
           onPress={() => setShowCountryModal(true)}
-          text={watchedCountry?.name || t('Please select one')}
+          text={watchedCountry && typeof watchedCountry === 'object' ? watchedCountry.name : t('Please select one')}
         />
 
         <DropdownButton
           onPress={() => setShowCityModal(true)}
-          text={watchedCity?.name || t('Please select one')}
+          text={watchedCity && typeof watchedCity === 'object' ? watchedCity.name : t('Please select one')}
         />
       </View>
 
@@ -190,6 +220,8 @@ const Onboarding: FC<{
         title={t('Save')}
         onPress={handleSubmit(onSubmit)}
         style={styles.saveButton}
+        disabled={loading}
+        loading={loading}
       />
 
       {/* Date Picker */}
@@ -221,7 +253,7 @@ const Onboarding: FC<{
         t('Select Country'),
         countries,
         selectCountry,
-        watchedCountry,
+        watchedCountry?.iso3 ?? '',
         'iso3'
       )}
 
@@ -232,7 +264,7 @@ const Onboarding: FC<{
         t('Select City'),
         cities,
         selectCity,
-        watchedCity,
+        watchedCity?.name ?? '',
         'name'
       )}
 

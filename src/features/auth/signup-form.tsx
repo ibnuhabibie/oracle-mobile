@@ -17,6 +17,7 @@ import { useAsyncStorage } from "../../hooks/use-storage";
 const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
     const { sync } = useAsyncStorage();
 
@@ -66,6 +67,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
 
     const onSubmit = async (data: any) => {
+        setLoading(true);
         try {
             console.log('Sign up data:', data);
             const res = await api.post('/v1/users/register', data)
@@ -76,8 +78,10 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             // navigation.navigate('Otp', { email: res.data.email });
             onSuccess(res.data.email)
         } catch (error) {
-            Alert.alert(t('LOGIN FAILED'), error.meta.message)
-            console.log(error)
+            Alert.alert(t('REGISTER FAILED'), t('REGISTER FAILED MESSAGE'));
+            console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -142,6 +146,8 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                 title={t('CREATE ACCOUNT')}
                 onPress={handleSubmit(onSubmit)}
                 style={styles.signInButton}
+                disabled={loading}
+                loading={loading}
             />
         </>
     )

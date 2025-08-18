@@ -9,6 +9,7 @@ import { APP_URL } from '@env';
 import ScreenContainer from '../../components/layouts/screen-container';
 import { MainNavigatorParamList } from '../../navigators/types';
 import { Text } from 'react-native-svg';
+import { COLORS } from '../../constants/colors';
 
 const MbtiQuiz: FC<{
   navigation: NativeStackNavigationProp<MainNavigatorParamList, 'MbtiQuiz'>;
@@ -55,7 +56,7 @@ const MbtiQuiz: FC<{
         startInLoadingState={true}
         renderLoading={() => (
           <ActivityIndicator
-            color="#000000"
+            color={COLORS.white}
             size="large"
             style={StyleSheet.absoluteFill}
           />

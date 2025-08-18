@@ -15,6 +15,8 @@
     "EMAIL": "อีเมล",
     "PASSWORD": "รหัสผ่าน",
     "LOGIN FAILED": "เข้าสู่ระบบล้มเหลว",
+    "REGISTER FAILED": "สมัครสมาชิกล้มเหลว",
+    "REGISTER FAILED MESSAGE": "สมัครสมาชิกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
     "SIGN UP SUBTITLE": "จักรวาลกระซิบ.\nเข้าร่วมและค้นพบโชคชะตาของคุณ",
     "ALREADY HAVE AN ACCOUNT": "มีบัญชีอยู่แล้ว?",
     "NAME IS REQUIRED": "ต้องระบุชื่อ",
