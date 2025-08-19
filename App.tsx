@@ -1,5 +1,5 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import Toast from 'react-native-toast-message';
 import { enableScreens } from 'react-native-screens';
 import notifee, { EventType } from '@notifee/react-native';
@@ -9,10 +9,7 @@ import { getApp } from '@react-native-firebase/app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StripeProvider } from '@stripe/stripe-react-native';
 
-import { AuthProvider } from './src/context/auth-context';
-import { NotificationProvider, useNotification } from './src/context/notification-context';
 import MainNavigator from './src/navigators/main-navigator';
-import { FloatingPreviewButton } from './src/features/component-preview/floating-preview-button';
 import api from './src/utils/http';
 import { navigationRef, navigate } from './src/navigators/navigation-ref';
 
@@ -108,9 +105,18 @@ const App: React.FC = () => {
     const unsubscribeMessage = onMessage(getMessaging(getApp()), async remoteMessage => {
       console.log('Message received in foreground:', remoteMessage);
 
-      const { title, body } = remoteMessage.data;
+      let title = '';
+      let body = '';
+      if (
+        remoteMessage.data &&
+        typeof remoteMessage.data.title === 'string' &&
+        typeof remoteMessage.data.body === 'string'
+      ) {
+        title = remoteMessage.data.title;
+        body = remoteMessage.data.body;
+      }
 
-      console.log(title, body, remoteMessage.data)
+      console.log(title, body, remoteMessage.data);
 
       try {
         await notifee.createChannel({
@@ -128,7 +134,7 @@ const App: React.FC = () => {
           data: remoteMessage.data,
         });
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     });
 
@@ -139,10 +145,24 @@ const App: React.FC = () => {
   }, []);
 
 
-  return (
+  // Get current route name from navigationRef
+  const [currentRoute, setCurrentRoute] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const unsubscribe = navigationRef?.addListener?.('state', () => {
+      const route = navigationRef?.getCurrentRoute?.();
+      setCurrentRoute(route?.name);
+    });
+    // Set initial route
+    const route = navigationRef?.getCurrentRoute?.();
+    setCurrentRoute(route?.name);
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, []);
+
+  const appContent = (
     <GestureHandlerRootView>
-      {/* <NotificationProvider> */}
-      {/* <AuthProvider> */}
       <StripeProvider
         publishableKey="pk_test_51PVG0tIYVaNsBhG4lSzSsK0Aytevy88pZWHAEyeRTOx8I8sJzF954qzrvsEIaHlnoKoixSZpm427IEptSgbKYGGF00A4eoUNga"
       >
@@ -151,11 +171,11 @@ const App: React.FC = () => {
           {/* <FloatingPreviewButton /> */}
         </NavigationContainer>
       </StripeProvider>
-      {/* </AuthProvider> */}
-      {/* </NotificationProvider> */}
       <Toast />
     </GestureHandlerRootView>
   );
+
+  return appContent;
 };
 
 export default App;
