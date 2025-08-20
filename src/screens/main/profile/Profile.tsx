@@ -181,7 +181,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               style={styles.statItem}>
               {(() => {
                 const MbtiIcon = getMbtiIconComponent(user?.mbti_profile);
-                return MbtiIcon ? <MbtiIcon width={50} height={75} color={COLORS.neutral} /> : <CommentUserIcon size={75} />;
+                return MbtiIcon ? <MbtiIcon size={75} color={COLORS.neutral} /> : <CommentUserIcon size={75} />;
               })()}
 
               <AppText variant='caption2' style={styles.statLabel} color='white'>
