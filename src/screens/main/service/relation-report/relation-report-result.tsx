@@ -47,6 +47,22 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
     const { t } = useTranslation();
     const [loading, setLoading] = React.useState(false);
 
+    // Transform love_profile to UserProfile shape
+    function loveProfileToUserProfile(love_profile: any) {
+        if (!love_profile) return {};
+        const [country, city] = (love_profile.birth_location || '').split(',').map((s: string) => s.trim());
+        return {
+            full_name: love_profile.name,
+            birth_date: love_profile.birth_date ? new Date(love_profile.birth_date) : undefined,
+            birth_time: undefined,
+            birth_country: country,
+            birth_city: city,
+            gender: love_profile.gender,
+        };
+    }
+
+    console.log(love_profile, 'love_profile')
+
     const CardList: FC<{ content: any[] }> = ({ content }) => {
         if (!content) return null;
         return (
@@ -105,7 +121,11 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
             }
         >
             <ProfileCard cardTitle={t('relationReportResult.you')} iconKey={'relation'} />
-            <ProfileCard cardTitle={t('relationReportResult.yourLoveInterest')} iconKey={'relation'} profileData={love_profile} />
+            <ProfileCard
+                cardTitle={t('relationReportResult.yourLoveInterest')}
+                iconKey={'relation'}
+                profileData={loveProfileToUserProfile(love_profile)}
+            />
             <CardList content={result?.content} />
             <View style={{ height: 60 }} />
         </ScreenContainer>

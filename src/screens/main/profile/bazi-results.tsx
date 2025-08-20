@@ -10,7 +10,7 @@ import Header from '../../../components/ui/header';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import ProfileCard from '../../../features/profile/report/profile-card';
 import ProfileItemCard from '../../../features/profile/report/profile-item-card';
-import { iconMap } from './useAffinityProfile';
+import { iconMap, ProfileIcon } from './useAffinityProfile';
 import BaziResultIcon1 from '../../../components/icons/bazi-result/bazi-result-icon-1';
 import BaziResultIcon2 from '../../../components/icons/bazi-result/bazi-result-icon-2';
 import BaziResultIcon3 from '../../../components/icons/bazi-result/bazi-result-icon-3';
@@ -21,6 +21,8 @@ type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'BaziResu
 
 const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
   const profile = route.params?.profile_bazi;
+
+  console.log(profile, 'profile')
 
   // Static icon components for indices 1-5
   const iconImages = [
@@ -55,9 +57,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
                   title: item.title || label,
                   subtitle: item.subtitle,
                   description: item.description,
-                  icon: iconImages[iconIdx - 1]
-                    ? React.createElement(iconImages[iconIdx - 1], { size: 90 })
-                    : undefined,
+                  icon: <ProfileIcon name={item.icon} />
                 }}
               />
             );
