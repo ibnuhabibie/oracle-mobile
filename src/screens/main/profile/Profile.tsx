@@ -1,10 +1,9 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Toast from 'react-native-toast-message';
 import {
-  Alert,
-  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -24,10 +23,8 @@ import EyeIcon from '../../../components/icons/profile/eye-icon';
 import BuildingIcon from '../../../components/icons/profile/building-icon';
 import CartIcon from '../../../components/icons/profile/cart-icon';
 import EditIcon from '../../../components/icons/profile/edit-icon';
-import FerrisWheelIcon from '../../../components/icons/profile/ferris-wheel-icon';
 import LogoutIcon from '../../../components/icons/profile/logout-icon';
 import ShieldIcon from '../../../components/icons/profile/shield-icon';
-import StarIcon from '../../../components/icons/profile/star-icon';
 import TermsIcon from '../../../components/icons/profile/terms-icon';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
@@ -39,7 +36,7 @@ import ProfileItem from '../../../features/profile/profile-item';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
-import { iconMap, ProfileIcon, useAffinityProfile } from './useAffinityProfile';
+import { ProfileIcon, useAffinityProfile } from './useAffinityProfile';
 
 type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
 
@@ -59,19 +56,23 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<any | null>(null);
 
-  useEffect(() => {
-    const init = async () => {
-      const profile = await getUserProfile();
-      const token = await getAuthToken();
+  const { sync } = useAsyncStorage();
 
-      console.log(profile)
+  const init = async () => {
+    console.log('init')
+    await sync?.();
+    const profile = await getUserProfile();
+    const token = await getAuthToken();
 
-      setToken(token)
-      setUser(profile)
-    };
+    setToken(token);
+    setUser(profile);
+  };
 
-    init();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      init();
+    }, [])
+  );
 
   useEffect(() => {
     const getToken = async () => {

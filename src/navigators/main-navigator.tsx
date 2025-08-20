@@ -134,6 +134,7 @@ const MainNavigator = () => {
       }
 
       try {
+        console.log('sync calleed')
         const data = await sync()
         const profile = data?.user
 

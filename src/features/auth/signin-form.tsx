@@ -18,6 +18,7 @@ import { AppButton } from "../../components/ui/app-button";
 import AppInput from "../../components/ui/app-input";
 import PasswordToggle from "../../components/ui/password-toggle";
 import { opacity } from "react-native-reanimated/lib/typescript/Colors";
+import { useAsyncStorage } from "../../hooks/use-storage";
 
 interface LoginDTO {
     email: string;
@@ -36,6 +37,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
+    const { setAuthToken, sync } = useAsyncStorage();
 
     const formRules = {
         email: {
@@ -102,8 +104,8 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                 }
             });
 
-            await AsyncStorage.setItem('auth_token', res.data.token);
-            await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
+            await setAuthToken(res.data.token);
+            await sync();
 
             onSuccess(res.data);
         } catch (error) {

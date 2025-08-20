@@ -51,7 +51,7 @@ class MBTIProfile extends React.Component {
                                 <View style={styles.iconPlaceholder}>
                                     {(() => {
                                         const MbtiIcon = getMbtiIconComponent(profile?.mbti_type);
-                                        return MbtiIcon ? <MbtiIcon width={50} height={50} /> : null;
+                                        return MbtiIcon ? <MbtiIcon size={45} color="white" /> : null;
                                     })()}
                                 </View>
                                 <View style={styles.cardHeaderText}>

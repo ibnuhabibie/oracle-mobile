@@ -5,6 +5,7 @@ import WebView from 'react-native-webview';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { APP_URL } from '@env';
+import api from '../../utils/http';
 
 import ScreenContainer from '../../components/layouts/screen-container';
 import { MainNavigatorParamList } from '../../navigators/types';
@@ -15,11 +16,22 @@ const MbtiQuiz: FC<{
   navigation: NativeStackNavigationProp<MainNavigatorParamList, 'MbtiQuiz'>;
 }> = ({ navigation }) => {
 
-  const onMessage = (event: any) => {
+  const onMessage = async (event: any) => {
     const data = JSON.parse(event.nativeEvent.data);
     console.log('Message from webview:', data);
 
-    if (data == 'CLOSE_PAGE') {
+    if (typeof data === 'string' && data.startsWith('MBTI_PROFILE:')) {
+      const mbtiType = data.split(':').pop();
+      try {
+        await api.put('/v1/users', { mbti_profile: mbtiType });
+        navigation.replace('MbtiResults');
+      } catch (error) {
+        console.error('Error updating MBTI profile:', error);
+      }
+      return;
+    }
+
+    else if (data == 'CLOSE_PAGE') {
       navigation.replace('Tabs');
     }
   };

@@ -88,7 +88,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
     userCredit: number;
   }> = ({ creditType, userCredit }) => (
     <View style={{ alignItems: 'center', display: 'flex', flexDirection: 'row', marginTop: 14 }}>
-      <AppText style={{ textAlign: 'center' }} color='neutral'>
+      <AppText style={{ textAlign: 'center', marginRight: 3 }} color='neutral'>
         <Trans
           i18nKey="purchaseAlert.yourCredits"
           values={{

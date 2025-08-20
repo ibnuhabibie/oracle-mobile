@@ -2,18 +2,16 @@ import React from "react";
 import { Svg, Path, G, Defs, Rect, ClipPath } from "react-native-svg";
 
 interface IstjIconProps {
-  width?: number;
-  height?: number;
+  size?: number;
   color?: string;
 }
 
 const IstjIcon: React.FC<IstjIconProps> = ({
-  width = 60,
-  height = 60,
-  color = { color },
+  size = 60,
+  color = "white",
   ...props
 }) => (
-  <Svg width={width} height={height} viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <Svg width={size} height={size} viewBox="0 0 60 60" fill="none">
     <G clip-path="url(#clip0_909_919)">
       <Path d="M16.5666 13.6544C15.7013 12.7884 14.2974 12.7884 13.4321 13.6544C10.2193 16.8672 8.64018 21.3428 9.09908 25.9345C9.21358 27.0783 10.1772 27.931 11.3026 27.931C11.3765 27.931 11.451 27.9272 11.525 27.9199C12.7435 27.798 13.6324 26.711 13.5105 25.4933C13.1839 22.2302 14.2982 19.0573 16.5666 16.7888C17.4326 15.9236 17.4326 14.5196 16.5666 13.6544Z" fill={color} />
       <Path d="M25.3448 0C11.3696 0 0 11.3696 0 25.3448C0 39.32 11.3696 50.6897 25.3448 50.6897C39.32 50.6897 50.6897 39.32 50.6897 25.3448C50.6897 11.3696 39.3199 0 25.3448 0ZM25.3448 46.2561C13.8141 46.2561 4.43356 36.8756 4.43356 25.3448C4.43356 13.8141 13.8141 4.43356 25.3448 4.43356C36.8749 4.43356 46.2561 13.8141 46.2561 25.3448C46.2561 36.8756 36.8756 46.2561 25.3448 46.2561Z" fill={color} />
@@ -21,7 +19,7 @@ const IstjIcon: React.FC<IstjIconProps> = ({
     </G>
     <Defs>
       <ClipPath id="clip0_909_919">
-        <Rect width={width} height={height} fill={color} />
+        <Rect width={size} height={size} fill={color} />
       </ClipPath>
     </Defs>
   </Svg>

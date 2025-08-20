@@ -108,10 +108,11 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
 
   const handlePollingResult = (usageHistory: any) => {
     setShowPollingModal(false);
-    setPollingJobId(null);
     navigation.navigate('LoveReportResult', {
-      result: JSON.parse(usageHistory.response_data)
+      result: JSON.parse(usageHistory.response_data),
+      job_id: pollingJobId ?? ''
     });
+    setPollingJobId(null);
   };
 
   const handlePollingError = (error: any) => {

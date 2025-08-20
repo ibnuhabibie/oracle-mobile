@@ -32,28 +32,28 @@ type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Fortun
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
 
-const CARD_DATA = [
-    {
-        icon: <FortuneReportIcon1 size={44} />,
-        title: t('fortuneReport.cards.health.title'),
-        subtitle: t('fortuneReport.cards.health.subtitle')
-    },
-    {
-        icon: <FortuneReportIcon2 size={44} />,
-        title: t('fortuneReport.cards.finance.title'),
-        subtitle: t('fortuneReport.cards.finance.subtitle')
-    },
-    {
-        icon: <FortuneReportIcon3 size={44} />,
-        title: t('fortuneReport.cards.career.title'),
-        subtitle: t('fortuneReport.cards.career.subtitle')
-    },
-    {
-        icon: <FortuneReportIcon4 size={44} />,
-        title: t('fortuneReport.cards.relationship.title'),
-        subtitle: t('fortuneReport.cards.relationship.subtitle')
-    },
-];
+    const CARD_DATA = [
+        {
+            icon: <FortuneReportIcon1 size={44} />,
+            title: t('fortuneReport.cards.health.title'),
+            subtitle: t('fortuneReport.cards.health.subtitle')
+        },
+        {
+            icon: <FortuneReportIcon2 size={44} />,
+            title: t('fortuneReport.cards.finance.title'),
+            subtitle: t('fortuneReport.cards.finance.subtitle')
+        },
+        {
+            icon: <FortuneReportIcon3 size={44} />,
+            title: t('fortuneReport.cards.career.title'),
+            subtitle: t('fortuneReport.cards.career.subtitle')
+        },
+        {
+            icon: <FortuneReportIcon4 size={44} />,
+            title: t('fortuneReport.cards.relationship.title'),
+            subtitle: t('fortuneReport.cards.relationship.subtitle')
+        },
+    ];
 
     const {
         cost,
@@ -91,10 +91,11 @@ const CARD_DATA = [
 
     const handlePollingResult = (usageHistory: any) => {
         setShowPollingModal(false);
-        setPollingJobId(null);
         navigation.navigate('FortuneReportResult', {
-            result: JSON.parse(usageHistory.response_data)
+            result: JSON.parse(usageHistory.response_data),
+            job_id: pollingJobId ?? ''
         });
+        setPollingJobId(null);
     };
 
     const handlePollingError = (error: any) => {

@@ -112,14 +112,12 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
 
     const handlePollingResult = (usageHistory: any) => {
         setShowPollingModal(false);
-        setPollingJobId(null);
-
-        console.log(payload)
-
         navigation.navigate('RelationReportResult', {
             result: JSON.parse(usageHistory.response_data),
-            love_profile: payload // fix: match navigation param type
+            love_profile: payload,
+            job_id: pollingJobId ?? ''
         });
+        setPollingJobId(null);
     };
 
     const handlePollingError = (error: any) => {
