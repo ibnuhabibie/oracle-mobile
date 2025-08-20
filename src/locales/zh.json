@@ -221,7 +221,7 @@
     },
     "purchaseAlert": {
         "title": "购买提醒",
-        "askGeenie": "向Geenie提问将花费{{cost}} <coin/>\n继续吗？",
+        "costInfo": "向Geenie提问将花费{{cost}} <coin/>\n继续吗？",
         "yourCredits": "你的{{creditType}}积分: {{userCredit}}",
         "continue": "继续购买",
         "cancel": "取消",

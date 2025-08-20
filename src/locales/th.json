@@ -224,7 +224,7 @@
     },
     "purchaseAlert": {
         "title": "แจ้งเตือนการซื้อ",
-        "askGeenie": "การถาม Geenie จะมีค่าใช้จ่าย {{cost}} <coin/>\nดำเนินการต่อหรือไม่?",
+        "costInfo": "การถาม Geenie จะมีค่าใช้จ่าย {{cost}} <coin/>\nดำเนินการต่อหรือไม่?",
         "yourCredits": "เครดิต{{creditType}}ของคุณ: {{userCredit}}",
         "continue": "ดำเนินการซื้อ",
         "cancel": "ยกเลิก",

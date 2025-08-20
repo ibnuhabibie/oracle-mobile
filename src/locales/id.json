@@ -224,7 +224,7 @@
     },
     "purchaseAlert": {
         "title": "PERINGATAN PEMBELIAN",
-        "askGeenie": "Untuk bertanya pada Geenie, akan dikenakan biaya {{cost}} <coin/> \nLanjutkan?",
+        "costInfo": "Untuk bertanya pada Geenie, akan dikenakan biaya {{cost}} <coin/> \nLanjutkan?",
         "yourCredits": "Kredit {{creditType}} Anda: {{userCredit}}",
         "continue": "Lanjutkan Pembelian",
         "cancel": "Batal",

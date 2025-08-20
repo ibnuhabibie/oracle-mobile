@@ -222,8 +222,8 @@
     },
     "purchaseAlert": {
         "title": "購入アラート",
-        "askGeenie": "Geenieに質問するには{{cost}} <coin/>が必要です。\n続行しますか？",
-"yourCredits": "あなたの{{creditType}}クレジット: {{userCredit}}",
+        "costInfo": "Geenieに質問するには{{cost}} <coin/>が必要です。\n続行しますか？",
+        "yourCredits": "あなたの{{creditType}}クレジット: {{userCredit}}",
         "continue": "購入を続ける",
         "cancel": "キャンセル",
         "insufficient": "このレポートには{{cost}}が必要です\n現在の{{creditType}}クレジットが不足しています。チャージしてから続行してください。",

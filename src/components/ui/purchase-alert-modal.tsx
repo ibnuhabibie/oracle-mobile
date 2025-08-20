@@ -87,8 +87,8 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
     creditType: string;
     userCredit: number;
   }> = ({ creditType, userCredit }) => (
-    <View style={{ alignItems: 'center', display: 'flex', flexDirection: 'row', marginTop: 14 }}>
-      <AppText style={{ textAlign: 'center', marginRight: 3 }} color='neutral'>
+    <View style={[styles.textCoinWrapper, { marginTop: 14 }]}>
+      <AppText style={{ textAlign: 'center' }} color='neutral'>
         <Trans
           i18nKey="purchaseAlert.yourCredits"
           values={{
@@ -114,15 +114,15 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
                 isSufficient ?
                   (
                     <>
-                      <AppText style={{ textAlign: 'center', lineHeight: 22 }} color='white'>
-                        <Trans
-                          i18nKey="purchaseAlert.askGeenie"
-                          values={{ cost, service: getServiceTypeLabel(service) }}
-                          components={{
-                            coin: <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
-                          }}
-                        />
-                      </AppText>
+                      <View style={styles.textCoinWrapper}>
+                        <AppText style={{ textAlign: 'center', lineHeight: 22 }} color='white'>
+                          <Trans
+                            i18nKey="purchaseAlert.costInfo"
+                            values={{ cost, service: getServiceTypeLabel(service) }}
+                          />
+                        </AppText>
+                        <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+                      </View>
                       <PurchaseAlertCreditText
                         creditType={creditType}
                         userCredit={userCredit}
@@ -174,6 +174,11 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
 };
 
 const styles = StyleSheet.create({
+  textCoinWrapper: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: '3'
+  },
   modalContainer: {
     flex: 1,
     backgroundColor: 'rgba(30,30,30,0.8)',
