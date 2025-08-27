@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { BackHandler } from 'react-native';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
 import { MainNavigatorParamList } from '../../../navigators/types';
@@ -9,12 +10,33 @@ import Header from '../../../components/ui/header';
 type MbtiResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'MbtiResults'>;
 
 const MbtiResults: FC<MbtiResultsProps> = ({ navigation }) => {
+  const handleBack = () => {
+    const state = navigation.getState();
+    const routes = state.routes;
+    const prevRoute = routes[routes.length - 2];
+    if (prevRoute && prevRoute.name === 'SignUp') {
+      navigation.popToTop();
+      navigation.replace('Tabs');
+    } else {
+      navigation.goBack();
+    }
+  };
+
+  useEffect(() => {
+    const onDeviceBack = () => {
+      handleBack();
+      return true; // prevent default
+    };
+    const sub = BackHandler.addEventListener('hardwareBackPress', onDeviceBack);
+    return () => sub.remove();
+  }, [navigation]);
+
   return (
     <ScreenContainer
       header={
         <Header
           title="MBTI"
-          onBack={() => navigation.goBack()}
+          onBack={handleBack}
         />
       }
     >
