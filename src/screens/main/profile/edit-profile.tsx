@@ -21,9 +21,9 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
   const onSubmit = async (data: ProfileFormData) => {
     try {
       let birth_date = data.birth_date.toISOString().split('T')[0];
-      let birth_time = data.birth_time.toISOString().split('T')[1].split('.')[0];
+      let birth_time = `${data.birth_time.getHours().toString().padStart(2, '0')}:${data.birth_time.getMinutes().toString().padStart(2, '0')}:${data.birth_time.getSeconds().toString().padStart(2, '0')}`;
 
-      const res = await api.put('/v1/users', {
+      const payload = {
         full_name: data.full_name,
         email: data.email,
         phone_number: data.phone_number,
@@ -34,7 +34,11 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
         birth_city: data.birth_city?.name,
         birth_lat: data.birth_city?.latitude,
         birth_lng: data.birth_city?.longitude
-      })
+      }
+
+      console.log(payload)
+
+      const res = await api.put('/v1/users', payload)
 
       await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
       Alert.alert(
