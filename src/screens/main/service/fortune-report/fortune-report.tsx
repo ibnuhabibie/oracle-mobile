@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
     Alert,
+    Dimensions,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -38,28 +39,35 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         return month >= 7 ? year + 1 : year;
     })();
 
+    const { width: deviceWidth } = Dimensions.get('window');
+    const shinySize = deviceWidth < 350 ? 90 : deviceWidth < 400 ? 130 : 160;
+    const iconSize = deviceWidth < 350 ? 28 : deviceWidth < 400 ? 36 : 44;
+    const gridGap = deviceWidth < 350 ? 6 : deviceWidth < 400 ? 10 : 14;
+
     const CARD_DATA = [
         {
-            icon: <FortuneReportIcon1 size={44} />,
+            icon: <FortuneReportIcon1 size={iconSize} />,
             title: t('fortuneReport.cards.health.title'),
             subtitle: t('fortuneReport.cards.health.subtitle')
         },
         {
-            icon: <FortuneReportIcon2 size={44} />,
+            icon: <FortuneReportIcon2 size={iconSize} />,
             title: t('fortuneReport.cards.finance.title'),
             subtitle: t('fortuneReport.cards.finance.subtitle')
         },
         {
-            icon: <FortuneReportIcon3 size={44} />,
+            icon: <FortuneReportIcon3 size={iconSize} />,
             title: t('fortuneReport.cards.career.title'),
             subtitle: t('fortuneReport.cards.career.subtitle')
         },
         {
-            icon: <FortuneReportIcon4 size={44} />,
+            icon: <FortuneReportIcon4 size={iconSize} />,
             title: t('fortuneReport.cards.relationship.title'),
             subtitle: t('fortuneReport.cards.relationship.subtitle')
         },
     ];
+
+    // (removed duplicate responsive variable declarations)
 
     const {
         cost,
@@ -144,12 +152,12 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
             </AppText>
             <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('fortuneReport.sectionTitle')}</AppText>
 
-            <View style={styles.grid}>
+            <View style={[styles.grid, { gap: gridGap }]}>
                 {
                     CARD_DATA.map((card, idx) => (
                         <View key={idx} style={styles.card}>
                             <View style={styles.cardIconWrapper}>
-                                <ShinyContainer>
+                                <ShinyContainer size={shinySize}>
                                     {card.icon}
                                 </ShinyContainer>
                             </View>

@@ -4,6 +4,7 @@ import {
     StyleSheet,
     Image,
     Alert,
+    Dimensions,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -126,6 +127,11 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         Alert.alert('Error', 'Failed to fetch report status.');
     };
 
+    const { width: deviceWidth } = Dimensions.get('window');
+    const shinySize = deviceWidth < 350 ? 90 : deviceWidth < 400 ? 130 : 160;
+    const iconSize = deviceWidth < 350 ? 28 : deviceWidth < 400 ? 36 : 44;
+    const gridGap = deviceWidth < 350 ? 6 : deviceWidth < 400 ? 10 : 14;
+
     return (
         <ScreenContainer
             header={
@@ -169,15 +175,15 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             {/* <AppText variant='subtitle1' style={{ textAlign: 'center' }} color='neutral'>{t('relationReport.loveInterestDetail')}</AppText> */}
             <AppText style={styles.sectionTitle} variant='caption2' color='primary'>{t('relationReport.tellUsMore')}</AppText>
 
-            <View style={styles.grid}>
+            <View style={[styles.grid, { gap: gridGap }]}>
                 {
                     CARD_DATA.map((card, idx) => (
                         <View key={idx} style={styles.card}>
                             <View style={styles.cardIconWrapper}>
-                                <ShinyContainer>
+                                <ShinyContainer size={shinySize}>
                                     {card.iconKey === 'relation'
-                                        ? <RelationIcon size={44} />
-                                        : React.createElement(card.icon, { size: 44 })}
+                                        ? <RelationIcon size={iconSize} />
+                                        : React.createElement(card.icon, { size: iconSize })}
                                 </ShinyContainer>
                             </View>
                             <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
@@ -235,7 +241,7 @@ const styles = StyleSheet.create({
     grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 14,
+        // gap is set dynamically
     },
     card: {
         padding: 12,

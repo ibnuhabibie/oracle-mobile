@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Image,
   Alert,
+  Dimensions,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -121,6 +122,11 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
     Alert.alert(t('loveForecast.error'), t('loveForecast.fetchStatusFailed'));
   };
 
+  const { width: deviceWidth } = Dimensions.get('window');
+  const shinySize = deviceWidth < 350 ? 90 : deviceWidth < 400 ? 130 : 160;
+  const iconSize = deviceWidth < 350 ? 28 : deviceWidth < 400 ? 36 : 44;
+  const gridGap = deviceWidth < 350 ? 6 : deviceWidth < 400 ? 10 : 14;
+
   return (
     <ScreenContainer
       header={
@@ -154,13 +160,13 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
       </AppText>
       <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('loveForecast.sectionTitle')}</AppText>
 
-      <View style={styles.grid}>
+      <View style={[styles.grid, { gap: gridGap }]}>
         {
           CARD_DATA.map((card, idx) => (
             <View key={idx} style={styles.card}>
               <View style={styles.cardIconWrapper}>
-                <ShinyContainer dark={false}>
-                  {React.createElement(card.icon, { size: 44, color: 'white' })}
+                <ShinyContainer size={shinySize} dark={false}>
+                  {React.createElement(card.icon, { size: iconSize, color: 'white' })}
                 </ShinyContainer>
               </View>
               <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
@@ -217,7 +223,7 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 14,
+    // gap is set dynamically
   },
   card: {
     padding: 12,
