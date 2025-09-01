@@ -15,6 +15,7 @@ import { formatDate, formatTime } from '../../utils/formatter';
 import api from '../../utils/http';
 import { COLORS } from '../../constants/colors';
 import { useAsyncStorage } from '../../hooks/use-storage';
+import { LANGUAGES } from '../../constants/app';
 
 export interface City {
     name: string;
@@ -49,6 +50,7 @@ export interface ProfileFormData {
     gender: 'male' | 'female';
     birth_country: Country | null;
     birth_city: City | null;
+    language: string;
 }
 
 interface ProfileFormProps {
@@ -77,22 +79,24 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         setValue,
         watch,
         formState: { errors }
-    } = useForm({
+    } = useForm<ProfileFormData>({
         defaultValues: {
             full_name: '',
             email: '',
             phone_number: '',
             birth_date: new Date(1994, 4, 10),
             birth_time: new Date(2024, 0, 1, 10, 0),
-            gender: 'female',
+            gender: 'Female',
             birth_country: null as Country | null,
             birth_city: null as City | null,
+            language: LANGUAGES[0]?.key || 'en',
         },
     });
 
     useEffect(() => {
         const init = async () => {
             const profile = await getUserProfile() as Profile | null;
+            console.log('profile', profile)
             if (!profile) return;
 
             const [hours, minutes, seconds] = profile.birth_time.split(':').map(Number);
@@ -103,7 +107,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
             setValue('full_name', profile.full_name);
             setValue('email', profile.email);
-            setValue('phone_number', '');
+            setValue('phone_number', profile.mobile_phone);
             setValue('birth_date', new Date(profile.birth_date));
             setValue('birth_time', birthTime);
             setValue('gender', profile.gender);
@@ -126,6 +130,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     const watchedDate = watch('birth_date');
     const watchedTime = watch('birth_time');
     const watchedGender = watch('gender');
+    const watchedLanguage = watch('language');
+
+    // Language dropdown modal state
+    const [showLanguageModal, setShowLanguageModal] = useState(false);
 
     const formRules = {
         full_name: {
@@ -153,13 +161,11 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         }
     };
 
-    const fetchCities = async (country) => {
+    const fetchCities = async (country: Country) => {
         try {
-            console.log(watchedCountry)
             const response = await api.get(`/v1/configs/countries/${country.iso3}/cities`);
             const cities = response.data;
             if (cities.length > 0) {
-                console.log(cities[0])
                 setValue('birth_city', cities[0]);
             }
             setCities(response.data);
@@ -187,18 +193,20 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         }
     };
 
-    const selectCountry = async (country) => {
-        console.log('country', country)
+    const selectCountry = async (country: Country) => {
         setValue('birth_country', country);
         await fetchCities(country);
-
         setShowCountryModal(false);
     };
 
-    const selectCity = (city) => {
-        console.log('city', city)
+    const selectCity = (city: City) => {
         setValue('birth_city', city);
         setShowCityModal(false);
+    };
+
+    const selectLanguage = (lang: { key: string; label: string }) => {
+        setValue('language', lang.key);
+        setShowLanguageModal(false);
     };
 
     return (
@@ -308,6 +316,12 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     onPress={() => setShowCityModal(true)}
                     text={watchedCity?.name || t("Please select one")}
                 />
+
+                <Text style={styles.label}>{t("Language")}</Text>
+                <DropdownButton
+                    onPress={() => setShowLanguageModal(true)}
+                    text={LANGUAGES.find(l => l.key === watchedLanguage)?.label || t("Please select one")}
+                />
             </View>
 
             <AppButton
@@ -342,9 +356,9 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     showCountryModal,
                     () => setShowCountryModal(false),
                     'Select Country',
-                    countries,
-                    selectCountry,
-                    watchedCountry,
+                    countries as any,
+                    selectCountry as any,
+                    watchedCountry as any,
                     'iso3'
                 )
             }
@@ -354,10 +368,21 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 showCityModal,
                 () => setShowCityModal(false),
                 'Select City',
-                cities,
-                selectCity,
-                watchedCity,
+                cities as any,
+                selectCity as any,
+                watchedCity as any,
                 'name'
+            )}
+
+            {/* Language Modal */}
+            {renderDropdownModal(
+                showLanguageModal,
+                () => setShowLanguageModal(false),
+                'Select Language',
+                LANGUAGES as any,
+                selectLanguage as any,
+                LANGUAGES.find(l => l.key === watchedLanguage) as any,
+                'key',
             )}
         </>
     );

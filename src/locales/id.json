@@ -196,12 +196,12 @@
     "FAILED TO CHANGE PASSWORD": "Gagal mengubah kata sandi",
     "LOADING...": "Memuat...",
     "CHANGE PASSWORD": "Ubah Kata Sandi",
-    "fortuneReport": {
-        "header": "Laporan Keberuntungan 2025",
+"fortuneReport": {
+        "header": "Laporan Keberuntungan {{year}}",
         "purchase": "Beli seharga {{cost}}",
-        "title": "Penasaran dengan tahun 2025 Anda? Lihat ramalan keberuntunganmu sekarang!",
-        "subtitle": "Ramalan keberuntungan bertemu perencanaan untuk sudut pandang baru di 2025 Anda.",
-        "description": "Beberapa wawasan mungkin tampak sederhana—seperti waktu atau pengambilan keputusan—tetapi dipersonalisasi untuk bagan dan jalur 2025 Anda. Panduan mereka dapat membuat perbedaan nyata.",
+"title": "Penasaran dengan tahun {{year}} Anda? Lihat ramalan keberuntunganmu sekarang!",
+        "subtitle": "Ramalan keberuntungan bertemu perencanaan untuk sudut pandang baru di {{year}} Anda.",
+        "description": "Beberapa wawasan mungkin tampak sederhana—seperti waktu atau pengambilan keputusan—tetapi dipersonalisasi untuk bagan dan jalur {{year}} Anda. Panduan mereka dapat membuat perbedaan nyata.",
         "sectionTitle": "Apa yang bisa Anda ketahui?",
         "pollingMessage": "Laporan keberuntungan Anda sedang diproses…",
         "cards": {

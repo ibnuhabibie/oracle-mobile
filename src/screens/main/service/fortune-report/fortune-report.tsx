@@ -31,6 +31,12 @@ type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Fortun
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
+    const fortuneYear = (() => {
+        const now = new Date();
+        const month = now.getMonth() + 1;
+        const year = now.getFullYear();
+        return month >= 7 ? year + 1 : year;
+    })();
 
     const CARD_DATA = [
         {
@@ -108,7 +114,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         <ScreenContainer
             header={
                 <Header
-                    title={t('fortuneReport.header')}
+                    title={t('fortuneReport.header', { year: fortuneYear })}
                     onBack={() => navigation.goBack()}
                 />
             }
@@ -126,15 +132,15 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 />
             }
         >
-            <AppText variant='subtitle1' style={styles.title} color='neutral'>{t('fortuneReport.title')}</AppText>
+            <AppText variant='subtitle1' style={styles.title} color='neutral'>{t('fortuneReport.title', { year: fortuneYear })}</AppText>
             <ShinyContainer size={220} style={{ marginVertical: 20 }}>
                 <FortuneReportIcon />
             </ShinyContainer>
             <AppText style={styles.subtitle} variant='title4' color='primary'>
-                {t('fortuneReport.subtitle')}
+                {t('fortuneReport.subtitle', { year: fortuneYear })}
             </AppText>
             <AppText style={styles.description} color='neutral'>
-                {t('fortuneReport.description')}
+                {t('fortuneReport.description', { year: fortuneYear })}
             </AppText>
             <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('fortuneReport.sectionTitle')}</AppText>
 

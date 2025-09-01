@@ -18,6 +18,8 @@ type EditProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'EditProf
 
 const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
 
+  const { t, i18n } = useTranslation();
+
   const onSubmit = async (data: ProfileFormData) => {
     try {
       let birth_date = data.birth_date.toISOString().split('T')[0];
@@ -26,14 +28,15 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
       const payload = {
         full_name: data.full_name,
         email: data.email,
-        phone_number: data.phone_number,
+        mobile_phone: data.phone_number,
         gender: data.gender,
         birth_date,
         birth_time,
         birth_country: data.birth_country?.name,
         birth_city: data.birth_city?.name,
         birth_lat: data.birth_city?.latitude,
-        birth_lng: data.birth_city?.longitude
+        birth_lng: data.birth_city?.longitude,
+        locale: data.language
       }
 
       console.log(payload)
@@ -41,6 +44,12 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
       const res = await api.put('/v1/users', payload)
 
       await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
+
+      // Update i18n language
+      if (data.language) {
+        i18n.changeLanguage(data.language);
+      }
+
       Alert.alert(
         'Update Profile',
         'Successfully update your profile.',
@@ -55,8 +64,6 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
       console.log(error)
     }
   };
-
-  const { t } = useTranslation();
 
   return (
     <ScreenContainer

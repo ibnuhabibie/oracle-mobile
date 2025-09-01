@@ -53,7 +53,7 @@ export const renderDropdownModal = (
                   styles.modalItemText,
                   // item === selectedValue && styles.selectedItemText,
                 ]}>
-                {item.name}
+                {item.name ?? item.label}
               </AppText>
             </Pressable>
           )}

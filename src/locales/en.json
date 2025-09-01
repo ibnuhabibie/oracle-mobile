@@ -212,12 +212,12 @@
     "Save": "Save",
     "Select Country": "Select Country",
     "Select City": "Select City",
-"fortuneReport": {
-        "header": "Fortune Report 2025",
+    "fortuneReport": {
+        "header": "Fortune Report {{year}}",
         "purchase": "Purchase for {{cost}}",
-        "title": "Curious about your 2025? See\nyour fortune now!",
-        "subtitle": "Fortune reading meets planning for a fresh take on your 2025.",
-        "description": "Some insights may seem simple—like timing or decision-making—but they’re personalized to your chart and 2025 path. Their guidance can make a real difference.",
+        "title": "Curious about your {{year}}? See\nyour fortune now!",
+        "subtitle": "Fortune reading meets planning for a fresh take on your {{year}}.",
+        "description": "Some insights may seem simple—like timing or decision-making—but they’re personalized to your chart and {{year}} path. Their guidance can make a real difference.",
         "sectionTitle": "What can you find out?",
         "pollingMessage": "Your fortune report is on the way…",
         "cards": {

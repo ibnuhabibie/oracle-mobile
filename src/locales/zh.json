@@ -193,12 +193,12 @@
     "PASSWORD CHANGED SUCCESSFULLY": "密码修改成功",
     "FAILED TO CHANGE PASSWORD": "修改密码失败",
     "CHANGE PASSWORD": "修改密码",
-    "fortuneReport": {
-        "header": "2025年运势报告",
+"fortuneReport": {
+        "header": "运势报告 {{year}}",
         "purchase": "以{{cost}}购买",
-        "title": "好奇你的2025年？现在就查看\n你的运势！",
-        "subtitle": "运势解读结合规划，为你的2025年带来新视角。",
-        "description": "有些见解看似简单——比如时机或决策——但它们是根据你的命盘和2025年路径量身定制的。这些指引能带来真正的改变。",
+"title": "好奇你的{{year}}年？现在就查看\n你的运势！",
+        "subtitle": "运势解读结合规划，为你的{{year}}年带来新视角。",
+        "description": "有些见解看似简单——比如时机或决策——但它们是根据你的命盘和{{year}}年路径量身定制的。这些指引能带来真正的改变。",
         "sectionTitle": "你可以了解什么？",
         "pollingMessage": "您的运势报告正在生成…",
         "cards": {
