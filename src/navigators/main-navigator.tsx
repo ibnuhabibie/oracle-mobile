@@ -53,6 +53,7 @@ const TabNavigator = () => (
   <Tab.Navigator
     screenOptions={{
       headerShown: false,
+      tabBarHideOnKeyboard: true,
       tabBarStyle: {
         backgroundColor: '#121010',
         height: 76,
@@ -72,7 +73,7 @@ const TabNavigator = () => (
         color: COLORS.white,
         marginTop: 4,
         fontSize: 14
-      }
+      },
     }}
     initialRouteName="Home">
     <Tab.Screen
