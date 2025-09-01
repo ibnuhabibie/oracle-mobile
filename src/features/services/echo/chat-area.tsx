@@ -93,11 +93,12 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     marginBottom: 70,
+    // backgroundColor: 'blue'
   },
   chatContainer: {
-    paddingHorizontal: 16,
     paddingBottom: 0,
-    paddingTop: 20,
+    // paddingTop: 20,
+    // backgroundColor: 'red'
   },
   messageRow: {
     flexDirection: 'row',
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 8,
-    marginTop: 8
+    marginTop: 8,
   },
   avatarText: {
     color: COLORS.neutral,
@@ -129,8 +130,9 @@ const styles = StyleSheet.create({
     marginTop: 'auto'
   },
   bubble: {
-    maxWidth: '80%',
-    width: '100%',
+    // maxWidth: '80%',
+    // width: '100%',
+    flex: 1,
     padding: 14,
     borderRadius: 16,
     backgroundColor: 'rgba(255,255,255,0.28)',
