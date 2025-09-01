@@ -102,7 +102,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
   );
 
   return (
-    <Modal visible={visible} transparent animationType="slide">
+    <Modal visible={visible} transparent animationType="fade">
       <TouchableWithoutFeedback onPress={onCancel}>
         <View style={styles.modalContainer}>
           <TouchableWithoutFeedback>

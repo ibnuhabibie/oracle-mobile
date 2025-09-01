@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {ClipPath, Defs, G, Path, Rect} from 'react-native-svg';
+import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 
-const CoinIcon: React.FC<{size?: number; color?: string}> = ({
+const CoinIcon: React.FC<{ size?: number; color?: string }> = ({
   size = 18,
   color = '#B9B9B9',
 }) => (
@@ -19,8 +19,8 @@ const CoinIcon: React.FC<{size?: number; color?: string}> = ({
     <Defs>
       <ClipPath id="clip0_97_15157">
         <Rect
-          width={17}
-          height={17}
+          width={size}
+          height={size}
           fill="white"
           transform="translate(0 0.5)"
         />

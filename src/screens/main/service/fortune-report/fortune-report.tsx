@@ -165,7 +165,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 <PollingLoadingModal
                     job_id={pollingJobId}
                     visible={showPollingModal}
-                    message="Generating your fortune report..."
+                    message={t('fortuneReport.pollingMessage')}
                     onResult={handlePollingResult}
                     onError={handlePollingError}
                     onClose={() => {

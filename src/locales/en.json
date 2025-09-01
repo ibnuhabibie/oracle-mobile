@@ -39,7 +39,7 @@
     "FORTUNE REPORT": "Fortune Report",
     "RELATION COMPATIBILITY": "Relation Compatibility",
     "ADVICE GENIE": "Advice Genie",
-    "USAGE HISTORY DETAILS": "Your purchase is in, see the details!",
+    "USAGE HISTORY DETAILS": "View Details",
     "NO USAGE HISTORY FOUND": "No usage history found.",
     "OUR PACKAGES": "Our Packages",
     "PACKAGES DESC": "Can be used to purchase Reports and Ask Affinity AI",
@@ -56,7 +56,7 @@
     "TOP UP": "Top Up",
     "ERROR": "Error",
     "GENERIC ERROR": "An error occurred. Please try again.",
-    "TOPUP COMPLETE": "Top-up complete! You’re good to go.",
+    "TOPUP COMPLETE": "View Details.",
     "NO TOPUP HISTORY FOUND": "No top up history found.",
     "RECEIPT": "Receipt",
     "ORDER NUMBER": "Order Number",
@@ -152,7 +152,7 @@
             "questions": "Personalized questions",
             "conclusion": "Conclusion: Your love story ahead"
         },
-        "pollingMessage": "Generating your love report...",
+        "pollingMessage": "Your love report is on the way…",
         "error": "Error",
         "noJobId": "No job_id returned from server.",
         "fetchStatusFailed": "Failed to fetch report status."
@@ -165,7 +165,7 @@
         "description": "Some tips may sound like common sense—like improving communication or mindset—but they're tailored to your unique chart and relationship dynamics. Their impact is more powerful than they seem.",
         "loveInterestDetail": "Your Love Interest Detail",
         "tellUsMore": "Tell us more about them!",
-        "pollingMessage": "Generating your relationship report...",
+        "pollingMessage": "Your relationship report is on the way…",
         "cards": {
             "perspective": "What is your perspective on love?",
             "seeYou": "How does your love interest sees you?",
@@ -212,13 +212,14 @@
     "Save": "Save",
     "Select Country": "Select Country",
     "Select City": "Select City",
-    "fortuneReport": {
+"fortuneReport": {
         "header": "Fortune Report 2025",
         "purchase": "Purchase for {{cost}}",
         "title": "Curious about your 2025? See\nyour fortune now!",
         "subtitle": "Fortune reading meets planning for a fresh take on your 2025.",
         "description": "Some insights may seem simple—like timing or decision-making—but they’re personalized to your chart and 2025 path. Their guidance can make a real difference.",
         "sectionTitle": "What can you find out?",
+        "pollingMessage": "Your fortune report is on the way…",
         "cards": {
             "health": {
                 "title": "Health",

@@ -76,6 +76,7 @@ export function arrayBufferToBase64(buffer: ArrayBuffer): string {
 export async function downloadPdf(job_id: string, t: Function, openAfterDownload: boolean = true) {
     try {
         const url = `${API_BASE_URL}/uploads/reports/${job_id}.pdf`;
+        console.log(url)
         // Use axios.get directly for binary download to avoid interceptors
         const response = await axios.get(url, { responseType: 'arraybuffer' });
         const isIOS = Platform.OS === 'ios';
@@ -111,6 +112,7 @@ export async function downloadPdf(job_id: string, t: Function, openAfterDownload
             t('relationReportResult.downloadFailed'),
             error?.toString() || 'Download failed'
         );
+        console.log(error)
         throw error;
     }
 }

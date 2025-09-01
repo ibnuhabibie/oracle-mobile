@@ -102,7 +102,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     <Modal
       visible={visible}
       transparent
-      animationType="slide"
+      animationType="fade"
       onRequestClose={onClose}
     >
       <TouchableWithoutFeedback onPress={onClose}>

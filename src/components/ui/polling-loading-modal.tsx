@@ -61,7 +61,7 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
           <ActivityIndicator size="large" color={COLORS.neutral} />
           <Text style={styles.text}>{message}</Text>
           <Text style={styles.info}>
-            You can close this modal and just wait, our system will notify you when the report is ready.
+            It’ll take a few minutes. Feel free to close this window—we’ll ping you when it’s ready.
           </Text>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
             <Text style={styles.closeButtonText}>Close</Text>

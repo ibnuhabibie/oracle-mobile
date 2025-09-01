@@ -54,7 +54,7 @@
     "TOP UP": "充值",
     "ERROR": "错误",
     "GENERIC ERROR": "发生错误，请重试。",
-    "TOPUP COMPLETE": "充值成功！您可以开始使用了。",
+    "TOPUP COMPLETE": "View Details.",
     "NO TOPUP HISTORY FOUND": "未找到充值记录。",
     "RECEIPT": "收据",
     "ORDER NUMBER": "订单号",
@@ -130,7 +130,7 @@
             "questions": "个性化问题",
             "conclusion": "结论：你未来的爱情故事"
         },
-        "pollingMessage": "正在生成你的爱情报告...",
+        "pollingMessage": "您的爱情报告正在生成…",
         "error": "错误",
         "noJobId": "服务器未返回 job_id。",
         "fetchStatusFailed": "获取报告状态失败。"
@@ -143,7 +143,7 @@
         "description": "有些建议听起来像常识——比如改善沟通或心态——但它们都是根据你独特的命盘和关系动态量身定制的。它们的影响比看起来更强大。",
         "loveInterestDetail": "你的心仪对象详情",
         "tellUsMore": "告诉我们更多关于他们的信息！",
-        "pollingMessage": "正在生成你的关系报告...",
+        "pollingMessage": "您的关系报告正在生成…",
         "cards": {
             "perspective": "你对爱情的看法是什么？",
             "seeYou": "你的心仪对象如何看待你？",
@@ -200,6 +200,7 @@
         "subtitle": "运势解读结合规划，为你的2025年带来新视角。",
         "description": "有些见解看似简单——比如时机或决策——但它们是根据你的命盘和2025年路径量身定制的。这些指引能带来真正的改变。",
         "sectionTitle": "你可以了解什么？",
+        "pollingMessage": "您的运势报告正在生成…",
         "cards": {
             "health": {
                 "title": "健康",

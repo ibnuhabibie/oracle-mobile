@@ -25,7 +25,7 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
     const { result, job_id } = route.params;
     const [loading, setLoading] = React.useState(false);
 
-    console.log(result)
+    console.log(result, job_id)
 
     const iconImages = [
         LoveReportIcon1,

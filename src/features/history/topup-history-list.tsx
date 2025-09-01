@@ -92,7 +92,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                 onPress={() => onItemPress?.(item)}
             >
                 <View style={styles.iconContainer}>
-                    <CartIcon size={24} />
+                    <CartIcon size={20} />
                 </View>
                 <View style={{ flex: 1 }}>
                     <View style={styles.row}>
@@ -101,7 +101,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                         </Text>
                         <CoinIcon size={19} color={item.package ? "#EB4335" : "#E0AE1E"} />
                     </View>
-                    <Text style={styles.transaction}>{t("TOPUP COMPLETE")}</Text>
+                    <Text style={styles.transaction}>{item.transaction_id} - ${item.amount}</Text>
                 </View>
                 <View style={styles.dateContainer}>
                     <Text style={styles.date}>
@@ -172,12 +172,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.2)',
         justifyContent: "center",
         alignItems: "center",
-        marginRight: 16,
+        marginRight: 8,
     },
     row: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 4,
+        // marginBottom: 4,
     },
     packageName: {
         fontSize: 16,
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
         fontFamily: fontFamilies.ARCHIVO.light,
     },
     transaction: {
-        fontSize: 14,
+        fontSize: 12,
         color: COLORS.neutral,
         fontFamily: fontFamilies.ARCHIVO.light,
     },

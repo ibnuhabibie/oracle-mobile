@@ -54,7 +54,7 @@
     "TOP UP": "충전",
     "ERROR": "오류",
     "GENERIC ERROR": "오류가 발생했습니다. 다시 시도해 주세요.",
-    "TOPUP COMPLETE": "충전이 완료되었습니다! 이제 바로 이용하실 수 있습니다.",
+    "TOPUP COMPLETE": "View Details.",
     "NO TOPUP HISTORY FOUND": "충전 내역이 없습니다.",
     "RECEIPT": "영수증",
     "ORDER NUMBER": "주문 번호",
@@ -109,7 +109,7 @@
             "questions": "개인 맞춤 질문",
             "conclusion": "결론: 앞으로의 사랑 이야기"
         },
-        "pollingMessage": "사랑 리포트를 생성 중...",
+        "pollingMessage": "사랑 리포트가 곧 도착합니다…",
         "error": "오류",
         "noJobId": "서버에서 job_id가 반환되지 않았습니다.",
         "fetchStatusFailed": "리포트 상태를 가져오지 못했습니다."
@@ -122,7 +122,7 @@
         "description": "일부 조언은 상식처럼 들릴 수 있지만(예: 소통이나 마인드셋 개선), 모두 당신만의 차트와 관계 역학에 맞춘 맞춤형입니다. 그 영향력은 생각보다 큽니다.",
         "loveInterestDetail": "상대방 정보",
         "tellUsMore": "상대에 대해 더 알려주세요!",
-        "pollingMessage": "관계 리포트를 생성 중...",
+        "pollingMessage": "관계 리포트가 곧 도착합니다…",
         "cards": {
             "perspective": "사랑에 대한 당신의 관점은?",
             "seeYou": "상대방은 당신을 어떻게 볼까요?",
@@ -176,6 +176,7 @@
         "subtitle": "운세 해석과 계획이 만나 2025년을 새롭게 준비하세요.",
         "description": "어떤 인사이트는 단순해 보일 수 있지만(타이밍, 결정 등), 모두 당신의 차트와 2025년 경로에 맞춰진 맞춤형 조언입니다. 이 가이드는 실제로 큰 변화를 가져올 수 있습니다.",
         "sectionTitle": "무엇을 알 수 있나요?",
+        "pollingMessage": "운세 리포트가 곧 도착합니다…",
         "cards": {
             "health": {
                 "title": "건강",

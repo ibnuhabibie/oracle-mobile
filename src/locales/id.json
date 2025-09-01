@@ -56,7 +56,7 @@
     "TOP UP": "Isi Saldo",
     "ERROR": "Kesalahan",
     "GENERIC ERROR": "Terjadi kesalahan. Silakan coba lagi.",
-    "TOPUP COMPLETE": "Top up berhasil! Saldo Anda sudah siap digunakan.",
+    "TOPUP COMPLETE": "View Details.",
     "NO TOPUP HISTORY FOUND": "Tidak ada riwayat top up ditemukan.",
     "RECEIPT": "Struk",
     "ORDER NUMBER": "Nomor Pesanan",
@@ -132,7 +132,7 @@
             "questions": "Pertanyaan personal",
             "conclusion": "Penutup: Kisah cinta ke depan"
         },
-        "pollingMessage": "Membuat laporan cinta Anda...",
+        "pollingMessage": "Laporan cinta Anda sedang diproses…",
         "error": "Kesalahan",
         "noJobId": "job_id tidak dikembalikan dari server.",
         "fetchStatusFailed": "Gagal mengambil status laporan."
@@ -145,7 +145,7 @@
         "description": "Beberapa tips mungkin terdengar seperti akal sehat—seperti meningkatkan komunikasi atau pola pikir—tetapi semuanya disesuaikan dengan bagan unik dan dinamika hubungan Anda. Dampaknya lebih besar dari yang terlihat.",
         "loveInterestDetail": "Detail Orang yang Anda Sukai",
         "tellUsMore": "Ceritakan lebih banyak tentang mereka!",
-        "pollingMessage": "Membuat laporan hubungan Anda...",
+        "pollingMessage": "Laporan hubungan Anda sedang diproses…",
         "cards": {
             "perspective": "Bagaimana pandangan Anda tentang cinta?",
             "seeYou": "Bagaimana orang yang Anda sukai melihat Anda?",
@@ -203,6 +203,7 @@
         "subtitle": "Ramalan keberuntungan bertemu perencanaan untuk sudut pandang baru di 2025 Anda.",
         "description": "Beberapa wawasan mungkin tampak sederhana—seperti waktu atau pengambilan keputusan—tetapi dipersonalisasi untuk bagan dan jalur 2025 Anda. Panduan mereka dapat membuat perbedaan nyata.",
         "sectionTitle": "Apa yang bisa Anda ketahui?",
+        "pollingMessage": "Laporan keberuntungan Anda sedang diproses…",
         "cards": {
             "health": {
                 "title": "Kesehatan",

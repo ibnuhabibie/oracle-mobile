@@ -55,11 +55,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "600",
         color: COLORS.neutral,
-        marginBottom: 4,
+        // marginBottom: 4,
         fontFamily: fontFamilies.ARCHIVO.light,
     },
     details: {
-        fontSize: 14,
+        fontSize: 12,
         color: COLORS.neutral,
         fontFamily: fontFamilies.ARCHIVO.light,
     },

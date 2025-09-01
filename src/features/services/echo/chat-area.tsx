@@ -70,8 +70,8 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
                     <AppText style={[styles.bubbleText, !isUser && { color: COLORS.white }]}>{item.content}</AppText>
                   </View>
                   {
-                    lastMessage &&
-                    item.conversation_id === lastMessage.conversation_id &&
+                    isUser &&
+                    messages[messages.length - 1]?.conversation_id === item.conversation_id &&
                     (
                       <Pressable style={styles.aiIconCircle} onPress={() => setModalVisible(true)}>
                         <AdviceIcon />
