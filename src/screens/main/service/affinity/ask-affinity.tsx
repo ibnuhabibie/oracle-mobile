@@ -153,12 +153,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.14)'
     },
     formContainer: {
-        padding: 12
+        padding: 12,
+        paddingTop: 8,
     },
     formTitle: {
         textAlign: 'center',
-        marginTop: 36,
-        marginBottom: 14
+        marginTop: 14
     }
 });
 

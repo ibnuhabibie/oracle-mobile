@@ -79,7 +79,7 @@ export function CenterCarousel<T>({
   const sidePadding = (SCREEN_WIDTH - cardWidth) / 2;
 
   return (
-    <View style={[{ height: cardHeightCenter + 40, }, style]}>
+    <View style={[{ height: cardHeightCenter + 40 }, style]}>
       <FlatList
         ref={listRef}
         data={loopData}

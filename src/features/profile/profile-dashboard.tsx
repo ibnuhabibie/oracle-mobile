@@ -136,7 +136,7 @@ const ProfileDashboard: React.FC = () => {
 
 const styles = StyleSheet.create({
     header: {
-        marginBottom: 26,
+        marginBottom: 12,
         paddingVertical: 12,
     },
     date: {
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     title: {
-        fontSize: 40,
+        fontSize: 36,
         textAlign: 'center',
     },
     subtitle: {

@@ -108,9 +108,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
+    // backgroundColor: 'red',
+    paddingTop: 0
   },
   date: {
-    fontSize: 32,
+    fontSize: 18,
     textAlign: 'center',
   },
   score: {

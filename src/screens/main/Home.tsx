@@ -51,7 +51,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={{ padding: 0 }}>
-      <View style={{ padding: 18 }}>
+      <View style={{ padding: 18, paddingBottom: 0 }}>
         <ProfileDashboard />
         <AppText style={styles.subtitle} color='neutral' variant='subtitle1'>
           {t("WHAT DO YOU LIKE TO KNOW TODAY?")}
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 5,
     lineHeight: 24,
-    marginTop: 40,
+    marginTop: 24,
     textTransform: 'uppercase',
   },
   cardImageContainer: {
