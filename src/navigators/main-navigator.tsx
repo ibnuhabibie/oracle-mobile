@@ -173,52 +173,52 @@ const MainNavigator = () => {
   if (!initialRoute) return null; // or show splash screen
 
   return (
-    <StarMeteorBackground>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: 'transparent' },
-        }}
-        initialRouteName={initialRoute}>
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen
-          name="OtpVerification"
-          component={OtpVerification}
-          initialParams={routeParams} />
-        <Stack.Screen name="OtpSuccess" component={OtpSuccess} />
-        <Stack.Screen name="LanguageSelection" component={LanguageSelection} />
-        <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="MbtiQuiz" component={MbtiQuiz} />
+    // <StarMeteorBackground>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: 'transparent' },
+      }}
+      initialRouteName={initialRoute}>
+      <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen
+        name="OtpVerification"
+        component={OtpVerification}
+        initialParams={routeParams} />
+      <Stack.Screen name="OtpSuccess" component={OtpSuccess} />
+      <Stack.Screen name="LanguageSelection" component={LanguageSelection} />
+      <Stack.Screen name="Onboarding" component={Onboarding} />
+      <Stack.Screen name="MbtiQuiz" component={MbtiQuiz} />
 
-        <Stack.Screen name="ComponentGallery" component={ComponentGallery} />
+      <Stack.Screen name="ComponentGallery" component={ComponentGallery} />
 
-        <Stack.Screen name="Tabs" component={TabNavigator} />
-        <Stack.Screen name="EchoDetail" component={EchoDetail} />
-        <Stack.Screen name="AffinityResults" component={AffinityResults} />
+      <Stack.Screen name="Tabs" component={TabNavigator} />
+      <Stack.Screen name="EchoDetail" component={EchoDetail} />
+      <Stack.Screen name="AffinityResults" component={AffinityResults} />
 
-        <Stack.Screen name="FortuneReport" component={FortuneReport} />
-        <Stack.Screen name="FortuneReportResult" component={FortuneReportResult} />
+      <Stack.Screen name="FortuneReport" component={FortuneReport} />
+      <Stack.Screen name="FortuneReportResult" component={FortuneReportResult} />
 
-        <Stack.Screen name="RelationReport" component={RelationReport} />
-        <Stack.Screen name="RelationReportResult" component={RelationReportResult} />
+      <Stack.Screen name="RelationReport" component={RelationReport} />
+      <Stack.Screen name="RelationReportResult" component={RelationReportResult} />
 
-        <Stack.Screen name="LoveForecast" component={LoveForecast} />
-        <Stack.Screen name="LoveReportResult" component={LoveReportResult} />
+      <Stack.Screen name="LoveForecast" component={LoveForecast} />
+      <Stack.Screen name="LoveReportResult" component={LoveReportResult} />
 
-        <Stack.Screen name="WebviewContent" component={WebviewContent} />
-        <Stack.Screen name="EditProfile" component={EditProfile} />
-        <Stack.Screen name="PasswordSetting" component={PasswordSetting} />
-        <Stack.Screen name="PurchaseHistory" component={PurchaseHistory} />
-        <Stack.Screen name="TopUp" component={Topup} />
+      <Stack.Screen name="WebviewContent" component={WebviewContent} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen name="PasswordSetting" component={PasswordSetting} />
+      <Stack.Screen name="PurchaseHistory" component={PurchaseHistory} />
+      <Stack.Screen name="TopUp" component={Topup} />
 
-        <Stack.Screen name="MbtiResults" component={MbtiResults} />
-        <Stack.Screen name="AstrologyResults" component={AstrologyResults} />
-        <Stack.Screen name="BaziResults" component={BaziResults} />
-        <Stack.Screen name="DailyProfileDetail" component={DailyProfileDetail} />
-      </Stack.Navigator>
-    </StarMeteorBackground>
+      <Stack.Screen name="MbtiResults" component={MbtiResults} />
+      <Stack.Screen name="AstrologyResults" component={AstrologyResults} />
+      <Stack.Screen name="BaziResults" component={BaziResults} />
+      <Stack.Screen name="DailyProfileDetail" component={DailyProfileDetail} />
+    </Stack.Navigator>
+    // </StarMeteorBackground>
   );
 };
 

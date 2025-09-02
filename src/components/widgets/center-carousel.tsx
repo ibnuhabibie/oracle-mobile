@@ -1,13 +1,12 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import {
   View,
-  FlatList,
   StyleSheet,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
   ViewStyle,
   Dimensions,
-  TouchableOpacity,
+  Platform,
+  Pressable,
+  Animated,
 } from 'react-native';
 import { COLORS } from '../../constants/colors';
 
@@ -39,8 +38,8 @@ export function CenterCarousel<T>({
   // Infinite scroll: duplicate data at both ends
   const loopData = [...data, ...data, ...data];
   const dataLength = data.length;
-  const listRef = useRef<FlatList>(null);
-  const [scrollX, setScrollX] = useState(0);
+  const listRef = useRef<Animated.FlatList<any>>(null);
+  const scrollX = useRef(new Animated.Value(0)).current;
 
   // Calculate initial scroll offset to center the first real item in the middle set
   const initialOffset =
@@ -54,15 +53,17 @@ export function CenterCarousel<T>({
   }, [initialOffset]);
 
   // Handle infinite scroll by resetting offset when reaching ends
-  const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const x = e.nativeEvent.contentOffset.x;
-    setScrollX(x);
+  const handleScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+    { useNativeDriver: false }
+  );
 
-    const leftEdge = cardWidth + gap;
+  const handleMomentumScrollEnd = (e: any) => {
+    const x = e.nativeEvent.contentOffset.x;
+    const leftEdge = 2 * (cardWidth + gap);
     const rightEdge = (dataLength * 2) * (cardWidth + gap);
 
     if (x < leftEdge) {
-      // Scroll to the same item in the middle set
       listRef.current?.scrollToOffset({
         offset: x + dataLength * (cardWidth + gap),
         animated: false,
@@ -78,11 +79,84 @@ export function CenterCarousel<T>({
   // Padding to show half cards on sides
   const sidePadding = (SCREEN_WIDTH - cardWidth) / 2;
 
+  // Memoized renderItem
+  const memoizedRenderItem = useCallback(
+    ({ item, index }: { item: T; index: number }) => {
+      // Animated value for this card's center
+      const inputRange = [
+        (index - 1) * (cardWidth + gap),
+        index * (cardWidth + gap),
+        (index + 1) * (cardWidth + gap),
+      ];
+
+      // Height interpolation for smooth scaling
+      const animatedHeight = scrollX.interpolate({
+        inputRange,
+        outputRange: [cardHeight, cardHeightCenter, cardHeight],
+        extrapolate: 'clamp',
+      });
+
+      const cardContent = (
+        <Animated.View
+          style={{
+            width: cardWidth,
+            marginRight: gap,
+            height: animatedHeight,
+            borderColor: COLORS.black,
+            borderWidth: 1,
+            borderRadius: 12,
+            backgroundColor: 'transparent',
+            // ...Platform.select({
+            //   ios: {
+            //     shadowOpacity: 0.12,
+            //     shadowRadius: 8,
+            //     shadowOffset: { width: 0, height: 2 },
+            //   },
+            //   android: {
+            //     elevation: 4,
+            //   },
+            // }),
+            marginVertical: 10,
+            overflow: 'hidden',
+          }}
+        >
+          <View
+            style={{
+              ...StyleSheet.absoluteFillObject,
+              backgroundColor: 'rgba(255,255,255,0.08)',
+              borderRadius: 12,
+              zIndex: 0,
+            }}
+            pointerEvents="none"
+          />
+          <View style={{ flex: 1, zIndex: 1 }}>
+            {renderItem({ item, index: index % dataLength, isCenter: false })}
+          </View>
+        </Animated.View>
+      );
+
+      if (onCardPress) {
+        return (
+          <Pressable
+            // android_ripple={{ color: COLORS.primary, borderless: false }}
+            onPress={() => onCardPress(item)}
+            style={{ borderRadius: 12 }}
+          >
+            {cardContent}
+          </Pressable>
+        );
+      }
+
+      return cardContent;
+    },
+    [cardWidth, cardHeight, cardHeightCenter, gap, renderItem, onCardPress, dataLength, sidePadding, scrollX]
+  );
+
   return (
-    <View style={[{ height: cardHeightCenter + 40 }, style]}>
-      <FlatList
+    <View style={[{ alignItems: 'center' }, style]}>
+      <Animated.FlatList
         ref={listRef}
-        data={loopData}
+        data={loopData as any}
         keyExtractor={(_, idx) => idx.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -92,60 +166,13 @@ export function CenterCarousel<T>({
           paddingHorizontal: sidePadding,
         }}
         onScroll={handleScroll}
+        onMomentumScrollEnd={handleMomentumScrollEnd}
         scrollEventThrottle={16}
-        renderItem={({ item, index }) => {
-          // Calculate the center of the screen using scrollX state
-          const centerOfScreen = scrollX + SCREEN_WIDTH / 2;
-          // Calculate the center of this card
-          const cardStart = index * (cardWidth + gap) + sidePadding;
-          const cardCenter = cardStart + cardWidth / 2;
-          const isCenter = Math.abs(cardCenter - centerOfScreen) < (cardWidth + gap) / 2;
-
-          const cardContent = (
-            <View
-              style={{
-                width: cardWidth,
-                marginRight: gap,
-                height: isCenter ? cardHeightCenter : cardHeight,
-                borderColor: COLORS.black,
-                borderWidth: 1,
-                borderRadius: 12,
-                backgroundColor: 'transparent',
-                shadowOpacity: isCenter ? 0.12 : 0.06,
-                shadowRadius: 8,
-                shadowOffset: { width: 0, height: 2 },
-                marginVertical: 10,
-                overflow: 'hidden',
-              }}
-            >
-              <View
-                style={{
-                  ...StyleSheet.absoluteFillObject,
-                  backgroundColor: 'rgba(255,255,255,0.08)',
-                  borderRadius: 12,
-                  zIndex: 0,
-                }}
-                pointerEvents="none"
-              />
-              <View style={{ flex: 1, zIndex: 1 }}>
-                {renderItem({ item, index: index % dataLength, isCenter })}
-              </View>
-            </View>
-          );
-
-          if (onCardPress) {
-            return (
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => onCardPress(item)}
-              >
-                {cardContent}
-              </TouchableOpacity>
-            );
-          }
-
-          return cardContent;
-        }}
+        renderItem={memoizedRenderItem}
+        // removeClippedSubviews={false}
+        windowSize={5}
+        initialNumToRender={5}
+        maxToRenderPerBatch={5}
       />
     </View>
   );

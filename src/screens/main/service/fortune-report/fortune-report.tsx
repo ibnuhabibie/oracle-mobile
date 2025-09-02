@@ -4,6 +4,8 @@ import {
     StyleSheet,
     Alert,
     Dimensions,
+    ActivityIndicator,
+    InteractionManager,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -32,6 +34,15 @@ type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Fortun
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
+    const [iconsReady, setIconsReady] = useState(false);
+
+    React.useEffect(() => {
+        const interaction = InteractionManager.runAfterInteractions(() => {
+            setIconsReady(true);
+        });
+        return () => interaction && interaction.cancel && interaction.cancel();
+    }, []);
+
     const fortuneYear = (() => {
         const now = new Date();
         const month = now.getMonth() + 1;
@@ -152,21 +163,27 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
             </AppText>
             <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('fortuneReport.sectionTitle')}</AppText>
 
-            <View style={[styles.grid, { gap: gridGap }]}>
-                {
-                    CARD_DATA.map((card, idx) => (
-                        <View key={idx} style={styles.card}>
-                            <View style={styles.cardIconWrapper}>
-                                <ShinyContainer size={shinySize}>
-                                    {card.icon}
-                                </ShinyContainer>
+            {iconsReady ? (
+                <View style={[styles.grid, { gap: gridGap }]}>
+                    {
+                        CARD_DATA.map((card, idx) => (
+                            <View key={idx} style={styles.card}>
+                                <View style={styles.cardIconWrapper}>
+                                    <ShinyContainer size={shinySize}>
+                                        {card.icon}
+                                    </ShinyContainer>
+                                </View>
+                                <AppText style={styles.cardLabel} variant='body1' color='white'>{card.title}</AppText>
+                                <AppText color='primary' variant='caption2'>{card.subtitle}</AppText>
                             </View>
-                            <AppText style={styles.cardLabel} variant='body1' color='white'>{card.title}</AppText>
-                            <AppText color='primary' variant='caption2'>{card.subtitle}</AppText>
-                        </View>
-                    ))
-                }
-            </View>
+                        ))
+                    }
+                </View>
+            ) : (
+                <View style={styles.activityIndicatorWrapper}>
+                    <ActivityIndicator size="large" color={COLORS.primary} />
+                </View>
+            )}
             <View style={{ height: 60 }} />
             <PurchaseAlertModal
                 visible={showPurchaseModal}
@@ -193,6 +210,13 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+    activityIndicatorWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: 120,
+        width: '100%',
+    },
     title: {
         textAlign: 'center',
         marginTop: 32,

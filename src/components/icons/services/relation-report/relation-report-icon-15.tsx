@@ -21,4 +21,4 @@ const RelationReportIcon15: React.FC<{ size?: number, color?: string }> = ({ siz
     </Svg>
 );
 
-export default RelationReportIcon15;
+export default React.memo(RelationReportIcon15);

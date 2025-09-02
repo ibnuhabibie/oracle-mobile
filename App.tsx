@@ -12,6 +12,11 @@ import { StripeProvider } from '@stripe/stripe-react-native';
 import MainNavigator from './src/navigators/main-navigator';
 import api from './src/utils/http';
 import { navigationRef, navigate } from './src/navigators/navigation-ref';
+import StarMeteorBackground from './src/components/star-meteor-background';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import RadialGradient from 'react-native-radial-gradient';
+
+const { width, height } = Dimensions.get('window');
 
 
 enableScreens(true);
@@ -167,7 +172,15 @@ const App: React.FC = () => {
         publishableKey="pk_test_51PVG0tIYVaNsBhG4lSzSsK0Aytevy88pZWHAEyeRTOx8I8sJzF954qzrvsEIaHlnoKoixSZpm427IEptSgbKYGGF00A4eoUNga"
       >
         <NavigationContainer ref={navigationRef}>
-          <MainNavigator />
+          <View style={{ backgroundColor: 'black', flex: 1 }}>
+            <RadialGradient
+              style={StyleSheet.absoluteFill}
+              colors={['#161C41', '#161313']}
+              center={[width / 2, height / 2]}
+              radius={Math.max(width, height) / 1.2}
+            />
+            <MainNavigator />
+          </View>
           {/* <FloatingPreviewButton /> */}
         </NavigationContainer>
       </StripeProvider>

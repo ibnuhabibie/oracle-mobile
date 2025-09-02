@@ -21,4 +21,4 @@ const LoveReportIcon8: React.FC<{ size?: number, color?: string }> = ({ size = 6
     </Svg>
 );
 
-export default LoveReportIcon8;
+export default React.memo(LoveReportIcon8);

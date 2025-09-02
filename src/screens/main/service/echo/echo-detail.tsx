@@ -23,6 +23,7 @@ import Header from '../../../../components/ui/header';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
+import AdviceIcon from '../../../../components/icons/echo/advice-icon';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 
@@ -132,6 +133,13 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           keyboardVerticalOffset={16}
         >
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, marginBottom: 4 }}>
+            <AppText color='neutral'>Click on</AppText>
+            <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center' }}>
+              <AdviceIcon size={12} />
+            </View>
+            <AppText color='neutral'>to get Genie advice</AppText>
+          </View>
           <View style={styles.inputBar}>
             <TextInput
               style={styles.input}

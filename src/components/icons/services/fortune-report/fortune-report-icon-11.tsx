@@ -15,4 +15,4 @@ const FortuneReportIcon11: React.FC<{ size?: number, color?: string }> = ({ size
     </Svg>
 );
 
-export default FortuneReportIcon11;
+export default React.memo(FortuneReportIcon11);

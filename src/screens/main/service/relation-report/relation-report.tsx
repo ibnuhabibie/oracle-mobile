@@ -5,6 +5,8 @@ import {
     Image,
     Alert,
     Dimensions,
+    ActivityIndicator,
+    InteractionManager,
 } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -34,6 +36,14 @@ type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Relat
 
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
+    const [iconsReady, setIconsReady] = useState(false);
+
+    React.useEffect(() => {
+        const interaction = InteractionManager.runAfterInteractions(() => {
+            setIconsReady(true);
+        });
+        return () => interaction && interaction.cancel && interaction.cancel();
+    }, []);
 
     const CARD_DATA = [
         {
@@ -175,22 +185,28 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             {/* <AppText variant='subtitle1' style={{ textAlign: 'center' }} color='neutral'>{t('relationReport.loveInterestDetail')}</AppText> */}
             <AppText style={styles.sectionTitle} variant='caption2' color='primary'>{t('relationReport.tellUsMore')}</AppText>
 
-            <View style={[styles.grid, { gap: gridGap }]}>
-                {
-                    CARD_DATA.map((card, idx) => (
-                        <View key={idx} style={styles.card}>
-                            <View style={styles.cardIconWrapper}>
-                                <ShinyContainer size={shinySize}>
-                                    {card.iconKey === 'relation'
-                                        ? <RelationIcon size={iconSize} />
-                                        : React.createElement(card.icon, { size: iconSize })}
-                                </ShinyContainer>
+            {iconsReady ? (
+                <View style={[styles.grid, { gap: gridGap }]}>
+                    {
+                        CARD_DATA.map((card, idx) => (
+                            <View key={idx} style={styles.card}>
+                                <View style={styles.cardIconWrapper}>
+                                    <ShinyContainer size={shinySize}>
+                                        {card.iconKey === 'relation'
+                                            ? <RelationIcon size={iconSize} />
+                                            : React.createElement(card.icon, { size: iconSize })}
+                                    </ShinyContainer>
+                                </View>
+                                <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
                             </View>
-                            <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
-                        </View>
-                    ))
-                }
-            </View>
+                        ))
+                    }
+                </View>
+            ) : (
+                <View style={styles.activityIndicatorWrapper}>
+                    <ActivityIndicator size="large" color={COLORS.primary} />
+                </View>
+            )}
             <View style={{ height: 60 }} />
             <PurchaseAlertModal
                 visible={showPurchaseModal}
@@ -217,6 +233,13 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+    activityIndicatorWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: 120,
+        width: '100%',
+    },
     title: {
         textAlign: 'center',
         marginBottom: 18,

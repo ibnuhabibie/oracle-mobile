@@ -23,7 +23,7 @@ type StarMeteorBackgroundProps = {
 };
 
 const StarMeteorBackground: React.FC<StarMeteorBackgroundProps> = React.memo(
-  ({ children, starAnimationActive = false }) => {
+  ({ children, starAnimationActive = true }) => {
     // Detect current route name using useNavigationState
     const routeName = useNavigationState((state) => {
       if (!state) return undefined;
