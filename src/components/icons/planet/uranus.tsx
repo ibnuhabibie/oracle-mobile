@@ -13,4 +13,4 @@ const Uranus: React.FC<{ size?: number, color?: string }> = ({ size = 60, color 
   </Svg>
 );
 
-export default Uranus;
+export default React.memo(Uranus);

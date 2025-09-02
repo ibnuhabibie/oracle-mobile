@@ -13,4 +13,4 @@ const Moon: React.FC<{ size?: number, color?: string }> = ({ size = 60, color = 
   </Svg>
 );
 
-export default Moon;
+export default React.memo(Moon);

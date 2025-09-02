@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, InteractionManager, ActivityIndicator } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
@@ -17,6 +17,7 @@ import FortuneReportIcon14 from '../../../../components/icons/services/fortune-r
 import FortuneReportIcon15 from '../../../../components/icons/services/fortune-report/fortune-report-icon-15';
 import FortuneReportIcon16 from '../../../../components/icons/services/fortune-report/fortune-report-icon-16';
 import FortuneReportIcon17 from '../../../../components/icons/services/fortune-report/fortune-report-icon-17';
+import { COLORS } from '../../../../constants/colors';
 
 const iconImages = [
     FortuneReportIcon11,
@@ -34,6 +35,12 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
     const { result, job_id } = route.params;
     const { t } = useTranslation();
     const [loading, setLoading] = React.useState(false);
+    const [ready, setReady] = React.useState(false);
+
+    React.useEffect(() => {
+        const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
+        return () => interaction && interaction.cancel && interaction.cancel();
+    }, []);
 
     const CardList: FC<{ content: any[] }> = ({ content }) => {
         if (!content) return null;
@@ -66,6 +73,10 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
             }
         }, 0);
     };
+
+    if (!ready) {
+        return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
+    }
 
     return (
         <ScreenContainer

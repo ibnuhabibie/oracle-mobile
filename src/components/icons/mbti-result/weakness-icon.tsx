@@ -15,4 +15,4 @@ const WeaknessIcon: React.FC<{ size?: number, color?: string }> = ({ size = 60, 
     </Svg>
 );
 
-export default WeaknessIcon;
+export default React.memo(WeaknessIcon);

@@ -3,6 +3,8 @@ import React, { FC, useMemo } from 'react';
 import {
   Image,
   Text,
+  InteractionManager,
+  ActivityIndicator,
 } from 'react-native';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
@@ -23,10 +25,17 @@ import Saturn from '../../../components/icons/planet/saturn';
 import Sun from '../../../components/icons/planet/sun';
 import Uranus from '../../../components/icons/planet/uranus';
 import Venus from '../../../components/icons/planet/venus';
+import { COLORS } from '../../../constants/colors';
 
 type AstrologyResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
 
 const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
+  const [ready, setReady] = React.useState(false);
+  React.useEffect(() => {
+    const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
+    return () => interaction && interaction.cancel && interaction.cancel();
+  }, []);
+
   // Get profile_astro from route params
   const profile = useMemo(() => {
     // Sort by order if present
@@ -89,6 +98,12 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
     );
   };
 
+  if (!profile) {
+    return (
+      <Text style={{ color: 'red', margin: 16 }}>No profile data found.</Text>
+    );
+  }
+
   return (
     <ScreenContainer
       header={
@@ -98,12 +113,13 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
         />
       }
     >
-      <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle='You' />
-
-      {profile ? (
-        <AstrologyCardList profile={profile} />
+      {ready ? (
+        <>
+          <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle='You' />
+          <AstrologyCardList profile={profile} />
+        </>
       ) : (
-        <Text style={{ color: 'red', margin: 16 }}>No profile data found.</Text>
+        <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
       )}
     </ScreenContainer>
   );

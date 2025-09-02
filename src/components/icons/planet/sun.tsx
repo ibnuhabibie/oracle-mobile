@@ -15,4 +15,4 @@ const Sun: React.FC<{ size?: number, color?: string }> = ({ size = 60, color = "
   </Svg>
 );
 
-export default Sun;
+export default React.memo(Sun);

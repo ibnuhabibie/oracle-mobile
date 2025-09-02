@@ -12,4 +12,4 @@ const Mercury: React.FC<{ size?: number, color?: string }> = ({ size = 60, color
   </Svg>
 );
 
-export default Mercury;
+export default React.memo(Mercury);

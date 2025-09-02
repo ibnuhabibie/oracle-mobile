@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, InteractionManager, ActivityIndicator } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
@@ -17,6 +17,7 @@ import LoveReportIcon6 from '../../../../components/icons/services/love-report/l
 import LoveReportIcon7 from '../../../../components/icons/services/love-report/love-report-icon-7';
 import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
 import { downloadPdf } from '../../../../utils/http';
+import { COLORS } from '../../../../constants/colors';
 
 type LoveReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveReportResult'>;
 
@@ -24,6 +25,12 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
     const { t } = useTranslation();
     const { result, job_id } = route.params;
     const [loading, setLoading] = React.useState(false);
+    const [ready, setReady] = React.useState(false);
+
+    React.useEffect(() => {
+        const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
+        return () => interaction && interaction.cancel && interaction.cancel();
+    }, []);
 
     console.log(result, job_id)
 
@@ -86,6 +93,10 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
             }
         }, 0);
     };
+
+    if (!ready) {
+        return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
+    }
 
     return (
         <ScreenContainer

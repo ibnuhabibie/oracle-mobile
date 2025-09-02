@@ -19,4 +19,4 @@ const StrengthIcon: React.FC<{ size?: number, color?: string }> = ({ size = 60, 
     </Svg>
 );
 
-export default StrengthIcon;
+export default React.memo(StrengthIcon);

@@ -12,4 +12,4 @@ const Mars: React.FC<{ size?: number, color?: string }> = ({ size = 60, color = 
   </Svg>
 );
 
-export default Mars;
+export default React.memo(Mars);

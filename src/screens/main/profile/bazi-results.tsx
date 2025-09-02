@@ -2,7 +2,9 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import {
   Text,
-  Image
+  Image,
+  InteractionManager,
+  ActivityIndicator
 } from 'react-native';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
@@ -16,11 +18,18 @@ import BaziResultIcon2 from '../../../components/icons/bazi-result/bazi-result-i
 import BaziResultIcon3 from '../../../components/icons/bazi-result/bazi-result-icon-3';
 import BaziResultIcon4 from '../../../components/icons/bazi-result/bazi-result-icon-4';
 import BaziResultIcon5 from '../../../components/icons/bazi-result/bazi-result-icon-5';
+import { COLORS } from '../../../constants/colors';
 
 type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'BaziResults'>;
 
 const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
   const profile = route.params?.profile_bazi;
+  const [ready, setReady] = React.useState(false);
+
+  React.useEffect(() => {
+    const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
+    return () => interaction && interaction.cancel && interaction.cancel();
+  }, []);
 
   console.log(profile, 'profile')
 
@@ -36,6 +45,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
   // Card list component
   const BaziCardList: FC<{ profile: any, iconImages: any[] }> = ({ profile, iconImages }) => {
     if (!profile) return null;
+
     const items = [
       { key: 'day_master', label: 'Day Master', iconIdx: 1 },
       { key: 'pillar_year', label: 'Year Pillar', iconIdx: 4 },
@@ -67,6 +77,12 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
     );
   };
 
+  if (!profile) {
+    return (
+      <Text style={{ color: 'red', margin: 16 }}>No profile data found.</Text>
+    );
+  }
+
   return (
     <ScreenContainer
       header={
@@ -76,12 +92,13 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
         />
       }
     >
-      <ProfileCard iconKey={profile?.day_master?.icon} cardTitle='You' />
-
-      {profile ? (
-        <BaziCardList profile={profile} iconImages={iconImages} />
+      {ready ? (
+        <>
+          <ProfileCard iconKey={profile?.day_master?.icon} cardTitle='You' />
+          <BaziCardList profile={profile} iconImages={iconImages} />
+        </>
       ) : (
-        <Text style={{ color: 'red', margin: 16 }}>No profile data found.</Text>
+        <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
       )}
     </ScreenContainer>
   );

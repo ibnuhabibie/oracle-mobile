@@ -26,4 +26,4 @@ const BaziResultIcon1: React.FC<{ size?: number; color?: string }> = ({
     </Svg>
 );
 
-export default BaziResultIcon1;
+export default React.memo(BaziResultIcon1);

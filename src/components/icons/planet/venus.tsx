@@ -12,4 +12,4 @@ const Venus: React.FC<{ size?: number, color?: string }> = ({ size = 60, color =
   </Svg>
 );
 
-export default Venus;
+export default React.memo(Venus);

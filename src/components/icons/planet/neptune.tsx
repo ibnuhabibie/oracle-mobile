@@ -12,4 +12,4 @@ const Neptune: React.FC<{ size?: number, color?: string }> = ({ size = 60, color
   </Svg>
 );
 
-export default Neptune;
+export default React.memo(Neptune);

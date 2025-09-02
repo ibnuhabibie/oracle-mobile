@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, InteractionManager, ActivityIndicator } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
@@ -46,6 +46,12 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
     const { result, love_profile, job_id } = route.params;
     const { t } = useTranslation();
     const [loading, setLoading] = React.useState(false);
+    const [ready, setReady] = React.useState(false);
+
+    React.useEffect(() => {
+        const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
+        return () => interaction && interaction.cancel && interaction.cancel();
+    }, []);
 
     // Transform love_profile to UserProfile shape
     function loveProfileToUserProfile(love_profile: any) {
@@ -102,6 +108,10 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
             }
         }, 0);
     };
+
+    if (!ready) {
+        return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
+    }
 
     return (
         <ScreenContainer

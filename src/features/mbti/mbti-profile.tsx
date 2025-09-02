@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View, InteractionManager, ActivityIndicator } from "react-native";
 
 import { getMbtiIconComponent } from "./mbti-profile-item";
 import ShinyContainer from "../../components/widgets/shiny-container";
@@ -16,12 +16,16 @@ class MBTIProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            profile: null
+            profile: null,
+            ready: false
         };
     }
 
     componentDidMount() {
         this.fetchProfile();
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({ ready: true });
+        });
     }
 
     fetchProfile = async () => {
@@ -35,6 +39,11 @@ class MBTIProfile extends React.Component {
     }
     render() {
         const profile = this.state.profile;
+        const ready = this.state.ready;
+
+        if (!ready) {
+            return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
+        }
 
         return (
             <>

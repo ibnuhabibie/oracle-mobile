@@ -12,4 +12,4 @@ const Saturn: React.FC<{ size?: number, color?: string }> = ({ size = 60, color 
   </Svg>
 );
 
-export default Saturn;
+export default React.memo(Saturn);

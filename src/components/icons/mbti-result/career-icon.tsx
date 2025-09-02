@@ -23,4 +23,4 @@ const CareerIcon: React.FC<{ size?: number, color?: string }> = ({ size = 60, co
     </Svg>
 );
 
-export default CareerIcon;
+export default React.memo(CareerIcon);

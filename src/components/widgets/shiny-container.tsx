@@ -34,4 +34,4 @@ const ShinyContainer: React.FC<{
   </View>
 );
 
-export default ShinyContainer;
+export default React.memo(ShinyContainer);

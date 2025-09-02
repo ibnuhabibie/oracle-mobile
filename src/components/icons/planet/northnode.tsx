@@ -13,4 +13,4 @@ const NorthNode: React.FC<{ size?: number, color?: string }> = ({ size = 60, col
   </Svg>
 );
 
-export default NorthNode;
+export default React.memo(NorthNode);

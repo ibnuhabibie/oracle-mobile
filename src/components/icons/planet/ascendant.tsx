@@ -13,4 +13,4 @@ const Ascendant: React.FC<{ size?: number, color?: string }> = ({ size = 60, col
     </Svg>
 );
 
-export default Ascendant;
+export default React.memo(Ascendant);
