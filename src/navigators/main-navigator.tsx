@@ -129,42 +129,44 @@ const MainNavigator = () => {
     const checkAuthState = async () => {
       const auth_token = await AsyncStorage.getItem('auth_token');
 
-      if (!auth_token) {
-        setInitialRoute('Welcome');
-        return;
-      }
+      setInitialRoute('Onboarding');
 
-      try {
-        console.log('sync calleed')
-        const data = await sync()
-        const profile = data?.user
+      // if (!auth_token) {
+      //   setInitialRoute('Welcome');
+      //   return;
+      // }
 
-        const isProfileCompleted = (profile: any) => {
-          return (
-            profile.birth_date &&
-            profile.birth_time &&
-            profile.birth_city &&
-            profile.birth_country
-          );
-        };
+      // try {
+      //   console.log('sync calleed')
+      //   const data = await sync()
+      //   const profile = data?.user
 
-        if (!profile.is_email_verified) {
-          setInitialRoute('OtpVerification');
-          setRouteParams({
-            email: profile.email,
-            shouldResendOtp: true,
-          });
-        } else if (!isProfileCompleted(profile)) {
-          setInitialRoute('Onboarding');
-        } else if (!profile.mbti_profile) {
-          setInitialRoute('MbtiQuiz');
-        } else {
-          setInitialRoute('Tabs');
-        }
-      } catch (err) {
-        await clearStorage()
-        setInitialRoute('Welcome');
-      }
+      //   const isProfileCompleted = (profile: any) => {
+      //     return (
+      //       profile.birth_date &&
+      //       profile.birth_time &&
+      //       profile.birth_city &&
+      //       profile.birth_country
+      //     );
+      //   };
+
+      //   if (!profile.is_email_verified) {
+      //     setInitialRoute('OtpVerification');
+      //     setRouteParams({
+      //       email: profile.email,
+      //       shouldResendOtp: true,
+      //     });
+      //   } else if (!isProfileCompleted(profile)) {
+      //     setInitialRoute('Onboarding');
+      //   } else if (!profile.mbti_profile) {
+      //     setInitialRoute('MbtiQuiz');
+      //   } else {
+      //     setInitialRoute('Tabs');
+      //   }
+      // } catch (err) {
+      //   await clearStorage()
+      //   setInitialRoute('Welcome');
+      // }
     };
 
     checkAuthState();

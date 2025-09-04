@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert, StyleSheet, View, Platform } from "react-native";
-import { Pressable } from "react-native-gesture-handler";
 import { useTranslation } from "react-i18next";
 import DeviceInfo from "react-native-device-info";
 import messaging from "@react-native-firebase/messaging";
-import { PermissionsAndroid } from 'react-native';
-import notifee from "@notifee/react-native";
 
 import api from "../../utils/http";
-import EyeCrossedIcon from "../../components/icons/auth/eye-crossed-icon";
-import EyeIcon from "../../components/icons/profile/eye-icon";
-import TextField from "../../components/ui/text-field";
-import { AppText } from "../../components/ui/app-text";
 import { AppButton } from "../../components/ui/app-button";
 import AppInput from "../../components/ui/app-input";
 import PasswordToggle from "../../components/ui/password-toggle";
-import { opacity } from "react-native-reanimated/lib/typescript/Colors";
 import { useAsyncStorage } from "../../hooks/use-storage";
+import { COLORS } from "../../constants/colors";
 
 interface LoginDTO {
     email: string;
@@ -168,8 +161,8 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     appInput: {
-        borderColor: '#BDBDBD',
-        color: 'red'
+        borderColor: COLORS['light-gray'],
+        color: COLORS.red
     }
 });
 

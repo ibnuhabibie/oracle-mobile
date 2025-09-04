@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import ScreenContainer from '../../components/layouts/screen-container';
 import SignUpForm from '../../features/auth/signup-form';
 import { MainNavigatorParamList } from '../../navigators/types';
-import { COLORS } from '../../constants/colors';
 import { AppText } from '../../components/ui/app-text';
 
 type SignUpProps = NativeStackScreenProps<MainNavigatorParamList, 'SignUp'>;
@@ -21,14 +20,14 @@ const SignUp: FC<SignUpProps> = ({ navigation }) => {
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
       <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEEKERS')}</AppText>
-      <AppText variant='largeTitle2' style={styles.title}>{t('SIGN UP')}</AppText>
-      <AppText variant='caption1' style={styles.subtitle}>
+      <AppText variant='largeTitle2' style={styles.title} color='neutral'>{t('SIGN UP')}</AppText>
+      <AppText variant='caption1' style={styles.subtitle} color='neutral'>
         {t('SIGN UP SUBTITLE')}
       </AppText>
 
       <SignUpForm onSuccess={onSuccess} />
 
-      <AppText variant='body1' style={styles.footer}>
+      <AppText variant='body1' style={styles.footer} color='neutral'>
         {t('ALREADY HAVE AN ACCOUNT')}{' '}
         <AppText
           color='primary'
@@ -49,17 +48,14 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: 6,
-    color: '#D5D5D5'
   },
   subtitle: {
     textAlign: 'center',
     marginBottom: 24,
-    color: '#D5D5D5'
   },
   footer: {
     textAlign: 'center',
     marginTop: 16,
-    color: '#D5D5D5'
   },
 });
 

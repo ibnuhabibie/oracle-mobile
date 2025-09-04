@@ -8,7 +8,6 @@ import ScreenContainer from '../../components/layouts/screen-container';
 import { MainNavigatorParamList } from '../../navigators/types';
 import SignInForm from '../../features/auth/signin-form';
 import { AppText } from '../../components/ui/app-text';
-import { COLORS } from '../../constants/colors';
 
 type SignInProps = NativeStackScreenProps<MainNavigatorParamList, 'SignIn'>;
 
@@ -40,14 +39,14 @@ const SignIn: FC<SignInProps> = ({ navigation }) => {
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
       <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEEKERS')}</AppText>
-      <AppText variant='largeTitle2' style={styles.title}>{t('SIGN IN')}</AppText>
-      <AppText variant='caption1' style={styles.subtitle}>
+      <AppText variant='largeTitle2' style={styles.title} color='neutral'>{t('SIGN IN')}</AppText>
+      <AppText variant='caption1' style={styles.subtitle} color='neutral'>
         {t('THE COSMOS WHISPERS')}
       </AppText>
 
       <SignInForm onSuccess={onSuccess} />
 
-      <AppText variant='body1' style={styles.footer}>
+      <AppText variant='body1' style={styles.footer} color='neutral'>
         {t('DONT HAVE AN ACCOUNT')}{' '}
         <AppText
           color='primary'
@@ -68,18 +67,15 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: 6,
-    color: '#D5D5D5',
   },
   subtitle: {
     textAlign: 'center',
     marginBottom: 24,
-    color: '#D5D5D5',
     lineHeight: 22
   },
   footer: {
     textAlign: 'center',
     marginTop: 16,
-    color: '#D5D5D5'
   },
 });
 

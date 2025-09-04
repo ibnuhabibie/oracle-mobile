@@ -1,18 +1,16 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { useForm } from "react-hook-form";
+import { Alert, StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import api from "../../utils/http";
-import TextField from "../../components/ui/text-field";
-import EyeCrossedIcon from "../../components/icons/auth/eye-crossed-icon";
-import EyeIcon from "../../components/icons/profile/eye-icon";
 import { AppButton } from "../../components/ui/app-button";
 import { AuthFormProps } from "./signin-form";
 import AppInput from "../../components/ui/app-input";
 import PasswordToggle from "../../components/ui/password-toggle";
 import { useAsyncStorage } from "../../hooks/use-storage";
+import { COLORS } from "../../constants/colors";
 
 const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -160,7 +158,7 @@ const styles = StyleSheet.create({
     },
     appInput: {
         backgroundColor: 'rgba(255, 255, 255, 0.13)',
-        borderColor: '#BDBDBD'
+        borderColor: COLORS['light-gray']
     }
 });
 
