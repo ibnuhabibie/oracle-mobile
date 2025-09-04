@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => (
     <View style={[styles.header, containerStyle]}>
         <Pressable onPress={onBack} style={[styles.backButton, backButtonStyle]}>
-            <ArrowIcon />
+            <ArrowIcon size={28} />
         </Pressable>
         <Text style={[styles.headerTitle, titleStyle]}>{title}</Text>
     </View>

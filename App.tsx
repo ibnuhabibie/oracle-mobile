@@ -171,16 +171,8 @@ const App: React.FC = () => {
       <StripeProvider
         publishableKey="pk_test_51PVG0tIYVaNsBhG4lSzSsK0Aytevy88pZWHAEyeRTOx8I8sJzF954qzrvsEIaHlnoKoixSZpm427IEptSgbKYGGF00A4eoUNga"
       >
-        <NavigationContainer ref={navigationRef}>
-          <View style={{ backgroundColor: 'black', flex: 1 }}>
-            <RadialGradient
-              style={StyleSheet.absoluteFill}
-              colors={['#161C41', '#161313']}
-              center={[width / 2, height / 2]}
-              radius={Math.max(width, height) / 1.2}
-            />
-            <MainNavigator />
-          </View>
+        <NavigationContainer ref={navigationRef} detachInactiveScreens={true}>
+          <MainNavigator />
           {/* <FloatingPreviewButton /> */}
         </NavigationContainer>
       </StripeProvider>

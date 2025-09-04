@@ -74,10 +74,6 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
         }, 0);
     };
 
-    if (!ready) {
-        return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
-    }
-
     return (
         <ScreenContainer
             header={
@@ -95,8 +91,14 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
                 />
             }
         >
-            <CardList content={result?.content} />
-            <View style={{ height: 60 }} />
+            {!ready ? (
+                <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
+            ) : (
+                <>
+                    <CardList content={result?.content} />
+                    <View style={{ height: 60 }} />
+                </>
+            )}
         </ScreenContainer>
     );
 };

@@ -1,30 +1,34 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Platform, ScaledSize, StyleSheet, View } from 'react-native';
 import { useTranslation } from "react-i18next";
+import Carousel from 'react-native-reanimated-carousel';
+import { useSharedValue } from 'react-native-reanimated';
 
-import CenterCarousel from '../../components/widgets/center-carousel';
+import ServiceCard from '../../components/widgets/service-card';
 import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/screen-container';
 import ProfileDashboard from '../../features/profile/profile-dashboard';
 import { AppText } from '../../components/ui/app-text';
-import ShinyContainer from '../../components/widgets/shiny-container';
-import LoveReportIcon from '../../components/icons/services/love-report/love-report-icon';
-import FortuneReportIcon from '../../components/icons/services/fortune-report/fortune-report-icon';
-import RelationReportIcon from '../../components/icons/services/relation-report/relation-report-icon';
 
 type HomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Home'>;
 
-const CARD_WIDTH = 240;
-const CARD_MARGIN = 24;
-const CARD_HEIGHT = 280;
-const CARD_HEIGHT_CENTER = 320;
 
 const Home: FC<HomeProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
+  const progress = useSharedValue<number>(0);
+
+  const MAX_WIDTH = 430;
+  const isWeb = Platform.OS === "web";
+
+
+  const window: ScaledSize = isWeb
+    ? { width: MAX_WIDTH, height: 800, scale: 1, fontScale: 1 }
+    : Dimensions.get("screen");
+
   const carouselItems: Array<{
-    id: string;
+    id: 'love' | 'fortune' | 'relation';
     title: string;
     subtitle: string;
     path: keyof MainNavigatorParamList;
@@ -57,38 +61,34 @@ const Home: FC<HomeProps> = ({ navigation }) => {
           {t("WHAT DO YOU LIKE TO KNOW TODAY?")}
         </AppText>
       </View>
-      <CenterCarousel
-        data={carouselItems}
-        cardWidth={CARD_WIDTH}
-        cardHeight={CARD_HEIGHT}
-        cardHeightCenter={CARD_HEIGHT_CENTER}
-        gap={CARD_MARGIN}
-        onCardPress={(item) => navigation.push(item.path)}
-        renderItem={({ item, isCenter }) => (
-          <>
-            <View style={styles.cardImageContainer}>
-              <ShinyContainer size={190}>
-                {item.id === 'love' && <LoveReportIcon size={60} />}
-                {item.id === 'fortune' && <FortuneReportIcon size={60} />}
-                {item.id === 'relation' && <RelationReportIcon size={60} />}
-              </ShinyContainer>
-            </View>
-            <View style={{ padding: 12 }}>
-              <AppText variant='subtitle1' style={styles.cardTitle} color='white'>{item.title}</AppText>
-              <AppText
-                style={[
-                  styles.cardSubtitle,
-                  // { opacity: isCenter ? 1 : 0 }
-                ]}
-                color='primary'
-              >
-                {item.subtitle}
-              </AppText>
-            </View>
-          </>
-        )}
-        style={{ marginTop: 16 }}
-      />
+      <View
+        id="carousel-component"
+        style={{ marginTop: -50, overflow: 'hidden', height: 450 }}
+      >
+        <Carousel
+          autoPlayInterval={2000}
+          data={carouselItems}
+          height={550}
+          loop={true}
+          pagingEnabled={true}
+          snapEnabled={true}
+          width={window.width}
+          style={{
+            width: window.width,
+          }}
+          mode="parallax"
+          modeConfig={{
+            parallaxScrollingScale: 0.6,
+            parallaxScrollingOffset: 200,
+          }}
+          onProgressChange={progress}
+          renderItem={
+            ({ item }) => (
+              <ServiceCard data={item} navigation={navigation} />
+            )
+          }
+        />
+      </View>
     </ScreenContainer>
   );
 };
@@ -100,21 +100,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 24,
     textTransform: 'uppercase',
-  },
-  cardImageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 18,
-  },
-  cardTitle: {
-    marginBottom: 6,
-    marginTop: 4,
-    textAlign: 'left'
-  },
-  cardSubtitle: {
-    fontSize: 12,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
   },
 });
 

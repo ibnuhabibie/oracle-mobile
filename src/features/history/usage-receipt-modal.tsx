@@ -112,7 +112,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
               <View style={styles.modalHeader}>
                 <Text style={styles.modalTitle}>{t("usageReceiptModal.receipt")}</Text>
                 <TouchableOpacity onPress={onClose}>
-                  <CloseIcon />
+                  <CloseIcon size={22} />
                 </TouchableOpacity>
               </View>
               {!item ? (

@@ -9,6 +9,7 @@ import {
   Animated,
 } from 'react-native';
 import { COLORS } from '../../constants/colors';
+import RadialGradient from 'react-native-radial-gradient';
 
 type ScreenContainerProps = {
   children: React.ReactNode;
@@ -21,9 +22,6 @@ type ScreenContainerProps = {
 };
 
 const { width, height } = Dimensions.get('window');
-
-
-
 
 const ScreenContainer: React.FC<ScreenContainerProps> = ({
   children,
@@ -47,25 +45,33 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   );
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      {header && <View style={styles.fixedHeader}>{header}</View>}
-      {scrollable ? (
-        <ScrollView
-          style={{ backgroundColor: 'transparent' }}
-          contentContainerStyle={[styles.scrollContainer, { backgroundColor: 'transparent' }]}
-          keyboardShouldPersistTaps="handled">
-          {content}
-        </ScrollView>
-      ) : (
-        content
-      )}
-      {floatingFooter && (
-        <View style={styles.floatingFooterContainer}>{floatingFooter}</View>
-      )}
-      {floatingButton && (
-        <View style={styles.fabContainer}>{floatingButton}</View>
-      )}
-    </SafeAreaView>
+    <View style={{ flex: 1 }}>
+      <RadialGradient
+        style={StyleSheet.absoluteFill}
+        colors={['#161C41', '#161313']}
+        center={[width / 2, height / 2]}
+        radius={Math.max(width, height) / 1.2}
+      />
+      <SafeAreaView style={styles.safeArea}>
+        {header && <View style={styles.fixedHeader}>{header}</View>}
+        {scrollable ? (
+          <ScrollView
+            style={{ backgroundColor: 'transparent' }}
+            contentContainerStyle={[styles.scrollContainer, { backgroundColor: 'transparent' }]}
+            keyboardShouldPersistTaps="handled">
+            {content}
+          </ScrollView>
+        ) : (
+          content
+        )}
+        {floatingFooter && (
+          <View style={styles.floatingFooterContainer}>{floatingFooter}</View>
+        )}
+        {floatingButton && (
+          <View style={styles.fabContainer}>{floatingButton}</View>
+        )}
+      </SafeAreaView>
+    </View>
   );
 }
 

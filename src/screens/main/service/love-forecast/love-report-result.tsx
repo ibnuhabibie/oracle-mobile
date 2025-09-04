@@ -94,10 +94,6 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
         }, 0);
     };
 
-    if (!ready) {
-        return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
-    }
-
     return (
         <ScreenContainer
             header={
@@ -115,11 +111,17 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
                 />
             }
         >
-            <AppText style={styles.forecastRange} color="neutral">
-                {t('loveReportResult.forecastFor', { range: forecastRange })}
-            </AppText>
-            <CardList content={result?.content} />
-            <View style={{ height: 60 }} />
+            {!ready ? (
+                <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
+            ) : (
+                <>
+                    <AppText style={styles.forecastRange} color="neutral">
+                        {t('loveReportResult.forecastFor', { range: forecastRange })}
+                    </AppText>
+                    <CardList content={result?.content} />
+                    <View style={{ height: 60 }} />
+                </>
+            )}
         </ScreenContainer>
     );
 };

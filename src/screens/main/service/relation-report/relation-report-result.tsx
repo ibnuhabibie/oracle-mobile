@@ -109,10 +109,6 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
         }, 0);
     };
 
-    if (!ready) {
-        return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
-    }
-
     return (
         <ScreenContainer
             header={
@@ -130,14 +126,20 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
                 />
             }
         >
-            <ProfileCard cardTitle={t('relationReportResult.you')} iconKey={'relation'} />
-            <ProfileCard
-                cardTitle={t('relationReportResult.yourLoveInterest')}
-                iconKey={'relation'}
-                profileData={loveProfileToUserProfile(love_profile)}
-            />
-            <CardList content={result?.content} />
-            <View style={{ height: 60 }} />
+            {!ready ? (
+                <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
+            ) : (
+                <>
+                    <ProfileCard cardTitle={t('relationReportResult.you')} iconKey={'relation'} />
+                    <ProfileCard
+                        cardTitle={t('relationReportResult.yourLoveInterest')}
+                        iconKey={'relation'}
+                        profileData={loveProfileToUserProfile(love_profile)}
+                    />
+                    <CardList content={result?.content} />
+                    <View style={{ height: 60 }} />
+                </>
+            )}
         </ScreenContainer>
     );
 };

@@ -173,7 +173,6 @@ const MainNavigator = () => {
   if (!initialRoute) return null; // or show splash screen
 
   return (
-    // <StarMeteorBackground>
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
@@ -218,7 +217,6 @@ const MainNavigator = () => {
       <Stack.Screen name="BaziResults" component={BaziResults} />
       <Stack.Screen name="DailyProfileDetail" component={DailyProfileDetail} />
     </Stack.Navigator>
-    // </StarMeteorBackground>
   );
 };
 
