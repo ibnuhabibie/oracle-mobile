@@ -58,7 +58,6 @@ const MbtiQuiz: FC<{
 
   return (
     <ScreenContainer style={styles.container}>
-      <Text>{uri} asdasd</Text>
       <WebView
         source={{ uri }}
         style={styles.webview}

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { Modal, View, ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Modal, View, ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import { AppText } from './app-text';
 import api from '../../utils/http';
 import { COLORS } from '../../constants/colors';
 
@@ -59,12 +60,12 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
       <View style={styles.overlay}>
         <View style={styles.container}>
           <ActivityIndicator size="large" color={COLORS.neutral} />
-          <Text style={styles.text}>{message}</Text>
-          <Text style={styles.info}>
+          <AppText variant="body1" style={styles.text} color='neutral'>{message}</AppText>
+          <AppText variant="caption1" style={styles.info} color='neutral'>
             It’ll take a few minutes. Feel free to close this window—we’ll ping you when it’s ready.
-          </Text>
+          </AppText>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.closeButtonText}>Close</Text>
+            <AppText variant="body1" style={styles.closeButtonText} color='black'>Close</AppText>
           </TouchableOpacity>
         </View>
       </View>
@@ -91,14 +92,10 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 16,
-    fontSize: 16,
     textAlign: 'center',
-    color: COLORS.neutral
   },
   info: {
     marginTop: 12,
-    fontSize: 14,
-    color: COLORS.neutral,
     textAlign: 'center',
   },
   closeButton: {
@@ -109,8 +106,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   closeButtonText: {
-    fontSize: 16,
-    color: '#333',
     fontWeight: 'bold',
   },
 });

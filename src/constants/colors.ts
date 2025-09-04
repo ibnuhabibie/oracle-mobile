@@ -8,5 +8,10 @@ export const COLORS = {
   'dark-gray': '#575757',
   gold: '#FBBC05',
   red: '#EB4335',
-
+  'radio-brown': '#c1976b',
+  'input-bg': '#FAFAFA',
+  'overlay-white': 'rgba(255,255,255,0.14)',
+  'error-dark': '#D32F2F',
+  gray: '#999',
+  green: '#4CAF50',
 };

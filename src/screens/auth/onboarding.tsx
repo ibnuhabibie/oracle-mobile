@@ -2,7 +2,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Pressable, StyleSheet, Text, View, Alert } from 'react-native';
+import { Pressable, StyleSheet, View, Alert } from 'react-native';
 
 import CalendarIcon from '../../components/icons/auth/calendar-icon';
 import ClockIcon from '../../components/icons/auth/clock-icon';
@@ -169,9 +169,9 @@ const Onboarding: FC<{
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
       <AppText style={styles.title} color='white'>{t('Introduce yourself')}</AppText>
-      <Text style={styles.subtitle}>
+      <AppText style={styles.subtitle} variant="caption1">
         {t('Introduce yourself and let the universe guide you!')}
-      </Text>
+      </AppText>
 
       <View style={styles.formContainer}>
         <Pressable onPress={() => setShowDatePicker(true)}>
@@ -232,7 +232,7 @@ const Onboarding: FC<{
           display="default"
           onChange={onDateChange}
           maximumDate={new Date()}
-          style={{ backgroundColor: 'red' }}
+          style={{ backgroundColor: COLORS.red }}
         />
       )}
 
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginTop: 16,
     fontFamily: fontFamilies.ARCHIVO.light,
-    color: '#333',
+    color: COLORS.neutral,
   },
   title: {
     fontSize: 24,
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
   },
   textField: {
     width: '100%',
-    backgroundColor: '#FFFFFF22'
+    backgroundColor: 'rgba(255,255,255,0.13)'
   },
   marginedTextField: {
     width: '100%',

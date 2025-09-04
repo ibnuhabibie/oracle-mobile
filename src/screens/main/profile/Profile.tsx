@@ -6,7 +6,6 @@ import Toast from 'react-native-toast-message';
 import {
   Pressable,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -144,9 +143,9 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       {/* User Profile Card */}
       <View style={styles.userCard}>
         <View style={styles.userInfo}>
-          <AppText variant='subtitle1' style={styles.userName} color='white'>{user?.full_name || t("Guest")}</AppText>
+          <AppText variant='subtitle1' color='white'>{user?.full_name || t("Guest")}</AppText>
           <Pressable style={styles.userBadge} onPress={handleCopyReferralCode}>
-            <Text style={styles.badgeText}>{user?.referral_code}</Text>
+            <AppText variant="caption2" color="white" style={styles.badgeText}>{user?.referral_code}</AppText>
             <CopyIcon />
           </Pressable>
         </View>
@@ -302,11 +301,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   badgeText: {
-    color: '#FFF',
-    fontSize: 14,
     fontWeight: '600',
     marginRight: 4,
-    fontFamily: fontFamilies.ARCHIVO.light,
   },
   userStats: {
     flexDirection: 'row',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Platform, Pressable } from 'react-native';
+import { View, StyleSheet, Platform, Pressable } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { AppText } from '../../../../components/ui/app-text';
@@ -135,7 +135,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
     <View style={styles.formContainer}>
       <AppText style={styles.formTitle} color='primary'>{t('Fill in your details')}</AppText>
       <View style={styles.formGroup}>
-        <Text style={styles.label}>{t("Name")}</Text>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("Name")}</AppText>
         <AppInput
           control={control}
           name="full_name"
@@ -145,7 +145,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         />
       </View>
       <View style={styles.formGroup}>
-        <Text style={styles.label}>{t("Birth Date")}</Text>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("Birth Date")}</AppText>
         <Pressable onPress={() => setShowDatePicker(true)}>
           <View>
             <TextField
@@ -168,7 +168,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText style={styles.label}>{t("Country of Birth")}</AppText>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("Country of Birth")}</AppText>
         <DropdownButton
           onPress={() => {
             console.log('Country dropdown pressed');
@@ -187,7 +187,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText style={styles.label}>{t("City of Birth")}</AppText>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("City of Birth")}</AppText>
         <DropdownButton
           onPress={() => {
             console.log('City dropdown pressed');
@@ -206,42 +206,42 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText style={styles.label}>{t("Gender")}</AppText>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("Gender")}</AppText>
         <View style={{ flexDirection: 'row', gap: 24 }}>
           <Pressable
             style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
             onPress={() => setValue('gender', 'Male')}
           >
             <View style={{
-              width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: '#c1976b',
+              width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: COLORS['radio-brown'],
               alignItems: 'center', justifyContent: 'center'
             }}>
               {watchedGender === 'Male' && (
                 <View style={{
-                  width: 10, height: 10, borderRadius: 5, backgroundColor: '#c1976b'
+                  width: 10, height: 10, borderRadius: 5, backgroundColor: COLORS['radio-brown']
                 }} />
               )}
             </View>
-            <Text style={{ color: COLORS.neutral }}>{t("Male")}</Text>
+            <AppText variant="caption3" color="neutral">{t("Male")}</AppText>
           </Pressable>
           <Pressable
             style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
             onPress={() => setValue('gender', 'Female')}
           >
             <View style={{
-              width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: '#c1976b',
+              width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: COLORS['radio-brown'],
               alignItems: 'center', justifyContent: 'center'
             }}>
               {watchedGender === 'Female' && (
                 <View style={{
-                  width: 10, height: 10, borderRadius: 5, backgroundColor: '#c1976b'
+                  width: 10, height: 10, borderRadius: 5, backgroundColor: COLORS['radio-brown']
                 }} />
               )}
             </View>
-            <Text style={{ color: COLORS.neutral }}>{t("Female")}</Text>
+            <AppText variant="caption3" color="neutral">{t("Female")}</AppText>
           </Pressable>
         </View>
-        {errors.gender && <Text style={styles.error}>{errors.gender.message}</Text>}
+        {errors.gender && <AppText variant="caption3" style={styles.error} color="red">{errors.gender.message}</AppText>}
       </View>
       <View style={styles.buttonRow}>
         <AppButton
@@ -277,9 +277,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   label: {
-    fontSize: 13,
     marginBottom: 4,
-    color: COLORS.neutral,
   },
   input: {
     borderWidth: 1,
@@ -287,11 +285,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: Platform.OS === 'ios' ? 12 : 8,
     fontSize: 14,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: COLORS['input-bg'],
     color: COLORS.black,
   },
   error: {
-    color: '#D32F2F',
+    color: COLORS['error-dark'],
     fontSize: 12,
     marginTop: 2,
   },
@@ -307,7 +305,7 @@ const styles = StyleSheet.create({
   textField: {
     width: '100%',
     marginBottom: 0,
-    backgroundColor: 'rgba(255,255,255,0.14)'
+    backgroundColor: COLORS['overlay-white']
   },
 });
 

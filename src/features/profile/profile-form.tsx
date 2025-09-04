@@ -1,7 +1,8 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { FC, useEffect, useState, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { AppText } from '../../components/ui/app-text';
 import { useTranslation } from "react-i18next";
 
 import AppInput from '../../components/ui/app-input';
@@ -212,7 +213,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     return (
         <>
             <View style={styles.formContainer}>
-                <Text style={styles.label}>{t("Full Name")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("Full Name")}</AppText>
                 <AppInput
                     control={control}
                     name="full_name"
@@ -221,7 +222,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     errors={errors}
                 />
 
-                <Text style={styles.label}>{t("Email Address")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("Email Address")}</AppText>
                 <AppInput
                     control={control}
                     name="email"
@@ -231,7 +232,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     keyboardType="email-address"
                 />
 
-                <Text style={styles.label}>{t("Phone Number")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("Phone Number")}</AppText>
                 <Controller
                     control={control}
                     name="phone_number"
@@ -247,7 +248,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 />
 
                 {/* Birth Date Field */}
-                <Text style={styles.label}>{t("Birth Date")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("Birth Date")}</AppText>
                 <Pressable onPress={() => setShowDatePicker(true)}>
                     <View pointerEvents="none">
                         <TextField
@@ -261,7 +262,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 </Pressable>
 
                 {/* Birth Time Field */}
-                <Text style={styles.label}>{t("Birth Time")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("Birth Time")}</AppText>
                 <Pressable
                     onPress={() => {
                         setShowTimePicker(true);
@@ -277,11 +278,11 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     </View>
                 </Pressable>
 
-                <Text style={styles.helperText}>
+                <AppText variant="caption4" style={styles.helperText} color='neutral'>
                     {t("Not sure about your birth time? Just go with your closest guess.")}
-                </Text>
+                </AppText>
 
-                <Text style={styles.label}>{t("Gender")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("Gender")}</AppText>
                 <View style={styles.radioContainer}>
                     <Pressable
                         style={styles.radioButton}
@@ -291,7 +292,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                                 <View style={styles.radioSelected} />
                             )}
                         </View>
-                        <Text style={styles.radioText}>{t("Male")}</Text>
+                        <AppText variant="body2" color='neutral'>{t("Male")}</AppText>
                     </Pressable>
                     <Pressable
                         style={styles.radioButton}
@@ -301,23 +302,23 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                                 <View style={styles.radioSelected} />
                             )}
                         </View>
-                        <Text style={styles.radioText}>{t("Female")}</Text>
+                        <AppText variant="body2" color='neutral'>{t("Female")}</AppText>
                     </Pressable>
                 </View>
 
-                <Text style={styles.label}>{t("Country of Birth")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("Country of Birth")}</AppText>
                 <DropdownButton
                     onPress={() => setShowCountryModal(true)}
                     text={watchedCountry?.name || t("Please select one")}
                 />
 
-                <Text style={styles.label}>{t("City of Birth")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("City of Birth")}</AppText>
                 <DropdownButton
                     onPress={() => setShowCityModal(true)}
                     text={watchedCity?.name || t("Please select one")}
                 />
 
-                <Text style={styles.label}>{t("Language")}</Text>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("Language")}</AppText>
                 <DropdownButton
                     onPress={() => setShowLanguageModal(true)}
                     text={LANGUAGES.find(l => l.key === watchedLanguage)?.label || t("Please select one")}
@@ -394,11 +395,8 @@ const styles = StyleSheet.create({
         marginBottom: 24,
     },
     label: {
-        fontSize: 16,
         marginBottom: 8,
         marginTop: 16,
-        fontFamily: fontFamilies.ARCHIVO.light,
-        color: COLORS.neutral,
     },
     textField: {
         width: '100%',
@@ -406,10 +404,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.13)'
     },
     helperText: {
-        fontSize: 12,
-        color: COLORS.neutral,
         marginTop: 4,
-        fontFamily: fontFamilies.ARCHIVO.light,
     },
     radioContainer: {
         flexDirection: 'row',
@@ -425,7 +420,7 @@ const styles = StyleSheet.create({
         height: 20,
         borderRadius: 10,
         borderWidth: 2,
-        borderColor: '#c1976b',
+        borderColor: COLORS['radio-brown'],
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -433,12 +428,7 @@ const styles = StyleSheet.create({
         width: 10,
         height: 10,
         borderRadius: 5,
-        backgroundColor: '#c1976b',
-    },
-    radioText: {
-        fontSize: 16,
-        fontFamily: fontFamilies.ARCHIVO.light,
-        color: COLORS.neutral,
+        backgroundColor: COLORS['radio-brown'],
     },
 });
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { Modal, SafeAreaView, View, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Modal, SafeAreaView, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { AppText } from '../../components/ui/app-text';
 import CoinIcon from "../../components/icons/profile/coin-icon";
 import { formatDateTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
@@ -31,40 +32,40 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                     <TouchableWithoutFeedback>
                         <View style={styles.modalContent}>
                             <View style={styles.modalHeader}>
-                                <Text style={styles.modalTitle}>{t("RECEIPT")}</Text>
+                                <AppText variant="subtitle2" style={styles.modalTitle} color="primary">{t("RECEIPT")}</AppText>
                                 <TouchableOpacity onPress={onClose}>
                                     <CloseIcon size={22} />
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.modalRow}>
-                                <Text style={styles.modalLabel}>{t("ORDER NUMBER")}</Text>
-                                <Text style={styles.modalValue}>{item.transaction_id}</Text>
+                                <AppText variant="caption1" color="neutral">{t("ORDER NUMBER")}</AppText>
+                                <AppText variant="caption1" color="white">{item.transaction_id}</AppText>
                             </View>
                             <View style={styles.modalRow}>
-                                <Text style={styles.modalLabel}>{t("DATE PURCHASED")}</Text>
-                                <Text style={styles.modalValue}>
+                                <AppText variant="caption1" color="neutral">{t("DATE PURCHASED")}</AppText>
+                                <AppText variant="caption1" color="white">
                                     {formatDateTime(item.created_at)}
-                                </Text>
+                                </AppText>
                             </View>
                             <View style={styles.modalSectionDivider} />
-                            <Text style={styles.modalSectionTitle}>{t("ORDER ITEMS")}</Text>
+                            <AppText variant="body1" style={styles.modalSectionTitle}>{t("ORDER ITEMS")}</AppText>
                             <View style={styles.modalRow}>
                                 <View style={styles.modalItemIcon}>
                                     <CoinIcon size={20} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
                                 </View>
-                                <Text style={styles.modalItemQty}>
+                                <AppText variant="body1" style={styles.modalItemQty} color="neutral">
                                     {item.package?.name || item.subscription?.name || item.topup_type}
-                                </Text>
-                                <Text style={styles.modalItemPrice}>
+                                </AppText>
+                                <AppText variant="body1" style={styles.modalItemPrice} color="neutral">
                                     ${item.amount}
-                                </Text>
+                                </AppText>
                             </View>
                             <View style={styles.modalRow}>
                                 <View style={{ flex: 1 }} />
-                                <Text style={styles.modalTotalLabel}>{t("TOTAL")}</Text>
-                                <Text style={styles.modalTotalValue}>
+                                <AppText variant="body1" style={styles.modalTotalLabel} color="neutral">{t("TOTAL")}</AppText>
+                                <AppText variant="body1" style={styles.modalTotalValue} color="neutral">
                                     ${item.amount}
-                                </Text>
+                                </AppText>
                             </View>
                             <View style={styles.modalSectionDivider} />
 
@@ -73,28 +74,28 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                     (
                                         <>
                                             <View style={styles.modalRow}>
-                                                <Text style={styles.modalLabel}>{t("PAYMENT METHOD")}</Text>
-                                                <Text style={styles.modalValue}>{JSON.parse(item.payment_method).type}</Text>
+                                                <AppText variant="caption1" color="neutral">{t("PAYMENT METHOD")}</AppText>
+                                                <AppText variant="caption1" color="white">{JSON.parse(item.payment_method).type}</AppText>
                                             </View>
                                             <View style={styles.modalSectionDivider} />
                                             <View style={styles.modalRow}>
-                                                <Text style={styles.modalLabel}>{t("PREVIOUS POINTS")}</Text>
+                                                <AppText variant="caption1" color="neutral">{t("PREVIOUS POINTS")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
-                                                    <Text style={styles.modalPoints}>{item.credit_journal.credits_before}</Text>
+                                                    <AppText variant="caption1" style={styles.modalPointsCommon} color="neutral">{item.credit_journal.credits_before}</AppText>
                                                     <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
                                                 </View>
                                             </View>
                                             <View style={styles.modalRow}>
-                                                <Text style={styles.modalLabel}>{t("POINTS ADDED")}</Text>
+                                                <AppText variant="caption1" color="neutral">{t("POINTS ADDED")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
-                                                    <Text style={styles.modalPointsAdded}>+{item.credit_journal.credits_used}</Text>
+                                                    <AppText variant="caption1" style={styles.modalPointsCommon} color="green">+{item.credit_journal.credits_used}</AppText>
                                                     <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
                                                 </View>
                                             </View>
                                             <View style={styles.modalRow}>
-                                                <Text style={styles.modalLabel}>{t("TOTAL POINTS")}</Text>
+                                                <AppText variant="caption1" color="neutral">{t("TOTAL POINTS")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
-                                                    <Text style={styles.modalPointsTotal}>{item.credit_journal.credits_after}</Text>
+                                                    <AppText variant="caption1" style={styles.modalPointsCommon} color="neutral">{item.credit_journal.credits_after}</AppText>
                                                     <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
                                                 </View>
                                             </View>
@@ -103,9 +104,9 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                     (
                                         <>
                                             <View style={{ marginVertical: 16 }}>
-                                                <Text style={{ textAlign: "center", color: COLORS.neutral, fontSize: 15 }}>
+                                                <AppText variant="body1" style={{ textAlign: "center", color: COLORS.neutral, fontSize: 15 }}>
                                                     {t("PAYMENT NOT COMPLETED")}
-                                                </Text>
+                                                </AppText>
                                             </View>
                                         </>
                                     )
@@ -143,9 +144,6 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     modalTitle: {
-        fontSize: 18,
-        fontWeight: "light",
-        color: COLORS.primary,
         letterSpacing: 1.3,
         flex: 1,
         textAlign: "center",
@@ -184,45 +182,21 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     modalItemQty: {
-        fontSize: 15,
-        color: COLORS.neutral,
         flex: 1,
     },
     modalItemPrice: {
-        fontSize: 15,
-        color: COLORS.neutral,
         fontWeight: "600",
         marginLeft: 8,
     },
     modalTotalLabel: {
-        fontSize: 15,
-        color: COLORS.neutral,
         fontWeight: "bold",
         marginRight: 4,
     },
     modalTotalValue: {
-        fontSize: 15,
-        color: COLORS.neutral,
         fontWeight: "bold",
     },
-    modalPoints: {
-        color: COLORS.neutral,
+    modalPointsCommon: {
         fontWeight: "bold",
-        fontSize: 14,
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    modalPointsAdded: {
-        color: "#4CAF50",
-        fontWeight: "bold",
-        fontSize: 14,
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    modalPointsTotal: {
-        color: COLORS.neutral,
-        fontWeight: "bold",
-        fontSize: 14,
         flexDirection: "row",
         alignItems: "center",
     },

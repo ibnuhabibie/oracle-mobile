@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { COLORS } from "../../constants/colors";
+import { View, StyleSheet } from "react-native";
 import { AppText } from "../../components/ui/app-text";
+import { COLORS } from "../../constants/colors";
 
 interface ProfileDescriptionCard {
     you: string;
@@ -19,18 +19,18 @@ const ProfileDescriptionCard: React.FC<ProfileDescriptionCardProps> = ({ data })
         <View style={styles.card}>
             <AppText variant='title4' color="primary" style={styles.header}>{data.theme}</AppText>
             <View style={styles.row}>
-                <Text style={styles.label}>You</Text>
-                <Text style={styles.value}>{data.you}</Text>
+                <AppText variant="caption1" style={styles.label} color="neutral">{'You'}</AppText>
+                <AppText variant="caption1" style={styles.value} color="neutral">{data.you}</AppText>
             </View>
             <View style={styles.separator} />
             <View style={styles.row}>
-                <Text style={styles.label}>Him</Text>
-                <Text style={styles.value}>{data.them}</Text>
+                <AppText variant="caption1" style={styles.label} color="neutral">{'Him'}</AppText>
+                <AppText variant="caption1" style={styles.value} color="neutral">{data.them}</AppText>
             </View>
             <View style={styles.separator} />
             <View style={styles.row}>
-                <Text style={styles.label}>Relationship Outcome</Text>
-                <Text style={styles.value}>{data.relationship_outcome}</Text>
+                <AppText variant="caption1" style={styles.label} color="neutral">{'Relationship Outcome'}</AppText>
+                <AppText variant="caption1" style={styles.value} color="neutral">{data.relationship_outcome}</AppText>
             </View>
         </View>
     );
@@ -57,14 +57,10 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     label: {
-        color: COLORS.neutral,
-        fontSize: 14,
         fontWeight: "400",
         flex: 1.3,
     },
     value: {
-        color: COLORS.neutral,
-        fontSize: 14,
         fontWeight: "400",
         flex: 2,
     },

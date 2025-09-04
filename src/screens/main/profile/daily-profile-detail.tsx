@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { COLORS } from "../../../constants/colors";
 import { AppText } from "../../../components/ui/app-text";
@@ -20,8 +20,9 @@ function StarReview({ value }: { value?: number }) {
   return (
     <View style={{ flexDirection: 'row' }}>
       {[...Array(4)].map((_, i) => (
-        <Text
+        <AppText
           key={i}
+          variant="body1"
           style={{
             fontSize: 20,
             color: i < filled ? COLORS.primary : COLORS.neutral,
@@ -29,7 +30,7 @@ function StarReview({ value }: { value?: number }) {
           }}
         >
           {i < filled ? '★' : '☆'}
-        </Text>
+        </AppText>
       ))}
     </View>
   );
@@ -60,14 +61,14 @@ export default function DailyProfileDetail() {
       }
       style={styles.container}>
       {/* Score */}
-      <AppText style={styles.date} color="white">
+      <AppText variant='subtitle1' style={styles.date} color="white">
         {new Date().toLocaleDateString('en-GB', {
           day: '2-digit',
           month: 'long',
           year: 'numeric',
         })}, {new Date().toLocaleDateString('en-GB', { weekday: 'long' })}
       </AppText>
-      <AppText style={styles.score} color="white">{data?.today_points}%</AppText>
+      <AppText variant='display1' style={styles.score} color="white">{data?.today_points}%</AppText>
       <AppText style={styles.subtitle} color="neutral">TODAY SCORE</AppText>
 
       {/* Cards */}
@@ -112,12 +113,10 @@ const styles = StyleSheet.create({
     paddingTop: 0
   },
   date: {
-    fontSize: 18,
     textAlign: 'center',
   },
   score: {
     marginBottom: 8,
-    fontSize: 40,
     textAlign: 'center',
   },
   subtitle: {

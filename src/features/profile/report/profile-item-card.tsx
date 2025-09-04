@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { AppText } from '../../../components/ui/app-text';
 import ShinyContainer from '../../../components/widgets/shiny-container';
 import { COLORS } from '../../../constants/colors';
 
@@ -24,12 +25,12 @@ const ProfileItemCard: React.FC<ProfileItemCardProps> = ({ data }) => {
             <ShinyContainer size={240}>
                 {data.icon}
             </ShinyContainer>
-            <Text style={styles.sectionTitle}>{data.title}</Text>
-            {data.subtitle ? <Text style={styles.sectionSubtitle}>{data.subtitle}</Text> : null}
+            <AppText variant="subtitle2" style={styles.sectionTitle} color='primary'>{data.title}</AppText>
+            {data.subtitle ? <AppText variant="caption2" style={styles.sectionSubtitle} color='neutral'>{data.subtitle}</AppText> : null}
             {descArray.map((desc, idx) => (
-                <Text style={styles.sectionDescription} key={idx}>
+                <AppText variant="caption2" style={styles.sectionDescription} key={idx} color='neutral'>
                     {desc}
-                </Text>
+                </AppText>
             ))}
         </View>
     );
@@ -45,26 +46,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     sectionTitle: {
-        fontSize: 18,
-        fontFamily: 'Archivo-Light',
-        color: COLORS.primary,
         fontWeight: '600',
         marginTop: 16,
         marginBottom: 8,
         textAlign: 'center',
     },
     sectionSubtitle: {
-        fontSize: 14,
-        fontFamily: 'Archivo-Light',
-        color: COLORS.neutral,
         textAlign: 'center',
         marginBottom: 16,
-        // fontStyle: 'italic',
     },
     sectionDescription: {
-        fontSize: 14,
-        fontFamily: 'Archivo-Light',
-        color: COLORS.neutral,
         textAlign: 'center',
         lineHeight: 22,
         marginBottom: 12,

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
+import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
 
 // Add isLast prop
@@ -24,9 +25,9 @@ const ProfileItem: FC<ProfileItemProps> = ({ title, icon, onPress, isLast }) => 
         >
             <View style={styles.profileItemLeft}>
                 {icon}
-                <Text style={styles.profileItemTitle}>{t(title)}</Text>
+                <AppText variant="body1" style={styles.profileItemTitle} color="neutral">{t(title)}</AppText>
             </View>
-            <Text style={styles.chevron}>›</Text>
+            <AppText variant="caption1" style={styles.chevron}>›</AppText>
         </Pressable>
     )
 };
@@ -52,8 +53,6 @@ const styles = StyleSheet.create({
         width: 20,
     },
     profileItemTitle: {
-        fontSize: 16,
-        color: COLORS.neutral,
         marginLeft: 12,
     },
     chevron: {

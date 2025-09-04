@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import ShinyContainer from '../../../components/widgets/shiny-container';
 import { fontFamilies } from '../../../constants/fonts';
@@ -64,7 +64,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
     if (!profile) {
         return (
             <View style={styles.profileCard}>
-                <Text style={styles.infoValue}>{t('profileCard.noProfileData')}</Text>
+                <AppText variant="caption2" style={styles.infoValue} color='neutral'>{t('profileCard.noProfileData')}</AppText>
             </View>
         );
     }
@@ -79,33 +79,33 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
 
             <View style={styles.profileInfo}>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>{t('profileCard.name')}</Text>
-                    <Text style={styles.infoValue}>{profile.full_name}</Text>
+                    <AppText variant="caption2" color='neutral'>{t('profileCard.name')}</AppText>
+                    <AppText variant="caption2" style={styles.infoValue} color='neutral'>{profile.full_name}</AppText>
                 </View>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>{t('profileCard.dateOfBirth')}</Text>
-                    <Text style={styles.infoValue}>
+                    <AppText variant="caption2" color='neutral'>{t('profileCard.dateOfBirth')}</AppText>
+                    <AppText variant="caption2" style={styles.infoValue} color='neutral'>
                         {profile.birth_date ? formatDateOfBirth(profile.birth_date) : ''}
-                    </Text>
+                    </AppText>
                 </View>
                 {profile.birth_time && (
                     <View style={styles.infoRow}>
-                        <Text style={styles.infoLabel}>{t('profileCard.timeOfBirth')}</Text>
-                        <Text style={styles.infoValue}>{formatTimeOfBirth(profile.birth_time)}</Text>
+                        <AppText variant="caption2" color='neutral'>{t('profileCard.timeOfBirth')}</AppText>
+                        <AppText variant="caption2" style={styles.infoValue} color='neutral'>{formatTimeOfBirth(profile.birth_time)}</AppText>
                     </View>
                 )}
 
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>{t('profileCard.countryOfBirth')}</Text>
-                    <Text style={styles.infoValue}>{profile.birth_country}</Text>
+                    <AppText variant="caption2" color='neutral'>{t('profileCard.countryOfBirth')}</AppText>
+                    <AppText variant="caption2" style={styles.infoValue} color='neutral'>{profile.birth_country}</AppText>
                 </View>
                 <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>{t('profileCard.cityOfBirth')}</Text>
-                    <Text style={styles.infoValue}>{profile.birth_city}</Text>
+                    <AppText variant="caption2" color='neutral'>{t('profileCard.cityOfBirth')}</AppText>
+                    <AppText variant="caption2" style={styles.infoValue} color='neutral'>{profile.birth_city}</AppText>
                 </View>
                 <View style={[styles.infoRow, { borderBottomWidth: 0 }]}>
-                    <Text style={styles.infoLabel}>{t('profileCard.gender')}</Text>
-                    <Text style={styles.infoValue}>{profile.gender}</Text>
+                    <AppText variant="caption2" color='neutral'>{t('profileCard.gender')}</AppText>
+                    <AppText variant="caption2" style={styles.infoValue} color='neutral'>{profile.gender}</AppText>
                 </View>
             </View>
         </View>
@@ -136,15 +136,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#5B5441',
     },
-    infoLabel: {
-        fontSize: 14,
-        fontFamily: fontFamilies.ARCHIVO.light,
-        color: COLORS.neutral,
-    },
     infoValue: {
-        fontSize: 14,
-        fontFamily: fontFamilies.ARCHIVO.light,
-        color: COLORS.neutral,
         fontWeight: '500',
     },
 });

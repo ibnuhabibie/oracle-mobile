@@ -41,6 +41,7 @@ class AppText extends Component<CustomTextProps> {
 type VariantStyles = { [key: string]: TextStyle };
 
 export const typographyVariants: VariantStyles = {
+  display1: { fontSize: 45, fontFamily: fontFamilies.ARCHIVO.regular },
   largeTitle1: { fontSize: 34, fontFamily: fontFamilies.ARCHIVO.regular },
   largeTitle2: { fontSize: 34, fontFamily: fontFamilies.ARCHIVO.light },
   title1: { fontSize: 28, fontFamily: fontFamilies.ARCHIVO.regular },

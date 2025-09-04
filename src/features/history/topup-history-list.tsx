@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FlatList, Pressable, Text, View, ActivityIndicator } from "react-native";
+import { FlatList, Pressable, View, ActivityIndicator } from "react-native";
+import { AppText } from '../../components/ui/app-text';
 import { StyleSheet } from "react-native";
 
 import { fontFamilies } from "../../constants/fonts";
@@ -96,17 +97,17 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                 </View>
                 <View style={{ flex: 1 }}>
                     <View style={styles.row}>
-                        <Text style={styles.packageName}>
+                        <AppText variant="body2" style={styles.packageName} color="neutral">
                             {item.package?.name || item.subscription?.name || item.topup_type}
-                        </Text>
+                        </AppText>
                         <CoinIcon size={19} color={item.package ? "#EB4335" : "#E0AE1E"} />
                     </View>
-                    <Text style={styles.transaction}>{item.transaction_id} - ${item.amount}</Text>
+                    <AppText variant="caption4" color="neutral">{item.transaction_id} - ${item.amount}</AppText>
                 </View>
                 <View style={styles.dateContainer}>
-                    <Text style={styles.date}>
+                    <AppText variant="caption4" color="gray" >
                         {formattedDate}
-                    </Text>
+                    </AppText>
                 </View>
             </Pressable >
         );
@@ -149,7 +150,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
             contentContainerStyle={styles.listContent}
             ListEmptyComponent={
                 <View style={styles.empty}>
-                    <Text style={styles.emptyText}>{t("NO TOPUP HISTORY FOUND")}</Text>
+                    <AppText variant="caption2" color="gray">{t("NO TOPUP HISTORY FOUND")}</AppText>
                 </View>
             }
             onEndReached={debouncedOnEndReached}
@@ -180,24 +181,11 @@ const styles = StyleSheet.create({
         // marginBottom: 4,
     },
     packageName: {
-        fontSize: 16,
         fontWeight: "600",
-        color: COLORS.neutral,
         marginRight: 8,
-        fontFamily: fontFamilies.ARCHIVO.light,
-    },
-    transaction: {
-        fontSize: 12,
-        color: COLORS.neutral,
-        fontFamily: fontFamilies.ARCHIVO.light,
     },
     dateContainer: {
         alignItems: "flex-end",
-    },
-    date: {
-        fontSize: 12,
-        color: "#999",
-        fontFamily: fontFamilies.ARCHIVO.light,
     },
     loading: {
         padding: 24,
@@ -206,10 +194,6 @@ const styles = StyleSheet.create({
     empty: {
         alignItems: "center",
         marginTop: 32,
-    },
-    emptyText: {
-        color: "#999",
-        fontFamily: fontFamilies.ARCHIVO.light,
     },
     listContent: {
         paddingBottom: 20,

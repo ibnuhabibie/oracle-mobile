@@ -1,10 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { AppText } from '../../../components/ui/app-text';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
-import { fontFamilies } from '../../../constants/fonts';
 import { useTranslation } from 'react-i18next';
 import { MainNavigatorParamList } from '../../../navigators/types';
 import TopupHistoryList from '../../../features/history/topup-history-list';
@@ -50,25 +50,29 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
           <Pressable
             style={[styles.tab, activeTab === 'history' && styles.activeTab]}
             onPress={() => setActiveTab('history')}>
-            <Text
-              style={[
-                styles.tabText,
-                activeTab === 'history' && styles.activeTabText,
-              ]}>
+            <AppText
+              variant="body2"
+              style={
+                activeTab === 'history'
+                  ? [styles.tabText, styles.activeTabText]
+                  : styles.tabText
+              }>
               {t('PURCHASE HISTORY')}
-            </Text>
+            </AppText>
           </Pressable>
 
           <Pressable
             style={[styles.tab, activeTab === 'topup' && styles.activeTab]}
             onPress={() => setActiveTab('topup')}>
-            <Text
-              style={[
-                styles.tabText,
-                activeTab === 'topup' && styles.activeTabText,
-              ]}>
+            <AppText
+              variant="body2"
+              style={
+                activeTab === 'topup'
+                  ? [styles.tabText, styles.activeTabText]
+                  : styles.tabText
+              }>
               {t('TOP UP HISTORY')}
-            </Text>
+            </AppText>
           </Pressable>
         </View>
 
@@ -114,9 +118,7 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.primary,
   },
   tabText: {
-    fontSize: 16,
-    color: '#999',
-    fontFamily: fontFamilies.ARCHIVO.light,
+    color: COLORS.gray,
   },
   activeTabText: {
     color: COLORS.white,

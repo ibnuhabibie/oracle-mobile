@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Pressable, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { View, Pressable, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { AppText } from './app-text';
 import ArrowIcon from '../icons/arrow-icon';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
@@ -23,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({
         <Pressable onPress={onBack} style={[styles.backButton, backButtonStyle]}>
             <ArrowIcon size={28} />
         </Pressable>
-        <Text style={[styles.headerTitle, titleStyle]}>{title}</Text>
+        <AppText variant="subtitle2" color="white" style={[styles.headerTitle, titleStyle]}>{title}</AppText>
     </View>
 );
 
@@ -40,12 +41,9 @@ const styles = StyleSheet.create({
         marginLeft: -8,
     },
     headerTitle: {
-        fontSize: 18,
         fontWeight: '600',
-        color: COLORS.white,
         marginLeft: 20,
         textAlign: 'center',
-        fontFamily: fontFamilies.ARCHIVO.light,
     },
 });
 

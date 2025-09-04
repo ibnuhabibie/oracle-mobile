@@ -1,5 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { View, TextInput, StyleSheet, Text, TextInputProps } from 'react-native';
+import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
+import { AppText } from '../../components/ui/app-text';
 import { COLORS } from '../../constants/colors';
 
 type OtpInputProps = {
@@ -114,7 +115,7 @@ export const OtpInput: React.FC<OtpInputProps> = forwardRef<RNTextInput[], OtpIn
                         />
                     ))}
             </View>
-            {error ? <Text style={styles.errorText}>{error}</Text> : null}
+            {error ? <AppText variant="caption1" color="red" style={styles.errorText}>{error}</AppText> : null}
         </View>
     );
 });
@@ -142,8 +143,6 @@ const styles = StyleSheet.create({
         borderColor: COLORS.red,
     },
     errorText: {
-        color: COLORS.red,
-        fontSize: 14,
         marginTop: 10,
         marginBottom: 10,
         textAlign: 'center',

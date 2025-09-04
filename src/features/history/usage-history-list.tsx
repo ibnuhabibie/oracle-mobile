@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { FlatList, Pressable, Text, View, ActivityIndicator } from "react-native";
+import { FlatList, Pressable, View, ActivityIndicator } from "react-native";
+import { AppText } from '../../components/ui/app-text';
 import CommentsIcon from "../../components/icons/profile/comments-icon";
 import { fontFamilies } from "../../constants/fonts";
 import api from "../../utils/http";
@@ -52,24 +53,10 @@ const styles = StyleSheet.create({
         marginRight: 16,
     },
     serviceType: {
-        fontSize: 16,
         fontWeight: "600",
-        color: COLORS.neutral,
-        // marginBottom: 4,
-        fontFamily: fontFamilies.ARCHIVO.light,
-    },
-    details: {
-        fontSize: 12,
-        color: COLORS.neutral,
-        fontFamily: fontFamilies.ARCHIVO.light,
     },
     dateContainer: {
         alignItems: "flex-end",
-    },
-    date: {
-        fontSize: 12,
-        color: "#999",
-        fontFamily: fontFamilies.ARCHIVO.light,
     },
     loading: {
         padding: 24,
@@ -78,10 +65,6 @@ const styles = StyleSheet.create({
     empty: {
         alignItems: "center",
         marginTop: 32,
-    },
-    emptyText: {
-        color: "#999",
-        fontFamily: fontFamilies.ARCHIVO.light,
     },
     listContent: {
         paddingBottom: 20,
@@ -141,17 +124,17 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
                     <CommentsIcon />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <Text style={styles.serviceType}>
+                    <AppText variant="body2" style={styles.serviceType} color="neutral">
                         {t(getServiceTypeLabel(item.service_type))}
-                    </Text>
-                    <Text style={styles.details}>
+                    </AppText>
+                    <AppText variant="caption4" color="neutral">
                         {t("USAGE HISTORY DETAILS")}
-                    </Text>
+                    </AppText>
                 </View>
                 <View style={styles.dateContainer}>
-                    <Text style={styles.date}>
+                    <AppText variant="caption4" color="gray">
                         {formattedDate}
-                    </Text>
+                    </AppText>
                 </View>
             </Pressable>
         );
@@ -175,7 +158,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
             contentContainerStyle={styles.listContent}
             ListEmptyComponent={
                 <View style={styles.empty}>
-                    <Text style={styles.emptyText}>{t("NO USAGE HISTORY FOUND")}</Text>
+                    <AppText variant="caption2" color="gray">{t("NO USAGE HISTORY FOUND")}</AppText>
                 </View>
             }
             onEndReached={fetchPage}

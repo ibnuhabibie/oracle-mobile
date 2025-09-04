@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, Text, InteractionManager, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, InteractionManager, ActivityIndicator } from 'react-native';
 import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
@@ -85,7 +85,7 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
                             ) : item.content,
                             isDark: idx == 0,
                             icon: idx == 0 ? (
-                                <Text style={{ fontSize: 45, fontWeight: 'bold', color: COLORS.white }}>{item.score}</Text>
+                                <AppText variant="display1" color="white" style={{ fontWeight: 'bold' }}>{item.score}</AppText>
                             ) : (
                                 iconImages[item.order - 1]
                                     ? React.createElement(iconImages[item.order - 1], { size: 65 })

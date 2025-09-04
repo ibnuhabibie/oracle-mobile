@@ -6,7 +6,6 @@ import {
     StyleSheet,
     View,
     TouchableOpacity,
-    Text
 } from 'react-native';
 import { useTranslation } from "react-i18next";
 
@@ -148,34 +147,35 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
             />
             <View style={{ marginTop: 14 }}>
                 <AppText color='neutral'>{t('Recent Diaries')}</AppText>
-                {loading ? (
-                    <AppText style={{ marginTop: 8 }}>{t('Loading...')}</AppText>
-                ) : error && error !== 'No diary found.' ? (
-                    <AppText style={{ color: 'red', marginTop: 8 }}>{error}</AppText>
-                ) : diaries && diaries.length > 0 ? (
-                    diaries.map((diary) => (
-                        <Pressable key={diary.diary_id} onPress={() => toDetail(diary)} style={styles.diaryItem}>
-                            <View style={styles.diaryIconContainer}>
-                                <CalendarIcon />
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <AppText variant='caption1' color='light-gray'>
-                                    {diary.diary_date}
-                                </AppText>
-                                <AppText variant='body1' color='neutral'>
-                                    {diary.content}
-                                </AppText>
-                            </View>
-                        </Pressable>
-                    ))
-                ) : (
-                    <View style={styles.emptyDiaryContainer}>
-                        <AppText style={styles.emptyDiaryTitle}>{t('No Diaries Yet')}</AppText>
-                        <AppText style={styles.emptyDiaryDesc}>
-                            {t('Start your first diary entry to express your thoughts and feelings. Your journey begins here!')}
-                        </AppText>
-                    </View>
-                )}
+                {
+                    loading ? (
+                        <AppText style={{ marginTop: 8 }}>{t('Loading...')}</AppText>
+                    ) : error && error !== 'No diary found.' ? (
+                        <AppText style={{ color: 'red', marginTop: 8 }}>{error}</AppText>
+                    ) : diaries && diaries.length > 0 ? (
+                        diaries.map((diary) => (
+                            <Pressable key={diary.diary_id} onPress={() => toDetail(diary)} style={styles.diaryItem}>
+                                <View style={styles.diaryIconContainer}>
+                                    <CalendarIcon />
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <AppText variant='caption1' color='light-gray'>
+                                        {diary.diary_date}
+                                    </AppText>
+                                    <AppText variant='body1' color='neutral'>
+                                        {diary.content}
+                                    </AppText>
+                                </View>
+                            </Pressable>
+                        ))
+                    ) : (
+                        <View style={styles.emptyDiaryContainer}>
+                            <AppText style={styles.emptyDiaryTitle}>{t('No Diaries Yet')}</AppText>
+                            <AppText style={styles.emptyDiaryDesc}>
+                                {t('Start your first diary entry to express your thoughts and feelings. Your journey begins here!')}
+                            </AppText>
+                        </View>
+                    )}
             </View>
         </ScreenContainer>
     );
@@ -183,7 +183,7 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
 
 const FloatingAddButton = ({ onPress }) => (
     <TouchableOpacity style={styles.fab} onPress={onPress}>
-        <Text style={styles.fabIcon}>+</Text>
+        <AppText variant="largeTitle1" style={styles.fabIcon} color='black'>+</AppText>
     </TouchableOpacity>
 );
 
@@ -272,10 +272,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
     },
     fabIcon: {
-        fontSize: 32,
-        color: '#222',
         fontWeight: 'bold',
-        marginTop: -2,
     },
 });
 

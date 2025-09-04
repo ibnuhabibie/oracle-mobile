@@ -1,13 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Modal, SafeAreaView, View, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Modal, SafeAreaView, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { AppText } from '../../components/ui/app-text';
 import CoinIcon from "../../components/icons/profile/coin-icon";
 import CommentsIcon from "../../components/icons/profile/comments-icon";
 import { COLORS } from "../../constants/colors";
 import { serviceTypeTranslationKeys } from "../../constants/app";
 import { AppButton } from "../../components/ui/app-button";
 import { useNavigation } from "@react-navigation/native";
-import { AppText } from "../../components/ui/app-text";
 import CloseIcon from "../../components/icons/close-icon";
 
 interface UsageReceiptModalProps {
@@ -110,36 +110,32 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           <TouchableWithoutFeedback>
             <View style={styles.modalContent}>
               <View style={styles.modalHeader}>
-                <Text style={styles.modalTitle}>{t("usageReceiptModal.receipt")}</Text>
+                <AppText variant="subtitle2" style={styles.modalTitle} color="primary">{t("usageReceiptModal.receipt")}</AppText>
                 <TouchableOpacity onPress={onClose}>
                   <CloseIcon size={22} />
                 </TouchableOpacity>
               </View>
               {!item ? (
                 <View style={{ marginVertical: 32 }}>
-                  <Text style={{ textAlign: "center", color: "#888", fontSize: 16 }}>
+                  <AppText variant="body1" style={styles.centerText} color="gray">
                     {t("usageReceiptModal.noData")}
-                  </Text>
+                  </AppText>
                 </View>
               ) : (
                 <>
-                  {/* <View style={styles.modalRow}>
-                <Text style={styles.modalLabel}>Order Number</Text>
-                <Text style={styles.modalValue}>{item.usage_history_id}</Text>
-              </View> */}
                   <View style={styles.modalRow}>
-                    <Text style={styles.modalLabel}>{t("usageReceiptModal.datePurchased")}</Text>
-                    <Text style={styles.modalValue}>{formatDate(item.created_at)}</Text>
+                    <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.datePurchased")}</AppText>
+                    <AppText variant="caption1" style={styles.modalValue} color="white">{formatDate(item.created_at)}</AppText>
                   </View>
                   {item.credit_journal ? (
                     <>
                       <View style={styles.modalSectionDivider} />
-                      <Text style={styles.modalSectionTitle}>{t("usageReceiptModal.orderItems")}</Text>
+                      <AppText variant="body1" style={styles.modalSectionTitle} color="neutral">{t("usageReceiptModal.orderItems")}</AppText>
                       <View style={styles.modalRow}>
                         <View style={styles.modalItemIcon}>
                           <CommentsIcon color={COLORS.primary} />
                         </View>
-                        <Text style={styles.modalItemName}>{getServiceTypeLabel(item.service_type)}</Text>
+                        <AppText variant="body1" style={styles.modalItemName} color="neutral">{getServiceTypeLabel(item.service_type)}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText color="white" variant='caption2'>{item.credit_journal.credits_used}</AppText>
                           <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
@@ -147,23 +143,23 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                       </View>
                       <View style={styles.modalSectionDivider} />
                       <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>{t("usageReceiptModal.previousPoints")}</Text>
+                        <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.previousPoints")}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText color="white" variant='caption2'>{item.credit_journal.credits_before}</AppText>
                           <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                         </View>
                       </View>
                       <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>{t("usageReceiptModal.pointsUsed")}</Text>
+                        <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.pointsUsed")}</AppText>
                         <View style={styles.modalItemPoints}>
-                          <Text style={{ color: 'red' }}>{item.credit_journal.credits_used}</Text>
+                          <AppText variant="caption1" color="red">{item.credit_journal.credits_used}</AppText>
                           <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                         </View>
                       </View>
                       <View style={styles.modalRow}>
-                        <Text style={styles.modalLabel}>{t("usageReceiptModal.remainingPoints")}</Text>
+                        <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.remainingPoints")}</AppText>
                         <View style={styles.modalItemPoints}>
-                          <AppText color="white" variant='caption2'>{item.credit_journal.credits_after}</AppText>
+                          <AppText color="green" variant='caption2'>{item.credit_journal.credits_after}</AppText>
                           <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                         </View>
                       </View>
@@ -175,9 +171,9 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                     </>
                   ) : (
                     <View style={{ marginVertical: 16 }}>
-                      <Text style={{ textAlign: "center", color: "#888", fontSize: 15 }}>
+                      <AppText variant="body1" style={styles.centerText} color="gray">
                         {t("usageReceiptModal.processing")}
-                      </Text>
+                      </AppText>
                     </View>
                   )}
                 </>
@@ -214,8 +210,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   modalTitle: {
-    fontSize: 18,
-    color: "#C1976B",
     letterSpacing: 1,
     flex: 1,
     textAlign: "center",
@@ -227,13 +221,9 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   modalLabel: {
-    color: COLORS.neutral,
-    fontSize: 14,
     flex: 1,
   },
   modalValue: {
-    color: COLORS.white,
-    fontSize: 14,
     fontWeight: "600",
     flex: 1,
     textAlign: "right",
@@ -244,9 +234,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   modalSectionTitle: {
-    fontSize: 15,
     fontWeight: "bold",
-    color: COLORS.neutral,
     marginBottom: 6,
   },
   modalItemIcon: {
@@ -256,8 +244,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF22'
   },
   modalItemName: {
-    fontSize: 15,
-    color: COLORS.neutral,
     flex: 1,
   },
   modalItemPoints: {
@@ -291,6 +277,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     flexDirection: "row",
     alignItems: "center",
+  },
+  centerText: {
+    textAlign: "center",
   },
 });
 

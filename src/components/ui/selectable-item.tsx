@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Pressable, Text, View, StyleSheet } from 'react-native';
+import { Pressable, View, StyleSheet } from 'react-native';
+import { AppText } from './app-text';
 
 import CheckIcon from '../icons/auth/check-icon';
 import { COLORS } from '../../constants/colors'; // Assuming you have COLORS defined
@@ -26,7 +27,7 @@ class SelectableItem extends Component<SelectableItemProps> {
                 onPress={() => onChange(item.key)}
                 style={[styles.item, isSelected && styles.itemSelected]}
             >
-                <Text style={styles.itemText}>{item.label}</Text>
+                <AppText variant="body1" color="white" style={styles.itemText}>{item.label}</AppText>
                 <View
                     style={[
                         styles.checkbox,
@@ -55,8 +56,6 @@ const styles = StyleSheet.create({
         borderColor: COLORS.neutral,
     },
     itemText: {
-        fontSize: 16,
-        color: COLORS.white,
         flex: 1,
     },
     checkbox: {

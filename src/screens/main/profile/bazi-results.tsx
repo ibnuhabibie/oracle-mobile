@@ -1,11 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import {
-  Text,
   Image,
   InteractionManager,
   ActivityIndicator
 } from 'react-native';
+import { AppText } from '../../../components/ui/app-text';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
@@ -79,7 +79,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
 
   if (!profile) {
     return (
-      <Text style={{ color: 'red', margin: 16 }}>No profile data found.</Text>
+      <AppText variant="body1" color="red" style={{ margin: 16 }}>No profile data found.</AppText>
     );
   }
 

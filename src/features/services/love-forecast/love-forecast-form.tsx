@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Text, TouchableOpacity, Platform } from 'react-native';
+import { View, StyleSheet, TextInput, TouchableOpacity, Platform } from 'react-native';
 import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
 import { COLORS } from '../../../constants/colors';
@@ -63,7 +63,7 @@ export const LoveForecastForm: React.FC<LoveForecastFormProps> = ({ onSubmit, on
           onChangeText={text => handleChange('full_name', text)}
           placeholder="Enter your full name"
         />
-        {errors.full_name && <Text style={styles.error}>{errors.full_name}</Text>}
+        {errors.full_name && <AppText variant="caption3" color="red" style={styles.error}>{errors.full_name}</AppText>}
       </View>
       <View style={styles.formGroup}>
         <AppText style={styles.label}>Birth Date</AppText>
@@ -73,7 +73,7 @@ export const LoveForecastForm: React.FC<LoveForecastFormProps> = ({ onSubmit, on
           onChangeText={text => handleChange('birth_date', text)}
           placeholder="YYYY-MM-DD"
         />
-        {errors.birth_date && <Text style={styles.error}>{errors.birth_date}</Text>}
+        {errors.birth_date && <AppText variant="caption3" color="red" style={styles.error}>{errors.birth_date}</AppText>}
       </View>
       <View style={styles.formGroup}>
         <AppText style={styles.label}>Country of Birth</AppText>
@@ -83,7 +83,7 @@ export const LoveForecastForm: React.FC<LoveForecastFormProps> = ({ onSubmit, on
           onChangeText={text => handleChange('country_birth', text)}
           placeholder="Enter country of birth"
         />
-        {errors.country_birth && <Text style={styles.error}>{errors.country_birth}</Text>}
+        {errors.country_birth && <AppText variant="caption3" color="red" style={styles.error}>{errors.country_birth}</AppText>}
       </View>
       <View style={styles.formGroup}>
         <AppText style={styles.label}>City of Birth</AppText>
@@ -93,7 +93,7 @@ export const LoveForecastForm: React.FC<LoveForecastFormProps> = ({ onSubmit, on
           onChangeText={text => handleChange('city_birth', text)}
           placeholder="Enter city of birth"
         />
-        {errors.city_birth && <Text style={styles.error}>{errors.city_birth}</Text>}
+        {errors.city_birth && <AppText variant="caption3" color="red" style={styles.error}>{errors.city_birth}</AppText>}
       </View>
       <View style={styles.formGroup}>
         <AppText style={styles.label}>Gender</AppText>
@@ -103,7 +103,7 @@ export const LoveForecastForm: React.FC<LoveForecastFormProps> = ({ onSubmit, on
           onChangeText={text => handleChange('gender', text)}
           placeholder="Enter gender"
         />
-        {errors.gender && <Text style={styles.error}>{errors.gender}</Text>}
+        {errors.gender && <AppText variant="caption3" color="red" style={styles.error}>{errors.gender}</AppText>}
       </View>
       <View style={styles.buttonRow}>
         <AppButton
