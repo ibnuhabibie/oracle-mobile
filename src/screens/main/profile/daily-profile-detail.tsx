@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { scaleFont, scaleSize } from "../../../utils/scale";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { COLORS } from "../../../constants/colors";
 import { AppText } from "../../../components/ui/app-text";
@@ -25,7 +26,8 @@ function StarReview({ value }: { value?: number }) {
           variant="title3"
           style={{
             color: i < filled ? COLORS.primary : COLORS.neutral,
-            marginHorizontal: 2,
+            marginHorizontal: scaleSize(2),
+            fontSize: scaleFont(22), // title3
           }}
         >
           {i < filled ? '★' : '☆'}
@@ -73,24 +75,24 @@ export default function DailyProfileDetail() {
       {/* Cards */}
       <View style={styles.cardsRow}>
         <View style={styles.card}>
-          <WealthIcon size={60} />
+          <WealthIcon size={scaleSize(40, 36, 60)} />
           <AppText variant='body1' color="neutral" style={styles.cardTitle}>Wealth</AppText>
           <StarReview value={data.today_wealth_points} />
         </View>
         <View style={styles.card}>
-          <LearningIcon size={60} />
+          <LearningIcon size={scaleSize(40, 36, 60)} />
           <AppText variant='body1' color="neutral" style={styles.cardTitle}>Learning</AppText>
           <StarReview value={data.today_study_points} />
         </View>
       </View>
       <View style={styles.cardsRow}>
         <View style={styles.card}>
-          <RelationIcon size={60} />
+          <RelationIcon size={scaleSize(40, 36, 60)} />
           <AppText variant='body1' color="neutral" style={styles.cardTitle}>Relation</AppText>
           <StarReview value={data.today_relationship_points} />
         </View>
         <View style={styles.card}>
-          <CareerIcon size={60} />
+          <CareerIcon size={scaleSize(40, 36, 60)} />
           <AppText variant='body1' color="neutral" style={styles.cardTitle}>Career</AppText>
           <StarReview value={data.today_career_points} />
         </View>
@@ -107,40 +109,44 @@ export default function DailyProfileDetail() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
-    // backgroundColor: 'red',
+    padding: scaleSize(18, 12, 24),
     paddingTop: 0
   },
   date: {
     textAlign: 'center',
+    fontSize: scaleFont(16, 12, 20),
   },
   score: {
-    marginBottom: 8,
+    marginBottom: scaleSize(8),
     textAlign: 'center',
+    fontSize: scaleFont(45, 32, 60), // display1
   },
   subtitle: {
     textAlign: "center",
-    letterSpacing: 4,
-    marginBottom: 32,
+    letterSpacing: scaleSize(2, 2, 4),
+    marginBottom: scaleSize(24, 24, 32),
+    fontSize: scaleFont(16, 12, 20),
   },
   cardsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 24,
+    marginBottom: scaleSize(18, 18, 24),
   },
   cardTitle: {
-    marginTop: 12,
+    marginTop: scaleSize(8, 8, 12),
+    fontSize: scaleFont(16, 12, 20),
   },
   card: {
     backgroundColor: "rgba(255,255,255,0.14)",
-    borderRadius: 18,
-    padding: 18,
+    borderRadius: scaleSize(12, 12, 18),
+    padding: scaleSize(12, 12, 18),
     alignItems: "center",
     width: "45%",
   },
   description: {
-    marginTop: 16,
+    marginTop: scaleSize(12, 12, 16),
     textAlign: "center",
-    lineHeight: 24,
+    lineHeight: scaleSize(20, 16, 24),
+    fontSize: scaleFont(14, 12, 18),
   },
 });

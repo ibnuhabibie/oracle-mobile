@@ -12,6 +12,7 @@ import UsageHistoryList from '../../../features/history/usage-history-list';
 import TopupReceiptModal from '../../../features/history/topup-receipt-modal';
 import UsageReceiptModal from '../../../features/history/usage-receipt-modal';
 import { COLORS } from '../../../constants/colors';
+import { scaleFont, scaleSize } from '../../../utils/scale';
 
 type PurchaseHistoryProps = NativeStackScreenProps<MainNavigatorParamList, 'PurchaseHistory'>;
 
@@ -105,13 +106,13 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   tabContainer: {
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: scaleSize(14, 14, 20),
   },
   tab: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: scaleSize(8, 8, 12),
     alignItems: 'center',
-    borderBottomWidth: 2,
+    borderBottomWidth: scaleSize(2),
     borderBottomColor: 'transparent',
   },
   activeTab: {
@@ -119,10 +120,12 @@ const styles = StyleSheet.create({
   },
   tabText: {
     color: COLORS.gray,
+    fontSize: scaleFont(14, 12, 18),
   },
   activeTabText: {
     color: COLORS.white,
     fontWeight: '500',
+    fontSize: scaleFont(14, 12, 18),
   },
 });
 

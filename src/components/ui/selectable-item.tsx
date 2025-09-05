@@ -4,6 +4,7 @@ import { AppText } from './app-text';
 
 import CheckIcon from '../icons/auth/check-icon';
 import { COLORS } from '../../constants/colors'; // Assuming you have COLORS defined
+import { scaleSize } from '../../utils/scale';
 
 // Define the shape of your selectable item's data
 export interface SelectableItemData {
@@ -34,7 +35,7 @@ class SelectableItem extends Component<SelectableItemProps> {
                         isSelected && styles.checkboxSelected,
                     ]}
                 >
-                    {isSelected && <CheckIcon size={20} color={COLORS.white} />}
+                    {isSelected && <CheckIcon size={scaleSize(20)} color={COLORS.white} />}
                 </View>
             </Pressable>
         );
@@ -46,10 +47,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingVertical: 15,
-        paddingHorizontal: 20,
-        borderRadius: 12,
-        borderWidth: 1,
+        paddingVertical: scaleSize(15),
+        paddingHorizontal: scaleSize(20),
+        borderRadius: scaleSize(12),
+        borderWidth: scaleSize(1),
         backgroundColor: '#FFFFFF21'
     },
     itemSelected: {
@@ -59,14 +60,14 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     checkbox: {
-        width: 15,
-        height: 15,
-        borderRadius: 4,
-        borderWidth: 2,
+        width: scaleSize(15),
+        height: scaleSize(15),
+        borderRadius: scaleSize(4),
+        borderWidth: scaleSize(2),
         borderColor: COLORS.white,
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: 15,
+        marginLeft: scaleSize(15),
     },
 });
 

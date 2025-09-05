@@ -8,6 +8,7 @@ import { formatDateTime } from "../../utils/date";
 import { StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import { COLORS } from "../../constants/colors";
+import { scaleFont, scaleSize } from "../../utils/scale";
 
 interface UsageItem {
     usage_history_id: number;
@@ -41,33 +42,34 @@ const styles = StyleSheet.create({
     pressable: {
         flexDirection: "row",
         alignItems: "center",
-        paddingVertical: 16,
+        paddingVertical: scaleSize(12, 12, 16),
     },
     iconContainer: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+        width: scaleSize(28, 28, 40),
+        height: scaleSize(28, 28, 40),
+        borderRadius: scaleSize(14, 14, 20),
         backgroundColor: "rgba(255,255,255,0.2)",
         justifyContent: "center",
         alignItems: "center",
-        marginRight: 16,
+        marginRight: scaleSize(10, 10, 16),
     },
     serviceType: {
         fontWeight: "600",
+        fontSize: scaleFont(14, 12, 18),
     },
     dateContainer: {
         alignItems: "flex-end",
     },
     loading: {
-        padding: 24,
+        padding: scaleSize(16, 16, 24),
         alignItems: "center",
     },
     empty: {
         alignItems: "center",
-        marginTop: 32,
+        marginTop: scaleSize(24, 24, 32),
     },
     listContent: {
-        paddingBottom: 20,
+        paddingBottom: scaleSize(14, 14, 20),
     },
 });
 
@@ -121,7 +123,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
                 onPress={() => onItemPress?.(item)}
             >
                 <View style={styles.iconContainer}>
-                    <CommentsIcon />
+                    <CommentsIcon size={scaleSize(20)} />
                 </View>
                 <View style={{ flex: 1 }}>
                     <AppText variant="body2" style={styles.serviceType} color="neutral">

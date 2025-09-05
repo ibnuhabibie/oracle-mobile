@@ -10,6 +10,7 @@ import StrengthIcon from "../../components/icons/mbti-result/strength-icon";
 import WeaknessIcon from "../../components/icons/mbti-result/weakness-icon";
 import RelationshipIcon from "../../components/icons/mbti-result/relationship-icon";
 import CareerIcon from "../../components/icons/mbti-result/career-icon";
+import { scaleFont, scaleSize } from "../../utils/scale";
 
 class MBTIProfile extends React.Component {
 
@@ -48,7 +49,7 @@ class MBTIProfile extends React.Component {
         return (
             <>
                 {/* Main MBTI Type */}
-                <ShinyContainer size={218} style={{ marginBottom: 16 }}>
+                <ShinyContainer size={scaleSize(180, 100, 218)} style={{ marginBottom: scaleSize(12, 12, 16) }}>
                     <AppText variant='largeTitle1' color="white">{profile?.mbti_type}</AppText>
                 </ShinyContainer>
 
@@ -60,7 +61,7 @@ class MBTIProfile extends React.Component {
                                 <View style={styles.iconPlaceholder}>
                                     {(() => {
                                         const MbtiIcon = getMbtiIconComponent(profile?.mbti_type);
-                                        return MbtiIcon ? <MbtiIcon size={45} color="white" /> : null;
+                                        return MbtiIcon ? <MbtiIcon size={scaleSize(32, 28, 45)} color="white" /> : null;
                                     })()}
                                 </View>
                                 <View style={styles.cardHeaderText}>
@@ -74,8 +75,8 @@ class MBTIProfile extends React.Component {
 
                 {/* Strengths Card */}
                 <View style={styles.card}>
-                    <ShinyContainer size={240} style={{ marginTop: 8 }}>
-                        <StrengthIcon />
+                    <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
+                        <StrengthIcon size={scaleSize(60)} />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Strengths</AppText>
                     <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
@@ -85,8 +86,8 @@ class MBTIProfile extends React.Component {
 
                 {/* Weaknesses Card */}
                 <View style={styles.card}>
-                    <ShinyContainer size={240} style={{ marginTop: 8 }}>
-                        <WeaknessIcon />
+                    <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
+                        <WeaknessIcon size={scaleSize(60)} />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Weaknesses</AppText>
                     <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
@@ -96,8 +97,8 @@ class MBTIProfile extends React.Component {
 
                 {/* Relationships Card */}
                 <View style={styles.card}>
-                    <ShinyContainer size={240} style={{ marginTop: 8 }}>
-                        <RelationshipIcon />
+                    <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
+                        <RelationshipIcon size={scaleSize(60)} />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Relationships</AppText>
                     <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
@@ -107,8 +108,8 @@ class MBTIProfile extends React.Component {
 
                 {/* Career Card */}
                 <View style={styles.card}>
-                    <ShinyContainer size={240} style={{ marginTop: 8 }}>
-                        <CareerIcon />
+                    <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
+                        <CareerIcon size={scaleSize(60)} />
                     </ShinyContainer>
                     <AppText variant='title3' color="primary">Career</AppText>
                     <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
@@ -127,11 +128,11 @@ const styles = StyleSheet.create({
     },
     card: {
         backgroundColor: 'rgba(255,255,255,0.08)',
-        borderRadius: 10,
-        padding: 14,
-        marginBottom: 16,
-        marginTop: 16,
-        gap: 12,
+        borderRadius: scaleSize(8, 8, 14),
+        padding: scaleSize(10, 10, 14),
+        marginBottom: scaleSize(12, 12, 16),
+        marginTop: scaleSize(12, 12, 16),
+        gap: scaleSize(8, 8, 12),
         alignItems: 'center',
     },
     cardHeader: {
@@ -143,13 +144,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     iconPlaceholder: {
-        width: 78,
-        height: 84,
-        borderRadius: 8,
+        width: scaleSize(48, 40, 78),
+        height: scaleSize(54, 40, 84),
+        borderRadius: scaleSize(6, 6, 8),
         backgroundColor: COLORS.primary,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 12,
+        marginRight: scaleSize(8, 8, 12),
     },
 });
 

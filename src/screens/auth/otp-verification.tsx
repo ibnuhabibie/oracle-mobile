@@ -1,6 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Alert, Keyboard, StyleSheet, View } from 'react-native';
+import { scaleFont, scaleSize } from '../../utils/scale';
 import { useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
@@ -118,23 +119,25 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 32,
+    paddingTop: scaleSize(32),
     alignItems: 'center',
   },
   title: {
-    marginBottom: 10,
-    marginTop: 24,
+    marginBottom: scaleSize(10),
+    marginTop: scaleSize(24),
   },
   subtitle: {
     textAlign: 'center',
-    marginBottom: 30,
-    lineHeight: 20
+    marginBottom: scaleSize(30),
+    lineHeight: scaleSize(20),
+    fontSize: scaleFont(12), // assuming caption1
   },
   button: {
-    marginTop: 148,
+    marginTop: scaleSize(148),
   },
   resendText: {
-    marginTop: 15,
+    marginTop: scaleSize(15),
+    fontSize: scaleFont(14), // assuming body1
   },
 });
 

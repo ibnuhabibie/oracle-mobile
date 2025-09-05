@@ -1,7 +1,8 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
+import { View, TextInput, StyleSheet, TextInputProps, Dimensions } from 'react-native';
 import { AppText } from '../../components/ui/app-text';
 import { COLORS } from '../../constants/colors';
+import { scaleSize } from '../../utils/scale';
 
 type OtpInputProps = {
     length?: number;
@@ -10,24 +11,28 @@ type OtpInputProps = {
     reset?: () => void;
 };
 
-export const OtpInput: React.FC<OtpInputProps> = forwardRef<RNTextInput[], OtpInputProps>(({ length = 6, onChangeOtp, error }, ref) => {
-    const [otp, setOtp] = useState(Array(length).fill(''));
-    const inputs = useRef<(TextInput | null)[]>([]);
+type OtpInputRef = { reset: () => void };
+
+export const OtpInput: React.FC<OtpInputProps> = forwardRef<OtpInputRef, OtpInputProps>(({ length = 6, onChangeOtp, error }, ref) => {
+    const [otp, setOtp] = useState<string[]>(Array(length).fill(''));
+    const inputs = useRef<Array<TextInput | null>>([]);
 
     useImperativeHandle(ref, () => ({
         reset: () => {
             setOtp(Array(length).fill(''));
-            inputs.current[0]?.focus();
+            if (inputs.current[0]) {
+                inputs.current[0].focus();
+            }
         }
     }));
 
-    const focusInput = (index) => {
+    const focusInput = (index: number) => {
         if (inputs.current[index]) {
             inputs.current[index].focus();
         }
     };
 
-    const handleChange = (text, index) => {
+    const handleChange = (text: string, index: number) => {
         if (!text) {
             const newOtp = [...otp];
             newOtp[index] = '';
@@ -71,7 +76,7 @@ export const OtpInput: React.FC<OtpInputProps> = forwardRef<RNTextInput[], OtpIn
         }
     };
 
-    const handleKeyPress = ({ nativeEvent }, index) => {
+    const handleKeyPress = ({ nativeEvent }: { nativeEvent: any }, index: number) => {
         if (nativeEvent.key === 'Backspace') {
             if (otp[index] === '') {
                 // Move back if current empty
@@ -92,16 +97,26 @@ export const OtpInput: React.FC<OtpInputProps> = forwardRef<RNTextInput[], OtpIn
         }
     };
 
+    // Dynamic sizing logic
+    const screenWidth = Dimensions.get('window').width;
+    const gap = scaleSize(12);
+    const totalGap = gap * (length - 1);
+    const inputSize = Math.floor((screenWidth - totalGap - scaleSize(48)) / length); // scaleSize(48) for some padding
+
     return (
         <View style={styles.wrapper}>
-            <View style={styles.container}>
+            <View style={[styles.container, { columnGap: gap }]}>
                 {Array(length)
                     .fill(0)
                     .map((_, i) => (
                         <TextInput
                             key={i}
-                            ref={(ref) => (inputs.current[i] = ref)}
-                            style={[styles.input, error ? styles.inputError : null]}
+                            ref={ref => { inputs.current[i] = ref; }}
+                            style={[
+                                styles.input,
+                                { width: inputSize, height: inputSize, fontSize: scaleSize(20) },
+                                error ? styles.inputError : null
+                            ]}
                             keyboardType="number-pad"
                             maxLength={1}
                             value={otp[i]}
@@ -111,7 +126,7 @@ export const OtpInput: React.FC<OtpInputProps> = forwardRef<RNTextInput[], OtpIn
                             returnKeyType="next"
                             importantForAutofill="no"
                             autoComplete="off"
-                            textContentType="oneTimeCode" a
+                            textContentType="oneTimeCode"
                         />
                     ))}
             </View>
@@ -127,24 +142,21 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        columnGap: 12,
     },
     input: {
-        width: 48,
-        height: 48,
-        borderWidth: 1,
+        borderWidth: scaleSize(1),
         borderColor: COLORS['light-gray'],
-        borderRadius: 8,
+        borderRadius: scaleSize(8),
         textAlign: 'center',
-        fontSize: 20,
-        color: COLORS.neutral
+        color: COLORS.neutral,
+        backgroundColor: 'transparent',
     },
     inputError: {
         borderColor: COLORS.red,
     },
     errorText: {
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: scaleSize(10),
+        marginBottom: scaleSize(10),
         textAlign: 'center',
     },
 });

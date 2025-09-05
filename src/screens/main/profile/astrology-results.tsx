@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { AppText } from '../../../components/ui/app-text';
+import { scaleFont, scaleSize } from '../../../utils/scale';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
@@ -88,7 +89,7 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
                 subtitle: `${item.subtitle}`,
                 description: item.description,
                 icon: (
-                  React.createElement(iconSource, { size: 140 })
+                  React.createElement(iconSource, { size: scaleSize(100, 60, 140) })
                 ),
               }}
             />
@@ -100,7 +101,7 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
 
   if (!profile) {
     return (
-      <AppText variant="body1" color="red" style={{ margin: 16 }}>No profile data found.</AppText>
+      <AppText variant="body1" color="red" style={{ margin: scaleSize(16) }}>No profile data found.</AppText>
     );
   }
 
@@ -119,7 +120,7 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
           <AstrologyCardList profile={profile} />
         </>
       ) : (
-        <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
+        <ActivityIndicator size="large" style={{ margin: scaleSize(32) }} color={COLORS.primary} />
       )}
     </ScreenContainer>
   );

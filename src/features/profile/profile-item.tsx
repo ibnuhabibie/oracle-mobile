@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, View } from "react-native";
 import { AppText } from "../../components/ui/app-text";
-import { COLORS } from "../../constants/colors";
+import { scaleFont, scaleSize } from "../../utils/scale";
 
 // Add isLast prop
 interface ProfileItemProps {
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 16,
-        borderBottomWidth: 1,
+        paddingVertical: scaleSize(12, 12, 16),
+        borderBottomWidth: scaleSize(1),
         borderBottomColor: '#807A6A',
     },
     profileItemLeft: {
@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     profileItemTitle: {
-        marginLeft: 12,
+        marginLeft: scaleSize(8, 8, 12),
+        fontSize: scaleFont(16, 12, 20),
     },
 });
 

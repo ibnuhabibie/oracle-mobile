@@ -4,6 +4,7 @@ import { useAsyncStorage } from '../../../hooks/use-storage';
 import ShinyContainer from '../../../components/widgets/shiny-container';
 import { fontFamilies } from '../../../constants/fonts';
 import { useTranslation } from 'react-i18next';
+import { scaleFont, scaleSize } from '../../../utils/scale';
 
 type UserProfile = {
     full_name?: string;
@@ -71,8 +72,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
 
     return (
         <View style={styles.profileCard}>
-            <ShinyContainer size={160}>
-                <ProfileIcon name={iconKey} size={50} />
+            <ShinyContainer size={scaleSize(140, 80, 160)}>
+                <ProfileIcon name={iconKey} size={scaleSize(45, 28, 50)} />
             </ShinyContainer>
 
             {cardTitle ? <AppText variant='body1' color='primary' style={styles.cardTitle}>{cardTitle}</AppText> : null}
@@ -115,29 +116,31 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
 const styles = StyleSheet.create({
     profileCard: {
         backgroundColor: 'rgba(255, 255, 255, 0.08)',
-        borderRadius: 10,
-        padding: 20,
-        marginTop: 32,
-        marginBottom: 16,
+        borderRadius: scaleSize(8, 8, 14),
+        padding: scaleSize(14, 14, 20),
+        marginTop: scaleSize(24, 24, 32),
+        marginBottom: scaleSize(12, 12, 16),
         alignItems: 'center',
     },
     cardTitle: {
-        marginTop: 12,
+        marginTop: scaleSize(8, 8, 12),
+        fontSize: scaleFont(16, 12, 20),
     },
     profileInfo: {
         width: '100%',
-        marginTop: 20,
+        marginTop: scaleSize(14, 14, 20),
     },
     infoRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 10,
-        borderBottomWidth: 1,
+        paddingVertical: scaleSize(8, 8, 10),
+        borderBottomWidth: scaleSize(1),
         borderBottomColor: '#5B5441',
     },
     infoValue: {
         fontWeight: '500',
+        fontSize: scaleFont(14, 12, 18),
     },
 });
 

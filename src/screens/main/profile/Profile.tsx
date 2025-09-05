@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { scaleFont, scaleSize } from '../../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from "react-i18next";
 
@@ -139,11 +140,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   const { loading: profileLoading, error: profileError, data: affinityProfile } = useAffinityProfile();
 
   return (
-    <ScreenContainer style={{ marginTop: 44 }}>
+    <ScreenContainer style={{ marginTop: scaleSize(44) }}>
       {/* User Profile Card */}
       <View style={styles.userCard}>
         <View style={styles.userInfo}>
-          <AppText variant='subtitle1' color='white'>{user?.full_name || t("Guest")}</AppText>
+          <AppText variant='subtitle1' color='white' style={{ fontSize: scaleFont(16, 12, 20) }}>{user?.full_name || t("Guest")}</AppText>
           <Pressable style={styles.userBadge} onPress={handleCopyReferralCode}>
             <AppText variant="caption2" color="white" style={styles.badgeText}>{user?.referral_code}</AppText>
             <CopyIcon />
@@ -196,12 +197,12 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         !user?.mbti_profile &&
         (
           < View style={styles.mbtiQuizSection}>
-            <CommentUserIcon size={26} />
-            <View style={{ flex: 1, marginLeft: 4 }}>
-              <AppText variant='caption1' color='neutral'>What’s your MBTI?</AppText>
-              <AppText variant='tiny1' color='neutral'>Quick test to discover your type!</AppText>
+            <CommentUserIcon size={scaleSize(20, 16, 26)} />
+            <View style={{ flex: 1, marginLeft: scaleSize(4) }}>
+              <AppText variant='caption1' color='neutral' style={{ fontSize: scaleFont(12, 10, 16) }}>What’s your MBTI?</AppText>
+              <AppText variant='tiny1' color='neutral' style={{ fontSize: scaleFont(10, 8, 14) }}>Quick test to discover your type!</AppText>
             </View>
-            <AppButton style={{ width: '100' }} variant='primary' title='Find Out' size='small' onPress={handleCompleteQuiz} />
+            <AppButton style={{ width: '100%' }} variant='primary' title='Find Out' size='small' onPress={handleCompleteQuiz} />
           </View>
         )
       }
@@ -219,11 +220,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         <View style={styles.coinsRow}>
           <View style={styles.coinItem}>
             <AppText color='white' style={styles.coinAmount} variant='subtitle1'>{user?.gold_credits}</AppText>
-            <CoinIcon size={19} color="#E0AE1E" />
+            <CoinIcon size={scaleSize(16, 14, 19)} color="#E0AE1E" />
           </View>
           <View style={styles.coinItem}>
             <AppText color='white' style={styles.coinAmount} variant='subtitle1'>{user?.silver_credits}</AppText>
-            <CoinIcon size={19} color="#EB4335" />
+            <CoinIcon size={scaleSize(16, 14, 19)} color="#EB4335" />
           </View>
         </View>
       </View>
@@ -233,17 +234,17 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("Profile")}</AppText>
         <ProfileItem
           title="Edit Profile"
-          icon={<EditIcon size={20} />}
+          icon={<EditIcon size={scaleSize(16, 14, 20)} />}
           onPress={handleEditProfile}
         />
         <ProfileItem
           title="Password Settings"
-          icon={<EyeIcon size={20} />}
+          icon={<EyeIcon size={scaleSize(16, 14, 20)} />}
           onPress={handlePasswordSettings}
         />
         <ProfileItem
           title="Purchase History"
-          icon={<CartIcon size={20} />}
+          icon={<CartIcon size={scaleSize(16, 14, 20)} />}
           onPress={handlePurchaseHistory}
           isLast
         />
@@ -259,11 +260,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         />
         <ProfileItem
           title="Privacy Policy"
-          icon={<ShieldIcon size={20} />}
+          icon={<ShieldIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('privacy-policy')} />
         <ProfileItem
           title="Terms & Conditions"
-          icon={<TermsIcon size={20} />}
+          icon={<TermsIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('terms-conditions')}
           isLast
         />
@@ -280,26 +281,27 @@ const styles = StyleSheet.create({
   userCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
-    padding: 20,
-    marginBottom: 16,
+    padding: scaleSize(16, 14, 20),
+    marginBottom: scaleSize(12, 12, 16),
   },
   userInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: scaleSize(14, 14, 20),
   },
   userBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: COLORS['primary-dark'],
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
+    paddingHorizontal: scaleSize(8, 8, 12),
+    paddingVertical: scaleSize(4, 4, 6),
+    borderRadius: scaleSize(6, 6, 8),
   },
   badgeText: {
     fontWeight: '600',
-    marginRight: 4,
+    marginRight: scaleSize(2, 2, 4),
+    fontSize: scaleFont(12, 10, 16),
   },
   userStats: {
     flexDirection: 'row',
@@ -307,33 +309,35 @@ const styles = StyleSheet.create({
   },
   statItem: {
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: scaleSize(8, 8, 12),
+    padding: scaleSize(12, 12, 16),
     alignItems: 'center',
     flex: 1,
-    marginHorizontal: 4,
+    marginHorizontal: scaleSize(2, 2, 4),
   },
   statLabel: {
-    marginTop: 12,
+    marginTop: scaleSize(8, 8, 12),
+    fontSize: scaleFont(12, 10, 16),
   },
   coinsCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.14)',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 16,
+    borderRadius: scaleSize(16),
+    padding: scaleSize(16, 14, 20),
+    marginBottom: scaleSize(12, 12, 16),
   },
   coinsHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: scaleSize(12, 12, 16),
   },
   buyCoinsButton: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   buyCoinsText: {
-    marginRight: 4,
+    marginRight: scaleSize(2, 2, 4),
+    fontSize: scaleFont(10, 8, 14),
   },
   coinsRow: {
     flexDirection: 'row',
@@ -343,27 +347,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     // flex: 1,
-    marginHorizontal: 8,
+    marginHorizontal: scaleSize(4, 4, 8),
   },
   coinAmount: {
-    marginRight: 8,
+    marginRight: scaleSize(4, 4, 8),
+    fontSize: scaleFont(16, 12, 20),
   },
   section: {
     backgroundColor: 'rgba(255, 255, 255, 0.14)',
-    borderRadius: 16,
-    padding: 20,
-    paddingBottom: 10,
-    marginBottom: 16,
+    borderRadius: scaleSize(12, 12, 16),
+    padding: scaleSize(16, 14, 20),
+    paddingBottom: scaleSize(8, 8, 10),
+    marginBottom: scaleSize(12, 12, 16),
   },
   sectionTitle: {
-    marginBottom: 16,
+    marginBottom: scaleSize(12, 12, 16),
+    fontSize: scaleFont(16, 12, 20),
   },
   profileItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 16,
-    borderBottomWidth: 1,
+    paddingVertical: scaleSize(12, 12, 16),
+    borderBottomWidth: scaleSize(1),
     borderBottomColor: '#F0F0F0',
   },
   profileItemLeft: {
@@ -374,22 +380,23 @@ const styles = StyleSheet.create({
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    marginBottom: 32,
+    paddingVertical: scaleSize(12, 12, 16),
+    paddingHorizontal: scaleSize(16, 14, 20),
+    marginBottom: scaleSize(24, 24, 32),
   },
   logoutText: {
-    marginLeft: 12,
+    marginLeft: scaleSize(8, 8, 12),
+    fontSize: scaleFont(16, 12, 20),
   },
   mbtiQuizSection: {
     flexDirection: 'row',
-    padding: 12,
-    borderWidth: 1,
+    padding: scaleSize(8, 8, 12),
+    borderWidth: scaleSize(1),
     borderColor: COLORS.black,
-    borderRadius: 12,
-    marginBottom: 12,
+    borderRadius: scaleSize(8, 8, 12),
+    marginBottom: scaleSize(8, 8, 12),
     alignItems: 'center',
-    gap: 8,
+    gap: scaleSize(4, 4, 8),
     backgroundColor: 'rgba(255,255,255,0.14)'
   }
 });

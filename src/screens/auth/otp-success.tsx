@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { scaleFont, scaleSize } from '../../utils/scale';
 import { useTranslation } from 'react-i18next';
 
 import CheckmarkIcon from '../../components/icons/auth/checkmark-icon';
@@ -42,8 +43,7 @@ const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
   return (
     <ScreenContainer>
       <View style={styles.container}>
-        <View
-          style={{ width: '100%', alignItems: 'center', paddingHorizontal: 40 }}>
+        <View style={styles.innerContainer}>
           <ShinyContainer>
             <SMSIcon />
           </ShinyContainer>
@@ -69,16 +69,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  innerContainer: {
+    width: '100%',
+    alignItems: 'center',
+    paddingHorizontal: scaleSize(40),
+  },
   title: {
-    marginBottom: 10,
-    marginTop: 24,
+    marginBottom: scaleSize(10),
+    marginTop: scaleSize(24),
+    fontSize: scaleFont(16), // assuming subtitle2
   },
   subtitle: {
     textAlign: 'center',
-    lineHeight: 20
+    lineHeight: scaleSize(20),
+    fontSize: scaleFont(12), // assuming caption1
   },
   button: {
-    marginTop: 126,
+    marginTop: scaleSize(126),
     width: '100%',
   },
 });

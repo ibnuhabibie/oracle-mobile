@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { scaleFont, scaleSize } from '../../utils/scale';
 import { AppText } from '../ui/app-text';
 import ShinyContainer from './shiny-container';
 import LoveReportIcon from '../icons/services/love-report/love-report-icon';
@@ -27,10 +28,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ data, navigation }) => {
       style={styles.cardContainer}
     >
       <View>
-        <ShinyContainer size={350}>
-          {id === 'love' && <LoveReportIcon size={100} />}
-          {id === 'fortune' && <FortuneReportIcon size={100} />}
-          {id === 'relation' && <RelationReportIcon size={100} />}
+        <ShinyContainer size={scaleSize(350)}>
+          {id === 'love' && <LoveReportIcon size={scaleSize(100)} />}
+          {id === 'fortune' && <FortuneReportIcon size={scaleSize(100)} />}
+          {id === 'relation' && <RelationReportIcon size={scaleSize(100)} />}
         </ShinyContainer>
         <View style={styles.textContainer}>
           <AppText variant='largeTitle1' style={styles.cardTitle} color='white'>
@@ -48,22 +49,24 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ data, navigation }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: 'rgba(255,255,255,0.08)',
-    borderRadius: 12,
+    borderRadius: scaleSize(12),
     flex: 1,
-    paddingTop: 32,
+    paddingTop: scaleSize(32),
   },
   textContainer: {
-    marginTop: 24,
-    padding: 16,
+    marginTop: scaleSize(24),
+    padding: scaleSize(16),
   },
   cardTitle: {
-    marginBottom: 6,
-    marginTop: 4,
+    marginBottom: scaleSize(6),
+    marginTop: scaleSize(4),
     textAlign: 'left',
+    fontSize: scaleFont(34), // largeTitle1
   },
   cardSubtitle: {
     textTransform: 'uppercase',
-    letterSpacing: 1,
+    letterSpacing: scaleSize(1),
+    fontSize: scaleFont(22), // title3
   },
 });
 

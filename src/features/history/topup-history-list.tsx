@@ -10,6 +10,7 @@ import api from "../../utils/http";
 import { formatDateTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
 import { COLORS } from "../../constants/colors";
+import { scaleFont, scaleSize } from "../../utils/scale";
 
 interface TopUpItem {
     topup_history_id: number;
@@ -93,14 +94,14 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                 onPress={() => onItemPress?.(item)}
             >
                 <View style={styles.iconContainer}>
-                    <CartIcon size={20} />
+                    <CartIcon size={scaleSize(18)} />
                 </View>
                 <View style={{ flex: 1 }}>
                     <View style={styles.row}>
                         <AppText variant="body2" style={styles.packageName} color="neutral">
                             {item.package?.name || item.subscription?.name || item.topup_type}
                         </AppText>
-                        <CoinIcon size={19} color={item.package ? "#EB4335" : "#E0AE1E"} />
+                        <CoinIcon size={scaleSize(14, 14, 19)} color={item.package ? "#EB4335" : "#E0AE1E"} />
                     </View>
                     <AppText variant="caption4" color="neutral">{item.transaction_id} - ${item.amount}</AppText>
                 </View>
@@ -164,41 +165,40 @@ const styles = StyleSheet.create({
     pressable: {
         flexDirection: "row",
         alignItems: "center",
-        paddingVertical: 16,
+        paddingVertical: scaleSize(12, 12, 16),
     },
     iconContainer: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+        width: scaleSize(28, 28, 40),
+        height: scaleSize(28, 28, 40),
+        borderRadius: scaleSize(14, 14, 20),
         backgroundColor: 'rgba(255,255,255,0.2)',
         justifyContent: "center",
         alignItems: "center",
-        marginRight: 8,
+        marginRight: scaleSize(6, 6, 8),
     },
     row: {
         flexDirection: "row",
         alignItems: "center",
-        // marginBottom: 4,
     },
     packageName: {
         fontWeight: "600",
-        marginRight: 8,
+        marginRight: scaleSize(6, 6, 8),
+        fontSize: scaleFont(14, 12, 18),
     },
     dateContainer: {
         alignItems: "flex-end",
     },
     loading: {
-        padding: 24,
+        padding: scaleSize(16, 16, 24),
         alignItems: "center",
     },
     empty: {
         alignItems: "center",
-        marginTop: 32,
+        marginTop: scaleSize(24, 24, 32),
     },
     listContent: {
-        paddingBottom: 20,
+        paddingBottom: scaleSize(14, 14, 20),
     },
-    // ...existing styles
 });
 
 export default TopupHistoryList;

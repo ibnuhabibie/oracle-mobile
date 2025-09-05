@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { scaleFont, scaleSize } from "../../utils/scale";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
@@ -79,8 +80,8 @@ const ProfileDashboard: React.FC = () => {
         return (
             <>
                 <LocalizedHeader />
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-                    <AppText variant='subtitle1' style={{ textAlign: 'center', marginBottom: 12 }} color="light-gray">
+                <View style={styles.centeredLoading}>
+                    <AppText variant='subtitle1' style={styles.loadingText} color="light-gray">
                         Loading your daily profile...
                     </AppText>
                 </View>
@@ -92,11 +93,11 @@ const ProfileDashboard: React.FC = () => {
         return (
             <>
                 <LocalizedHeader />
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-                    <AppText variant='subtitle1' color="primary" style={{ textAlign: 'center', marginBottom: 12 }}>
+                <View style={styles.centeredLoading}>
+                    <AppText variant='subtitle1' color="primary" style={styles.loadingText}>
                         {"This service will be available soon."}
                     </AppText>
-                    <AppText style={{ textAlign: 'center', color: COLORS.black }}>
+                    <AppText style={styles.errorText}>
                         {"Please check back later to access your daily profile dashboard."}
                     </AppText>
                 </View>
@@ -115,15 +116,10 @@ const ProfileDashboard: React.FC = () => {
             style={{ width: "100%" }}
         >
             <LocalizedHeader />
-            <View style={{ width: '100%', paddingHorizontal: 12 }}>
+            <View style={styles.profileContent}>
                 <AppText variant='largeTitle1' style={styles.title} color="white">{data?.today_points}%</AppText>
                 <LocalizedSubtitle />
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                    }}>
+                <View style={styles.scoresRow}>
                     <CircularScore value={data?.today_wealth_points} type="wealth" />
                     <CircularScore value={data?.today_study_points} type="learning" />
                     <CircularScore value={data?.today_relationship_points} type="relation" />
@@ -136,25 +132,52 @@ const ProfileDashboard: React.FC = () => {
 
 const styles = StyleSheet.create({
     header: {
-        marginBottom: 12,
-        paddingVertical: 12,
+        marginBottom: scaleSize(12),
+        paddingVertical: scaleSize(12),
     },
     date: {
-        marginBottom: 4,
+        marginBottom: scaleSize(4),
     },
     title: {
         textAlign: 'center',
+        fontSize: scaleFont(34), // largeTitle1
     },
     subtitle: {
         textAlign: 'center',
-        letterSpacing: 5,
+        letterSpacing: scaleSize(2.5, 1, 5),
         textTransform: 'uppercase',
-        marginBottom: 32
+        marginBottom: scaleSize(32),
+        fontSize: scaleFont(16, 12, 20), // subtitle1
     },
     paragraph: {
-        marginTop: 10,
-        marginBottom: 16,
+        marginTop: scaleSize(10),
+        marginBottom: scaleSize(16),
         textAlign: 'center',
+    },
+    centeredLoading: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: scaleSize(24),
+    },
+    loadingText: {
+        textAlign: 'center',
+        marginBottom: scaleSize(12),
+        fontSize: scaleFont(16, 12, 20),
+    },
+    errorText: {
+        textAlign: 'center',
+        color: COLORS.black,
+        fontSize: scaleFont(12, 10, 16),
+    },
+    profileContent: {
+        width: '100%',
+        paddingHorizontal: scaleSize(12),
+    },
+    scoresRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
     },
 });
 

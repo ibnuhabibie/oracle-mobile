@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Pressable, StyleSheet, View, Alert } from 'react-native';
+import { scaleFont, scaleSize } from '../../utils/scale';
 
 import CalendarIcon from '../../components/icons/auth/calendar-icon';
 import ClockIcon from '../../components/icons/auth/clock-icon';
@@ -167,7 +168,7 @@ const Onboarding: FC<{
   };
 
   return (
-    <ScreenContainer style={{ marginTop: 44 }}>
+    <ScreenContainer style={styles.container}>
       <AppText variant='title3' style={styles.title} color='white'>{t('Introduce yourself')}</AppText>
       <AppText style={styles.subtitle} variant="caption1" color='neutral'>
         {t('Introduce yourself and let the universe guide you!')}
@@ -181,7 +182,7 @@ const Onboarding: FC<{
               value={formatDate(watchedDate)}
               style={styles.textField}
               editable={false}
-              rightIcon={<CalendarIcon size={15} />}
+              rightIcon={<CalendarIcon size={scaleSize(15)} />}
             />
           </View>
         </Pressable>
@@ -196,7 +197,7 @@ const Onboarding: FC<{
               value={formatTime(watchedTime)}
               style={styles.textField}
               editable={false}
-              rightIcon={<ClockIcon />}
+              rightIcon={<ClockIcon size={scaleSize(15)} />}
             />
           </View>
         </Pressable>
@@ -273,18 +274,23 @@ const Onboarding: FC<{
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: scaleSize(44),
+  },
   title: {
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: scaleSize(8),
+    fontSize: scaleFont(22), // assuming title3
   },
   subtitle: {
     textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: scaleSize(32),
+    fontSize: scaleFont(12), // assuming caption1
   },
   formContainer: {
     width: '100%',
-    marginBottom: 32,
-    gap: 12
+    marginBottom: scaleSize(32),
+    gap: scaleSize(12)
   },
   textField: {
     width: '100%',
@@ -292,20 +298,21 @@ const styles = StyleSheet.create({
   },
   marginedTextField: {
     width: '100%',
-    marginBottom: 16,
+    marginBottom: scaleSize(16),
   },
   helpText: {
     color: COLORS['light-gray'],
-    marginTop: 8,
+    marginTop: scaleSize(8),
+    fontSize: scaleFont(10), // assuming caption4/tiny
   },
   saveButton: {
     width: '100%',
   },
   calendarIcon: {
-    padding: 4,
+    padding: scaleSize(4),
   },
   timeIcon: {
-    padding: 4,
+    padding: scaleSize(4),
   },
 });
 

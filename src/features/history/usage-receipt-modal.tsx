@@ -9,6 +9,7 @@ import { serviceTypeTranslationKeys } from "../../constants/app";
 import { AppButton } from "../../components/ui/app-button";
 import { useNavigation } from "@react-navigation/native";
 import CloseIcon from "../../components/icons/close-icon";
+import { scaleFont, scaleSize } from "../../utils/scale";
 
 interface UsageReceiptModalProps {
   visible: boolean;
@@ -112,7 +113,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
               <View style={styles.modalHeader}>
                 <AppText variant="subtitle2" style={styles.modalTitle} color="primary">{t("usageReceiptModal.receipt")}</AppText>
                 <TouchableOpacity onPress={onClose}>
-                  <CloseIcon size={22} />
+                  <CloseIcon size={scaleSize(16, 14, 22)} />
                 </TouchableOpacity>
               </View>
               {!item ? (
@@ -138,7 +139,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                         <AppText variant="body1" style={styles.modalItemName} color="neutral">{getServiceTypeLabel(item.service_type)}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText color="white" variant='caption2'>{item.credit_journal.credits_used}</AppText>
-                          <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                          <CoinIcon size={scaleSize(12, 10, 16)} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                         </View>
                       </View>
                       <View style={styles.modalSectionDivider} />
@@ -146,31 +147,31 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                         <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.previousPoints")}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText color="white" variant='caption2'>{item.credit_journal.credits_before}</AppText>
-                          <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                          <CoinIcon size={scaleSize(12, 10, 16)} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                         </View>
                       </View>
                       <View style={styles.modalRow}>
                         <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.pointsUsed")}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText variant="caption1" color="red">{item.credit_journal.credits_used}</AppText>
-                          <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                          <CoinIcon size={scaleSize(12, 10, 16)} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                         </View>
                       </View>
                       <View style={styles.modalRow}>
                         <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.remainingPoints")}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText color="green" variant='caption2'>{item.credit_journal.credits_after}</AppText>
-                          <CoinIcon size={16} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                          <CoinIcon size={scaleSize(12, 10, 16)} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
                         </View>
                       </View>
                       {
                         item.response_data && (
-                          <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: 18 }} onPress={handleResult} />
+                          <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: scaleSize(12, 12, 18) }} onPress={handleResult} />
                         )
                       }
                     </>
                   ) : (
-                    <View style={{ marginVertical: 16 }}>
+                    <View style={{ marginVertical: scaleSize(12, 12, 16) }}>
                       <AppText variant="body1" style={styles.centerText} color="gray">
                         {t("usageReceiptModal.processing")}
                       </AppText>
@@ -195,64 +196,70 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#3F3F3F80',
-    borderWidth: 1,
+    borderWidth: scaleSize(1),
     borderColor: COLORS.neutral,
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: scaleSize(12, 12, 16),
+    padding: scaleSize(14, 14, 20),
     width: "90%",
-    maxWidth: 340,
+    maxWidth: scaleSize(240, 240, 340),
     elevation: 8,
   },
   modalHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 12,
+    marginBottom: scaleSize(8, 8, 12),
   },
   modalTitle: {
-    letterSpacing: 1,
+    letterSpacing: scaleSize(1),
     flex: 1,
     textAlign: "center",
+    fontSize: scaleFont(16, 12, 20),
   },
   modalRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 4,
+    marginVertical: scaleSize(2, 2, 4),
   },
   modalLabel: {
     flex: 1,
+    fontSize: scaleFont(12, 10, 16),
   },
   modalValue: {
     fontWeight: "600",
     flex: 1,
     textAlign: "right",
+    fontSize: scaleFont(12, 10, 16),
   },
   modalSectionDivider: {
-    height: 1,
+    height: scaleSize(1),
     backgroundColor: "#F0F0F0",
-    marginVertical: 10,
+    marginVertical: scaleSize(6, 6, 10),
   },
   modalSectionTitle: {
     fontWeight: "bold",
-    marginBottom: 6,
+    marginBottom: scaleSize(4, 4, 6),
+    fontSize: scaleFont(14, 12, 18),
   },
   modalItemIcon: {
-    marginRight: 8,
-    padding: 8,
-    borderRadius: 8,
+    marginRight: scaleSize(6, 6, 8),
+    padding: scaleSize(6, 6, 8),
+    borderRadius: scaleSize(6, 6, 8),
     backgroundColor: '#FFFFFF22'
   },
   modalItemName: {
     flex: 1,
+    fontSize: scaleFont(12, 10, 16),
   },
   modalItemPoints: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4
+    gap: scaleSize(2, 2, 4)
   },
   centerText: {
     textAlign: "center",
+    fontSize: scaleFont(12, 10, 16),
   },
 });
 

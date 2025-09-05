@@ -6,6 +6,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { AppText } from '../../../components/ui/app-text';
+import { scaleFont, scaleSize } from '../../../utils/scale';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
@@ -67,7 +68,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
                   title: item.title || label,
                   subtitle: item.subtitle,
                   description: item.description,
-                  icon: <ProfileIcon name={item.icon} />
+                  icon: <ProfileIcon name={item.icon} size={scaleSize(75)} />
                 }}
               />
             );
@@ -79,7 +80,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
 
   if (!profile) {
     return (
-      <AppText variant="body1" color="red" style={{ margin: 16 }}>No profile data found.</AppText>
+      <AppText variant="body1" color="red" style={{ margin: scaleSize(16) }}>No profile data found.</AppText>
     );
   }
 
@@ -98,7 +99,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
           <BaziCardList profile={profile} iconImages={iconImages} />
         </>
       ) : (
-        <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
+        <ActivityIndicator size="large" style={{ margin: scaleSize(32) }} color={COLORS.primary} />
       )}
     </ScreenContainer>
   );

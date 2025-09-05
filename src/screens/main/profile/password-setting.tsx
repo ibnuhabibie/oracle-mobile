@@ -9,6 +9,7 @@ import {
   Pressable,
   Alert,
 } from 'react-native';
+import { scaleFont, scaleSize } from '../../../utils/scale';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../navigators/types';
@@ -174,8 +175,8 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   formContainer: {
     flexDirection: 'column',
-    gap: 12,
-    paddingTop: 12
+    gap: scaleSize(8, 8, 12),
+    paddingTop: scaleSize(8, 8, 12)
   },
 });
 

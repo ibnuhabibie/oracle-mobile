@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, ImageSourcePropType } from 'react-native';
+import { scaleFont, scaleSize } from '../../utils/scale';
 import Svg, { Circle } from 'react-native-svg';
 import { COLORS } from '../../constants/colors';
 import { AppText } from '../ui/app-text';
@@ -21,8 +22,8 @@ class CircularScore extends Component<CircularScoreProps> {
     render() {
         const {
             value = 50,
-            size = 60,
-            strokeWidth = 2,
+            size = scaleSize(60),
+            strokeWidth = scaleSize(2),
             type = 'wealth'
         } = this.props;
 
@@ -66,7 +67,7 @@ class CircularScore extends Component<CircularScoreProps> {
         }
 
         return (
-            <View style={{ gap: 6 }}>
+            <View style={{ gap: scaleSize(6) }}>
                 <Svg
                     width={size}
                     height={size}
@@ -121,9 +122,10 @@ const styles = StyleSheet.create({
     image: {
     },
     iconText: {
-        marginTop: 12,
+        marginTop: scaleSize(8, 6, 12),
         textAlign: 'center',
         textTransform: 'capitalize',
+        fontSize: scaleFont(12, 10, 16),
     }
 });
 

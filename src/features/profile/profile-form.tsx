@@ -17,6 +17,7 @@ import api from '../../utils/http';
 import { COLORS } from '../../constants/colors';
 import { useAsyncStorage } from '../../hooks/use-storage';
 import { LANGUAGES } from '../../constants/app';
+import { scaleFont, scaleSize } from '../../utils/scale';
 
 export interface City {
     name: string;
@@ -392,11 +393,12 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 const styles = StyleSheet.create({
     formContainer: {
         width: '100%',
-        marginBottom: 24,
+        marginBottom: scaleSize(18, 18, 24),
     },
     label: {
-        marginBottom: 8,
-        marginTop: 16,
+        marginBottom: scaleSize(6, 6, 8),
+        marginTop: scaleSize(12, 12, 16),
+        fontSize: scaleFont(14, 12, 18),
     },
     textField: {
         width: '100%',
@@ -404,30 +406,31 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.13)'
     },
     helperText: {
-        marginTop: 4,
+        marginTop: scaleSize(2, 2, 4),
+        fontSize: scaleFont(10, 8, 14),
     },
     radioContainer: {
         flexDirection: 'row',
-        gap: 24,
+        gap: scaleSize(16, 16, 24),
     },
     radioButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8,
+        gap: scaleSize(6, 6, 8),
     },
     radioCircle: {
-        width: 20,
-        height: 20,
-        borderRadius: 10,
-        borderWidth: 2,
+        width: scaleSize(14, 14, 20),
+        height: scaleSize(14, 14, 20),
+        borderRadius: scaleSize(7, 7, 10),
+        borderWidth: scaleSize(2),
         borderColor: COLORS['radio-brown'],
         alignItems: 'center',
         justifyContent: 'center',
     },
     radioSelected: {
-        width: 10,
-        height: 10,
-        borderRadius: 5,
+        width: scaleSize(6, 6, 10),
+        height: scaleSize(6, 6, 10),
+        borderRadius: scaleSize(3, 3, 5),
         backgroundColor: COLORS['radio-brown'],
     },
 });

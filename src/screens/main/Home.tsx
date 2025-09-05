@@ -1,6 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { Dimensions, Platform, ScaledSize, StyleSheet, View } from 'react-native';
+import { scaleFont, scaleSize } from '../../utils/scale';
 import { useTranslation } from "react-i18next";
 import Carousel from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
@@ -55,7 +56,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={{ padding: 0 }}>
-      <View style={{ padding: 18, paddingBottom: 0 }}>
+      <View style={styles.header}>
         <ProfileDashboard />
         <AppText style={styles.subtitle} color='neutral' variant='subtitle1'>
           {t("WHAT DO YOU LIKE TO KNOW TODAY?")}
@@ -63,23 +64,21 @@ const Home: FC<HomeProps> = ({ navigation }) => {
       </View>
       <View
         id="carousel-component"
-        style={{ marginTop: -50, overflow: 'hidden', height: 450 }}
+        style={styles.carouselContainer}
       >
         <Carousel
           autoPlayInterval={2000}
           data={carouselItems}
-          height={550}
+          height={scaleSize(550)}
           loop={true}
           pagingEnabled={true}
           snapEnabled={true}
           width={window.width}
-          style={{
-            width: window.width,
-          }}
+          style={styles.carouselStyle}
           mode="parallax"
           modeConfig={{
             parallaxScrollingScale: 0.6,
-            parallaxScrollingOffset: 200,
+            parallaxScrollingOffset: scaleSize(200),
           }}
           onProgressChange={progress}
           renderItem={
@@ -94,12 +93,25 @@ const Home: FC<HomeProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  header: {
+    padding: scaleSize(18),
+    paddingBottom: 0,
+  },
   subtitle: {
     textAlign: 'center',
-    letterSpacing: 5,
-    lineHeight: 24,
-    marginTop: 24,
+    letterSpacing: scaleSize(2.5, 1, 5),
+    lineHeight: scaleSize(20, 16, 24),
+    marginTop: scaleSize(16, 10, 24),
     textTransform: 'uppercase',
+    fontSize: scaleFont(16, 12, 20),
+  },
+  carouselContainer: {
+    marginTop: scaleSize(-30, -30, 0),
+    overflow: 'hidden',
+    height: scaleSize(550),
+  },
+  carouselStyle: {
+    // width will be set dynamically in render
   },
 });
 

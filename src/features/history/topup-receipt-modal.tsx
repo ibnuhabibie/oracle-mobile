@@ -6,6 +6,7 @@ import { formatDateTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
 import { COLORS } from "../../constants/colors";
 import CloseIcon from "../../components/icons/close-icon";
+import { scaleFont, scaleSize } from "../../utils/scale";
 
 interface TopupReceiptModalProps {
     visible: boolean;
@@ -34,7 +35,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                             <View style={styles.modalHeader}>
                                 <AppText variant="subtitle2" style={styles.modalTitle} color="primary">{t("RECEIPT")}</AppText>
                                 <TouchableOpacity onPress={onClose}>
-                                    <CloseIcon size={22} />
+                                    <CloseIcon size={scaleSize(16, 14, 22)} />
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.modalRow}>
@@ -51,7 +52,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                             <AppText variant="body1" style={styles.modalSectionTitle} color="neutral">{t("ORDER ITEMS")}</AppText>
                             <View style={styles.modalRow}>
                                 <View style={styles.modalItemIcon}>
-                                    <CoinIcon size={20} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
+                                    <CoinIcon size={scaleSize(16, 14, 20)} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
                                 </View>
                                 <AppText variant="body1" style={styles.modalItemQty} color="neutral">
                                     {item.package?.name || item.subscription?.name || item.topup_type}
@@ -82,21 +83,21 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                                 <AppText variant="caption1" color="neutral">{t("PREVIOUS POINTS")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="neutral">{item.credit_journal.credits_before}</AppText>
-                                                    <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                    <CoinIcon size={scaleSize(10, 10, 14)} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
                                                 </View>
                                             </View>
                                             <View style={styles.modalRow}>
                                                 <AppText variant="caption1" color="neutral">{t("POINTS ADDED")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="green">+{item.credit_journal.credits_used}</AppText>
-                                                    <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                    <CoinIcon size={scaleSize(10, 10, 14)} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
                                                 </View>
                                             </View>
                                             <View style={styles.modalRow}>
                                                 <AppText variant="caption1" color="neutral">{t("TOTAL POINTS")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="neutral">{item.credit_journal.credits_after}</AppText>
-                                                    <CoinIcon size={14} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                    <CoinIcon size={scaleSize(10, 10, 14)} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
                                                 </View>
                                             </View>
                                         </>
@@ -129,67 +130,74 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         backgroundColor: '#3F3F3F80',
-        borderWidth: 1,
+        borderWidth: scaleSize(1),
         borderColor: COLORS.neutral,
-        borderRadius: 16,
-        padding: 20,
+        borderRadius: scaleSize(12, 12, 16),
+        padding: scaleSize(14, 14, 20),
         width: "90%",
-        maxWidth: 400,
+        maxWidth: scaleSize(260, 260, 400),
         elevation: 8,
     },
     modalHeader: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: 12,
+        marginBottom: scaleSize(8, 8, 12),
     },
     modalTitle: {
-        letterSpacing: 1.3,
+        letterSpacing: scaleSize(1),
         flex: 1,
         textAlign: "center",
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        fontSize: scaleFont(16, 12, 20),
     },
     modalRow: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginVertical: 4,
+        marginVertical: scaleSize(2, 2, 4),
     },
     modalSectionDivider: {
-        height: 1,
+        height: scaleSize(1),
         backgroundColor: "#686868",
-        marginVertical: 10,
+        marginVertical: scaleSize(6, 6, 10),
     },
     modalSectionTitle: {
         fontWeight: "bold",
-        marginBottom: 6,
+        marginBottom: scaleSize(4, 4, 6),
+        fontSize: scaleFont(14, 12, 18),
     },
     modalItemIcon: {
-        marginRight: 8,
+        marginRight: scaleSize(6, 6, 8),
     },
     modalItemQty: {
         flex: 1,
+        fontSize: scaleFont(12, 10, 16),
     },
     modalItemPrice: {
         fontWeight: "600",
-        marginLeft: 8,
+        marginLeft: scaleSize(6, 6, 8),
+        fontSize: scaleFont(12, 10, 16),
     },
     modalTotalLabel: {
         fontWeight: "bold",
-        marginRight: 4,
+        marginRight: scaleSize(2, 2, 4),
+        fontSize: scaleFont(12, 10, 16),
     },
     modalTotalValue: {
         fontWeight: "bold",
+        fontSize: scaleFont(12, 10, 16),
     },
     modalPointsCommon: {
         fontWeight: "bold",
         flexDirection: "row",
         alignItems: "center",
+        fontSize: scaleFont(12, 10, 16),
     },
     textCoinWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 4
+        gap: scaleSize(2, 2, 4)
     }
 });
 

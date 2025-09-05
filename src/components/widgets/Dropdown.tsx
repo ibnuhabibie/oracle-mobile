@@ -7,6 +7,7 @@ import { AppText } from '../ui/app-text';
 import ArrowIcon from '../icons/arrow-icon';
 import ChevronDownIcon from '../icons/profile/chevron-down-icon';
 import CloseIcon from '../icons/close-icon';
+import { scaleFont, scaleSize } from '../../utils/scale';
 
 export const DropdownButton: FC<{ onPress?: () => void; text?: string }> = ({
   onPress,
@@ -35,7 +36,7 @@ export const renderDropdownModal = (
         <View style={styles.modalHeader}>
           <AppText style={styles.modalTitle}>{title}</AppText>
           <Pressable onPress={onClose}>
-            <CloseIcon size={24} />
+            <CloseIcon size={scaleSize(24)} />
           </Pressable>
         </View>
         <FlatList
@@ -71,41 +72,41 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#121010',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingTop: 20,
+    borderTopLeftRadius: scaleSize(20),
+    borderTopRightRadius: scaleSize(20),
+    paddingTop: scaleSize(20),
     maxHeight: '70%',
   },
   modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingBottom: 15,
-    borderBottomWidth: 1,
+    paddingHorizontal: scaleSize(20),
+    paddingBottom: scaleSize(15),
+    borderBottomWidth: scaleSize(1),
     borderBottomColor: COLORS['dark-gray'],
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: scaleFont(18),
     fontFamily: fontFamilies.ARCHIVO.light,
     color: COLORS.neutral,
   },
   closeButtonText: {
-    fontSize: 20,
+    fontSize: scaleFont(20),
     color: '#666',
-    lineHeight: 20,
+    lineHeight: scaleSize(20),
   },
   modalItem: {
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderBottomWidth: 1,
+    paddingHorizontal: scaleSize(20),
+    paddingVertical: scaleSize(15),
+    borderBottomWidth: scaleSize(1),
     borderBottomColor: COLORS['dark-gray']
   },
   selectedItem: {
     backgroundColor: '#f5f5f5',
   },
   modalItemText: {
-    fontSize: 16,
+    fontSize: scaleFont(16),
     fontFamily: fontFamilies.ARCHIVO.light,
     color: COLORS.neutral,
   },
@@ -119,22 +120,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: scaleSize(1),
     borderColor: '#6A6A6A',
-    borderRadius: 12,
-    paddingLeft: 20,
-    paddingRight: 32,
-    paddingVertical: 16,
+    borderRadius: scaleSize(12),
+    paddingLeft: scaleSize(20),
+    paddingRight: scaleSize(32),
+    paddingVertical: scaleSize(10, 8, 14),
     backgroundColor: '#FFFFFF22',
   },
   dropdownText: {
     width: '100%',
-    fontSize: 16,
+    fontSize: scaleFont(16),
     color: COLORS.neutral,
     fontFamily: fontFamilies.ARCHIVO.light,
   },
   dropdownIcon: {
-    fontSize: 12,
+    fontSize: scaleFont(12),
     color: '#777',
   },
 });

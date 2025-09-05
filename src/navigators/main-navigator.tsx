@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import api from '../utils/http';
 import HomeIcon from '../components/icons/home-icon';
 import ProfileIcon from '../components/icons/profile/profile-icon';
 import EchoIcon from '../components/icons/echo/echo-icon';
@@ -49,6 +48,8 @@ import type { MainNavigatorParamList } from './types';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<MainNavigatorParamList>();
 
+import { scaleFont, scaleSize } from '../utils/scale';
+
 const TabNavigator = () => (
   <Tab.Navigator
     screenOptions={{
@@ -56,7 +57,7 @@ const TabNavigator = () => (
       tabBarHideOnKeyboard: true,
       tabBarStyle: {
         backgroundColor: '#121010',
-        height: 76,
+        height: scaleSize(56, 50, 76),
         alignItems: 'center',
         borderTopWidth: 0,
         borderColor: 'transparent',
@@ -67,12 +68,13 @@ const TabNavigator = () => (
       // tabBarActiveTintColor: '#000',
       // tabBarInactiveTintColor: '#999',
       tabBarIconStyle: {
-        marginTop: 8,
+        // marginTop: scaleSize(4, 2, 8),
+        marginTop: 0,
       },
       tabBarLabelStyle: {
         color: COLORS.white,
-        marginTop: 4,
-        fontSize: 14
+        // marginTop: scaleSize(2, 1, 6),
+        fontSize: scaleFont(12, 6, 16)
       },
     }}
     initialRouteName="Home">
@@ -80,8 +82,8 @@ const TabNavigator = () => (
       name="Home"
       component={Home}
       options={{
-        tabBarIcon: ({ size, focused }) => (
-          <HomeIcon size={size ?? 19} fill={focused} />
+        tabBarIcon: ({ focused }) => (
+          <HomeIcon size={scaleSize(19, 16, 24)} fill={focused} />
         ),
         tabBarLabel: 'Home',
       }}
@@ -90,8 +92,8 @@ const TabNavigator = () => (
       name="Echo"
       component={Echo}
       options={{
-        tabBarIcon: ({ size, focused }) => (
-          <EchoIcon size={size ?? 19} fill={focused} />
+        tabBarIcon: ({ focused }) => (
+          <EchoIcon size={scaleSize(19, 16, 24)} fill={focused} />
         ),
         tabBarLabel: 'Echo',
       }}
@@ -100,8 +102,8 @@ const TabNavigator = () => (
       name="AskAffinity"
       component={AskAffinity}
       options={{
-        tabBarIcon: ({ size, focused }) => (
-          <AskAffinityIcon size={size ?? 19} fill={focused} />
+        tabBarIcon: ({ focused }) => (
+          <AskAffinityIcon size={scaleSize(19, 16, 24)} fill={focused} />
         ),
         tabBarLabel: 'Ask Affinity',
       }}
@@ -110,8 +112,8 @@ const TabNavigator = () => (
       name="Profile"
       component={Profile}
       options={{
-        tabBarIcon: ({ size, focused }) => (
-          <ProfileIcon size={size ?? 19} fill={focused} />
+        tabBarIcon: ({ focused }) => (
+          <ProfileIcon size={scaleSize(19, 16, 24)} fill={focused} />
         ),
         tabBarLabel: 'Profile',
       }}

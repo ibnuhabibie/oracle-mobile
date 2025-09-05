@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, View } from 'react-native';
+import { scaleFont, scaleSize } from '../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ScreenContainer from '../../components/layouts/screen-container';
@@ -31,7 +32,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
   };
 
   return (
-    <ScreenContainer style={{ marginTop: 44 }}>
+    <ScreenContainer style={styles.container}>
       <AppText variant="subtitle2" style={styles.heading} color='white'>{t('PLEASE SELECT A LANGUAGE')}</AppText>
 
       <Controller
@@ -65,13 +66,17 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: scaleSize(44),
+  },
   heading: {
-    fontWeight: 300,
+    fontWeight: '300',
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: scaleSize(20),
+    fontSize: scaleFont(16), // assuming subtitle2
   },
   list: {
-    gap: 12,
+    gap: scaleSize(12),
   },
   button: {
     marginTop: 'auto',

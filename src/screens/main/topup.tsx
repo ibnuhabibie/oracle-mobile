@@ -16,6 +16,7 @@ import { AppButton } from '../../components/ui/app-button';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
 import CoinIcon from '../../components/icons/profile/coin-icon';
+import { scaleFont, scaleSize } from '../../utils/scale';
 import { useTranslation } from 'react-i18next';
 import { useAsyncStorage } from '../../hooks/use-storage';
 
@@ -41,7 +42,7 @@ interface SubscriptionItem {
 }
 
 const Coin = ({ type = 'silver' }) => (
-    <CoinIcon size={19} color={type === 'silver' ? "#EB4335" : "#E0AE1E"} />
+    <CoinIcon size={scaleSize(16, 14, 19)} color={type === 'silver' ? "#EB4335" : "#E0AE1E"} />
 );
 
 const RadioIndicator = ({ selected }: { selected: boolean }) => (
@@ -60,14 +61,14 @@ const PackageCardList: FC<{
 }> = ({ packages, selectedPackage, setSelectedPackage, loading, error }) => {
     const { t } = useTranslation();
     return (
-        <View style={{ marginBottom: 24 }}>
+        <View style={{ marginBottom: scaleSize(18, 18, 24) }}>
             <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('OUR PACKAGES')}</AppText>
             <AppText variant='caption1' style={styles.sectionDesc} color='neutral'>{t('PACKAGES DESC')}</AppText>
-            <View style={{ marginTop: 12 }}>
+            <View style={{ marginTop: scaleSize(8, 8, 12) }}>
                 {loading ? (
-                    <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
+                    <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: scaleSize(12, 12, 16) }} />
                 ) : error ? (
-                    <AppText style={{ color: 'red', marginVertical: 16 }}>{t(error)}</AppText>
+                    <AppText style={{ color: 'red', marginVertical: scaleSize(12, 12, 16) }}>{t(error)}</AppText>
                 ) : (
                     packages.map(pkg => (
                         <Pressable
@@ -81,12 +82,12 @@ const PackageCardList: FC<{
                             <RadioIndicator selected={selectedPackage === pkg.package_id} />
                             <View style={{ flex: 1 }}>
                                 <AppText variant='body1' style={styles.cardTitle} color='white'>{pkg.name}</AppText>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
                                     <AppText variant='caption1' color='neutral'>{t('GET COINS', { count: pkg.credits })} </AppText>
                                     <Coin />
                                 </View>
                                 {pkg.description ? (
-                                    <AppText style={{ marginTop: 2 }} color='neutral'>{pkg.description}</AppText>
+                                    <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{pkg.description}</AppText>
                                 ) : null}
                             </View>
                             <AppText variant='subtitle1' color='primary' style={styles.cardPrice}>${parseFloat(pkg.price)}</AppText>
@@ -113,11 +114,11 @@ const SubscriptionCardList: FC<{
             <AppText variant='caption1' style={styles.sectionDesc} color='neutral'>
                 {t('SUBSCRIPTIONS DESC')}
             </AppText>
-            <View style={{ marginTop: 12 }}>
+            <View style={{ marginTop: scaleSize(8, 8, 12) }}>
                 {loading ? (
-                    <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: 16 }} />
+                    <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: scaleSize(12, 12, 16) }} />
                 ) : error ? (
-                    <AppText style={{ color: 'red', marginVertical: 16 }}>{t(error)}</AppText>
+                    <AppText style={{ color: 'red', marginVertical: scaleSize(12, 12, 16) }}>{t(error)}</AppText>
                 ) : (
                     subscriptions.map(sub => (
                         <Pressable
@@ -131,12 +132,12 @@ const SubscriptionCardList: FC<{
                             <RadioIndicator selected={selectedSubscription === sub.subscription_id} />
                             <View style={{ flex: 1 }}>
                                 <AppText variant='body1' style={styles.cardTitle} color='white'>{sub.name}</AppText>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 2 }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
                                     <AppText variant='caption1' color='neutral'>{t('GET COINS', { count: sub.credits })} </AppText>
                                     <Coin type='gold' />
                                 </View>
                                 {sub.description ? (
-                                    <AppText style={{ marginTop: 2 }} color='neutral'>{sub.description}</AppText>
+                                    <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{sub.description}</AppText>
                                 ) : null}
                             </View>
                             <AppText variant='subtitle1' color='primary' style={styles.cardPrice}>${parseFloat(sub.price)}</AppText>
@@ -296,26 +297,28 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                     error={errorSubscriptions}
                 />
             )}
-            <View style={{ height: 80 }}></View>
+            <View style={{ height: scaleSize(60, 60, 80) }}></View>
         </ScreenContainer>
     );
 };
 
 const styles = StyleSheet.create({
     sectionTitle: {
-        marginBottom: 2,
+        marginBottom: scaleSize(2),
+        fontSize: scaleFont(16, 12, 20),
     },
     sectionDesc: {
-        marginBottom: 2,
+        marginBottom: scaleSize(2),
+        fontSize: scaleFont(12, 10, 16),
     },
     card: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'rgba(255,255,255,0.14)',
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 12,
-        borderWidth: 1,
+        borderRadius: scaleSize(8, 8, 12),
+        padding: scaleSize(12, 12, 16),
+        marginBottom: scaleSize(8, 8, 12),
+        borderWidth: scaleSize(1),
         borderColor: 'transparent'
     },
     cardSelected: {
@@ -327,37 +330,40 @@ const styles = StyleSheet.create({
     },
     cardTitle: {
         fontWeight: '600',
+        fontSize: scaleFont(14, 12, 18),
     },
     cardPrice: {
         fontWeight: 'bold',
-        marginLeft: 12,
+        marginLeft: scaleSize(8, 8, 12),
+        fontSize: scaleFont(14, 12, 18),
     },
     radioOuter: {
-        width: 22,
-        height: 22,
-        borderRadius: 11,
-        borderWidth: 2,
+        width: scaleSize(16, 14, 22),
+        height: scaleSize(16, 14, 22),
+        borderRadius: scaleSize(8, 8, 11),
+        borderWidth: scaleSize(2),
         borderColor: 'rgba(255,255,255,0.14)',
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 14,
+        marginRight: scaleSize(8, 8, 14),
         backgroundColor: 'rgba(255,255,255,0.14)',
     },
     radioOuterSelected: {
         borderColor: COLORS.primary,
     },
     radioInner: {
-        width: 10,
-        height: 10,
-        borderRadius: 5,
+        width: scaleSize(6, 6, 10),
+        height: scaleSize(6, 6, 10),
+        borderRadius: scaleSize(3, 3, 5),
         backgroundColor: '#D4A574',
     },
     bestValueBadge: {
         backgroundColor: '#F5E1C6',
-        borderRadius: 6,
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-        marginLeft: 8,
+        borderRadius: scaleSize(4, 4, 6),
+        paddingHorizontal: scaleSize(4, 4, 6),
+        paddingVertical: scaleSize(2),
+        marginLeft: scaleSize(6, 6, 8),
+        fontSize: scaleFont(10, 8, 14),
     },
 });
 
