@@ -251,33 +251,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4
   },
-  modalTotalLabel: {
-    fontSize: 15,
-    color: "#888",
-    fontWeight: "bold",
-    marginRight: 4,
-  },
-  modalTotalValue: {
-    fontSize: 15,
-    color: "#222",
-    fontWeight: "bold",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  modalPointsUsed: {
-    color: "#E05A47",
-    fontWeight: "bold",
-    fontSize: 14,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  modalPointsTotal: {
-    color: "#4CAF50",
-    fontWeight: "bold",
-    fontSize: 14,
-    flexDirection: "row",
-    alignItems: "center",
-  },
   centerText: {
     textAlign: "center",
   },

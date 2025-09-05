@@ -289,9 +289,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  userName: {
-    fontSize: 20,
-  },
   userBadge: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -315,10 +312,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     marginHorizontal: 4,
-  },
-  statIcon: {
-    fontSize: 24,
-    marginBottom: 8,
   },
   statLabel: {
     marginTop: 12,
@@ -355,9 +348,6 @@ const styles = StyleSheet.create({
   coinAmount: {
     marginRight: 8,
   },
-  coinIcon: {
-    fontSize: 16,
-  },
   section: {
     backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
@@ -381,30 +371,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
-  profileItemIcon: {
-    fontSize: 16,
-    marginRight: 16,
-    width: 20,
-  },
-  profileItemTitle: {
-    fontSize: 16,
-    color: '#333',
-    marginLeft: 12,
-    fontFamily: fontFamilies.ARCHIVO.light,
-  },
-  chevron: {
-    fontSize: 18,
-  },
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 16,
     paddingHorizontal: 20,
     marginBottom: 32,
-  },
-  logoutIcon: {
-    fontSize: 16,
-    marginRight: 12,
   },
   logoutText: {
     marginLeft: 12,

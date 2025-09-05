@@ -61,7 +61,7 @@ const ProfileDashboard: React.FC = () => {
         return (
             <View style={styles.header}>
                 <AppText variant='caption1' style={styles.date} color="light-gray">{formattedDate}</AppText>
-                <AppText style={styles.greeting} color="white">
+                <AppText variant='subtitle1' color="white">
                     {t("Good Day")}, {user?.full_name || t("Guest")}
                 </AppText>
             </View>
@@ -80,7 +80,7 @@ const ProfileDashboard: React.FC = () => {
             <>
                 <LocalizedHeader />
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-                    <AppText style={{ color: COLORS["light-gray"], fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
+                    <AppText variant='subtitle1' style={{ textAlign: 'center', marginBottom: 12 }} color="light-gray">
                         Loading your daily profile...
                     </AppText>
                 </View>
@@ -93,7 +93,7 @@ const ProfileDashboard: React.FC = () => {
             <>
                 <LocalizedHeader />
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-                    <AppText style={{ color: COLORS.primary, fontSize: 18, textAlign: 'center', marginBottom: 12 }}>
+                    <AppText variant='subtitle1' color="primary" style={{ textAlign: 'center', marginBottom: 12 }}>
                         {"This service will be available soon."}
                     </AppText>
                     <AppText style={{ textAlign: 'center', color: COLORS.black }}>
@@ -116,7 +116,7 @@ const ProfileDashboard: React.FC = () => {
         >
             <LocalizedHeader />
             <View style={{ width: '100%', paddingHorizontal: 12 }}>
-                <AppText style={styles.title} color="white">{data?.today_points}%</AppText>
+                <AppText variant='largeTitle1' style={styles.title} color="white">{data?.today_points}%</AppText>
                 <LocalizedSubtitle />
                 <View
                     style={{
@@ -142,11 +142,7 @@ const styles = StyleSheet.create({
     date: {
         marginBottom: 4,
     },
-    greeting: {
-        fontSize: 18,
-    },
     title: {
-        fontSize: 36,
         textAlign: 'center',
     },
     subtitle: {
@@ -159,11 +155,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 16,
         textAlign: 'center',
-    },
-    aspectText: {
-        fontSize: 16,
-        color: COLORS.primary,
-        marginTop: 8,
     },
 });
 

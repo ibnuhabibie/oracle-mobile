@@ -33,10 +33,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ data, navigation }) => {
           {id === 'relation' && <RelationReportIcon size={100} />}
         </ShinyContainer>
         <View style={styles.textContainer}>
-          <AppText variant='subtitle1' style={styles.cardTitle} color='white'>
+          <AppText variant='largeTitle1' style={styles.cardTitle} color='white'>
             {title}
           </AppText>
-          <AppText style={styles.cardSubtitle} color='primary'>
+          <AppText variant='title3' style={styles.cardSubtitle} color='primary'>
             {subtitle}
           </AppText>
         </View>
@@ -57,13 +57,11 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   cardTitle: {
-    fontSize: 30,
     marginBottom: 6,
     marginTop: 4,
     textAlign: 'left',
   },
   cardSubtitle: {
-    fontSize: 20,
     textTransform: 'uppercase',
     letterSpacing: 1,
   },

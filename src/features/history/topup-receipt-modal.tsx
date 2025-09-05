@@ -48,7 +48,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                 </AppText>
                             </View>
                             <View style={styles.modalSectionDivider} />
-                            <AppText variant="body1" style={styles.modalSectionTitle}>{t("ORDER ITEMS")}</AppText>
+                            <AppText variant="body1" style={styles.modalSectionTitle} color="neutral">{t("ORDER ITEMS")}</AppText>
                             <View style={styles.modalRow}>
                                 <View style={styles.modalItemIcon}>
                                     <CoinIcon size={20} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
@@ -104,7 +104,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                     (
                                         <>
                                             <View style={{ marginVertical: 16 }}>
-                                                <AppText variant="body1" style={{ textAlign: "center", color: COLORS.neutral, fontSize: 15 }}>
+                                                <AppText variant="body1" style={{ textAlign: "center" }} color="neutral">
                                                     {t("PAYMENT NOT COMPLETED")}
                                                 </AppText>
                                             </View>
@@ -155,27 +155,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginVertical: 4,
     },
-    modalLabel: {
-        color: COLORS.neutral,
-        fontSize: 14,
-    },
-    modalValue: {
-        color: COLORS.white,
-        fontSize: 14,
-        fontWeight: "600",
-        flex: 1,
-        textAlign: "right",
-        textTransform: 'capitalize'
-    },
     modalSectionDivider: {
         height: 1,
         backgroundColor: "#686868",
         marginVertical: 10,
     },
     modalSectionTitle: {
-        fontSize: 15,
         fontWeight: "bold",
-        color: COLORS.neutral,
         marginBottom: 6,
     },
     modalItemIcon: {

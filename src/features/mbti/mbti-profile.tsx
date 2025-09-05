@@ -49,7 +49,7 @@ class MBTIProfile extends React.Component {
             <>
                 {/* Main MBTI Type */}
                 <ShinyContainer size={218} style={{ marginBottom: 16 }}>
-                    <AppText color="white" style={{ fontSize: 30 }}>{profile?.mbti_type}</AppText>
+                    <AppText variant='largeTitle1' color="white">{profile?.mbti_type}</AppText>
                 </ShinyContainer>
 
                 {/* The Architect Card */}

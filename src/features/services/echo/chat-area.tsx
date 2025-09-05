@@ -54,7 +54,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
                   ]}>
                     {
                       isUser ? (
-                        <AppText style={styles.avatarText}>{initials}</AppText>
+                        <AppText variant='body1' style={styles.avatarText} color='neutral'>{initials}</AppText>
                       ) : (
                         <GenieIcon />
                       )
@@ -67,7 +67,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
                       : styles.bubbleAI
                   ]}>
                     {!isUser && <AppText style={{ fontWeight: 'bold', color: 'white' }}>{t("chatArea.geenieSays")}</AppText>}
-                    <AppText style={[styles.bubbleText, !isUser && { color: COLORS.white }]}>{item.content}</AppText>
+                    <AppText variant='body1' style={[styles.bubbleText, !isUser && { color: COLORS.white }]}>{item.content}</AppText>
                   </View>
                   {
                     isUser &&
@@ -115,9 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   avatarText: {
-    color: COLORS.neutral,
     fontWeight: 'bold',
-    fontSize: 16,
   },
   aiIconCircle: {
     width: 32,
@@ -145,7 +143,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
   },
   bubbleText: {
-    fontSize: 15,
     color: COLORS.neutral,
     lineHeight: 18
   },

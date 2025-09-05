@@ -170,8 +170,8 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                         ))
                     ) : (
                         <View style={styles.emptyDiaryContainer}>
-                            <AppText style={styles.emptyDiaryTitle}>{t('No Diaries Yet')}</AppText>
-                            <AppText style={styles.emptyDiaryDesc}>
+                            <AppText variant='subtitle1' color='primary' style={styles.emptyDiaryTitle}>{t('No Diaries Yet')}</AppText>
+                            <AppText variant='caption1' style={styles.emptyDiaryDesc} color='gray'>
                                 {t('Start your first diary entry to express your thoughts and feelings. Your journey begins here!')}
                             </AppText>
                         </View>
@@ -240,15 +240,11 @@ const styles = StyleSheet.create({
         opacity: 0.7,
     },
     emptyDiaryTitle: {
-        fontSize: 18,
         fontWeight: '600',
-        color: COLORS.primary,
         marginBottom: 6,
         textAlign: 'center',
     },
     emptyDiaryDesc: {
-        fontSize: 14,
-        color: '#888',
         textAlign: 'center',
         lineHeight: 20,
     },

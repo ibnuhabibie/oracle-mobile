@@ -128,7 +128,6 @@ const styles = StyleSheet.create({
   subtitle: {
     textAlign: 'center',
     marginBottom: 30,
-    fontSize: 14,
     lineHeight: 20
   },
   button: {

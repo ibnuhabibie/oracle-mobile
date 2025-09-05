@@ -168,8 +168,8 @@ const Onboarding: FC<{
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <AppText style={styles.title} color='white'>{t('Introduce yourself')}</AppText>
-      <AppText style={styles.subtitle} variant="caption1">
+      <AppText variant='title3' style={styles.title} color='white'>{t('Introduce yourself')}</AppText>
+      <AppText style={styles.subtitle} variant="caption1" color='neutral'>
         {t('Introduce yourself and let the universe guide you!')}
       </AppText>
 
@@ -273,21 +273,12 @@ const Onboarding: FC<{
 };
 
 const styles = StyleSheet.create({
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-    marginTop: 16,
-    fontFamily: fontFamilies.ARCHIVO.light,
-    color: COLORS.neutral,
-  },
   title: {
-    fontSize: 24,
     textAlign: 'center',
     marginBottom: 8,
   },
   subtitle: {
     textAlign: 'center',
-    color: COLORS.neutral,
     marginBottom: 32,
   },
   formContainer: {
@@ -313,14 +304,8 @@ const styles = StyleSheet.create({
   calendarIcon: {
     padding: 4,
   },
-  calendarText: {
-    fontSize: 18,
-  },
   timeIcon: {
     padding: 4,
-  },
-  timeText: {
-    fontSize: 18,
   },
 });
 

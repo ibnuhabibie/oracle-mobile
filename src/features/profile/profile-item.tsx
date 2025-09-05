@@ -27,7 +27,7 @@ const ProfileItem: FC<ProfileItemProps> = ({ title, icon, onPress, isLast }) => 
                 {icon}
                 <AppText variant="body1" style={styles.profileItemTitle} color="neutral">{t(title)}</AppText>
             </View>
-            <AppText variant="caption1" style={styles.chevron}>›</AppText>
+            <AppText variant="subtitle1" style={styles.chevron} color="neutral">›</AppText>
         </Pressable>
     )
 };
@@ -47,17 +47,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
     },
-    profileItemIcon: {
-        fontSize: 16,
-        marginRight: 16,
-        width: 20,
-    },
     profileItemTitle: {
         marginLeft: 12,
-    },
-    chevron: {
-        fontSize: 18,
-        color: '#CCC',
     },
 });
 

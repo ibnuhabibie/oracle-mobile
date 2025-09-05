@@ -47,8 +47,8 @@ const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
           <ShinyContainer>
             <SMSIcon />
           </ShinyContainer>
-          <AppText style={styles.title}>{t('VERIFICATION SUCCESS')}</AppText>
-          <AppText style={styles.subtitle} color='white'>
+          <AppText variant='subtitle2' color='primary' style={styles.title}>{t('VERIFICATION SUCCESS')}</AppText>
+          <AppText variant='caption1' style={styles.subtitle} color='white'>
             {t('VERIFICATION SUCCESS SUBTITLE')}
           </AppText>
         </View>
@@ -70,14 +70,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 18,
-    color: COLORS.primary,
-    fontFamily: fontFamilies.ARCHIVO.light,
     marginBottom: 10,
     marginTop: 24,
   },
   subtitle: {
-    fontSize: 14,
     textAlign: 'center',
     lineHeight: 20
   },

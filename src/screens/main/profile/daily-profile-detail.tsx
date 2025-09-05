@@ -22,9 +22,8 @@ function StarReview({ value }: { value?: number }) {
       {[...Array(4)].map((_, i) => (
         <AppText
           key={i}
-          variant="body1"
+          variant="title3"
           style={{
-            fontSize: 20,
             color: i < filled ? COLORS.primary : COLORS.neutral,
             marginHorizontal: 2,
           }}

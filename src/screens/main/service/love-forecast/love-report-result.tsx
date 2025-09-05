@@ -115,7 +115,7 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
                 <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
             ) : (
                 <>
-                    <AppText style={styles.forecastRange} color="neutral">
+                    <AppText variant='caption1' style={styles.forecastRange} color="neutral">
                         {t('loveReportResult.forecastFor', { range: forecastRange })}
                     </AppText>
                     <CardList content={result?.content} />
@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 8,
         marginBottom: 16,
-        fontSize: 14,
     },
 });
 

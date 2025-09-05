@@ -122,7 +122,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
             onBack={() => navigation.goBack()}
           />
           <View style={styles.dateSeparator}>
-            <AppText style={styles.dateSeparatorText}>
+            <AppText variant='caption1' color='neutral' style={styles.dateSeparatorText}>
               {formatDateToHeader(date)}
             </AppText>
           </View>
@@ -177,8 +177,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   dateSeparatorText: {
-    color: COLORS.neutral,
-    fontSize: 13,
     paddingHorizontal: 16,
     paddingVertical: 2,
     borderRadius: 8,

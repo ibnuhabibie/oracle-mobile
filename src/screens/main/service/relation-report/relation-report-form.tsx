@@ -290,7 +290,6 @@ const styles = StyleSheet.create({
   },
   error: {
     color: COLORS['error-dark'],
-    fontSize: 12,
     marginTop: 2,
   },
   buttonRow: {
