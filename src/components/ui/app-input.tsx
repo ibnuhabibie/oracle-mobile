@@ -4,6 +4,7 @@ import { Control, Controller, FieldValues, Path, RegisterOptions, FieldErrors } 
 
 import { AppText } from './app-text';
 import TextField from './text-field';
+import { scaleFont, scaleSize } from '../../utils/scale';
 
 
 interface AppInputProps<TFieldValues extends FieldValues> {
@@ -69,14 +70,14 @@ function AppInput<TFieldValues extends FieldValues>({
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 12, // Add some vertical spacing between fields
+        marginBottom: scaleSize(12), // Add some vertical spacing between fields
     },
     defaultInput: {
         backgroundColor: 'rgba(255, 255, 255, 0.13)',
     },
     label: {
-        fontSize: 16,
-        marginBottom: 8,
+        fontSize: scaleFont(16),
+        marginBottom: scaleSize(8),
         fontWeight: 'bold',
     },
     inputError: {
@@ -85,9 +86,9 @@ const styles = StyleSheet.create({
     },
     errorText: {
         color: 'red',
-        fontSize: 12,
-        marginTop: 4,
-        marginLeft: 5, // Indent error message slightly
+        fontSize: scaleFont(12),
+        marginTop: scaleSize(4),
+        marginLeft: scaleSize(5), // Indent error message slightly
     },
 });
 

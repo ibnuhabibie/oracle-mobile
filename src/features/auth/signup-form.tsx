@@ -11,6 +11,7 @@ import AppInput from "../../components/ui/app-input";
 import PasswordToggle from "../../components/ui/password-toggle";
 import { useAsyncStorage } from "../../hooks/use-storage";
 import { COLORS } from "../../constants/colors";
+import { scaleSize } from "../../utils/scale";
 
 const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -153,7 +154,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
 const styles = StyleSheet.create({
     signInButton: {
-        marginTop: 12,
+        marginTop: scaleSize(12),
         width: '100%',
     },
     appInput: {

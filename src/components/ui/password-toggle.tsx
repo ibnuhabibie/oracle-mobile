@@ -2,6 +2,7 @@ import React from 'react';
 import { Pressable } from 'react-native';
 import EyeIcon from '../icons/profile/eye-icon';
 import EyeCrossedIcon from '../icons/auth/eye-crossed-icon';
+import { scaleSize } from '../../utils/scale';
 
 interface PasswordToggleProps {
     showPassword: boolean;
@@ -12,7 +13,7 @@ interface PasswordToggleProps {
 const PasswordToggle: React.FC<PasswordToggleProps> = ({
     showPassword,
     onToggle,
-    iconSize = 24,
+    iconSize = scaleSize(24),
 }) => {
     return (
         <Pressable onPress={onToggle}>

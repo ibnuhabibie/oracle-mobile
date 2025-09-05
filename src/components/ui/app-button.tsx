@@ -12,6 +12,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from '../../constants/colors';
 import { fontFamilies } from '../../constants/fonts';
+import { scaleFont, scaleSize } from '../../utils/scale';
 
 type ButtonSize = 'big' | 'small';
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text';
@@ -39,10 +40,10 @@ export class AppButton extends Component<CustomButtonProps> {
     const { variant, size } = this.props;
 
     const base: ViewStyle = {
-      paddingHorizontal: 20,
-      height: size === 'big' ? 47 : 32,
+      paddingHorizontal: scaleSize(20),
+      height: size === 'big' ? scaleSize(47) : scaleSize(32),
       width: '100%',
-      borderRadius: 12,
+      borderRadius: scaleSize(12),
       justifyContent: 'center',
       alignItems: 'center',
       overflow: 'hidden', // for gradient border radius
@@ -82,7 +83,7 @@ export class AppButton extends Component<CustomButtonProps> {
     const { variant, size } = this.props;
 
     const base: TextStyle = {
-      fontSize: size === 'big' ? 16 : 12,
+      fontSize: size === 'big' ? scaleFont(16) : scaleFont(12),
       fontFamily: fontFamilies.ARCHIVO.regular,
       color: COLORS.white,
     };

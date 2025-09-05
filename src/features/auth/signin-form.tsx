@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert, StyleSheet, View, Platform } from "react-native";
+import { scaleSize } from "../../utils/scale";
 import { useTranslation } from "react-i18next";
 import DeviceInfo from "react-native-device-info";
 import messaging from "@react-native-firebase/messaging";
@@ -157,12 +158,13 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
 const styles = StyleSheet.create({
     signInButton: {
-        marginTop: 12,
+        marginTop: scaleSize(12),
         width: '100%',
     },
     appInput: {
         borderColor: COLORS['light-gray'],
         color: COLORS.red
+        // If you add fontSize, padding, margin here, use scaleFont/scaleSize
     }
 });
 

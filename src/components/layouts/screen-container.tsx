@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { COLORS } from '../../constants/colors';
 import RadialGradient from 'react-native-radial-gradient';
+import { scaleSize } from '../../utils/scale';
 
 type ScreenContainerProps = {
   children: React.ReactNode;
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: '#121010',
-    padding: 14,
+    padding: scaleSize(14),
     zIndex: 20,
     // Add shadow/elevation if needed
   },
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 16,
+    padding: scaleSize(16),
     width: '100%',
     position: 'relative',
   },
@@ -110,8 +111,8 @@ const styles = StyleSheet.create({
   },
   fabContainer: {
     position: 'absolute',
-    right: 24,
-    bottom: 36,
+    right: scaleSize(24),
+    bottom: scaleSize(36),
     zIndex: 200,
   },
 });

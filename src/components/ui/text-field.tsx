@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { fontFamilies } from '../../constants/fonts';
 import { COLORS } from '../../constants/colors';
+import { scaleFont, scaleSize } from '../../utils/scale';
 
 type TextFieldVariant = 'default' | 'error' | 'warning' | 'disabled';
 
@@ -65,27 +66,28 @@ const TextField = forwardRef<TextInput, TextFieldProps>(
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 47,
-    borderRadius: 12,
-    borderWidth: 1,
+    height: scaleSize(47),
+    borderRadius: scaleSize(12),
+    borderWidth: scaleSize(1),
     borderColor: '#6A6A6A',
-    paddingHorizontal: 20,
+    paddingHorizontal: scaleSize(20),
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: scaleFont(16),
     color: COLORS.white,
     width: '100%',
     fontFamily: fontFamilies.ARCHIVO.light,
+    lineHeight: scaleSize(47),
+    paddingVertical: 0,
   },
   disabledText: {
     color: '#999',
   },
   icon: {
-    marginLeft: 8,
+    marginLeft: scaleSize(8),
   },
 });
 
