@@ -12,6 +12,7 @@ import api from '../../../../utils/http';
 import { t } from 'i18next';
 import CalendarIcon from '../../../../components/icons/auth/calendar-icon';
 import { formatDate } from '../../../../utils/formatter';
+import { scaleSize, scaleFont } from '../../../../utils/scale';
 
 interface Country {
   name: string;
@@ -207,35 +208,25 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
       </View>
       <View style={styles.formGroup}>
         <AppText variant="caption3" style={styles.label} color="neutral">{t("Gender")}</AppText>
-        <View style={{ flexDirection: 'row', gap: 24 }}>
+        <View style={styles.genderRow}>
           <Pressable
-            style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
+            style={styles.genderOption}
             onPress={() => setValue('gender', 'Male')}
           >
-            <View style={{
-              width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: COLORS['radio-brown'],
-              alignItems: 'center', justifyContent: 'center'
-            }}>
+            <View style={styles.genderRadio}>
               {watchedGender === 'Male' && (
-                <View style={{
-                  width: 10, height: 10, borderRadius: 5, backgroundColor: COLORS['radio-brown']
-                }} />
+                <View style={styles.genderRadioSelected} />
               )}
             </View>
             <AppText variant="caption3" color="neutral">{t("Male")}</AppText>
           </Pressable>
           <Pressable
-            style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
+            style={styles.genderOption}
             onPress={() => setValue('gender', 'Female')}
           >
-            <View style={{
-              width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: COLORS['radio-brown'],
-              alignItems: 'center', justifyContent: 'center'
-            }}>
+            <View style={styles.genderRadio}>
               {watchedGender === 'Female' && (
-                <View style={{
-                  width: 10, height: 10, borderRadius: 5, backgroundColor: COLORS['radio-brown']
-                }} />
+                <View style={styles.genderRadioSelected} />
               )}
             </View>
             <AppText variant="caption3" color="neutral">{t("Female")}</AppText>
@@ -258,53 +249,73 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
 
 const styles = StyleSheet.create({
   formContainer: {
-    // backgroundColor: 'rgba(255,255,255,0.14)',
-    // borderRadius: 12,
-    // shadowColor: COLORS.primary,
-    // shadowOpacity: 0.08,
-    // shadowRadius: 12,
-    // shadowOffset: { width: 0, height: 2 },
     zIndex: 99,
-    padding: 20,
+    padding: scaleSize(20),
     width: '100%',
-    marginTop: 8,
+    marginTop: scaleSize(8),
   },
   formTitle: {
-    marginBottom: 16,
+    marginBottom: scaleSize(16),
     textAlign: 'center',
   },
   formGroup: {
-    marginBottom: 14,
+    marginBottom: scaleSize(14),
   },
   label: {
-    marginBottom: 4,
+    marginBottom: scaleSize(4),
   },
   input: {
-    borderWidth: 1,
+    borderWidth: scaleSize(1),
     borderColor: COLORS.primary,
-    borderRadius: 8,
-    padding: Platform.OS === 'ios' ? 12 : 8,
-    fontSize: 14,
+    borderRadius: scaleSize(8),
+    padding: Platform.OS === 'ios' ? scaleSize(12) : scaleSize(8),
+    fontSize: scaleFont(14),
     backgroundColor: COLORS['input-bg'],
     color: COLORS.black,
   },
   error: {
     color: COLORS['error-dark'],
-    marginTop: 2,
+    marginTop: scaleSize(2),
   },
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    gap: 12,
-    marginTop: 10,
+    gap: scaleSize(12),
+    marginTop: scaleSize(10),
   },
   cancelButton: {
-    marginRight: 8,
+    marginRight: scaleSize(8),
   },
   textField: {
     width: '100%',
     marginBottom: 0,
     backgroundColor: COLORS['overlay-white']
+  },
+  genderRow: {
+    flexDirection: 'row',
+    gap: scaleSize(24),
+    marginTop: scaleSize(4),
+    marginBottom: scaleSize(4),
+  },
+  genderOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: scaleSize(8),
+  },
+  genderRadio: {
+    width: scaleSize(20),
+    height: scaleSize(20),
+    borderRadius: scaleSize(10),
+    borderWidth: scaleSize(2),
+    borderColor: COLORS['radio-brown'],
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  genderRadioSelected: {
+    width: scaleSize(10),
+    height: scaleSize(10),
+    borderRadius: scaleSize(5),
+    backgroundColor: COLORS['radio-brown'],
   },
 });
 

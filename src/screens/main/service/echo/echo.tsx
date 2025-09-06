@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from "react-i18next";
+import { scaleSize } from '../../../../utils/scale';
 
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppText } from '../../../../components/ui/app-text';
@@ -145,20 +146,20 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     }
                 }
             />
-            <View style={{ marginTop: 14 }}>
+            <View style={styles.diaryListContainer}>
                 <AppText color='neutral'>{t('Recent Diaries')}</AppText>
                 {
                     loading ? (
-                        <AppText style={{ marginTop: 8 }}>{t('Loading...')}</AppText>
+                        <AppText style={styles.loadingText}>{t('Loading...')}</AppText>
                     ) : error && error !== 'No diary found.' ? (
-                        <AppText style={{ color: 'red', marginTop: 8 }}>{error}</AppText>
+                        <AppText style={styles.errorText}>{error}</AppText>
                     ) : diaries && diaries.length > 0 ? (
                         diaries.map((diary) => (
                             <Pressable key={diary.diary_id} onPress={() => toDetail(diary)} style={styles.diaryItem}>
                                 <View style={styles.diaryIconContainer}>
-                                    <CalendarIcon />
+                                    <CalendarIcon size={scaleSize(20)} />
                                 </View>
-                                <View style={{ flex: 1 }}>
+                                <View style={styles.diaryContentContainer}>
                                     <AppText variant='caption1' color='light-gray'>
                                         {diary.diary_date}
                                     </AppText>
@@ -190,82 +191,95 @@ const FloatingAddButton = ({ onPress }) => (
 const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
-        letterSpacing: 5,
-        lineHeight: 24,
-        marginTop: 40,
+        letterSpacing: scaleSize(5),
+        lineHeight: scaleSize(24),
+        marginTop: scaleSize(40),
         textTransform: 'uppercase'
     },
     subtitle: {
         textAlign: 'center',
-        marginTop: 10,
+        marginTop: scaleSize(10),
         maxWidth: '80%',
         marginHorizontal: 'auto'
     },
     calendar: {
         borderColor: 'rgba(255,255,255,0.14)',
         borderWidth: 1,
-        borderRadius: 12,
-        marginTop: 24,
+        borderRadius: scaleSize(12),
+        marginTop: scaleSize(24),
         backgroundColor: '#FFFFFF22',
     },
+    diaryListContainer: {
+        marginTop: scaleSize(14),
+    },
+    loadingText: {
+        marginTop: scaleSize(8),
+    },
+    errorText: {
+        color: 'red',
+        marginTop: scaleSize(8),
+    },
     diaryItem: {
-        padding: 14,
+        padding: scaleSize(14),
         borderWidth: 1,
         borderColor: COLORS.black,
-        borderRadius: 12,
-        marginTop: 8,
+        borderRadius: scaleSize(12),
+        marginTop: scaleSize(8),
         flexDirection: 'row',
-        gap: 14,
+        gap: scaleSize(14),
         backgroundColor: 'rgba(255,255,255,0.13)'
         // alignItems: 'center',
     },
     diaryIconContainer: {
-        width: 38,
-        height: 38,
+        width: scaleSize(38),
+        height: scaleSize(38),
         backgroundColor: COLORS.primary,
-        borderRadius: 8,
+        borderRadius: scaleSize(8),
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    diaryContentContainer: {
+        flex: 1,
     },
     emptyDiaryContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 32,
-        paddingHorizontal: 24,
+        marginTop: scaleSize(32),
+        paddingHorizontal: scaleSize(24),
     },
     emptyDiaryImage: {
-        width: 90,
-        height: 90,
-        marginBottom: 16,
+        width: scaleSize(90),
+        height: scaleSize(90),
+        marginBottom: scaleSize(16),
         opacity: 0.7,
     },
     emptyDiaryTitle: {
         fontWeight: '600',
-        marginBottom: 6,
+        marginBottom: scaleSize(6),
         textAlign: 'center',
     },
     emptyDiaryDesc: {
         textAlign: 'center',
-        lineHeight: 20,
+        lineHeight: scaleSize(20),
     },
     fabContainer: {
         position: 'absolute',
-        right: 24,
+        right: scaleSize(24),
         top: '80%',
         zIndex: 200,
     },
     fab: {
         backgroundColor: COLORS.primary,
-        width: 56,
-        height: 56,
-        borderRadius: 28,
+        width: scaleSize(56),
+        height: scaleSize(56),
+        borderRadius: scaleSize(28),
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 6,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: { width: 0, height: scaleSize(2) },
         shadowOpacity: 0.3,
-        shadowRadius: 4,
+        shadowRadius: scaleSize(4),
     },
     fabIcon: {
         fontWeight: 'bold',

@@ -129,7 +129,8 @@ const styles = StyleSheet.create({
   },
   cardsRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    gap: scaleSize(18, 18, 24),
     marginBottom: scaleSize(18, 18, 24),
   },
   cardTitle: {

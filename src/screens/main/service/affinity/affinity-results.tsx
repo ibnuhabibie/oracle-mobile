@@ -5,6 +5,7 @@ import {
     View,
     Image
 } from 'react-native';
+import { scaleSize } from '../../../../utils/scale';
 
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import ScreenContainer from '../../../../components/layouts/screen-container';
@@ -130,8 +131,8 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
                     <Image
                         source={getTarotImage(card.card_name)}
                         style={[
-                            { width: 150, height: 288, alignSelf: 'center', borderRadius: 8 },
-                            card.orientation === 'reversed' ? { transform: [{ rotate: '180deg' }] } : null
+                            styles.tarotImage,
+                            card.orientation === 'reversed' ? styles.reversedImage : null
                         ]}
                         resizeMode="contain"
                     />
@@ -169,26 +170,35 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
     resultContainer: {
-        gap: 16,
-        marginBottom: 12
+        gap: scaleSize(16),
+        marginBottom: scaleSize(12)
     },
     resultTitle: {
         textAlign: 'center',
-        marginVertical: 12,
-        lineHeight: 28
+        marginVertical: scaleSize(12),
+        lineHeight: scaleSize(28)
     },
     resultCard: {
-        padding: 12,
+        padding: scaleSize(12),
         borderColor: COLORS.black,
-        borderRadius: 12,
+        borderRadius: scaleSize(12),
         borderWidth: 1,
         backgroundColor: 'rgba(255,255,255,0.14)'
     },
     resultCardContent: {
         textAlign: 'center',
-        lineHeight: 20,
-        marginBottom: 12
-    }
+        lineHeight: scaleSize(20),
+        marginBottom: scaleSize(12)
+    },
+    tarotImage: {
+        width: scaleSize(150),
+        height: scaleSize(288),
+        alignSelf: 'center',
+        borderRadius: scaleSize(8),
+    },
+    reversedImage: {
+        transform: [{ rotate: '180deg' }],
+    },
 });
 
 export default AffinityResults;

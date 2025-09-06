@@ -29,6 +29,7 @@ import RelationReportIcon2 from '../../../../components/icons/services/relation-
 import RelationReportIcon3 from '../../../../components/icons/services/relation-report/relation-report-icon-3';
 import RelationReportIcon4 from '../../../../components/icons/services/relation-report/relation-report-icon-4';
 import RelationIcon from '../../../../components/icons/affinity/relation-icon';
+import { scaleSize, scaleFont } from '../../../../utils/scale';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -137,10 +138,9 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         Alert.alert('Error', 'Failed to fetch report status.');
     };
 
-    const { width: deviceWidth } = Dimensions.get('window');
-    const shinySize = deviceWidth < 350 ? 90 : deviceWidth < 400 ? 130 : 160;
-    const iconSize = deviceWidth < 350 ? 28 : deviceWidth < 400 ? 36 : 44;
-    const gridGap = deviceWidth < 350 ? 6 : deviceWidth < 400 ? 10 : 14;
+    const shinySize = scaleSize(160);
+    const iconSize = scaleSize(44);
+    const gridGap = scaleSize(14);
 
     return (
         <ScreenContainer
@@ -154,11 +154,11 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 !showForm ? (
                     <AppButton
                         title={
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <AppText color='white' style={{ marginRight: 4 }}>
+                            <View style={styles.buttonRow}>
+                                <AppText color='white' style={{ marginRight: scaleSize(4) }}>
                                     {t('relationReport.purchase', { cost })}
                                 </AppText>
-                                <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={18} />
+                                <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={scaleSize(18)} />
                             </View>
                         }
                         variant="primary"
@@ -173,8 +173,8 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             }
         >
             <AppText variant='subtitle1' style={styles.title} color='neutral'>{t('relationReport.title')}</AppText>
-            <ShinyContainer size={220} style={{ marginVertical: 20 }}>
-                <RelationReportIcon />
+            <ShinyContainer size={scaleSize(220)} style={styles.shinyContainer}>
+                <RelationReportIcon size={scaleSize(60)} />
             </ShinyContainer>
             <AppText style={styles.subtitle} variant='title4' color='primary'>
                 {t('relationReport.subtitle')}
@@ -207,7 +207,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                     <ActivityIndicator size="large" color={COLORS.primary} />
                 </View>
             )}
-            <View style={{ height: 60 }} />
+            <View style={styles.spacer} />
             <PurchaseAlertModal
                 visible={showPurchaseModal}
                 onContinue={handleContinue}
@@ -237,29 +237,29 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: 120,
+        minHeight: scaleSize(120),
         width: '100%',
     },
     title: {
         textAlign: 'center',
-        marginBottom: 18,
-        letterSpacing: 0.2,
+        marginBottom: scaleSize(18),
+        letterSpacing: scaleSize(0.2),
         textTransform: 'uppercase'
     },
     subtitle: {
         textAlign: 'center',
-        marginBottom: 8,
-        marginTop: 8,
+        marginBottom: scaleSize(8),
+        marginTop: scaleSize(8),
     },
     description: {
         textAlign: 'center',
-        marginVertical: 22,
-        lineHeight: 18,
+        marginVertical: scaleSize(22),
+        lineHeight: scaleSize(18),
     },
     sectionTitle: {
         textAlign: 'center',
-        marginVertical: 32,
-        letterSpacing: 0.2,
+        marginVertical: scaleSize(32),
+        letterSpacing: scaleSize(0.2),
     },
     grid: {
         flexDirection: 'row',
@@ -267,20 +267,30 @@ const styles = StyleSheet.create({
         // gap is set dynamically
     },
     card: {
-        padding: 12,
-        borderRadius: 12,
-        borderWidth: 1,
+        padding: scaleSize(12),
+        borderRadius: scaleSize(12),
+        borderWidth: scaleSize(1),
         borderColor: COLORS.black,
         width: '48%',
         backgroundColor: 'rgba(255,255,255,0.08)'
     },
     cardIconWrapper: {
-        marginBottom: 10,
+        marginBottom: scaleSize(10),
         alignItems: 'center',
         justifyContent: 'center',
     },
     cardLabel: {
-        marginTop: 12
+        marginTop: scaleSize(12)
+    },
+    buttonRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    shinyContainer: {
+        marginVertical: scaleSize(20),
+    },
+    spacer: {
+        height: scaleSize(60),
     },
 });
 

@@ -18,6 +18,7 @@ import { MainNavigatorParamList } from '../../../../navigators/types';
 import SendIcon from '../../../../components/icons/echo/send-icon';
 import api from '../../../../utils/http';
 import { formatDate, formatDateToHeader } from '../../../../utils/date';
+import { scaleSize, scaleFont } from '../../../../utils/scale';
 import ChatArea from '../../../../features/services/echo/chat-area';
 import Header from '../../../../components/ui/header';
 import ScreenContainer from '../../../../components/layouts/screen-container';
@@ -133,10 +134,10 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           keyboardVerticalOffset={16}
         >
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, marginBottom: 4 }}>
+          <View style={styles.adviceRow}>
             <AppText color='neutral'>Click on</AppText>
-            <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center' }}>
-              <AdviceIcon size={12} />
+            <View style={styles.adviceIconContainer}>
+              <AdviceIcon size={scaleSize(12)} />
             </View>
             <AppText color='neutral'>to get Genie advice</AppText>
           </View>
@@ -174,12 +175,12 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   dateSeparator: {
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingVertical: scaleSize(12),
   },
   dateSeparatorText: {
-    paddingHorizontal: 16,
-    paddingVertical: 2,
-    borderRadius: 8,
+    paddingHorizontal: scaleSize(16),
+    paddingVertical: scaleSize(2),
+    borderRadius: scaleSize(8),
   },
 
   inputBar: {
@@ -190,19 +191,19 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 'auto',
-    borderRadius: 12,
+    borderRadius: scaleSize(12),
     backgroundColor: 'rgba(255,255,255,0.13)',
-    borderWidth: 1,
+    borderWidth: scaleSize(1),
     borderColor: COLORS.black,
-    paddingHorizontal: 16,
-    fontSize: 15,
+    paddingHorizontal: scaleSize(16),
+    fontSize: scaleFont(15),
     color: COLORS.neutral,
-    marginRight: 8,
+    marginRight: scaleSize(8),
   },
   sendButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: scaleSize(40),
+    height: scaleSize(40),
+    borderRadius: scaleSize(20),
     backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
@@ -217,18 +218,32 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
+    padding: scaleSize(20),
+    borderRadius: scaleSize(10),
     width: '80%',
   },
   title: {
-    marginBottom: 10,
+    marginBottom: scaleSize(10),
     textAlign: 'center'
   },
   buttonGroup: {
-    marginTop: 20,
-    gap: 8,
+    marginTop: scaleSize(20),
+    gap: scaleSize(8),
     justifyContent: 'space-between',
+  },
+  adviceIconContainer: {
+    width: scaleSize(20),
+    height: scaleSize(20),
+    borderRadius: scaleSize(10),
+    backgroundColor: COLORS.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  adviceRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: scaleSize(2),
+    marginBottom: scaleSize(4),
   },
 });
 

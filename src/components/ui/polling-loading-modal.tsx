@@ -3,6 +3,7 @@ import { Modal, View, ActivityIndicator, StyleSheet, TouchableOpacity } from 're
 import { AppText } from './app-text';
 import api from '../../utils/http';
 import { COLORS } from '../../constants/colors';
+import { scaleSize, scaleFont } from '../../utils/scale';
 
 type PollingLoadingModalProps = {
   job_id: string;
@@ -23,7 +24,7 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
   onClose,
   pollIntervalMs = 1000,
 }) => {
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | null>(null);
   const isActive = useRef(false);
 
   useEffect(() => {
@@ -82,28 +83,27 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#3F3F3F80',
-    borderWidth: 1,
+    borderWidth: scaleSize(1),
     borderColor: COLORS.neutral,
-    padding: 24,
-    borderRadius: 12,
+    padding: scaleSize(24),
+    borderRadius: scaleSize(12),
     alignItems: 'center',
-    maxWidth: 350,
-
+    maxWidth: scaleSize(350),
   },
   text: {
-    marginTop: 16,
+    marginTop: scaleSize(16),
     textAlign: 'center',
   },
   info: {
-    marginTop: 12,
+    marginTop: scaleSize(12),
     textAlign: 'center',
   },
   closeButton: {
-    marginTop: 24,
+    marginTop: scaleSize(24),
     backgroundColor: '#eee',
-    paddingHorizontal: 24,
-    paddingVertical: 10,
-    borderRadius: 8,
+    paddingHorizontal: scaleSize(24),
+    paddingVertical: scaleSize(10),
+    borderRadius: scaleSize(8),
   },
   closeButtonText: {
     fontWeight: 'bold',

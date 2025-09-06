@@ -6,6 +6,7 @@ import { COLORS } from '../../../constants/colors';
 import AdviceIcon from '../../../components/icons/echo/advice-icon';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import GenieIcon from '../../../components/icons/echo/genie-icon';
+import { scaleSize, scaleFont } from '../../../utils/scale';
 
 interface Message {
   conversation_id: string;
@@ -19,6 +20,11 @@ interface ChatAreaProps {
   setModalVisible: (visible: boolean) => void;
 }
 
+interface UserProfile {
+  full_name?: string;
+  [key: string]: any;
+}
+
 const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisible }) => {
   const [initials, setInitials] = useState('');
   const { getUserProfile } = useAsyncStorage();
@@ -26,8 +32,8 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
   const { t } = useTranslation();
   useEffect(() => {
     const fetchInitials = async () => {
-      const profile = await getUserProfile();
-      let name = profile?.full_name;
+      const profile = await getUserProfile() as UserProfile;
+      let name = profile?.full_name ?? '';
 
       // Get first 2 non-space characters, uppercase
       const chars = name.replace(/\s+/g, '').slice(0, 2).toUpperCase();
@@ -56,7 +62,7 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
                       isUser ? (
                         <AppText variant='body1' style={styles.avatarText} color='neutral'>{initials}</AppText>
                       ) : (
-                        <GenieIcon />
+                        <GenieIcon size={scaleSize(16)} />
                       )
                     }
                   </View>
@@ -67,14 +73,23 @@ const ChatArea: React.FC<ChatAreaProps> = ({ messages, lastMessage, setModalVisi
                       : styles.bubbleAI
                   ]}>
                     {!isUser && <AppText style={{ fontWeight: 'bold', color: 'white' }}>{t("chatArea.geenieSays")}</AppText>}
-                    <AppText variant='body1' style={[styles.bubbleText, !isUser && { color: COLORS.white }]}>{item.content}</AppText>
+                    <AppText
+                      variant='body1'
+                      style={
+                        !isUser
+                          ? [styles.bubbleText, { color: COLORS.white }]
+                          : [styles.bubbleText]
+                      }
+                    >
+                      {item.content}
+                    </AppText>
                   </View>
                   {
                     isUser &&
                     messages[messages.length - 1]?.conversation_id === item.conversation_id &&
                     (
                       <Pressable style={styles.aiIconCircle} onPress={() => setModalVisible(true)}>
-                        <AdviceIcon />
+                        <AdviceIcon size={scaleSize(20)} />
                       </Pressable>
                     )
                   }
@@ -92,7 +107,7 @@ const styles = StyleSheet.create({
   chatArea: {
     flex: 1,
     position: 'relative',
-    marginBottom: 70,
+    marginBottom: scaleSize(70),
     // backgroundColor: 'blue'
   },
   chatContainer: {
@@ -102,37 +117,37 @@ const styles = StyleSheet.create({
   },
   messageRow: {
     flexDirection: 'row',
-    marginBottom: 16,
+    marginBottom: scaleSize(16),
     justifyContent: 'flex-start',
   },
   avatarCircle: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: scaleSize(32),
+    height: scaleSize(32),
+    borderRadius: scaleSize(16),
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 8,
-    marginTop: 8,
+    marginRight: scaleSize(8),
+    marginTop: scaleSize(8),
   },
   avatarText: {
     fontWeight: 'bold',
   },
   aiIconCircle: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: scaleSize(32),
+    height: scaleSize(32),
+    borderRadius: scaleSize(16),
     backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 8,
+    marginLeft: scaleSize(8),
     marginTop: 'auto'
   },
   bubble: {
     // maxWidth: '80%',
     // width: '100%',
     flex: 1,
-    padding: 14,
-    borderRadius: 16,
+    padding: scaleSize(14),
+    borderRadius: scaleSize(16),
     backgroundColor: 'rgba(255,255,255,0.28)',
   },
   bubbleUser: {
@@ -144,7 +159,7 @@ const styles = StyleSheet.create({
   },
   bubbleText: {
     color: COLORS.neutral,
-    lineHeight: 18
+    lineHeight: scaleSize(18)
   },
 });
 

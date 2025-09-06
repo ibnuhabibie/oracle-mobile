@@ -32,6 +32,7 @@ import LoveReportIcon5 from '../../../../components/icons/services/love-report/l
 import LoveReportIcon6 from '../../../../components/icons/services/love-report/love-report-icon-6';
 import LoveReportIcon7 from '../../../../components/icons/services/love-report/love-report-icon-7';
 import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
+import { scaleSize, scaleFont } from '../../../../utils/scale';
 
 type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveForecast'>;
 
@@ -132,10 +133,9 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
     Alert.alert(t('loveForecast.error'), t('loveForecast.fetchStatusFailed'));
   };
 
-  const { width: deviceWidth } = Dimensions.get('window');
-  const shinySize = deviceWidth < 350 ? 90 : deviceWidth < 400 ? 130 : 160;
-  const iconSize = deviceWidth < 350 ? 28 : deviceWidth < 400 ? 36 : 44;
-  const gridGap = deviceWidth < 350 ? 6 : deviceWidth < 400 ? 10 : 14;
+  const shinySize = scaleSize(160);
+  const iconSize = scaleSize(44);
+  const gridGap = scaleSize(14);
 
   return (
     <ScreenContainer
@@ -148,9 +148,9 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
       floatingFooter={
         <AppButton
           title={
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={styles.buttonRow}>
               <AppText color='white' style={{ marginRight: 4 }}>{t('loveForecast.purchase', { cost })}</AppText>
-              <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={18} />
+              <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={scaleSize(18)} />
             </View>
           }
           variant="primary"
@@ -159,8 +159,8 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
       }
     >
       <AppText variant='subtitle1' style={styles.title} color='white'>{t('loveForecast.title')}</AppText>
-      <ShinyContainer size={220} style={{ marginVertical: 20 }}>
-        <LoveReportIcon />
+      <ShinyContainer size={scaleSize(220)} style={{ marginVertical: scaleSize(20) }}>
+        <LoveReportIcon size={scaleSize(60)} />
       </ShinyContainer>
       <AppText style={styles.subtitle} variant='title4' color='primary'>
         {t('loveForecast.subtitle')}
@@ -171,13 +171,13 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
       <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('loveForecast.sectionTitle')}</AppText>
 
       {iconsReady ? (
-        <View style={[styles.grid, { gap: gridGap }]}>
+        <View style={[styles.grid, { gap: scaleSize(gridGap) }]}>
           {
             CARD_DATA.map((card, idx) => (
               <View key={idx} style={styles.card}>
                 <View style={styles.cardIconWrapper}>
-                  <ShinyContainer size={shinySize}>
-                    {React.createElement(card.icon, { size: iconSize, color: 'white' })}
+                  <ShinyContainer size={scaleSize(shinySize)}>
+                    {React.createElement(card.icon, { size: scaleSize(iconSize), color: 'white' })}
                   </ShinyContainer>
                 </View>
                 <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
@@ -190,7 +190,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
           <ActivityIndicator size="large" color={COLORS.primary} />
         </View>
       )}
-      <View style={{ height: 80 }} />
+      <View style={styles.spacer} />
       <PurchaseAlertModal
         visible={showPurchaseModal}
         onContinue={handleContinue}
@@ -220,28 +220,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: 120,
+    minHeight: scaleSize(120),
     width: '100%',
   },
   title: {
     textAlign: 'center',
-    marginBottom: 18,
-    letterSpacing: 0.2,
+    marginBottom: scaleSize(18),
+    letterSpacing: scaleSize(0.2),
   },
   subtitle: {
     textAlign: 'center',
-    marginBottom: 8,
-    marginTop: 8,
+    marginBottom: scaleSize(8),
+    marginTop: scaleSize(8),
   },
   description: {
     textAlign: 'center',
-    marginVertical: 22,
-    lineHeight: 18,
+    marginVertical: scaleSize(22),
+    lineHeight: scaleSize(18),
   },
   sectionTitle: {
     textAlign: 'center',
-    marginVertical: 32,
-    letterSpacing: 0.2,
+    marginVertical: scaleSize(32),
+    letterSpacing: scaleSize(0.2),
   },
   grid: {
     flexDirection: 'row',
@@ -249,20 +249,27 @@ const styles = StyleSheet.create({
     // gap is set dynamically
   },
   card: {
-    padding: 12,
-    borderRadius: 12,
-    borderWidth: 1,
+    padding: scaleSize(12),
+    borderRadius: scaleSize(12),
+    borderWidth: scaleSize(1),
     borderColor: COLORS.black,
     width: '48%',
     backgroundColor: 'rgba(255,255,255,0.08)'
   },
   cardIconWrapper: {
-    marginBottom: 10,
+    marginBottom: scaleSize(10),
     alignItems: 'center',
     justifyContent: 'center',
   },
   cardLabel: {
-    marginTop: 12
+    marginTop: scaleSize(12)
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  spacer: {
+    height: scaleSize(80),
   },
 });
 

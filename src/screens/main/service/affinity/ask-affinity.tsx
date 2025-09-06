@@ -15,6 +15,7 @@ import api from '../../../../utils/http';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import { rgbaColor } from 'react-native-reanimated/lib/typescript/Colors';
+import { scaleSize } from '../../../../utils/scale';
 
 type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffinity'>;
 
@@ -78,17 +79,12 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             <AppText style={styles.subtitle} variant='caption1' color='white'>{t('Unsure what to do next? Affinity is here to help —  ask anything.')}</AppText>
             <Image
                 source={localImage}
-                style={{
-                    width: screenWidth,
-                    height: undefined,
-                    aspectRatio,
-                    marginTop: 20,
-                }}
+                style={[styles.bannerImage, { aspectRatio }]}
                 resizeMode="contain"
             />
             <View style={styles.infoCard}>
                 <AppText color='primary'>{t('How to ask the question?')}</AppText>
-                <AppText style={{ lineHeight: 24 }} variant='caption3' color='white'>
+                <AppText style={styles.infoCardText} variant='caption3' color='white'>
                     {t('ask_affinity_instructions')}
                 </AppText>
             </View>
@@ -102,13 +98,13 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                     errors={errors}
                 />
                 {apiError ? (
-                    <AppText style={{ color: 'red', textAlign: 'center', marginVertical: 8 }}>{t(apiError)}</AppText>
+                    <AppText style={styles.apiErrorText}>{t(apiError)}</AppText>
                 ) : null}
                 <AppButton
                     title={
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <AppText color='white' style={{ marginRight: 4 }}>{t('Purchase for {{cost}}', { cost })}</AppText>
-                            <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={18} />
+                        <View style={styles.purchaseButtonContent}>
+                            <AppText color='white' style={styles.purchaseButtonText}>{t('Purchase for {{cost}}', { cost })}</AppText>
+                            <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={scaleSize(18)} />
                         </View>
                     }
                     onPress={async () => {
@@ -135,31 +131,50 @@ const styles = StyleSheet.create({
     },
     title: {
         textAlign: 'center',
-        letterSpacing: 5,
-        lineHeight: 24,
-        marginTop: 40,
+        letterSpacing: scaleSize(5),
+        lineHeight: scaleSize(24),
+        marginTop: scaleSize(40),
         textTransform: 'uppercase'
     },
     subtitle: {
         textAlign: 'center',
-        marginTop: 10,
+        marginTop: scaleSize(10),
         maxWidth: '80%',
         alignSelf: 'center'
     },
     infoCard: {
-        marginHorizontal: 16,
-        padding: 14,
-        borderRadius: 8,
+        marginHorizontal: scaleSize(16),
+        padding: scaleSize(14),
+        borderRadius: scaleSize(8),
         backgroundColor: 'rgba(255, 255, 255, 0.14)'
     },
+    infoCardText: {
+        lineHeight: scaleSize(24),
+    },
     formContainer: {
-        padding: 12,
-        paddingTop: 8,
+        padding: scaleSize(12),
+        paddingTop: scaleSize(8),
     },
     formTitle: {
         textAlign: 'center',
-        marginTop: 14
-    }
+        marginTop: scaleSize(14)
+    },
+    apiErrorText: {
+        color: 'red',
+        textAlign: 'center',
+        marginVertical: scaleSize(8),
+    },
+    purchaseButtonContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    purchaseButtonText: {
+        marginRight: scaleSize(4),
+    },
+    bannerImage: {
+        width: Dimensions.get('window').width,
+        marginTop: scaleSize(20),
+    },
 });
 
 export default AskAffinity;

@@ -8,6 +8,7 @@ import CoinIcon from '../icons/profile/coin-icon';
 import { useNavigation } from '@react-navigation/native';
 import { serviceTypeTranslationKeys } from '../../constants/app';
 import { useTranslation, Trans } from 'react-i18next';
+import { scaleSize } from '../../utils/scale';
 
 interface PurchaseAlertModalProps {
   visible: boolean;
@@ -87,8 +88,8 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
     creditType: string;
     userCredit: number;
   }> = ({ creditType, userCredit }) => (
-    <View style={[styles.textCoinWrapper, { marginTop: 14 }]}>
-      <AppText style={{ textAlign: 'center' }} color='neutral'>
+    <View style={[styles.textCoinWrapper, styles.creditTextMargin]}>
+      <AppText style={styles.centerText} color='neutral'>
         <Trans
           i18nKey="purchaseAlert.yourCredits"
           values={{
@@ -97,7 +98,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
           }}
         />
       </AppText>
-      <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+      <CoinIcon size={scaleSize(19)} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
     </View>
   );
 
@@ -115,13 +116,13 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
                   (
                     <>
                       <View style={styles.textCoinWrapper}>
-                        <AppText style={{ textAlign: 'center', lineHeight: 22 }} color='white'>
+                        <AppText style={styles.costInfoText} color='white'>
                           <Trans
                             i18nKey="purchaseAlert.costInfo"
                             values={{ cost, service: getServiceTypeLabel(service) }}
                           />
                         </AppText>
-                        <CoinIcon size={19} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+                        <CoinIcon size={scaleSize(19)} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
                       </View>
                       <PurchaseAlertCreditText
                         creditType={creditType}
@@ -140,7 +141,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
                   ) :
                   (
                     <>
-                      <AppText style={{ textAlign: 'center', lineHeight: 22 }} color='neutral'>
+                      <AppText style={styles.insufficientText} color='neutral'>
                         <Trans
                           i18nKey="purchaseAlert.insufficient"
                           values={{
@@ -177,7 +178,21 @@ const styles = StyleSheet.create({
   textCoinWrapper: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: '3'
+    gap: scaleSize(3),
+  },
+  creditTextMargin: {
+    marginTop: scaleSize(14),
+  },
+  centerText: {
+    textAlign: 'center',
+  },
+  costInfoText: {
+    textAlign: 'center',
+    lineHeight: scaleSize(22),
+  },
+  insufficientText: {
+    textAlign: 'center',
+    lineHeight: scaleSize(22),
   },
   modalContainer: {
     flex: 1,
@@ -189,24 +204,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#3F3F3F80',
     borderWidth: 1,
     borderColor: COLORS.neutral,
-    borderRadius: 16,
-    padding: 24,
-    width: 320,
+    borderRadius: scaleSize(16),
+    padding: scaleSize(24),
+    width: scaleSize(320),
     alignItems: 'center',
     shadowColor: COLORS.primary,
     shadowOpacity: 0.12,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: scaleSize(16),
+    shadowOffset: { width: 0, height: scaleSize(4) },
   },
   title: {
-    marginBottom: 12,
+    marginBottom: scaleSize(12),
     textAlign: 'center',
-    letterSpacing: 0.2,
+    letterSpacing: scaleSize(0.2),
   },
   buttonGroup: {
-    marginTop: 18,
+    marginTop: scaleSize(18),
     width: '100%',
-    gap: 12,
+    gap: scaleSize(12),
   },
 });
 
