@@ -255,7 +255,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("Others")}</AppText>
         <ProfileItem
           title="About Us"
-          icon={<BuildingIcon />}
+          icon={<BuildingIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('about-us')}
         />
         <ProfileItem

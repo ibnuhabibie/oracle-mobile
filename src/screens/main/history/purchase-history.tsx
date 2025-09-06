@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { AppText } from '../../../components/ui/app-text';
 
@@ -13,6 +13,7 @@ import TopupReceiptModal from '../../../features/history/topup-receipt-modal';
 import UsageReceiptModal from '../../../features/history/usage-receipt-modal';
 import { COLORS } from '../../../constants/colors';
 import { scaleFont, scaleSize } from '../../../utils/scale';
+import { useFocusEffect } from '@react-navigation/native';
 
 type PurchaseHistoryProps = NativeStackScreenProps<MainNavigatorParamList, 'PurchaseHistory'>;
 
@@ -24,6 +25,12 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
 
   const [usageModalVisible, setUsageModalVisible] = useState(false);
   const [usageSelectedItem, setUsageSelectedItem] = useState<any>(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => setUsageModalVisible(false);
+    }, [])
+  );
 
   const handleShowReceipt = (item: any) => {
     setSelectedItem(item);

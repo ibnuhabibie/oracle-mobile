@@ -150,7 +150,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
               placeholderTextColor="#BDBDBD"
             />
             <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-              <SendIcon />
+              <SendIcon size={scaleSize(20)} />
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

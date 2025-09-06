@@ -18,6 +18,7 @@ import LoveReportIcon7 from '../../../../components/icons/services/love-report/l
 import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
 import { downloadPdf } from '../../../../utils/http';
 import { COLORS } from '../../../../constants/colors';
+import { scaleSize, scaleFont } from '../../../../utils/scale';
 
 type LoveReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveReportResult'>;
 
@@ -112,14 +113,14 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
             }
         >
             {!ready ? (
-                <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
+                <ActivityIndicator size="large" style={styles.loadingIndicator} color={COLORS.primary} />
             ) : (
                 <>
                     <AppText variant='caption1' style={styles.forecastRange} color="neutral">
                         {t('loveReportResult.forecastFor', { range: forecastRange })}
                     </AppText>
                     <CardList content={result?.content} />
-                    <View style={{ height: 60 }} />
+                    <View style={styles.spacer} />
                 </>
             )}
         </ScreenContainer>
@@ -129,8 +130,14 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
 const styles = StyleSheet.create({
     forecastRange: {
         textAlign: 'center',
-        marginTop: 8,
-        marginBottom: 16,
+        marginTop: scaleSize(8),
+        marginBottom: scaleSize(16),
+    },
+    loadingIndicator: {
+        margin: scaleSize(32),
+    },
+    spacer: {
+        height: scaleSize(60),
     },
 });
 
