@@ -164,7 +164,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
             <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('fortuneReport.sectionTitle')}</AppText>
 
             {iconsReady ? (
-                <View style={[styles.grid, { gap: gridGap }]}>
+                <View style={styles.grid}>
                     {
                         CARD_DATA.map((card, idx) => (
                             <View key={idx} style={styles.card}>
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: scaleSize(14),
+        justifyContent: 'space-between'
     },
     card: {
         padding: scaleSize(12),
@@ -251,7 +251,8 @@ const styles = StyleSheet.create({
         borderWidth: scaleSize(1),
         borderColor: COLORS.black,
         width: '48%',
-        backgroundColor: 'rgba(255,255,255,0.08)'
+        backgroundColor: 'rgba(255,255,255,0.08)',
+        marginBottom: '4%'
     },
     cardIconWrapper: {
         marginBottom: scaleSize(10),

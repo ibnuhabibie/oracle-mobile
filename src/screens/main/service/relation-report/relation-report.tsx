@@ -138,7 +138,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         Alert.alert('Error', 'Failed to fetch report status.');
     };
 
-    const shinySize = scaleSize(160);
+    const shinySize = scaleSize(140);
     const iconSize = scaleSize(44);
     const gridGap = scaleSize(14);
 
@@ -186,7 +186,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             <AppText style={styles.sectionTitle} variant='caption2' color='primary'>{t('relationReport.tellUsMore')}</AppText>
 
             {iconsReady ? (
-                <View style={[styles.grid, { gap: gridGap }]}>
+                <View style={styles.grid}>
                     {
                         CARD_DATA.map((card, idx) => (
                             <View key={idx} style={styles.card}>
@@ -264,6 +264,7 @@ const styles = StyleSheet.create({
     grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        justifyContent: 'space-between'
         // gap is set dynamically
     },
     card: {
@@ -272,7 +273,8 @@ const styles = StyleSheet.create({
         borderWidth: scaleSize(1),
         borderColor: COLORS.black,
         width: '48%',
-        backgroundColor: 'rgba(255,255,255,0.08)'
+        backgroundColor: 'rgba(255,255,255,0.08)',
+        marginBottom: '4%'
     },
     cardIconWrapper: {
         marginBottom: scaleSize(10),

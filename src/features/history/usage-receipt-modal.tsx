@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     borderRadius: scaleSize(12, 12, 16),
     padding: scaleSize(14, 14, 20),
     width: "90%",
-    maxWidth: scaleSize(240, 240, 340),
+    // maxWidth: scaleSize(240, 240, 340),
     elevation: 8,
   },
   modalHeader: {

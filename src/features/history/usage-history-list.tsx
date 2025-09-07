@@ -123,7 +123,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
                 onPress={() => onItemPress?.(item)}
             >
                 <View style={styles.iconContainer}>
-                    <CommentsIcon size={scaleSize(20)} />
+                    <CommentsIcon size={scaleSize(16)} />
                 </View>
                 <View style={{ flex: 1 }}>
                     <AppText variant="body2" style={styles.serviceType} color="neutral">

@@ -94,7 +94,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                 onPress={() => onItemPress?.(item)}
             >
                 <View style={styles.iconContainer}>
-                    <CartIcon size={scaleSize(18)} />
+                    <CartIcon size={scaleSize(16)} />
                 </View>
                 <View style={{ flex: 1 }}>
                     <View style={styles.row}>
