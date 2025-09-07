@@ -78,7 +78,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
           mode="parallax"
           modeConfig={{
             parallaxScrollingScale: 0.6,
-            parallaxScrollingOffset: scaleSize(200),
+            parallaxScrollingOffset: scaleSize(190),
           }}
           onProgressChange={progress}
           renderItem={
@@ -106,9 +106,9 @@ const styles = StyleSheet.create({
     fontSize: scaleFont(16, 12, 20),
   },
   carouselContainer: {
-    marginTop: scaleSize(-30, -30, 0),
+    marginTop: scaleSize(-80, -80, 0),
     overflow: 'hidden',
-    height: scaleSize(550),
+    height: scaleSize(450),
   },
   carouselStyle: {
     // width will be set dynamically in render
