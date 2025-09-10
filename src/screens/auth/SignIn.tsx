@@ -27,13 +27,13 @@ const SignIn: FC<SignInProps> = ({ navigation }) => {
 
   const onSuccess = (user: any) => {
     if (!user.is_email_verified) {
-      navigation.navigate('OtpVerification', { email: user.email });
+      navigation.replace('OtpVerification', { email: user.email });
     } else if (!isProfileCompleted(user)) {
-      navigation.navigate('Onboarding');
+      navigation.replace('Onboarding');
     } else if (!user.mbti_profile) {
-      navigation.navigate('MbtiQuiz');
+      navigation.replace('MbtiQuiz');
     } else {
-      navigation.navigate('Tabs');
+      navigation.replace('Tabs');
     }
   };
 

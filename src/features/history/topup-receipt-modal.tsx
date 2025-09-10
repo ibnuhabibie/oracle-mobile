@@ -52,7 +52,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                             <AppText variant="body1" style={styles.modalSectionTitle} color="neutral">{t("ORDER ITEMS")}</AppText>
                             <View style={styles.modalRow}>
                                 <View style={styles.modalItemIcon}>
-                                    <CoinIcon size={scaleSize(16, 14, 20)} color={item.topup_type == 'package' ? 'red' : "#E0AE1E"} />
+                                    <CoinIcon size={scaleSize(16, 14, 20)} type={item.topup_type == 'package' ? 'silver' : 'gold'} />
                                 </View>
                                 <AppText variant="body1" style={styles.modalItemQty} color="neutral">
                                     {item.package?.name || item.subscription?.name || item.topup_type}
@@ -83,21 +83,21 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                                 <AppText variant="caption1" color="neutral">{t("PREVIOUS POINTS")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="neutral">{item.credit_journal.credits_before}</AppText>
-                                                    <CoinIcon size={scaleSize(10, 10, 14)} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                    <CoinIcon size={scaleSize(10, 10, 14)} type={item.topup_type == 'package' ? 'silver' : 'gold'} />
                                                 </View>
                                             </View>
                                             <View style={styles.modalRow}>
                                                 <AppText variant="caption1" color="neutral">{t("POINTS ADDED")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="green">+{item.credit_journal.credits_used}</AppText>
-                                                    <CoinIcon size={scaleSize(10, 10, 14)} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                    <CoinIcon size={scaleSize(10, 10, 14)} type={item.topup_type == 'package' ? 'silver' : 'gold'} />
                                                 </View>
                                             </View>
                                             <View style={styles.modalRow}>
                                                 <AppText variant="caption1" color="neutral">{t("TOTAL POINTS")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="neutral">{item.credit_journal.credits_after}</AppText>
-                                                    <CoinIcon size={scaleSize(10, 10, 14)} color={item.topup_type == 'package' ? "red" : "#E0AE1E"} />
+                                                    <CoinIcon size={scaleSize(10, 10, 14)} type={item.topup_type == 'package' ? 'silver' : 'gold'} />
                                                 </View>
                                             </View>
                                         </>

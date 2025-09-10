@@ -4,6 +4,7 @@ import { AppText } from './app-text';
 import api from '../../utils/http';
 import { COLORS } from '../../constants/colors';
 import { scaleSize, scaleFont } from '../../utils/scale';
+import { useTranslation } from 'react-i18next';
 
 type PollingLoadingModalProps = {
   job_id: string;
@@ -56,6 +57,8 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
     };
   }, [visible, job_id, pollIntervalMs, onResult, onError]);
 
+  const { t } = useTranslation();
+
   return (
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.overlay}>
@@ -63,7 +66,7 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
           <ActivityIndicator size="large" color={COLORS.neutral} />
           <AppText variant="body1" style={styles.text} color='neutral'>{message}</AppText>
           <AppText variant="caption1" style={styles.info} color='neutral'>
-            It’ll take a few minutes. Feel free to close this window—we’ll ping you when it’s ready.
+            {t('polling.info')}
           </AppText>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
             <AppText variant="body1" style={styles.closeButtonText} color='black'>Close</AppText>

@@ -18,7 +18,7 @@
     "SIGN UP SUBTITLE": "宇宙がささやく。\n参加して運命を見つけましょう。",
     "ALREADY HAVE AN ACCOUNT": "すでにアカウントをお持ちですか？",
     "NAME IS REQUIRED": "名前は必須です",
-    "NAME MIN LENGTH": "名前は2文字以上で入力してください",
+    "NAME MIN LENGTH": "名前は3文字以上で入力してください",
     "PLEASE CONFIRM PASSWORD": "パスワードを確認してください",
     "PASSWORDS DO NOT MATCH": "パスワードが一致しません",
     "NAME": "名前",
@@ -261,6 +261,14 @@
     "fortuneReportResult": {
         "header": "運勢レポート {{year}}",
         "downloadPdf": "PDFとしてダウンロード"
+    },
+    "polling": {
+        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+    },
+    "mbtiQuiz": {
+        "title": "What’s your MBTI?",
+        "subtitle": "Quick test to discover your type!",
+        "button": "Find Out"
     },
     "relationReportResult": {
         "header": "関係の相性",

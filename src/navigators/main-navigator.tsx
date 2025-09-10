@@ -49,6 +49,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<MainNavigatorParamList>();
 
 import { scaleFont, scaleSize } from '../utils/scale';
+import Toast from 'react-native-toast-message';
 
 const TabNavigator = () => (
   <Tab.Navigator
@@ -165,6 +166,11 @@ const MainNavigator = () => {
         }
       } catch (err) {
         await clearStorage()
+        Toast.show({
+          type: 'info',
+          text1: 'Session expired',
+          text2: 'Please log in again.'
+        });
         setInitialRoute('Welcome');
       }
     };

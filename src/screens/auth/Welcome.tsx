@@ -1,11 +1,12 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Animated, StyleSheet, View, BackHandler } from 'react-native';
 import Video from 'react-native-video';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { MainNavigatorParamList } from '../../navigators/types';
 import { COLORS } from '../../constants/colors';
+import ScreenContainer from '../../components/layouts/screen-container';
 
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
@@ -26,13 +27,13 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
       console.log(language, 'language');
 
       if (language) {
-        navigation.navigate('SignIn');
+        navigation.replace('SignIn');
       } else {
-        navigation.navigate('LanguageSelection');
+        navigation.replace('LanguageSelection');
       }
     } catch (error) {
       console.log(error);
-      navigation.navigate('LanguageSelection');
+      navigation.replace('LanguageSelection');
     }
   };
 

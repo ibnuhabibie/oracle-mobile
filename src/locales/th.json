@@ -20,7 +20,7 @@
     "SIGN UP SUBTITLE": "จักรวาลกระซิบ.\nเข้าร่วมและค้นพบโชคชะตาของคุณ",
     "ALREADY HAVE AN ACCOUNT": "มีบัญชีอยู่แล้ว?",
     "NAME IS REQUIRED": "ต้องระบุชื่อ",
-    "NAME MIN LENGTH": "ชื่อต้องมีอย่างน้อย 2 ตัวอักษร",
+    "NAME MIN LENGTH": "ชื่อต้องมีอย่างน้อย 3 ตัวอักษร",
     "PLEASE CONFIRM PASSWORD": "กรุณายืนยันรหัสผ่าน",
     "PASSWORDS DO NOT MATCH": "รหัสผ่านไม่ตรงกัน",
     "NAME": "ชื่อ",
@@ -263,6 +263,14 @@
     "fortuneReportResult": {
         "header": "รายงานดวงชะตา {{year}}",
         "downloadPdf": "ดาวน์โหลดเป็น PDF"
+    },
+    "polling": {
+        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+    },
+    "mbtiQuiz": {
+        "title": "What’s your MBTI?",
+        "subtitle": "Quick test to discover your type!",
+        "button": "Find Out"
     },
     "relationReportResult": {
         "header": "ความเข้ากันได้ของความสัมพันธ์",

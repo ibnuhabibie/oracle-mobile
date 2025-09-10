@@ -79,8 +79,8 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             <AppText style={styles.subtitle} variant='caption1' color='white'>{t('Unsure what to do next? Affinity is here to help —  ask anything.')}</AppText>
             <Image
                 source={localImage}
-                style={[styles.bannerImage, { aspectRatio }]}
-                resizeMode="contain"
+                style={styles.bannerImage}
+                // resizeMode="contain"
             />
             <View style={styles.infoCard}>
                 <AppText color='primary'>{t('How to ask the question?')}</AppText>
@@ -104,7 +104,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                     title={
                         <View style={styles.purchaseButtonContent}>
                             <AppText color='white' style={styles.purchaseButtonText}>{t('Purchase for {{cost}}', { cost })}</AppText>
-                            <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={scaleSize(18)} />
+                            <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
                         </View>
                     }
                     onPress={async () => {

@@ -86,6 +86,8 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         try {
             const response = await api.post('/v1/affinity/relationship-report', payload);
             setShowPurchaseModal(false);
+            setShowForm(false);
+
             // Expecting response.data.job_id
             const jobId = response?.data?.job_id;
             if (jobId) {
@@ -158,7 +160,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                                 <AppText color='white' style={{ marginRight: scaleSize(4) }}>
                                     {t('relationReport.purchase', { cost })}
                                 </AppText>
-                                <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={scaleSize(18)} />
+                                <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
                             </View>
                         }
                         variant="primary"

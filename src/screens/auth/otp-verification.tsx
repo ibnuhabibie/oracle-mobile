@@ -27,7 +27,7 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
   };
 
   const { t } = useTranslation();
-  const { formatted, start, timeLeft } = useOtpTimer(5);
+  const { formatted, start, timeLeft } = useOtpTimer(180);
   const otpInputRef = useRef();
 
   const [otp, setOtp] = useState<string | null>(null);

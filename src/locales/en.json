@@ -20,7 +20,7 @@
     "SIGN UP SUBTITLE": "The cosmos whispers.\nJoin & uncover your destiny.",
     "ALREADY HAVE AN ACCOUNT": "Already have an account?",
     "NAME IS REQUIRED": "Name is required",
-    "NAME MIN LENGTH": "Name must be at least 2 characters",
+    "NAME MIN LENGTH": "Name must be at least 3 characters",
     "PLEASE CONFIRM PASSWORD": "Please confirm your password",
     "PASSWORDS DO NOT MATCH": "Passwords do not match",
     "NAME": "Name",
@@ -38,7 +38,7 @@
     "LOVE FORECAST": "Love Forecast",
     "FORTUNE REPORT": "Fortune Report",
     "RELATION COMPATIBILITY": "Relation Compatibility",
-    "ADVICE GENIE": "Advice Genie",
+    "ADVICE GENIE": "Genie Advice",
     "USAGE HISTORY DETAILS": "View Details",
     "NO USAGE HISTORY FOUND": "No usage history found.",
     "OUR PACKAGES": "Our Packages",
@@ -121,6 +121,14 @@
     "fortuneReportResult": {
         "header": "Fortune Report {{year}}",
         "downloadPdf": "Download as PDF"
+    },
+    "polling": {
+        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+    },
+    "mbtiQuiz": {
+        "title": "What’s your MBTI?",
+        "subtitle": "Quick test to discover your type!",
+        "button": "Find Out"
     },
     "relationReportResult": {
         "header": "Relationship Compatibility",
@@ -274,7 +282,7 @@
             "personalized_love_forecast_12mth": "Love Forecast",
             "transit_report": "Fortune Report",
             "relationship_compatibility": "Relation Compatibility",
-            "ask_secret_diary": "Advice Genie"
+            "ask_secret_diary": "Genie Advice"
         }
     }
 }

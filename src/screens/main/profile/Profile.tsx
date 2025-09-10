@@ -1,6 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
+import { InteractionManager } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Toast from 'react-native-toast-message';
 import {
@@ -70,7 +71,10 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      init();
+      const task = InteractionManager.runAfterInteractions(() => {
+        init();
+      });
+      return () => task.cancel();
     }, [])
   );
 
@@ -97,7 +101,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     navigation.push('PurchaseHistory');
   };
 
-  const handleContent = (content) => {
+  const handleContent = (content: string) => {
     let title = 'About Us'
     if (content === 'terms-conditions') {
       title = 'Terms & Conditions'
@@ -128,10 +132,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       await api.post(`/v1/users/auth/logout`);
       await AsyncStorage.removeItem('user_profile');
       await AsyncStorage.removeItem('auth_token');
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Welcome' }],
-      });
+      navigation.replace('Welcome');
     } catch (error) {
       console.error('Logout failed:', error);
     }
@@ -194,15 +195,14 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       </View>
 
       {
-        !user?.mbti_profile &&
-        (
-          < View style={styles.mbtiQuizSection}>
+        user && !user.mbti_profile && (
+          <View style={styles.mbtiQuizSection}>
             <CommentUserIcon size={scaleSize(20, 16, 26)} />
-            <View style={{ flex: 1, marginLeft: scaleSize(4) }}>
-              <AppText variant='caption1' color='neutral' style={{ fontSize: scaleFont(12, 10, 16) }}>What’s your MBTI?</AppText>
-              <AppText variant='tiny1' color='neutral' style={{ fontSize: scaleFont(10, 8, 14) }}>Quick test to discover your type!</AppText>
+            <View style={styles.mbtiQuizTextContainer}>
+              <AppText variant='caption1' color='neutral' style={{ fontSize: scaleFont(12, 10, 16) }}>{t("mbtiQuiz.title")}</AppText>
+              <AppText variant='tiny1' color='neutral' style={{ fontSize: scaleFont(10, 8, 14) }}>{t("mbtiQuiz.subtitle")}</AppText>
             </View>
-            <AppButton style={{ width: '100%' }} variant='primary' title='Find Out' size='small' onPress={handleCompleteQuiz} />
+            <AppButton style={styles.mbtiQuizButton} variant='primary' title={t("mbtiQuiz.button")} size='small' onPress={handleCompleteQuiz} />
           </View>
         )
       }
@@ -220,11 +220,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         <View style={styles.coinsRow}>
           <View style={styles.coinItem}>
             <AppText color='white' style={styles.coinAmount} variant='subtitle1'>{user?.gold_credits}</AppText>
-            <CoinIcon size={scaleSize(16, 14, 19)} color="#E0AE1E" />
+            <CoinIcon size={scaleSize(16, 14, 19)} type="gold" />
           </View>
           <View style={styles.coinItem}>
             <AppText color='white' style={styles.coinAmount} variant='subtitle1'>{user?.silver_credits}</AppText>
-            <CoinIcon size={scaleSize(16, 14, 19)} color="#EB4335" />
+            <CoinIcon size={scaleSize(16, 14, 19)} type="silver" />
           </View>
         </View>
       </View>
@@ -278,6 +278,10 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  mbtiQuizTextContainer: {
+    flex: 1,
+    marginLeft: scaleSize(4),
+  },
   userCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
@@ -390,7 +394,7 @@ const styles = StyleSheet.create({
   },
   mbtiQuizSection: {
     flexDirection: 'row',
-    padding: scaleSize(8, 8, 12),
+    padding: scaleSize(12, 8, 12),
     borderWidth: scaleSize(1),
     borderColor: COLORS.black,
     borderRadius: scaleSize(8, 8, 12),
@@ -398,6 +402,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: scaleSize(4, 4, 8),
     backgroundColor: 'rgba(255,255,255,0.14)'
+  },
+  mbtiQuizButton: {
+    width: scaleSize(100, 80, 120),
   }
 });
 

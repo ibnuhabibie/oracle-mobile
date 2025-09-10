@@ -150,7 +150,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
           title={
             <View style={styles.buttonRow}>
               <AppText color='white' style={{ marginRight: 4 }}>{t('loveForecast.purchase', { cost })}</AppText>
-              <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={scaleSize(18)} />
+              <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
             </View>
           }
           variant="primary"

@@ -18,7 +18,7 @@
     "SIGN UP SUBTITLE": "우주는 속삭입니다.\n가입하고 당신의 운명을 밝혀보세요.",
     "ALREADY HAVE AN ACCOUNT": "이미 계정이 있으신가요?",
     "NAME IS REQUIRED": "이름은 필수입니다",
-    "NAME MIN LENGTH": "이름은 최소 2자 이상이어야 합니다",
+    "NAME MIN LENGTH": "이름은 최소 3자 이상이어야 합니다",
     "PLEASE CONFIRM PASSWORD": "비밀번호를 확인해주세요",
     "PASSWORDS DO NOT MATCH": "비밀번호가 일치하지 않습니다",
     "NAME": "이름",
@@ -236,6 +236,14 @@
     "fortuneReportResult": {
         "header": "운세 리포트 {{year}}",
         "downloadPdf": "PDF로 다운로드"
+    },
+    "polling": {
+        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+    },
+    "mbtiQuiz": {
+        "title": "What’s your MBTI?",
+        "subtitle": "Quick test to discover your type!",
+        "button": "Find Out"
     },
     "relationReportResult": {
         "header": "관계 궁합",

@@ -98,7 +98,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
           }}
         />
       </AppText>
-      <CoinIcon size={scaleSize(19)} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+      <CoinIcon size={scaleSize(19)} type={creditType === 'silver' ? 'silver' : 'gold'} />
     </View>
   );
 
@@ -116,13 +116,13 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
                   (
                     <>
                       <View style={styles.textCoinWrapper}>
-                        <AppText style={styles.costInfoText} color='white'>
+                        <AppText variant='caption1' style={styles.costInfoText} color='white'>
                           <Trans
                             i18nKey="purchaseAlert.costInfo"
                             values={{ cost, service: getServiceTypeLabel(service) }}
                           />
                         </AppText>
-                        <CoinIcon size={scaleSize(19)} color={creditType === 'silver' ? "#EB4335" : "#E0AE1E"} />
+                        <CoinIcon size={scaleSize(19)} type={creditType === 'silver' ? 'silver' : 'gold'} />
                       </View>
                       <PurchaseAlertCreditText
                         creditType={creditType}

@@ -101,7 +101,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                         <AppText variant="body2" style={styles.packageName} color="neutral">
                             {item.package?.name || item.subscription?.name || item.topup_type}
                         </AppText>
-                        <CoinIcon size={scaleSize(14, 14, 19)} color={item.package ? "#EB4335" : "#E0AE1E"} />
+                        <CoinIcon size={scaleSize(14, 14, 19)} type={item.package ? 'silver' : 'gold'} />
                     </View>
                     <AppText variant="caption4" color="neutral">{item.transaction_id} - ${item.amount}</AppText>
                 </View>

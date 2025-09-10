@@ -20,7 +20,7 @@
     "SIGN UP SUBTITLE": "Kosmos berbisik.\nBergabung & temukan takdirmu.",
     "ALREADY HAVE AN ACCOUNT": "Sudah punya akun?",
     "NAME IS REQUIRED": "Nama wajib diisi",
-    "NAME MIN LENGTH": "Nama minimal 2 karakter",
+    "NAME MIN LENGTH": "Nama minimal 3 karakter",
     "PLEASE CONFIRM PASSWORD": "Konfirmasi kata sandi",
     "PASSWORDS DO NOT MATCH": "Kata sandi tidak cocok",
     "NAME": "Nama",
@@ -263,6 +263,14 @@
     "fortuneReportResult": {
         "header": "Laporan Keberuntungan {{year}}",
         "downloadPdf": "Unduh sebagai PDF"
+    },
+    "polling": {
+        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+    },
+    "mbtiQuiz": {
+        "title": "What’s your MBTI?",
+        "subtitle": "Quick test to discover your type!",
+        "button": "Find Out"
     },
     "relationReportResult": {
         "header": "Kecocokan Hubungan",

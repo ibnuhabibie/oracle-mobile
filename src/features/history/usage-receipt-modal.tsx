@@ -139,7 +139,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                         <AppText variant="body1" style={styles.modalItemName} color="neutral">{getServiceTypeLabel(item.service_type)}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText color="white" variant='caption2'>{item.credit_journal.credits_used}</AppText>
-                          <CoinIcon size={scaleSize(12, 10, 16)} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                          <CoinIcon size={scaleSize(12, 10, 16)} type={item.credit_journal.credit_type == 'silver' ? 'silver' : 'gold'} />
                         </View>
                       </View>
                       <View style={styles.modalSectionDivider} />
@@ -147,21 +147,21 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                         <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.previousPoints")}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText color="white" variant='caption2'>{item.credit_journal.credits_before}</AppText>
-                          <CoinIcon size={scaleSize(12, 10, 16)} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                          <CoinIcon size={scaleSize(12, 10, 16)} type={item.credit_journal.credit_type == 'silver' ? 'silver' : 'gold'} />
                         </View>
                       </View>
                       <View style={styles.modalRow}>
                         <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.pointsUsed")}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText variant="caption1" color="red">{item.credit_journal.credits_used}</AppText>
-                          <CoinIcon size={scaleSize(12, 10, 16)} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                          <CoinIcon size={scaleSize(12, 10, 16)} type={item.credit_journal.credit_type == 'silver' ? 'silver' : 'gold'} />
                         </View>
                       </View>
                       <View style={styles.modalRow}>
                         <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.remainingPoints")}</AppText>
                         <View style={styles.modalItemPoints}>
                           <AppText color="green" variant='caption2'>{item.credit_journal.credits_after}</AppText>
-                          <CoinIcon size={scaleSize(12, 10, 16)} color={item.credit_journal.credit_type == 'silver' ? COLORS.red : COLORS.gold} />
+                          <CoinIcon size={scaleSize(12, 10, 16)} type={item.credit_journal.credit_type == 'silver' ? 'silver' : 'gold'} />
                         </View>
                       </View>
                       {

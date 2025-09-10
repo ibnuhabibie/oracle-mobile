@@ -144,7 +144,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                             <AppText color='white' style={{ marginRight: scaleSize(4) }}>
                                 {t('fortuneReport.purchase', { cost })}
                             </AppText>
-                            <CoinIcon color={creditType === 'gold' ? COLORS.gold : COLORS.red} size={scaleSize(18)} />
+                            <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
                         </View>
                     }
                     onPress={() => setShowPurchaseModal(true)}

@@ -42,7 +42,7 @@ interface SubscriptionItem {
 }
 
 const Coin = ({ type = 'silver' }) => (
-    <CoinIcon size={scaleSize(16, 14, 19)} color={type === 'silver' ? "#EB4335" : "#E0AE1E"} />
+    <CoinIcon size={scaleSize(16, 14, 19)} type={type === 'silver' ? 'silver' : 'gold'} />
 );
 
 const RadioIndicator = ({ selected }: { selected: boolean }) => (

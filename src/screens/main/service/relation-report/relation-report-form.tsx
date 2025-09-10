@@ -60,7 +60,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
     full_name: {
       required: t('NAME IS REQUIRED'),
       minLength: {
-        value: 2,
+        value: 3,
         message: t('NAME MIN LENGTH')
       }
     },

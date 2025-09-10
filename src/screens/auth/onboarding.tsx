@@ -112,7 +112,8 @@ const Onboarding: FC<{
     setLoading(true);
     try {
       let birth_date = data.birth_date.toISOString().split('T')[0];
-      let birth_time = data.birth_time.toISOString().split('T')[1].split('.')[0];
+      const pad = (n: number) => n.toString().padStart(2, '0');
+      const birth_time = `${pad(data.birth_time.getHours())}:${pad(data.birth_time.getMinutes())}:${pad(data.birth_time.getSeconds())}`;
 
       const res = await api.put('/v1/users', {
         birth_date,

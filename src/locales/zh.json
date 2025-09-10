@@ -18,7 +18,7 @@
     "SIGN UP SUBTITLE": "宇宙在低语。\n加入并发现你的命运。",
     "ALREADY HAVE AN ACCOUNT": "已经有账号了？",
     "NAME IS REQUIRED": "姓名为必填项",
-    "NAME MIN LENGTH": "姓名至少2个字符",
+    "NAME MIN LENGTH": "姓名至少3个字符",
     "PLEASE CONFIRM PASSWORD": "请确认密码",
     "PASSWORDS DO NOT MATCH": "密码不匹配",
     "NAME": "姓名",
@@ -260,6 +260,14 @@
     "fortuneReportResult": {
         "header": "运势报告 {{year}}",
         "downloadPdf": "下载为PDF"
+    },
+    "polling": {
+        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+    },
+    "mbtiQuiz": {
+        "title": "What’s your MBTI?",
+        "subtitle": "Quick test to discover your type!",
+        "button": "Find Out"
     },
     "relationReportResult": {
         "header": "关系匹配度",
