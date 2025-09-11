@@ -7,11 +7,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MainNavigatorParamList } from '../../navigators/types';
 import { COLORS } from '../../constants/colors';
 import ScreenContainer from '../../components/layouts/screen-container';
+import { useAsyncStorage } from './../../hooks/use-storage';
 
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
+type UserProfile = {
+  email: string;
+  is_email_verified: boolean;
+  birth_date?: string;
+  birth_time?: string;
+  birth_city?: string;
+  birth_country?: string;
+  mbti_profile?: any;
+};
+
+type OtpVerificationParams = {
+  email: string;
+  shouldResendOtp: boolean;
+};
+
 const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   const [opacity] = useState(new Animated.Value(0));
+  const { getAuthToken, getUserProfile } = useAsyncStorage();
 
   const fadeIn = () => {
     Animated.timing(opacity, {
@@ -23,13 +40,43 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
 
   const handleClick = async () => {
     try {
-      const language = await AsyncStorage.getItem('language');
-      console.log(language, 'language');
+      const auth_token = await getAuthToken();
+      console.log(auth_token, 'auth_token');
 
-      if (language) {
-        navigation.replace('SignIn');
+      if (auth_token) {
+        const profile = (await getUserProfile()) as UserProfile | null;
+        console.log(profile, 'profile');
+
+        const isProfileCompleted = (profile: UserProfile) => {
+          return (
+            profile.birth_date &&
+            profile.birth_time &&
+            profile.birth_city &&
+            profile.birth_country
+          );
+        };
+
+        if (profile && !profile.is_email_verified) {
+          navigation.replace('OtpVerification', {
+            email: profile.email,
+            shouldResendOtp: true,
+          } as OtpVerificationParams);
+        } else if (profile && !isProfileCompleted(profile)) {
+          navigation.replace('Onboarding');
+        } else if (profile && !profile.mbti_profile) {
+          navigation.replace('MbtiQuiz');
+        } else if (profile) {
+          navigation.replace('Tabs');
+        }
       } else {
-        navigation.replace('LanguageSelection');
+        const language = await AsyncStorage.getItem('language');
+        console.log(language, 'language');
+
+        if (language) {
+          navigation.replace('SignIn');
+        } else {
+          navigation.replace('LanguageSelection');
+        }
       }
     } catch (error) {
       console.log(error);

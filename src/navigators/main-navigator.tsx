@@ -128,57 +128,57 @@ const MainNavigator = () => {
 
   const { sync, clearStorage } = useAsyncStorage();
 
-  useEffect(() => {
-    const checkAuthState = async () => {
-      const auth_token = await AsyncStorage.getItem('auth_token');
+  // useEffect(() => {
+  //   const checkAuthState = async () => {
+  //     const auth_token = await AsyncStorage.getItem('auth_token');
 
-      if (!auth_token) {
-        setInitialRoute('Welcome');
-        return;
-      }
+  //     if (!auth_token) {
+  //       setInitialRoute('Welcome');
+  //       return;
+  //     }
 
-      try {
-        console.log('sync calleed')
-        const data = await sync()
-        const profile = data?.user
+  //     try {
+  //       console.log('sync calleed')
+  //       const data = await sync()
+  //       const profile = data?.user
 
-        const isProfileCompleted = (profile: any) => {
-          return (
-            profile.birth_date &&
-            profile.birth_time &&
-            profile.birth_city &&
-            profile.birth_country
-          );
-        };
+  //       const isProfileCompleted = (profile: any) => {
+  //         return (
+  //           profile.birth_date &&
+  //           profile.birth_time &&
+  //           profile.birth_city &&
+  //           profile.birth_country
+  //         );
+  //       };
 
-        if (!profile.is_email_verified) {
-          setInitialRoute('OtpVerification');
-          setRouteParams({
-            email: profile.email,
-            shouldResendOtp: true,
-          });
-        } else if (!isProfileCompleted(profile)) {
-          setInitialRoute('Onboarding');
-        } else if (!profile.mbti_profile) {
-          setInitialRoute('MbtiQuiz');
-        } else {
-          setInitialRoute('Tabs');
-        }
-      } catch (err) {
-        await clearStorage()
-        Toast.show({
-          type: 'info',
-          text1: 'Session expired',
-          text2: 'Please log in again.'
-        });
-        setInitialRoute('Welcome');
-      }
-    };
+  //       if (!profile.is_email_verified) {
+  //         setInitialRoute('OtpVerification');
+  //         setRouteParams({
+  //           email: profile.email,
+  //           shouldResendOtp: true,
+  //         });
+  //       } else if (!isProfileCompleted(profile)) {
+  //         setInitialRoute('Onboarding');
+  //       } else if (!profile.mbti_profile) {
+  //         setInitialRoute('MbtiQuiz');
+  //       } else {
+  //         setInitialRoute('Tabs');
+  //       }
+  //     } catch (err) {
+  //       await clearStorage()
+  //       Toast.show({
+  //         type: 'info',
+  //         text1: 'Session expired',
+  //         text2: 'Please log in again.'
+  //       });
+  //       setInitialRoute('Welcome');
+  //     }
+  //   };
 
-    checkAuthState();
-  }, []);
+  //   checkAuthState();
+  // }, []);
 
-  if (!initialRoute) return null; // or show splash screen
+  // if (!initialRoute) return null; // or show splash screen
 
   return (
     <Stack.Navigator
@@ -187,7 +187,7 @@ const MainNavigator = () => {
         contentStyle: { backgroundColor: 'black' },
         animation: 'fade_from_bottom'
       }}
-      initialRouteName={initialRoute}>
+      initialRouteName='Welcome'>
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
