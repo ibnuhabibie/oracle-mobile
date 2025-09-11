@@ -43,9 +43,9 @@
     "NO USAGE HISTORY FOUND": "Tidak ada riwayat penggunaan ditemukan.",
     "OUR PACKAGES": "Paket Kami",
     "PACKAGES DESC": "Dapat digunakan untuk membeli Laporan dan Tanya Affinity AI",
-    "GET COINS": "Dapatkan {{count}}",
+    "GET COINS": "Dapatkan {{count}} Token",
     "OUR SUBSCRIPTIONS": "Langganan Kami",
-    "SUBSCRIPTIONS DESC": "Dapat digunakan di Tanya Affinity AI dan direset setiap awal bulan. Anda akan menerima 3 koin perak gratis setiap bulan.",
+    "SUBSCRIPTIONS DESC": "Dapat digunakan di Tanya Affinity AI dan direset setiap awal bulan. Anda akan menerima 3 token perak gratis setiap bulan.",
     "FAILED TO LOAD PACKAGES": "Gagal memuat paket. Silakan coba lagi nanti.",
     "FAILED TO LOAD SUBSCRIPTIONS": "Gagal memuat langganan. Silakan coba lagi nanti.",
     "PAYMENT FAILED": "Pembayaran gagal",
@@ -68,8 +68,8 @@
     "POINTS ADDED": "Poin Ditambahkan",
     "TOTAL POINTS": "Total Poin",
     "PAYMENT NOT COMPLETED": "Pembayaran Anda belum selesai. Mungkin masih diproses, atau Anda belum menyelesaikan pembayaran. Silakan cek kembali nanti.",
-    "Your Coins": "Koin Anda",
-    "Buy Coins": "Beli Koin",
+    "Your Coins": "Token Anda",
+    "Buy Coins": "Beli Token",
     "Others": "Lainnya",
     "About Us": "Tentang Kami",
     "Privacy Policy": "Kebijakan Privasi",
@@ -196,10 +196,10 @@
     "FAILED TO CHANGE PASSWORD": "Gagal mengubah kata sandi",
     "LOADING...": "Memuat...",
     "CHANGE PASSWORD": "Ubah Kata Sandi",
-"fortuneReport": {
+    "fortuneReport": {
         "header": "Laporan Keberuntungan {{year}}",
         "purchase": "Beli seharga {{cost}}",
-"title": "Penasaran dengan tahun {{year}} Anda? Lihat ramalan keberuntunganmu sekarang!",
+        "title": "Penasaran dengan tahun {{year}} Anda? Lihat ramalan keberuntunganmu sekarang!",
         "subtitle": "Ramalan keberuntungan bertemu perencanaan untuk sudut pandang baru di {{year}} Anda.",
         "description": "Beberapa wawasan mungkin tampak sederhana—seperti waktu atau pengambilan keputusan—tetapi dipersonalisasi untuk bagan dan jalur {{year}} Anda. Panduan mereka dapat membuat perbedaan nyata.",
         "sectionTitle": "Apa yang bisa Anda ketahui?",
@@ -226,10 +226,10 @@
     "purchaseAlert": {
         "title": "PERINGATAN PEMBELIAN",
         "costInfo": "Untuk bertanya pada Geenie, akan dikenakan biaya {{cost}} <coin/> \nLanjutkan?",
-        "yourCredits": "Kredit {{creditType}} Anda: {{userCredit}}",
+        "yourCredits": "Token {{creditType}} Anda: {{userCredit}}",
         "continue": "Lanjutkan Pembelian",
         "cancel": "Batal",
-        "insufficient": "Laporan ini akan dikenakan biaya {{cost}}\nKredit {{creditType}} Anda saat ini tidak mencukupi. Silakan isi ulang untuk melanjutkan.",
+        "insufficient": "Laporan ini akan dikenakan biaya {{cost}}\nToken {{creditType}} Anda saat ini tidak mencukupi. Silakan isi ulang untuk melanjutkan.",
         "purchaseCredits": "Beli Kredit"
     },
     "profileCard": {

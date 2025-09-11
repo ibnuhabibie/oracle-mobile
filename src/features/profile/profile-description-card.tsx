@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
+import { scaleSize } from "../../utils/scale";
 
 interface ProfileDescriptionCard {
     you: string;
@@ -38,23 +39,24 @@ const ProfileDescriptionCard: React.FC<ProfileDescriptionCardProps> = ({ data })
 
 const styles = StyleSheet.create({
     card: {
-        borderRadius: 8,
-        padding: 16,
+        borderRadius: scaleSize(8, 8, 12),
+        padding: scaleSize(16, 12, 20),
         backgroundColor: "rgba(255,255,255,0.14)",
-        marginVertical: 12,
-        width: '100%'
+        marginVertical: scaleSize(12, 8, 16),
+        width: '100%',
+        flex: 1,
     },
     header: {
         textAlign: "center",
-        marginBottom: 12,
+        marginBottom: scaleSize(12, 8, 16),
         letterSpacing: 0.5,
     },
     row: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        paddingVertical: 6,
-        width: '100%'
+        paddingVertical: scaleSize(6, 4, 10),
+        width: '100%',
     },
     label: {
         fontWeight: "400",
@@ -65,9 +67,9 @@ const styles = StyleSheet.create({
         flex: 2,
     },
     separator: {
-        height: 1,
+        height: scaleSize(1, 1, 2),
         backgroundColor: COLORS["dark-gray"],
-        marginVertical: 2,
+        marginVertical: scaleSize(2, 1, 4),
     },
 });
 

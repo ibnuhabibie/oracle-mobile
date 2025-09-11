@@ -6,7 +6,7 @@ import { API_BASE_URL } from '@env';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNFS from 'react-native-fs';
-import { Platform, Alert, Linking } from 'react-native';
+import { Platform, Alert, Linking, PermissionsAndroid, ToastAndroid } from 'react-native';
 import Base64 from 'react-native-base64';
 
 // Shared axios instance
@@ -82,6 +82,29 @@ export async function downloadPdf(job_id: string, t: Function, openAfterDownload
         const isIOS = Platform.OS === 'ios';
         const fileDir = isIOS ? RNFS.DocumentDirectoryPath : RNFS.DownloadDirectoryPath;
         const filePath = `${fileDir}/${job_id}.pdf`;
+
+        // Android: request storage permission before writing file
+        if (!isIOS) {
+            try {
+                const granted = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                    {
+                        title: t('relationReportResult.downloadPermissionTitle') || 'Storage Permission',
+                        message: t('relationReportResult.downloadPermissionMessage') || 'App needs access to your storage to download the PDF.',
+                        buttonNeutral: 'Ask Me Later',
+                        buttonNegative: 'Cancel',
+                        buttonPositive: 'OK',
+                    }
+                );
+                if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+                    ToastAndroid.show(t('relationReportResult.downloadPermissionDenied') || 'Permission denied', ToastAndroid.LONG);
+                    throw new Error('Permission denied');
+                }
+            } catch (err) {
+                ToastAndroid.show(t('relationReportResult.downloadPermissionError') || 'Permission error', ToastAndroid.LONG);
+                throw err;
+            }
+        }
 
         const base64Data = arrayBufferToBase64(response.data);
         await RNFS.writeFile(filePath, base64Data, 'base64');

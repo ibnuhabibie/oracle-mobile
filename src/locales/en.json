@@ -43,9 +43,9 @@
     "NO USAGE HISTORY FOUND": "No usage history found.",
     "OUR PACKAGES": "Our Packages",
     "PACKAGES DESC": "Can be used to purchase Reports and Ask Affinity AI",
-    "GET COINS": "Get {{count}}",
+    "GET COINS": "Get {{count}} Tokens",
     "OUR SUBSCRIPTIONS": "Our Subscriptions",
-    "SUBSCRIPTIONS DESC": "Can be used in Ask Affinity AI and reset at the beginning of each month. You'll receive 3 silver coins free every month.",
+    "SUBSCRIPTIONS DESC": "Can be used in Ask Affinity AI and reset at the beginning of each month. You'll receive 3 silver tokens free every month.",
     "FAILED TO LOAD PACKAGES": "Failed to load packages. Please try again later.",
     "FAILED TO LOAD SUBSCRIPTIONS": "Failed to load subscriptions. Please try again later.",
     "PAYMENT FAILED": "Payment failed",
@@ -68,8 +68,8 @@
     "POINTS ADDED": "Points Added",
     "TOTAL POINTS": "Total Points",
     "PAYMENT NOT COMPLETED": "Your payment is not yet completed. It may still be processing, or you haven't finished the payment. Please check back later.",
-    "Your Coins": "Your Coins",
-    "Buy Coins": "Buy Coins",
+    "Your Coins": "Your Tokens",
+    "Buy Coins": "Buy Tokens",
     "Others": "Others",
     "About Us": "About Us",
     "Privacy Policy": "Privacy Policy",
@@ -250,11 +250,11 @@
     "purchaseAlert": {
         "title": "PURCHASE ALERT",
         "costInfo": "To use {{service}}, it will cost {{cost}}",
-        "yourCredits": "Your {{creditType}} Credits: {{userCredit}}",
+        "yourCredits": "Your {{creditType}} Tokens: {{userCredit}}",
         "continue": "Continue to Purchase",
         "cancel": "Cancel",
-        "insufficient": "This report will cost {{cost}} {{creditType}} coin.\n\nYour current {{creditType}} credits are insufficient. Please top up to proceed.",
-        "purchaseCredits": "Purchase Credits"
+        "insufficient": "This report will cost {{cost}} {{creditType}} token.\n\nYour current {{creditType}} tokens are insufficient. Please top up to proceed.",
+        "purchaseCredits": "Purchase Tokens"
     },
     "profileCard": {
         "noProfileData": "No profile data found.",

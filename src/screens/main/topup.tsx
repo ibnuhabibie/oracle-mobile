@@ -221,7 +221,16 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             console.log(error)
             Alert.alert(t('PAYMENT FAILED'), error.message);
         } else {
-            Alert.alert(t('SUCCESS'), t('PAYMENT COMPLETE'));
+            Alert.alert(
+                t('SUCCESS'),
+                t('PAYMENT COMPLETE'),
+                [
+                    {
+                        text: t('OK'),
+                        onPress: () => navigation.navigate('Tabs', { screen: 'Profile' })
+                    }
+                ]
+            );
         }
     };
 

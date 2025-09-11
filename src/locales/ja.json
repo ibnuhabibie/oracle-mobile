@@ -41,9 +41,9 @@
     "NO USAGE HISTORY FOUND": "利用履歴が見つかりません。",
     "OUR PACKAGES": "パッケージ一覧",
     "PACKAGES DESC": "レポート購入や Affinity AI への質問に利用できます",
-    "GET COINS": "{{count}}を獲得",
+    "GET COINS": "{{count}}トークンを獲得",
     "OUR SUBSCRIPTIONS": "サブスクリプション一覧",
-    "SUBSCRIPTIONS DESC": "Ask Affinity AI で利用でき、毎月初めにリセットされます。毎月3枚のシルバーコインが無料でもらえます。",
+    "SUBSCRIPTIONS DESC": "Ask Affinity AI で利用でき、毎月初めにリセットされます。毎月3枚のシルバートークンが無料でもらえます。",
     "FAILED TO LOAD PACKAGES": "パッケージの読み込みに失敗しました。しばらくしてから再度お試しください。",
     "FAILED TO LOAD SUBSCRIPTIONS": "サブスクリプションの読み込みに失敗しました。しばらくしてから再度お試しください。",
     "PAYMENT FAILED": "支払いに失敗しました",
@@ -66,8 +66,8 @@
     "POINTS ADDED": "追加ポイント",
     "TOTAL POINTS": "合計ポイント",
     "PAYMENT NOT COMPLETED": "お支払いはまだ完了していません。処理中か、支払いが完了していない可能性があります。後でもう一度ご確認ください。",
-    "Your Coins": "あなたのコイン",
-    "Buy Coins": "コインを購入",
+    "Your Coins": "あなたのトークン",
+    "Buy Coins": "トークンを購入",
     "Others": "その他",
     "About Us": "私たちについて",
     "Privacy Policy": "プライバシーポリシー",
@@ -194,10 +194,10 @@
     "PASSWORD CHANGED SUCCESSFULLY": "パスワードが正常に変更されました",
     "FAILED TO CHANGE PASSWORD": "パスワードの変更に失敗しました",
     "LOADING...": "読み込み中...",
-"fortuneReport": {
+    "fortuneReport": {
         "header": "運勢レポート {{year}}",
         "purchase": "{{cost}}で購入",
-"title": "{{year}}年が気になりますか？今すぐ\n運勢をチェック！",
+        "title": "{{year}}年が気になりますか？今すぐ\n運勢をチェック！",
         "subtitle": "運勢解読と計画が出会い、{{year}}年に新たな視点をもたらします。",
         "description": "いくつかの洞察はシンプルに見えるかもしれません（タイミングや意思決定など）が、すべてあなたのチャートと{{year}}年の道筋に合わせてパーソナライズされています。これらのガイドは本当に大きな違いを生み出すことができます。",
         "sectionTitle": "何がわかるのか？",
@@ -224,10 +224,10 @@
     "purchaseAlert": {
         "title": "購入アラート",
         "costInfo": "Geenieに質問するには{{cost}} <coin/>が必要です。\n続行しますか？",
-        "yourCredits": "あなたの{{creditType}}クレジット: {{userCredit}}",
+        "yourCredits": "あなたの{{creditType}}トークン: {{userCredit}}",
         "continue": "購入を続ける",
         "cancel": "キャンセル",
-        "insufficient": "このレポートには{{cost}}が必要です\n現在の{{creditType}}クレジットが不足しています。チャージしてから続行してください。",
+        "insufficient": "このレポートには{{cost}}が必要です\n現在の{{creditType}}トークンが不足しています。チャージしてから続行してください。",
         "purchaseCredits": "クレジットを購入"
     },
     "profileCard": {

@@ -41,9 +41,9 @@
     "NO USAGE HISTORY FOUND": "未找到使用记录。",
     "OUR PACKAGES": "我们的套餐",
     "PACKAGES DESC": "可用于购买报告和提问 Affinity AI",
-    "GET COINS": "获得 {{count}}",
+    "GET COINS": "获得 {{count}} 代币",
     "OUR SUBSCRIPTIONS": "我们的订阅",
-    "SUBSCRIPTIONS DESC": "可用于提问 Affinity AI，并在每月初重置。每月可免费获得3枚银币。",
+    "SUBSCRIPTIONS DESC": "可用于提问 Affinity AI，并在每月初重置。每月可免费获得3枚银代币。",
     "FAILED TO LOAD PACKAGES": "加载套餐失败，请稍后再试。",
     "FAILED TO LOAD SUBSCRIPTIONS": "加载订阅失败，请稍后再试。",
     "PAYMENT FAILED": "支付失败",
@@ -66,8 +66,8 @@
     "POINTS ADDED": "新增积分",
     "TOTAL POINTS": "总积分",
     "PAYMENT NOT COMPLETED": "您的付款尚未完成。可能还在处理中，或您尚未完成付款。请稍后再试。",
-    "Your Coins": "你的金币",
-    "Buy Coins": "购买金币",
+    "Your Coins": "你的代币",
+    "Buy Coins": "购买代币",
     "Others": "其他",
     "About Us": "关于我们",
     "Privacy Policy": "隐私政策",
@@ -193,10 +193,10 @@
     "PASSWORD CHANGED SUCCESSFULLY": "密码修改成功",
     "FAILED TO CHANGE PASSWORD": "修改密码失败",
     "CHANGE PASSWORD": "修改密码",
-"fortuneReport": {
+    "fortuneReport": {
         "header": "运势报告 {{year}}",
         "purchase": "以{{cost}}购买",
-"title": "好奇你的{{year}}年？现在就查看\n你的运势！",
+        "title": "好奇你的{{year}}年？现在就查看\n你的运势！",
         "subtitle": "运势解读结合规划，为你的{{year}}年带来新视角。",
         "description": "有些见解看似简单——比如时机或决策——但它们是根据你的命盘和{{year}}年路径量身定制的。这些指引能带来真正的改变。",
         "sectionTitle": "你可以了解什么？",
@@ -223,10 +223,10 @@
     "purchaseAlert": {
         "title": "购买提醒",
         "costInfo": "向Geenie提问将花费{{cost}} <coin/>\n继续吗？",
-        "yourCredits": "你的{{creditType}}积分: {{userCredit}}",
+        "yourCredits": "你的{{creditType}}代币: {{userCredit}}",
         "continue": "继续购买",
         "cancel": "取消",
-        "insufficient": "本报告将花费{{cost}}\n你当前的{{creditType}}积分不足，请充值后再试。",
+        "insufficient": "本报告将花费{{cost}}\n你当前的{{creditType}}代币不足，请充值后再试。",
         "purchaseCredits": "购买积分"
     },
     "profileCard": {
