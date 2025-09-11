@@ -64,7 +64,7 @@ const TabNavigator = () => (
         borderColor: 'transparent',
       },
       sceneStyle: {
-        backgroundColor: 'transparent'
+        backgroundColor: 'black'
       },
       // tabBarActiveTintColor: '#000',
       // tabBarInactiveTintColor: '#999',
@@ -184,7 +184,8 @@ const MainNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: 'transparent' },
+        contentStyle: { backgroundColor: 'black' },
+        animation: 'fade_from_bottom'
       }}
       initialRouteName={initialRoute}>
       <Stack.Screen name="Welcome" component={Welcome} />
