@@ -45,19 +45,47 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
+import { navigationRef } from '../navigators/navigation-ref';
+
+async function handleLogoutAndRedirect() {
+    try {
+        await AsyncStorage.removeItem('auth_token');
+        await AsyncStorage.removeItem('user_profile');
+        // Add any other cleanup if needed
+    } catch (e) {
+        console.error('Error clearing AsyncStorage during logout', e);
+    }
+    // Inform user why redirected
+    if (Platform.OS === 'android') {
+        ToastAndroid.show('Session expired. Please login again.', ToastAndroid.LONG);
+    } else {
+        Alert.alert('Session expired', 'Please login again.');
+    }
+    // Redirect to Welcome page and reset navigation stack
+    if (navigationRef.isReady()) {
+        navigationRef.reset({
+            index: 0,
+            routes: [{ name: 'Welcome' }],
+        });
+    }
+}
+
 api.interceptors.response.use(
     (response) => {
         // console.log('[Axios Response]', response);
         return response?.data
     },
-    (error) => {
+    async (error) => {
         console.error('[Axios Error]', error.message);
         console.error(error.config);
         console.error(error.code);
         if (error.response) {
             console.error('[Response Error Data]', error.response.data);
+            if (error.response.status === 401) {
+                await handleLogoutAndRedirect();
+            }
         }
-        return Promise.reject(error.response.data);
+        return Promise.reject(error.response?.data);
     }
 );
 

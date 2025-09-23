@@ -11,115 +11,106 @@ import WeaknessIcon from "../../components/icons/mbti-result/weakness-icon";
 import RelationshipIcon from "../../components/icons/mbti-result/relationship-icon";
 import CareerIcon from "../../components/icons/mbti-result/career-icon";
 import { scaleFont, scaleSize } from "../../utils/scale";
+import { useTranslation } from "react-i18next";
 
-class MBTIProfile extends React.Component {
+const MBTIProfile: React.FC = () => {
+    const { t } = useTranslation();
+    const [profile, setProfile] = useState<any>(null);
+    const [ready, setReady] = useState(false);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            profile: null,
-            ready: false
+    React.useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const res = await api.get('/v1/users/mbti-profile');
+                setProfile(res.data);
+                console.log(res.data);
+            } catch (error) {
+                console.error('Error fetching MBTI profile:', error);
+            }
         };
-    }
-
-    componentDidMount() {
-        this.fetchProfile();
+        fetchProfile();
         InteractionManager.runAfterInteractions(() => {
-            this.setState({ ready: true });
+            setReady(true);
         });
+    }, []);
+
+    if (!ready) {
+        return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
     }
 
-    fetchProfile = async () => {
-        try {
-            const res = await api.get('/v1/users/mbti-profile');
-            this.setState({ profile: res.data });
-            console.log(res.data);
-        } catch (error) {
-            console.error('Error fetching MBTI profile:', error);
-        }
-    }
-    render() {
-        const profile = this.state.profile;
-        const ready = this.state.ready;
+    return (
+        <>
+            {/* Main MBTI Type */}
+            <ShinyContainer size={scaleSize(180, 100, 218)} style={{ marginBottom: scaleSize(12, 12, 16) }}>
+                <AppText variant='largeTitle1' color="white">{profile?.mbti_type}</AppText>
+            </ShinyContainer>
 
-        if (!ready) {
-            return <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />;
-        }
-
-        return (
-            <>
-                {/* Main MBTI Type */}
-                <ShinyContainer size={scaleSize(180, 100, 218)} style={{ marginBottom: scaleSize(12, 12, 16) }}>
-                    <AppText variant='largeTitle1' color="white">{profile?.mbti_type}</AppText>
-                </ShinyContainer>
-
-                {/* The Architect Card */}
-                {
-                    profile?.mbti_type && (
-                        <View style={styles.card}>
-                            <View style={styles.cardHeader}>
-                                <View style={styles.iconPlaceholder}>
-                                    {(() => {
-                                        const MbtiIcon = getMbtiIconComponent(profile?.mbti_type);
-                                        return MbtiIcon ? <MbtiIcon size={scaleSize(32, 28, 45)} color="white" /> : null;
-                                    })()}
-                                </View>
-                                <View style={styles.cardHeaderText}>
-                                    <AppText variant='title3' color="neutral">{profile?.name}</AppText>
-                                    <AppText variant='body1' color="neutral">{profile?.description}</AppText>
-                                </View>
+            {/* The Architect Card */}
+            {
+                profile?.mbti_type && (
+                    <View style={styles.card}>
+                        <View style={styles.cardHeader}>
+                            <View style={styles.iconPlaceholder}>
+                                {(() => {
+                                    const MbtiIcon = getMbtiIconComponent(profile?.mbti_type);
+                                    return MbtiIcon ? <MbtiIcon size={scaleSize(32, 28, 45)} color="white" /> : null;
+                                })()}
+                            </View>
+                            <View style={styles.cardHeaderText}>
+                                <AppText variant='title3' color="neutral">{profile?.name}</AppText>
+                                <AppText variant='body1' color="neutral">{profile?.description}</AppText>
                             </View>
                         </View>
-                    )
-                }
+                    </View>
+                )
+            }
 
-                {/* Strengths Card */}
-                <View style={styles.card}>
-                    <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
-                        <StrengthIcon size={scaleSize(60)} />
-                    </ShinyContainer>
-                    <AppText variant='title3' color="primary">Strengths</AppText>
-                    <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
-                        {profile?.strengths.join(',')}
-                    </AppText>
-                </View>
+            {/* Strengths Card */}
+            <View style={styles.card}>
+                <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
+                    <StrengthIcon size={scaleSize(60)} />
+                </ShinyContainer>
+                <AppText variant='title3' color="primary">{t("strengths")}</AppText>
+                <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
+                    {profile?.strengths?.join(',')}
+                </AppText>
+            </View>
 
-                {/* Weaknesses Card */}
-                <View style={styles.card}>
-                    <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
-                        <WeaknessIcon size={scaleSize(60)} />
-                    </ShinyContainer>
-                    <AppText variant='title3' color="primary">Weaknesses</AppText>
-                    <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
-                        {profile?.weaknesses.join(',')}
-                    </AppText>
-                </View>
+            {/* Weaknesses Card */}
+            <View style={styles.card}>
+                <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
+                    <WeaknessIcon size={scaleSize(60)} />
+                </ShinyContainer>
+                <AppText variant='title3' color="primary">{t("weaknesses")}</AppText>
+                <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
+                    {profile?.weaknesses?.join(',')}
+                </AppText>
+            </View>
 
-                {/* Relationships Card */}
-                <View style={styles.card}>
-                    <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
-                        <RelationshipIcon size={scaleSize(60)} />
-                    </ShinyContainer>
-                    <AppText variant='title3' color="primary">Relationships</AppText>
-                    <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
-                        {profile?.relationships}
-                    </AppText>
-                </View>
+            {/* Relationships Card */}
+            <View style={styles.card}>
+                <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
+                    <RelationshipIcon size={scaleSize(60)} />
+                </ShinyContainer>
+                <AppText variant='title3' color="primary">{t("relationships")}</AppText>
+                <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
+                    {profile?.relationships}
+                </AppText>
+            </View>
 
-                {/* Career Card */}
-                <View style={styles.card}>
-                    <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
-                        <CareerIcon size={scaleSize(60)} />
-                    </ShinyContainer>
-                    <AppText variant='title3' color="primary">Career</AppText>
-                    <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
-                        {profile?.career}
-                    </AppText>
-                </View>
-            </>
-        );
-    }
-}
+            {/* Career Card */}
+            <View style={styles.card}>
+                <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
+                    <CareerIcon size={scaleSize(60)} />
+                </ShinyContainer>
+                <AppText variant='title3' color="primary">{t("career")}</AppText>
+                <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
+                    {profile?.career}
+                </AppText>
+            </View>
+        </>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -154,4 +145,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MBTIProfile
+export default MBTIProfile;

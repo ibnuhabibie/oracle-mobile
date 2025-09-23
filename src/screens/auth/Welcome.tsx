@@ -28,7 +28,7 @@ type OtpVerificationParams = {
 
 const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   const [opacity] = useState(new Animated.Value(0));
-  const { getAuthToken, getUserProfile } = useAsyncStorage();
+  const { getAuthToken, getUserProfile, sync } = useAsyncStorage();
 
   const fadeIn = () => {
     Animated.timing(opacity, {
@@ -66,6 +66,9 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
         } else if (profile && !profile.mbti_profile) {
           navigation.replace('MbtiQuiz');
         } else if (profile) {
+          navigation.replace('Tabs');
+        } else {
+          await sync()
           navigation.replace('Tabs');
         }
       } else {

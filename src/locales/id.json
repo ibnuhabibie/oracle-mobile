@@ -284,5 +284,9 @@
         "title": "Ramalan Cinta 12 Bulan Mendatang",
         "downloadPdf": "Unduh sebagai PDF",
         "forecastFor": "Ramalan untuk {{range}}"
-    }
+    },
+    "strengths": "Kekuatan",
+    "weaknesses": "Kelemahan",
+    "relationships": "Hubungan",
+    "career": "Karier"
 }

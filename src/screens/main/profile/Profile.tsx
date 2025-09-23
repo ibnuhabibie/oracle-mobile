@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { InteractionManager } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { Platform, ToastAndroid } from 'react-native';
 import Toast from 'react-native-toast-message';
 import {
   Pressable,
@@ -46,10 +47,14 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   const handleCopyReferralCode = () => {
     if (user?.referral_code) {
       Clipboard.setString(user.referral_code);
-      Toast.show({
-        type: 'success',
-        text1: 'Copied to clipboard',
-      });
+      if (Platform.OS === 'android') {
+        ToastAndroid.show('Copied to clipboard', ToastAndroid.SHORT);
+      } else {
+        Toast.show({
+          type: 'success',
+          text1: 'Copied to clipboard',
+        });
+      }
     }
   };
   const { t } = useTranslation();

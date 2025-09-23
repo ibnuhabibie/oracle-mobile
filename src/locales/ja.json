@@ -282,5 +282,9 @@
         "title": "今後12ヶ月の恋愛予報",
         "downloadPdf": "PDFとしてダウンロード",
         "forecastFor": "{{range}}の予報"
-    }
+    },
+    "strengths": "強み",
+    "weaknesses": "弱み",
+    "relationships": "関係",
+    "career": "キャリア"
 }

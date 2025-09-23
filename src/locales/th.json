@@ -284,5 +284,9 @@
         "title": "พยากรณ์ความรัก 12 เดือนข้างหน้า",
         "downloadPdf": "ดาวน์โหลดเป็น PDF",
         "forecastFor": "พยากรณ์สำหรับ {{range}}"
-    }
+    },
+    "strengths": "จุดแข็ง",
+    "weaknesses": "จุดอ่อน",
+    "relationships": "ความสัมพันธ์",
+    "career": "อาชีพ"
 }

@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     },
     bannerImage: {
         width: Dimensions.get('window').width,
-        marginTop: scaleSize(20),
+        marginVertical: scaleSize(20),
     },
 });
 

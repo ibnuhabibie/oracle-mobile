@@ -284,5 +284,9 @@
             "relationship_compatibility": "Relation Compatibility",
             "ask_secret_diary": "Genie Advice"
         }
-    }
+    },
+    "strengths": "Strengths",
+    "weaknesses": "Weaknesses",
+    "relationships": "Relationships",
+    "career": "Career"
 }

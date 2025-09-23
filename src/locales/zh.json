@@ -283,5 +283,9 @@
         "forecastFor": "{{range}}的预测"
     },
     "REGISTER FAILED": "注册失败",
-    "REGISTER FAILED MESSAGE": "注册失败。请重试。"
+    "REGISTER FAILED MESSAGE": "注册失败。请重试。",
+    "strengths": "优势",
+    "weaknesses": "劣势",
+    "relationships": "关系",
+    "career": "事业"
 }

@@ -259,5 +259,9 @@
         "forecastFor": "{{range}}의 운세"
     },
     "REGISTER FAILED": "회원가입 실패",
-    "REGISTER FAILED MESSAGE": "회원가입에 실패했습니다. 다시 시도해 주세요."
+    "REGISTER FAILED MESSAGE": "회원가입에 실패했습니다. 다시 시도해 주세요.",
+    "strengths": "강점",
+    "weaknesses": "약점",
+    "relationships": "관계",
+    "career": "커리어"
 }
