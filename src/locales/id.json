@@ -225,7 +225,7 @@
     },
     "purchaseAlert": {
         "title": "PERINGATAN PEMBELIAN",
-        "costInfo": "Untuk bertanya pada Geenie, akan dikenakan biaya {{cost}} <coin/> \nLanjutkan?",
+        "costInfo": "Untuk bertanya pada Geenie, akan dikenakan biaya {{cost}} Lanjutkan?",
         "yourCredits": "Token {{creditType}} Anda: {{userCredit}}",
         "continue": "Lanjutkan Pembelian",
         "cancel": "Batal",
@@ -238,7 +238,14 @@
         "dateOfBirth": "Tanggal Lahir",
         "timeOfBirth": "Waktu Lahir",
         "countryOfBirth": "Negara Lahir",
-        "cityOfBirth": "Kota Lahir"
+        "cityOfBirth": "Kota Lahir",
+        "gender": "Jenis Kelamin",
+        "male": "Laki-laki",
+        "female": "Perempuan",
+        "you": "Anda"
+    },
+    "profile": {
+        "copiedToClipboard": "Disalin ke clipboard"
     },
     "chatArea": {
         "geenieSays": "Geenie berkata:"
@@ -291,8 +298,36 @@
     "career": "Karier",
     "bottomBar": {
         "home": "Beranda",
-        "echo": "Gema",
+        "echo": "Echo",
         "askAffinity": "Tanya Affinity",
         "profile": "Profil"
+    },
+    "baziResult": {
+        "title": "Profil BaZi",
+        "emptyStateLabel": "Data profil tidak ditemukan."
+    },
+    "astroResult": {
+        "title": "Astrologi",
+        "emptyStateLabel": "Data profil tidak ditemukan."
+    },
+    "profileForm": {
+        "language": "Bahasa",
+        "dialogTitle": "Perbarui Profil",
+        "successMessage": "Profil Anda berhasil diperbarui.",
+        "selectCountry": "Pilih Negara",
+        "selectCity": "Pilih Kota",
+        "selectLanguage": "Pilih Bahasa",
+        "okLabel": "OK"
+    },
+    "echoDetail": {
+        "clickOn": "Klik",
+        "toGetGenieAdvice": "untuk mendapatkan saran Genie"
+    },
+    "dailyProfileDetail": {
+        "todayScore": "SKOR HARI INI",
+        "wealth": "Kekayaan",
+        "learning": "Belajar",
+        "relation": "Hubungan",
+        "career": "Karier"
     }
 }

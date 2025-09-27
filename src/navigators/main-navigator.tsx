@@ -57,32 +57,32 @@ const TabNavigator = () => {
 
   return (
     <Tab.Navigator
-    screenOptions={{
-      headerShown: false,
-      tabBarHideOnKeyboard: true,
-      tabBarStyle: {
-        backgroundColor: '#121010',
-        height: scaleSize(56, 50, 76),
-        alignItems: 'center',
-        borderTopWidth: 0,
-        borderColor: 'transparent',
-      },
-      sceneStyle: {
-        backgroundColor: 'black'
-      },
-      // tabBarActiveTintColor: '#000',
-      // tabBarInactiveTintColor: '#999',
-      tabBarIconStyle: {
-        // marginTop: scaleSize(4, 2, 8),
-        marginTop: 0,
-      },
-      tabBarLabelStyle: {
-        color: COLORS.white,
-        // marginTop: scaleSize(2, 1, 6),
-        fontSize: scaleFont(12, 6, 16)
-      },
-    }}
-    initialRouteName="Home">
+      screenOptions={{
+        headerShown: false,
+        tabBarHideOnKeyboard: true,
+        tabBarStyle: {
+          backgroundColor: '#121010',
+          height: scaleSize(56, 50, 76),
+          alignItems: 'center',
+          borderTopWidth: 0,
+          borderColor: 'transparent',
+        },
+        sceneStyle: {
+          backgroundColor: 'black'
+        },
+        // tabBarActiveTintColor: '#000',
+        // tabBarInactiveTintColor: '#999',
+        tabBarIconStyle: {
+          // marginTop: scaleSize(4, 2, 8),
+          marginTop: 0,
+        },
+        tabBarLabelStyle: {
+          color: COLORS.white,
+          // marginTop: scaleSize(2, 1, 6),
+          fontSize: scaleFont(12, 6, 16)
+        },
+      }}
+      initialRouteName="Home">
     <Tab.Screen
       name="Home"
       component={Home}

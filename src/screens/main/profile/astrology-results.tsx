@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Image,
   InteractionManager,
@@ -32,6 +33,7 @@ type AstrologyResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'Ast
 
 const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
   const [ready, setReady] = React.useState(false);
+  const { t } = useTranslation();
   React.useEffect(() => {
     const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
     return () => interaction && interaction.cancel && interaction.cancel();
@@ -101,7 +103,9 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
 
   if (!profile) {
     return (
-      <AppText variant="body1" color="red" style={{ margin: scaleSize(16) }}>No profile data found.</AppText>
+      <AppText variant="body1" color="red" style={{ margin: scaleSize(16) }}>
+        {t('astroResult.emptyStateLabel')}
+      </AppText>
     );
   }
 
@@ -109,14 +113,14 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
     <ScreenContainer
       header={
         <Header
-          title="Astrology"
+          title={t('astroResult.title')}
           onBack={() => navigation.goBack()}
         />
       }
     >
       {ready ? (
         <>
-          <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle='You' />
+          <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle={t('profileCard.you')} />
           <AstrologyCardList profile={profile} />
         </>
       ) : (

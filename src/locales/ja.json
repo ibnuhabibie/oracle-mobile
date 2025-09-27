@@ -101,16 +101,16 @@
     "WHAT DO YOU LIKE TO KNOW TODAY?": "今日は何を知りたいですか？",
     "carousel": {
         "love": {
-            "title": "Love On Pause?",
-            "subtitle": "DISCOVER WHAT'S COMING NEXT"
+            "title": "恋が一時停止？",
+            "subtitle": "次に何が起こるかを発見"
         },
         "relation": {
-            "title": "Relationship Insights",
-            "subtitle": "DISCOVER YOUR CONNECTIONS"
+            "title": "関係の洞察",
+            "subtitle": "あなたのつながりを発見"
         },
         "fortune": {
-            "title": "Fortune Guidance",
-            "subtitle": "EMBRACE YOUR FUTURE"
+            "title": "運勢ガイダンス",
+            "subtitle": "未来を受け入れよう"
         },
         "downloadPdf": "PDFとしてダウンロード"
     },
@@ -223,7 +223,7 @@
     },
     "purchaseAlert": {
         "title": "購入アラート",
-        "costInfo": "Geenieに質問するには{{cost}} <coin/>が必要です。\n続行しますか？",
+        "costInfo": "Geenieに質問するには{{cost}} が必要です。続行しますか？",
         "yourCredits": "あなたの{{creditType}}トークン: {{userCredit}}",
         "continue": "購入を続ける",
         "cancel": "キャンセル",
@@ -236,7 +236,14 @@
         "dateOfBirth": "生年月日",
         "timeOfBirth": "出生時刻",
         "countryOfBirth": "出生国",
-        "cityOfBirth": "出生都市"
+        "cityOfBirth": "出生都市",
+        "gender": "性別",
+        "male": "男性",
+        "female": "女性",
+        "you": "あなた"
+    },
+    "profile": {
+        "copiedToClipboard": "クリップボードにコピーしました"
     },
     "chatArea": {
         "geenieSays": "ジーニーの言葉："
@@ -289,8 +296,36 @@
     "career": "キャリア",
     "bottomBar": {
         "home": "ホーム",
-        "echo": "エコー",
+        "echo": "Echo",
         "askAffinity": "Affinityに質問",
         "profile": "プロフィール"
+    },
+    "baziResult": {
+        "title": "BaZiプロフィール",
+        "emptyStateLabel": "プロフィールデータが見つかりません。"
+    },
+    "astroResult": {
+        "title": "占星術",
+        "emptyStateLabel": "プロフィールデータが見つかりません。"
+    },
+    "profileForm": {
+        "language": "言語",
+        "dialogTitle": "プロフィールを更新",
+        "successMessage": "プロフィールが正常に更新されました。",
+        "selectCountry": "国を選択",
+        "selectCity": "都市を選択",
+        "selectLanguage": "言語を選択",
+        "okLabel": "OK"
+    },
+    "echoDetail": {
+        "clickOn": "クリック",
+        "toGetGenieAdvice": "ジーニーのアドバイスをもらう"
+    },
+    "dailyProfileDetail": {
+        "todayScore": "今日のスコア",
+        "wealth": "富",
+        "learning": "学び",
+        "relation": "関係",
+        "career": "キャリア"
     }
 }

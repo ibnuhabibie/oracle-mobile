@@ -34,20 +34,29 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        console.log(profileData, 'profileData')
-
         const fetchProfile = async () => {
             if (profileData) {
+                console.log(profileData, 'profileData')
+
                 setProfile({
                     full_name: profileData.full_name,
                     birth_date: profileData.birth_date,
                     birth_country: profileData.birth_country,
                     birth_city: profileData.birth_city,
-                    gender: profileData.gender == 'F' ? 'Female' : profileData.gender == 'M' ? 'Male' : profileData.gender
+                    gender: profileData.gender == 'Female' ? t('profileCard.female') : t('profileCard.male')
                 })
             } else {
                 const data = await getUserProfile();
-                setProfile(data as UserProfile);
+                console.log(data, 'profileData');
+                if (data && typeof data === 'object' && 'gender' in data) {
+                    const userProfile = data as UserProfile;
+                    setProfile({
+                        ...userProfile,
+                        gender: userProfile.gender == 'Female' ? t('profileCard.female') : t('profileCard.male')
+                    });
+                } else {
+                    setProfile(null);
+                }
             }
             setLoading(false);
         };

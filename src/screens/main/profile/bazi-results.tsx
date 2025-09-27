@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { AppText } from '../../../components/ui/app-text';
 import { scaleFont, scaleSize } from '../../../utils/scale';
+import { useTranslation } from 'react-i18next';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
@@ -24,6 +25,7 @@ import { COLORS } from '../../../constants/colors';
 type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'BaziResults'>;
 
 const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const profile = route.params?.profile_bazi;
   const [ready, setReady] = React.useState(false);
 
@@ -80,7 +82,7 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
 
   if (!profile) {
     return (
-      <AppText variant="body1" color="red" style={{ margin: scaleSize(16) }}>No profile data found.</AppText>
+      <AppText variant="body1" color="red" style={{ margin: scaleSize(16) }}>{t('baziResult.emptyStateLabel')}</AppText>
     );
   }
 
@@ -88,14 +90,14 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
     <ScreenContainer
       header={
         <Header
-          title="BaZi Profile"
+          title={t('baziResult.title')}
           onBack={() => navigation.goBack()}
         />
       }
     >
       {ready ? (
         <>
-          <ProfileCard iconKey={profile?.day_master?.icon} cardTitle='You' />
+          <ProfileCard iconKey={profile?.day_master?.icon} cardTitle={t('profileCard.you')} />
           <BaziCardList profile={profile} iconImages={iconImages} />
         </>
       ) : (

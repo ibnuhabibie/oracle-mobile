@@ -51,11 +51,11 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
       }
 
       Alert.alert(
-        'Update Profile',
-        'Successfully update your profile.',
+        t("profileForm.dialogTitle"),
+        t("profileForm.successMessage"),
         [
           {
-            text: 'OK',
+            text: t("profileForm.okLabel"),
             onPress: () => navigation.goBack(),
           },
         ]
@@ -69,7 +69,7 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
     <ScreenContainer
       header={
         <Header
-          title={t("Edit Profile")}
+          title={t("profileForm.dialogTitle")}
           onBack={() => navigation.goBack()}
         />
       }

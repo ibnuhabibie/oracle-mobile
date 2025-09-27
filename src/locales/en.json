@@ -263,7 +263,13 @@
         "timeOfBirth": "Time of Birth",
         "countryOfBirth": "Country of Birth",
         "cityOfBirth": "City of Birth",
-        "gender": "Gender"
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "you": "You"
+    },
+    "profile": {
+        "copiedToClipboard": "Copied to clipboard"
     },
     "chatArea": {
         "geenieSays": "Geenie Says:"
@@ -294,5 +300,33 @@
         "echo": "Echo",
         "askAffinity": "Ask Affinity",
         "profile": "Profile"
+    },
+    "baziResult": {
+        "title": "BaZi Profile",
+        "emptyStateLabel": "No profile data found."
+    },
+    "astroResult": {
+        "title": "Astrology",
+        "emptyStateLabel": "No profile data found."
+    },
+    "profileForm": {
+        "language": "Language",
+        "dialogTitle": "Update Profile",
+        "successMessage": "Successfully updated your profile.",
+        "selectCountry": "Select Country",
+        "selectCity": "Select City",
+        "selectLanguage": "Select Language",
+        "okLabel": "OK"
+    },
+    "echoDetail": {
+        "clickOn": "Click on",
+        "toGetGenieAdvice": "to get Genie advice"
+    },
+    "dailyProfileDetail": {
+        "todayScore": "TODAY SCORE",
+        "wealth": "Wealth",
+        "learning": "Learning",
+        "relation": "Relation",
+        "career": "Career"
     }
 }

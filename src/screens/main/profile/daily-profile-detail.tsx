@@ -70,30 +70,30 @@ export default function DailyProfileDetail() {
         })}, {new Date().toLocaleDateString('en-GB', { weekday: 'long' })}
       </AppText>
       <AppText variant='display1' style={styles.score} color="white">{data?.today_points}%</AppText>
-      <AppText style={styles.subtitle} color="neutral">TODAY SCORE</AppText>
+      <AppText style={styles.subtitle} color="neutral">{t('dailyProfileDetail.todayScore')}</AppText>
 
       {/* Cards */}
       <View style={styles.cardsRow}>
         <View style={styles.card}>
           <WealthIcon size={scaleSize(40, 36, 60)} />
-          <AppText variant='body1' color="neutral" style={styles.cardTitle}>Wealth</AppText>
+          <AppText variant='body1' color="neutral" style={styles.cardTitle}>{t('dailyProfileDetail.wealth')}</AppText>
           <StarReview value={data.today_wealth_points} />
         </View>
         <View style={styles.card}>
           <LearningIcon size={scaleSize(40, 36, 60)} />
-          <AppText variant='body1' color="neutral" style={styles.cardTitle}>Learning</AppText>
+          <AppText variant='body1' color="neutral" style={styles.cardTitle}>{t('dailyProfileDetail.learning')}</AppText>
           <StarReview value={data.today_study_points} />
         </View>
       </View>
       <View style={styles.cardsRow}>
         <View style={styles.card}>
           <RelationIcon size={scaleSize(40, 36, 60)} />
-          <AppText variant='body1' color="neutral" style={styles.cardTitle}>Relation</AppText>
+          <AppText variant='body1' color="neutral" style={styles.cardTitle}>{t('dailyProfileDetail.relation')}</AppText>
           <StarReview value={data.today_relationship_points} />
         </View>
         <View style={styles.card}>
           <CareerIcon size={scaleSize(40, 36, 60)} />
-          <AppText variant='body1' color="neutral" style={styles.cardTitle}>Career</AppText>
+          <AppText variant='body1' color="neutral" style={styles.cardTitle}>{t('dailyProfileDetail.career')}</AppText>
           <StarReview value={data.today_career_points} />
         </View>
       </View>

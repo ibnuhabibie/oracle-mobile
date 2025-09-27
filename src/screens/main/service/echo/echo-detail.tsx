@@ -135,11 +135,11 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           keyboardVerticalOffset={16}
         >
           <View style={styles.adviceRow}>
-            <AppText color='neutral'>Click on</AppText>
+            <AppText color='neutral'>{t('echoDetail.clickOn')}</AppText>
             <View style={styles.adviceIconContainer}>
               <AdviceIcon size={scaleSize(12)} />
             </View>
-            <AppText color='neutral'>to get Genie advice</AppText>
+            <AppText color='neutral'>{t('echoDetail.toGetGenieAdvice')}</AppText>
           </View>
           <View style={styles.inputBar}>
             <TextInput

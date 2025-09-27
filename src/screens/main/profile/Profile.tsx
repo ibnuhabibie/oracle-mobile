@@ -48,11 +48,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     if (user?.referral_code) {
       Clipboard.setString(user.referral_code);
       if (Platform.OS === 'android') {
-        ToastAndroid.show('Copied to clipboard', ToastAndroid.SHORT);
+        ToastAndroid.show(t('profile.copiedToClipboard'), ToastAndroid.SHORT);
       } else {
         Toast.show({
           type: 'success',
-          text1: 'Copied to clipboard',
+          text1: t('profile.copiedToClipboard'),
         });
       }
     }

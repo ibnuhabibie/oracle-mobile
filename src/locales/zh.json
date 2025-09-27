@@ -100,16 +100,16 @@
     "WHAT DO YOU LIKE TO KNOW TODAY?": "你今天想了解什么？",
     "carousel": {
         "love": {
-            "title": "Love On Pause?",
-            "subtitle": "DISCOVER WHAT'S COMING NEXT"
+            "title": "爱情暂停？",
+            "subtitle": "发现接下来会发生什么"
         },
         "relation": {
-            "title": "Relationship Insights",
-            "subtitle": "DISCOVER YOUR CONNECTIONS"
+            "title": "关系洞察",
+            "subtitle": "发现你的联系"
         },
         "fortune": {
-            "title": "Fortune Guidance",
-            "subtitle": "EMBRACE YOUR FUTURE"
+            "title": "运势指引",
+            "subtitle": "拥抱你的未来"
         },
         "downloadPdf": "下载为PDF"
     },
@@ -222,7 +222,7 @@
     },
     "purchaseAlert": {
         "title": "购买提醒",
-        "costInfo": "向Geenie提问将花费{{cost}} <coin/>\n继续吗？",
+        "costInfo": "向Geenie提问将花费{{cost}} 继续吗？",
         "yourCredits": "你的{{creditType}}代币: {{userCredit}}",
         "continue": "继续购买",
         "cancel": "取消",
@@ -235,7 +235,14 @@
         "dateOfBirth": "出生日期",
         "timeOfBirth": "出生时间",
         "countryOfBirth": "出生国家",
-        "cityOfBirth": "出生城市"
+        "cityOfBirth": "出生城市",
+        "gender": "性别",
+        "male": "男",
+        "female": "女",
+        "you": "你"
+    },
+    "profile": {
+        "copiedToClipboard": "已复制到剪贴板"
     },
     "chatArea": {
         "geenieSays": "精灵说："
@@ -290,8 +297,36 @@
     "career": "事业",
     "bottomBar": {
         "home": "首页",
-        "echo": "回声",
+        "echo": "Echo",
         "askAffinity": "提问 Affinity",
         "profile": "个人资料"
+    },
+    "baziResult": {
+        "title": "BaZi个人资料",
+        "emptyStateLabel": "未找到个人资料数据。"
+    },
+    "astroResult": {
+        "title": "占星术",
+        "emptyStateLabel": "未找到个人资料数据。"
+    },
+    "profileForm": {
+        "language": "语言",
+        "dialogTitle": "更新个人资料",
+        "successMessage": "个人资料已成功更新。",
+        "selectCountry": "选择国家",
+        "selectCity": "选择城市",
+        "selectLanguage": "选择语言",
+        "okLabel": "确定"
+    },
+    "echoDetail": {
+        "clickOn": "点击",
+        "toGetGenieAdvice": "获取Genie建议"
+    },
+    "dailyProfileDetail": {
+        "todayScore": "今日分数",
+        "wealth": "财富",
+        "learning": "学习",
+        "relation": "关系",
+        "career": "事业"
     }
 }

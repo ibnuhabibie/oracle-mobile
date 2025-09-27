@@ -103,16 +103,16 @@
     "WHAT DO YOU LIKE TO KNOW TODAY?": "วันนี้คุณอยากรู้อะไร?",
     "carousel": {
         "love": {
-            "title": "Love On Pause?",
-            "subtitle": "DISCOVER WHAT'S COMING NEXT"
+            "title": "ความรักหยุดชั่วคราว?",
+            "subtitle": "ค้นพบสิ่งที่จะเกิดขึ้นต่อไป"
         },
         "relation": {
-            "title": "Relationship Insights",
-            "subtitle": "DISCOVER YOUR CONNECTIONS"
+            "title": "ข้อมูลเชิงลึกเกี่ยวกับความสัมพันธ์",
+            "subtitle": "ค้นพบความสัมพันธ์ของคุณ"
         },
         "fortune": {
-            "title": "Fortune Guidance",
-            "subtitle": "EMBRACE YOUR FUTURE"
+            "title": "คำแนะนำด้านโชคลาภ",
+            "subtitle": "เปิดรับอนาคตของคุณ"
         },
         "downloadPdf": "ดาวน์โหลดเป็น PDF"
     },
@@ -225,7 +225,7 @@
     },
     "purchaseAlert": {
         "title": "แจ้งเตือนการซื้อ",
-        "costInfo": "การถาม Geenie จะมีค่าใช้จ่าย {{cost}} <coin/>\nดำเนินการต่อหรือไม่?",
+        "costInfo": "การถาม Geenie จะมีค่าใช้จ่าย {{cost}} ดำเนินการต่อหรือไม่?",
         "yourCredits": "โทเค็น{{creditType}}ของคุณ: {{userCredit}}",
         "continue": "ดำเนินการซื้อ",
         "cancel": "ยกเลิก",
@@ -238,7 +238,14 @@
         "dateOfBirth": "วันเกิด",
         "timeOfBirth": "เวลาเกิด",
         "countryOfBirth": "ประเทศที่เกิด",
-        "cityOfBirth": "เมืองที่เกิด"
+        "cityOfBirth": "เมืองที่เกิด",
+        "gender": "เพศ",
+        "male": "ชาย",
+        "female": "หญิง",
+        "you": "คุณ"
+    },
+    "profile": {
+        "copiedToClipboard": "คัดลอกไปยังคลิปบอร์ดแล้ว"
     },
     "chatArea": {
         "geenieSays": "Genie กล่าว:"
@@ -291,8 +298,36 @@
     "career": "อาชีพ",
     "bottomBar": {
         "home": "หน้าแรก",
-        "echo": "เอคโค่",
+        "echo": "Echo",
         "askAffinity": "ถาม Affinity",
         "profile": "โปรไฟล์"
+    },
+    "baziResult": {
+        "title": "โปรไฟล์ BaZi",
+        "emptyStateLabel": "ไม่พบข้อมูลโปรไฟล์"
+    },
+    "astroResult": {
+        "title": "โหราศาสตร์",
+        "emptyStateLabel": "ไม่พบข้อมูลโปรไฟล์"
+    },
+    "profileForm": {
+        "language": "ภาษา",
+        "dialogTitle": "อัปเดตโปรไฟล์",
+        "successMessage": "โปรไฟล์ของคุณได้รับการอัปเดตเรียบร้อยแล้ว",
+        "selectCountry": "เลือกประเทศ",
+        "selectCity": "เลือกเมือง",
+        "selectLanguage": "เลือกภาษา",
+        "okLabel": "ตกลง"
+    },
+    "echoDetail": {
+        "clickOn": "คลิก",
+        "toGetGenieAdvice": "เพื่อรับคำแนะนำจาก Genie"
+    },
+    "dailyProfileDetail": {
+        "todayScore": "คะแนนวันนี้",
+        "wealth": "ความมั่งคั่ง",
+        "learning": "การเรียนรู้",
+        "relation": "ความสัมพันธ์",
+        "career": "อาชีพ"
     }
 }

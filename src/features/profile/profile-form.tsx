@@ -319,7 +319,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     text={watchedCity?.name || t("Please select one")}
                 />
 
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("Language")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.language")}</AppText>
                 <DropdownButton
                     onPress={() => setShowLanguageModal(true)}
                     text={LANGUAGES.find(l => l.key === watchedLanguage)?.label || t("Please select one")}
@@ -357,7 +357,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 renderDropdownModal(
                     showCountryModal,
                     () => setShowCountryModal(false),
-                    'Select Country',
+                    t("profileForm.selectCountry"),
                     countries as any,
                     selectCountry as any,
                     watchedCountry as any,
@@ -369,7 +369,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             {renderDropdownModal(
                 showCityModal,
                 () => setShowCityModal(false),
-                'Select City',
+                t("profileForm.selectCity"),
                 cities as any,
                 selectCity as any,
                 watchedCity as any,
@@ -380,7 +380,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             {renderDropdownModal(
                 showLanguageModal,
                 () => setShowLanguageModal(false),
-                'Select Language',
+                t("profileForm.selectLanguage"),
                 LANGUAGES as any,
                 selectLanguage as any,
                 LANGUAGES.find(l => l.key === watchedLanguage) as any,
