@@ -288,5 +288,11 @@
     "strengths": "Strengths",
     "weaknesses": "Weaknesses",
     "relationships": "Relationships",
-    "career": "Career"
+    "career": "Career",
+    "bottomBar": {
+        "home": "Home",
+        "echo": "Echo",
+        "askAffinity": "Ask Affinity",
+        "profile": "Profile"
+    }
 }

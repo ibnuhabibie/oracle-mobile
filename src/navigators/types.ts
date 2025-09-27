@@ -55,6 +55,7 @@ export type MainNavigatorParamList = {
     AstrologyResults: { profile_astro?: Record<string, any> };
     AffinityResults: { affinityResult: any; question: string };
     BaziResults: { profile_bazi: any };
+    DailyProfileDetail: undefined;
     WebviewContent: {
         uri: string
         title: string

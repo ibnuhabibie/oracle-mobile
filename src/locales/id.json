@@ -288,5 +288,11 @@
     "strengths": "Kekuatan",
     "weaknesses": "Kelemahan",
     "relationships": "Hubungan",
-    "career": "Karier"
+    "career": "Karier",
+    "bottomBar": {
+        "home": "Beranda",
+        "echo": "Gema",
+        "askAffinity": "Tanya Affinity",
+        "profile": "Profil"
+    }
 }

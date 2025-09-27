@@ -263,5 +263,11 @@
     "strengths": "강점",
     "weaknesses": "약점",
     "relationships": "관계",
-    "career": "커리어"
+    "career": "커리어",
+    "bottomBar": {
+        "home": "홈",
+        "echo": "에코",
+        "askAffinity": "어피니티 질문",
+        "profile": "프로필"
+    }
 }

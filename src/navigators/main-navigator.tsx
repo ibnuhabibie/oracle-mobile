@@ -45,14 +45,18 @@ import { COLORS } from '../constants/colors';
 import StarMeteorBackground from '../components/star-meteor-background';
 import type { MainNavigatorParamList } from './types';
 
+import { scaleFont, scaleSize } from '../utils/scale';
+import Toast from 'react-native-toast-message';
+import { useTranslation } from 'react-i18next';
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<MainNavigatorParamList>();
 
-import { scaleFont, scaleSize } from '../utils/scale';
-import Toast from 'react-native-toast-message';
+const TabNavigator = () => {
+  const { t } = useTranslation();
 
-const TabNavigator = () => (
-  <Tab.Navigator
+  return (
+    <Tab.Navigator
     screenOptions={{
       headerShown: false,
       tabBarHideOnKeyboard: true,
@@ -86,7 +90,7 @@ const TabNavigator = () => (
         tabBarIcon: ({ focused }) => (
           <HomeIcon size={scaleSize(19, 16, 24)} fill={focused} />
         ),
-        tabBarLabel: 'Home',
+        tabBarLabel: t('bottomBar.home'),
       }}
     />
     <Tab.Screen
@@ -96,7 +100,7 @@ const TabNavigator = () => (
         tabBarIcon: ({ focused }) => (
           <EchoIcon size={scaleSize(19, 16, 24)} fill={focused} />
         ),
-        tabBarLabel: 'Echo',
+        tabBarLabel: t('bottomBar.echo'),
       }}
     />
     <Tab.Screen
@@ -106,7 +110,7 @@ const TabNavigator = () => (
         tabBarIcon: ({ focused }) => (
           <AskAffinityIcon size={scaleSize(19, 16, 24)} fill={focused} />
         ),
-        tabBarLabel: 'Ask Affinity',
+        tabBarLabel: t('bottomBar.askAffinity'),
       }}
     />
     <Tab.Screen
@@ -116,11 +120,12 @@ const TabNavigator = () => (
         tabBarIcon: ({ focused }) => (
           <ProfileIcon size={scaleSize(19, 16, 24)} fill={focused} />
         ),
-        tabBarLabel: 'Profile',
+        tabBarLabel: t('bottomBar.profile'),
       }}
     />
-  </Tab.Navigator>
-);
+    </Tab.Navigator>
+  );
+};
 
 const MainNavigator = () => {
   const [initialRoute, setInitialRoute] = useState<string | null>(null);

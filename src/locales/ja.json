@@ -286,5 +286,11 @@
     "strengths": "強み",
     "weaknesses": "弱み",
     "relationships": "関係",
-    "career": "キャリア"
+    "career": "キャリア",
+    "bottomBar": {
+        "home": "ホーム",
+        "echo": "エコー",
+        "askAffinity": "Affinityに質問",
+        "profile": "プロフィール"
+    }
 }

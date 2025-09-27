@@ -7,7 +7,7 @@ import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/screen-container';
 
 type Props = {
-    navigation: NativeStackNavigationProp<MainNavigatorParamList, 'ComponentGalery'>;
+    navigation: NativeStackNavigationProp<MainNavigatorParamList, 'ComponentGallery'>;
 };
 
 class ComponentGallery extends Component<Props> {

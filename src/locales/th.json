@@ -288,5 +288,11 @@
     "strengths": "จุดแข็ง",
     "weaknesses": "จุดอ่อน",
     "relationships": "ความสัมพันธ์",
-    "career": "อาชีพ"
+    "career": "อาชีพ",
+    "bottomBar": {
+        "home": "หน้าแรก",
+        "echo": "เอคโค่",
+        "askAffinity": "ถาม Affinity",
+        "profile": "โปรไฟล์"
+    }
 }
