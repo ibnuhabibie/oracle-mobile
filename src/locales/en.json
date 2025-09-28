@@ -328,5 +328,11 @@
         "learning": "Learning",
         "relation": "Relation",
         "career": "Career"
+    },
+    "profileDashboard": {
+        "loading": "Loading your daily profile...",
+        "serviceUnavailable": "This service will be available soon.",
+        "checkBackLater": "Please check back later to access your daily profile dashboard.",
+        "failedToLoadUserData": "Failed to load user data. Please try again later."
     }
 }

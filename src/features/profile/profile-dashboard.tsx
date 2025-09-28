@@ -12,12 +12,12 @@ import CircularScore from "../../components/widgets/circular-score";
 import api from "../../utils/http";
 import { formatDateToShortHeader } from "../../utils/date";
 
-interface UserProfile {
+export interface UserProfile {
     full_name?: string;
     [key: string]: any;
 }
 
-interface DailyProfileData {
+export interface DailyProfileData {
     today_description?: string;
     today_points?: number;
     today_wealth_points?: number;
@@ -33,6 +33,7 @@ const ProfileDashboard: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const navigation = useNavigation();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchUserAndProfile = async () => {
@@ -44,7 +45,7 @@ const ProfileDashboard: React.FC = () => {
                 setData(response.data.content);
             } catch (error) {
                 console.error('Error fetching user data:', error);
-                setError('Failed to load user data. Please try again later.');
+                setError(t('profileDashboard.failedToLoadUserData'));
             } finally {
                 setLoading(false);
             }
@@ -55,7 +56,6 @@ const ProfileDashboard: React.FC = () => {
     const today_description = data?.today_description;
 
     function LocalizedHeader() {
-        const { t } = useTranslation();
         const today = new Date();
         const formattedDate = formatDateToShortHeader(today);
 
@@ -70,7 +70,6 @@ const ProfileDashboard: React.FC = () => {
     }
 
     function LocalizedSubtitle() {
-        const { t } = useTranslation();
         return (
             <AppText style={styles.subtitle} variant='subtitle1' color="white">{t("TODAY SCORE")}</AppText>
         );
@@ -82,7 +81,7 @@ const ProfileDashboard: React.FC = () => {
                 <LocalizedHeader />
                 <View style={styles.centeredLoading}>
                     <AppText variant='subtitle1' style={styles.loadingText} color="light-gray">
-                        Loading your daily profile...
+                        {t('profileDashboard.loading')}
                     </AppText>
                 </View>
             </>
@@ -95,10 +94,10 @@ const ProfileDashboard: React.FC = () => {
                 <LocalizedHeader />
                 <View style={styles.centeredLoading}>
                     <AppText variant='subtitle1' color="primary" style={styles.loadingText}>
-                        {"This service will be available soon."}
+                        {t("profileDashboard.serviceUnavailable")}
                     </AppText>
                     <AppText style={styles.errorText}>
-                        {"Please check back later to access your daily profile dashboard."}
+                        {t("profileDashboard.checkBackLater")}
                     </AppText>
                 </View>
             </>

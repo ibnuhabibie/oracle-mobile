@@ -1,4 +1,20 @@
 {
+    "calendar": {
+        "monthNames": [
+            "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ],
+        "monthNamesShort": [
+            "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+            "Jul", "Agu", "Sep", "Okt", "Nov", "Des"
+        ],
+        "dayNames": [
+            "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
+        ],
+        "dayNamesShort": [
+            "Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"
+        ]
+    },
     "WELCOME TO": "SELAMAT DATANG",
     "GET STARTED": "Mulai",
     "DEAR SEEKERS": "PENCARI YANG TERHORMAT",
@@ -275,9 +291,9 @@
         "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
     },
     "mbtiQuiz": {
-        "title": "What’s your MBTI?",
-        "subtitle": "Quick test to discover your type!",
-        "button": "Find Out"
+        "title": "Apa MBTI Anda?",
+        "subtitle": "Tes singkat untuk mengetahui tipe Anda!",
+        "button": "Cari Tahu"
     },
     "relationReportResult": {
         "header": "Kecocokan Hubungan",
@@ -329,5 +345,11 @@
         "learning": "Belajar",
         "relation": "Hubungan",
         "career": "Karier"
+    },
+    "profileDashboard": {
+        "loading": "Memuat profil harian Anda...",
+        "serviceUnavailable": "Layanan ini akan tersedia segera.",
+        "checkBackLater": "Silakan cek kembali nanti untuk mengakses dasbor profil harian Anda.",
+        "failedToLoadUserData": "Gagal memuat data pengguna. Silakan coba lagi nanti."
     }
 }

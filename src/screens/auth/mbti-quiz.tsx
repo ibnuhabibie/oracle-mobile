@@ -48,8 +48,9 @@ const MbtiQuiz: FC<{
     const getUri = async () => {
       const token = await AsyncStorage.getItem('auth_token');
       const version = Date.now(); // Add timestamp to disable cache
-      console.log(`${APP_URL}/quiz/mbti?token=${token}&version=${version}`)
-      setUri(`${APP_URL}/quiz/mbti?token=${token}&version=${version}`);
+      const locale = (await AsyncStorage.getItem('language')) || 'en';
+      console.log(`${APP_URL}/quiz/mbti?token=${token}&version=${version}&locale=${locale}`)
+      setUri(`${APP_URL}/quiz/mbti?token=${token}&version=${version}&locale=${locale}`);
     };
     getUri();
 

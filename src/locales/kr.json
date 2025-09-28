@@ -1,4 +1,20 @@
 {
+    "calendar": {
+        "monthNames": [
+            "1월", "2월", "3월", "4월", "5월", "6월",
+            "7월", "8월", "9월", "10월", "11월", "12월"
+        ],
+        "monthNamesShort": [
+            "1월", "2월", "3월", "4월", "5월", "6월",
+            "7월", "8월", "9월", "10월", "11월", "12월"
+        ],
+        "dayNames": [
+            "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"
+        ],
+        "dayNamesShort": [
+            "일", "월", "화", "수", "목", "금", "토"
+        ]
+    },
     "WELCOME TO": "환영합니다",
     "GET STARTED": "시작하기",
     "DEAR SEEKERS": "친애하는 탐구자 여러분",
@@ -248,9 +264,9 @@
         "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
     },
     "mbtiQuiz": {
-        "title": "What’s your MBTI?",
-        "subtitle": "Quick test to discover your type!",
-        "button": "Find Out"
+        "title": "당신의 MBTI는?",
+        "subtitle": "간단한 테스트로 유형을 알아보세요!",
+        "button": "알아보기"
     },
     "relationReportResult": {
         "header": "관계 궁합",
@@ -304,5 +320,11 @@
         "learning": "학습",
         "relation": "관계",
         "career": "커리어"
+    },
+    "profileDashboard": {
+        "loading": "일일 프로필을 불러오는 중...",
+        "serviceUnavailable": "이 서비스는 곧 제공될 예정입니다.",
+        "checkBackLater": "나중에 다시 확인하여 일일 프로필 대시보드에 접속하세요.",
+        "failedToLoadUserData": "사용자 데이터를 불러오지 못했습니다. 나중에 다시 시도해 주세요."
     }
 }

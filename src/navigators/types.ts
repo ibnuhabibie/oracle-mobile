@@ -1,5 +1,7 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import type { DailyProfileData } from "../features/profile/profile-dashboard";
+
 export type MainNavigatorParamList = {
     Welcome: undefined;
     LanguageSelection: undefined;
@@ -55,7 +57,7 @@ export type MainNavigatorParamList = {
     AstrologyResults: { profile_astro?: Record<string, any> };
     AffinityResults: { affinityResult: any; question: string };
     BaziResults: { profile_bazi: any };
-    DailyProfileDetail: undefined;
+    DailyProfileDetail: { data: DailyProfileData };
     WebviewContent: {
         uri: string
         title: string

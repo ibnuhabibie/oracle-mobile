@@ -8,12 +8,13 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from "react-i18next";
+import i18n from '../../../../locales/i18n';
 import { scaleSize } from '../../../../utils/scale';
 
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, LocaleConfig } from 'react-native-calendars';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import CalendarIcon from '../../../../components/icons/echo/calendar-icon';
 
@@ -108,6 +109,18 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
             navigation.push('EchoDetail', { date: { dateString: todayStr } });
         }
     };
+
+    // Set LocaleConfig for Calendar
+    const calendar = i18n.getResource(i18n.language, 'translation', 'calendar');
+    if (calendar) {
+        LocaleConfig.locales[i18n.language] = {
+            monthNames: calendar.monthNames,
+            monthNamesShort: calendar.monthNamesShort,
+            dayNames: calendar.dayNames,
+            dayNamesShort: calendar.dayNamesShort
+        };
+        LocaleConfig.defaultLocale = i18n.language;
+    }
 
     return (
         <ScreenContainer floatingButton={<FloatingAddButton onPress={newEdit} />}>
