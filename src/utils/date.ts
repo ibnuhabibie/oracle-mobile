@@ -1,71 +1,124 @@
+import dayjs from 'dayjs';
+import 'dayjs/locale/en';
+import 'dayjs/locale/id';
+import 'dayjs/locale/ja';
+import 'dayjs/locale/ko';
+import 'dayjs/locale/th';
+import 'dayjs/locale/zh';
+
 /**
  * Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, d MMM yyyy" (e.g., "Sat, 2 May 2025")
 */
-export const formatDateToHeader = (input: object): string => {
-    let _date = new Date(input.dateString);
-    const weekday = _date.toLocaleString('en-US', { weekday: 'short' });
-    const day = _date.getDate();
-    const month = _date.toLocaleString('en-US', { month: 'short' });
-    const year = _date.getFullYear();
-    return `${weekday}, ${day} ${month} ${year}`;
+/**
+ * Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, d MMM yyyy" (e.g., "Sat, 2 May 2025")
+ * Accepts locale for localization.
+ */
+// Get locale from use-storage.ts
+import { getLocale } from '../hooks/use-storage';
+
+// Async version: Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, d MMM yyyy" (e.g., "Sat, 2 May 2025")
+// Locale is automatically retrieved from storage if not provided
+export const formatDateToHeader = async (
+    input: { dateString: string } | Date,
+    locale?: string
+): Promise<string> => {
+    let normalizedLocale = locale;
+    if (!normalizedLocale) {
+        normalizedLocale = await getLocale();
+    }
+    normalizedLocale = normalizedLocale === 'kr' ? 'ko' : normalizedLocale;
+    const _date =
+        input instanceof Date
+            ? dayjs(input)
+            : dayjs(input.dateString);
+    const d = _date.locale(normalizedLocale);
+    // "ddd, D MMM YYYY" (e.g., "Sat, 2 May 2025")
+    return d.format('ddd, D MMM YYYY');
 }
 
-export const formatDate = (input: object): string => {
-    let _date = new Date(input.dateString);
-    const y = _date.getFullYear();
-    const m = (_date.getMonth() + 1).toString().padStart(2, '0');
-    const d = _date.getDate().toString().padStart(2, '0');
-    return `${y}-${m}-${d}`;
+// Format a date string (yyyy-mm-dd or ISO) or Date object to "yyyy-MM-dd"
+// Format a date string (yyyy-mm-dd or ISO) or Date object to "yyyy-MM-dd"
+// Async version: Format a date string (yyyy-mm-dd or ISO) or Date object to "yyyy-MM-dd"
+export const formatDate = async (
+    input: { dateString: string } | Date,
+    locale?: string
+): Promise<string> => {
+    let normalizedLocale = locale;
+    if (!normalizedLocale) {
+        normalizedLocale = await getLocale();
+    }
+    normalizedLocale = normalizedLocale === 'kr' ? 'ko' : normalizedLocale;
+    const _date =
+        input instanceof Date
+            ? dayjs(input)
+            : dayjs(input.dateString);
+    return _date.locale(normalizedLocale).format('YYYY-MM-DD');
 }
 
 /**
  * Format a date string or Date object to "dd MMM yyyy HH:mm" (e.g., "25 Jan 2025 10:00")
  */
-export const formatDateTime = (input: string | Date): string => {
-    const _date = typeof input === 'string' ? new Date(input) : input;
-    const day = _date.getDate().toString().padStart(2, '0');
-    const month = _date.toLocaleString('en-US', { month: 'short' });
-    const year = _date.getFullYear();
-    const hour = _date.getHours().toString().padStart(2, '0');
-    const minute = _date.getMinutes().toString().padStart(2, '0');
-    return `${day} ${month} ${year} ${hour}:${minute}`;
+// Format a date string or Date object to "dd MMM yyyy HH:mm" (e.g., "25 Jan 2025 10:00")
+// Format a date string or Date object to "dd MMM yyyy HH:mm" (e.g., "25 Jan 2025 10:00")
+// Async version: Format a date string or Date object to "dd MMM yyyy HH:mm" (e.g., "25 Jan 2025 10:00")
+export const formatDateTime = async (
+    input: string | Date,
+    locale?: string
+): Promise<string> => {
+    let normalizedLocale = locale;
+    if (!normalizedLocale) {
+        normalizedLocale = await getLocale();
+    }
+    normalizedLocale = normalizedLocale === 'kr' ? 'ko' : normalizedLocale;
+    const _date = typeof input === 'string' ? dayjs(input) : dayjs(input);
+    return _date.locale(normalizedLocale).format('DD MMM YYYY HH:mm');
 };
 
 /**
  * Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, MMM dd yyyy" (e.g., "Tue, Jul 15 2025")
  */
-export const formatDateToShortHeader = (input: string | Date): string => {
-    let _date: Date;
-    if (typeof input === 'string') {
-        _date = new Date(input);
-    } else {
-        _date = input;
+// Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, MMM dd yyyy" (e.g., "Tue, Jul 15 2025")
+// Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, MMM dd yyyy" (e.g., "Tue, Jul 15 2025")
+// Async version: Format a date string (yyyy-mm-dd or ISO) or Date object to "EEE, MMM dd yyyy" (e.g., "Tue, Jul 15 2025")
+export const formatDateToShortHeader = async (
+    input: string | Date,
+    locale?: string
+): Promise<string> => {
+    let normalizedLocale = locale;
+    if (!normalizedLocale) {
+        normalizedLocale = await getLocale();
     }
-    const weekday = _date.toLocaleString('en-US', { weekday: 'short' });
-    const month = _date.toLocaleString('en-US', { month: 'short' });
-    const day = _date.getDate().toString().padStart(2, '0');
-    const year = _date.getFullYear();
-    return `${weekday}, ${month} ${day} ${year}`;
+    normalizedLocale = normalizedLocale === 'kr' ? 'ko' : normalizedLocale;
+    const _date = typeof input === 'string' ? dayjs(input) : dayjs(input);
+    return _date.locale(normalizedLocale).format('ddd, MMM DD YYYY');
 };
 
 /**
  * Format a date of birth to "dd MMM yyyy" (e.g., "29 May 1999")
  */
-export const formatDateOfBirth = (input: string | Date | { dateString: string }): string => {
-    let _date: Date;
+// Format a date of birth to "dd MMM yyyy" (e.g., "29 May 1999")
+// Format a date of birth to "dd MMM yyyy" (e.g., "29 May 1999")
+// Async version: Format a date of birth to "dd MMM yyyy" (e.g., "29 May 1999")
+export const formatDateOfBirth = async (
+    input: string | Date | { dateString: string },
+    locale?: string
+): Promise<string> => {
+    let normalizedLocale = locale;
+    if (!normalizedLocale) {
+        normalizedLocale = await getLocale();
+    }
+    normalizedLocale = normalizedLocale === 'kr' ? 'ko' : normalizedLocale;
+    let _date: dayjs.Dayjs;
     if (typeof input === 'string') {
-        _date = new Date(input);
+        _date = dayjs(input);
     } else if (input instanceof Date) {
-        _date = input;
+        _date = dayjs(input);
     } else if (input && typeof input === 'object' && 'dateString' in input) {
-        _date = new Date(input.dateString);
+        _date = dayjs(input.dateString);
     } else {
         return '';
     }
-    const day = _date.getDate().toString().padStart(2, '0');
-    const month = _date.toLocaleString('en-US', { month: 'short' });
-    const year = _date.getFullYear();
-    return `${day} ${month} ${year}`;
+    return _date.locale(normalizedLocale).format('DD MMM YYYY');
 };
 
 /**

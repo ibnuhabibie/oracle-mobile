@@ -137,6 +137,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       await api.post(`/v1/users/auth/logout`);
       await AsyncStorage.removeItem('user_profile');
       await AsyncStorage.removeItem('auth_token');
+      await AsyncStorage.removeItem('language');
       navigation.replace('Welcome');
     } catch (error) {
       console.error('Logout failed:', error);

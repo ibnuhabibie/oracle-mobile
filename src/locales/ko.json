@@ -185,6 +185,10 @@
     "Save": "저장",
     "Select Country": "국가 선택",
     "Select City": "도시 선택",
+    "wealth": "재물",
+    "learning": "학습",
+    "relation": "관계",
+    "career": "커리어",
     "fortuneReport": {
         "header": "운세 리포트 {{year}}",
         "purchase": "{{cost}}에 구매",
@@ -261,7 +265,41 @@
         "downloadPdf": "PDF로 다운로드"
     },
     "polling": {
-        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+        "info": "몇 분 정도 소요됩니다. 이 창을 닫아도 괜찮아요 - 준비되면 알려드릴게요."
+    },
+    "mbtiQuiz": {
+        "title": "당신의 MBTI는?",
+        "subtitle": "간단한 테스트로 유형을 알아보세요!",
+        "button": "알아보기"
+    },
+    "relationReportResult": {
+        "header": "관계 궁합",
+        "downloadPdf": "PDF로 다운로드",
+        "downloadSuccess": "PDF가 성공적으로 다운로드되었습니다!",
+        "downloadedTo": "파일이 다음 위치에 다운로드되었습니다: {{path}}",
+        "you": "나",
+        "yourLoveInterest": "상대방"
+    },
+    "loveReportResult": {
+        "title": "향후 12개월 사랑 운세",
+        "downloadPdf": "PDF로 다운로드",
+        "forecastFor": "{{range}}의 운세"
+    },
+    "LOGIN FAILED": "로그인 실패",
+    "REGISTER FAILED": "회원가입 실패",
+    "REGISTER FAILED MESSAGE": "회원가입에 실패했습니다. 다시 시도해 주세요.",
+    "PASSWORD CHANGED SUCCESSFULLY": "비밀번호가 성공적으로 변경되었습니다",
+    "FAILED TO CHANGE PASSWORD": "비밀번호 변경에 실패했습니다",
+    "LOADING...": "로딩 중...",
+    "TODAY SCORE": "오늘 점수",
+    "Good Day": "좋은 하루",
+    "WHAT DO YOU LIKE TO KNOW TODAY?": "오늘 무엇을 알고 싶으신가요?",
+    "fortuneReportResult": {
+        "header": "운세 리포트 {{year}}",
+        "downloadPdf": "PDF로 다운로드"
+    },
+    "polling": {
+        "info": "몇 분 정도 소요됩니다. 이 창을 닫아도 괜찮아요 - 준비되면 알려드릴게요."
     },
     "mbtiQuiz": {
         "title": "당신의 MBTI는?",

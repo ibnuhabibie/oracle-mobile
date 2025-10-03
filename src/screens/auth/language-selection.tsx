@@ -1,7 +1,8 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, View } from 'react-native';
+import * as RNLocalize from "react-native-localize";
 import { scaleFont, scaleSize } from '../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -16,10 +17,24 @@ import { useTranslation } from 'react-i18next';
 
 type LanguageSelectionProps = NativeStackScreenProps<MainNavigatorParamList, 'LanguageSelection'>;
 
+const getDeviceLanguage = () => {
+  const locales = RNLocalize.getLocales();
+  if (Array.isArray(locales) && locales.length > 0) {
+    let deviceLanguageCode = locales[0].languageCode; // e.g. "en"
+    return deviceLanguageCode;
+  }
+  return 'en';
+};
+
 const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
-  const { control, handleSubmit } = useForm({
+  // Use device language for initial selection
+  const deviceLangCode = getDeviceLanguage();
+  console.log(deviceLangCode, 'deviceLangCode')
+  const deviceLang = LANGUAGES.find(l => l.key === deviceLangCode) ? deviceLangCode : 'en';
+
+  const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
-      language: 'en',
+      language: deviceLang,
     },
   });
   const { t } = useTranslation();
@@ -30,6 +45,16 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
 
     navigation.push('SignIn');
   };
+
+  // If device language changes after mount, update selected language
+  useEffect(() => {
+    let langCode = getDeviceLanguage();
+    const found = LANGUAGES.find(l => l.key === langCode);
+    if (found) {
+      setValue('language', langCode);
+      i18n.changeLanguage(langCode);
+    }
+  }, [setValue]);
 
   return (
     <ScreenContainer style={styles.container}>

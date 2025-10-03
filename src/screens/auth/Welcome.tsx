@@ -40,47 +40,49 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
 
   const handleClick = async () => {
     try {
-      const auth_token = await getAuthToken();
-      console.log(auth_token, 'auth_token');
+      const language = await AsyncStorage.getItem('language');
+      console.log(language, 'language');
 
-      if (auth_token) {
-        const profile = (await getUserProfile()) as UserProfile | null;
-        console.log(profile, 'profile');
+      if (language) {
+        const auth_token = await getAuthToken();
+        console.log(auth_token, 'auth_token');
 
-        const isProfileCompleted = (profile: UserProfile) => {
-          return (
-            profile.birth_date &&
-            profile.birth_time &&
-            profile.birth_city &&
-            profile.birth_country
-          );
-        };
+        if (auth_token) {
+          const profile = (await getUserProfile()) as UserProfile | null;
+          console.log(profile, 'profile');
 
-        if (profile && !profile.is_email_verified) {
-          navigation.replace('OtpVerification', {
-            email: profile.email,
-            shouldResendOtp: true,
-          } as OtpVerificationParams);
-        } else if (profile && !isProfileCompleted(profile)) {
-          navigation.replace('Onboarding');
-        } else if (profile && !profile.mbti_profile) {
-          navigation.replace('MbtiQuiz');
-        } else if (profile) {
-          navigation.replace('Tabs');
+          const isProfileCompleted = (profile: UserProfile) => {
+            return (
+              profile.birth_date &&
+              profile.birth_time &&
+              profile.birth_city &&
+              profile.birth_country
+            );
+          };
+
+          if (profile && !profile.is_email_verified) {
+            navigation.replace('OtpVerification', {
+              email: profile.email,
+              shouldResendOtp: true,
+            } as OtpVerificationParams);
+          } else if (profile && !isProfileCompleted(profile)) {
+            navigation.replace('Onboarding');
+          } else if (profile && !profile.mbti_profile) {
+            navigation.replace('MbtiQuiz');
+          } else if (profile) {
+            navigation.replace('Tabs');
+          } else {
+            await sync()
+            navigation.replace('Tabs');
+          }
         } else {
-          await sync()
-          navigation.replace('Tabs');
+          navigation.replace('SignIn');
         }
       } else {
-        const language = await AsyncStorage.getItem('language');
-        console.log(language, 'language');
-
-        if (language) {
-          navigation.replace('SignIn');
-        } else {
-          navigation.replace('LanguageSelection');
-        }
+        navigation.replace('LanguageSelection');
       }
+
+
     } catch (error) {
       console.log(error);
       navigation.replace('LanguageSelection');

@@ -14,6 +14,8 @@ import WealthIcon from "../../../components/icons/daily-dashboard/wealth-icon";
 import LearningIcon from "../../../components/icons/daily-dashboard/learning-icon";
 import RelationIcon from "../../../components/icons/daily-dashboard/relation-icon";
 import CareerIcon from "../../../components/icons/daily-dashboard/career-icon";
+import { useEffect, useState } from "react";
+import { formatDateToShortHeader } from "../../../utils/date";
 
 function StarReview({ value }: { value?: number }) {
   // value: 0-100, 4 stars, each 25 points
@@ -52,6 +54,15 @@ export default function DailyProfileDetail() {
     };
   };
 
+  const [dateHeader, setDateHeader] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const header = await formatDateToShortHeader(new Date());
+      setDateHeader(header);
+    })();
+  }, []);
+
   return (
     <ScreenContainer
       header={
@@ -63,11 +74,7 @@ export default function DailyProfileDetail() {
       style={styles.container}>
       {/* Score */}
       <AppText variant='subtitle1' style={styles.date} color="white">
-        {new Date().toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric',
-        })}, {new Date().toLocaleDateString('en-GB', { weekday: 'long' })}
+        {dateHeader}
       </AppText>
       <AppText variant='display1' style={styles.score} color="white">{data?.today_points}%</AppText>
       <AppText style={styles.subtitle} color="neutral">{t('dailyProfileDetail.todayScore')}</AppText>

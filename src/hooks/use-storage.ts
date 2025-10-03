@@ -132,3 +132,19 @@ export const useAsyncStorage = () => {
         sync
     };
 };
+
+/**
+ * Get the current language/locale from AsyncStorage.
+ * Returns 'en' if not set.
+ */
+export const getLocale = async (): Promise<string> => {
+    try {
+        const lang = await AsyncStorage.getItem('language');
+        if (lang) {
+            return lang;
+        }
+    } catch (error) {
+        // ignore
+    }
+    return 'en';
+};

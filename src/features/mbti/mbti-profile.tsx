@@ -72,7 +72,7 @@ const MBTIProfile: React.FC = () => {
                 </ShinyContainer>
                 <AppText variant='title3' color="primary">{t("strengths")}</AppText>
                 <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
-                    {profile?.strengths?.join(',')}
+                    {profile?.strengths}
                 </AppText>
             </View>
 
@@ -83,7 +83,7 @@ const MBTIProfile: React.FC = () => {
                 </ShinyContainer>
                 <AppText variant='title3' color="primary">{t("weaknesses")}</AppText>
                 <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
-                    {profile?.weaknesses?.join(',')}
+                    {profile?.weaknesses}
                 </AppText>
             </View>
 

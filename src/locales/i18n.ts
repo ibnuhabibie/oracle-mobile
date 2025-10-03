@@ -6,7 +6,7 @@ import en from './en.json';
 import id from './id.json';
 import zh from './zh.json';
 import ja from './ja.json';
-import kr from './kr.json';
+import ko from './ko.json';
 import th from './th.json';
 
 const languageDetector = {
@@ -22,7 +22,7 @@ const languageDetector = {
     },
     init: () => { },
     cacheUserLanguage: async (lang) => {
-        await AsyncStorage.setItem('language', lang);
+        // await AsyncStorage.setItem('language', lang);
     },
 };
 
@@ -36,7 +36,7 @@ i18n
             id: { translation: id },
             zh: { translation: zh },
             ja: { translation: ja },
-            kr: { translation: kr },
+            ko: { translation: ko },
             th: { translation: th },
         },
         compatibilityJSON: 'v3',
