@@ -1,241 +1,201 @@
 {
-    "WELCOME TO": "WELCOME TO",
-    "GET STARTED": "Get Started",
-    "DEAR SEEKERS": "DEAR SEEKERS",
-    "PLEASE SELECT A LANGUAGE": "Please Select a Language",
-    "NEXT": "Next",
-    "SIGN IN": "Sign In",
-    "SIGN UP": "Sign Up",
-    "THE COSMOS WHISPERS": "The cosmos whispers.\nDiscover what’s meant for you.",
-    "DONT HAVE AN ACCOUNT": "Don’t have an account?",
-    "EMAIL IS REQUIRED": "Email is required",
-    "INVALID EMAIL FORMAT": "Invalid email format",
-    "PASSWORD IS REQUIRED": "Password is required",
-    "PASSWORD MIN LENGTH": "Password must be at least 6 characters",
-    "EMAIL": "Email",
-    "PASSWORD": "Password",
-    "LOGIN FAILED": "Login Failed",
-    "REGISTER FAILED": "Register Failed",
-    "REGISTER FAILED MESSAGE": "Registration failed. Please try again.",
-    "SIGN UP SUBTITLE": "The cosmos whispers.\nJoin & uncover your destiny.",
-    "ALREADY HAVE AN ACCOUNT": "Already have an account?",
-    "NAME IS REQUIRED": "Name is required",
-    "NAME MIN LENGTH": "Name must be at least 3 characters",
-    "PLEASE CONFIRM PASSWORD": "Please confirm your password",
-    "PASSWORDS DO NOT MATCH": "Passwords do not match",
-    "NAME": "Name",
-    "CONFIRM PASSWORD": "Confirm Password",
-    "REFERRAL CODE": "Referral Code",
-    "CREATE ACCOUNT": "Create Account",
-    "Guest": "Guest",
-    "Profile": "Profile",
-    "Edit Profile": "Edit Profile",
-    "Password Settings": "Password Settings",
-    "Purchase History": "Purchase History",
-    "PURCHASE HISTORY": "Purchase History",
-    "TOP UP HISTORY": "Top Up History",
-    "ASK AFFINITY": "Ask Affinity",
-    "LOVE FORECAST": "Love Forecast",
-    "FORTUNE REPORT": "Fortune Report",
-    "RELATION COMPATIBILITY": "Relation Compatibility",
-    "ADVICE GENIE": "Genie Advice",
-    "USAGE HISTORY DETAILS": "View Details",
-    "NO USAGE HISTORY FOUND": "No usage history found.",
-    "OUR PACKAGES": "Our Packages",
-    "PACKAGES DESC": "Can be used to purchase Reports and Ask Affinity AI",
-    "GET COINS": "Get {{count}} Tokens",
-    "OUR SUBSCRIPTIONS": "Our Subscriptions",
-    "SUBSCRIPTIONS DESC": "Can be used in Ask Affinity AI and reset at the beginning of each month. You'll receive 3 silver tokens free every month.",
-    "FAILED TO LOAD PACKAGES": "Failed to load packages. Please try again later.",
-    "FAILED TO LOAD SUBSCRIPTIONS": "Failed to load subscriptions. Please try again later.",
-    "PAYMENT FAILED": "Payment failed",
-    "SUCCESS": "Success",
-    "PAYMENT COMPLETE": "Payment complete!",
-    "CONTINUE": "Continue",
-    "PROCESSING": "Processing...",
-    "TOP UP": "Top Up",
-    "ERROR": "Error",
-    "GENERIC ERROR": "An error occurred. Please try again.",
-    "TOPUP COMPLETE": "View Details.",
-    "NO TOPUP HISTORY FOUND": "No top up history found.",
-    "RECEIPT": "Receipt",
-    "ORDER NUMBER": "Order Number",
-    "DATE PURCHASED": "Date Purchased",
-    "ORDER ITEMS": "Order Item(s)",
-    "TOTAL": "Total:",
-    "PAYMENT METHOD": "Payment Method",
-    "PREVIOUS POINTS": "Previous Points",
-    "POINTS ADDED": "Points Added",
-    "TOTAL POINTS": "Total Points",
-    "PAYMENT NOT COMPLETED": "Your payment is not yet completed. It may still be processing, or you haven't finished the payment. Please check back later.",
-    "Your Coins": "Your Tokens",
-    "Buy Coins": "Buy Tokens",
-    "Others": "Others",
-    "About Us": "About Us",
-    "Privacy Policy": "Privacy Policy",
-    "Terms & Conditions": "Terms & Conditions",
-    "Logout": "Logout",
-    "Current Password": "Current Password",
-    "New Password": "New Password",
-    "Confirm Password": "Confirm Password",
-    "Full Name": "Full Name",
-    "Email Address": "Email Address",
-    "Phone Number": "Phone Number",
-    "Birth Date": "Birth Date",
-    "Birth Date:": "Birth Date:",
-    "Birth Time": "Birth Time",
-    "Birth Time:": "Birth Time:",
-    "Not sure about your birth time? Just go with your closest guess.": "Not sure about your birth time? Just go with your closest guess.",
-    "Gender": "Gender",
-    "Male": "Male",
-    "Female": "Female",
-    "Country of Birth": "Country of Birth",
-    "City of Birth": "City of Birth",
-    "Please select one": "Please select one",
-    "Save": "Save",
-    "wealth": "Wealth",
-    "learning": "Learning",
-    "relation": "Relation",
-    "career": "Career",
-    "TODAY SCORE": "Today Score",
-    "Good Day": "Good Day",
-    "WHAT DO YOU LIKE TO KNOW TODAY?": "What do you like to know today?",
-    "PASSWORD CHANGED SUCCESSFULLY": "Password changed successfully",
-    "FAILED TO CHANGE PASSWORD": "Failed to change password",
-    "LOADING...": "Loading...",
-    "CHANGE PASSWORD": "Change Password",
+    "calendar": {
+        "monthNames": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "monthNamesShort": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+        ],
+        "dayNames": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ],
+        "dayNamesShort": [
+            "Sun",
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat"
+        ]
+    },
+    "login": {
+        "intro": "DEAR SEEKER",
+        "title": "Sign In",
+        "subtitle": "The cosmos whispers.\nDiscover what is destined for you.",
+        "footer": "Don't have an account?",
+        "signupButtonText": "Sign Up"
+    },
+    "register": {
+        "intro": "DEAR SEEKER",
+        "title": "Sign Up",
+        "subtitle": "The cosmos whispers.\nJoin & discover your destiny.",
+        "footer": "Already have an account?",
+        "signinButtonText": "Sign In"
+    },
+    "registerForm": {
+        "nameRequired": "Name is required",
+        "nameMinLength": "Name must be at least 3 characters",
+        "emailRequired": "Email is required",
+        "invalidEmailFormat": "Invalid email format",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 6 characters",
+        "confirmPasswordRequired": "Confirm your password",
+        "passwordsDoNotMatch": "Passwords do not match",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "referralCode": "Referral Code",
+        "createAccount": "Create Account",
+        "registerFailed": "Registration Failed",
+        "registerFailedMessage": "Registration failed. Please try again."
+    },
+    "languageSelection": {
+        "heading": "Please Select Language",
+        "next": "Next"
+    },
+    "otpVerification": {
+        "title": "OTP VERIFICATION",
+        "sentMessage": "We have sent an OTP verification code via Email to\n{{email}}. Please enter the code.",
+        "continue": "Continue",
+        "didntReceiveCode": "Didn't receive the code?",
+        "resend": "Resend",
+        "success": "VERIFICATION SUCCESSFUL!",
+        "resentSuccessfully": "OTP code resent successfully.",
+        "error": "Error",
+        "genericError": "An error occurred. Please try again.",
+        "fillAllFields": "Please fill in all OTP fields."
+    },
+    "otpSuccess": {
+        "title": "VERIFICATION SUCCESSFUL!",
+        "description": "Your account has been verified and is ready to use.",
+        "continue": "Continue"
+    },
+    "loginForm": {
+        "emailRequired": "Email is required",
+        "invalidEmailFormat": "Invalid email format",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 6 characters",
+        "email": "Email",
+        "password": "Password",
+        "signIn": "Sign In",
+        "loginFailed": "Login Failed"
+    },
+    "onboarding": {
+        "title": "Introduce Yourself",
+        "subtitle": "Introduce yourself and let the universe guide you!",
+        "helpText": "Not sure about your birth time? Choose the closest estimate.",
+        "birthDate": "Date of Birth:",
+        "birthTime": "Time of Birth:",
+        "selectCountry": "Select Country",
+        "selectCity": "Select City",
+        "save": "Save",
+        "pleaseSelectOne": "Please select one",
+        "allFieldsRequired": "All fields are required.",
+        "registerFailed": "Registration Failed",
+        "errorOccurred": "An error occurred. Please try again."
+    },
     "carousel": {
         "love": {
-            "title": "Love On Pause?",
-            "subtitle": "DISCOVER WHAT'S COMING NEXT"
+            "title": "Is Love Delayed?",
+            "subtitle": "DISCOVER WHAT WILL HAPPEN NEXT"
         },
         "relation": {
             "title": "Relationship Insights",
-            "subtitle": "DISCOVER YOUR CONNECTIONS"
+            "subtitle": "DISCOVER YOUR CONNECTION"
         },
         "fortune": {
             "title": "Fortune Guidance",
-            "subtitle": "EMBRACE YOUR FUTURE"
-        }
-    },
-    "fortuneReportResult": {
-        "header": "Fortune Report {{year}}",
+            "subtitle": "WELCOME YOUR FUTURE"
+        },
         "downloadPdf": "Download as PDF"
     },
-    "polling": {
-        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
-    },
-    "mbtiQuiz": {
-        "title": "What’s your MBTI?",
-        "subtitle": "Quick test to discover your type!",
-        "button": "Find Out"
-    },
-    "relationReportResult": {
-        "header": "Relationship Compatibility",
-        "downloadPdf": "Download as PDF",
-        "downloadSuccess": "PDF downloaded successfully.",
-        "downloadedTo": "Saved to: {{path}}",
-        "you": "You",
-        "yourLoveInterest": "Your Love Interest"
-    },
-    "loveReportResult": {
-        "title": "Love Forecast for Next 12 Months",
-        "downloadPdf": "Download as PDF",
-        "forecastFor": "Forecast for {{range}}"
+    "home": {
+        "subtitle": "WHAT DO YOU WANT TO KNOW TODAY?"
     },
     "loveForecast": {
-        "header": "Love Forecast for Next 12 Months",
-        "purchase": "Purchase for {{cost}}",
-        "title": "EMOTIONAL CONFUSION? GET IT\nRESOLVED IN ONE GO.",
-        "subtitle": "Four key directions to help you\novercome emotional\nchallenges.",
-        "description": "Discover the basis of your emotional confusion and find the right direction for your love life. Get answers on all aspects in one go: mindset, love forecast, how to find love, and a glimpse of things ahead.",
-        "sectionTitle": "WHAT YOU WILL FIND OUT:",
+        "header": "12-Month Love Forecast",
+        "purchase": "Buy for {{cost}}",
+        "title": "EMOTIONALLY CONFUSED? RESOLVE IT NOW.",
+        "subtitle": "Four main directions to help you\novercome emotional challenges.",
+        "description": "Find the root of your emotional confusion and discover the right direction for your love life. Get answers to all aspects at once: mindset, love forecast, how to find love, and future outlook.",
+        "sectionTitle": "WHAT YOU WILL DISCOVER:",
         "cards": {
-            "intro": "Introduction: Your love blueprint",
-            "lacking": "What are you lacking in love?",
-            "lookout": "What you look out for in a partner",
-            "suits": "What type of partner suits you",
-            "outlook": "Love outlook for the year",
+            "intro": "Introduction: Your Love Blueprint",
+            "lacking": "What is lacking in love?",
+            "lookout": "What are you looking for in a partner",
+            "suits": "Types of partners suitable for you",
+            "outlook": "Love forecast for this year",
             "where": "Where to find love",
-            "questions": "Personalized questions",
-            "conclusion": "Conclusion: Your love story ahead"
+            "questions": "Personal questions",
+            "conclusion": "Conclusion: Love story ahead"
         },
-        "pollingMessage": "Your love report is on the way…",
+        "pollingMessage": "Your love report is being processed…",
         "error": "Error",
-        "noJobId": "No job_id returned from server.",
+        "noJobId": "job_id was not returned from the server.",
         "fetchStatusFailed": "Failed to fetch report status."
     },
     "relationReport": {
         "header": "Relationship Compatibility",
-        "purchase": "Purchase for {{cost}}",
-        "title": "Curious if you're a perfect\nmatch? Find out now!",
-        "subtitle": "Astrology meets Bazi for a fresh take on your love compatibility.",
-        "description": "Some tips may sound like common sense—like improving communication or mindset—but they're tailored to your unique chart and relationship dynamics. Their impact is more powerful than they seem.",
-        "loveInterestDetail": "Your Love Interest Detail",
+        "purchase": "Buy for {{cost}}",
+        "title": "Curious if you're the perfect couple?\nFind out now!",
+        "subtitle": "Astrology meets Bazi for a new perspective on your love compatibility.",
+        "description": "Some tips may sound like common sense—like improving communication or mindset—but all are tailored to your unique chart and relationship dynamics. The impact is greater than it seems.",
+        "loveInterestDetail": "Your Love Interest's Details",
         "tellUsMore": "Tell us more about them!",
-        "pollingMessage": "Your relationship report is on the way…",
+        "pollingMessage": "Your relationship report is being processed…",
         "cards": {
-            "perspective": "What is your perspective on love?",
-            "seeYou": "How does your love interest sees you?",
-            "kindOfPerson": "What kind of person your love interest is?",
-            "traits": "What are the personality traits, preferences and deal-breakers?"
+            "perspective": "How do you view love?",
+            "seeYou": "How does your love interest see you?",
+            "kindOfPerson": "What kind of person do they like?",
+            "traits": "What are their traits, preferences, and dislikes?"
         }
     },
-    "ask_affinity_instructions": "1. Keep a calm state of mind\n2. Think about the question you have\n3. Enter the question\n4. Breathe and press the ask button",
-    "Unsure what to do next? Affinity is here to help —  ask anything.": "Unsure what to do next? Affinity is here to help —  ask anything.",
-    "How to ask the question?": "How to ask the question?",
-    "Type your question": "Type your question",
-    "Purchase for {{cost}}": "Purchase for {{cost}}",
-    "Question is required": "Question is required",
-    "Ask Affinity": "Ask Affinity",
-    "Present Situation": "Present Situation",
-    "Likely Outcome": "Likely Outcome",
-    "Recommended Action": "Recommended Action",
-    "Tell us anything...": "Tell us anything...",
-    "Error": "Error",
-    "Failed to consult. Please try again.": "Failed to consult. Please try again.",
-    "DIARY": "DIARY",
-    "A safe space to express your thoughts and emotions.": "A safe space to express your thoughts and emotions.",
-    "Recent Diaries": "Recent Diaries",
-    "No Diaries Yet": "No diary entries yet",
-    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "Start your first diary entry to express your thoughts and feelings. Your journey begins here!",
-    "Continue": "Continue",
-    "VERIFICATION SUCCESS": "VERIFICATION SUCCESS!",
-    "VERIFICATION SUCCESS SUBTITLE": "You're all set! Your account has been verified and is ready to go.",
-    "OTP VERIFICATION": "OTP VERIFICATION",
-    "OTP SENT MESSAGE": "We have sent an OTP verification code via Email to\n{{email}}. Please enter the code.",
-    "FILL ALL OTP FIELDS": "Please fill all OTP fields.",
-    "DIDNT RECEIVE CODE": "Didn’t receive the code?",
-    "RESEND": "Resend",
-    "OTP RESENT SUCCESSFULLY": "OTP code has been resent successfully.",
-    "Fill in your details": "Fill in your love interest's detail",
-    "Select Country": "Select Country",
-    "Select City": "Select City",
-    "Introduce yourself": "Introduce yourself",
-    "Introduce yourself and let the universe guide you!": "Introduce yourself and let the universe guide you!",
-    "Birth Date:": "Birth Date:",
-    "Birth Time:": "Birth Time:",
-    "Not sure about your birth time? Just go with your closest guess.": "Not sure about your birth time? Just go with your closest guess.",
-    "Please select one": "Please select one",
-    "Save": "Save",
-    "Select Country": "Select Country",
-    "Select City": "Select City",
     "fortuneReport": {
         "header": "Fortune Report {{year}}",
-        "purchase": "Purchase for {{cost}}",
-        "title": "Curious about your {{year}}? See\nyour fortune now!",
-        "subtitle": "Fortune reading meets planning for a fresh take on your {{year}}.",
-        "description": "Some insights may seem simple—like timing or decision-making—but they’re personalized to your chart and {{year}} path. Their guidance can make a real difference.",
-        "sectionTitle": "What can you find out?",
-        "pollingMessage": "Your fortune report is on the way…",
+        "purchase": "Buy for {{cost}}",
+        "title": "Curious about your {{year}}? See your fortune forecast now!",
+        "subtitle": "Fortune forecast meets planning for a new perspective on your {{year}}.",
+        "description": "Some insights may seem simple—like timing or decision-making—but are personalized for your chart and path in {{year}}. Their guidance can make a real difference.",
+        "sectionTitle": "What can you know?",
+        "pollingMessage": "Your fortune report is being processed…",
         "cards": {
             "health": {
                 "title": "Health",
-                "subtitle": "Using Astro and Bazi, analyze your health condition to help you take timely preventive measures."
+                "subtitle": "Using Astro and Bazi, analyze your health condition to help you take timely precautions."
             },
             "finance": {
                 "title": "Finance",
-                "subtitle": "Using Astro and Bazi, Analyze yearly Wealth Palace trends to spot the best times for wealth opportunities."
+                "subtitle": "Using Astro and Bazi, analyze annual Wealth Palace trends to find the best timing for wealth opportunities."
             },
             "career": {
                 "title": "Career",
@@ -243,18 +203,18 @@
             },
             "relationship": {
                 "title": "Relationship",
-                "subtitle": "Using Astro and Bazi, Track yearly love trends through your Marriage Palace."
+                "subtitle": "Using Astro and Bazi, track annual love trends through your Marriage Palace."
             }
         }
     },
     "purchaseAlert": {
         "title": "PURCHASE ALERT",
-        "costInfo": "To use {{service}}, it will cost {{cost}}",
-        "yourCredits": "Your {{creditType}} Tokens: {{userCredit}}",
-        "continue": "Continue to Purchase",
+        "costInfo": "To ask Geenie, a cost of {{cost}} will be charged. Continue?",
+        "yourCredits": "Your {{creditType}} tokens: {{userCredit}}",
+        "continue": "Continue Purchase",
         "cancel": "Cancel",
-        "insufficient": "This report will cost {{cost}} {{creditType}} token.\n\nYour current {{creditType}} tokens are insufficient. Please top up to proceed.",
-        "purchaseCredits": "Purchase Tokens"
+        "insufficient": "This report will cost {{cost}}\nYour current {{creditType}} tokens are insufficient. Please top up to continue.",
+        "purchaseCredits": "Buy Credits"
     },
     "profileCard": {
         "noProfileData": "No profile data found.",
@@ -272,12 +232,12 @@
         "copiedToClipboard": "Copied to clipboard"
     },
     "chatArea": {
-        "geenieSays": "Geenie Says:"
+        "geenieSays": "Geenie says:"
     },
     "usageReceiptModal": {
         "receipt": "RECEIPT",
         "datePurchased": "Date Purchased",
-        "orderItems": "Order Item(s)",
+        "orderItems": "Order Items",
         "previousPoints": "Previous Points",
         "pointsUsed": "Points Used",
         "remainingPoints": "Remaining Points",
@@ -287,14 +247,45 @@
             "ask_any_question": "Ask Affinity",
             "personalized_love_forecast_12mth": "Love Forecast",
             "transit_report": "Fortune Report",
-            "relationship_compatibility": "Relation Compatibility",
+            "relationship_compatibility": "Relationship Compatibility",
             "ask_secret_diary": "Genie Advice"
         }
     },
-    "strengths": "Strengths",
-    "weaknesses": "Weaknesses",
-    "relationships": "Relationships",
-    "career": "Career",
+    "usageHistory": {
+        "noHistoryFound": "No usage history found.",
+        "details": "Your purchase was successful, see the details!"
+    },
+    "affinityResult": {
+        "title": "Ask Affinity",
+        "presentSituation": "Present Situation",
+        "likelyOutcome": "Likely Outcome",
+        "recommendedAction": "Recommended Action"
+    },
+    "fortuneReportResult": {
+        "header": "Fortune Report {{year}}",
+        "downloadPdf": "Download as PDF"
+    },
+    "polling": {
+        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+    },
+    "mbtiQuiz": {
+        "title": "What's Your MBTI?",
+        "subtitle": "A quick test to find your type!",
+        "button": "Find Out"
+    },
+    "relationReportResult": {
+        "header": "Relationship Compatibility",
+        "downloadPdf": "Download as PDF",
+        "downloadSuccess": "PDF downloaded successfully!",
+        "downloadedTo": "File downloaded to: {{path}}",
+        "you": "You",
+        "yourLoveInterest": "Your Love Interest"
+    },
+    "loveReportResult": {
+        "title": "12-Month Love Forecast",
+        "downloadPdf": "Download as PDF",
+        "forecastFor": "Forecast for {{range}}"
+    },
     "bottomBar": {
         "home": "Home",
         "echo": "Echo",
@@ -310,29 +301,173 @@
         "emptyStateLabel": "No profile data found."
     },
     "profileForm": {
+        "fullName": "Full Name",
+        "name": "Name",
+        "emailAddress": "Email Address",
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "birthDate": "Date of Birth",
+        "birthDateLabel": "Date of Birth:",
+        "birthTime": "Time of Birth",
+        "birthTimeLabel": "Time of Birth:",
+        "birthTimeHelper": "Not sure about your birth time? Choose the closest estimate.",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "countryOfBirth": "Country of Birth",
+        "cityOfBirth": "City of Birth",
+        "pleaseSelectOne": "Please select one",
         "language": "Language",
-        "dialogTitle": "Update Profile",
-        "successMessage": "Successfully updated your profile.",
+        "save": "Save",
         "selectCountry": "Select Country",
         "selectCity": "Select City",
         "selectLanguage": "Select Language",
+        "nameRequired": "Name is required",
+        "nameMinLength": "Name must be at least 2 characters",
+        "emailRequired": "Email is required",
+        "invalidEmailFormat": "Invalid email format",
+        "phoneNumberRequired": "Phone number is required",
+        "phoneNumberMinLength": "Phone number must be at least 6 characters",
+        "dialogTitle": "Update Profile",
+        "successMessage": "Your profile has been updated successfully.",
         "okLabel": "OK"
     },
+    "relationReportForm": {
+        "formTitle": "Complete your love interest's details",
+        "fullName": "Full Name",
+        "birthDate": "Date of Birth",
+        "birthDateLabel": "Date of Birth:",
+        "countryOfBirth": "Country of Birth",
+        "cityOfBirth": "City of Birth",
+        "pleaseSelectOne": "Please select one",
+        "selectCountry": "Select Country",
+        "selectCity": "Select City",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "continue": "Continue",
+        "nameRequired": "Name is required",
+        "nameMinLength": "Name must be at least 3 characters"
+    },
+    "passwordSettingForm": {
+        "title": "Password Settings",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password",
+        "password": "Password",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 6 characters",
+        "passwordsDoNotMatch": "Passwords do not match",
+        "loading": "Loading...",
+        "changePassword": "Change Password",
+        "passwordChangedSuccessfully": "Password changed successfully",
+        "failedToChangePassword": "Failed to change password"
+    },
+    "profilePage": {
+        "guest": "Guest",
+        "mbtiTitle": "What's Your MBTI?",
+        "mbtiSubtitle": "A quick test to find your type!",
+        "yourCoins": "Your Tokens",
+        "buyCoins": "Buy Tokens",
+        "profileSectionTitle": "Profile",
+        "editProfile": "Edit Profile",
+        "passwordSettings": "Password Settings",
+        "purchaseHistory": "Purchase History",
+        "othersSectionTitle": "Others",
+        "aboutUs": "About Us",
+        "privacyPolicy": "Privacy Policy",
+        "termsAndConditions": "Terms & Conditions",
+        "logout": "Logout"
+    },
+    "mbtiProfile": {
+        "strengths": "Strengths",
+        "weaknesses": "Weaknesses",
+        "relationships": "Relationships",
+        "career": "Career"
+    },
+    "purchaseHistory": {
+        "title": "Purchase History",
+        "usageTab": "Purchase History",
+        "topupTab": "Top Up History"
+    },
+    "serviceLabel": {
+        "ask_any_question": "Ask Affinity",
+        "personalized_love_forecast_12mth": "Love Forecast",
+        "transit_report": "Fortune Report",
+        "relationship_compatibility": "Relationship Compatibility",
+        "ask_secret_diary": "Genie Advice"
+    },
+    "askAffinity": {
+        "title": "Ask Affinity",
+        "subtitle": "Confused about what to do? Affinity is ready to help — ask anything.",
+        "howToAskTitle": "How to ask?",
+        "instructions": "1. Calm your mind\n2. Think about the question you want to ask\n3. Enter your question\n4. Take a deep breath and press the ask button",
+        "questionLabel": "Type your question",
+        "questionRequired": "Question is required",
+        "purchaseButton": "Buy for {{cost}}"
+    },
+    "echo": {
+        "title": "Diary",
+        "subtitle": "A safe space to express your thoughts and feelings.",
+        "recentDiaries": "Latest Diary Entries",
+        "loading": "Loading...",
+        "noDiariesYet": "No diary entries yet",
+        "startDiaryDesc": "Start your first diary entry to express your thoughts and feelings. Your journey begins here!"
+    },
     "echoDetail": {
-        "clickOn": "Click on",
-        "toGetGenieAdvice": "to get Genie advice"
+        "title": "Diary",
+        "clickOn": "Click",
+        "toGetGenieAdvice": "to get Genie advice",
+        "inputPlaceholder": "Tell us anything...",
+        "errorTitle": "Error",
+        "failedToConsult": "Failed to consult. Please try again."
     },
     "dailyProfileDetail": {
-        "todayScore": "TODAY SCORE",
+        "todayScore": "TODAY'S SCORE",
         "wealth": "Wealth",
         "learning": "Learning",
-        "relation": "Relation",
+        "relation": "Relationship",
         "career": "Career"
     },
     "profileDashboard": {
         "loading": "Loading your daily profile...",
         "serviceUnavailable": "This service will be available soon.",
         "checkBackLater": "Please check back later to access your daily profile dashboard.",
-        "failedToLoadUserData": "Failed to load user data. Please try again later."
+        "failedToLoadUserData": "Failed to load user data. Please try again later.",
+        "goodDay": "Good Day",
+        "guest": "Guest",
+        "todayScore": "Today's Score"
+    },
+    "topup": {
+        "paymentFailed": "Payment failed",
+        "success": "Success",
+        "paymentComplete": "Payment complete!",
+        "ok": "OK",
+        "error": "Error",
+        "genericError": "An error occurred. Please try again.",
+        "ourPackages": "Our Packages",
+        "packagesDesc": "Can be used to purchase Reports and Ask Affinity AI",
+        "ourSubscriptions": "Our Subscriptions",
+        "subscriptionsDesc": "Can be used in Ask Affinity AI and reset at the beginning of each month. You will receive 3 free silver tokens every month.",
+        "getCoins": "Get {{count}} Tokens",
+        "processing": "Processing...",
+        "continue": "Continue",
+        "title": "Top Up",
+        "noHistoryFound": "No top up history found.",
+        "failedToLoadPackages": "Failed to load packages. Please try again later.",
+        "failedToLoadSubscriptions": "Failed to load subscriptions. Please try again later."
+    },
+    "topupReceiptModal": {
+        "receipt": "Receipt",
+        "orderNumber": "Order Number",
+        "datePurchased": "Date Purchased",
+        "orderItems": "Order Items",
+        "total": "Total:",
+        "paymentMethod": "Payment Method",
+        "previousPoints": "Previous Points",
+        "pointsAdded": "Points Added",
+        "totalPoints": "Total Points",
+        "paymentNotCompleted": "Your payment is not yet complete. It may still be processing, or you have not completed the payment. Please check back later.",
+        "continuePayment": "Continue Payment"
     }
 }

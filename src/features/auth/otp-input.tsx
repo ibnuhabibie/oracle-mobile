@@ -11,7 +11,7 @@ type OtpInputProps = {
     reset?: () => void;
 };
 
-type OtpInputRef = { reset: () => void };
+export type OtpInputRef = { reset: () => void };
 
 export const OtpInput: React.FC<OtpInputProps> = forwardRef<OtpInputRef, OtpInputProps>(({ length = 6, onChangeOtp, error }, ref) => {
     const [otp, setOtp] = useState<string[]>(Array(length).fill(''));

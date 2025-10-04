@@ -63,27 +63,27 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
 
   const formRules = {
     current_password: {
-      required: t('PASSWORD IS REQUIRED'),
+      required: t('passwordSettingForm.passwordRequired'),
       minLength: {
         value: 6,
-        message: t('PASSWORD MIN LENGTH')
+        message: t('passwordSettingForm.passwordMinLength')
       }
     },
     new_password: {
-      required: t('PASSWORD IS REQUIRED'),
+      required: t('passwordSettingForm.passwordRequired'),
       minLength: {
         value: 6,
-        message: t('PASSWORD MIN LENGTH')
+        message: t('passwordSettingForm.passwordMinLength')
       }
     },
     confirm_password: {
-      required: t('PASSWORD IS REQUIRED'),
+      required: t('passwordSettingForm.passwordRequired'),
       minLength: {
         value: 6,
-        message: t('PASSWORD MIN LENGTH')
+        message: t('passwordSettingForm.passwordMinLength')
       },
       validate: (value: string) =>
-        value === getValues('new_password') || t('PASSWORDS DO NOT MATCH')
+        value === getValues('new_password') || t('passwordSettingForm.passwordsDoNotMatch')
     }
   }
 
@@ -98,7 +98,7 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
       });
       setLoading(false);
       // Show success message and/or navigate back
-      Alert.alert(t('PASSWORD CHANGED SUCCESSFULLY'));
+      Alert.alert(t('passwordSettingForm.passwordChangedSuccessfully'));
       await api.post(`/v1/users/auth/logout`);
       await AsyncStorage.removeItem('user_profile');
       await AsyncStorage.removeItem('auth_token');
@@ -109,8 +109,8 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
     } catch (error: any) {
       console.log(error)
       setLoading(false);
-      setApiError(error?.message || t('FAILED TO CHANGE PASSWORD'));
-      Alert.alert(apiError || t('FAILED TO CHANGE PASSWORD'));
+      setApiError(error?.message || t('passwordSettingForm.failedToChangePassword'));
+      Alert.alert(apiError || t('passwordSettingForm.failedToChangePassword'));
     }
   };
 
@@ -118,18 +118,18 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
     <ScreenContainer
       header={
         <Header
-          title={t('Password Settings')}
+          title={t('passwordSettingForm.title')}
           onBack={() => navigation.goBack()}
         />
       }
     >
       <View style={styles.formContainer}>
-        <AppText color='neutral'>{t('Current Password')}</AppText>
+        <AppText color='neutral'>{t('passwordSettingForm.currentPassword')}</AppText>
         <AppInput<PasswordSettingDTO>
           control={control}
           name="current_password"
           rules={formRules.current_password}
-          placeholder={t('PASSWORD')}
+          placeholder={t('passwordSettingForm.password')}
           secureTextEntry={!showCurrentPassword}
           errors={errors}
           rightIcon={
@@ -138,12 +138,12 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
               showPassword={showCurrentPassword} />
           }
         />
-        <AppText color='neutral'>{t('New Password')}</AppText>
+        <AppText color='neutral'>{t('passwordSettingForm.newPassword')}</AppText>
         <AppInput<PasswordSettingDTO>
           control={control}
           name="new_password"
           rules={formRules.new_password}
-          placeholder={t('PASSWORD')}
+          placeholder={t('passwordSettingForm.password')}
           secureTextEntry={!showNewPassword}
           errors={errors}
           rightIcon={
@@ -152,12 +152,12 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
               showPassword={showNewPassword} />
           }
         />
-        <AppText color='neutral'>{t('Confirm Password')}</AppText>
+        <AppText color='neutral'>{t('passwordSettingForm.confirmPassword')}</AppText>
         <AppInput<PasswordSettingDTO>
           control={control}
           name="confirm_password"
           rules={formRules.confirm_password}
-          placeholder={t('PASSWORD')}
+          placeholder={t('passwordSettingForm.password')}
           secureTextEntry={!showConfirmPassword}
           errors={errors}
           rightIcon={
@@ -166,7 +166,7 @@ const PasswordSetting: FC<PasswordSettingProps> = ({ navigation }) => {
               showPassword={showConfirmPassword} />
           }
         />
-        <AppButton title={loading ? t('LOADING...') : t('CHANGE PASSWORD')} onPress={handleSubmit(handleChangePassword)} disabled={loading} />
+        <AppButton title={loading ? t('passwordSettingForm.loading') : t('passwordSettingForm.changePassword')} onPress={handleSubmit(handleChangePassword)} disabled={loading} />
       </View>
     </ScreenContainer>
   );

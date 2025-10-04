@@ -1,16 +1,13 @@
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { scaleFont, scaleSize } from '../../utils/scale';
 import { useTranslation } from 'react-i18next';
 
-import CheckmarkIcon from '../../components/icons/auth/checkmark-icon';
 import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
 import { AppText } from '../../components/ui/app-text';
 import ShinyContainer from '../../components/widgets/shiny-container';
-import { COLORS } from '../../constants/colors';
-import { fontFamilies } from '../../constants/fonts';
 import { MainNavigatorParamList } from '../../navigators/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SMSIcon from '../../components/icons/auth/sms-icon';
@@ -47,14 +44,14 @@ const OtpSuccess: FC<OtpSuccessProps> = ({ navigation }) => {
           <ShinyContainer>
             <SMSIcon />
           </ShinyContainer>
-          <AppText variant='subtitle2' color='primary' style={styles.title}>{t('VERIFICATION SUCCESS')}</AppText>
+          <AppText variant='subtitle2' color='primary' style={styles.title}>{t('otpSuccess.title')}</AppText>
           <AppText variant='caption1' style={styles.subtitle} color='white'>
-            {t('VERIFICATION SUCCESS SUBTITLE')}
+            {t('otpSuccess.description')}
           </AppText>
         </View>
 
         <AppButton
-          title={t('Continue')}
+          title={t('otpSuccess.continue')}
           onPress={handleContinue}
           style={styles.button}
         />

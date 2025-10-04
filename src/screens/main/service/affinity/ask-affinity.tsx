@@ -38,7 +38,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
 
     const formRules = {
         question: {
-            required: t('Question is required'),
+            required: t('askAffinity.questionRequired'),
         },
     }
 
@@ -74,22 +74,22 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     return (
         <ScreenContainer fluid={true}>
             <AppText style={styles.title} color='primary' variant='subtitle1'>
-                {t("ASK AFFINITY")}
+                {t("askAffinity.title")}
             </AppText>
-            <AppText style={styles.subtitle} variant='caption1' color='white'>{t('Unsure what to do next? Affinity is here to help —  ask anything.')}</AppText>
+            <AppText style={styles.subtitle} variant='caption1' color='white'>{t('askAffinity.subtitle')}</AppText>
             <Image
                 source={localImage}
                 style={styles.bannerImage}
                 // resizeMode="contain"
             />
             <View style={styles.infoCard}>
-                <AppText color='primary'>{t('How to ask the question?')}</AppText>
+                <AppText color='primary'>{t('askAffinity.howToAskTitle')}</AppText>
                 <AppText style={styles.infoCardText} variant='caption3' color='white'>
-                    {t('ask_affinity_instructions')}
+                    {t('askAffinity.instructions')}
                 </AppText>
             </View>
             <View style={styles.formContainer}>
-                <AppText style={styles.formTitle} color='white'>{t('Type your question')}</AppText>
+                <AppText style={styles.formTitle} color='white'>{t('askAffinity.questionLabel')}</AppText>
                 <AppInput
                     control={control}
                     name="question"
@@ -103,7 +103,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                 <AppButton
                     title={
                         <View style={styles.purchaseButtonContent}>
-                            <AppText color='white' style={styles.purchaseButtonText}>{t('Purchase for {{cost}}', { cost })}</AppText>
+                            <AppText color='white' style={styles.purchaseButtonText}>{t('askAffinity.purchaseButton', { cost })}</AppText>
                             <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
                         </View>
                     }

@@ -62,8 +62,8 @@ const PackageCardList: FC<{
     const { t } = useTranslation();
     return (
         <View style={{ marginBottom: scaleSize(18, 18, 24) }}>
-            <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('OUR PACKAGES')}</AppText>
-            <AppText variant='caption1' style={styles.sectionDesc} color='neutral'>{t('PACKAGES DESC')}</AppText>
+            <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('topup.ourPackages')}</AppText>
+            <AppText variant='caption1' style={styles.sectionDesc} color='neutral'>{t('topup.packagesDesc')}</AppText>
             <View style={{ marginTop: scaleSize(8, 8, 12) }}>
                 {loading ? (
                     <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: scaleSize(12, 12, 16) }} />
@@ -83,7 +83,7 @@ const PackageCardList: FC<{
                             <View style={{ flex: 1 }}>
                                 <AppText variant='body1' style={styles.cardTitle} color='white'>{pkg.name}</AppText>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
-                                    <AppText variant='caption1' color='neutral'>{t('GET COINS', { count: pkg.credits })} </AppText>
+                                    <AppText variant='caption1' color='neutral'>{t('topup.getCoins', { count: pkg.credits })} </AppText>
                                     <Coin />
                                 </View>
                                 {pkg.description ? (
@@ -110,9 +110,9 @@ const SubscriptionCardList: FC<{
     const { t } = useTranslation();
     return (
         <View>
-            <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('OUR SUBSCRIPTIONS')}</AppText>
+            <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('topup.ourSubscriptions')}</AppText>
             <AppText variant='caption1' style={styles.sectionDesc} color='neutral'>
-                {t('SUBSCRIPTIONS DESC')}
+                {t('topup.subscriptionsDesc')}
             </AppText>
             <View style={{ marginTop: scaleSize(8, 8, 12) }}>
                 {loading ? (
@@ -133,7 +133,7 @@ const SubscriptionCardList: FC<{
                             <View style={{ flex: 1 }}>
                                 <AppText variant='body1' style={styles.cardTitle} color='white'>{sub.name}</AppText>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
-                                    <AppText variant='caption1' color='neutral'>{t('GET COINS', { count: sub.credits })} </AppText>
+                                    <AppText variant='caption1' color='neutral'>{t('topup.getCoins', { count: sub.credits })} </AppText>
                                     <Coin type='gold' />
                                 </View>
                                 {sub.description ? (
@@ -171,7 +171,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             const response = await api.get('/v1/packages');
             setPackages(response.data.rows || []);
         } catch (err) {
-            setErrorPackages('FAILED TO LOAD PACKAGES');
+            setErrorPackages('topup.failedToLoadPackages');
         } finally {
             setLoadingPackages(false);
         }
@@ -184,7 +184,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             const response = await api.get('/v1/subscriptions');
             setSubscriptions(response.data.rows || []);
         } catch (err) {
-            setErrorSubscriptions('FAILED TO LOAD SUBSCRIPTIONS');
+            setErrorSubscriptions('topup.failedToLoadSubscriptions');
         } finally {
             setLoadingSubscriptions(false);
         }
@@ -212,21 +212,21 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         });
 
         if (errorInit) {
-            Alert.alert(t('PAYMENT FAILED'), errorInit.message);
+            Alert.alert(t('topup.paymentFailed'), errorInit.message);
         }
 
         const { error } = await presentPaymentSheet();
 
         if (error) {
             console.log(error)
-            Alert.alert(t('PAYMENT FAILED'), error.message);
+            Alert.alert(t('topup.paymentFailed'), error.message);
         } else {
             Alert.alert(
-                t('SUCCESS'),
-                t('PAYMENT COMPLETE'),
+                t('topup.success'),
+                t('topup.paymentComplete'),
                 [
                     {
-                        text: t('OK'),
+                        text: t('topup.ok'),
                         onPress: () => navigation.navigate('Tabs', { screen: 'Profile' })
                     }
                 ]
@@ -262,7 +262,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
             await openPaymentSheet(client_secret)
         } catch (err: any) {
-            Alert.alert(t('ERROR'), err?.response?.data?.message || t('GENERIC ERROR'));
+            Alert.alert(t('topup.error'), err?.response?.data?.message || t('topup.genericError'));
         } finally {
             setProcessing(false);
         }
@@ -275,7 +275,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 (selectedPackage !== null || selectedSubscription !== null) && (
                     <View style={{ backgroundColor: "#121010" }}>
                         <AppButton
-                            title={processing ? t("PROCESSING") : t("CONTINUE")}
+                            title={processing ? t("topup.processing") : t("topup.continue")}
                             variant="primary"
                             disabled={processing}
                             onPress={handleContinue}
@@ -285,7 +285,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             }
             header={
                 <Header
-                    title={t("TOP UP")}
+                    title={t("topup.title")}
                     onBack={() => navigation.goBack()}
                 />
             }

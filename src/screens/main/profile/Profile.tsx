@@ -107,14 +107,14 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   };
 
   const handleContent = (content: string) => {
-    let title = 'About Us'
+    let title = t('profilePage.aboutUs');
     if (content === 'terms-conditions') {
-      title = 'Terms & Conditions'
+      title = t('profilePage.termsAndConditions');
     } else if (content === 'privacy-policy') {
-      title = 'Privacy Policy'
+      title = t('profilePage.privacyPolicy');
     }
 
-    console.log(token)
+    console.log(token);
 
     navigation.push('WebviewContent', {
       uri: `${APP_URL}/content/${content}?v=1.0.0&token=${token}`,
@@ -151,7 +151,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       {/* User Profile Card */}
       <View style={styles.userCard}>
         <View style={styles.userInfo}>
-          <AppText variant='subtitle1' color='white' style={{ fontSize: scaleFont(16, 12, 20) }}>{user?.full_name || t("Guest")}</AppText>
+          <AppText variant='subtitle1' color='white' style={{ fontSize: scaleFont(16, 12, 20) }}>{user?.full_name || t("profilePage.guest")}</AppText>
           <Pressable style={styles.userBadge} onPress={handleCopyReferralCode}>
             <AppText variant="caption2" color="white" style={styles.badgeText}>{user?.referral_code}</AppText>
             <CopyIcon />
@@ -205,8 +205,8 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
           <View style={styles.mbtiQuizSection}>
             <CommentUserIcon size={scaleSize(20, 16, 26)} />
             <View style={styles.mbtiQuizTextContainer}>
-              <AppText variant='caption1' color='neutral' style={{ fontSize: scaleFont(12, 10, 16) }}>{t("mbtiQuiz.title")}</AppText>
-              <AppText variant='tiny1' color='neutral' style={{ fontSize: scaleFont(10, 8, 14) }}>{t("mbtiQuiz.subtitle")}</AppText>
+              <AppText variant='caption1' color='neutral' style={{ fontSize: scaleFont(12, 10, 16) }}>{t("profilePage.mbtiTitle")}</AppText>
+              <AppText variant='tiny1' color='neutral' style={{ fontSize: scaleFont(10, 8, 14) }}>{t("profilePage.mbtiSubtitle")}</AppText>
             </View>
             <AppButton style={styles.mbtiQuizButton} variant='primary' title={t("mbtiQuiz.button")} size='small' onPress={handleCompleteQuiz} />
           </View>
@@ -216,11 +216,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       {/* Coins Section */}
       <View style={styles.coinsCard}>
         <View style={styles.coinsHeader}>
-          <AppText variant='body2' color='white'>{t("Your Coins")}</AppText>
-          <Pressable onPress={handleBuyCoins} style={styles.buyCoinsButton}>
-            <AppText variant='caption4' style={styles.buyCoinsText} color='white'>{t("Buy Coins")}</AppText>
+        <AppText variant='body2' color='white'>{t("profilePage.yourCoins")}</AppText>
+        <Pressable onPress={handleBuyCoins} style={styles.buyCoinsButton}>
+            <AppText variant='caption4' style={styles.buyCoinsText} color='white'>{t("profilePage.buyCoins")}</AppText>
             <AppText variant='subtitle2' color='white'>›</AppText>
-          </Pressable>
+        </Pressable>
         </View>
 
         <View style={styles.coinsRow}>
@@ -237,19 +237,19 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
       {/* Profile Section */}
       <View style={styles.section}>
-        <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("Profile")}</AppText>
+        <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("profilePage.profileSectionTitle")}</AppText>
         <ProfileItem
-          title="Edit Profile"
+          title={t("profilePage.editProfile")}
           icon={<EditIcon size={scaleSize(16, 14, 20)} />}
           onPress={handleEditProfile}
         />
         <ProfileItem
-          title="Password Settings"
+          title={t("profilePage.passwordSettings")}
           icon={<EyeIcon size={scaleSize(16, 14, 20)} />}
           onPress={handlePasswordSettings}
         />
         <ProfileItem
-          title="Purchase History"
+          title={t("profilePage.purchaseHistory")}
           icon={<CartIcon size={scaleSize(16, 14, 20)} />}
           onPress={handlePurchaseHistory}
           isLast
@@ -258,18 +258,18 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
       {/* Others Section */}
       <View style={styles.section}>
-        <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("Others")}</AppText>
+        <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("profilePage.othersSectionTitle")}</AppText>
         <ProfileItem
-          title="About Us"
+          title={t("profilePage.aboutUs")}
           icon={<BuildingIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('about-us')}
         />
         <ProfileItem
-          title="Privacy Policy"
+          title={t("profilePage.privacyPolicy")}
           icon={<ShieldIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('privacy-policy')} />
         <ProfileItem
-          title="Terms & Conditions"
+          title={t("profilePage.termsAndConditions")}
           icon={<TermsIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('terms-conditions')}
           isLast
@@ -277,7 +277,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       </View>
       <Pressable style={styles.logoutButton} onPress={handleLogout}>
         <LogoutIcon />
-        <AppText style={styles.logoutText} variant='subtitle2' color='white'>{t("Logout")}</AppText>
+        <AppText style={styles.logoutText} variant='subtitle2' color='white'>{t("profilePage.logout")}</AppText>
       </Pressable>
     </ScreenContainer >
   );

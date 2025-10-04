@@ -59,7 +59,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
       <View style={styles.header}>
         <ProfileDashboard />
         <AppText style={styles.subtitle} color='neutral' variant='subtitle1'>
-          {t("WHAT DO YOU LIKE TO KNOW TODAY?")}
+          {t('home.subtitle')}
         </AppText>
       </View>
       <View

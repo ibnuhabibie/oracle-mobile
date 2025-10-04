@@ -58,7 +58,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={styles.container}>
-      <AppText variant="subtitle2" style={styles.heading} color='white'>{t('PLEASE SELECT A LANGUAGE')}</AppText>
+      <AppText variant="subtitle2" style={styles.heading} color='white'>{t('languageSelection.heading')}</AppText>
 
       <Controller
         control={control}
@@ -82,7 +82,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
         )}
       />
       <AppButton
-        title={t('NEXT')}
+        title={t('languageSelection.next')}
         onPress={handleSubmit(onSubmit)}
         style={styles.button}
       />

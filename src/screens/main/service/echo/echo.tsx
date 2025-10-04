@@ -125,9 +125,9 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
     return (
         <ScreenContainer floatingButton={<FloatingAddButton onPress={newEdit} />}>
             <AppText style={styles.title} color='primary' variant='subtitle1'>
-                {t("DIARY")}
+                {t("echo.title")}
             </AppText>
-            <AppText style={styles.subtitle} variant='caption1' color='white'>{t('A safe space to express your thoughts and emotions.')}</AppText>
+            <AppText style={styles.subtitle} variant='caption1' color='white'>{t('echo.subtitle')}</AppText>
             <Calendar
                 style={styles.calendar}
                 markedDates={markedDates}
@@ -160,10 +160,10 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                 }
             />
             <View style={styles.diaryListContainer}>
-                <AppText color='neutral'>{t('Recent Diaries')}</AppText>
+                <AppText color='neutral'>{t('echo.recentDiaries')}</AppText>
                 {
                     loading ? (
-                        <AppText style={styles.loadingText}>{t('Loading...')}</AppText>
+                        <AppText style={styles.loadingText}>{t('echo.loading')}</AppText>
                     ) : error && error !== 'No diary found.' ? (
                         <AppText style={styles.errorText}>{error}</AppText>
                     ) : diaries && diaries.length > 0 ? (
@@ -184,9 +184,9 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                         ))
                     ) : (
                         <View style={styles.emptyDiaryContainer}>
-                            <AppText variant='subtitle1' color='primary' style={styles.emptyDiaryTitle}>{t('No Diaries Yet')}</AppText>
+                            <AppText variant='subtitle1' color='primary' style={styles.emptyDiaryTitle}>{t('echo.noDiariesYet')}</AppText>
                             <AppText variant='caption1' style={styles.emptyDiaryDesc} color='gray'>
-                                {t('Start your first diary entry to express your thoughts and feelings. Your journey begins here!')}
+                                {t('echo.startDiaryDesc')}
                             </AppText>
                         </View>
                     )}

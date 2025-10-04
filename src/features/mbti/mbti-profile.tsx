@@ -70,7 +70,7 @@ const MBTIProfile: React.FC = () => {
                 <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
                     <StrengthIcon size={scaleSize(60)} />
                 </ShinyContainer>
-                <AppText variant='title3' color="primary">{t("strengths")}</AppText>
+                <AppText variant='title3' color="primary">{t("mbtiProfile.strengths")}</AppText>
                 <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
                     {profile?.strengths}
                 </AppText>
@@ -81,7 +81,7 @@ const MBTIProfile: React.FC = () => {
                 <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
                     <WeaknessIcon size={scaleSize(60)} />
                 </ShinyContainer>
-                <AppText variant='title3' color="primary">{t("weaknesses")}</AppText>
+                <AppText variant='title3' color="primary">{t("mbtiProfile.weaknesses")}</AppText>
                 <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
                     {profile?.weaknesses}
                 </AppText>
@@ -92,7 +92,7 @@ const MBTIProfile: React.FC = () => {
                 <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
                     <RelationshipIcon size={scaleSize(60)} />
                 </ShinyContainer>
-                <AppText variant='title3' color="primary">{t("relationships")}</AppText>
+                <AppText variant='title3' color="primary">{t("mbtiProfile.relationships")}</AppText>
                 <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
                     {profile?.relationships}
                 </AppText>
@@ -103,7 +103,7 @@ const MBTIProfile: React.FC = () => {
                 <ShinyContainer size={scaleSize(200, 100, 240)} style={{ marginTop: scaleSize(6, 6, 8) }}>
                     <CareerIcon size={scaleSize(60)} />
                 </ShinyContainer>
-                <AppText variant='title3' color="primary">{t("career")}</AppText>
+                <AppText variant='title3' color="primary">{t("mbtiProfile.career")}</AppText>
                 <AppText variant='caption1' style={{ textAlign: 'center' }} color="neutral">
                     {profile?.career}
                 </AppText>

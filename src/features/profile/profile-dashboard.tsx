@@ -6,7 +6,6 @@ import { useNavigation } from "@react-navigation/native";
 
 import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
-import { fontFamilies } from "../../constants/fonts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CircularScore from "../../components/widgets/circular-score";
 import api from "../../utils/http";
@@ -63,7 +62,7 @@ const ProfileDashboard: React.FC = () => {
             <View style={styles.header}>
                 <AppText variant='caption1' style={styles.date} color="light-gray">{formattedDate}</AppText>
                 <AppText variant='subtitle1' color="white">
-                    {t("Good Day")}, {user?.full_name || t("Guest")}
+                    {t('profileDashboard.goodDay')}, {user?.full_name || t('profileDashboard.guest')}
                 </AppText>
             </View>
         );
@@ -71,7 +70,7 @@ const ProfileDashboard: React.FC = () => {
 
     function LocalizedSubtitle() {
         return (
-            <AppText style={styles.subtitle} variant='subtitle1' color="white">{t("TODAY SCORE")}</AppText>
+            <AppText style={styles.subtitle} variant='subtitle1' color="white">{t('profileDashboard.todayScore')}</AppText>
         );
     }
 
@@ -119,10 +118,10 @@ const ProfileDashboard: React.FC = () => {
                 <AppText variant='largeTitle1' style={styles.title} color="white">{data?.today_points}%</AppText>
                 <LocalizedSubtitle />
                 <View style={styles.scoresRow}>
-                    <CircularScore value={data?.today_wealth_points} type="wealth" />
-                    <CircularScore value={data?.today_study_points} type="learning" />
-                    <CircularScore value={data?.today_relationship_points} type="relation" />
-                    <CircularScore value={data?.today_career_points} type="career" />
+                    <CircularScore value={data?.today_wealth_points} type="wealth" title={t('dailyProfileDetail.wealth')} />
+                    <CircularScore value={data?.today_study_points} type="learning" title={t('dailyProfileDetail.learning')} />
+                    <CircularScore value={data?.today_relationship_points} type="relation" title={t('dailyProfileDetail.relation')} />
+                    <CircularScore value={data?.today_career_points} type="career" title={t('dailyProfileDetail.career')} />
                 </View>
             </View>
         </TouchableOpacity>

@@ -1,153 +1,165 @@
 {
     "calendar": {
         "monthNames": [
-            "1月", "2月", "3月", "4月", "5月", "6月",
-            "7月", "8月", "9月", "10月", "11月", "12月"
+            "1月",
+            "2月",
+            "3月",
+            "4月",
+            "5月",
+            "6月",
+            "7月",
+            "8月",
+            "9月",
+            "10月",
+            "11月",
+            "12月"
         ],
         "monthNamesShort": [
-            "1月", "2月", "3月", "4月", "5月", "6月",
-            "7月", "8月", "9月", "10月", "11月", "12月"
+            "1月",
+            "2月",
+            "3月",
+            "4月",
+            "5月",
+            "6月",
+            "7月",
+            "8月",
+            "9月",
+            "10月",
+            "11月",
+            "12月"
         ],
         "dayNames": [
-            "日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"
+            "日曜日",
+            "月曜日",
+            "火曜日",
+            "水曜日",
+            "木曜日",
+            "金曜日",
+            "土曜日"
         ],
         "dayNamesShort": [
-            "日", "月", "火", "水", "木", "金", "土"
+            "日",
+            "月",
+            "火",
+            "水",
+            "木",
+            "金",
+            "土"
         ]
     },
-    "WELCOME TO": "ようこそ",
-    "GET STARTED": "始める",
-    "DEAR SEEKERS": "親愛なる探求者の皆様",
-    "PLEASE SELECT A LANGUAGE": "言語を選択してください",
-    "NEXT": "次へ",
-    "SIGN IN": "サインイン",
-    "SIGN UP": "サインアップ",
-    "THE COSMOS WHISPERS": "宇宙がささやく。\nあなたの運命を見つけましょう。",
-    "DONT HAVE AN ACCOUNT": "アカウントをお持ちでないですか？",
-    "EMAIL IS REQUIRED": "メールアドレスは必須です",
-    "INVALID EMAIL FORMAT": "無効なメール形式です",
-    "PASSWORD IS REQUIRED": "パスワードは必須です",
-    "PASSWORD MIN LENGTH": "パスワードは6文字以上で入力してください",
-    "EMAIL": "メールアドレス",
-    "PASSWORD": "パスワード",
-    "LOGIN FAILED": "ログインに失敗しました",
-    "SIGN UP SUBTITLE": "宇宙がささやく。\n参加して運命を見つけましょう。",
-    "ALREADY HAVE AN ACCOUNT": "すでにアカウントをお持ちですか？",
-    "NAME IS REQUIRED": "名前は必須です",
-    "NAME MIN LENGTH": "名前は3文字以上で入力してください",
-    "PLEASE CONFIRM PASSWORD": "パスワードを確認してください",
-    "PASSWORDS DO NOT MATCH": "パスワードが一致しません",
-    "NAME": "名前",
-    "CONFIRM PASSWORD": "パスワード確認",
-    "REFERRAL CODE": "紹介コード",
-    "CREATE ACCOUNT": "アカウント作成",
-    "Guest": "ゲスト",
-    "Profile": "プロフィール",
-    "Edit Profile": "プロフィール編集",
-    "Password Settings": "パスワード設定",
-    "Purchase History": "購入履歴",
-    "PURCHASE HISTORY": "購入履歴",
-    "TOP UP HISTORY": "チャージ履歴",
-    "ASK AFFINITY": "Affinityに質問",
-    "LOVE FORECAST": "恋愛予報",
-    "FORTUNE REPORT": "運勢レポート",
-    "RELATION COMPATIBILITY": "関係の相性",
-    "ADVICE GENIE": "アドバイスジーニー",
-    "USAGE HISTORY DETAILS": "ご購入が完了しました。詳細をご覧ください！",
-    "NO USAGE HISTORY FOUND": "利用履歴が見つかりません。",
-    "OUR PACKAGES": "パッケージ一覧",
-    "PACKAGES DESC": "レポート購入や Affinity AI への質問に利用できます",
-    "GET COINS": "{{count}}トークンを獲得",
-    "OUR SUBSCRIPTIONS": "サブスクリプション一覧",
-    "SUBSCRIPTIONS DESC": "Ask Affinity AI で利用でき、毎月初めにリセットされます。毎月3枚のシルバートークンが無料でもらえます。",
-    "FAILED TO LOAD PACKAGES": "パッケージの読み込みに失敗しました。しばらくしてから再度お試しください。",
-    "FAILED TO LOAD SUBSCRIPTIONS": "サブスクリプションの読み込みに失敗しました。しばらくしてから再度お試しください。",
-    "PAYMENT FAILED": "支払いに失敗しました",
-    "SUCCESS": "成功",
-    "PAYMENT COMPLETE": "支払いが完了しました！",
-    "CONTINUE": "続ける",
-    "PROCESSING": "処理中...",
-    "TOP UP": "チャージ",
-    "ERROR": "エラー",
-    "GENERIC ERROR": "エラーが発生しました。もう一度お試しください。",
-    "TOPUP COMPLETE": "View Details.",
-    "NO TOPUP HISTORY FOUND": "チャージ履歴がありません。",
-    "RECEIPT": "領収書",
-    "ORDER NUMBER": "注文番号",
-    "DATE PURCHASED": "購入日",
-    "ORDER ITEMS": "注文商品",
-    "TOTAL": "合計：",
-    "PAYMENT METHOD": "支払い方法",
-    "PREVIOUS POINTS": "前回のポイント",
-    "POINTS ADDED": "追加ポイント",
-    "TOTAL POINTS": "合計ポイント",
-    "PAYMENT NOT COMPLETED": "お支払いはまだ完了していません。処理中か、支払いが完了していない可能性があります。後でもう一度ご確認ください。",
-    "Your Coins": "あなたのトークン",
-    "Buy Coins": "トークンを購入",
-    "Others": "その他",
-    "About Us": "私たちについて",
-    "Privacy Policy": "プライバシーポリシー",
-    "Terms & Conditions": "利用規約",
-    "Logout": "ログアウト",
-    "Current Password": "現在のパスワード",
-    "New Password": "新しいパスワード",
-    "Confirm Password": "パスワード確認",
-    "CHANGE PASSWORD": "パスワードを変更",
-    "Full Name": "氏名",
-    "Email Address": "メールアドレス",
-    "Phone Number": "電話番号",
-    "Birth Date": "生年月日",
-    "Birth Date:": "生年月日:",
-    "Birth Time": "出生時刻",
-    "Birth Time:": "出生時刻:",
-    "Not sure about your birth time? Just go with your closest guess.": "出生時刻がわからない場合は、最も近いと思う時刻を選択してください。",
-    "Gender": "性別",
-    "Male": "男性",
-    "Female": "女性",
-    "Country of Birth": "出生国",
-    "City of Birth": "出生都市",
-    "Please select one": "1つ選択してください",
-    "Save": "保存",
-    "wealth": "富",
-    "learning": "学び",
-    "relation": "関係",
-    "career": "キャリア",
-    "TODAY SCORE": "今日のスコア",
-    "Good Day": "良い一日",
-    "WHAT DO YOU LIKE TO KNOW TODAY?": "今日は何を知りたいですか？",
+    "login": {
+        "intro": "親愛なる探求者",
+        "title": "ログイン",
+        "subtitle": "宇宙がささやく。\nあなたに運命づけられたものを見つけましょう。",
+        "footer": "アカウントをお持ちでないですか？",
+        "signupButtonText": "新規登録"
+    },
+    "register": {
+        "intro": "親愛なる探求者",
+        "title": "新規登録",
+        "subtitle": "宇宙がささやく。\n参加して運命を見つけましょう。",
+        "footer": "すでにアカウントをお持ちですか？",
+        "signinButtonText": "ログイン"
+    },
+    "registerForm": {
+        "nameRequired": "名前は必須です",
+        "nameMinLength": "名前は3文字以上で入力してください",
+        "emailRequired": "メールアドレスは必須です",
+        "invalidEmailFormat": "メールアドレスの形式が正しくありません",
+        "passwordRequired": "パスワードは必須です",
+        "passwordMinLength": "パスワードは6文字以上で入力してください",
+        "confirmPasswordRequired": "パスワードを確認してください",
+        "passwordsDoNotMatch": "パスワードが一致しません",
+        "name": "名前",
+        "email": "メールアドレス",
+        "password": "パスワード",
+        "confirmPassword": "パスワード確認",
+        "referralCode": "紹介コード",
+        "createAccount": "アカウント作成",
+        "registerFailed": "登録に失敗しました",
+        "registerFailedMessage": "登録に失敗しました。もう一度お試しください。"
+    },
+    "languageSelection": {
+        "heading": "言語を選択してください",
+        "next": "次へ"
+    },
+    "otpVerification": {
+        "title": "OTP認証",
+        "sentMessage": "OTP認証コードをメールで{{email}}に送信しました。\nコードを入力してください。",
+        "continue": "続行",
+        "didntReceiveCode": "コードが届いていませんか？",
+        "resend": "再送信",
+        "success": "認証成功！",
+        "resentSuccessfully": "OTPコードが再送信されました。",
+        "error": "エラー",
+        "genericError": "エラーが発生しました。もう一度お試しください。",
+        "fillAllFields": "すべてのOTP欄を入力してください。"
+    },
+    "otpSuccess": {
+        "title": "認証成功！",
+        "description": "アカウントが認証され、利用可能になりました。",
+        "continue": "続行"
+    },
+    "loginForm": {
+        "emailRequired": "メールアドレスは必須です",
+        "invalidEmailFormat": "メールアドレスの形式が正しくありません",
+        "passwordRequired": "パスワードは必須です",
+        "passwordMinLength": "パスワードは6文字以上で入力してください",
+        "email": "メールアドレス",
+        "password": "パスワード",
+        "signIn": "ログイン",
+        "loginFailed": "ログインに失敗しました"
+    },
+    "onboarding": {
+        "title": "自己紹介",
+        "subtitle": "自己紹介して、宇宙の導きを受けましょう！",
+        "helpText": "出生時刻が分からない場合は、最も近い推定値を選択してください。",
+        "birthDate": "生年月日：",
+        "birthTime": "出生時刻：",
+        "selectCountry": "国を選択",
+        "selectCity": "都市を選択",
+        "save": "保存",
+        "pleaseSelectOne": "いずれかを選択してください",
+        "allFieldsRequired": "すべての項目を入力してください。",
+        "registerFailed": "登録に失敗しました",
+        "errorOccurred": "エラーが発生しました。もう一度お試しください。"
+    },
     "carousel": {
         "love": {
-            "title": "恋が一時停止？",
-            "subtitle": "次に何が起こるかを発見"
+            "title": "愛は遅れていますか？",
+            "subtitle": "次に何が起こるかを発見しましょう"
         },
         "relation": {
             "title": "関係の洞察",
-            "subtitle": "あなたのつながりを発見"
+            "subtitle": "あなたのつながりを発見しましょう"
         },
         "fortune": {
             "title": "運勢ガイダンス",
-            "subtitle": "未来を受け入れよう"
+            "subtitle": "未来を迎えましょう"
         },
         "downloadPdf": "PDFとしてダウンロード"
     },
+    "home": {
+        "subtitle": "今日は何を知りたいですか？"
+    },
     "loveForecast": {
-        "header": "今後12ヶ月の恋愛予報",
+        "header": "12ヶ月の恋愛予報",
         "purchase": "{{cost}}で購入",
-        "title": "感情が混乱していますか？一度に解決しましょう。",
-        "subtitle": "感情的な課題を克服するための4つの主要な方向性",
-        "description": "感情の混乱の根本を見つけ、あなたの恋愛の正しい方向を見つけましょう。すべての側面の答えを一度に得られます：マインドセット、恋愛予報、恋愛の見つけ方、そして将来の展望。",
-        "sectionTitle": "あなたが知ること：",
+        "title": "感情的に混乱していますか？今すぐ解決しましょう。",
+        "subtitle": "感情的な課題を克服するための4つの主要な方向性。",
+        "description": "感情的な混乱の根本を見つけ、恋愛の正しい方向性を見つけましょう。すべての側面の答えを一度に得られます：考え方、恋愛予報、恋愛の見つけ方、将来の展望。",
+        "sectionTitle": "あなたが発見すること：",
         "cards": {
-            "intro": "紹介：あなたの恋愛設計図",
+            "intro": "序章：あなたの恋愛設計図",
             "lacking": "恋愛で足りないものは？",
-            "lookout": "パートナーに求めるもの",
+            "lookout": "パートナーに求めるものは？",
             "suits": "あなたに合うパートナーのタイプ",
             "outlook": "今年の恋愛予報",
-            "where": "どこで恋愛を見つけるか",
-            "questions": "パーソナルな質問",
-            "conclusion": "結論：これからの恋愛ストーリー"
+            "where": "恋愛を見つける場所",
+            "questions": "個人的な質問",
+            "conclusion": "結論：これからの恋愛物語"
         },
-        "pollingMessage": "あなたの恋愛レポートを作成中です…",
+        "pollingMessage": "恋愛レポートを処理中です…",
         "error": "エラー",
         "noJobId": "サーバーからjob_idが返されませんでした。",
         "fetchStatusFailed": "レポートのステータス取得に失敗しました。"
@@ -155,96 +167,54 @@
     "relationReport": {
         "header": "関係の相性",
         "purchase": "{{cost}}で購入",
-        "title": "あなたたちは完璧なカップル？\n今すぐチェック！",
-        "subtitle": "占星術と四柱推命が出会い、あなたの恋愛相性に新たな視点をもたらします。",
-        "description": "いくつかのアドバイスは常識のように聞こえるかもしれません（例：コミュニケーションやマインドセットの改善）が、すべてあなた独自のチャートと関係のダイナミクスに合わせて調整されています。その影響は見た目以上に大きいです。",
+        "title": "あなたたちは完璧なカップルか気になりますか？\n今すぐ確認しましょう！",
+        "subtitle": "占星術とバジがあなたの恋愛相性に新しい視点をもたらします。",
+        "description": "コミュニケーションや考え方の改善など、常識的に思えるアドバイスも、あなたの独自のチャートと関係のダイナミクスに合わせて調整されています。効果は見た目以上です。",
         "loveInterestDetail": "お相手の詳細",
-        "tellUsMore": "お相手についてもっと教えてください！",
-        "pollingMessage": "あなたの関係レポートを作成中です…",
+        "tellUsMore": "もっと教えてください！",
+        "pollingMessage": "関係レポートを処理中です…",
         "cards": {
-            "perspective": "あなたの恋愛観は？",
-            "seeYou": "お相手はあなたをどう見ている？",
-            "kindOfPerson": "お相手はどんな人？",
-            "traits": "性格、好み、苦手なことは？"
+            "perspective": "あなたは恋愛をどう見ていますか？",
+            "seeYou": "お相手はあなたをどう見ていますか？",
+            "kindOfPerson": "お相手が好きなタイプは？",
+            "traits": "お相手の特徴、好み、嫌いなことは？"
         }
     },
-    "ask_affinity_instructions": "1. 心を落ち着かせてください\n2. 質問したいことを考えてください\n3. 質問を入力してください\n4. 深呼吸して質問ボタンを押してください",
-    "Unsure what to do next? Affinity is here to help —  ask anything.": "次に何をすべきかわからない？Affinityがサポートします — 何でも質問してください。",
-    "How to ask the question?": "質問の仕方",
-    "Type your question": "質問を入力してください",
-    "Purchase for {{cost}}": "{{cost}}で購入",
-    "Question is required": "質問は必須です",
-    "Ask Affinity": "Affinityに質問",
-    "Present Situation": "現在の状況",
-    "Likely Outcome": "予想される結果",
-    "Recommended Action": "推奨される行動",
-    "Tell us anything...": "何でもお話しください...",
-    "Error": "エラー",
-    "Failed to consult. Please try again.": "相談に失敗しました。もう一度お試しください。",
-    "DIARY": "日記",
-    "A safe space to express your thoughts and emotions.": "あなたの思いや感情を表現する安全な空間です。",
-    "Recent Diaries": "最近の日記",
-    "No Diaries Yet": "まだ日記のエントリーがありません",
-    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "あなたの思いや気持ちを表現する最初の日記を書きましょう。あなたの旅はここから始まります！",
-    "Continue": "続ける",
-    "VERIFICATION SUCCESS": "認証成功！",
-    "VERIFICATION SUCCESS SUBTITLE": "準備が整いました！アカウントが認証され、すぐにご利用いただけます。",
-    "OTP VERIFICATION": "OTP認証",
-    "OTP SENT MESSAGE": "メール（{{email}}）にOTP認証コードを送信しました。\nコードを入力してください。",
-    "FILL ALL OTP FIELDS": "すべてのOTP欄を入力してください。",
-    "DIDNT RECEIVE CODE": "コードが届いていませんか？",
-    "RESEND": "再送信",
-    "OTP RESENT SUCCESSFULLY": "OTPコードが正常に再送信されました。",
-    "Fill in your details": "お相手の詳細を入力してください",
-    "Select Country": "国を選択",
-    "Select City": "都市を選択",
-    "Introduce yourself": "自己紹介",
-    "Introduce yourself and let the universe guide you!": "自己紹介して、宇宙の導きを受けましょう！",
-    "Birth Date:": "生年月日：",
-    "Birth Time:": "出生時間：",
-    "Not sure about your birth time? Just go with your closest guess.": "出生時間が分からない場合は、最も近いと思う時間を選んでください。",
-    "Please select one": "1つ選択してください",
-    "Save": "保存",
-    "Select Country": "国を選択",
-    "Select City": "都市を選択",
-    "PASSWORD CHANGED SUCCESSFULLY": "パスワードが正常に変更されました",
-    "FAILED TO CHANGE PASSWORD": "パスワードの変更に失敗しました",
-    "LOADING...": "読み込み中...",
     "fortuneReport": {
-        "header": "運勢レポート {{year}}",
+        "header": "運勢レポート{{year}}",
         "purchase": "{{cost}}で購入",
-        "title": "{{year}}年が気になりますか？今すぐ\n運勢をチェック！",
-        "subtitle": "運勢解読と計画が出会い、{{year}}年に新たな視点をもたらします。",
-        "description": "いくつかの洞察はシンプルに見えるかもしれません（タイミングや意思決定など）が、すべてあなたのチャートと{{year}}年の道筋に合わせてパーソナライズされています。これらのガイドは本当に大きな違いを生み出すことができます。",
-        "sectionTitle": "何がわかるのか？",
-        "pollingMessage": "あなたの運勢レポートを作成中です…",
+        "title": "{{year}}が気になりますか？今すぐ運勢予報を見ましょう！",
+        "subtitle": "運勢予報と計画が{{year}}に新しい視点をもたらします。",
+        "description": "タイミングや意思決定など、一見シンプルな洞察も、あなたのチャートと{{year}}の道に合わせてパーソナライズされています。ガイダンスは本当に役立ちます。",
+        "sectionTitle": "何が分かる？",
+        "pollingMessage": "運勢レポートを処理中です…",
         "cards": {
             "health": {
                 "title": "健康",
-                "subtitle": "占星術と四柱推命を活用し、健康状態を分析してタイムリーな予防策をサポートします。"
+                "subtitle": "アストロとバジを使って、健康状態を分析し、タイムリーな予防策を取るのに役立てます。"
             },
             "finance": {
-                "title": "財運",
-                "subtitle": "占星術と四柱推命で年間財帛宮の傾向を分析し、最適な財運のチャンスを見つけましょう。"
+                "title": "財政",
+                "subtitle": "アストロとバジを使って、年間の財運宮の傾向を分析し、最適な財運のタイミングを見つけます。"
             },
             "career": {
                 "title": "キャリア",
-                "subtitle": "占星術と四柱推命でキャリア宮の星を通じて今年のキャリア運と課題を明らかにします。"
+                "subtitle": "アストロとバジを使って、キャリア宮の星を通じてキャリア運と課題を明らかにします。"
             },
             "relationship": {
                 "title": "関係",
-                "subtitle": "占星術と四柱推命で年間の恋愛トレンドを夫妻宮で追跡します。"
+                "subtitle": "アストロとバジを使って、結婚宮を通じて年間の恋愛傾向を追跡します。"
             }
         }
     },
     "purchaseAlert": {
-        "title": "購入アラート",
-        "costInfo": "Geenieに質問するには{{cost}} が必要です。続行しますか？",
-        "yourCredits": "あなたの{{creditType}}トークン: {{userCredit}}",
-        "continue": "購入を続ける",
+        "title": "購入警告",
+        "costInfo": "ジーニーに質問するには{{cost}}が必要です。続行しますか？",
+        "yourCredits": "あなたの{{creditType}}トークン：{{userCredit}}",
+        "continue": "購入を続行",
         "cancel": "キャンセル",
-        "insufficient": "このレポートには{{cost}}が必要です\n現在の{{creditType}}トークンが不足しています。チャージしてから続行してください。",
-        "purchaseCredits": "クレジットを購入"
+        "insufficient": "このレポートには{{cost}}が必要です\n現在の{{creditType}}トークンが不足しています。続行するにはチャージしてください。",
+        "purchaseCredits": "クレジット購入"
     },
     "profileCard": {
         "noProfileData": "プロフィールデータが見つかりません。",
@@ -259,7 +229,7 @@
         "you": "あなた"
     },
     "profile": {
-        "copiedToClipboard": "クリップボードにコピーしました"
+        "copiedToClipboard": "クリップボードにコピーされました"
     },
     "chatArea": {
         "geenieSays": "ジーニーの言葉："
@@ -267,26 +237,36 @@
     "usageReceiptModal": {
         "receipt": "領収書",
         "datePurchased": "購入日",
-        "orderItems": "注文商品",
+        "orderItems": "注文品目",
         "previousPoints": "前回のポイント",
         "pointsUsed": "使用ポイント",
         "remainingPoints": "残りポイント",
         "seeResults": "結果を見る",
         "processing": "レポートはまだ処理中です。後でもう一度ご確認ください。",
         "serviceType": {
-            "ask_any_question": "Affinityに質問",
+            "ask_any_question": "アフィニティに質問",
             "personalized_love_forecast_12mth": "恋愛予報",
             "transit_report": "運勢レポート",
             "relationship_compatibility": "関係の相性",
-            "ask_secret_diary": "アドバイスジーニー"
+            "ask_secret_diary": "ジーニーアドバイス"
         }
     },
+    "usageHistory": {
+        "noHistoryFound": "利用履歴が見つかりません。",
+        "details": "購入が成功しました。詳細をご覧ください！"
+    },
+    "affinityResult": {
+        "title": "アフィニティに質問",
+        "presentSituation": "現在の状況",
+        "likelyOutcome": "予想される結果",
+        "recommendedAction": "推奨される行動"
+    },
     "fortuneReportResult": {
-        "header": "運勢レポート {{year}}",
+        "header": "運勢レポート{{year}}",
         "downloadPdf": "PDFとしてダウンロード"
     },
     "polling": {
-        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+        "info": "数分かかります。ウィンドウを閉じても大丈夫です。準備ができたら通知します。"
     },
     "mbtiQuiz": {
         "title": "あなたのMBTIは？",
@@ -296,28 +276,24 @@
     "relationReportResult": {
         "header": "関係の相性",
         "downloadPdf": "PDFとしてダウンロード",
-        "downloadSuccess": "PDFのダウンロードが成功しました",
-        "downloadedTo": "ファイルは {{path}} に保存されました",
+        "downloadSuccess": "PDFが正常にダウンロードされました！",
+        "downloadedTo": "ファイルがダウンロードされました：{{path}}",
         "you": "あなた",
         "yourLoveInterest": "お相手"
     },
     "loveReportResult": {
-        "title": "今後12ヶ月の恋愛予報",
+        "title": "12ヶ月の恋愛予報",
         "downloadPdf": "PDFとしてダウンロード",
         "forecastFor": "{{range}}の予報"
     },
-    "strengths": "強み",
-    "weaknesses": "弱み",
-    "relationships": "関係",
-    "career": "キャリア",
     "bottomBar": {
         "home": "ホーム",
-        "echo": "Echo",
-        "askAffinity": "Affinityに質問",
+        "echo": "エコー",
+        "askAffinity": "アフィニティに質問",
         "profile": "プロフィール"
     },
     "baziResult": {
-        "title": "BaZiプロフィール",
+        "title": "バジプロフィール",
         "emptyStateLabel": "プロフィールデータが見つかりません。"
     },
     "astroResult": {
@@ -325,29 +301,173 @@
         "emptyStateLabel": "プロフィールデータが見つかりません。"
     },
     "profileForm": {
+        "fullName": "氏名",
+        "name": "名前",
+        "emailAddress": "メールアドレス",
+        "email": "メールアドレス",
+        "phoneNumber": "電話番号",
+        "birthDate": "生年月日",
+        "birthDateLabel": "生年月日：",
+        "birthTime": "出生時刻",
+        "birthTimeLabel": "出生時刻：",
+        "birthTimeHelper": "出生時刻が分からない場合は、最も近い推定値を選択してください。",
+        "gender": "性別",
+        "male": "男性",
+        "female": "女性",
+        "countryOfBirth": "出生国",
+        "cityOfBirth": "出生都市",
+        "pleaseSelectOne": "いずれかを選択してください",
         "language": "言語",
-        "dialogTitle": "プロフィールを更新",
-        "successMessage": "プロフィールが正常に更新されました。",
+        "save": "保存",
         "selectCountry": "国を選択",
         "selectCity": "都市を選択",
         "selectLanguage": "言語を選択",
+        "nameRequired": "名前は必須です",
+        "nameMinLength": "名前は2文字以上で入力してください",
+        "emailRequired": "メールアドレスは必須です",
+        "invalidEmailFormat": "メールアドレスの形式が正しくありません",
+        "phoneNumberRequired": "電話番号は必須です",
+        "phoneNumberMinLength": "電話番号は6文字以上で入力してください",
+        "dialogTitle": "プロフィール更新",
+        "successMessage": "プロフィールが正常に更新されました。",
         "okLabel": "OK"
     },
+    "relationReportForm": {
+        "formTitle": "お相手の詳細を入力してください",
+        "fullName": "氏名",
+        "birthDate": "生年月日",
+        "birthDateLabel": "生年月日：",
+        "countryOfBirth": "出生国",
+        "cityOfBirth": "出生都市",
+        "pleaseSelectOne": "いずれかを選択してください",
+        "selectCountry": "国を選択",
+        "selectCity": "都市を選択",
+        "gender": "性別",
+        "male": "男性",
+        "female": "女性",
+        "continue": "続行",
+        "nameRequired": "名前は必須です",
+        "nameMinLength": "名前は3文字以上で入力してください"
+    },
+    "passwordSettingForm": {
+        "title": "パスワード設定",
+        "currentPassword": "現在のパスワード",
+        "newPassword": "新しいパスワード",
+        "confirmPassword": "パスワード確認",
+        "password": "パスワード",
+        "passwordRequired": "パスワードは必須です",
+        "passwordMinLength": "パスワードは6文字以上で入力してください",
+        "passwordsDoNotMatch": "パスワードが一致しません",
+        "loading": "読み込み中...",
+        "changePassword": "パスワード変更",
+        "passwordChangedSuccessfully": "パスワードが正常に変更されました",
+        "failedToChangePassword": "パスワードの変更に失敗しました"
+    },
+    "profilePage": {
+        "guest": "ゲスト",
+        "mbtiTitle": "あなたのMBTIは？",
+        "mbtiSubtitle": "タイプを知るための簡単なテスト！",
+        "yourCoins": "あなたのトークン",
+        "buyCoins": "トークン購入",
+        "profileSectionTitle": "プロフィール",
+        "editProfile": "プロフィール編集",
+        "passwordSettings": "パスワード設定",
+        "purchaseHistory": "購入履歴",
+        "othersSectionTitle": "その他",
+        "aboutUs": "私たちについて",
+        "privacyPolicy": "プライバシーポリシー",
+        "termsAndConditions": "利用規約",
+        "logout": "ログアウト"
+    },
+    "mbtiProfile": {
+        "strengths": "強み",
+        "weaknesses": "弱み",
+        "relationships": "関係",
+        "career": "キャリア"
+    },
+    "purchaseHistory": {
+        "title": "購入履歴",
+        "usageTab": "購入履歴",
+        "topupTab": "チャージ履歴"
+    },
+    "serviceLabel": {
+        "ask_any_question": "アフィニティに質問",
+        "personalized_love_forecast_12mth": "恋愛予報",
+        "transit_report": "運勢レポート",
+        "relationship_compatibility": "関係の相性",
+        "ask_secret_diary": "ジーニーアドバイス"
+    },
+    "askAffinity": {
+        "title": "アフィニティに質問",
+        "subtitle": "どうすればいいか迷っていますか？アフィニティが助けます — 何でも質問してください。",
+        "howToAskTitle": "質問方法",
+        "instructions": "1. 心を落ち着かせる\n2. 質問したいことを考える\n3. 質問を入力する\n4. 深呼吸して質問ボタンを押す",
+        "questionLabel": "質問を入力してください",
+        "questionRequired": "質問は必須です",
+        "purchaseButton": "{{cost}}で購入"
+    },
+    "echo": {
+        "title": "日記",
+        "subtitle": "思いや感情を表現する安全な場所です。",
+        "recentDiaries": "最新の日記エントリー",
+        "loading": "読み込み中...",
+        "noDiariesYet": "まだ日記エントリーがありません",
+        "startDiaryDesc": "最初の日記エントリーを始めて、思いや感情を表現しましょう。あなたの旅はここから始まります！"
+    },
     "echoDetail": {
+        "title": "日記",
         "clickOn": "クリック",
-        "toGetGenieAdvice": "ジーニーのアドバイスをもらう"
+        "toGetGenieAdvice": "ジーニーのアドバイスを得るために",
+        "inputPlaceholder": "何でも話してください...",
+        "errorTitle": "エラー",
+        "failedToConsult": "相談に失敗しました。もう一度お試しください。"
     },
     "dailyProfileDetail": {
         "todayScore": "今日のスコア",
-        "wealth": "富",
+        "wealth": "財運",
         "learning": "学び",
         "relation": "関係",
         "career": "キャリア"
     },
     "profileDashboard": {
-        "loading": "毎日のプロフィールを読み込んでいます...",
+        "loading": "日次プロフィールを読み込み中...",
         "serviceUnavailable": "このサービスはまもなく利用可能になります。",
-        "checkBackLater": "後で再度アクセスして、あなたの日次プロフィールダッシュボードをご利用ください。",
-        "failedToLoadUserData": "ユーザーデータの読み込みに失敗しました。後でもう一度お試しください。"
+        "checkBackLater": "後でもう一度アクセスして日次プロフィールダッシュボードをご利用ください。",
+        "failedToLoadUserData": "ユーザーデータの読み込みに失敗しました。後でもう一度お試しください。",
+        "goodDay": "良い一日を",
+        "guest": "ゲスト",
+        "todayScore": "今日のスコア"
+    },
+    "topup": {
+        "paymentFailed": "支払いに失敗しました",
+        "success": "成功",
+        "paymentComplete": "支払い完了！",
+        "ok": "OK",
+        "error": "エラー",
+        "genericError": "エラーが発生しました。もう一度お試しください。",
+        "ourPackages": "パッケージ一覧",
+        "packagesDesc": "レポートやアフィニティAIの購入に利用できます",
+        "ourSubscriptions": "サブスクリプション一覧",
+        "subscriptionsDesc": "アフィニティAIで利用でき、毎月初めにリセットされます。毎月3つの無料シルバートークンがもらえます。",
+        "getCoins": "{{count}}トークンを取得",
+        "processing": "処理中...",
+        "continue": "続行",
+        "title": "チャージ",
+        "noHistoryFound": "チャージ履歴が見つかりません。",
+        "failedToLoadPackages": "パッケージの読み込みに失敗しました。後でもう一度お試しください。",
+        "failedToLoadSubscriptions": "サブスクリプションの読み込みに失敗しました。後でもう一度お試しください。"
+    },
+    "topupReceiptModal": {
+        "receipt": "領収書",
+        "orderNumber": "注文番号",
+        "datePurchased": "購入日",
+        "orderItems": "注文品目",
+        "total": "合計：",
+        "paymentMethod": "支払い方法",
+        "previousPoints": "前回のポイント",
+        "pointsAdded": "追加ポイント",
+        "totalPoints": "合計ポイント",
+        "paymentNotCompleted": "支払いはまだ完了していません。処理中の場合や、支払いが完了していない場合があります。後でもう一度ご確認ください。",
+        "continuePayment": "支払いを続行"
     }
 }

@@ -48,7 +48,7 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
         scrollable={false}
         header={
           <Header
-            title={t('PURCHASE HISTORY')}
+            title={t('purchaseHistory.title')}
             onBack={() => navigation.goBack()}
           />
         }
@@ -65,7 +65,7 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
                   ? [styles.tabText, styles.activeTabText]
                   : styles.tabText
               }>
-              {t('PURCHASE HISTORY')}
+              {t('purchaseHistory.usageTab')}
             </AppText>
           </Pressable>
 
@@ -79,7 +79,7 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
                   ? [styles.tabText, styles.activeTabText]
                   : styles.tabText
               }>
-              {t('TOP UP HISTORY')}
+              {t('purchaseHistory.topupTab')}
             </AppText>
           </Pressable>
         </View>

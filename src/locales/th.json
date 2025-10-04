@@ -1,251 +1,219 @@
 {
     "calendar": {
         "monthNames": [
-            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-            "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+            "มกราคม",
+            "กุมภาพันธ์",
+            "มีนาคม",
+            "เมษายน",
+            "พฤษภาคม",
+            "มิถุนายน",
+            "กรกฎาคม",
+            "สิงหาคม",
+            "กันยายน",
+            "ตุลาคม",
+            "พฤศจิกายน",
+            "ธันวาคม"
         ],
         "monthNamesShort": [
-            "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",
-            "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
+            "ม.ค.",
+            "ก.พ.",
+            "มี.ค.",
+            "เม.ย.",
+            "พ.ค.",
+            "มิ.ย.",
+            "ก.ค.",
+            "ส.ค.",
+            "ก.ย.",
+            "ต.ค.",
+            "พ.ย.",
+            "ธ.ค."
         ],
         "dayNames": [
-            "อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"
+            "วันอาทิตย์",
+            "วันจันทร์",
+            "วันอังคาร",
+            "วันพุธ",
+            "วันพฤหัสบดี",
+            "วันศุกร์",
+            "วันเสาร์"
         ],
         "dayNamesShort": [
-            "อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."
+            "อา.",
+            "จ.",
+            "อ.",
+            "พ.",
+            "พฤ.",
+            "ศ.",
+            "ส."
         ]
     },
-    "WELCOME TO": "ยินดีต้อนรับ",
-    "GET STARTED": "เริ่มต้น",
-    "DEAR SEEKERS": "นักแสวงหาที่รัก",
-    "PLEASE SELECT A LANGUAGE": "กรุณาเลือกภาษา",
-    "NEXT": "ถัดไป",
-    "SIGN IN": "เข้าสู่ระบบ",
-    "SIGN UP": "สมัครสมาชิก",
-    "THE COSMOS WHISPERS": "จักรวาลกระซิบ.\nค้นหาสิ่งที่เป็นของคุณ",
-    "DONT HAVE AN ACCOUNT": "ยังไม่มีบัญชี?",
-    "EMAIL IS REQUIRED": "ต้องระบุอีเมล",
-    "INVALID EMAIL FORMAT": "รูปแบบอีเมลไม่ถูกต้อง",
-    "PASSWORD IS REQUIRED": "ต้องระบุรหัสผ่าน",
-    "PASSWORD MIN LENGTH": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
-    "EMAIL": "อีเมล",
-    "PASSWORD": "รหัสผ่าน",
-    "LOGIN FAILED": "เข้าสู่ระบบล้มเหลว",
-    "REGISTER FAILED": "สมัครสมาชิกล้มเหลว",
-    "REGISTER FAILED MESSAGE": "สมัครสมาชิกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
-    "SIGN UP SUBTITLE": "จักรวาลกระซิบ.\nเข้าร่วมและค้นพบโชคชะตาของคุณ",
-    "ALREADY HAVE AN ACCOUNT": "มีบัญชีอยู่แล้ว?",
-    "NAME IS REQUIRED": "ต้องระบุชื่อ",
-    "NAME MIN LENGTH": "ชื่อต้องมีอย่างน้อย 3 ตัวอักษร",
-    "PLEASE CONFIRM PASSWORD": "กรุณายืนยันรหัสผ่าน",
-    "PASSWORDS DO NOT MATCH": "รหัสผ่านไม่ตรงกัน",
-    "NAME": "ชื่อ",
-    "CONFIRM PASSWORD": "ยืนยันรหัสผ่าน",
-    "REFERRAL CODE": "รหัสแนะนำ",
-    "CREATE ACCOUNT": "สร้างบัญชี",
-    "Guest": "ผู้เยี่ยมชม",
-    "Profile": "โปรไฟล์",
-    "Edit Profile": "แก้ไขโปรไฟล์",
-    "Password Settings": "ตั้งค่ารหัสผ่าน",
-    "Purchase History": "ประวัติการซื้อ",
-    "PURCHASE HISTORY": "ประวัติการซื้อ",
-    "TOP UP HISTORY": "ประวัติการเติมเงิน",
-    "ASK AFFINITY": "ถาม Affinity",
-    "LOVE FORECAST": "พยากรณ์ความรัก",
-    "FORTUNE REPORT": "รายงานดวงชะตา",
-    "RELATION COMPATIBILITY": "ความเข้ากันได้ของความสัมพันธ์",
-    "ADVICE GENIE": "Genie ที่ปรึกษา",
-    "USAGE HISTORY DETAILS": "การซื้อของคุณเสร็จสมบูรณ์ ดูรายละเอียด!",
-    "NO USAGE HISTORY FOUND": "ไม่พบประวัติการใช้งาน",
-    "OUR PACKAGES": "แพ็กเกจของเรา",
-    "PACKAGES DESC": "สามารถใช้ซื้อรายงานและถาม Affinity AI ได้",
-    "GET COINS": "รับโทเค็น {{count}}",
-    "OUR SUBSCRIPTIONS": "การสมัครสมาชิกของเรา",
-    "SUBSCRIPTIONS DESC": "สามารถใช้ใน Ask Affinity AI และรีเซ็ตทุกต้นเดือน คุณจะได้รับโทเค็นเงินฟรี 3 โทเค็นทุกเดือน",
-    "FAILED TO LOAD PACKAGES": "โหลดแพ็กเกจไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
-    "FAILED TO LOAD SUBSCRIPTIONS": "โหลดการสมัครสมาชิกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
-    "PAYMENT FAILED": "ชำระเงินล้มเหลว",
-    "SUCCESS": "สำเร็จ",
-    "PAYMENT COMPLETE": "ชำระเงินเสร็จสิ้น!",
-    "CONTINUE": "ดำเนินการต่อ",
-    "PROCESSING": "กำลังดำเนินการ...",
-    "TOP UP": "เติมเงิน",
-    "ERROR": "ข้อผิดพลาด",
-    "GENERIC ERROR": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
-    "TOPUP COMPLETE": "View Details.",
-    "NO TOPUP HISTORY FOUND": "ไม่พบประวัติการเติมเงิน",
-    "RECEIPT": "ใบเสร็จ",
-    "ORDER NUMBER": "หมายเลขคำสั่งซื้อ",
-    "DATE PURCHASED": "วันที่ซื้อ",
-    "ORDER ITEMS": "รายการสั่งซื้อ",
-    "TOTAL": "รวม:",
-    "PAYMENT METHOD": "วิธีชำระเงิน",
-    "PREVIOUS POINTS": "แต้มก่อนหน้า",
-    "POINTS ADDED": "แต้มที่เพิ่ม",
-    "TOTAL POINTS": "แต้มทั้งหมด",
-    "PAYMENT NOT COMPLETED": "การชำระเงินของคุณยังไม่เสร็จสมบูรณ์ อาจยังอยู่ระหว่างดำเนินการ หรือคุณยังไม่ได้ชำระเงิน กรุณาตรวจสอบอีกครั้งภายหลัง",
-    "Your Coins": "โทเค็นของคุณ",
-    "Buy Coins": "ซื้อโทเค็น",
-    "Others": "อื่นๆ",
-    "About Us": "เกี่ยวกับเรา",
-    "Privacy Policy": "นโยบายความเป็นส่วนตัว",
-    "Terms & Conditions": "ข้อกำหนดและเงื่อนไข",
-    "Logout": "ออกจากระบบ",
-    "Current Password": "รหัสผ่านปัจจุบัน",
-    "New Password": "รหัสผ่านใหม่",
-    "Confirm Password": "ยืนยันรหัสผ่าน",
-    "CHANGE PASSWORD": "เปลี่ยนรหัสผ่าน",
-    "Full Name": "ชื่อเต็ม",
-    "Email Address": "ที่อยู่อีเมล",
-    "Phone Number": "หมายเลขโทรศัพท์",
-    "Birth Date": "วันเกิด",
-    "Birth Date:": "วันเกิด:",
-    "Birth Time": "เวลาเกิด",
-    "Birth Time:": "เวลาเกิด:",
-    "Not sure about your birth time? Just go with your closest guess.": "ไม่แน่ใจเวลาเกิดของคุณ? เลือกเวลาที่ใกล้เคียงที่สุด",
-    "Gender": "เพศ",
-    "Male": "ชาย",
-    "Female": "หญิง",
-    "Country of Birth": "ประเทศที่เกิด",
-    "City of Birth": "เมืองที่เกิด",
-    "Please select one": "กรุณาเลือกหนึ่งรายการ",
-    "Save": "บันทึก",
-    "wealth": "ความมั่งคั่ง",
-    "learning": "การเรียนรู้",
-    "relation": "ความสัมพันธ์",
-    "career": "อาชีพ",
-    "TODAY SCORE": "คะแนนวันนี้",
-    "Good Day": "สวัสดีวันใหม่",
-    "WHAT DO YOU LIKE TO KNOW TODAY?": "วันนี้คุณอยากรู้อะไร?",
+    "login": {
+        "intro": "ถึงผู้แสวงหา",
+        "title": "เข้าสู่ระบบ",
+        "subtitle": "จักรวาลกำลังกระซิบ\nค้นพบสิ่งที่ถูกกำหนดไว้สำหรับคุณ",
+        "footer": "ยังไม่มีบัญชีใช่ไหม?",
+        "signupButtonText": "สมัครสมาชิก"
+    },
+    "register": {
+        "intro": "ถึงผู้แสวงหา",
+        "title": "สมัครสมาชิก",
+        "subtitle": "จักรวาลกำลังกระซิบ\nเข้าร่วมและค้นพบโชคชะตาของคุณ",
+        "footer": "มีบัญชีอยู่แล้ว?",
+        "signinButtonText": "เข้าสู่ระบบ"
+    },
+    "registerForm": {
+        "nameRequired": "กรุณากรอกชื่อ",
+        "nameMinLength": "ชื่ออย่างน้อย 3 ตัวอักษร",
+        "emailRequired": "กรุณากรอกอีเมล",
+        "invalidEmailFormat": "รูปแบบอีเมลไม่ถูกต้อง",
+        "passwordRequired": "กรุณากรอกรหัสผ่าน",
+        "passwordMinLength": "รหัสผ่านอย่างน้อย 6 ตัวอักษร",
+        "confirmPasswordRequired": "กรุณายืนยันรหัสผ่าน",
+        "passwordsDoNotMatch": "รหัสผ่านไม่ตรงกัน",
+        "name": "ชื่อ",
+        "email": "อีเมล",
+        "password": "รหัสผ่าน",
+        "confirmPassword": "ยืนยันรหัสผ่าน",
+        "referralCode": "รหัสแนะนำ",
+        "createAccount": "สร้างบัญชี",
+        "registerFailed": "สมัครสมาชิกไม่สำเร็จ",
+        "registerFailedMessage": "สมัครสมาชิกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง"
+    },
+    "languageSelection": {
+        "heading": "กรุณาเลือกภาษา",
+        "next": "ถัดไป"
+    },
+    "otpVerification": {
+        "title": "ยืนยัน OTP",
+        "sentMessage": "เราได้ส่งรหัส OTP ไปยังอีเมล\n{{email}} กรุณากรอกรหัส",
+        "continue": "ดำเนินการต่อ",
+        "didntReceiveCode": "ไม่ได้รับรหัสใช่ไหม?",
+        "resend": "ขอรหัสใหม่",
+        "success": "ยืนยันสำเร็จ!",
+        "resentSuccessfully": "ส่งรหัส OTP ใหม่สำเร็จ",
+        "error": "ข้อผิดพลาด",
+        "genericError": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+        "fillAllFields": "กรุณากรอก OTP ให้ครบทุกช่อง"
+    },
+    "otpSuccess": {
+        "title": "ยืนยันสำเร็จ!",
+        "description": "บัญชีของคุณได้รับการยืนยันและพร้อมใช้งาน",
+        "continue": "ดำเนินการต่อ"
+    },
+    "loginForm": {
+        "emailRequired": "กรุณากรอกอีเมล",
+        "invalidEmailFormat": "รูปแบบอีเมลไม่ถูกต้อง",
+        "passwordRequired": "กรุณากรอกรหัสผ่าน",
+        "passwordMinLength": "รหัสผ่านอย่างน้อย 6 ตัวอักษร",
+        "email": "อีเมล",
+        "password": "รหัสผ่าน",
+        "signIn": "เข้าสู่ระบบ",
+        "loginFailed": "เข้าสู่ระบบไม่สำเร็จ"
+    },
+    "onboarding": {
+        "title": "แนะนำตัวเอง",
+        "subtitle": "แนะนำตัวเองและให้จักรวาลนำทางคุณ!",
+        "helpText": "ไม่แน่ใจเวลาที่เกิด? เลือกเวลาที่ใกล้เคียงที่สุด",
+        "birthDate": "วันเกิด:",
+        "birthTime": "เวลาเกิด:",
+        "selectCountry": "เลือกประเทศ",
+        "selectCity": "เลือกเมือง",
+        "save": "บันทึก",
+        "pleaseSelectOne": "กรุณาเลือกหนึ่งตัวเลือก",
+        "allFieldsRequired": "กรุณากรอกข้อมูลให้ครบทุกช่อง",
+        "registerFailed": "สมัครสมาชิกไม่สำเร็จ",
+        "errorOccurred": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง"
+    },
     "carousel": {
         "love": {
-            "title": "ความรักหยุดชั่วคราว?",
+            "title": "ความรักล่าช้าใช่ไหม?",
             "subtitle": "ค้นพบสิ่งที่จะเกิดขึ้นต่อไป"
         },
         "relation": {
             "title": "ข้อมูลเชิงลึกเกี่ยวกับความสัมพันธ์",
-            "subtitle": "ค้นพบความสัมพันธ์ของคุณ"
+            "subtitle": "ค้นพบการเชื่อมต่อของคุณ"
         },
         "fortune": {
-            "title": "คำแนะนำด้านโชคลาภ",
-            "subtitle": "เปิดรับอนาคตของคุณ"
+            "title": "คำแนะนำโชคชะตา",
+            "subtitle": "ต้อนรับอนาคตของคุณ"
         },
-        "downloadPdf": "ดาวน์โหลดเป็น PDF"
+        "downloadPdf": "ดาวน์โหลด PDF"
+    },
+    "home": {
+        "subtitle": "วันนี้คุณอยากรู้เรื่องอะไร?"
     },
     "loveForecast": {
-        "header": "พยากรณ์ความรัก 12 เดือนข้างหน้า",
+        "header": "พยากรณ์ความรัก 12 เดือน",
         "purchase": "ซื้อในราคา {{cost}}",
-        "title": "สับสนทางอารมณ์? แก้ไขได้ในครั้งเดียว",
-        "subtitle": "4 ทิศทางสำคัญที่จะช่วยให้คุณ\nเอาชนะปัญหาทางอารมณ์",
-        "description": "ค้นหาต้นตอของความสับสนทางอารมณ์และหาทิศทางที่ถูกต้องสำหรับความรักของคุณ รับคำตอบทุกด้านในครั้งเดียว: ทัศนคติ พยากรณ์ความรัก วิธีหาความรัก และภาพรวมของสิ่งที่จะเกิดขึ้น",
-        "sectionTitle": "สิ่งที่คุณจะได้รู้:",
+        "title": "สับสนทางอารมณ์? แก้ไขเดี๋ยวนี้",
+        "subtitle": "4 แนวทางหลักเพื่อช่วยคุณ\nเอาชนะปัญหาทางอารมณ์",
+        "description": "ค้นหาต้นตอของความสับสนทางอารมณ์และค้นหาเส้นทางที่ถูกต้องสำหรับความรักของคุณ รับคำตอบทุกด้านในครั้งเดียว: ทัศนคติ พยากรณ์ความรัก วิธีค้นหาความรัก และมุมมองอนาคต",
+        "sectionTitle": "สิ่งที่คุณจะค้นพบ:",
         "cards": {
             "intro": "แนะนำ: พิมพ์เขียวความรักของคุณ",
-            "lacking": "คุณขาดอะไรในความรัก?",
-            "lookout": "สิ่งที่คุณมองหาในคู่รัก",
-            "suits": "คู่รักแบบไหนที่เหมาะกับคุณ",
-            "outlook": "แนวโน้มความรักปีนี้",
-            "where": "จะพบความรักได้ที่ไหน",
-            "questions": "คำถามเฉพาะตัว",
+            "lacking": "อะไรที่ขาดในความรัก?",
+            "lookout": "คุณมองหาอะไรในคู่ชีวิต?",
+            "suits": "ประเภทคู่ชีวิตที่เหมาะกับคุณ",
+            "outlook": "พยากรณ์ความรักปีนี้",
+            "where": "สถานที่พบรัก",
+            "questions": "คำถามส่วนตัว",
             "conclusion": "สรุป: เรื่องราวความรักข้างหน้า"
         },
-        "pollingMessage": "รายงานความรักของคุณกำลังจะมาถึง…",
+        "pollingMessage": "รายงานความรักของคุณกำลังดำเนินการ...",
         "error": "ข้อผิดพลาด",
-        "noJobId": "ไม่มี job_id ส่งกลับจากเซิร์ฟเวอร์",
-        "fetchStatusFailed": "ดึงสถานะรายงานไม่สำเร็จ"
+        "noJobId": "ไม่ได้รับ job_id จากเซิร์ฟเวอร์",
+        "fetchStatusFailed": "ไม่สามารถดึงสถานะรายงานได้"
     },
     "relationReport": {
-        "header": "ความเข้ากันได้ของความสัมพันธ์",
+        "header": "ความเข้ากันได้ในความสัมพันธ์",
         "purchase": "ซื้อในราคา {{cost}}",
-        "title": "สงสัยว่าคุณคือคู่ที่สมบูรณ์แบบหรือไม่?\nค้นหาตอนนี้เลย!",
-        "subtitle": "โหราศาสตร์ผสมผสานบาซี เพื่อมุมมองใหม่ของความรัก",
-        "description": "บางคำแนะนำอาจดูเหมือนสามัญสำนึก เช่น การสื่อสารหรือทัศนคติ แต่ทั้งหมดนี้ปรับให้เหมาะกับดวงและพลวัตความสัมพันธ์ของคุณโดยเฉพาะ ผลลัพธ์ที่ได้ทรงพลังยิ่งกว่าที่คิด",
-        "loveInterestDetail": "รายละเอียดของคนที่คุณสนใจ",
-        "tellUsMore": "บอกเราเพิ่มเติมเกี่ยวกับพวกเขา!",
-        "pollingMessage": "รายงานความสัมพันธ์ของคุณกำลังจะมาถึง…",
+        "title": "อยากรู้ว่าคุณเป็นคู่ที่สมบูรณ์แบบไหม?\nค้นหาตอนนี้!",
+        "subtitle": "โหราศาสตร์ผสานบาซีเพื่อมุมมองใหม่เกี่ยวกับความเข้ากันได้ในความรัก",
+        "description": "คำแนะนำบางอย่างอาจดูเหมือนสามัญสำนึก เช่น การสื่อสารหรือทัศนคติ แต่ทั้งหมดปรับให้เหมาะกับแผนภูมิและพลวัตความสัมพันธ์ของคุณ ผลกระทบมากกว่าที่คิด",
+        "loveInterestDetail": "รายละเอียดคู่รักของคุณ",
+        "tellUsMore": "บอกเราเพิ่มเติมเกี่ยวกับเขา/เธอ!",
+        "pollingMessage": "รายงานความสัมพันธ์ของคุณกำลังดำเนินการ...",
         "cards": {
-            "perspective": "มุมมองของคุณต่อความรักคืออะไร?",
-            "seeYou": "คนที่คุณสนใจมองคุณอย่างไร?",
-            "kindOfPerson": "คนที่คุณสนใจเป็นคนแบบไหน?",
-            "traits": "ลักษณะนิสัย ความชอบ และสิ่งที่รับไม่ได้คืออะไร?"
+            "perspective": "คุณมองความรักอย่างไร?",
+            "seeYou": "คู่รักของคุณมองคุณอย่างไร?",
+            "kindOfPerson": "เขา/เธอชอบคนแบบไหน?",
+            "traits": "ลักษณะ นิสัย และสิ่งที่ไม่ชอบของเขา/เธอ"
         }
     },
-    "ask_affinity_instructions": "1. ตั้งสติให้สงบ\n2. คิดถึงคำถามที่ต้องการถาม\n3. พิมพ์คำถาม\n4. หายใจลึก ๆ แล้วกดปุ่มถาม",
-    "Unsure what to do next? Affinity is here to help —  ask anything.": "ไม่แน่ใจว่าควรทำอะไรต่อ? Affinity พร้อมช่วยเหลือ — ถามได้ทุกเรื่อง",
-    "How to ask the question?": "วิธีการถามคำถาม",
-    "Type your question": "พิมพ์คำถามของคุณ",
-    "Purchase for {{cost}}": "ซื้อในราคา {{cost}}",
-    "Question is required": "ต้องระบุคำถาม",
-    "Ask Affinity": "ถาม Affinity",
-    "Present Situation": "สถานการณ์ปัจจุบัน",
-    "Likely Outcome": "ผลลัพธ์ที่เป็นไปได้",
-    "Recommended Action": "ข้อแนะนำที่ควรทำ",
-    "Tell us anything...": "บอกเราอะไรก็ได้...",
-    "Error": "ข้อผิดพลาด",
-    "Failed to consult. Please try again.": "ปรึกษาไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
-    "DIARY": "ไดอารี่",
-    "A safe space to express your thoughts and emotions.": "พื้นที่ปลอดภัยสำหรับถ่ายทอดความคิดและความรู้สึกของคุณ",
-    "Recent Diaries": "ไดอารี่ล่าสุด",
-    "No Diaries Yet": "ยังไม่มีรายการไดอารี่",
-    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "เริ่มเขียนไดอารี่แรกของคุณเพื่อถ่ายทอดความคิดและความรู้สึก การเดินทางของคุณเริ่มต้นที่นี่!",
-    "Continue": "ดำเนินการต่อ",
-    "VERIFICATION SUCCESS": "ยืนยันสำเร็จ!",
-    "VERIFICATION SUCCESS SUBTITLE": "ทุกอย่างพร้อมแล้ว! บัญชีของคุณได้รับการยืนยันและพร้อมใช้งาน",
-    "OTP VERIFICATION": "ยืนยัน OTP",
-    "OTP SENT MESSAGE": "เราได้ส่งรหัสยืนยัน OTP ไปยังอีเมล {{email}}\nกรุณากรอกรหัส",
-    "FILL ALL OTP FIELDS": "กรุณากรอก OTP ให้ครบทุกช่อง",
-    "DIDNT RECEIVE CODE": "ไม่ได้รับรหัสใช่ไหม?",
-    "RESEND": "ส่งใหม่",
-    "OTP RESENT SUCCESSFULLY": "ส่งรหัส OTP ใหม่สำเร็จแล้ว",
-    "Fill in your details": "กรอกรายละเอียดของคนที่คุณสนใจ",
-    "Select Country": "เลือกประเทศ",
-    "Select City": "เลือกเมือง",
-    "Introduce yourself": "แนะนำตัวเอง",
-    "Introduce yourself and let the universe guide you!": "แนะนำตัวเองและปล่อยให้จักรวาลนำทางคุณ!",
-    "Birth Date:": "วันเกิด:",
-    "Birth Time:": "เวลาเกิด:",
-    "Not sure about your birth time? Just go with your closest guess.": "ไม่แน่ใจเวลาเกิด? เลือกเวลาที่ใกล้เคียงที่สุด",
-    "Please select one": "กรุณาเลือกหนึ่งตัวเลือก",
-    "Save": "บันทึก",
-    "Select Country": "เลือกประเทศ",
-    "Select City": "เลือกเมือง",
-    "PASSWORD CHANGED SUCCESSFULLY": "เปลี่ยนรหัสผ่านสำเร็จ",
-    "FAILED TO CHANGE PASSWORD": "เปลี่ยนรหัสผ่านไม่สำเร็จ",
-    "LOADING...": "กำลังโหลด...",
     "fortuneReport": {
-        "header": "รายงานดวงชะตา {{year}}",
+        "header": "รายงานโชคชะตา {{year}}",
         "purchase": "ซื้อในราคา {{cost}}",
-        "title": "สงสัยปี {{year}} ของคุณ? ดู\nดวงชะตาของคุณตอนนี้!",
-        "subtitle": "การทำนายดวงชะตาผสมผสานกับการวางแผน เพื่อมุมมองใหม่สำหรับปี {{year}} ของคุณ",
-        "description": "บางข้อมูลเชิงลึกอาจดูเรียบง่าย เช่น เวลา หรือการตัดสินใจ แต่ทั้งหมดนี้ปรับให้เหมาะกับดวงของคุณและเส้นทางในปี {{year}} คำแนะนำเหล่านี้สามารถสร้างความแตกต่างที่แท้จริงได้",
-        "sectionTitle": "คุณจะได้รู้อะไรบ้าง?",
-        "pollingMessage": "รายงานดวงชะตาของคุณกำลังจะมาถึง…",
+        "title": "อยากรู้เกี่ยวกับ {{year}} ของคุณไหม? ดูพยากรณ์โชคชะตาตอนนี้!",
+        "subtitle": "พยากรณ์โชคชะตาผสานการวางแผนเพื่อมุมมองใหม่ใน {{year}} ของคุณ",
+        "description": "ข้อมูลเชิงลึกบางอย่างอาจดูเรียบง่าย เช่น เวลา หรือการตัดสินใจ แต่ทั้งหมดปรับให้เหมาะกับแผนภูมิและเส้นทางของคุณใน {{year}} คำแนะนำเหล่านี้ช่วยได้จริง",
+        "sectionTitle": "คุณจะรู้ได้อะไรบ้าง?",
+        "pollingMessage": "รายงานโชคชะตาของคุณกำลังดำเนินการ...",
         "cards": {
             "health": {
                 "title": "สุขภาพ",
-                "subtitle": "ใช้โหราศาสตร์และบาซี วิเคราะห์สุขภาพของคุณเพื่อช่วยให้คุณป้องกันได้ทันเวลา"
+                "subtitle": "ใช้โหราศาสตร์และบาซีวิเคราะห์สุขภาพเพื่อช่วยให้คุณป้องกันได้ทันเวลา"
             },
             "finance": {
                 "title": "การเงิน",
-                "subtitle": "ใช้โหราศาสตร์และบาซี วิเคราะห์แนวโน้มวังทรัพย์ประจำปีเพื่อหาช่วงเวลาที่ดีที่สุดสำหรับโอกาสทางการเงิน"
+                "subtitle": "ใช้โหราศาสตร์และบาซีวิเคราะห์แนวโน้มวังทรัพย์ประจำปีเพื่อหาช่วงเวลาที่ดีที่สุดสำหรับโอกาสทางการเงิน"
             },
             "career": {
                 "title": "อาชีพ",
-                "subtitle": "ใช้โหราศาสตร์และบาซี เปิดเผยโชคและความท้าทายด้านอาชีพของคุณผ่านดาววังอาชีพ"
+                "subtitle": "ใช้โหราศาสตร์และบาซีเปิดเผยโชคและความท้าทายด้านอาชีพผ่านดาววังอาชีพ"
             },
             "relationship": {
                 "title": "ความสัมพันธ์",
-                "subtitle": "ใช้โหราศาสตร์และบาซี ติดตามแนวโน้มความรักประจำปีผ่านวังสมรสของคุณ"
+                "subtitle": "ใช้โหราศาสตร์และบาซีติดตามแนวโน้มความรักประจำปีผ่านวังสมรส"
             }
         }
     },
     "purchaseAlert": {
         "title": "แจ้งเตือนการซื้อ",
         "costInfo": "การถาม Geenie จะมีค่าใช้จ่าย {{cost}} ดำเนินการต่อหรือไม่?",
-        "yourCredits": "โทเค็น{{creditType}}ของคุณ: {{userCredit}}",
+        "yourCredits": "โทเค็น {{creditType}} ของคุณ: {{userCredit}}",
         "continue": "ดำเนินการซื้อ",
         "cancel": "ยกเลิก",
-        "insufficient": "รายงานนี้จะมีค่าใช้จ่าย {{cost}}\nโทเค็น{{creditType}}ของคุณไม่เพียงพอ กรุณาเติมเงินเพื่อดำเนินการต่อ",
+        "insufficient": "รายงานนี้ต้องใช้ {{cost}}\nโทเค็น {{creditType}} ของคุณไม่เพียงพอ กรุณาเติมเงินเพื่อดำเนินการต่อ",
         "purchaseCredits": "ซื้อเครดิต"
     },
     "profileCard": {
@@ -264,7 +232,7 @@
         "copiedToClipboard": "คัดลอกไปยังคลิปบอร์ดแล้ว"
     },
     "chatArea": {
-        "geenieSays": "Genie กล่าว:"
+        "geenieSays": "Geenie กล่าวว่า:"
     },
     "usageReceiptModal": {
         "receipt": "ใบเสร็จ",
@@ -274,21 +242,31 @@
         "pointsUsed": "คะแนนที่ใช้",
         "remainingPoints": "คะแนนคงเหลือ",
         "seeResults": "ดูผลลัพธ์",
-        "processing": "รายงานกำลังดำเนินการ โปรดกลับมาตรวจสอบอีกครั้งในภายหลัง",
+        "processing": "รายงานยังดำเนินการอยู่ กรุณาตรวจสอบอีกครั้งภายหลัง",
         "serviceType": {
             "ask_any_question": "ถาม Affinity",
             "personalized_love_forecast_12mth": "พยากรณ์ความรัก",
-            "transit_report": "รายงานโชคลาภ",
-            "relationship_compatibility": "ความเข้ากันได้ของความสัมพันธ์",
-            "ask_secret_diary": "Genie ที่ปรึกษา"
+            "transit_report": "รายงานโชคชะตา",
+            "relationship_compatibility": "ความเข้ากันได้ในความสัมพันธ์",
+            "ask_secret_diary": "คำแนะนำจาก Genie"
         }
     },
+    "usageHistory": {
+        "noHistoryFound": "ไม่พบประวัติการใช้งาน",
+        "details": "การซื้อของคุณสำเร็จ ดูรายละเอียด!"
+    },
+    "affinityResult": {
+        "title": "ถาม Affinity",
+        "presentSituation": "สถานการณ์ปัจจุบัน",
+        "likelyOutcome": "ผลลัพธ์ที่เป็นไปได้",
+        "recommendedAction": "คำแนะนำที่แนะนำ"
+    },
     "fortuneReportResult": {
-        "header": "รายงานดวงชะตา {{year}}",
-        "downloadPdf": "ดาวน์โหลดเป็น PDF"
+        "header": "รายงานโชคชะตา {{year}}",
+        "downloadPdf": "ดาวน์โหลด PDF"
     },
     "polling": {
-        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+        "info": "ใช้เวลาสักครู่ คุณสามารถปิดหน้าต่างนี้ได้ - เราจะแจ้งเมื่อพร้อม"
     },
     "mbtiQuiz": {
         "title": "MBTI ของคุณคืออะไร?",
@@ -296,22 +274,18 @@
         "button": "ค้นหา"
     },
     "relationReportResult": {
-        "header": "ความเข้ากันได้ของความสัมพันธ์",
-        "downloadPdf": "ดาวน์โหลดเป็น PDF",
-        "downloadSuccess": "PDF ดาวน์โหลดสำเร็จ!",
+        "header": "ความเข้ากันได้ในความสัมพันธ์",
+        "downloadPdf": "ดาวน์โหลด PDF",
+        "downloadSuccess": "ดาวน์โหลด PDF สำเร็จ!",
         "downloadedTo": "ไฟล์ถูกดาวน์โหลดไปที่: {{path}}",
         "you": "คุณ",
-        "yourLoveInterest": "คนที่คุณสนใจ"
+        "yourLoveInterest": "คู่รักของคุณ"
     },
     "loveReportResult": {
-        "title": "พยากรณ์ความรัก 12 เดือนข้างหน้า",
-        "downloadPdf": "ดาวน์โหลดเป็น PDF",
+        "title": "พยากรณ์ความรัก 12 เดือน",
+        "downloadPdf": "ดาวน์โหลด PDF",
         "forecastFor": "พยากรณ์สำหรับ {{range}}"
     },
-    "strengths": "จุดแข็ง",
-    "weaknesses": "จุดอ่อน",
-    "relationships": "ความสัมพันธ์",
-    "career": "อาชีพ",
     "bottomBar": {
         "home": "หน้าแรก",
         "echo": "Echo",
@@ -319,7 +293,7 @@
         "profile": "โปรไฟล์"
     },
     "baziResult": {
-        "title": "โปรไฟล์ BaZi",
+        "title": "โปรไฟล์บาซี",
         "emptyStateLabel": "ไม่พบข้อมูลโปรไฟล์"
     },
     "astroResult": {
@@ -327,17 +301,126 @@
         "emptyStateLabel": "ไม่พบข้อมูลโปรไฟล์"
     },
     "profileForm": {
+        "fullName": "ชื่อเต็ม",
+        "name": "ชื่อ",
+        "emailAddress": "ที่อยู่อีเมล",
+        "email": "อีเมล",
+        "phoneNumber": "เบอร์โทรศัพท์",
+        "birthDate": "วันเกิด",
+        "birthDateLabel": "วันเกิด:",
+        "birthTime": "เวลาเกิด",
+        "birthTimeLabel": "เวลาเกิด:",
+        "birthTimeHelper": "ไม่แน่ใจเวลาเกิด? เลือกเวลาที่ใกล้เคียงที่สุด",
+        "gender": "เพศ",
+        "male": "ชาย",
+        "female": "หญิง",
+        "countryOfBirth": "ประเทศที่เกิด",
+        "cityOfBirth": "เมืองที่เกิด",
+        "pleaseSelectOne": "กรุณาเลือกหนึ่งตัวเลือก",
         "language": "ภาษา",
-        "dialogTitle": "อัปเดตโปรไฟล์",
-        "successMessage": "โปรไฟล์ของคุณได้รับการอัปเดตเรียบร้อยแล้ว",
+        "save": "บันทึก",
         "selectCountry": "เลือกประเทศ",
         "selectCity": "เลือกเมือง",
         "selectLanguage": "เลือกภาษา",
+        "nameRequired": "กรุณากรอกชื่อ",
+        "nameMinLength": "ชื่ออย่างน้อย 2 ตัวอักษร",
+        "emailRequired": "กรุณากรอกอีเมล",
+        "invalidEmailFormat": "รูปแบบอีเมลไม่ถูกต้อง",
+        "phoneNumberRequired": "กรุณากรอกเบอร์โทรศัพท์",
+        "phoneNumberMinLength": "เบอร์โทรศัพท์อย่างน้อย 6 ตัวอักษร",
+        "dialogTitle": "อัปเดตโปรไฟล์",
+        "successMessage": "อัปเดตโปรไฟล์สำเร็จ",
         "okLabel": "ตกลง"
     },
+    "relationReportForm": {
+        "formTitle": "กรอกรายละเอียดคู่รักของคุณ",
+        "fullName": "ชื่อเต็ม",
+        "birthDate": "วันเกิด",
+        "birthDateLabel": "วันเกิด:",
+        "countryOfBirth": "ประเทศที่เกิด",
+        "cityOfBirth": "เมืองที่เกิด",
+        "pleaseSelectOne": "กรุณาเลือกหนึ่งตัวเลือก",
+        "selectCountry": "เลือกประเทศ",
+        "selectCity": "เลือกเมือง",
+        "gender": "เพศ",
+        "male": "ชาย",
+        "female": "หญิง",
+        "continue": "ดำเนินการต่อ",
+        "nameRequired": "กรุณากรอกชื่อ",
+        "nameMinLength": "ชื่ออย่างน้อย 3 ตัวอักษร"
+    },
+    "passwordSettingForm": {
+        "title": "ตั้งค่ารหัสผ่าน",
+        "currentPassword": "รหัสผ่านปัจจุบัน",
+        "newPassword": "รหัสผ่านใหม่",
+        "confirmPassword": "ยืนยันรหัสผ่าน",
+        "password": "รหัสผ่าน",
+        "passwordRequired": "กรุณากรอกรหัสผ่าน",
+        "passwordMinLength": "รหัสผ่านอย่างน้อย 6 ตัวอักษร",
+        "passwordsDoNotMatch": "รหัสผ่านไม่ตรงกัน",
+        "loading": "กำลังโหลด...",
+        "changePassword": "เปลี่ยนรหัสผ่าน",
+        "passwordChangedSuccessfully": "เปลี่ยนรหัสผ่านสำเร็จ",
+        "failedToChangePassword": "เปลี่ยนรหัสผ่านไม่สำเร็จ"
+    },
+    "profilePage": {
+        "guest": "ผู้เยี่ยมชม",
+        "mbtiTitle": "MBTI ของคุณคืออะไร?",
+        "mbtiSubtitle": "แบบทดสอบสั้น ๆ เพื่อค้นหาประเภทของคุณ!",
+        "yourCoins": "โทเค็นของคุณ",
+        "buyCoins": "ซื้อโทเค็น",
+        "profileSectionTitle": "โปรไฟล์",
+        "editProfile": "แก้ไขโปรไฟล์",
+        "passwordSettings": "ตั้งค่ารหัสผ่าน",
+        "purchaseHistory": "ประวัติการซื้อ",
+        "othersSectionTitle": "อื่น ๆ",
+        "aboutUs": "เกี่ยวกับเรา",
+        "privacyPolicy": "นโยบายความเป็นส่วนตัว",
+        "termsAndConditions": "ข้อกำหนดและเงื่อนไข",
+        "logout": "ออกจากระบบ"
+    },
+    "mbtiProfile": {
+        "strengths": "จุดแข็ง",
+        "weaknesses": "จุดอ่อน",
+        "relationships": "ความสัมพันธ์",
+        "career": "อาชีพ"
+    },
+    "purchaseHistory": {
+        "title": "ประวัติการซื้อ",
+        "usageTab": "ประวัติการซื้อ",
+        "topupTab": "ประวัติการเติมเงิน"
+    },
+    "serviceLabel": {
+        "ask_any_question": "ถาม Affinity",
+        "personalized_love_forecast_12mth": "พยากรณ์ความรัก",
+        "transit_report": "รายงานโชคชะตา",
+        "relationship_compatibility": "ความเข้ากันได้ในความสัมพันธ์",
+        "ask_secret_diary": "คำแนะนำจาก Genie"
+    },
+    "askAffinity": {
+        "title": "ถาม Affinity",
+        "subtitle": "สับสนว่าจะทำอะไร? Affinity พร้อมช่วยเหลือ — ถามอะไรก็ได้",
+        "howToAskTitle": "วิธีถาม",
+        "instructions": "1. ทำจิตใจให้สงบ\n2. คิดถึงคำถามที่ต้องการถาม\n3. พิมพ์คำถามของคุณ\n4. สูดลมหายใจลึก ๆ แล้วกดปุ่มถาม",
+        "questionLabel": "พิมพ์คำถามของคุณ",
+        "questionRequired": "กรุณากรอกคำถาม",
+        "purchaseButton": "ซื้อในราคา {{cost}}"
+    },
+    "echo": {
+        "title": "ไดอารี่",
+        "subtitle": "พื้นที่ปลอดภัยสำหรับแสดงความคิดและความรู้สึกของคุณ",
+        "recentDiaries": "รายการไดอารี่ล่าสุด",
+        "loading": "กำลังโหลด...",
+        "noDiariesYet": "ยังไม่มีรายการไดอารี่",
+        "startDiaryDesc": "เริ่มเขียนไดอารี่แรกเพื่อแสดงความคิดและความรู้สึกของคุณ การเดินทางของคุณเริ่มต้นที่นี่!"
+    },
     "echoDetail": {
+        "title": "ไดอารี่",
         "clickOn": "คลิก",
-        "toGetGenieAdvice": "เพื่อรับคำแนะนำจาก Genie"
+        "toGetGenieAdvice": "เพื่อรับคำแนะนำจาก Genie",
+        "inputPlaceholder": "บอกเราอะไรก็ได้...",
+        "errorTitle": "ข้อผิดพลาด",
+        "failedToConsult": "ปรึกษาไม่สำเร็จ กรุณาลองใหม่อีกครั้ง"
     },
     "dailyProfileDetail": {
         "todayScore": "คะแนนวันนี้",
@@ -347,9 +430,44 @@
         "career": "อาชีพ"
     },
     "profileDashboard": {
-        "loading": "กำลังโหลดโปรไฟล์ประจำวันของคุณ...",
+        "loading": "กำลังโหลดโปรไฟล์รายวันของคุณ...",
         "serviceUnavailable": "บริการนี้จะพร้อมใช้งานเร็ว ๆ นี้",
-        "checkBackLater": "กรุณาตรวจสอบอีกครั้งในภายหลังเพื่อเข้าถึงแดชบอร์ดโปรไฟล์ประจำวันของคุณ",
-        "failedToLoadUserData": "ไม่สามารถโหลดข้อมูลผู้ใช้ได้ กรุณาลองใหม่อีกครั้งในภายหลัง"
+        "checkBackLater": "กรุณาตรวจสอบอีกครั้งภายหลังเพื่อเข้าถึงแดชบอร์ดโปรไฟล์รายวันของคุณ",
+        "failedToLoadUserData": "ไม่สามารถโหลดข้อมูลผู้ใช้ กรุณาลองใหม่อีกครั้งภายหลัง",
+        "goodDay": "ขอให้เป็นวันที่ดี",
+        "guest": "ผู้เยี่ยมชม",
+        "todayScore": "คะแนนวันนี้"
+    },
+    "topup": {
+        "paymentFailed": "ชำระเงินไม่สำเร็จ",
+        "success": "สำเร็จ",
+        "paymentComplete": "ชำระเงินสำเร็จ!",
+        "ok": "ตกลง",
+        "error": "ข้อผิดพลาด",
+        "genericError": "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+        "ourPackages": "แพ็กเกจของเรา",
+        "packagesDesc": "สามารถใช้ซื้อรายงานและถาม Affinity AI",
+        "ourSubscriptions": "การสมัครสมาชิกของเรา",
+        "subscriptionsDesc": "สามารถใช้ใน Affinity AI และรีเซ็ตทุกต้นเดือน คุณจะได้รับโทเค็นเงิน 3 เหรียญฟรีทุกเดือน",
+        "getCoins": "รับโทเค็น {{count}} เหรียญ",
+        "processing": "กำลังดำเนินการ...",
+        "continue": "ดำเนินการต่อ",
+        "title": "เติมเงิน",
+        "noHistoryFound": "ไม่พบประวัติการเติมเงิน",
+        "failedToLoadPackages": "ไม่สามารถโหลดแพ็กเกจ กรุณาลองใหม่อีกครั้งภายหลัง",
+        "failedToLoadSubscriptions": "ไม่สามารถโหลดการสมัครสมาชิก กรุณาลองใหม่อีกครั้งภายหลัง"
+    },
+    "topupReceiptModal": {
+        "receipt": "ใบเสร็จ",
+        "orderNumber": "หมายเลขคำสั่งซื้อ",
+        "datePurchased": "วันที่ซื้อ",
+        "orderItems": "รายการสั่งซื้อ",
+        "total": "รวม:",
+        "paymentMethod": "วิธีชำระเงิน",
+        "previousPoints": "คะแนนก่อนหน้า",
+        "pointsAdded": "คะแนนที่เพิ่ม",
+        "totalPoints": "คะแนนรวม",
+        "paymentNotCompleted": "การชำระเงินของคุณยังไม่เสร็จสมบูรณ์ อาจยังดำเนินการอยู่ หรือคุณยังไม่ได้ชำระเงิน กรุณาตรวจสอบอีกครั้งภายหลัง",
+        "continuePayment": "ดำเนินการชำระเงินต่อ"
     }
 }

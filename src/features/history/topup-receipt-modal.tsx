@@ -57,23 +57,23 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                     <TouchableWithoutFeedback>
                         <View style={styles.modalContent}>
                             <View style={styles.modalHeader}>
-                                <AppText variant="subtitle2" style={styles.modalTitle} color="primary">{t("RECEIPT")}</AppText>
+                                <AppText variant="subtitle2" style={styles.modalTitle} color="primary">{t("topupReceiptModal.receipt")}</AppText>
                                 <TouchableOpacity onPress={onClose}>
                                     <CloseIcon size={scaleSize(16, 14, 22)} />
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.modalRow}>
-                                <AppText variant="caption1" color="neutral">{t("ORDER NUMBER")}</AppText>
+                                <AppText variant="caption1" color="neutral">{t("topupReceiptModal.orderNumber")}</AppText>
                                 <AppText variant="caption1" color="white">{item.transaction_id}</AppText>
                             </View>
                             <View style={styles.modalRow}>
-                                <AppText variant="caption1" color="neutral">{t("DATE PURCHASED")}</AppText>
+                                <AppText variant="caption1" color="neutral">{t("topupReceiptModal.datePurchased")}</AppText>
                                 <AppText variant="caption1" color="white">
                                     {formatDateTime(item.created_at)}
                                 </AppText>
                             </View>
                             <View style={styles.modalSectionDivider} />
-                            <AppText variant="body1" style={styles.modalSectionTitle} color="neutral">{t("ORDER ITEMS")}</AppText>
+                            <AppText variant="body1" style={styles.modalSectionTitle} color="neutral">{t("topupReceiptModal.orderItems")}</AppText>
                             <View style={styles.modalRow}>
                                 <View style={styles.modalItemIcon}>
                                     <CoinIcon size={scaleSize(16, 14, 20)} type={item.topup_type == 'package' ? 'silver' : 'gold'} />
@@ -87,7 +87,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                             </View>
                             <View style={styles.modalRow}>
                                 <View style={{ flex: 1 }} />
-                                <AppText variant="body1" style={styles.modalTotalLabel} color="neutral">{t("TOTAL")}</AppText>
+                                <AppText variant="body1" style={styles.modalTotalLabel} color="neutral">{t("topupReceiptModal.total")}</AppText>
                                 <AppText variant="body1" style={styles.modalTotalValue} color="neutral">
                                     ${item.amount}
                                 </AppText>
@@ -99,26 +99,26 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                     (
                                         <>
                                             <View style={styles.modalRow}>
-                                                <AppText variant="caption1" color="neutral">{t("PAYMENT METHOD")}</AppText>
+                                                <AppText variant="caption1" color="neutral">{t("topupReceiptModal.paymentMethod")}</AppText>
                                                 <AppText variant="caption1" color="white">{JSON.parse(item.payment_method).type}</AppText>
                                             </View>
                                             <View style={styles.modalSectionDivider} />
                                             <View style={styles.modalRow}>
-                                                <AppText variant="caption1" color="neutral">{t("PREVIOUS POINTS")}</AppText>
+                                                <AppText variant="caption1" color="neutral">{t("topupReceiptModal.previousPoints")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="neutral">{item.credit_journal.credits_before}</AppText>
                                                     <CoinIcon size={scaleSize(10, 10, 14)} type={item.topup_type == 'package' ? 'silver' : 'gold'} />
                                                 </View>
                                             </View>
                                             <View style={styles.modalRow}>
-                                                <AppText variant="caption1" color="neutral">{t("POINTS ADDED")}</AppText>
+                                                <AppText variant="caption1" color="neutral">{t("topupReceiptModal.pointsAdded")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="green">+{item.credit_journal.credits_used}</AppText>
                                                     <CoinIcon size={scaleSize(10, 10, 14)} type={item.topup_type == 'package' ? 'silver' : 'gold'} />
                                                 </View>
                                             </View>
                                             <View style={styles.modalRow}>
-                                                <AppText variant="caption1" color="neutral">{t("TOTAL POINTS")}</AppText>
+                                                <AppText variant="caption1" color="neutral">{t("topupReceiptModal.totalPoints")}</AppText>
                                                 <View style={styles.textCoinWrapper}>
                                                     <AppText variant="caption1" style={styles.modalPointsCommon} color="neutral">{item.credit_journal.credits_after}</AppText>
                                                     <CoinIcon size={scaleSize(10, 10, 14)} type={item.topup_type == 'package' ? 'silver' : 'gold'} />
@@ -130,14 +130,14 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                         <>
                                             <View style={{ marginVertical: 16 }}>
                                                 <AppText variant="body1" style={{ textAlign: "center" }} color="neutral">
-                                                    {t("PAYMENT NOT COMPLETED")}
+                                                    {t("topupReceiptModal.paymentNotCompleted")}
                                                 </AppText>
                                                 {
                                                     item.payment_status === "pending" && (
                                                         <AppButton
                                                             style={{ marginTop: 12, alignSelf: "center" }}
                                                             onPress={handleContinuePayment}
-                                                            title={t("CONTINUE PAYMENT")}
+                                                            title={t("topupReceiptModal.continuePayment")}
                                                         />
                                                     )
                                                 }

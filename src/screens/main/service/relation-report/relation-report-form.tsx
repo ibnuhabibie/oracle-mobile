@@ -9,7 +9,7 @@ import AppInput from '../../../../components/ui/app-input';
 import TextField from '../../../../components/ui/text-field';
 import { DropdownButton, renderDropdownModal } from '../../../../components/widgets/dropdown';
 import api from '../../../../utils/http';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import CalendarIcon from '../../../../components/icons/auth/calendar-icon';
 import { formatDate } from '../../../../utils/formatter';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
@@ -56,12 +56,14 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
       defaultValues,
     });
 
+  const { t } = useTranslation();
+
   const formRules = {
     full_name: {
-      required: t('NAME IS REQUIRED'),
+      required: t('relationReportForm.nameRequired'),
       minLength: {
         value: 3,
-        message: t('NAME MIN LENGTH')
+        message: t('relationReportForm.nameMinLength')
       }
     },
   };
@@ -134,23 +136,23 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
 
   return (
     <View style={styles.formContainer}>
-      <AppText style={styles.formTitle} color='primary'>{t('Fill in your details')}</AppText>
+      <AppText style={styles.formTitle} color='primary'>{t('relationReportForm.formTitle')}</AppText>
       <View style={styles.formGroup}>
-        <AppText variant="caption3" style={styles.label} color="neutral">{t("Name")}</AppText>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.fullName")}</AppText>
         <AppInput
           control={control}
           name="full_name"
           rules={formRules.full_name}
-          placeholder={t("Name")}
+          placeholder={t("relationReportForm.fullName")}
           errors={errors}
         />
       </View>
       <View style={styles.formGroup}>
-        <AppText variant="caption3" style={styles.label} color="neutral">{t("Birth Date")}</AppText>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.birthDate")}</AppText>
         <Pressable onPress={() => setShowDatePicker(true)}>
           <View>
             <TextField
-              placeholder={t("Birth Date:")}
+              placeholder={t("relationReportForm.birthDateLabel")}
               value={formatDate(watchedDate)}
               style={styles.textField}
               editable={false}
@@ -169,18 +171,17 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText variant="caption3" style={styles.label} color="neutral">{t("Country of Birth")}</AppText>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.countryOfBirth")}</AppText>
         <DropdownButton
           onPress={() => {
-            console.log('Country dropdown pressed');
             setShowCountryModal(true);
           }}
-          text={watchedCountry?.name || t("Please select one")}
+          text={watchedCountry?.name || t("relationReportForm.pleaseSelectOne")}
         />
         {renderDropdownModal(
           showCountryModal,
           () => setShowCountryModal(false),
-          t('Select Country'),
+          t('relationReportForm.selectCountry'),
           countries as any[],
           selectCountry,
           watchedCountry as any,
@@ -188,18 +189,17 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText variant="caption3" style={styles.label} color="neutral">{t("City of Birth")}</AppText>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.cityOfBirth")}</AppText>
         <DropdownButton
           onPress={() => {
-            console.log('City dropdown pressed');
             setShowCityModal(true);
           }}
-          text={watchedCity?.name || t("Please select one")}
+          text={watchedCity?.name || t("relationReportForm.pleaseSelectOne")}
         />
         {renderDropdownModal(
           showCityModal,
           () => setShowCityModal(false),
-          t('Select City'),
+          t('relationReportForm.selectCity'),
           cities as any[],
           selectCity,
           watchedCity as any,
@@ -207,7 +207,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
         )}
       </View>
       <View style={styles.formGroup}>
-        <AppText variant="caption3" style={styles.label} color="neutral">{t("Gender")}</AppText>
+        <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.gender")}</AppText>
         <View style={styles.genderRow}>
           <Pressable
             style={styles.genderOption}
@@ -218,7 +218,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
                 <View style={styles.genderRadioSelected} />
               )}
             </View>
-            <AppText variant="caption3" color="neutral">{t("Male")}</AppText>
+            <AppText variant="caption3" color="neutral">{t("relationReportForm.male")}</AppText>
           </Pressable>
           <Pressable
             style={styles.genderOption}
@@ -229,14 +229,14 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
                 <View style={styles.genderRadioSelected} />
               )}
             </View>
-            <AppText variant="caption3" color="neutral">{t("Female")}</AppText>
+            <AppText variant="caption3" color="neutral">{t("relationReportForm.female")}</AppText>
           </Pressable>
         </View>
         {errors.gender && <AppText variant="caption3" style={styles.error} color="red">{errors.gender.message}</AppText>}
       </View>
       <View style={styles.buttonRow}>
         <AppButton
-          title={t("Continue")}
+          title={t("relationReportForm.continue")}
           variant="primary"
           onPress={handleSubmit(onSubmit)}
           loading={loading}

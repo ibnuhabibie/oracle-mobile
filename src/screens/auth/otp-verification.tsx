@@ -15,7 +15,9 @@ import { MainNavigatorParamList } from '../../navigators/types';
 import api from '../../utils/http';
 import { useOtpTimer } from '../../hooks/use-otp-timer';
 import { OtpInput } from '../../features/auth/otp-input';
+import type { OtpInputRef } from '../../features/auth/otp-input';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getErrorMessage } from '../../utils/error';
 
 type OtpVerificationProps = NativeStackScreenProps<MainNavigatorParamList, 'OtpVerification'>;
 
@@ -28,7 +30,7 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
 
   const { t } = useTranslation();
   const { formatted, start, timeLeft } = useOtpTimer(180);
-  const otpInputRef = useRef();
+  const otpInputRef = useRef<OtpInputRef>(null);
 
   const [otp, setOtp] = useState<string | null>(null);
 
@@ -59,30 +61,32 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
 
       Toast.show({
         type: 'success',
-        text1: t('SUCCESS'),
-        text2: t('OTP RESENT SUCCESSFULLY'),
+        text1: t('otpVerification.success'),
+        text2: t('otpVerification.resentSuccessfully'),
       });
 
     } catch (error) {
       console.log(error)
-      Alert.alert(t('ERROR'), error?.meta?.message || t('GENERIC ERROR'));
+      const message = getErrorMessage(error, t('otpVerification.genericError'));
+      Alert.alert(t('otpVerification.error'), String(message));
     }
   };
 
   const handleSubmit = async () => {
     try {
       if (!otp) {
-        setErrorMessage(t('FILL ALL OTP FIELDS'));
+        setErrorMessage(t('otpVerification.fillAllFields'));
         return;
       }
 
       setErrorMessage(null);
       Keyboard.dismiss();
 
-      await api.post('/v1/users/verify-email', { email, otp });
+      await api.post('/v1/users/verify-email', { email, otp: otp as string });
       navigation.replace('OtpSuccess');
     } catch (error) {
-      setErrorMessage(error?.meta?.message || t('GENERIC ERROR'));
+      const message = getErrorMessage(error, t('otpVerification.genericError'));
+      setErrorMessage(String(message));
     }
   };
 
@@ -92,24 +96,24 @@ const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
         <ShinyContainer>
           <SMSIcon />
         </ShinyContainer>
-        <AppText variant='subtitle1' color='primary' style={styles.title}>{t('OTP VERIFICATION')}</AppText>
+        <AppText variant='subtitle1' color='primary' style={styles.title}>{t('otpVerification.title')}</AppText>
         <AppText variant='caption1' style={styles.subtitle} color='white'>
-          {t('OTP SENT MESSAGE', { email })}
+          {t('otpVerification.sentMessage', { email })}
         </AppText>
 
         <OtpInput
           onChangeOtp={(otp) => setOtp(otp)}
-          error={errorMessage}
-          ref={otpInputRef} />
-        <AppButton title={t('CONTINUE')} onPress={handleSubmit} style={styles.button} />
+          error={errorMessage ?? undefined}
+        />
+        <AppButton title={t('otpVerification.continue')} onPress={handleSubmit} style={styles.button} />
 
         <AppText style={styles.resendText} color='white'>
-          {t('DIDNT RECEIVE CODE')}{' '}
+          {t('otpVerification.didntReceiveCode')}{' '}
           <AppText
             color='primary'
             onPress={resendOtp}
             disabled={timeLeft > 0}>
-            {t('RESEND')}{timeLeft > 0 ? ` ${formatted}` : ''}
+            {t('otpVerification.resend')}{timeLeft > 0 ? ` ${formatted}` : ''}
           </AppText>
         </AppText>
       </View>

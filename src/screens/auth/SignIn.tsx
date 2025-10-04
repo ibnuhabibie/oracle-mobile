@@ -39,20 +39,20 @@ const SignIn: FC<SignInProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEEKERS')}</AppText>
-      <AppText variant='largeTitle2' style={styles.title} color='neutral'>{t('SIGN IN')}</AppText>
+      <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('login.intro')}</AppText>
+      <AppText variant='largeTitle2' style={styles.title} color='neutral'>{t('login.title')}</AppText>
       <AppText variant='caption1' style={styles.subtitle} color='neutral'>
-        {t('THE COSMOS WHISPERS')}
+        {t('login.subtitle')}
       </AppText>
 
       <SignInForm onSuccess={onSuccess} />
 
       <AppText variant='body1' style={styles.footer} color='neutral'>
-        {t('DONT HAVE AN ACCOUNT')}{' '}
+        {t('login.footer')}{' '}
         <AppText
           color='primary'
           onPress={() => navigation.navigate('SignUp')}>
-          {t('SIGN UP')}
+          {t('login.signupButtonText')}
         </AppText>
       </AppText>
     </ScreenContainer>

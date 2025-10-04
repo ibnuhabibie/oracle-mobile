@@ -33,23 +33,24 @@ export interface Country {
 interface Profile {
     full_name: string;
     email: string;
-    phone_number: string;
+    mobile_phone: string;
     birth_date: string;
     birth_time: string;
-    gender: 'male' | 'female';
+    gender: 'Male' | 'Female';
     birth_country: string;
     birth_city: string;
     birth_lat: string | number;
     birth_lng: string | number;
+    locale: string;
 }
 
 export interface ProfileFormData {
     full_name: string;
     email: string;
-    phone_number: string;
+    mobile_phone: string;
     birth_date: Date;
     birth_time: Date;
-    gender: 'male' | 'female';
+    gender: 'Male' | 'Female';
     birth_country: Country | null;
     birth_city: City | null;
     language: string;
@@ -85,7 +86,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         defaultValues: {
             full_name: '',
             email: '',
-            phone_number: '',
+            mobile_phone: '',
             birth_date: new Date(1994, 4, 10),
             birth_time: new Date(2024, 0, 1, 10, 0),
             gender: 'Female',
@@ -109,10 +110,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 
             setValue('full_name', profile.full_name);
             setValue('email', profile.email);
-            setValue('phone_number', profile.mobile_phone);
+            setValue('mobile_phone', profile.mobile_phone);
             setValue('birth_date', new Date(profile.birth_date));
             setValue('birth_time', birthTime);
-            setValue('gender', profile.gender);
+            setValue('gender', profile.gender === 'Male' ? 'Male' : 'Female');
             setValue('birth_city', {
                 name: profile.birth_city,
                 latitude: profile.birth_lat !== undefined && profile.birth_lat !== null ? parseFloat(profile.birth_lat as string) : 0,
@@ -122,6 +123,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 name: profile.birth_country,
                 iso3: profile.birth_country,
             });
+            setValue('language', profile.locale);
         };
 
         init();
@@ -133,23 +135,31 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     const watchedTime = watch('birth_time');
     const watchedGender = watch('gender');
     const watchedLanguage = watch('language');
+    const watchedMobilePhone = watch('mobile_phone');
 
     // Language dropdown modal state
     const [showLanguageModal, setShowLanguageModal] = useState(false);
 
     const formRules = {
         full_name: {
-            required: t('NAME IS REQUIRED'),
+            required: t('profileForm.nameRequired'),
             minLength: {
                 value: 2,
-                message: t('NAME MIN LENGTH')
+                message: t('profileForm.nameMinLength')
             }
         },
         email: {
-            required: t('EMAIL IS REQUIRED'),
+            required: t('profileForm.emailRequired'),
             pattern: {
                 value: /^\S+@\S+$/i,
-                message: t('INVALID EMAIL FORMAT')
+                message: t('profileForm.invalidEmailFormat')
+            }
+        },
+        mobile_phone: {
+            required: t('profileForm.phoneNumberRequired'),
+            minLength: {
+                value: 6,
+                message: t('profileForm.phoneNumberMinLength')
             }
         },
     };
@@ -214,32 +224,32 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     return (
         <>
             <View style={styles.formContainer}>
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("Full Name")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.fullName")}</AppText>
                 <AppInput
                     control={control}
                     name="full_name"
                     rules={formRules.full_name}
-                    placeholder={t("Name")}
+                    placeholder={t("profileForm.name")}
                     errors={errors}
                 />
 
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("Email Address")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.emailAddress")}</AppText>
                 <AppInput
                     control={control}
                     name="email"
                     rules={formRules.email}
-                    placeholder={t("Email")}
+                    placeholder={t("profileForm.email")}
                     errors={errors}
                     keyboardType="email-address"
                 />
 
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("Phone Number")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.phoneNumber")}</AppText>
                 <Controller
                     control={control}
-                    name="phone_number"
+                    name="mobile_phone"
                     render={({ field: { value, onChange } }) => (
                         <TextField
-                            placeholder={t("Phone Number")}
+                            placeholder={t("profileForm.phoneNumber")}
                             value={value}
                             onChangeText={onChange}
                             style={styles.textField}
@@ -249,11 +259,11 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 />
 
                 {/* Birth Date Field */}
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("Birth Date")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.birthDate")}</AppText>
                 <Pressable onPress={() => setShowDatePicker(true)}>
                     <View pointerEvents="none">
                         <TextField
-                            placeholder={t("Birth Date:")}
+                            placeholder={t("profileForm.birthDateLabel")}
                             value={formatDate(watchedDate)}
                             style={styles.textField}
                             editable={false}
@@ -263,14 +273,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 </Pressable>
 
                 {/* Birth Time Field */}
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("Birth Time")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.birthTime")}</AppText>
                 <Pressable
                     onPress={() => {
                         setShowTimePicker(true);
                     }}>
                     <View pointerEvents="none">
                         <TextField
-                            placeholder={t("Birth Time:")}
+                            placeholder={t("profileForm.birthTimeLabel")}
                             value={formatTime(watchedTime)}
                             style={styles.textField}
                             editable={false}
@@ -280,10 +290,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 </Pressable>
 
                 <AppText variant="caption4" style={styles.helperText} color='neutral'>
-                    {t("Not sure about your birth time? Just go with your closest guess.")}
+                    {t("profileForm.birthTimeHelper")}
                 </AppText>
 
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("Gender")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.gender")}</AppText>
                 <View style={styles.radioContainer}>
                     <Pressable
                         style={styles.radioButton}
@@ -293,7 +303,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                                 <View style={styles.radioSelected} />
                             )}
                         </View>
-                        <AppText variant="body2" color='neutral'>{t("Male")}</AppText>
+                        <AppText variant="body2" color='neutral'>{t("profileForm.male")}</AppText>
                     </Pressable>
                     <Pressable
                         style={styles.radioButton}
@@ -303,31 +313,31 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                                 <View style={styles.radioSelected} />
                             )}
                         </View>
-                        <AppText variant="body2" color='neutral'>{t("Female")}</AppText>
+                        <AppText variant="body2" color='neutral'>{t("profileForm.female")}</AppText>
                     </Pressable>
                 </View>
 
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("Country of Birth")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.countryOfBirth")}</AppText>
                 <DropdownButton
                     onPress={() => setShowCountryModal(true)}
-                    text={watchedCountry?.name || t("Please select one")}
+                    text={watchedCountry?.name || t("profileForm.pleaseSelectOne")}
                 />
 
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("City of Birth")}</AppText>
+                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.cityOfBirth")}</AppText>
                 <DropdownButton
                     onPress={() => setShowCityModal(true)}
-                    text={watchedCity?.name || t("Please select one")}
+                    text={watchedCity?.name || t("profileForm.pleaseSelectOne")}
                 />
 
                 <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.language")}</AppText>
                 <DropdownButton
                     onPress={() => setShowLanguageModal(true)}
-                    text={LANGUAGES.find(l => l.key === watchedLanguage)?.label || t("Please select one")}
+                    text={LANGUAGES.find(l => l.key === watchedLanguage)?.label || t("profileForm.pleaseSelectOne")}
                 />
             </View>
 
             <AppButton
-                title={t("Save")}
+                title={t("profileForm.save")}
                 onPress={handleSubmit(onSubmit)}
             />
 

@@ -81,7 +81,10 @@ api.interceptors.response.use(
         console.error(error.code);
         if (error.response) {
             console.error('[Response Error Data]', error.response.data);
-            if (error.response.status === 401) {
+            if (
+                error.response.status === 401 &&
+                error.response.data?.meta?.message === "Unauthorized"
+            ) {
                 await handleLogoutAndRedirect();
             }
         }

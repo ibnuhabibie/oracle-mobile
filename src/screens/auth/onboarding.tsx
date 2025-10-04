@@ -105,7 +105,7 @@ const Onboarding: FC<{
       !data.birth_country ||
       !data.birth_city
     ) {
-      Alert.alert(t('Register Failed'), t('All fields are required.'));
+      Alert.alert(t('onboarding.registerFailed'), t('onboarding.allFieldsRequired'));
       return;
     }
 
@@ -132,7 +132,7 @@ const Onboarding: FC<{
         navigation.replace('Tabs');
       }
     } catch (error) {
-      Alert.alert(t('Register Failed'), t('An error occurred. Please try again.'));
+      Alert.alert(t('onboarding.registerFailed'), t('onboarding.errorOccurred'));
     } finally {
       setLoading(false);
     }
@@ -170,16 +170,16 @@ const Onboarding: FC<{
 
   return (
     <ScreenContainer style={styles.container}>
-      <AppText variant='title3' style={styles.title} color='white'>{t('Introduce yourself')}</AppText>
+      <AppText variant='title3' style={styles.title} color='white'>{t('onboarding.title')}</AppText>
       <AppText style={styles.subtitle} variant="caption1" color='neutral'>
-        {t('Introduce yourself and let the universe guide you!')}
+        {t('onboarding.subtitle')}
       </AppText>
 
       <View style={styles.formContainer}>
         <Pressable onPress={() => setShowDatePicker(true)}>
           <View pointerEvents="none">
             <TextField
-              placeholder={t('Birth Date:')}
+              placeholder={t('onboarding.birthDate')}
               value={formatDate(watchedDate)}
               style={styles.textField}
               editable={false}
@@ -194,7 +194,7 @@ const Onboarding: FC<{
           }}>
           <View pointerEvents="none">
             <TextField
-              placeholder={t('Birth Time:')}
+              placeholder={t('onboarding.birthTime')}
               value={formatTime(watchedTime)}
               style={styles.textField}
               editable={false}
@@ -204,22 +204,22 @@ const Onboarding: FC<{
         </Pressable>
 
         <AppText variant='caption4' style={styles.helpText}>
-          {t('Not sure about your birth time? Just go with your closest guess.')}
+          {t('onboarding.helpText')}
         </AppText>
 
         <DropdownButton
           onPress={() => setShowCountryModal(true)}
-          text={watchedCountry && typeof watchedCountry === 'object' ? watchedCountry.name : t('Please select one')}
+          text={watchedCountry && typeof watchedCountry === 'object' ? watchedCountry.name : t('onboarding.pleaseSelectOne')}
         />
 
         <DropdownButton
           onPress={() => setShowCityModal(true)}
-          text={watchedCity && typeof watchedCity === 'object' ? watchedCity.name : t('Please select one')}
+          text={watchedCity && typeof watchedCity === 'object' ? watchedCity.name : t('onboarding.pleaseSelectOne')}
         />
       </View>
 
       <AppButton
-        title={t('Save')}
+        title={t('onboarding.save')}
         onPress={handleSubmit(onSubmit)}
         style={styles.saveButton}
         disabled={loading}
@@ -252,7 +252,7 @@ const Onboarding: FC<{
       {renderDropdownModal(
         showCountryModal,
         () => setShowCountryModal(false),
-        t('Select Country'),
+        t('onboarding.selectCountry'),
         countries,
         selectCountry,
         watchedCountry?.iso3 ?? '',
@@ -263,7 +263,7 @@ const Onboarding: FC<{
       {renderDropdownModal(
         showCityModal,
         () => setShowCityModal(false),
-        t('Select City'),
+        t('onboarding.selectCity'),
         cities,
         selectCity,
         watchedCity?.name ?? '',

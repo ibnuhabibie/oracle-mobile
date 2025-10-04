@@ -114,9 +114,9 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
 
     // Group cards by section for display order
     const sectionOrder = [
-        { key: 'present_situation', label: t('Present Situation') },
-        { key: 'likely_outcome', label: t('Likely Outcome') },
-        { key: 'recommended_action', label: t('Recommended Action') }
+        { key: 'present_situation', label: t('affinityResult.presentSituation') },
+        { key: 'likely_outcome', label: t('affinityResult.likelyOutcome') },
+        { key: 'recommended_action', label: t('affinityResult.recommendedAction') }
     ];
 
     const renderCardSection = (sectionKey: string, sectionLabel: string) => {
@@ -151,7 +151,7 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
         <ScreenContainer
             header={
                 <Header
-                    title={t("Ask Affinity")}
+                    title={t("affinityResult.title")}
                     onBack={() => navigation.goBack()}
                 />
             }

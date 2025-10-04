@@ -16,6 +16,7 @@ export interface CircularScoreProps {
     size?: number;
     strokeWidth?: number;
     type?: 'wealth' | 'learning' | 'relation' | 'career';
+    title?: string;
 }
 
 class CircularScore extends Component<CircularScoreProps> {
@@ -32,15 +33,7 @@ class CircularScore extends Component<CircularScoreProps> {
         const strokeDashoffset = circumference * (1 - value / 100);
 
         // i18n
-        // Use hook in a functional wrapper
-        function TranslatedType() {
-            const { t } = useTranslation();
-            return (
-                <AppText color='primary' variant='body1' style={styles.iconText}>
-                    {t(type)}
-                </AppText>
-            );
-        }
+        // The label is now always passed via props.title
 
         // Dynamic styles for image container and image
         const imageContainerStyle = {
@@ -102,7 +95,9 @@ class CircularScore extends Component<CircularScoreProps> {
                 <View style={imageContainerStyle}>
                     {iconElement}
                 </View>
-                <TranslatedType />
+                <AppText color='primary' variant='body1' style={styles.iconText}>
+                    {this.props.title ?? ""}
+                </AppText>
             </View>
         );
     }

@@ -28,15 +28,8 @@ interface UsageHistoryListProps {
     onItemPress?: (item: UsageItem) => void;
 }
 
-const serviceTypeLabels: Record<string, string> = {
-    ask_any_question: "ASK AFFINITY",
-    personalized_love_forecast_12mth: "LOVE FORECAST",
-    transit_report: "FORTUNE REPORT",
-    relationship_compatibility: "RELATION COMPATIBILITY",
-    ask_secret_diary: "ADVICE GENIE",
-};
-
-const getServiceTypeLabel = (type: string) => serviceTypeLabels[type] || type;
+const getServiceTypeLabel = (type: string, t: (key: string) => string) =>
+    t(`serviceLabel.${type}`) || type;
 
 const styles = StyleSheet.create({
     pressable: {
@@ -127,10 +120,10 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
                 </View>
                 <View style={{ flex: 1 }}>
                     <AppText variant="body2" style={styles.serviceType} color="neutral">
-                        {t(getServiceTypeLabel(item.service_type))}
+                        {getServiceTypeLabel(item.service_type, t)}
                     </AppText>
                     <AppText variant="caption4" color="neutral">
-                        {t("USAGE HISTORY DETAILS")}
+                        {t("usageHistory.details")}
                     </AppText>
                 </View>
                 <View style={styles.dateContainer}>
@@ -160,7 +153,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
             contentContainerStyle={styles.listContent}
             ListEmptyComponent={
                 <View style={styles.empty}>
-                    <AppText variant="caption2" color="gray">{t("NO USAGE HISTORY FOUND")}</AppText>
+                    <AppText variant="caption2" color="gray">{t("usageHistory.noHistoryFound")}</AppText>
                 </View>
             }
             onEndReached={fetchPage}

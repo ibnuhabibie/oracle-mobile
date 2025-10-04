@@ -110,7 +110,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
     } catch (error) {
       setCostLoading(false);
       console.log(error);
-      Alert.alert(t('Error'), t('Failed to consult. Please try again.'));
+      Alert.alert(t('echoDetail.errorTitle'), t('echoDetail.failedToConsult'));
     }
   };
 
@@ -119,7 +119,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
       header={
         <>
           <Header
-            title={t("DIARY")}
+            title={t("echoDetail.title")}
             onBack={() => navigation.goBack()}
           />
           <View style={styles.dateSeparator}>
@@ -144,7 +144,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           <View style={styles.inputBar}>
             <TextInput
               style={styles.input}
-              placeholder={t("Tell us anything...")}
+              placeholder={t("echoDetail.inputPlaceholder")}
               value={input}
               onChangeText={setInput}
               placeholderTextColor="#BDBDBD"

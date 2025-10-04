@@ -151,7 +151,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
             contentContainerStyle={styles.listContent}
             ListEmptyComponent={
                 <View style={styles.empty}>
-                    <AppText variant="caption2" color="gray">{t("NO TOPUP HISTORY FOUND")}</AppText>
+                    <AppText variant="caption2" color="gray">{t("topup.noHistoryFound")}</AppText>
                 </View>
             }
             onEndReached={debouncedOnEndReached}

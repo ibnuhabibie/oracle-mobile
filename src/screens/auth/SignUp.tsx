@@ -20,20 +20,20 @@ const SignUp: FC<SignUpProps> = ({ navigation }) => {
 
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
-      <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('DEAR SEEKERS')}</AppText>
-      <AppText variant='largeTitle2' style={styles.title} color='neutral'>{t('SIGN UP')}</AppText>
+      <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('register.intro')}</AppText>
+      <AppText variant='largeTitle2' style={styles.title} color='neutral'>{t('register.title')}</AppText>
       <AppText variant='caption1' style={styles.subtitle} color='neutral'>
-        {t('SIGN UP SUBTITLE')}
+        {t('register.subtitle')}
       </AppText>
 
       <SignUpForm onSuccess={onSuccess} />
 
       <AppText variant='body1' style={styles.footer} color='neutral'>
-        {t('ALREADY HAVE AN ACCOUNT')}{' '}
+        {t('register.footer')}{' '}
         <AppText
           color='primary'
           onPress={() => navigation.navigate('SignIn')}>
-          {t('SIGN IN')}
+          {t('register.signinButtonText')}
         </AppText>
       </AppText>
     </ScreenContainer>

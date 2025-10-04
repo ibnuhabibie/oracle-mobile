@@ -35,17 +35,17 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
     const formRules = {
         email: {
-            required: t('EMAIL IS REQUIRED'),
+            required: t('loginForm.emailRequired'),
             pattern: {
                 value: /^\S+@\S+$/i,
-                message: t('INVALID EMAIL FORMAT')
+                message: t('loginForm.invalidEmailFormat')
             }
         },
         password: {
-            required: t('PASSWORD IS REQUIRED'),
+            required: t('loginForm.passwordRequired'),
             minLength: {
                 value: 6,
-                message: t('PASSWORD MIN LENGTH')
+                message: t('loginForm.passwordMinLength')
             }
         }
     }
@@ -97,6 +97,8 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     app_version: appVersion,
                 }
             });
+            
+            console.log('onSuccess calling')
 
             await setAuthToken(res.data.token);
             await sync();
@@ -107,9 +109,9 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             if (typeof error === 'object' && error && 'meta' in error && typeof (error as any).meta?.message === 'string') {
                 message = (error as any).meta.message;
             } else {
-                message = t('LOGIN FAILED');
+                message = t('loginForm.loginFailed');
             }
-            Alert.alert(t('LOGIN FAILED'), message);
+            Alert.alert(t('loginForm.loginFailed'), message);
             console.log(error);
         } finally {
             setLoading(false);
@@ -123,7 +125,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="email"
                     rules={formRules.email}
-                    placeholder={t('EMAIL')}
+                    placeholder={t('loginForm.email')}
                     keyboardType="email-address"
                     errors={errors}
                     inputStyle={styles.appInput}
@@ -132,7 +134,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="password"
                     rules={formRules.password}
-                    placeholder={t('PASSWORD')}
+                    placeholder={t('loginForm.password')}
                     secureTextEntry={!showPassword}
                     errors={errors}
                     rightIcon={
@@ -146,7 +148,7 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             </View>
 
             <AppButton
-                title={t('SIGN IN')}
+                title={t('loginForm.signIn')}
                 onPress={handleSubmit(onSubmit)}
                 style={styles.signInButton}
                 loading={loading}

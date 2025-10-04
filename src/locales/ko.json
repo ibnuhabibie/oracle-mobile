@@ -1,102 +1,133 @@
 {
     "calendar": {
         "monthNames": [
-            "1월", "2월", "3월", "4월", "5월", "6월",
-            "7월", "8월", "9월", "10월", "11월", "12월"
+            "1월",
+            "2월",
+            "3월",
+            "4월",
+            "5월",
+            "6월",
+            "7월",
+            "8월",
+            "9월",
+            "10월",
+            "11월",
+            "12월"
         ],
         "monthNamesShort": [
-            "1월", "2월", "3월", "4월", "5월", "6월",
-            "7월", "8월", "9월", "10월", "11월", "12월"
+            "1월",
+            "2월",
+            "3월",
+            "4월",
+            "5월",
+            "6월",
+            "7월",
+            "8월",
+            "9월",
+            "10월",
+            "11월",
+            "12월"
         ],
         "dayNames": [
-            "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"
+            "일요일",
+            "월요일",
+            "화요일",
+            "수요일",
+            "목요일",
+            "금요일",
+            "토요일"
         ],
         "dayNamesShort": [
-            "일", "월", "화", "수", "목", "금", "토"
+            "일",
+            "월",
+            "화",
+            "수",
+            "목",
+            "금",
+            "토"
         ]
     },
-    "WELCOME TO": "환영합니다",
-    "GET STARTED": "시작하기",
-    "DEAR SEEKERS": "친애하는 탐구자 여러분",
-    "PLEASE SELECT A LANGUAGE": "언어를 선택하세요",
-    "NEXT": "다음",
-    "SIGN IN": "로그인",
-    "SIGN UP": "회원가입",
-    "THE COSMOS WHISPERS": "우주는 속삭입니다.\n당신을 위한 것을 발견하세요.",
-    "DONT HAVE AN ACCOUNT": "계정이 없으신가요?",
-    "EMAIL IS REQUIRED": "이메일은 필수입니다",
-    "INVALID EMAIL FORMAT": "이메일 형식이 올바르지 않습니다",
-    "PASSWORD IS REQUIRED": "비밀번호는 필수입니다",
-    "PASSWORD MIN LENGTH": "비밀번호는 최소 6자 이상이어야 합니다",
-    "EMAIL": "이메일",
-    "PASSWORD": "비밀번호",
-    "LOGIN FAILED": "로그인 실패",
-    "SIGN UP SUBTITLE": "우주는 속삭입니다.\n가입하고 당신의 운명을 밝혀보세요.",
-    "ALREADY HAVE AN ACCOUNT": "이미 계정이 있으신가요?",
-    "NAME IS REQUIRED": "이름은 필수입니다",
-    "NAME MIN LENGTH": "이름은 최소 3자 이상이어야 합니다",
-    "PLEASE CONFIRM PASSWORD": "비밀번호를 확인해주세요",
-    "PASSWORDS DO NOT MATCH": "비밀번호가 일치하지 않습니다",
-    "NAME": "이름",
-    "CONFIRM PASSWORD": "비밀번호 확인",
-    "REFERRAL CODE": "추천 코드",
-    "CREATE ACCOUNT": "계정 만들기",
-    "Guest": "게스트",
-    "Profile": "프로필",
-    "Edit Profile": "프로필 편집",
-    "Password Settings": "비밀번호 설정",
-    "Purchase History": "구매 내역",
-    "PURCHASE HISTORY": "구매 내역",
-    "TOP UP HISTORY": "충전 내역",
-    "ASK AFFINITY": "어피니티 질문",
-    "LOVE FORECAST": "사랑 운세",
-    "FORTUNE REPORT": "운세 리포트",
-    "RELATION COMPATIBILITY": "관계 궁합",
-    "ADVICE GENIE": "조언 지니",
-    "USAGE HISTORY DETAILS": "구매가 완료되었습니다. 자세히 보기!",
-    "NO USAGE HISTORY FOUND": "이용 내역이 없습니다.",
-    "OUR PACKAGES": "패키지",
-    "PACKAGES DESC": "리포트 및 Affinity AI 질문에 사용할 수 있습니다",
-    "GET COINS": "{{count}}개 토큰 받기",
-    "OUR SUBSCRIPTIONS": "구독 상품",
-    "SUBSCRIPTIONS DESC": "Affinity AI 질문에 사용할 수 있으며, 매월 초에 초기화됩니다. 매월 3개의 실버 토큰을 무료로 받습니다.",
-    "FAILED TO LOAD PACKAGES": "패키지 불러오기에 실패했습니다. 잠시 후 다시 시도해 주세요.",
-    "FAILED TO LOAD SUBSCRIPTIONS": "구독 불러오기에 실패했습니다. 잠시 후 다시 시도해 주세요.",
-    "PAYMENT FAILED": "결제 실패",
-    "SUCCESS": "성공",
-    "PAYMENT COMPLETE": "결제가 완료되었습니다!",
-    "CONTINUE": "계속",
-    "PROCESSING": "처리 중...",
-    "TOP UP": "충전",
-    "ERROR": "오류",
-    "GENERIC ERROR": "오류가 발생했습니다. 다시 시도해 주세요.",
-    "TOPUP COMPLETE": "View Details.",
-    "NO TOPUP HISTORY FOUND": "충전 내역이 없습니다.",
-    "RECEIPT": "영수증",
-    "ORDER NUMBER": "주문 번호",
-    "DATE PURCHASED": "구매 일자",
-    "ORDER ITEMS": "주문 항목",
-    "TOTAL": "총액:",
-    "PAYMENT METHOD": "결제 방법",
-    "PREVIOUS POINTS": "이전 포인트",
-    "POINTS ADDED": "추가된 포인트",
-    "TOTAL POINTS": "총 포인트",
-    "PAYMENT NOT COMPLETED": "결제가 아직 완료되지 않았습니다. 처리 중이거나 결제를 완료하지 않았을 수 있습니다. 나중에 다시 확인해 주세요.",
-    "Your Coins": "내 토큰",
-    "Buy Coins": "토큰 구매",
-    "Others": "기타",
-    "About Us": "회사 소개",
-    "Privacy Policy": "개인정보 처리방침",
-    "Terms & Conditions": "이용 약관",
-    "Logout": "로그아웃",
-    "Current Password": "현재 비밀번호",
-    "New Password": "새 비밀번호",
-    "Confirm Password": "비밀번호 확인",
-    "CHANGE PASSWORD": "비밀번호 변경",
+    "login": {
+        "intro": "친애하는 탐색자",
+        "title": "로그인",
+        "subtitle": "우주는 속삭입니다.\n당신에게 운명지어진 것을 발견하세요.",
+        "footer": "계정이 없으신가요?",
+        "signupButtonText": "회원가입"
+    },
+    "register": {
+        "intro": "친애하는 탐색자",
+        "title": "회원가입",
+        "subtitle": "우주는 속삭입니다.\n참여하여 운명을 발견하세요.",
+        "footer": "이미 계정이 있으신가요?",
+        "signinButtonText": "로그인"
+    },
+    "registerForm": {
+        "nameRequired": "이름은 필수입니다",
+        "nameMinLength": "이름은 최소 3자 이상이어야 합니다",
+        "emailRequired": "이메일은 필수입니다",
+        "invalidEmailFormat": "이메일 형식이 올바르지 않습니다",
+        "passwordRequired": "비밀번호는 필수입니다",
+        "passwordMinLength": "비밀번호는 최소 6자 이상이어야 합니다",
+        "confirmPasswordRequired": "비밀번호를 확인하세요",
+        "passwordsDoNotMatch": "비밀번호가 일치하지 않습니다",
+        "name": "이름",
+        "email": "이메일",
+        "password": "비밀번호",
+        "confirmPassword": "비밀번호 확인",
+        "referralCode": "추천 코드",
+        "createAccount": "계정 생성",
+        "registerFailed": "회원가입 실패",
+        "registerFailedMessage": "회원가입에 실패했습니다. 다시 시도해 주세요."
+    },
+    "languageSelection": {
+        "heading": "언어를 선택하세요",
+        "next": "다음"
+    },
+    "otpVerification": {
+        "title": "OTP 인증",
+        "sentMessage": "이메일로 OTP 인증 코드를 {{email}}에 전송했습니다.\n코드를 입력하세요.",
+        "continue": "계속",
+        "didntReceiveCode": "코드를 받지 못하셨나요?",
+        "resend": "재전송",
+        "success": "인증 성공!",
+        "resentSuccessfully": "OTP 코드가 성공적으로 재전송되었습니다.",
+        "error": "오류",
+        "genericError": "오류가 발생했습니다. 다시 시도해 주세요.",
+        "fillAllFields": "모든 OTP 칸을 입력하세요."
+    },
+    "otpSuccess": {
+        "title": "인증 성공!",
+        "description": "계정이 인증되어 사용 가능합니다.",
+        "continue": "계속"
+    },
+    "loginForm": {
+        "emailRequired": "이메일은 필수입니다",
+        "invalidEmailFormat": "이메일 형식이 올바르지 않습니다",
+        "passwordRequired": "비밀번호는 필수입니다",
+        "passwordMinLength": "비밀번호는 최소 6자 이상이어야 합니다",
+        "email": "이메일",
+        "password": "비밀번호",
+        "signIn": "로그인",
+        "loginFailed": "로그인 실패"
+    },
+    "onboarding": {
+        "title": "자기소개",
+        "subtitle": "자기소개를 하고 우주의 안내를 받아보세요!",
+        "helpText": "출생 시간을 잘 모른다면 가장 가까운 추정값을 선택하세요.",
+        "birthDate": "생년월일:",
+        "birthTime": "출생 시간:",
+        "selectCountry": "국가 선택",
+        "selectCity": "도시 선택",
+        "save": "저장",
+        "pleaseSelectOne": "하나를 선택하세요",
+        "allFieldsRequired": "모든 항목을 입력하세요.",
+        "registerFailed": "회원가입 실패",
+        "errorOccurred": "오류가 발생했습니다. 다시 시도해 주세요."
+    },
     "carousel": {
         "love": {
-            "title": "사랑이 멈췄나요?",
-            "subtitle": "다음에 일어날 일을 알아보세요"
+            "title": "사랑이 늦어지고 있나요?",
+            "subtitle": "다음에 일어날 일을 발견하세요"
         },
         "relation": {
             "title": "관계 인사이트",
@@ -104,28 +135,31 @@
         },
         "fortune": {
             "title": "운세 안내",
-            "subtitle": "당신의 미래를 받아들이세요"
+            "subtitle": "미래를 맞이하세요"
         },
         "downloadPdf": "PDF로 다운로드"
     },
+    "home": {
+        "subtitle": "오늘 무엇을 알고 싶으신가요?"
+    },
     "loveForecast": {
-        "header": "향후 12개월 사랑 운세",
+        "header": "12개월 사랑 운세",
         "purchase": "{{cost}}에 구매",
-        "title": "감정이 혼란스러우신가요? 한 번에 해결하세요.",
-        "subtitle": "감정적 문제를 극복할 수 있도록 돕는\n4가지 핵심 방향",
-        "description": "감정적 혼란의 원인을 발견하고 사랑의 올바른 방향을 찾아보세요. 한 번에 모든 측면에 대한 답을 얻으세요: 마인드셋, 사랑 운세, 사랑을 찾는 방법, 그리고 앞으로의 전망.",
-        "sectionTitle": "알게 될 내용:",
+        "title": "감정적으로 혼란스러우신가요? 지금 해결하세요.",
+        "subtitle": "감정적 문제를 극복하기 위한 4가지 주요 방향.",
+        "description": "감정적 혼란의 근본을 찾고 사랑의 올바른 방향을 발견하세요. 모든 측면의 답을 한 번에 얻으세요: 사고방식, 사랑 운세, 사랑 찾는 방법, 미래 전망.",
+        "sectionTitle": "발견할 내용:",
         "cards": {
             "intro": "소개: 당신의 사랑 설계도",
             "lacking": "사랑에서 부족한 점은?",
-            "lookout": "파트너에게 바라는 점",
-            "suits": "당신에게 어울리는 파트너 유형",
+            "lookout": "파트너에게 바라는 점은?",
+            "suits": "당신에게 맞는 파트너 유형",
             "outlook": "올해의 사랑 운세",
-            "where": "사랑을 어디서 찾을 수 있을까",
-            "questions": "개인 맞춤 질문",
+            "where": "사랑을 찾을 장소",
+            "questions": "개인 질문",
             "conclusion": "결론: 앞으로의 사랑 이야기"
         },
-        "pollingMessage": "사랑 리포트가 곧 도착합니다…",
+        "pollingMessage": "사랑 리포트를 처리 중입니다…",
         "error": "오류",
         "noJobId": "서버에서 job_id가 반환되지 않았습니다.",
         "fetchStatusFailed": "리포트 상태를 가져오지 못했습니다."
@@ -133,103 +167,60 @@
     "relationReport": {
         "header": "관계 궁합",
         "purchase": "{{cost}}에 구매",
-        "title": "완벽한 커플인지 궁금하신가요?\n지금 확인해보세요!",
-        "subtitle": "별자리와 사주가 만나 새로운 사랑 궁합을 제시합니다.",
-        "description": "일부 조언은 상식처럼 들릴 수 있지만(예: 소통이나 마인드셋 개선), 모두 당신만의 차트와 관계 역학에 맞춘 맞춤형입니다. 그 영향력은 생각보다 큽니다.",
+        "title": "완벽한 커플인지 궁금하신가요?\n지금 확인하세요!",
+        "subtitle": "점성과 바지가 당신의 사랑 궁합에 새로운 관점을 제공합니다.",
+        "description": "소통이나 사고방식 개선 등 상식적으로 들릴 수 있는 팁도 당신만의 차트와 관계 역동성에 맞게 맞춤화됩니다. 효과는 생각보다 큽니다.",
         "loveInterestDetail": "상대방 정보",
-        "tellUsMore": "상대에 대해 더 알려주세요!",
-        "pollingMessage": "관계 리포트가 곧 도착합니다…",
+        "tellUsMore": "상대방에 대해 더 알려주세요!",
+        "pollingMessage": "관계 리포트를 처리 중입니다…",
         "cards": {
-            "perspective": "사랑에 대한 당신의 관점은?",
+            "perspective": "사랑을 어떻게 바라보시나요?",
             "seeYou": "상대방은 당신을 어떻게 볼까요?",
-            "kindOfPerson": "상대방은 어떤 사람인가요?",
-            "traits": "성격, 선호, 피해야 할 점은?"
+            "kindOfPerson": "상대방이 좋아하는 유형은?",
+            "traits": "상대방의 특징, 선호, 싫어하는 점은?"
         }
     },
-    "ask_affinity_instructions": "1. 마음을 차분히 가라앉히세요\n2. 질문할 내용을 생각하세요\n3. 질문을 입력하세요\n4. 숨을 고르고 질문 버튼을 누르세요",
-    "Unsure what to do next? Affinity is here to help —  ask anything.": "무엇을 해야 할지 모르겠나요? 어피니티가 도와드립니다 — 무엇이든 질문하세요.",
-    "How to ask the question?": "질문하는 방법",
-    "Type your question": "질문을 입력하세요",
-    "Purchase for {{cost}}": "{{cost}}에 구매",
-    "Question is required": "질문은 필수입니다",
-    "Ask Affinity": "어피니티 질문",
-    "Present Situation": "현재 상황",
-    "Likely Outcome": "예상 결과",
-    "Recommended Action": "추천 행동",
-    "Tell us anything...": "무엇이든 말씀해 주세요...",
-    "Error": "오류",
-    "Failed to consult. Please try again.": "상담에 실패했습니다. 다시 시도해 주세요.",
-    "DIARY": "다이어리",
-    "A safe space to express your thoughts and emotions.": "생각과 감정을 안전하게 표현할 수 있는 공간입니다.",
-    "Recent Diaries": "최근 일기",
-    "No Diaries Yet": "아직 다이어리 항목이 없습니다",
-    "Start your first diary entry to express your thoughts and feelings. Your journey begins here!": "생각과 감정을 표현하는 첫 일기를 시작하세요. 당신의 여정이 여기서 시작됩니다!",
-    "Continue": "계속",
-    "VERIFICATION SUCCESS": "인증 성공!",
-    "VERIFICATION SUCCESS SUBTITLE": "모든 준비가 완료되었습니다! 계정이 인증되어 바로 사용할 수 있습니다.",
-    "OTP VERIFICATION": "OTP 인증",
-    "OTP SENT MESSAGE": "이메일({{email}})로 OTP 인증 코드를 보냈습니다.\n코드를 입력해 주세요.",
-    "FILL ALL OTP FIELDS": "모든 OTP 칸을 입력해 주세요.",
-    "DIDNT RECEIVE CODE": "코드를 받지 못하셨나요?",
-    "RESEND": "재전송",
-    "OTP RESENT SUCCESSFULLY": "OTP 코드가 성공적으로 재전송되었습니다.",
-    "Fill in your details": "정보를 입력하세요",
-    "Select Country": "국가 선택",
-    "Select City": "도시 선택",
-    "Introduce yourself": "자기소개",
-    "Introduce yourself and let the universe guide you!": "자기소개를 하고 우주의 안내를 받아보세요!",
-    "Birth Date:": "생년월일:",
-    "Birth Time:": "출생 시간:",
-    "Not sure about your birth time? Just go with your closest guess.": "출생 시간을 잘 모르겠다면 가장 가까운 추정치를 선택하세요.",
-    "Please select one": "하나를 선택하세요",
-    "Save": "저장",
-    "Select Country": "국가 선택",
-    "Select City": "도시 선택",
-    "wealth": "재물",
-    "learning": "학습",
-    "relation": "관계",
-    "career": "커리어",
     "fortuneReport": {
         "header": "운세 리포트 {{year}}",
         "purchase": "{{cost}}에 구매",
-        "title": "{{year}}년이 궁금하신가요? 지금\n운세를 확인하세요!",
-        "subtitle": "운세 해석과 계획이 만나 {{year}}년을 새롭게 준비하세요.",
-        "description": "어떤 인사이트는 단순해 보일 수 있지만(타이밍, 결정 등), 모두 당신의 차트와 {{year}}년 경로에 맞춰진 맞춤형 조언입니다. 이 가이드는 실제로 큰 변화를 가져올 수 있습니다.",
-        "sectionTitle": "무엇을 알 수 있나요?",
-        "pollingMessage": "운세 리포트가 곧 도착합니다…",
+        "title": "{{year}}이 궁금하신가요? 지금 운세를 확인하세요!",
+        "subtitle": "운세와 계획이 {{year}}에 새로운 관점을 제공합니다.",
+        "description": "타이밍이나 의사결정 등 단순해 보이는 인사이트도 당신의 차트와 {{year}}의 길에 맞게 맞춤화됩니다. 안내는 정말 도움이 됩니다.",
+        "sectionTitle": "알 수 있는 것:",
+        "pollingMessage": "운세 리포트를 처리 중입니다…",
         "cards": {
             "health": {
                 "title": "건강",
-                "subtitle": "아스트로와 사주를 활용해 건강 상태를 분석하고, 시기적절한 예방 조치를 도와드립니다."
+                "subtitle": "점성과 바지를 활용해 건강 상태를 분석하고 적시에 예방할 수 있도록 도와줍니다."
             },
             "finance": {
-                "title": "재물",
-                "subtitle": "아스트로와 사주로 연간 재물궁 흐름을 분석해 최고의 재물 기회를 포착하세요."
+                "title": "재정",
+                "subtitle": "점성과 바지를 활용해 연간 재물궁의 경향을 분석하고 최고의 재물 타이밍을 찾습니다."
             },
             "career": {
                 "title": "커리어",
-                "subtitle": "아스트로와 사주로 커리어궁 별자리를 통해 올해의 커리어 운과 도전을 확인하세요."
+                "subtitle": "점성과 바지를 활용해 커리어궁의 별을 통해 커리어 운과 과제를 밝힙니다."
             },
             "relationship": {
                 "title": "관계",
-                "subtitle": "아스트로와 사주로 연간 연애 트렌드를 부부궁을 통해 추적하세요."
+                "subtitle": "점성과 바지를 활용해 결혼궁을 통해 연간 사랑 경향을 추적합니다."
             }
         }
     },
     "purchaseAlert": {
         "title": "구매 알림",
-        "costInfo": "지니에게 질문하려면 {{cost}} 가 필요합니다.계속하시겠습니까?",
-        "yourCredits": "내 {{creditType}} 토큰: {{userCredit}}",
-        "continue": "구매 계속하기",
+        "costInfo": "지니에게 질문하려면 {{cost}}가 필요합니다. 계속하시겠습니까?",
+        "yourCredits": "보유 {{creditType}} 토큰: {{userCredit}}",
+        "continue": "구매 계속",
         "cancel": "취소",
-        "insufficient": "이 리포트는 {{cost}}가 필요합니다.\n현재 {{creditType}} 토큰이 부족합니다. 충전 후 진행해 주세요.",
+        "insufficient": "이 리포트에는 {{cost}}가 필요합니다\n현재 {{creditType}} 토큰이 부족합니다. 계속하려면 충전하세요.",
         "purchaseCredits": "크레딧 구매"
     },
     "profileCard": {
-        "noProfileData": "프로필 데이터를 찾을 수 없습니다.",
+        "noProfileData": "프로필 데이터가 없습니다.",
         "name": "이름",
         "dateOfBirth": "생년월일",
-        "timeOfBirth": "출생 시각",
+        "timeOfBirth": "출생 시간",
         "countryOfBirth": "출생 국가",
         "cityOfBirth": "출생 도시",
         "gender": "성별",
@@ -241,119 +232,198 @@
         "copiedToClipboard": "클립보드에 복사되었습니다"
     },
     "chatArea": {
-        "geenieSays": "지니가 말합니다:"
+        "geenieSays": "지니의 말:"
     },
     "usageReceiptModal": {
         "receipt": "영수증",
-        "datePurchased": "구매 일자",
+        "datePurchased": "구매일",
         "orderItems": "주문 항목",
         "previousPoints": "이전 포인트",
         "pointsUsed": "사용 포인트",
         "remainingPoints": "남은 포인트",
         "seeResults": "결과 보기",
-        "processing": "리포트가 아직 처리 중입니다. 나중에 다시 확인해 주세요.",
+        "processing": "리포트가 아직 처리 중입니다. 나중에 다시 확인하세요.",
         "serviceType": {
-            "ask_any_question": "어피니티 질문",
+            "ask_any_question": "애피니티 질문",
             "personalized_love_forecast_12mth": "사랑 운세",
             "transit_report": "운세 리포트",
             "relationship_compatibility": "관계 궁합",
-            "ask_secret_diary": "조언 지니"
+            "ask_secret_diary": "지니 조언"
         }
     },
+    "usageHistory": {
+        "noHistoryFound": "사용 내역이 없습니다.",
+        "details": "구매가 성공적으로 완료되었습니다. 자세히 확인하세요!"
+    },
+    "affinityResult": {
+        "title": "애피니티 질문",
+        "presentSituation": "현재 상황",
+        "likelyOutcome": "예상 결과",
+        "recommendedAction": "추천 행동"
+    },
     "fortuneReportResult": {
         "header": "운세 리포트 {{year}}",
         "downloadPdf": "PDF로 다운로드"
     },
     "polling": {
-        "info": "몇 분 정도 소요됩니다. 이 창을 닫아도 괜찮아요 - 준비되면 알려드릴게요."
+        "info": "몇 분 정도 소요됩니다. 창을 닫아도 괜찮아요. 준비되면 알려드릴게요."
     },
     "mbtiQuiz": {
         "title": "당신의 MBTI는?",
-        "subtitle": "간단한 테스트로 유형을 알아보세요!",
+        "subtitle": "타입을 알아보는 빠른 테스트!",
         "button": "알아보기"
     },
     "relationReportResult": {
         "header": "관계 궁합",
         "downloadPdf": "PDF로 다운로드",
         "downloadSuccess": "PDF가 성공적으로 다운로드되었습니다!",
-        "downloadedTo": "파일이 다음 위치에 다운로드되었습니다: {{path}}",
+        "downloadedTo": "파일이 다운로드되었습니다: {{path}}",
         "you": "나",
         "yourLoveInterest": "상대방"
     },
     "loveReportResult": {
-        "title": "향후 12개월 사랑 운세",
+        "title": "12개월 사랑 운세",
         "downloadPdf": "PDF로 다운로드",
         "forecastFor": "{{range}}의 운세"
     },
-    "LOGIN FAILED": "로그인 실패",
-    "REGISTER FAILED": "회원가입 실패",
-    "REGISTER FAILED MESSAGE": "회원가입에 실패했습니다. 다시 시도해 주세요.",
-    "PASSWORD CHANGED SUCCESSFULLY": "비밀번호가 성공적으로 변경되었습니다",
-    "FAILED TO CHANGE PASSWORD": "비밀번호 변경에 실패했습니다",
-    "LOADING...": "로딩 중...",
-    "TODAY SCORE": "오늘 점수",
-    "Good Day": "좋은 하루",
-    "WHAT DO YOU LIKE TO KNOW TODAY?": "오늘 무엇을 알고 싶으신가요?",
-    "fortuneReportResult": {
-        "header": "운세 리포트 {{year}}",
-        "downloadPdf": "PDF로 다운로드"
-    },
-    "polling": {
-        "info": "몇 분 정도 소요됩니다. 이 창을 닫아도 괜찮아요 - 준비되면 알려드릴게요."
-    },
-    "mbtiQuiz": {
-        "title": "당신의 MBTI는?",
-        "subtitle": "간단한 테스트로 유형을 알아보세요!",
-        "button": "알아보기"
-    },
-    "relationReportResult": {
-        "header": "관계 궁합",
-        "downloadPdf": "PDF로 다운로드",
-        "downloadSuccess": "PDF가 성공적으로 다운로드되었습니다!",
-        "downloadedTo": "파일이 다음 위치에 다운로드되었습니다: {{path}}",
-        "you": "나",
-        "yourLoveInterest": "상대방"
-    },
-    "loveReportResult": {
-        "title": "향후 12개월 사랑 운세",
-        "downloadPdf": "PDF로 다운로드",
-        "forecastFor": "{{range}}의 운세"
-    },
-    "REGISTER FAILED": "회원가입 실패",
-    "REGISTER FAILED MESSAGE": "회원가입에 실패했습니다. 다시 시도해 주세요.",
-    "strengths": "강점",
-    "weaknesses": "약점",
-    "relationships": "관계",
-    "career": "커리어",
     "bottomBar": {
         "home": "홈",
-        "echo": "Echo",
-        "askAffinity": "어피니티 질문",
+        "echo": "에코",
+        "askAffinity": "애피니티 질문",
         "profile": "프로필"
     },
     "baziResult": {
-        "title": "BaZi 프로필",
-        "emptyStateLabel": "프로필 데이터를 찾을 수 없습니다."
+        "title": "바지 프로필",
+        "emptyStateLabel": "프로필 데이터가 없습니다."
     },
     "astroResult": {
         "title": "점성술",
-        "emptyStateLabel": "프로필 데이터를 찾을 수 없습니다."
+        "emptyStateLabel": "프로필 데이터가 없습니다."
     },
     "profileForm": {
+        "fullName": "이름(전체)",
+        "name": "이름",
+        "emailAddress": "이메일 주소",
+        "email": "이메일",
+        "phoneNumber": "전화번호",
+        "birthDate": "생년월일",
+        "birthDateLabel": "생년월일:",
+        "birthTime": "출생 시간",
+        "birthTimeLabel": "출생 시간:",
+        "birthTimeHelper": "출생 시간을 잘 모른다면 가장 가까운 추정값을 선택하세요.",
+        "gender": "성별",
+        "male": "남성",
+        "female": "여성",
+        "countryOfBirth": "출생 국가",
+        "cityOfBirth": "출생 도시",
+        "pleaseSelectOne": "하나를 선택하세요",
         "language": "언어",
-        "dialogTitle": "프로필 업데이트",
-        "successMessage": "프로필이 성공적으로 업데이트되었습니다.",
+        "save": "저장",
         "selectCountry": "국가 선택",
         "selectCity": "도시 선택",
         "selectLanguage": "언어 선택",
+        "nameRequired": "이름은 필수입니다",
+        "nameMinLength": "이름은 최소 2자 이상이어야 합니다",
+        "emailRequired": "이메일은 필수입니다",
+        "invalidEmailFormat": "이메일 형식이 올바르지 않습니다",
+        "phoneNumberRequired": "전화번호는 필수입니다",
+        "phoneNumberMinLength": "전화번호는 최소 6자 이상이어야 합니다",
+        "dialogTitle": "프로필 업데이트",
+        "successMessage": "프로필이 성공적으로 업데이트되었습니다.",
         "okLabel": "확인"
     },
+    "relationReportForm": {
+        "formTitle": "상대방 정보를 입력하세요",
+        "fullName": "이름(전체)",
+        "birthDate": "생년월일",
+        "birthDateLabel": "생년월일:",
+        "countryOfBirth": "출생 국가",
+        "cityOfBirth": "출생 도시",
+        "pleaseSelectOne": "하나를 선택하세요",
+        "selectCountry": "국가 선택",
+        "selectCity": "도시 선택",
+        "gender": "성별",
+        "male": "남성",
+        "female": "여성",
+        "continue": "계속",
+        "nameRequired": "이름은 필수입니다",
+        "nameMinLength": "이름은 최소 3자 이상이어야 합니다"
+    },
+    "passwordSettingForm": {
+        "title": "비밀번호 설정",
+        "currentPassword": "현재 비밀번호",
+        "newPassword": "새 비밀번호",
+        "confirmPassword": "비밀번호 확인",
+        "password": "비밀번호",
+        "passwordRequired": "비밀번호는 필수입니다",
+        "passwordMinLength": "비밀번호는 최소 6자 이상이어야 합니다",
+        "passwordsDoNotMatch": "비밀번호가 일치하지 않습니다",
+        "loading": "로딩 중...",
+        "changePassword": "비밀번호 변경",
+        "passwordChangedSuccessfully": "비밀번호가 성공적으로 변경되었습니다",
+        "failedToChangePassword": "비밀번호 변경에 실패했습니다"
+    },
+    "profilePage": {
+        "guest": "게스트",
+        "mbtiTitle": "당신의 MBTI는?",
+        "mbtiSubtitle": "타입을 알아보는 빠른 테스트!",
+        "yourCoins": "보유 토큰",
+        "buyCoins": "토큰 구매",
+        "profileSectionTitle": "프로필",
+        "editProfile": "프로필 수정",
+        "passwordSettings": "비밀번호 설정",
+        "purchaseHistory": "구매 내역",
+        "othersSectionTitle": "기타",
+        "aboutUs": "회사 소개",
+        "privacyPolicy": "개인정보 처리방침",
+        "termsAndConditions": "이용약관",
+        "logout": "로그아웃"
+    },
+    "mbtiProfile": {
+        "strengths": "강점",
+        "weaknesses": "약점",
+        "relationships": "관계",
+        "career": "커리어"
+    },
+    "purchaseHistory": {
+        "title": "구매 내역",
+        "usageTab": "구매 내역",
+        "topupTab": "충전 내역"
+    },
+    "serviceLabel": {
+        "ask_any_question": "애피니티 질문",
+        "personalized_love_forecast_12mth": "사랑 운세",
+        "transit_report": "운세 리포트",
+        "relationship_compatibility": "관계 궁합",
+        "ask_secret_diary": "지니 조언"
+    },
+    "askAffinity": {
+        "title": "애피니티 질문",
+        "subtitle": "무엇을 해야 할지 고민되시나요? 애피니티가 도와드립니다 — 무엇이든 질문하세요.",
+        "howToAskTitle": "질문 방법",
+        "instructions": "1. 마음을 진정시키세요\n2. 질문하고 싶은 내용을 생각하세요\n3. 질문을 입력하세요\n4. 심호흡 후 질문 버튼을 누르세요",
+        "questionLabel": "질문을 입력하세요",
+        "questionRequired": "질문은 필수입니다",
+        "purchaseButton": "{{cost}}에 구매"
+    },
+    "echo": {
+        "title": "일기",
+        "subtitle": "생각과 감정을 표현할 수 있는 안전한 공간입니다.",
+        "recentDiaries": "최신 일기 목록",
+        "loading": "로딩 중...",
+        "noDiariesYet": "아직 일기가 없습니다",
+        "startDiaryDesc": "첫 일기를 작성하여 생각과 감정을 표현하세요. 당신의 여정이 여기서 시작됩니다!"
+    },
     "echoDetail": {
+        "title": "일기",
         "clickOn": "클릭",
-        "toGetGenieAdvice": "지니의 조언을 받으세요"
+        "toGetGenieAdvice": "지니의 조언을 받으려면",
+        "inputPlaceholder": "무엇이든 말씀해 주세요...",
+        "errorTitle": "오류",
+        "failedToConsult": "상담에 실패했습니다. 다시 시도해 주세요."
     },
     "dailyProfileDetail": {
-        "todayScore": "오늘 점수",
+        "todayScore": "오늘의 점수",
         "wealth": "재물",
         "learning": "학습",
         "relation": "관계",
@@ -362,7 +432,42 @@
     "profileDashboard": {
         "loading": "일일 프로필을 불러오는 중...",
         "serviceUnavailable": "이 서비스는 곧 제공될 예정입니다.",
-        "checkBackLater": "나중에 다시 확인하여 일일 프로필 대시보드에 접속하세요.",
-        "failedToLoadUserData": "사용자 데이터를 불러오지 못했습니다. 나중에 다시 시도해 주세요."
+        "checkBackLater": "나중에 다시 방문하여 일일 프로필 대시보드를 이용하세요.",
+        "failedToLoadUserData": "사용자 데이터를 불러오지 못했습니다. 나중에 다시 시도해 주세요.",
+        "goodDay": "좋은 하루",
+        "guest": "게스트",
+        "todayScore": "오늘의 점수"
+    },
+    "topup": {
+        "paymentFailed": "결제 실패",
+        "success": "성공",
+        "paymentComplete": "결제 완료!",
+        "ok": "확인",
+        "error": "오류",
+        "genericError": "오류가 발생했습니다. 다시 시도해 주세요.",
+        "ourPackages": "패키지 목록",
+        "packagesDesc": "리포트 및 애피니티 AI 구매에 사용할 수 있습니다",
+        "ourSubscriptions": "구독 목록",
+        "subscriptionsDesc": "애피니티 AI에서 사용할 수 있으며 매월 초에 초기화됩니다. 매월 3개의 무료 실버 토큰이 지급됩니다.",
+        "getCoins": "{{count}} 토큰 받기",
+        "processing": "처리 중...",
+        "continue": "계속",
+        "title": "충전",
+        "noHistoryFound": "충전 내역이 없습니다.",
+        "failedToLoadPackages": "패키지 불러오기에 실패했습니다. 나중에 다시 시도해 주세요.",
+        "failedToLoadSubscriptions": "구독 불러오기에 실패했습니다. 나중에 다시 시도해 주세요."
+    },
+    "topupReceiptModal": {
+        "receipt": "영수증",
+        "orderNumber": "주문 번호",
+        "datePurchased": "구매일",
+        "orderItems": "주문 항목",
+        "total": "총액:",
+        "paymentMethod": "결제 방법",
+        "previousPoints": "이전 포인트",
+        "pointsAdded": "추가 포인트",
+        "totalPoints": "총 포인트",
+        "paymentNotCompleted": "결제가 아직 완료되지 않았습니다. 처리 중이거나 결제가 완료되지 않았을 수 있습니다. 나중에 다시 확인하세요.",
+        "continuePayment": "결제 계속"
     }
 }

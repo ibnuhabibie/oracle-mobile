@@ -22,7 +22,7 @@ const languageDetector = {
     },
     init: () => { },
     cacheUserLanguage: async (lang) => {
-        // await AsyncStorage.setItem('language', lang);
+        await AsyncStorage.setItem('language', lang);
     },
 };
 

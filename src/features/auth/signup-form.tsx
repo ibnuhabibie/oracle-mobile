@@ -37,30 +37,30 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
 
     const formRules = {
         full_name: {
-            required: t('NAME IS REQUIRED'),
+            required: t('registerForm.nameRequired'),
             minLength: {
                 value: 2,
-                message: t('NAME MIN LENGTH')
+                message: t('registerForm.nameMinLength')
             }
         },
         email: {
-            required: t('EMAIL IS REQUIRED'),
+            required: t('registerForm.emailRequired'),
             pattern: {
                 value: /^\S+@\S+$/i,
-                message: t('INVALID EMAIL FORMAT')
+                message: t('registerForm.invalidEmailFormat')
             }
         },
         password: {
-            required: t('PASSWORD IS REQUIRED'),
+            required: t('registerForm.passwordRequired'),
             minLength: {
                 value: 6,
-                message: t('PASSWORD MIN LENGTH')
+                message: t('registerForm.passwordMinLength')
             }
         },
         confirm_password: {
-            required: t('PLEASE CONFIRM PASSWORD'),
+            required: t('registerForm.confirmPasswordRequired'),
             validate: (value: string) =>
-                value === getValues('password') || t('PASSWORDS DO NOT MATCH')
+                value === getValues('password') || t('registerForm.passwordsDoNotMatch')
         }
     };
 
@@ -77,7 +77,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             // navigation.navigate('Otp', { email: res.data.email });
             onSuccess(res.data.email)
         } catch (error) {
-            Alert.alert(t('REGISTER FAILED'), t('REGISTER FAILED MESSAGE'));
+            Alert.alert(t('registerForm.registerFailed'), t('registerForm.registerFailedMessage'));
             console.log(error);
         } finally {
             setLoading(false);
@@ -91,7 +91,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="full_name"
                     rules={formRules.full_name}
-                    placeholder={t('NAME')}
+                    placeholder={t('registerForm.name')}
                     errors={errors}
                     inputStyle={styles.appInput}
                 />
@@ -99,7 +99,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="email"
                     rules={formRules.email}
-                    placeholder={t('EMAIL')}
+                    placeholder={t('registerForm.email')}
                     errors={errors}
                     keyboardType="email-address"
                     inputStyle={styles.appInput}
@@ -108,7 +108,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="password"
                     rules={formRules.password}
-                    placeholder={t('PASSWORD')}
+                    placeholder={t('registerForm.password')}
                     secureTextEntry={!showPassword}
                     errors={errors}
                     rightIcon={
@@ -122,7 +122,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     control={control}
                     name="confirm_password"
                     rules={formRules.confirm_password}
-                    placeholder={t('CONFIRM PASSWORD')}
+                    placeholder={t('registerForm.confirmPassword')}
                     secureTextEntry={!showConfirmPassword}
                     errors={errors}
                     rightIcon={
@@ -135,14 +135,14 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                 <AppInput
                     control={control}
                     name="referral_code"
-                    placeholder={t('REFERRAL CODE')}
+                    placeholder={t('registerForm.referralCode')}
                     errors={errors}
                     inputStyle={styles.appInput}
                 />
             </View>
 
             <AppButton
-                title={t('CREATE ACCOUNT')}
+                title={t('registerForm.createAccount')}
                 onPress={handleSubmit(onSubmit)}
                 style={styles.signInButton}
                 disabled={loading}
