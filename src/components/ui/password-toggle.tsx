@@ -20,11 +20,11 @@ const PasswordToggle: React.FC<PasswordToggleProps> = ({
             {
                 showPassword ?
                     (
-                        <EyeCrossedIcon size={iconSize} />
+                        <EyeIcon size={iconSize} />
                     )
                     :
                     (
-                        <EyeIcon size={iconSize} />
+                        <EyeCrossedIcon size={iconSize} />
                     )}
         </Pressable>
     );

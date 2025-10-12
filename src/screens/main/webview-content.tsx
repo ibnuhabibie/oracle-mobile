@@ -16,6 +16,8 @@ const WebviewContent: FC<WebviewContentProps> = ({ navigation }) => {
     const route = useRoute();
     const { t } = useTranslation();
 
+    console.log('uri', route?.params?.uri)
+
     return (
         <ScreenContainer
             fluid={true}

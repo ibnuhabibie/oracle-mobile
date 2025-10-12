@@ -22,6 +22,12 @@ import { useAsyncStorage } from '../../hooks/use-storage';
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
 
+interface TranslationItem {
+    key: string;
+    value: string;
+    locale: string;
+}
+
 interface PackageItem {
     package_id: number;
     name: string;
@@ -29,6 +35,7 @@ interface PackageItem {
     price: string;
     credits: number;
     is_active: boolean;
+    translations?: TranslationItem[];
 }
 
 interface SubscriptionItem {
@@ -39,6 +46,7 @@ interface SubscriptionItem {
     duration_months: number;
     credits: number;
     is_active: boolean;
+    translations?: TranslationItem[];
 }
 
 const Coin = ({ type = 'silver' }) => (
@@ -52,13 +60,16 @@ const RadioIndicator = ({ selected }: { selected: boolean }) => (
 );
 
 // Package card list component
-const PackageCardList: FC<{
+interface PackageCardListProps {
     packages: PackageItem[];
     selectedPackage: number | null;
     setSelectedPackage: (id: number) => void;
     loading: boolean;
     error: string | null;
-}> = ({ packages, selectedPackage, setSelectedPackage, loading, error }) => {
+    language: string;
+}
+
+const PackageCardList: FC<PackageCardListProps> = ({ packages, selectedPackage, setSelectedPackage, loading, error, language }) => {
     const { t } = useTranslation();
     return (
         <View style={{ marginBottom: scaleSize(18, 18, 24) }}>
@@ -81,14 +92,33 @@ const PackageCardList: FC<{
                         >
                             <RadioIndicator selected={selectedPackage === pkg.package_id} />
                             <View style={{ flex: 1 }}>
-                                <AppText variant='body1' style={styles.cardTitle} color='white'>{pkg.name}</AppText>
+                                <AppText variant='body1' style={styles.cardTitle} color='white'>
+                                    {(() => {
+                                        const locale = language || 'en';
+                                        if (Array.isArray(pkg.translations)) {
+                                            const nameTrans = pkg.translations.find((tr: TranslationItem) => tr.key === 'name' && tr.locale === locale);
+                                            return nameTrans?.value || pkg.name;
+                                        }
+                                        return pkg.name;
+                                    })()}
+                                </AppText>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
                                     <AppText variant='caption1' color='neutral'>{t('topup.getCoins', { count: pkg.credits })} </AppText>
                                     <Coin />
                                 </View>
-                                {pkg.description ? (
-                                    <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{pkg.description}</AppText>
-                                ) : null}
+                                {(() => {
+                                    const locale = language || 'en';
+                                    if (Array.isArray(pkg.translations)) {
+                                        const descTrans = pkg.translations.find((tr: TranslationItem) => tr.key === 'description' && tr.locale === locale);
+                                        if (descTrans?.value) {
+                                            return <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{descTrans.value}</AppText>;
+                                        }
+                                    }
+                                    if (pkg.description) {
+                                        return <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{pkg.description}</AppText>;
+                                    }
+                                    return null;
+                                })()}
                             </View>
                             <AppText variant='subtitle1' color='primary' style={styles.cardPrice}>${parseFloat(pkg.price)}</AppText>
                         </Pressable>
@@ -100,13 +130,16 @@ const PackageCardList: FC<{
 };
 
 // Subscription card list component
-const SubscriptionCardList: FC<{
+interface SubscriptionCardListProps {
     subscriptions: SubscriptionItem[];
     selectedSubscription: number | null;
     setSelectedSubscription: (id: number) => void;
     loading: boolean;
     error: string | null;
-}> = ({ subscriptions, selectedSubscription, setSelectedSubscription, loading, error }) => {
+    language: string;
+}
+
+const SubscriptionCardList: FC<SubscriptionCardListProps> = ({ subscriptions, selectedSubscription, setSelectedSubscription, loading, error, language }) => {
     const { t } = useTranslation();
     return (
         <View>
@@ -131,14 +164,33 @@ const SubscriptionCardList: FC<{
                         >
                             <RadioIndicator selected={selectedSubscription === sub.subscription_id} />
                             <View style={{ flex: 1 }}>
-                                <AppText variant='body1' style={styles.cardTitle} color='white'>{sub.name}</AppText>
+                                <AppText variant='body1' style={styles.cardTitle} color='white'>
+                                    {(() => {
+                                        const locale = language || 'en';
+                                        if (Array.isArray(sub.translations)) {
+                                            const nameTrans = sub.translations.find((tr: TranslationItem) => tr.key === 'name' && tr.locale === locale);
+                                            return nameTrans?.value || sub.name;
+                                        }
+                                        return sub.name;
+                                    })()}
+                                </AppText>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
                                     <AppText variant='caption1' color='neutral'>{t('topup.getCoins', { count: sub.credits })} </AppText>
                                     <Coin type='gold' />
                                 </View>
-                                {sub.description ? (
-                                    <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{sub.description}</AppText>
-                                ) : null}
+                                {(() => {
+                                    const locale = language || 'en';
+                                    if (Array.isArray(sub.translations)) {
+                                        const descTrans = sub.translations.find((tr: TranslationItem) => tr.key === 'description' && tr.locale === locale);
+                                        if (descTrans?.value) {
+                                            return <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{descTrans.value}</AppText>;
+                                        }
+                                    }
+                                    if (sub.description) {
+                                        return <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{sub.description}</AppText>;
+                                    }
+                                    return null;
+                                })()}
                             </View>
                             <AppText variant='subtitle1' color='primary' style={styles.cardPrice}>${parseFloat(sub.price)}</AppText>
                         </Pressable>
@@ -161,6 +213,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     const [errorSubscriptions, setErrorSubscriptions] = useState<string | null>(null);
     const [processing, setProcessing] = useState<boolean>(false);
     const [userSubscriptionId, setUserSubscriptionId] = useState<number | null>(null);
+    const [language, setLanguage] = useState<string>('en');
 
     const { getUserProfile } = useAsyncStorage();
 
@@ -200,6 +253,13 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 setUserSubscriptionId(
                     typeof profile.subscription_id === 'number' ? profile.subscription_id : null
                 );
+            }
+            // Get language from AsyncStorage
+            try {
+                const lang = await (await import('@react-native-async-storage/async-storage')).default.getItem('language');
+                if (lang) setLanguage(lang);
+            } catch (e) {
+                setLanguage('en');
             }
         };
         init();
@@ -296,6 +356,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 setSelectedPackage={handleSelectPackage}
                 loading={loadingPackages}
                 error={errorPackages}
+                language={language}
             />
             {userSubscriptionId == null && (
                 <SubscriptionCardList
@@ -304,6 +365,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                     setSelectedSubscription={handleSelectSubscription}
                     loading={loadingSubscriptions}
                     error={errorSubscriptions}
+                    language={language}
                 />
             )}
             <View style={{ height: scaleSize(60, 60, 80) }}></View>

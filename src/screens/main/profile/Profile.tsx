@@ -1,4 +1,4 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React, { FC, useEffect, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { InteractionManager } from 'react-native';
@@ -40,7 +40,7 @@ import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
 import { ProfileIcon, useAffinityProfile } from './useAffinityProfile';
 
-type ProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'Profile'>;
+type ProfileProps = BottomTabScreenProps<MainNavigatorParamList, 'Profile'>;
 
 const Profile: FC<ProfileProps> = ({ navigation }) => {
   // ...
@@ -93,17 +93,17 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
   const handleEditProfile = () => {
     console.log('Edit Profile pressed');
-    navigation.push('EditProfile');
+    navigation.navigate('EditProfile');
   };
 
   const handlePasswordSettings = () => {
     console.log('Password Settings pressed');
-    navigation.push('PasswordSetting');
+    navigation.navigate('PasswordSetting');
   };
 
   const handlePurchaseHistory = () => {
     console.log('Purchase History pressed');
-    navigation.push('PurchaseHistory');
+    navigation.navigate('PurchaseHistory');
   };
 
   const handleContent = (content: string) => {
@@ -116,7 +116,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
     console.log(token);
 
-    navigation.push('WebviewContent', {
+    navigation.navigate('WebviewContent', {
       uri: `${APP_URL}/content/${content}?v=1.0.0&token=${token}`,
       title,
     });
@@ -124,11 +124,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
   const handleBuyCoins = () => {
     console.log('Buy Coins pressed');
-    navigation.push('TopUp');
+    navigation.navigate('TopUp');
   };
 
   const handleCompleteQuiz = () => {
-    navigation.push('MbtiQuiz');
+    navigation.navigate('MbtiQuiz');
   }
 
   const handleLogout = async () => {
@@ -137,8 +137,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       await api.post(`/v1/users/auth/logout`);
       await AsyncStorage.removeItem('user_profile');
       await AsyncStorage.removeItem('auth_token');
-      await AsyncStorage.removeItem('language');
-      navigation.replace('Welcome');
+      navigation.navigate('Welcome');
     } catch (error) {
       console.error('Logout failed:', error);
     }
@@ -162,7 +161,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         <View style={styles.userStats}>
           <TouchableOpacity
             onPress={() => {
-              navigation.push('BaziResults', { profile_bazi: affinityProfile?.profile_bazi });
+              navigation.navigate('BaziResults', { profile_bazi: affinityProfile?.profile_bazi });
             }}
             style={styles.statItem}>
             <ProfileIcon name={affinityProfile?.profile_bazi?.day_master?.icon} />
@@ -172,7 +171,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.push('AstrologyResults', { profile_astro: affinityProfile?.profile_astro });
+              navigation.navigate('AstrologyResults', { profile_astro: affinityProfile?.profile_astro });
             }}
             style={styles.statItem}>
             <ProfileIcon name={affinityProfile?.profile_astro?.sun?.zodiac} />
@@ -183,7 +182,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
           {user?.mbti_profile && (
             <TouchableOpacity
               onPress={() => {
-                navigation.push('MbtiResults');
+                navigation.navigate('MbtiResults');
               }}
               style={styles.statItem}>
               {(() => {

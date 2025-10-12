@@ -1,7 +1,6 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
 
 import HomeIcon from '../components/icons/home-icon';
 import ProfileIcon from '../components/icons/profile/profile-icon';
@@ -37,7 +36,6 @@ import LoveForecast from '../screens/main/service/love-forecast/love-forecast';
 import RelationReport from '../screens/main/service/relation-report/relation-report';
 import FortuneReport from '../screens/main/service/fortune-report/fortune-report';
 import Topup from '../screens/main/topup';
-import { useAsyncStorage } from '../hooks/use-storage';
 import LoveReportResult from '../screens/main/service/love-forecast/love-report-result';
 import FortuneReportResult from '../screens/main/service/fortune-report/fortune-report-result';
 import RelationReportResult from '../screens/main/service/relation-report/relation-report-result';
@@ -46,10 +44,9 @@ import StarMeteorBackground from '../components/star-meteor-background';
 import type { MainNavigatorParamList } from './types';
 
 import { scaleFont, scaleSize } from '../utils/scale';
-import Toast from 'react-native-toast-message';
 import { useTranslation } from 'react-i18next';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<MainNavigatorParamList>();
 const Stack = createNativeStackNavigator<MainNavigatorParamList>();
 
 const TabNavigator = () => {
@@ -83,108 +80,51 @@ const TabNavigator = () => {
         },
       }}
       initialRouteName="Home">
-    <Tab.Screen
-      name="Home"
-      component={Home}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <HomeIcon size={scaleSize(19, 16, 24)} fill={focused} />
-        ),
-        tabBarLabel: t('bottomBar.home'),
-      }}
-    />
-    <Tab.Screen
-      name="Echo"
-      component={Echo}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <EchoIcon size={scaleSize(19, 16, 24)} fill={focused} />
-        ),
-        tabBarLabel: t('bottomBar.echo'),
-      }}
-    />
-    <Tab.Screen
-      name="AskAffinity"
-      component={AskAffinity}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <AskAffinityIcon size={scaleSize(19, 16, 24)} fill={focused} />
-        ),
-        tabBarLabel: t('bottomBar.askAffinity'),
-      }}
-    />
-    <Tab.Screen
-      name="Profile"
-      component={Profile}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <ProfileIcon size={scaleSize(19, 16, 24)} fill={focused} />
-        ),
-        tabBarLabel: t('bottomBar.profile'),
-      }}
-    />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <HomeIcon size={scaleSize(19, 16, 24)} fill={focused} />
+          ),
+          tabBarLabel: t('bottomBar.home'),
+        }}
+      />
+      <Tab.Screen
+        name="Echo"
+        component={Echo}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <EchoIcon size={scaleSize(19, 16, 24)} fill={focused} />
+          ),
+          tabBarLabel: t('bottomBar.echo'),
+        }}
+      />
+      <Tab.Screen
+        name="AskAffinity"
+        component={AskAffinity}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <AskAffinityIcon size={scaleSize(19, 16, 24)} fill={focused} />
+          ),
+          tabBarLabel: t('bottomBar.askAffinity'),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <ProfileIcon size={scaleSize(19, 16, 24)} fill={focused} />
+          ),
+          tabBarLabel: t('bottomBar.profile'),
+        }}
+      />
     </Tab.Navigator>
   );
 };
 
 const MainNavigator = () => {
-  const [initialRoute, setInitialRoute] = useState<string | null>(null);
-  const [routeParams, setRouteParams] = useState<any>(null);
-
-  const { sync, clearStorage } = useAsyncStorage();
-
-  // useEffect(() => {
-  //   const checkAuthState = async () => {
-  //     const auth_token = await AsyncStorage.getItem('auth_token');
-
-  //     if (!auth_token) {
-  //       setInitialRoute('Welcome');
-  //       return;
-  //     }
-
-  //     try {
-  //       console.log('sync calleed')
-  //       const data = await sync()
-  //       const profile = data?.user
-
-  //       const isProfileCompleted = (profile: any) => {
-  //         return (
-  //           profile.birth_date &&
-  //           profile.birth_time &&
-  //           profile.birth_city &&
-  //           profile.birth_country
-  //         );
-  //       };
-
-  //       if (!profile.is_email_verified) {
-  //         setInitialRoute('OtpVerification');
-  //         setRouteParams({
-  //           email: profile.email,
-  //           shouldResendOtp: true,
-  //         });
-  //       } else if (!isProfileCompleted(profile)) {
-  //         setInitialRoute('Onboarding');
-  //       } else if (!profile.mbti_profile) {
-  //         setInitialRoute('MbtiQuiz');
-  //       } else {
-  //         setInitialRoute('Tabs');
-  //       }
-  //     } catch (err) {
-  //       await clearStorage()
-  //       Toast.show({
-  //         type: 'info',
-  //         text1: 'Session expired',
-  //         text2: 'Please log in again.'
-  //       });
-  //       setInitialRoute('Welcome');
-  //     }
-  //   };
-
-  //   checkAuthState();
-  // }, []);
-
-  // if (!initialRoute) return null; // or show splash screen
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -196,10 +136,7 @@ const MainNavigator = () => {
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen
-        name="OtpVerification"
-        component={OtpVerification}
-        initialParams={routeParams} />
+      <Stack.Screen name="OtpVerification" component={OtpVerification} />
       <Stack.Screen name="OtpSuccess" component={OtpSuccess} />
       <Stack.Screen name="LanguageSelection" component={LanguageSelection} />
       <Stack.Screen name="Onboarding" component={Onboarding} />

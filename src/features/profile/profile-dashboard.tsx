@@ -41,6 +41,7 @@ const ProfileDashboard: React.FC = () => {
                 const userData = await AsyncStorage.getItem('user_profile');
                 setUser(JSON.parse(userData || ''));
                 const response = await api.get('/v1/users/daily-profile');
+                console.log('response.data', response.data)
                 setData(response.data.content);
             } catch (error) {
                 console.error('Error fetching user data:', error);

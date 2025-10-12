@@ -41,9 +41,11 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   const handleClick = async () => {
     try {
       const language = await AsyncStorage.getItem('language');
+      const languageSelected = await AsyncStorage.getItem('language_selected');
       console.log(language, 'language');
+      console.log(languageSelected, 'language_selected');
 
-      if (language) {
+      if (language && languageSelected) {
         const auth_token = await getAuthToken();
         console.log(auth_token, 'auth_token');
 

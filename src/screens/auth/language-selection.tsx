@@ -42,6 +42,7 @@ const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
   const onSubmit = async (data: any) => {
     await i18n.changeLanguage(data.language);
     await AsyncStorage.setItem('language', data.language);
+    await AsyncStorage.setItem('language_selected', 'true');
 
     navigation.push('SignIn');
   };

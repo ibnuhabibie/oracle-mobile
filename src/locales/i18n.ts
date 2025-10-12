@@ -20,7 +20,7 @@ const languageDetector = {
             cb('en');
         }
     },
-    init: () => { },
+    init: () => {},
     cacheUserLanguage: async (lang) => {
         await AsyncStorage.setItem('language', lang);
     },

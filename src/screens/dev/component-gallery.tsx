@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { AppButton } from '../../components/ui/app-button';
 import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/screen-container';
 
-type Props = {
-    navigation: NativeStackNavigationProp<MainNavigatorParamList, 'ComponentGallery'>;
-};
+type Props = NativeStackScreenProps<MainNavigatorParamList, 'ComponentGallery'>;
 
 class ComponentGallery extends Component<Props> {
     render() {
