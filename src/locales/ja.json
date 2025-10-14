@@ -209,7 +209,7 @@
     },
     "purchaseAlert": {
         "title": "購入警告",
-        "costInfo": "ジーニーに質問するには{{cost}}が必要です。続行しますか？",
+        "costInfo": "{{service}}を利用するには{{cost}}が必要です。続行しますか？",
         "yourCredits": "あなたの{{creditType}}トークン：{{userCredit}}",
         "continue": "購入を続行",
         "cancel": "キャンセル",

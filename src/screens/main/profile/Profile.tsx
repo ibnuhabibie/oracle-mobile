@@ -61,6 +61,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   const { getUserProfile, getAuthToken } = useAsyncStorage();
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<any | null>(null);
+  const [language, setLanguage] = useState<string>('en');
 
   const { sync } = useAsyncStorage();
 
@@ -84,11 +85,13 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   );
 
   useEffect(() => {
-    const getToken = async () => {
+    const getTokenAndLanguage = async () => {
       const token = await AsyncStorage.getItem('auth_token');
-      setToken(token || '')
+      setToken(token || '');
+      const lang = await AsyncStorage.getItem('language');
+      if (lang) setLanguage(lang);
     };
-    getToken();
+    getTokenAndLanguage();
   }, []);
 
   const handleEditProfile = () => {
@@ -117,7 +120,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     console.log(token);
 
     navigation.navigate('WebviewContent', {
-      uri: `${APP_URL}/content/${content}?v=1.0.0&token=${token}`,
+      uri: `${APP_URL}/content/${content}?v=${Date.now()}&token=${token}&locale=${language}`,
       title,
     });
   };

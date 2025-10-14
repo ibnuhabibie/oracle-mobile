@@ -209,7 +209,7 @@
     },
     "purchaseAlert": {
         "title": "购买提醒",
-        "costInfo": "向 Geenie 提问将收取 {{cost}}，是否继续？",
+        "costInfo": "向 {{service}} 提问将收取 {{cost}}，是否继续？",
         "yourCredits": "您的 {{creditType}} 代币：{{userCredit}}",
         "continue": "继续购买",
         "cancel": "取消",
@@ -266,7 +266,8 @@
         "downloadPdf": "下载 PDF"
     },
     "polling": {
-        "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。"
+        "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。",
+        "closeBtn": "关闭"
     },
     "mbtiQuiz": {
         "title": "你的 MBTI 是什么？",

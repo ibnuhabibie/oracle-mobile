@@ -209,7 +209,7 @@
     },
     "purchaseAlert": {
         "title": "PURCHASE ALERT",
-        "costInfo": "To ask Geenie, a cost of {{cost}} will be charged. Continue?",
+        "costInfo": "To use {{service}}, a cost of {{cost}} will be charged. Continue?",
         "yourCredits": "Your {{creditType}} tokens: {{userCredit}}",
         "continue": "Continue Purchase",
         "cancel": "Cancel",
@@ -266,7 +266,8 @@
         "downloadPdf": "Download as PDF"
     },
     "polling": {
-        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready.",
+        "closeBtn": "Close"
     },
     "mbtiQuiz": {
         "title": "What's Your MBTI?",

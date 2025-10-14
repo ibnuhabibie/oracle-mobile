@@ -4,7 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import en from './en.json';
 import id from './id.json';
-import zh from './zh.json';
+import zhCN from './zh-CN.json';
+import zhTW from './zh-TW.json';
 import ja from './ja.json';
 import ko from './ko.json';
 import th from './th.json';
@@ -34,7 +35,8 @@ i18n
         resources: {
             en: { translation: en },
             id: { translation: id },
-            zh: { translation: zh },
+            'zh-CN': { translation: zhCN },
+            'zh-TW': { translation: zhTW },
             ja: { translation: ja },
             ko: { translation: ko },
             th: { translation: th },

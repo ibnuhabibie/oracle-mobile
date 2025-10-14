@@ -209,7 +209,7 @@
     },
     "purchaseAlert": {
         "title": "PERINGATAN PEMBELIAN",
-        "costInfo": "Untuk bertanya pada Geenie, akan dikenakan biaya {{cost}} Lanjutkan?",
+        "costInfo": "Untuk menggunakan {{service}}, akan dikenakan biaya {{cost}} Lanjutkan?",
         "yourCredits": "Token {{creditType}} Anda: {{userCredit}}",
         "continue": "Lanjutkan Pembelian",
         "cancel": "Batal",
@@ -266,7 +266,8 @@
         "downloadPdf": "Unduh sebagai PDF"
     },
     "polling": {
-        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready."
+        "info": "Ini akan memakan waktu beberapa menit. Silakan tutup jendela ini - kami akan memberi tahu Anda saat sudah siap.",
+        "closeBtn": "Tutup"
     },
     "mbtiQuiz": {
         "title": "Apa MBTI Anda?",

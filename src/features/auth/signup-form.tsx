@@ -32,6 +32,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             password: '',
             confirm_password: '',
             referral_code: '',
+            locale: 'en'
         },
     });
 
@@ -68,7 +69,10 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const onSubmit = async (data: any) => {
         setLoading(true);
         try {
+            const locale = await AsyncStorage.getItem('language');
+            data.locale = locale;
             console.log('Sign up data:', data);
+
             const res = await api.post('/v1/users/register', data)
             await AsyncStorage.setItem('auth_token', res.data.token);
 
@@ -77,8 +81,9 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             // navigation.navigate('Otp', { email: res.data.email });
             onSuccess(res.data.email)
         } catch (error) {
-            Alert.alert(t('registerForm.registerFailed'), t('registerForm.registerFailedMessage'));
             console.log(error);
+            const errorMessage = error?.meta?.message || t('registerForm.registerFailedMessage');
+            Alert.alert(t('registerForm.registerFailed'), errorMessage);
         } finally {
             setLoading(false);
         }

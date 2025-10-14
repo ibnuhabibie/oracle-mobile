@@ -1,6 +1,7 @@
 export const LANGUAGES = [
   { key: 'en', label: 'English' },
-  { key: 'zh', label: '中文简体' },
+  { key: 'zh-CN', label: '中文简体' },
+  { key: 'zh-TW', label: '中文繁體' },
   { key: 'id', label: 'Bahasa Indonesia' },
   { key: 'ja', label: '日本語' },
   { key: 'ko', label: '한국어' },

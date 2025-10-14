@@ -209,7 +209,7 @@
     },
     "purchaseAlert": {
         "title": "구매 알림",
-        "costInfo": "지니에게 질문하려면 {{cost}}가 필요합니다. 계속하시겠습니까?",
+        "costInfo": "{{service}}를 이용하려면 {{cost}}가 필요합니다. 계속하시겠습니까?",
         "yourCredits": "보유 {{creditType}} 토큰: {{userCredit}}",
         "continue": "구매 계속",
         "cancel": "취소",

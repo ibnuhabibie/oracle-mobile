@@ -69,7 +69,7 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
             {t('polling.info')}
           </AppText>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <AppText variant="body1" style={styles.closeButtonText} color='black'>Close</AppText>
+            <AppText variant="body1" style={styles.closeButtonText} color='black'>{t('polling.closeBtn')}</AppText>
           </TouchableOpacity>
         </View>
       </View>

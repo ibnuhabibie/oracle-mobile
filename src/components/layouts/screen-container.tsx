@@ -7,6 +7,8 @@ import {
   ViewStyle,
   Dimensions,
   Animated,
+  Platform,
+  StatusBar,
 } from 'react-native';
 import { COLORS } from '../../constants/colors';
 import RadialGradient from 'react-native-radial-gradient';
@@ -84,6 +86,7 @@ const styles = StyleSheet.create({
   fixedHeader: {
     width: '100%',
     zIndex: 10,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0, // Add top padding for Android
     // backgroundColor: 't',
     // You may want to add shadow or elevation here for effect
   },
