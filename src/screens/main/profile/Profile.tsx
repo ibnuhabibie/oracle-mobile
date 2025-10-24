@@ -1,25 +1,20 @@
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import React, { FC, useEffect, useState } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
-import { InteractionManager } from 'react-native';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import React, {FC, useEffect, useState} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import {InteractionManager} from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { Platform, ToastAndroid } from 'react-native';
+import {Platform, ToastAndroid} from 'react-native';
 import Toast from 'react-native-toast-message';
-import {
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { scaleFont, scaleSize } from '../../../utils/scale';
+import {Pressable, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {scaleFont, scaleSize} from '../../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTranslation } from "react-i18next";
+import {useTranslation} from 'react-i18next';
 
-import { APP_URL } from '@env';
+import {APP_URL} from '@env';
 
 import CoinIcon from '../../../components/icons/profile/coin-icon';
 import CommentUserIcon from '../../../components/icons/profile/comment-user-icon';
-import { getMbtiIconComponent } from '../../../features/mbti/mbti-profile-item';
+import {getMbtiIconComponent} from '../../../features/mbti/mbti-profile-item';
 import CopyIcon from '../../../components/icons/profile/copy-icon';
 import EyeIcon from '../../../components/icons/profile/eye-icon';
 import BuildingIcon from '../../../components/icons/profile/building-icon';
@@ -30,19 +25,19 @@ import ShieldIcon from '../../../components/icons/profile/shield-icon';
 import TermsIcon from '../../../components/icons/profile/terms-icon';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
-import { COLORS } from '../../../constants/colors';
-import { fontFamilies } from '../../../constants/fonts';
-import { MainNavigatorParamList } from '../../../navigators/types';
+import {COLORS} from '../../../constants/colors';
+import {fontFamilies} from '../../../constants/fonts';
+import {MainNavigatorParamList} from '../../../navigators/types';
 import api from '../../../utils/http';
 import ProfileItem from '../../../features/profile/profile-item';
-import { useAsyncStorage } from '../../../hooks/use-storage';
-import { AppText } from '../../../components/ui/app-text';
-import { AppButton } from '../../../components/ui/app-button';
-import { ProfileIcon, useAffinityProfile } from './useAffinityProfile';
+import {useAsyncStorage} from '../../../hooks/use-storage';
+import {AppText} from '../../../components/ui/app-text';
+import {AppButton} from '../../../components/ui/app-button';
+import {ProfileIcon, useAffinityProfile} from './useAffinityProfile';
 
 type ProfileProps = BottomTabScreenProps<MainNavigatorParamList, 'Profile'>;
 
-const Profile: FC<ProfileProps> = ({ navigation }) => {
+const Profile: FC<ProfileProps> = ({navigation}) => {
   // ...
   const handleCopyReferralCode = () => {
     if (user?.referral_code) {
@@ -57,16 +52,15 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       }
     }
   };
-  const { t } = useTranslation();
-  const { getUserProfile, getAuthToken } = useAsyncStorage();
+  const {t} = useTranslation();
+  const {getUserProfile, getAuthToken} = useAsyncStorage();
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<any | null>(null);
-  const [language, setLanguage] = useState<string>('en');
 
-  const { sync } = useAsyncStorage();
+  const {sync} = useAsyncStorage();
 
   const init = async () => {
-    console.log('init')
+    console.log('init');
     await sync?.();
     const profile = await getUserProfile();
     const token = await getAuthToken();
@@ -81,17 +75,15 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         init();
       });
       return () => task.cancel();
-    }, [])
+    }, []),
   );
 
   useEffect(() => {
-    const getTokenAndLanguage = async () => {
+    const getToken = async () => {
       const token = await AsyncStorage.getItem('auth_token');
       setToken(token || '');
-      const lang = await AsyncStorage.getItem('language');
-      if (lang) setLanguage(lang);
     };
-    getTokenAndLanguage();
+    getToken();
   }, []);
 
   const handleEditProfile = () => {
@@ -109,7 +101,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     navigation.navigate('PurchaseHistory');
   };
 
-  const handleContent = (content: string) => {
+  const handleContent = async (content: string) => {
     let title = t('profilePage.aboutUs');
     if (content === 'terms-conditions') {
       title = t('profilePage.termsAndConditions');
@@ -117,7 +109,8 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       title = t('profilePage.privacyPolicy');
     }
 
-    console.log(token);
+    const language = await AsyncStorage.getItem('language');
+    console.log(token, language);
 
     navigation.navigate('WebviewContent', {
       uri: `${APP_URL}/content/${content}?v=${Date.now()}&token=${token}&locale=${language}`,
@@ -132,7 +125,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
   const handleCompleteQuiz = () => {
     navigation.navigate('MbtiQuiz');
-  }
+  };
 
   const handleLogout = async () => {
     console.log('Logout pressed');
@@ -146,16 +139,27 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     }
   };
 
-  const { loading: profileLoading, error: profileError, data: affinityProfile } = useAffinityProfile();
+  const {
+    loading: profileLoading,
+    error: profileError,
+    data: affinityProfile,
+  } = useAffinityProfile();
 
   return (
-    <ScreenContainer style={{ marginTop: scaleSize(44) }}>
+    <ScreenContainer style={{marginTop: scaleSize(44)}}>
       {/* User Profile Card */}
       <View style={styles.userCard}>
         <View style={styles.userInfo}>
-          <AppText variant='subtitle1' color='white' style={{ fontSize: scaleFont(16, 12, 20) }}>{user?.full_name || t("profilePage.guest")}</AppText>
+          <AppText
+            variant="subtitle1"
+            color="white"
+            style={{fontSize: scaleFont(16, 12, 20)}}>
+            {user?.full_name || t('profilePage.guest')}
+          </AppText>
           <Pressable style={styles.userBadge} onPress={handleCopyReferralCode}>
-            <AppText variant="caption2" color="white" style={styles.badgeText}>{user?.referral_code}</AppText>
+            <AppText variant="caption2" color="white" style={styles.badgeText}>
+              {user?.referral_code}
+            </AppText>
             <CopyIcon />
           </Pressable>
         </View>
@@ -164,21 +168,27 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
         <View style={styles.userStats}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('BaziResults', { profile_bazi: affinityProfile?.profile_bazi });
+              navigation.navigate('BaziResults', {
+                profile_bazi: affinityProfile?.profile_bazi,
+              });
             }}
             style={styles.statItem}>
-            <ProfileIcon name={affinityProfile?.profile_bazi?.day_master?.icon} />
-            <AppText variant='caption2' style={styles.statLabel} color='white'>
+            <ProfileIcon
+              name={affinityProfile?.profile_bazi?.day_master?.icon}
+            />
+            <AppText variant="caption2" style={styles.statLabel} color="white">
               {affinityProfile?.profile_bazi?.day_master?.name}
             </AppText>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('AstrologyResults', { profile_astro: affinityProfile?.profile_astro });
+              navigation.navigate('AstrologyResults', {
+                profile_astro: affinityProfile?.profile_astro,
+              });
             }}
             style={styles.statItem}>
             <ProfileIcon name={affinityProfile?.profile_astro?.sun?.zodiac} />
-            <AppText variant='caption2' style={styles.statLabel} color='white'>
+            <AppText variant="caption2" style={styles.statLabel} color="white">
               {affinityProfile?.profile_astro?.sun?.zodiac_name}
             </AppText>
           </TouchableOpacity>
@@ -190,48 +200,87 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               style={styles.statItem}>
               {(() => {
                 const MbtiIcon = getMbtiIconComponent(user?.mbti_profile);
-                return MbtiIcon ? <MbtiIcon size={75} color={COLORS.neutral} /> : <CommentUserIcon size={75} />;
+                return MbtiIcon ? (
+                  <MbtiIcon size={75} color={COLORS.neutral} />
+                ) : (
+                  <CommentUserIcon size={75} />
+                );
               })()}
 
-              <AppText variant='caption2' style={styles.statLabel} color='white'>
+              <AppText
+                variant="caption2"
+                style={styles.statLabel}
+                color="white">
                 {user?.mbti_profile}
               </AppText>
             </TouchableOpacity>
           )}
         </View>
-
       </View>
 
-      {
-        user && !user.mbti_profile && (
-          <View style={styles.mbtiQuizSection}>
-            <CommentUserIcon size={scaleSize(20, 16, 26)} />
-            <View style={styles.mbtiQuizTextContainer}>
-              <AppText variant='caption1' color='neutral' style={{ fontSize: scaleFont(12, 10, 16) }}>{t("profilePage.mbtiTitle")}</AppText>
-              <AppText variant='tiny1' color='neutral' style={{ fontSize: scaleFont(10, 8, 14) }}>{t("profilePage.mbtiSubtitle")}</AppText>
-            </View>
-            <AppButton style={styles.mbtiQuizButton} variant='primary' title={t("mbtiQuiz.button")} size='small' onPress={handleCompleteQuiz} />
+      {user && !user.mbti_profile && (
+        <View style={styles.mbtiQuizSection}>
+          <CommentUserIcon size={scaleSize(20, 16, 26)} />
+          <View style={styles.mbtiQuizTextContainer}>
+            <AppText
+              variant="caption1"
+              color="neutral"
+              style={{fontSize: scaleFont(12, 10, 16)}}>
+              {t('profilePage.mbtiTitle')}
+            </AppText>
+            <AppText
+              variant="tiny1"
+              color="neutral"
+              style={{fontSize: scaleFont(10, 8, 14)}}>
+              {t('profilePage.mbtiSubtitle')}
+            </AppText>
           </View>
-        )
-      }
+          <AppButton
+            style={styles.mbtiQuizButton}
+            variant="primary"
+            title={t('mbtiQuiz.button')}
+            size="small"
+            onPress={handleCompleteQuiz}
+          />
+        </View>
+      )}
 
       {/* Coins Section */}
       <View style={styles.coinsCard}>
         <View style={styles.coinsHeader}>
-        <AppText variant='body2' color='white'>{t("profilePage.yourCoins")}</AppText>
-        <Pressable onPress={handleBuyCoins} style={styles.buyCoinsButton}>
-            <AppText variant='caption4' style={styles.buyCoinsText} color='white'>{t("profilePage.buyCoins")}</AppText>
-            <AppText variant='subtitle2' color='white'>›</AppText>
-        </Pressable>
+          <AppText variant="body2" color="white">
+            {t('profilePage.yourCoins')}
+          </AppText>
+          <Pressable onPress={handleBuyCoins} style={styles.buyCoinsButton}>
+            <AppText
+              variant="caption4"
+              style={styles.buyCoinsText}
+              color="white">
+              {t('profilePage.buyCoins')}
+            </AppText>
+            <AppText variant="subtitle2" color="white">
+              ›
+            </AppText>
+          </Pressable>
         </View>
 
         <View style={styles.coinsRow}>
           <View style={styles.coinItem}>
-            <AppText color='white' style={styles.coinAmount} variant='subtitle1'>{user?.gold_credits}</AppText>
+            <AppText
+              color="white"
+              style={styles.coinAmount}
+              variant="subtitle1">
+              {user?.gold_credits}
+            </AppText>
             <CoinIcon size={scaleSize(16, 14, 19)} type="gold" />
           </View>
           <View style={styles.coinItem}>
-            <AppText color='white' style={styles.coinAmount} variant='subtitle1'>{user?.silver_credits}</AppText>
+            <AppText
+              color="white"
+              style={styles.coinAmount}
+              variant="subtitle1">
+              {user?.silver_credits}
+            </AppText>
             <CoinIcon size={scaleSize(16, 14, 19)} type="silver" />
           </View>
         </View>
@@ -239,19 +288,21 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
       {/* Profile Section */}
       <View style={styles.section}>
-        <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("profilePage.profileSectionTitle")}</AppText>
+        <AppText variant="subtitle1" color="white" style={styles.sectionTitle}>
+          {t('profilePage.profileSectionTitle')}
+        </AppText>
         <ProfileItem
-          title={t("profilePage.editProfile")}
+          title={t('profilePage.editProfile')}
           icon={<EditIcon size={scaleSize(16, 14, 20)} />}
           onPress={handleEditProfile}
         />
         <ProfileItem
-          title={t("profilePage.passwordSettings")}
+          title={t('profilePage.passwordSettings')}
           icon={<EyeIcon size={scaleSize(16, 14, 20)} />}
           onPress={handlePasswordSettings}
         />
         <ProfileItem
-          title={t("profilePage.purchaseHistory")}
+          title={t('profilePage.purchaseHistory')}
           icon={<CartIcon size={scaleSize(16, 14, 20)} />}
           onPress={handlePurchaseHistory}
           isLast
@@ -260,18 +311,21 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 
       {/* Others Section */}
       <View style={styles.section}>
-        <AppText variant='subtitle1' color='white' style={styles.sectionTitle}>{t("profilePage.othersSectionTitle")}</AppText>
+        <AppText variant="subtitle1" color="white" style={styles.sectionTitle}>
+          {t('profilePage.othersSectionTitle')}
+        </AppText>
         <ProfileItem
-          title={t("profilePage.aboutUs")}
+          title={t('profilePage.aboutUs')}
           icon={<BuildingIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('about-us')}
         />
         <ProfileItem
-          title={t("profilePage.privacyPolicy")}
+          title={t('profilePage.privacyPolicy')}
           icon={<ShieldIcon size={scaleSize(16, 14, 20)} />}
-          onPress={() => handleContent('privacy-policy')} />
+          onPress={() => handleContent('privacy-policy')}
+        />
         <ProfileItem
-          title={t("profilePage.termsAndConditions")}
+          title={t('profilePage.termsAndConditions')}
           icon={<TermsIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('terms-conditions')}
           isLast
@@ -279,9 +333,11 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
       </View>
       <Pressable style={styles.logoutButton} onPress={handleLogout}>
         <LogoutIcon />
-        <AppText style={styles.logoutText} variant='subtitle2' color='white'>{t("profilePage.logout")}</AppText>
+        <AppText style={styles.logoutText} variant="subtitle2" color="white">
+          {t('profilePage.logout')}
+        </AppText>
       </Pressable>
-    </ScreenContainer >
+    </ScreenContainer>
   );
 };
 
@@ -409,11 +465,11 @@ const styles = StyleSheet.create({
     marginBottom: scaleSize(8, 8, 12),
     alignItems: 'center',
     gap: scaleSize(4, 4, 8),
-    backgroundColor: 'rgba(255,255,255,0.14)'
+    backgroundColor: 'rgba(255,255,255,0.14)',
   },
   mbtiQuizButton: {
     width: scaleSize(100, 80, 120),
-  }
+  },
 });
 
 export default Profile;

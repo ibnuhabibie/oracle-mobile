@@ -1,29 +1,37 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC } from 'react';
-import {
-  Alert,
-} from 'react-native';
-import { useTranslation } from "react-i18next";
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React, {FC} from 'react';
+import {Alert} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
 import Header from '../../../components/ui/header';
 import ProfileForm from '../../../features/profile/profile-form';
 import api from '../../../utils/http';
-import type { ProfileFormData } from '../../../features/profile/profile-form';
-import { MainNavigatorParamList } from '../../../navigators/types';
+import type {ProfileFormData} from '../../../features/profile/profile-form';
+import {MainNavigatorParamList} from '../../../navigators/types';
 
+type EditProfileProps = NativeStackScreenProps<
+  MainNavigatorParamList,
+  'EditProfile'
+>;
 
-type EditProfileProps = NativeStackScreenProps<MainNavigatorParamList, 'EditProfile'>;
-
-const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
-
-  const { t, i18n } = useTranslation();
+const EditProfile: FC<EditProfileProps> = ({navigation}) => {
+  const {t, i18n} = useTranslation();
 
   const onSubmit = async (data: ProfileFormData) => {
     try {
       let birth_date = data.birth_date.toISOString().split('T')[0];
-      let birth_time = `${data.birth_time.getHours().toString().padStart(2, '0')}:${data.birth_time.getMinutes().toString().padStart(2, '0')}:${data.birth_time.getSeconds().toString().padStart(2, '0')}`;
+      let birth_time = `${data.birth_time
+        .getHours()
+        .toString()
+        .padStart(2, '0')}:${data.birth_time
+        .getMinutes()
+        .toString()
+        .padStart(2, '0')}:${data.birth_time
+        .getSeconds()
+        .toString()
+        .padStart(2, '0')}`;
 
       const payload = {
         full_name: data.full_name,
@@ -36,14 +44,15 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
         birth_city: data.birth_city?.name,
         birth_lat: data.birth_city?.latitude,
         birth_lng: data.birth_city?.longitude,
-        locale: data.language
-      }
+        locale: data.language,
+      };
 
-      console.log(payload)
+      console.log(payload);
 
-      const res = await api.put('/v1/users', payload)
+      const res = await api.put('/v1/users', payload);
 
       await AsyncStorage.setItem('user_profile', JSON.stringify(res.data));
+      await AsyncStorage.setItem('language', data.language);
 
       // Update i18n language
       if (data.language) {
@@ -51,17 +60,17 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
       }
 
       Alert.alert(
-        t("profileForm.dialogTitle"),
-        t("profileForm.successMessage"),
+        t('profileForm.dialogTitle'),
+        t('profileForm.successMessage'),
         [
           {
-            text: t("profileForm.okLabel"),
+            text: t('profileForm.okLabel'),
             onPress: () => navigation.goBack(),
           },
-        ]
+        ],
       );
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -69,11 +78,10 @@ const EditProfile: FC<EditProfileProps> = ({ navigation }) => {
     <ScreenContainer
       header={
         <Header
-          title={t("profileForm.dialogTitle")}
+          title={t('profileForm.dialogTitle')}
           onBack={() => navigation.goBack()}
         />
-      }
-    >
+      }>
       <ProfileForm onSubmit={onSubmit} />
     </ScreenContainer>
   );

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, {useRef, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,9 +10,9 @@ import {
   Platform,
   StatusBar,
 } from 'react-native';
-import { COLORS } from '../../constants/colors';
+import {COLORS} from '../../constants/colors';
 import RadialGradient from 'react-native-radial-gradient';
-import { scaleSize } from '../../utils/scale';
+import {scaleSize} from '../../utils/scale';
 
 type ScreenContainerProps = {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ type ScreenContainerProps = {
   fluid?: boolean; // If true, removes default padding
 };
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const ScreenContainer: React.FC<ScreenContainerProps> = ({
   children,
@@ -36,19 +36,13 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   fluid = false,
 }) => {
   const content = (
-    <View
-      style={[
-        styles.content,
-        fluid && styles.contentFluid,
-        style,
-      ]}
-    >
+    <View style={[styles.content, fluid && styles.contentFluid, style]}>
       {children}
     </View>
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <RadialGradient
         style={StyleSheet.absoluteFill}
         colors={['#161C41', '#161313']}
@@ -59,8 +53,11 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
         {header && <View style={styles.fixedHeader}>{header}</View>}
         {scrollable ? (
           <ScrollView
-            style={{ backgroundColor: 'transparent' }}
-            contentContainerStyle={[styles.scrollContainer, { backgroundColor: 'transparent' }]}
+            style={{backgroundColor: 'transparent'}}
+            contentContainerStyle={[
+              styles.scrollContainer,
+              {backgroundColor: 'transparent'},
+            ]}
             keyboardShouldPersistTaps="handled">
             {content}
           </ScrollView>
@@ -76,7 +73,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
       </SafeAreaView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   safeArea: {
