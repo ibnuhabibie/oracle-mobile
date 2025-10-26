@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from 'react';
+import React, { useState, useEffect, useCallback, FC } from 'react';
 import {
   View,
   StyleSheet,
@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Modal,
   Alert
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -28,6 +27,47 @@ import AdviceIcon from '../../../../components/icons/echo/advice-icon';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 
+/* ------------------ Floating Footer Component ------------------ */
+const FloatingFooter: React.FC<{
+  onSend: (message: string) => void;
+  t: any;
+}> = React.memo(({ onSend, t }) => {
+  const [input, setInput] = useState('');
+
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 16 : 0}
+    >
+      <View style={styles.adviceRow}>
+        <AppText color='neutral'>{t('echoDetail.clickOn')}</AppText>
+        <View style={styles.adviceIconContainer}>
+          <AdviceIcon size={scaleSize(12)} />
+        </View>
+        <AppText color='neutral'>{t('echoDetail.toGetGenieAdvice')}</AppText>
+      </View>
+
+      <View style={styles.inputBar}>
+        <TextInput
+          style={styles.input}
+          value={input}
+          onChangeText={setInput}
+          placeholder={t("echoDetail.inputPlaceholder")}
+          placeholderTextColor="#BDBDBD"
+        />
+        <TouchableOpacity style={styles.sendButton} onPress={() => {
+          if (!input.trim()) return;
+          onSend(input);
+          setInput('');
+        }}>
+          <SendIcon size={scaleSize(20)} />
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
+  );
+});
+/* -------------------------------------------------------------- */
+
 const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const id = route.params?.id;
@@ -35,7 +75,6 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
-  const [input, setInput] = useState('');
   const [lastMessage, setLastMessage] = useState<any>(null);
 
   const {
@@ -43,73 +82,59 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
     setLoading: setCostLoading
   } = useServiceCost('ask_affinity');
 
-  const fetchData = async () => {
-    console.log(id)
-    if (!id) return
-
+  const fetchData = useCallback(async () => {
+    if (!id) return;
     try {
-      const res = await api.get(`/v1/secret-diaries/${id}`)
-      let conversations: { type: string; created_at: string; conversation_id: string; content: string }[] = res.data.conversations;
-      let last_userChat = conversations
-        .filter((msg) => msg.type === "user")
-        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0];
+      const res = await api.get(`/v1/secret-diaries/${id}`);
+      const conversations = res.data.conversations;
+      const last_userChat = conversations
+        .filter((msg: any) => msg.type === "user")
+        .sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0];
       setLastMessage(last_userChat);
       setMessages(conversations);
       setCostLoading(false);
     } catch (error) {
-      setCostLoading(false)
+      setCostLoading(false);
     }
-  }
+  }, [id, setCostLoading]);
 
   useEffect(() => {
-    if (!id) {
-      return;
-    }
-
+    if (!id) return;
     setCostLoading(true);
-    const init = async () => {
-      await fetchData()
-    }
+    fetchData();
+  }, [id, fetchData]);
 
-    init()
-  }, [id]);
-
-  const handleSend = async () => {
-    if (!input.trim()) return;
+  const handleSend = useCallback(async (message: string) => {
+    if (!message.trim()) return;
     try {
       if (!id) {
         const res = await api.post('/v1/secret-diaries', {
-          content: input,
-          diary_date: formatDate(date)
+          content: message,
+          diary_date: date.dateString
         });
-        console.log(res.data.diary_id)
         const newId = res?.data?.diary_id;
         if (newId) {
           navigation.setParams({ id: newId });
         }
-        fetchData()
+        fetchData();
       } else {
-        console.log({ content: input }, id)
-        await api.post(`/v1/secret-diaries/${id}/conversations`, { content: input });
-        fetchData()
+        await api.post(`/v1/secret-diaries/${id}/conversations`, { content: message });
+        fetchData();
       }
-      setInput('');
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  };
+  }, [id, date, navigation, fetchData]);
 
   const handleContinue = async () => {
     setCostLoading(true);
     try {
-      const res = await api.post(`/v1/secret-diaries/${id}/consult`, {});
-      console.log(res);
+      await api.post(`/v1/secret-diaries/${id}/consult`, {});
       setModalVisible(false);
       setCostLoading(false);
       fetchData();
     } catch (error) {
       setCostLoading(false);
-      console.log(error);
       Alert.alert(t('echoDetail.errorTitle'), t('echoDetail.failedToConsult'));
     }
   };
@@ -129,32 +154,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           </View>
         </>
       }
-      floatingFooter={
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-          keyboardVerticalOffset={16}
-        >
-          <View style={styles.adviceRow}>
-            <AppText color='neutral'>{t('echoDetail.clickOn')}</AppText>
-            <View style={styles.adviceIconContainer}>
-              <AdviceIcon size={scaleSize(12)} />
-            </View>
-            <AppText color='neutral'>{t('echoDetail.toGetGenieAdvice')}</AppText>
-          </View>
-          <View style={styles.inputBar}>
-            <TextInput
-              style={styles.input}
-              placeholder={t("echoDetail.inputPlaceholder")}
-              value={input}
-              onChangeText={setInput}
-              placeholderTextColor="#BDBDBD"
-            />
-            <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-              <SendIcon size={scaleSize(20)} />
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
-      }
+      floatingFooter={<FloatingFooter onSend={handleSend} t={t} />}
     >
       <ChatArea
         messages={messages}
@@ -182,11 +182,9 @@ const styles = StyleSheet.create({
     paddingVertical: scaleSize(2),
     borderRadius: scaleSize(8),
   },
-
   inputBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    // backgroundColor: '#fff',
   },
   input: {
     flex: 1,
@@ -207,29 +205,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  // modal
-  modalContainer: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center'
-  },
-  modalContent: {
-    backgroundColor: 'white',
-    padding: scaleSize(20),
-    borderRadius: scaleSize(10),
-    width: '80%',
-  },
-  title: {
-    marginBottom: scaleSize(10),
-    textAlign: 'center'
-  },
-  buttonGroup: {
-    marginTop: scaleSize(20),
-    gap: scaleSize(8),
-    justifyContent: 'space-between',
   },
   adviceIconContainer: {
     width: scaleSize(20),
