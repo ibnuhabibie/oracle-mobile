@@ -28,11 +28,20 @@ const ProfileItemCard: React.FC<ProfileItemCardProps> = ({ data }) => {
             </ShinyContainer>
             <AppText variant="subtitle2" style={styles.sectionTitle} color='primary'>{data.title}</AppText>
             {data.subtitle ? <AppText variant="caption2" style={styles.sectionSubtitle} color='neutral'>{data.subtitle}</AppText> : null}
-            {descArray.map((desc, idx) => (
+            {/* {descArray.map((desc, idx) => (
                 <AppText variant="caption2" style={styles.sectionDescription} key={idx} color='neutral'>
                     {desc}
                 </AppText>
-            ))}
+            ))} */}
+            {
+                typeof data.description === 'string' ? (
+                    <AppText variant="caption2" style={styles.sectionDescription} color='neutral'>
+                        {data.description}
+                    </AppText>
+                ) : (
+                    data.description
+                )
+            }
         </View>
     );
 };
