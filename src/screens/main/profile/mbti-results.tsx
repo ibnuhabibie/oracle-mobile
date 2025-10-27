@@ -14,8 +14,14 @@ const MbtiResults: FC<MbtiResultsProps> = ({ navigation }) => {
     const state = navigation.getState();
     const routes = state.routes;
     const prevRoute = routes[routes.length - 2];
+
+    console.log('Previous route:', prevRoute);
+    console.log('Current route stack:', routes);
+
     if (prevRoute && prevRoute.name === 'SignUp') {
       navigation.popToTop();
+      navigation.replace('Tabs');
+    } else if (prevRoute == undefined) {
       navigation.replace('Tabs');
     } else {
       navigation.goBack();
