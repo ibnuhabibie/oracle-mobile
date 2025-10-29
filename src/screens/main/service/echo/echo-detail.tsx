@@ -16,7 +16,7 @@ import { COLORS } from '../../../../constants/colors';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import SendIcon from '../../../../components/icons/echo/send-icon';
 import api from '../../../../utils/http';
-import { formatDate, formatDateToHeader } from '../../../../utils/date';
+import { formatDateToHeader } from '../../../../utils/date';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
 import ChatArea from '../../../../features/services/echo/chat-area';
 import Header from '../../../../components/ui/header';

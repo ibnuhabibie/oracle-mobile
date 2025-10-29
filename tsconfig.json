@@ -1,10 +1,14 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "types": [
-      "@storybook/react-native"
-    ]
+    "jsx": "react-native",
+    "esModuleInterop": true,
+    "allowJs": true
   },
+  "exclude": [
+    "**/node_modules",
+    "**/Pods"
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx"
