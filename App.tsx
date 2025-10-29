@@ -33,7 +33,7 @@ const App: React.FC = () => {
 
     if (item.service_type == 'personalized_love_forecast_12mth') {
       pageName = 'LoveReportResult'
-      payload = { result: data }
+      payload = { result: data, job_id: notifData.job_id }
     } else if (item.service_type == 'ask_any_question') {
       pageName = 'AffinityResults'
       payload = {
@@ -42,12 +42,13 @@ const App: React.FC = () => {
       }
     } else if (item.service_type == 'transit_report') {
       pageName = 'FortuneReportResult'
-      payload = { result: data }
+      payload = { result: data, job_id: notifData.job_id }
     } else if (item.service_type == 'relationship_compatibility') {
       pageName = 'RelationReportResult'
       payload = {
         result: data,
-        love_profile: JSON.parse(item.request_data).partner
+        love_profile: JSON.parse(item.request_data).partner,
+        job_id: notifData.job_id
       }
     } else if (item.service_type == 'ask_secret_diary') {
       pageName = 'EchoDetail'
