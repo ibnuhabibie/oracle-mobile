@@ -3,6 +3,8 @@ import React, { FC, useEffect, useState } from 'react';
 import { Dimensions, Image, StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import Carousel from 'react-native-reanimated-carousel';
+import { useSharedValue } from 'react-native-reanimated';
 
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppText } from '../../../../components/ui/app-text';
@@ -36,9 +38,22 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
   } = useServiceCost('ask_affinity');
 
   const screenWidth = Dimensions.get('window').width;
-  const localImage = require('../../../../assets/images/ask-affinity/banner.png');
-  const { width, height } = Image.resolveAssetSource(localImage);
-  const aspectRatio = width / height;
+  const progress = useSharedValue<number>(0);
+
+  const carouselItems = [
+    {
+      id: 1,
+      image: require('../../../../assets/images/ask-affinity/banner-1.png'),
+    },
+    {
+      id: 2,
+      image: require('../../../../assets/images/ask-affinity/banner-2.png'),
+    },
+    {
+      id: 3,
+      image: require('../../../../assets/images/ask-affinity/banner-3.png'),
+    },
+  ];
 
   const formRules = {
     question: {
@@ -101,7 +116,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
   }, []);
 
   return (
-    <ScreenContainer fluid={true}>
+    <ScreenContainer fluid={true} scrollable={true}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 16 : 64}
@@ -113,10 +128,30 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
         <AppText style={styles.subtitle} variant="caption1" color="white">
           {t('askAffinity.subtitle')}
         </AppText>
-        <Image
-          source={localImage}
-          style={styles.bannerImage}
-        // resizeMode="contain"
+        <Carousel
+          autoPlayInterval={2000}
+          data={carouselItems}
+          height={scaleSize(300)}
+          loop={true}
+          pagingEnabled={true}
+          snapEnabled={true}
+          width={screenWidth}
+          style={styles.carouselStyle}
+          mode="parallax"
+          modeConfig={{
+            parallaxScrollingScale: 0.85,
+            parallaxScrollingOffset: scaleSize(220),
+          }}
+          onProgressChange={progress}
+          renderItem={
+            ({ item }) => (
+              <Image
+                source={item.image}
+                style={styles.carouselImage}
+                resizeMode="contain"
+              />
+            )
+          }
         />
         <View style={styles.infoCard}>
           <AppText color="primary">{t('askAffinity.howToAskTitle')}</AppText>
@@ -227,9 +262,14 @@ const styles = StyleSheet.create({
   purchaseButtonText: {
     marginRight: scaleSize(4),
   },
-  bannerImage: {
-    width: Dimensions.get('window').width,
-    marginVertical: scaleSize(20),
+  carouselStyle: {
+    width: '100%',
+    marginBottom: scaleSize(20),
+  },
+  carouselImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: scaleSize(12),
   },
 });
 
