@@ -474,5 +474,10 @@
     "session": {
         "expiredTitle": "Access Expired",
         "expired": "Session expired. Please login again."
+    },
+    "profileDescription": {
+        "you": "You",
+        "him": "Him",
+        "relationshipOutcome": "Relationship Outcome"
     }
 }

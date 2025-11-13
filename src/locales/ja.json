@@ -466,5 +466,10 @@
 "session": {
     "expiredTitle": "アクセス期限切れ",
     "expired": "セッションが期限切れです。再度ログインしてください。"
+},
+"profileDescription": {
+    "you": "あなた",
+    "him": "彼",
+    "relationshipOutcome": "関係の結果"
 }
 }

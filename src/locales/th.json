@@ -474,5 +474,10 @@
     "session": {
         "expiredTitle": "การเข้าถึงหมดอายุ",
         "expired": "เซสชันหมดอายุ กรุณาเข้าสู่ระบบอีกครั้ง"
+    },
+    "profileDescription": {
+        "you": "คุณ",
+        "him": "เขา",
+        "relationshipOutcome": "ผลลัพธ์ของความสัมพันธ์"
     }
 }

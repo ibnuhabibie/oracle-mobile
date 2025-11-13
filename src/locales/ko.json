@@ -466,5 +466,10 @@
 "session": {
     "expiredTitle": "접근 만료",
     "expired": "세션이 만료되었습니다. 다시 로그인해 주세요."
+},
+"profileDescription": {
+    "you": "당신",
+    "him": "그",
+    "relationshipOutcome": "관계 결과"
 }
 }

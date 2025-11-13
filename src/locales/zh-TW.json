@@ -474,5 +474,10 @@
     "session": {
         "expiredTitle": "訪問已過期",
         "expired": "会话已过期。请重新登录。"
+    },
+    "profileDescription": {
+        "you": "你",
+        "him": "他",
+        "relationshipOutcome": "關係結果"
     }
 }

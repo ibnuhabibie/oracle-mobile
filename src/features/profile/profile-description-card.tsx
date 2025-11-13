@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { AppText } from "../../components/ui/app-text";
 import { COLORS } from "../../constants/colors";
 import { scaleSize } from "../../utils/scale";
+import { useTranslation } from 'react-i18next';
 
 interface ProfileDescriptionCard {
     you: string;
@@ -16,21 +17,23 @@ type ProfileDescriptionCardProps = {
 }
 
 const ProfileDescriptionCard: React.FC<ProfileDescriptionCardProps> = ({ data }) => {
+    const { t } = useTranslation();
+
     return (
         <View style={styles.card}>
             <AppText variant='title4' color="primary" style={styles.header}>{data.theme}</AppText>
             <View style={styles.row}>
-                <AppText variant="caption1" style={styles.label} color="neutral">{'You'}</AppText>
+                <AppText variant="caption1" style={styles.label} color="neutral">{t('profileDescription.you')}</AppText>
                 <AppText variant="caption1" style={styles.value} color="neutral">{data.you}</AppText>
             </View>
             <View style={styles.separator} />
             <View style={styles.row}>
-                <AppText variant="caption1" style={styles.label} color="neutral">{'Him'}</AppText>
+                <AppText variant="caption1" style={styles.label} color="neutral">{t('profileDescription.him')}</AppText>
                 <AppText variant="caption1" style={styles.value} color="neutral">{data.them}</AppText>
             </View>
             <View style={styles.separator} />
             <View style={styles.row}>
-                <AppText variant="caption1" style={styles.label} color="neutral">{'Relationship Outcome'}</AppText>
+                <AppText variant="caption1" style={styles.label} color="neutral">{t('profileDescription.relationshipOutcome')}</AppText>
                 <AppText variant="caption1" style={styles.value} color="neutral">{data.relationship_outcome}</AppText>
             </View>
         </View>

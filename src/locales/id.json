@@ -474,5 +474,10 @@
     "session": {
         "expiredTitle": "Akses Kedaluwarsa",
         "expired": "Sesi kedaluwarsa. Silakan login kembali."
+    },
+    "profileDescription": {
+        "you": "Anda",
+        "him": "Dia",
+        "relationshipOutcome": "Hasil Hubungan"
     }
 }
