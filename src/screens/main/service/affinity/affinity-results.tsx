@@ -129,7 +129,7 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
                 </AppText>
                 {card.card_name ? (
                     <Image
-                        source={getTarotImage(card.card_name)}
+                        source={getTarotImage(card.card)}
                         style={[
                             styles.tarotImage,
                             card.orientation === 'reversed' ? styles.reversedImage : null
@@ -138,7 +138,7 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
                     />
                 ) : null}
                 <AppText variant='subtitle1' color='primary' style={styles.resultTitle}>
-                    {card.card} {card.orientation ? `(${card.orientation})` : ''}
+                    {card.card_name} {card.orientation ? `(${card.orientation})` : ''}
                 </AppText>
                 <AppText variant='caption2' style={styles.resultCardContent} color='neutral'>
                     {card.result}
