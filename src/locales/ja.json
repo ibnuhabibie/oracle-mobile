@@ -397,8 +397,10 @@
     "instructions": "1. 心を落ち着かせる\n2. 質問したいことを考える\n3. 質問を入力する\n4. 深呼吸して質問ボタンを押す",
     "questionLabel": "質問を入力してください",
     "questionRequired": "質問は必須です",
-    "purchaseButton": "{{cost}}で購入"
-  },
+    "questionMinLength": "質問は10文字以上で入力してください",
+    "purchaseButton": "{{cost}}で購入",
+    "somethingWentWrong": "何か問題が発生しました"
+},
   "echo": {
     "title": "日記",
     "subtitle": "思いや感情を表現する安全な場所です。",

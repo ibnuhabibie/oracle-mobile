@@ -405,7 +405,9 @@
         "instructions": "1. ทำจิตใจให้สงบ\n2. คิดถึงคำถามที่ต้องการถาม\n3. พิมพ์คำถามของคุณ\n4. สูดลมหายใจลึก ๆ แล้วกดปุ่มถาม",
         "questionLabel": "พิมพ์คำถามของคุณ",
         "questionRequired": "กรุณากรอกคำถาม",
-        "purchaseButton": "ซื้อในราคา {{cost}}"
+        "questionMinLength": "คำถามอย่างน้อย 10 ตัวอักษร",
+        "purchaseButton": "ซื้อในราคา {{cost}}",
+        "somethingWentWrong": "เกิดข้อผิดพลาดบางอย่าง"
     },
     "echo": {
         "title": "ไดอารี่",

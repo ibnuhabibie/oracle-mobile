@@ -58,6 +58,10 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
   const formRules = {
     question: {
       required: t('askAffinity.questionRequired'),
+      minLength: {
+        value: 10,
+        message: t('askAffinity.questionMinLength'),
+      },
     },
   };
 
@@ -92,11 +96,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
       setCostLoading(false);
       setValue('question', '');
       setApiError(
-        typeof err === 'object' &&
-          err !== null &&
-          typeof err.message === 'string'
-          ? err.message
-          : t('Something went wrong'),
+        t('askAffinity.somethingWentWrong')
       );
     }
   };
@@ -171,7 +171,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             errors={errors}
           />
           {apiError ? (
-            <AppText style={styles.apiErrorText}>{t(apiError)}</AppText>
+            <AppText style={styles.apiErrorText}>{apiError}</AppText>
           ) : null}
           <AppButton
             title={

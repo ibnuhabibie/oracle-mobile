@@ -405,7 +405,9 @@
         "instructions": "1. Calm your mind\n2. Think about the question you want to ask\n3. Enter your question\n4. Take a deep breath and press the ask button",
         "questionLabel": "Type your question",
         "questionRequired": "Question is required",
-        "purchaseButton": "Buy for {{cost}}"
+        "questionMinLength": "Question must be at least 10 characters",
+        "purchaseButton": "Buy for {{cost}}",
+        "somethingWentWrong": "Something went wrong"
     },
     "echo": {
         "title": "Diary",
