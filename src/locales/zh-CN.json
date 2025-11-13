@@ -470,5 +470,9 @@
         "totalPoints": "总积分",
         "paymentNotCompleted": "您的支付尚未完成，可能仍在处理中，或您尚未完成支付。请稍后再查。",
         "continuePayment": "继续支付"
+    },
+    "session": {
+        "expiredTitle": "访问已过期",
+        "expired": "会话已过期。请重新登录。"
     }
 }

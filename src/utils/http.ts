@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNFS from 'react-native-fs';
 import { Platform, Alert, Linking, PermissionsAndroid, ToastAndroid } from 'react-native';
 import Base64 from 'react-native-base64';
+import i18n from '../locales/i18n';
 
 // Shared axios instance
 const api = axios.create({
@@ -56,10 +57,12 @@ async function handleLogoutAndRedirect() {
         console.error('Error clearing AsyncStorage during logout', e);
     }
     // Inform user why redirected
+    const sessionExpiredTitle = i18n.t('session.expiredTitle');
+    const sessionExpiredMessage = i18n.t('session.expired');
     if (Platform.OS === 'android') {
-        ToastAndroid.show('Session expired. Please login again.', ToastAndroid.LONG);
+        ToastAndroid.show(sessionExpiredMessage, ToastAndroid.LONG);
     } else {
-        Alert.alert('Session expired', 'Please login again.');
+        Alert.alert(sessionExpiredTitle, sessionExpiredMessage);
     }
     // Redirect to Welcome page and reset navigation stack
     if (navigationRef.isReady()) {

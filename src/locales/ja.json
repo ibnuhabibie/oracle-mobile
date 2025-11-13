@@ -462,5 +462,9 @@
     "totalPoints": "合計ポイント",
     "paymentNotCompleted": "支払いはまだ完了していません。処理中の場合や、支払いが完了していない場合があります。後でもう一度ご確認ください。",
     "continuePayment": "支払いを続行"
-  }
+},
+"session": {
+    "expiredTitle": "アクセス期限切れ",
+    "expired": "セッションが期限切れです。再度ログインしてください。"
+}
 }

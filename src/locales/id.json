@@ -470,5 +470,9 @@
         "totalPoints": "Total Poin",
         "paymentNotCompleted": "Pembayaran Anda belum selesai. Mungkin masih diproses, atau Anda belum menyelesaikan pembayaran. Silakan cek kembali nanti.",
         "continuePayment": "Lanjutkan Pembayaran"
+    },
+    "session": {
+        "expiredTitle": "Akses Kedaluwarsa",
+        "expired": "Sesi kedaluwarsa. Silakan login kembali."
     }
 }

@@ -470,5 +470,9 @@
         "totalPoints": "Total Points",
         "paymentNotCompleted": "Your payment is not yet complete. It may still be processing, or you have not completed the payment. Please check back later.",
         "continuePayment": "Continue Payment"
+    },
+    "session": {
+        "expiredTitle": "Access Expired",
+        "expired": "Session expired. Please login again."
     }
 }
