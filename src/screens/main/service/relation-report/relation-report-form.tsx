@@ -153,7 +153,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
           <View>
             <TextField
               placeholder={t("relationReportForm.birthDateLabel")}
-              value={formatDate(watchedDate)}
+              value={watchedDate instanceof Date ? watchedDate.toLocaleDateString() : ''}
               style={styles.textField}
               editable={false}
               rightIcon={<CalendarIcon size={15} />}

@@ -1,16 +1,16 @@
-import React, {useState, useCallback} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
-import {useTranslation} from 'react-i18next';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState, useCallback } from 'react';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 
-import {scaleFont, scaleSize} from '../../utils/scale';
-import {AppText} from '../../components/ui/app-text';
-import {COLORS} from '../../constants/colors';
+import { scaleFont, scaleSize } from '../../utils/scale';
+import { AppText } from '../../components/ui/app-text';
+import { COLORS } from '../../constants/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CircularScore from '../../components/widgets/circular-score';
 import api from '../../utils/http';
-import {formatDateToShortHeader} from '../../utils/date';
+import { formatDateWithDayname } from '../../utils/date';
 
 export interface UserProfile {
   full_name?: string;
@@ -28,7 +28,7 @@ export interface DailyProfileData {
 }
 
 const LocalizedSubtitle = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <AppText style={styles.subtitle} variant="subtitle1" color="white">
@@ -37,10 +37,12 @@ const LocalizedSubtitle = () => {
   );
 };
 
-const LocalizedHeader = (user: UserProfile) => {
+const LocalizedHeader = ({ user }: { user?: UserProfile | null }) => {
   const today = new Date();
-  const formattedDate = formatDateToShortHeader(today);
-  const {t} = useTranslation();
+  const formattedDate = formatDateWithDayname(today);
+  const { t } = useTranslation();
+
+  console.log('user in LocalizedHeader:', user);
 
   return (
     <View style={styles.header}>
@@ -61,7 +63,7 @@ const ProfileDashboard: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const navigation = useNavigation();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const fetchUserAndProfile = async () => {
     try {
@@ -127,11 +129,11 @@ const ProfileDashboard: React.FC = () => {
       activeOpacity={0.85}
       onPress={() => {
         if (data) {
-          navigation.navigate('DailyProfileDetail', {data});
+          navigation.navigate('DailyProfileDetail', { data });
         }
       }}
-      style={{width: '100%'}}>
-      <LocalizedHeader />
+      style={{ width: '100%' }}>
+      <LocalizedHeader user={user} />
       <View style={styles.profileContent}>
         <AppText variant="largeTitle1" style={styles.title} color="white">
           {data?.today_points}%

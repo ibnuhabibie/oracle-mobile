@@ -180,7 +180,7 @@ const Onboarding: FC<{
           <View pointerEvents="none">
             <TextField
               placeholder={t('onboarding.birthDate')}
-              value={formatDate(watchedDate)}
+              value={watchedDate instanceof Date ? watchedDate.toLocaleDateString() : ''}
               style={styles.textField}
               editable={false}
               rightIcon={<CalendarIcon size={scaleSize(15)} />}

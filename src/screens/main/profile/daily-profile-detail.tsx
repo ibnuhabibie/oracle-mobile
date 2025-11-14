@@ -15,7 +15,7 @@ import LearningIcon from "../../../components/icons/daily-dashboard/learning-ico
 import RelationIcon from "../../../components/icons/daily-dashboard/relation-icon";
 import CareerIcon from "../../../components/icons/daily-dashboard/career-icon";
 import { useEffect, useState } from "react";
-import { formatDateToShortHeader } from "../../../utils/date";
+import { formatDateWithDayname } from "../../../utils/date";
 
 function StarReview({ value }: { value?: number }) {
   // value: 0-100, 4 stars, each 25 points
@@ -58,7 +58,7 @@ export default function DailyProfileDetail() {
 
   useEffect(() => {
     (async () => {
-      const header = await formatDateToShortHeader(new Date());
+      const header = await formatDateWithDayname(new Date());
       setDateHeader(header);
     })();
   }, []);

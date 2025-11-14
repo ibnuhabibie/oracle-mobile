@@ -19,6 +19,7 @@ import LoveReportIcon8 from '../../../../components/icons/services/love-report/l
 import { downloadPdf } from '../../../../utils/http';
 import { COLORS } from '../../../../constants/colors';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
+import { formatDateOnly } from '../../../../utils/date';
 
 type LoveReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveReportResult'>;
 
@@ -27,6 +28,7 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
     const { result, job_id } = route.params;
     const [loading, setLoading] = React.useState(false);
     const [ready, setReady] = React.useState(false);
+    const [forecastRange, setForecastRange] = React.useState('');
 
     React.useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
@@ -47,19 +49,19 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
     ];
 
     // Format date_range if present, else fallback
-    let forecastRange = '22 Jan 2025 to 21 Jan 2026';
-    const dateRangeRaw = result?.result?.date_range || result?.date_range;
-    if (dateRangeRaw && typeof dateRangeRaw === 'string' && dateRangeRaw.includes(':')) {
-        const [start, end] = dateRangeRaw.split(':');
-        const formatDate = (dateStr: string) => {
-            const date = new Date(dateStr);
-            const day = date.getDate();
-            const month = date.toLocaleString('default', { month: 'short' });
-            const year = date.getFullYear();
-            return `${day} ${month} ${year}`;
+    React.useEffect(() => {
+        const formatForecastRange = async () => {
+            const dateRangeRaw = result?.result?.date_range || result?.date_range;
+            if (dateRangeRaw && typeof dateRangeRaw === 'string' && dateRangeRaw.includes(':')) {
+                const [start, end] = dateRangeRaw.split(':');
+                const startDate = await formatDateOnly(start);
+                const endDate = await formatDateOnly(end);
+                setForecastRange(`${startDate} - ${endDate}`);
+            }
         };
-        forecastRange = `${formatDate(start)} - ${formatDate(end)}`;
-    }
+        
+        formatForecastRange();
+    }, [result]);
 
     const CardList: FC<{ content: any[] }> = ({ content }) => {
         if (!content) return null;

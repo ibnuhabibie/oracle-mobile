@@ -17,6 +17,7 @@ import { COLORS } from '../../../../constants/colors';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import CalendarIcon from '../../../../components/icons/echo/calendar-icon';
+import { formatDateOnly } from '../../../../utils/date';
 
 
 type EchoProps = NativeStackScreenProps<MainNavigatorParamList, 'Echo'>;
@@ -174,7 +175,7 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                                 </View>
                                 <View style={styles.diaryContentContainer}>
                                     <AppText variant='caption1' color='light-gray'>
-                                        {diary.diary_date}
+                                        {formatDateOnly(diary.diary_date)}
                                     </AppText>
                                     <AppText variant='body1' color='neutral'>
                                         {diary.content}

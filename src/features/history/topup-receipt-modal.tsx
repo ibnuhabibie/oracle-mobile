@@ -4,7 +4,7 @@ import { AppText } from '../../components/ui/app-text';
 import { AppButton } from '../../components/ui/app-button';
 import { initPaymentSheet, presentPaymentSheet } from '@stripe/stripe-react-native';
 import CoinIcon from "../../components/icons/profile/coin-icon";
-import { formatDateTime } from "../../utils/date";
+import { formatDateWithTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
 import { COLORS } from "../../constants/colors";
 import CloseIcon from "../../components/icons/close-icon";
@@ -69,7 +69,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                             <View style={styles.modalRow}>
                                 <AppText variant="caption1" color="neutral">{t("topupReceiptModal.datePurchased")}</AppText>
                                 <AppText variant="caption1" color="white">
-                                    {formatDateTime(item.created_at)}
+                                    {formatDateWithTime(item.created_at)}
                                 </AppText>
                             </View>
                             <View style={styles.modalSectionDivider} />

@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Dimensions, Platform, ScaledSize, StyleSheet, View } from 'react-native';
 import { scaleFont, scaleSize } from '../../utils/scale';
 import { useTranslation } from "react-i18next";
@@ -22,7 +22,6 @@ const Home: FC<HomeProps> = ({ navigation }) => {
 
   const MAX_WIDTH = 430;
   const isWeb = Platform.OS === "web";
-
 
   const window: ScaledSize = isWeb
     ? { width: MAX_WIDTH, height: 800, scale: 1, fontScale: 1 }

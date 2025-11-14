@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import ShinyContainer from '../../../components/widgets/shiny-container';
-import { fontFamilies } from '../../../constants/fonts';
 import { useTranslation } from 'react-i18next';
 import { scaleFont, scaleSize } from '../../../utils/scale';
+import { ProfileIcon } from '../../../screens/main/profile/useAffinityProfile';
+import { formatDateOnly, formatTimeOfBirth } from '../../../utils/date';
+import { AppText } from '../../../components/ui/app-text';
 
 type UserProfile = {
     full_name?: string;
@@ -20,12 +22,6 @@ type ProfileCardProps = {
     cardTitle?: string;
     profileData?: UserProfile
 };
-
-import { iconMap, ProfileIcon } from '../../../screens/main/profile/useAffinityProfile';
-import { formatDateOfBirth, formatTimeOfBirth } from '../../../utils/date';
-import { COLORS } from '../../../constants/colors';
-import { AppText } from '../../../components/ui/app-text';
-import RelationIcon from '../../../components/icons/affinity/relation-icon';
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileData }) => {
     const { t } = useTranslation();
@@ -95,7 +91,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
                 <View style={styles.infoRow}>
                     <AppText variant="caption2" color='neutral'>{t('profileCard.dateOfBirth')}</AppText>
                     <AppText variant="caption2" style={styles.infoValue} color='neutral'>
-                        {profile.birth_date ? formatDateOfBirth(profile.birth_date) : ''}
+                        {profile.birth_date ? formatDateOnly(profile.birth_date) : ''}
                     </AppText>
                 </View>
                 {profile.birth_time && (

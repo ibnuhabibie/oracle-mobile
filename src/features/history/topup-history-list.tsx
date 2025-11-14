@@ -3,13 +3,11 @@ import { FlatList, Pressable, View, ActivityIndicator } from "react-native";
 import { AppText } from '../../components/ui/app-text';
 import { StyleSheet } from "react-native";
 
-import { fontFamilies } from "../../constants/fonts";
 import CartIcon from "../../components/icons/profile/cart-icon";
 import CoinIcon from "../../components/icons/profile/coin-icon";
 import api from "../../utils/http";
-import { formatDateTime } from "../../utils/date";
+import { formatDateWithTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
-import { COLORS } from "../../constants/colors";
 import { scaleFont, scaleSize } from "../../utils/scale";
 
 interface TopUpItem {
@@ -86,7 +84,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
     }, []);
 
     const renderTopUpItem = ({ item }: { item: TopUpItem }) => {
-        const formattedDate = formatDateTime(item.created_at);
+        const formattedDate = formatDateWithTime(item.created_at);
 
         return (
             <Pressable

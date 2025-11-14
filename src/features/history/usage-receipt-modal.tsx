@@ -10,6 +10,7 @@ import { AppButton } from "../../components/ui/app-button";
 import { useNavigation } from "@react-navigation/native";
 import CloseIcon from "../../components/icons/close-icon";
 import { scaleFont, scaleSize } from "../../utils/scale";
+import { formatDateWithTime } from "../../utils/date";
 
 interface UsageReceiptModalProps {
   visible: boolean;
@@ -126,7 +127,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                 <>
                   <View style={styles.modalRow}>
                     <AppText variant="caption1" style={styles.modalLabel} color="neutral">{t("usageReceiptModal.datePurchased")}</AppText>
-                    <AppText variant="caption1" style={styles.modalValue} color="white">{formatDate(item.created_at)}</AppText>
+                    <AppText variant="caption1" style={styles.modalValue} color="white">{formatDateWithTime(item.created_at)}</AppText>
                   </View>
                   {item.credit_journal ? (
                     <>

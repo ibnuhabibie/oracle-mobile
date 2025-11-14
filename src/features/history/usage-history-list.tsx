@@ -2,12 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { FlatList, Pressable, View, ActivityIndicator } from "react-native";
 import { AppText } from '../../components/ui/app-text';
 import CommentsIcon from "../../components/icons/profile/comments-icon";
-import { fontFamilies } from "../../constants/fonts";
 import api from "../../utils/http";
-import { formatDateTime } from "../../utils/date";
+import { formatDateWithTime } from "../../utils/date";
 import { StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
-import { COLORS } from "../../constants/colors";
 import { scaleFont, scaleSize } from "../../utils/scale";
 
 interface UsageItem {
@@ -52,6 +50,7 @@ const styles = StyleSheet.create({
     },
     dateContainer: {
         alignItems: "flex-end",
+        marginLeft: scaleSize(8),
     },
     loading: {
         padding: scaleSize(16, 16, 24),
@@ -109,7 +108,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
     }, []);
 
     const renderUsageItem = ({ item }: { item: UsageItem }) => {
-        const formattedDate = formatDateTime(item.created_at);
+        const formattedDate = formatDateWithTime(item.created_at);
         return (
             <Pressable
                 style={styles.pressable}

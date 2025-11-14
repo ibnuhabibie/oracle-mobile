@@ -16,7 +16,7 @@ import { COLORS } from '../../../../constants/colors';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import SendIcon from '../../../../components/icons/echo/send-icon';
 import api from '../../../../utils/http';
-import { formatDateToHeader } from '../../../../utils/date';
+import { formatDateWithDayname } from '../../../../utils/date';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
 import ChatArea from '../../../../features/services/echo/chat-area';
 import Header from '../../../../components/ui/header';
@@ -149,7 +149,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           />
           <View style={styles.dateSeparator}>
             <AppText variant='caption1' color='neutral' style={styles.dateSeparatorText}>
-              {formatDateToHeader(date)}
+              {formatDateWithDayname(date.dateString)}
             </AppText>
           </View>
         </>

@@ -1,7 +1,7 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
-import React, { FC, useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { AppText } from '../../components/ui/app-text';
 import { useTranslation } from "react-i18next";
 
@@ -11,8 +11,7 @@ import ClockIcon from '../../components/icons/auth/clock-icon';
 import TextField from '../../components/ui/text-field';
 import { DropdownButton, renderDropdownModal } from '../../components/widgets/dropdown';
 import { AppButton } from '../../components/ui/app-button';
-import { fontFamilies } from '../../constants/fonts';
-import { formatDate, formatTime } from '../../utils/formatter';
+import { formatTime } from '../../utils/formatter';
 import api from '../../utils/http';
 import { COLORS } from '../../constants/colors';
 import { useAsyncStorage } from '../../hooks/use-storage';
@@ -264,7 +263,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     <View pointerEvents="none">
                         <TextField
                             placeholder={t("profileForm.birthDateLabel")}
-                            value={formatDate(watchedDate)}
+                            value={watchedDate instanceof Date ? watchedDate.toLocaleDateString() : ''}
                             style={styles.textField}
                             editable={false}
                             rightIcon={<CalendarIcon size={15} />}
