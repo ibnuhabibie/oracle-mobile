@@ -30,6 +30,7 @@ import RelationReportIcon3 from '../../../../components/icons/services/relation-
 import RelationReportIcon4 from '../../../../components/icons/services/relation-report/relation-report-icon-4';
 import RelationIcon from '../../../../components/icons/affinity/relation-icon';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -73,6 +74,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
     const [showPollingModal, setShowPollingModal] = useState(false);
     const [pollingJobId, setPollingJobId] = useState<string | null>(null);
+    
     const {
         cost,
         creditType,
@@ -107,18 +109,25 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         setShowPurchaseModal(false);
     };
 
-    const handleFormContinue = (values: RelationReportFormValues) => {
+    const handleFormContinue = async (values: RelationReportFormValues) => {
         setShowPurchaseModal(true);
+
+        const language = await AsyncStorage.getItem('language');
+        const locale = language?.startsWith('zh') ? 'name_zh' : `name_${language}`;
 
         const birthDateStr = values.birth_date instanceof Date
             ? values.birth_date.toISOString().split('T')[0]
             : values.birth_date;
         const genderShort = values.gender === "Male" ? "M" : values.gender === "Female" ? "F" : values.gender;
+
+        const country = values.birth_country[locale] || values.birth_country.name;
+        const city = values.birth_city[locale] || values.birth_city.name;
+
         setPayload({
             name: values.full_name,
             birth_date: birthDateStr,
             gender: genderShort,
-            birth_location: `${values.birth_country?.name}, ${values.birth_city?.name}`,
+            birth_location: `${country}, ${city}`,
             lat: `${values.birth_city?.latitude}`,
             lng: `${values.birth_city?.longitude}`
         });

@@ -13,12 +13,15 @@ import { useTranslation } from 'react-i18next';
 import CalendarIcon from '../../../../components/icons/auth/calendar-icon';
 import { formatDate } from '../../../../utils/formatter';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Country {
+  id: number;
   name: string;
-  iso3: string;
+  iso2: string;
 }
 interface City {
+  id: number;
   name: string;
   latitude: number;
   longitude: number;
@@ -73,48 +76,50 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
   const [showCityModal, setShowCityModal] = useState(false);
   const [countries, setCountries] = useState<Country[]>([]);
   const [cities, setCities] = useState<City[]>([]);
+  const [labelDropdown, setLabelDropdown] = useState<string>('');
 
   const watchedCountry = watch('birth_country');
   const watchedCity = watch('birth_city');
   const watchedDate = watch('birth_date');
   const watchedGender = watch('gender');
 
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await api.get('/v1/configs/countries');
-        setCountries(response.data);
-        const country = response.data[0]
-        setValue('birth_country', {
-          name: country.name,
-          iso3: country.iso3,
-        });
-        await fetchCities(country)
-      } catch (error) {
-        setCountries([]);
-      }
-    };
-    fetchCountries();
-  }, []);
+  const fetchCountries = async () => {
+    try {
+      const response = await api.get('/v1/configs/countries');
+      setCountries(response.data);
+      const country = response.data[0]
+      setValue('birth_country', response.data[0]);
+      await fetchCities(country)
+    } catch (error) {
+      setCountries([]);
+    }
+  };
 
   const fetchCities = async (country: Country) => {
     try {
-      const response = await api.get(`/v1/configs/countries/${country.iso3}/cities`);
+      const response = await api.get(`/v1/configs/countries/${country.iso2}/cities`);
       setCities(response.data);
       if (response.data.length > 0) {
         const city = response.data[0]
         console.log(city, 'city')
-        setValue('birth_city', {
-          name: city.name,
-          latitude: city.latitude,
-          longitude: city.longitude,
-        });
-
+        setValue('birth_city', response.data[0]);
       }
     } catch (error) {
       setCities([]);
     }
   };
+
+  const init = async () => {
+    const language = await AsyncStorage.getItem('language');
+    setLabelDropdown(language?.startsWith('zh') ? 'name_zh' : `name_${language}`);
+  }
+
+  useEffect(() => {
+    init();
+    fetchCountries();
+  }, []);
+
+
 
   const selectCountry = async (country: Country) => {
     setValue('birth_country', country);
@@ -137,6 +142,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
   return (
     <View style={styles.formContainer}>
       <AppText style={styles.formTitle} color='primary'>{t('relationReportForm.formTitle')}</AppText>
+      {/* FullName */}
       <View style={styles.formGroup}>
         <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.fullName")}</AppText>
         <AppInput
@@ -147,6 +153,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
           errors={errors}
         />
       </View>
+      {/* Birth Date */}
       <View style={styles.formGroup}>
         <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.birthDate")}</AppText>
         <Pressable onPress={() => setShowDatePicker(true)}>
@@ -160,52 +167,76 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
             />
           </View>
         </Pressable>
-        {showDatePicker && (
-          <DateTimePicker
-            value={watchedDate}
-            mode="date"
-            display="default"
-            onChange={onDateChange}
-            maximumDate={new Date()}
-          />
-        )}
+        {
+          showDatePicker && (
+            <DateTimePicker
+              value={watchedDate}
+              mode="date"
+              display="default"
+              onChange={onDateChange}
+              maximumDate={new Date()}
+            />
+          )
+        }
       </View>
-      <View style={styles.formGroup}>
-        <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.countryOfBirth")}</AppText>
-        <DropdownButton
-          onPress={() => {
-            setShowCountryModal(true);
-          }}
-          text={watchedCountry?.name || t("relationReportForm.pleaseSelectOne")}
-        />
-        {renderDropdownModal(
-          showCountryModal,
-          () => setShowCountryModal(false),
-          t('relationReportForm.selectCountry'),
-          countries as any[],
-          selectCountry,
-          watchedCountry as any,
-          'iso3'
-        )}
-      </View>
-      <View style={styles.formGroup}>
-        <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.cityOfBirth")}</AppText>
-        <DropdownButton
-          onPress={() => {
-            setShowCityModal(true);
-          }}
-          text={watchedCity?.name || t("relationReportForm.pleaseSelectOne")}
-        />
-        {renderDropdownModal(
-          showCityModal,
-          () => setShowCityModal(false),
-          t('relationReportForm.selectCity'),
-          cities as any[],
-          selectCity,
-          watchedCity as any,
-          'name'
-        )}
-      </View>
+      {/* Country of Birth */}
+      {
+        watchedCountry && (
+          <>
+            <View style={styles.formGroup}>
+              <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.countryOfBirth")}</AppText>
+              <DropdownButton
+                onPress={() => {
+                  setShowCountryModal(true);
+                }}
+                text={watchedCountry[labelDropdown] || watchedCountry?.name || t("relationReportForm.pleaseSelectOne")}
+              />
+              {
+                renderDropdownModal(
+                  showCountryModal,
+                  () => setShowCountryModal(false),
+                  t('relationReportForm.selectCountry'),
+                  countries as any[],
+                  selectCountry,
+                  watchedCountry as any,
+                  'iso3',
+                  labelDropdown
+                )
+              }
+            </View>
+          </>
+        )
+      }
+
+      {/* City of Birth */}
+      {
+        watchedCity && (
+          <>
+            <View style={styles.formGroup}>
+              <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.cityOfBirth")}</AppText>
+              <DropdownButton
+                onPress={() => {
+                  setShowCityModal(true);
+                }}
+                text={watchedCity[labelDropdown] || watchedCity?.name || t("relationReportForm.pleaseSelectOne")}
+              />
+              {
+                renderDropdownModal(
+                  showCityModal,
+                  () => setShowCityModal(false),
+                  t('relationReportForm.selectCity'),
+                  cities as any[],
+                  selectCity,
+                  watchedCity as any,
+                  'id',
+                  labelDropdown
+                )
+              }
+            </View>
+          </>
+        )
+      }
+      {/* Gender */}
       <View style={styles.formGroup}>
         <AppText variant="caption3" style={styles.label} color="neutral">{t("relationReportForm.gender")}</AppText>
         <View style={styles.genderRow}>
@@ -242,7 +273,6 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
           loading={loading}
         />
       </View>
-
     </View>
   );
 };

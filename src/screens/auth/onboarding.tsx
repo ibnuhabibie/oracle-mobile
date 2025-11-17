@@ -25,11 +25,14 @@ import { COLORS } from '../../constants/colors';
 import { useTranslation } from 'react-i18next';
 
 interface Country {
+  id: number;
   name: string;
+  iso2: string;
   iso3: string;
 }
 
 interface City {
+  id: number;
   name: string;
   latitude: number;
   longitude: number;
@@ -55,6 +58,8 @@ const Onboarding: FC<{
   const [showCountryModal, setShowCountryModal] = useState(false);
   const [showCityModal, setShowCityModal] = useState(false);
 
+  const [labelDropdown, setLabelDropdown] = useState('');
+
   const { t } = useTranslation();
 
   const { handleSubmit, setValue, watch, formState, setError } = useForm<FormData>({
@@ -76,6 +81,8 @@ const Onboarding: FC<{
     try {
       const response = await api.get('/v1/configs/countries');
       setCountries(response.data);
+      setValue('birth_country', response.data[0]);
+      await fetchCities(response.data[0]);
     } catch (error) {
       console.error('Failed to fetch countries:', error);
     }
@@ -83,16 +90,23 @@ const Onboarding: FC<{
 
   const fetchCities = async (country: Country) => {
     try {
-      console.log(watchedCountry)
-      const response = await api.get(`/v1/configs/countries/${country.iso3}/cities`);
+      const response = await api.get(`/v1/configs/countries/${country.iso2}/cities`);
       setCities(response.data);
+      setValue('birth_city', response.data[0]);
     } catch (error) {
       console.error('Failed to fetch countries:', error);
     }
   };
 
+  const init = async () => {
+    const language = await AsyncStorage.getItem('language');
+    setLabelDropdown(language?.startsWith('zh') ? 'name_zh' : `name_${language}`);
+    console.log('labelDropdown', labelDropdown);
+  }
+
 
   useEffect(() => {
+    init();
     fetchCountries();
   }, []);
 
@@ -118,8 +132,8 @@ const Onboarding: FC<{
       const res = await api.put('/v1/users', {
         birth_date,
         birth_time,
-        birth_country: data.birth_country.name,
-        birth_city: data.birth_city.name,
+        birth_country: `${data.birth_country.id}`,
+        birth_city: `${data.birth_city.id}`,
         birth_lat: data.birth_city.latitude,
         birth_lng: data.birth_city.longitude
       })
@@ -155,10 +169,19 @@ const Onboarding: FC<{
   const selectCountry = async (country: Country) => {
     console.log('country', country)
     setValue('birth_country', country);
-    await fetchCities(country);
-    if (cities.length > 0) {
-      setValue('birth_city', cities[0]);
+    
+    try {
+      const response = await api.get(`/v1/configs/countries/${country.iso2}/cities`);
+      const cities = response.data;
+      setCities(cities);
+      
+      if (cities.length > 0) {
+        setValue('birth_city', cities[0]);
+      }
+    } catch (error) {
+      console.error('Failed to fetch cities:', error);
     }
+    
     setShowCountryModal(false);
   };
 
@@ -207,15 +230,23 @@ const Onboarding: FC<{
           {t('onboarding.helpText')}
         </AppText>
 
-        <DropdownButton
-          onPress={() => setShowCountryModal(true)}
-          text={watchedCountry && typeof watchedCountry === 'object' ? watchedCountry.name : t('onboarding.pleaseSelectOne')}
-        />
+        {
+          watchedCountry && (
+            <DropdownButton
+              onPress={() => setShowCountryModal(true)}
+              text={(watchedCountry as any)[labelDropdown] || watchedCountry.name || t('onboarding.pleaseSelectOne')}
+            />
+          )
+        }
 
-        <DropdownButton
-          onPress={() => setShowCityModal(true)}
-          text={watchedCity && typeof watchedCity === 'object' ? watchedCity.name : t('onboarding.pleaseSelectOne')}
-        />
+        {
+          watchedCity && (
+            <DropdownButton
+              onPress={() => setShowCityModal(true)}
+              text={(watchedCity as any)[labelDropdown] || watchedCity.name || t('onboarding.pleaseSelectOne')}
+            />
+        )
+        }
       </View>
 
       <AppButton
@@ -256,7 +287,8 @@ const Onboarding: FC<{
         countries,
         selectCountry,
         watchedCountry?.iso3 ?? '',
-        'iso3'
+        'iso3',
+        labelDropdown
       )}
 
       {/* City Modal */}
@@ -267,7 +299,8 @@ const Onboarding: FC<{
         cities,
         selectCity,
         watchedCity?.name ?? '',
-        'name'
+        'id',
+        labelDropdown
       )}
 
     </ScreenContainer>

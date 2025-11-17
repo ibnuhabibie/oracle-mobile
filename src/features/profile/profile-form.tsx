@@ -1,7 +1,7 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
-import React, { useEffect, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { Pressable, StyleSheet, View } from 'react-native';
+import React, { Activity, useEffect, useState } from 'react';
+import { Controller, set, useForm } from 'react-hook-form';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { AppText } from '../../components/ui/app-text';
 import { useTranslation } from "react-i18next";
 
@@ -19,14 +19,16 @@ import { LANGUAGES } from '../../constants/app';
 import { scaleFont, scaleSize } from '../../utils/scale';
 
 export interface City {
+    id: number;
     name: string;
     latitude: number;
     longitude: number;
 }
 
 export interface Country {
+    id: number;
     name: string;
-    iso3: string;
+    iso2: string;
 }
 
 interface Profile {
@@ -64,13 +66,18 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
 }) => {
     const { t } = useTranslation();
 
+    const [isReady, setIsReady] = useState(false);
+
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [showCountryModal, setShowCountryModal] = useState(false);
     const [showCityModal, setShowCityModal] = useState(false);
+    const [showLanguageModal, setShowLanguageModal] = useState(false);
 
     const [countries, setCountries] = useState([]);
     const [cities, setCities] = useState([]);
+
+    const [labelDropdown, setLabelDropdown] = useState<string>('name_en');
 
     const { getUserProfile } = useAsyncStorage();
 
@@ -95,36 +102,68 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         },
     });
 
+    const fetchCountries = async () => {
+        try {
+            const response = await api.get('/v1/configs/countries');
+            setCountries(response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Failed to fetch countries:', error);
+        }
+    };
+
+    const fetchCities = async (country: Country) => {
+        try {
+            console.log('country', country)
+            const response = await api.get(`/v1/configs/countries/${country.iso2}/cities`);
+            const cities = response.data;
+            if (cities.length > 0) {
+                setValue('birth_city', cities[0]);
+            }
+            setCities(response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Failed to fetch countries:', error);
+        }
+    };
+    const init = async () => {
+        const profile = await getUserProfile() as Profile | null;
+        console.log('profile', profile)
+        if (!profile) return;
+
+        // Wait for countries to be fetched
+        const countries = await fetchCountries();
+        console.log('countries after fetch', countries);
+
+        // Find the country from the fetched countries
+        const country = countries.find((c: Country) => c.id === parseInt(profile.birth_country));
+        console.log('country', country, profile.birth_country);
+
+        // Wait for cities to be fetched
+        const cities = await fetchCities(country);
+        const city = cities.find((c: City) => c.id === parseInt(profile.birth_city)) || null;
+        console.log('city', city, profile.birth_city);
+
+        const [hours, minutes, seconds] = profile.birth_time.split(':').map(Number);
+        const birthTime = new Date();
+        birthTime.setHours(hours);
+        birthTime.setMinutes(minutes);
+        birthTime.setSeconds(seconds);
+
+        setValue('full_name', profile.full_name);
+        setValue('email', profile.email);
+        setValue('mobile_phone', profile.mobile_phone);
+        setValue('birth_date', new Date(profile.birth_date));
+        setValue('birth_time', birthTime);
+        setValue('gender', profile.gender === 'Male' ? 'Male' : 'Female');
+        setValue('birth_city', city);
+        setValue('birth_country', country);
+        setValue('language', profile.locale);
+        setLabelDropdown(profile.locale.startsWith('zh') ? 'name_zh' : `name_${profile.locale}`);
+        setIsReady(true);
+    };
+
     useEffect(() => {
-        const init = async () => {
-            const profile = await getUserProfile() as Profile | null;
-            console.log('profile', profile)
-            if (!profile) return;
-
-            const [hours, minutes, seconds] = profile.birth_time.split(':').map(Number);
-            const birthTime = new Date();
-            birthTime.setHours(hours);
-            birthTime.setMinutes(minutes);
-            birthTime.setSeconds(seconds);
-
-            setValue('full_name', profile.full_name);
-            setValue('email', profile.email);
-            setValue('mobile_phone', profile.mobile_phone);
-            setValue('birth_date', new Date(profile.birth_date));
-            setValue('birth_time', birthTime);
-            setValue('gender', profile.gender === 'Male' ? 'Male' : 'Female');
-            setValue('birth_city', {
-                name: profile.birth_city,
-                latitude: profile.birth_lat !== undefined && profile.birth_lat !== null ? parseFloat(profile.birth_lat as string) : 0,
-                longitude: profile.birth_lng !== undefined && profile.birth_lng !== null ? parseFloat(profile.birth_lng as string) : 0,
-            });
-            setValue('birth_country', {
-                name: profile.birth_country,
-                iso3: profile.birth_country,
-            });
-            setValue('language', profile.locale);
-        };
-
         init();
     }, []);
 
@@ -134,10 +173,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     const watchedTime = watch('birth_time');
     const watchedGender = watch('gender');
     const watchedLanguage = watch('language');
-    const watchedMobilePhone = watch('mobile_phone');
-
-    // Language dropdown modal state
-    const [showLanguageModal, setShowLanguageModal] = useState(false);
 
     const formRules = {
         full_name: {
@@ -162,33 +197,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             }
         },
     };
-
-    const fetchCountries = async () => {
-        try {
-            const response = await api.get('/v1/configs/countries');
-            setCountries(response.data);
-        } catch (error) {
-            console.error('Failed to fetch countries:', error);
-        }
-    };
-
-    const fetchCities = async (country: Country) => {
-        try {
-            const response = await api.get(`/v1/configs/countries/${country.iso3}/cities`);
-            const cities = response.data;
-            if (cities.length > 0) {
-                setValue('birth_city', cities[0]);
-            }
-            setCities(response.data);
-        } catch (error) {
-            console.error('Failed to fetch countries:', error);
-        }
-    };
-
-
-    useEffect(() => {
-        fetchCountries();
-    }, []);
 
     const onDateChange = (event: any, selectedDate?: Date) => {
         setShowDatePicker(false);
@@ -219,6 +227,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         setValue('language', lang.key);
         setShowLanguageModal(false);
     };
+
+    if (isReady === false) {
+        return <ActivityIndicator size="large" color={COLORS.primary} />;
+    }
 
     return (
         <>
@@ -316,17 +328,30 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     </Pressable>
                 </View>
 
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.countryOfBirth")}</AppText>
-                <DropdownButton
-                    onPress={() => setShowCountryModal(true)}
-                    text={watchedCountry?.name || t("profileForm.pleaseSelectOne")}
-                />
+                {
+                    watchedCountry && (
+                        <>
+                            <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.countryOfBirth")}</AppText>
+                            <DropdownButton
+                                onPress={() => setShowCountryModal(true)}
+                                text={watchedCountry[labelDropdown] || watchedCountry.name || t("profileForm.pleaseSelectOne")}
+                            />
+                        </>
+                    )
+                }
 
-                <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.cityOfBirth")}</AppText>
-                <DropdownButton
-                    onPress={() => setShowCityModal(true)}
-                    text={watchedCity?.name || t("profileForm.pleaseSelectOne")}
-                />
+                {
+                    watchedCity && (
+                        <>
+                            <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.cityOfBirth")}</AppText>
+                            <DropdownButton
+                                onPress={() => setShowCityModal(true)}
+                                text={watchedCity[labelDropdown] || watchedCity.name || t("profileForm.pleaseSelectOne")}
+                            />
+                        </>
+                    )
+                }
+
 
                 <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.language")}</AppText>
                 <DropdownButton
@@ -370,7 +395,8 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     countries as any,
                     selectCountry as any,
                     watchedCountry as any,
-                    'iso3'
+                    'iso3',
+                    labelDropdown
                 )
             }
 
@@ -382,7 +408,8 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 cities as any,
                 selectCity as any,
                 watchedCity as any,
-                'name'
+                'id',
+                labelDropdown
             )}
 
             {/* Language Modal */}
@@ -394,6 +421,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 selectLanguage as any,
                 LANGUAGES.find(l => l.key === watchedLanguage) as any,
                 'key',
+                'label'
             )}
         </>
     );

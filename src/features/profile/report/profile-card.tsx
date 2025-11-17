@@ -7,6 +7,7 @@ import { scaleFont, scaleSize } from '../../../utils/scale';
 import { ProfileIcon } from '../../../screens/main/profile/useAffinityProfile';
 import { formatDateOnly, formatTimeOfBirth } from '../../../utils/date';
 import { AppText } from '../../../components/ui/app-text';
+import api from '../../../utils/http';
 
 type UserProfile = {
     full_name?: string;
@@ -15,6 +16,7 @@ type UserProfile = {
     birth_country?: string;
     birth_city?: string;
     gender?: string;
+    locale?: string;
 };
 
 type ProfileCardProps = {
@@ -28,6 +30,16 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
     const { getUserProfile } = useAsyncStorage();
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
+
+    const getCity = async (id) => {
+        const city = await api.get(`/v1/configs/cities/${id}`)
+        return city.data
+    }
+
+    const getCountry = async (id) => {
+        const country = await api.get(`/v1/configs/countries/${id}`)
+        return country.data
+    }
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -46,8 +58,14 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ iconKey, cardTitle, profileDa
                 console.log(data, 'profileData');
                 if (data && typeof data === 'object' && 'gender' in data) {
                     const userProfile = data as UserProfile;
+                    const locale = userProfile.locale?.startsWith('zh') ? 'name_zh' : `name_${userProfile.locale}`;
+                    const city = await getCity(userProfile.birth_city);
+                    const country = await getCountry(userProfile.birth_country);
+
                     setProfile({
                         ...userProfile,
+                        birth_country: country[locale] || country.name,
+                        birth_city: city[locale] || city.name,
                         gender: userProfile.gender == 'Female' ? t('profileCard.female') : t('profileCard.male')
                     });
                 } else {
