@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { use } from 'react';
 import { InteractionManager } from "react-native";
 import {
   View,
   StyleSheet,
-  Image,
   Alert,
-  Dimensions,
   ActivityIndicator,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -33,6 +31,10 @@ import LoveReportIcon6 from '../../../../components/icons/services/love-report/l
 import LoveReportIcon7 from '../../../../components/icons/services/love-report/love-report-icon-7';
 import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
+import { formatPrice } from '../../../../utils/formatter';
+import { CURRENCIES } from '../../../../constants/app';
+import { getLocale } from '../../../../hooks/use-storage';
+import { set } from 'react-hook-form';
 
 type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveForecast'>;
 
@@ -41,12 +43,22 @@ type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveFor
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
   const { t } = useTranslation();
   const [iconsReady, setIconsReady] = React.useState(false);
+  const [currencySymbol, setCurrencySymbol] = React.useState('');
 
   React.useEffect(() => {
     const interaction = InteractionManager.runAfterInteractions(() => {
       setIconsReady(true);
     });
     return () => interaction && interaction.cancel && interaction.cancel();
+  }, []);
+
+  React.useEffect(() => {
+    const fetchLocaleAndSetCurrency = async () => {
+      const locale = await getLocale();
+      const currency = CURRENCIES.find(c => c.key === locale) || CURRENCIES[0];
+      setCurrencySymbol(currency.symbol);
+    };
+    fetchLocaleAndSetCurrency();
   }, []);
 
   const CARD_DATA = [
@@ -88,13 +100,13 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
   const [pollingJobId, setPollingJobId] = React.useState<string | null>(null);
   const {
     cost,
-    creditType,
     loading: costLoading,
     setLoading: setCostLoading
   } = useServiceCost('love_report');
 
   const handleContinue = async () => {
     setCostLoading(true);
+
     try {
       const response = await api.post('/v1/affinity/love-report', {});
       setShowPurchaseModal(false);
@@ -149,8 +161,9 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         <AppButton
           title={
             <View style={styles.buttonRow}>
-              <AppText color='white' style={{ marginRight: 4 }}>{t('loveForecast.purchase', { cost })}</AppText>
-              <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
+              <AppText color='white' style={{ marginRight: 4 }}>
+                {t('loveForecast.purchase', { cost: formatPrice(cost, currencySymbol) })}
+              </AppText>
             </View>
           }
           variant="primary"

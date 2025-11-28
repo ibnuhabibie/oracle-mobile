@@ -28,6 +28,9 @@ import FortuneReportIcon2 from '../../../../components/icons/services/fortune-re
 import FortuneReportIcon3 from '../../../../components/icons/services/fortune-report/fortune-report-icon-3';
 import FortuneReportIcon4 from '../../../../components/icons/services/fortune-report/fortune-report-icon-4';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
+import { getLocale } from '../../../../hooks/use-storage';
+import { CURRENCIES } from '../../../../constants/app';
+import { formatPrice } from '../../../../utils/formatter';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -36,12 +39,22 @@ type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Fortun
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [iconsReady, setIconsReady] = useState(false);
+    const [currencySymbol, setCurrencySymbol] = useState('');
 
     React.useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
             setIconsReady(true);
         });
         return () => interaction && interaction.cancel && interaction.cancel();
+    }, []);
+
+    React.useEffect(() => {
+        const fetchLocaleAndSetCurrency = async () => {
+            const locale = await getLocale();
+            const currency = CURRENCIES.find(c => c.key === locale) || CURRENCIES[0];
+            setCurrencySymbol(currency.symbol);
+        };
+        fetchLocaleAndSetCurrency();
     }, []);
 
     const fortuneYear = (() => {
@@ -142,9 +155,8 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                     title={
                         <View style={styles.buttonRow}>
                             <AppText color='white' style={{ marginRight: scaleSize(4) }}>
-                                {t('fortuneReport.purchase', { cost })}
+                                {t('fortuneReport.purchase', { cost: formatPrice(cost, currencySymbol) })}
                             </AppText>
-                            <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
                         </View>
                     }
                     onPress={() => setShowPurchaseModal(true)}

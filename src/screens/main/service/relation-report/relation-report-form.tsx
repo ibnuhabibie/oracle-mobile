@@ -11,7 +11,6 @@ import { DropdownButton, renderDropdownModal } from '../../../../components/widg
 import api from '../../../../utils/http';
 import { useTranslation } from 'react-i18next';
 import CalendarIcon from '../../../../components/icons/auth/calendar-icon';
-import { formatDate } from '../../../../utils/formatter';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

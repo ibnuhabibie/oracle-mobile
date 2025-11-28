@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAsyncStorage } from './use-storage';
 
 export function useServiceCost(serviceKey: string) {
-  const { getConfig } = useAsyncStorage();
+  const { getConfig, getLocale } = useAsyncStorage();
   const [cost, setCost] = useState<number>(0);
   const [creditType, setCreditType] = useState<string>('gold');
   const [loading, setLoading] = useState<boolean>(false);
@@ -16,12 +16,13 @@ export function useServiceCost(serviceKey: string) {
       if (serviceKey === 'ask_affinity' || serviceKey === 'secret_diary') {
         cost = getConfigValue(`${serviceKey}_cost_using_gold_credit`, config);
       } else {
-        cost = getConfigValue(`${serviceKey}_cost_using_direct_payment`, config);
+        const locale = await getLocale();
+        cost = getConfigValue(`${serviceKey}_cost_using_direct_payment_${locale}`, config);
       }
 
       setCreditType('gold');
       setCost(cost);
-      setLoading(false); 
+      setLoading(false);
     };
 
     fetchCost();

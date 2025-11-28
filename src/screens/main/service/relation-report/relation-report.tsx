@@ -30,15 +30,16 @@ import RelationReportIcon3 from '../../../../components/icons/services/relation-
 import RelationReportIcon4 from '../../../../components/icons/services/relation-report/relation-report-icon-4';
 import RelationIcon from '../../../../components/icons/affinity/relation-icon';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getLocale } from '../../../../hooks/use-storage';
+import { CURRENCIES } from '../../../../constants/app';
+import { formatPrice } from '../../../../utils/formatter';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
-
-
 
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [iconsReady, setIconsReady] = useState(false);
+    const [currencySymbol, setCurrencySymbol] = useState('');
 
     React.useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
@@ -46,6 +47,16 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         });
         return () => interaction && interaction.cancel && interaction.cancel();
     }, []);
+
+    React.useEffect(() => {
+        const fetchLocaleAndSetCurrency = async () => {
+            const locale = await getLocale();
+            const currency = CURRENCIES.find(c => c.key === locale) || CURRENCIES[0];
+            setCurrencySymbol(currency.symbol);
+        };
+        fetchLocaleAndSetCurrency();
+    }, []);
+
 
     const CARD_DATA = [
         {
@@ -74,7 +85,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const [showPurchaseModal, setShowPurchaseModal] = useState(false);
     const [showPollingModal, setShowPollingModal] = useState(false);
     const [pollingJobId, setPollingJobId] = useState<string | null>(null);
-    
+
     const {
         cost,
         creditType,
@@ -112,7 +123,6 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const handleFormContinue = async (values: RelationReportFormValues) => {
         setShowPurchaseModal(true);
 
-        const language = await AsyncStorage.getItem('language');
         const locale = language?.startsWith('zh') ? 'name_zh' : `name_${language}`;
 
         const birthDateStr = values.birth_date instanceof Date
@@ -167,9 +177,8 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                         title={
                             <View style={styles.buttonRow}>
                                 <AppText color='white' style={{ marginRight: scaleSize(4) }}>
-                                    {t('relationReport.purchase', { cost })}
+                                    {t('relationReport.purchase', { cost: formatPrice(cost, currencySymbol) })}
                                 </AppText>
-                                <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
                             </View>
                         }
                         variant="primary"

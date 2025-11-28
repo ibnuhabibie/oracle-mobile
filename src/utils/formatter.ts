@@ -19,3 +19,13 @@ export const formatTime = (time: Date | null) => {
     hour12: true,
   });
 };
+
+// Helper function to format price based on currency
+export const formatPrice = (price: number, currencySymbol: string): string => {
+  // For Indonesian Rupiah (Rp), format with dots as thousand separators
+  if (currencySymbol === 'Rp') {
+    return `${currencySymbol}${price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+  }
+  // For USD ($) and other currencies, format with 2 decimal places
+  return `${currencySymbol}${price.toFixed(2)}`;
+};

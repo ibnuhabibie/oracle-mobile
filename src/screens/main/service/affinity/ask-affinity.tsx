@@ -139,7 +139,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
           style={styles.carouselStyle}
           mode="parallax"
           modeConfig={{
-            parallaxScrollingScale: scaleSize(0.85, 0.85, 0.9),
+            parallaxScrollingScale: scaleSize(0.85, 0.85, 0.85),
             parallaxScrollingOffset: scaleSize(220), // Fixed value instead of scaled
           }}
           onProgressChange={progress}

@@ -6,7 +6,8 @@ import api from '../utils/http';
 const STORAGE_KEYS = {
     AUTH_TOKEN: 'auth_token',
     USER_PROFILE: 'user_profile',
-    CONFIG: 'config'
+    CONFIG: 'config',
+    LANGUAGE: 'language',
 } as const;
 
 export const useAsyncStorage = () => {
@@ -118,6 +119,16 @@ export const useAsyncStorage = () => {
         }
     };
 
+    const getLocale = async (): Promise<string> => {
+        try {
+            const lang = await AsyncStorage.getItem(STORAGE_KEYS.LANGUAGE);
+            return lang || 'en';
+        } catch (error) {
+            console.error('Error getting locale:', error);
+        }
+        return 'en';
+    };
+
     return {
         setAuthToken,
         getAuthToken,
@@ -129,7 +140,8 @@ export const useAsyncStorage = () => {
         getConfig,
         removeConfig,
         clearStorage,
-        sync
+        sync,
+        getLocale,
     };
 };
 
