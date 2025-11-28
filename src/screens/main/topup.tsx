@@ -104,7 +104,7 @@ const PackageCardList: FC<PackageCardListProps> = ({ packages, selectedPackage, 
                                 </AppText>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
                                     <AppText variant='caption1' color='neutral'>{t('topup.getCoins', { count: pkg.credits })} </AppText>
-                                    <Coin />
+                                    <Coin type='gold' />
                                 </View>
                                 {(() => {
                                     const locale = language || 'en';

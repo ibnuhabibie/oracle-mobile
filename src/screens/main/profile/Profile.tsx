@@ -274,7 +274,7 @@ const Profile: FC<ProfileProps> = ({navigation}) => {
             </AppText>
             <CoinIcon size={scaleSize(16, 14, 19)} type="gold" />
           </View>
-          <View style={styles.coinItem}>
+          <View style={[styles.coinItem, {display: 'none'}]}>
             <AppText
               color="white"
               style={styles.coinAmount}

@@ -17,6 +17,8 @@ const CoinIcon: React.FC<CoinIconProps> = ({
     resolvedColor = '#fff';
   } else if (type === 'gold') {
     resolvedColor = '#E0AE1E';
+  } else if (type === 'white') {
+    resolvedColor = '#FFFFFF';
   }
 
   return (

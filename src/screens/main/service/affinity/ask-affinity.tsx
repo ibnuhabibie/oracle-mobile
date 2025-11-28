@@ -180,7 +180,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
                   {t('askAffinity.purchaseButton', { cost })}
                 </AppText>
                 <CoinIcon
-                  type={creditType === 'gold' ? 'gold' : 'silver'}
+                  type={creditType === 'gold' ? 'white' : 'silver'}
                   size={scaleSize(18)}
                 />
               </View>

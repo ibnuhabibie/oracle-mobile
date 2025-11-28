@@ -80,7 +80,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
   const {
     loading: costLoading,
     setLoading: setCostLoading
-  } = useServiceCost('ask_affinity');
+  } = useServiceCost('secret_diary');
 
   const fetchData = useCallback(async () => {
     if (!id) return;
