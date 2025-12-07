@@ -54,7 +54,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
           return;
         }
 
-        let userCredit = creditType === 'silver' ? data.user?.silver_credits : data.user?.gold_credits;
+        let userCredit = data.user?.gold_credits;
         setUserCredit(userCredit ?? 0);
         const isSufficient = (userCredit ?? 0) >= cost;
         setIsSufficient(isSufficient);

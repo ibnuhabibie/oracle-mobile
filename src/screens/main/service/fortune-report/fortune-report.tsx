@@ -1,36 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     StyleSheet,
     Alert,
-    Dimensions,
     ActivityIndicator,
     InteractionManager,
 } from 'react-native';
+import {
+    initPaymentSheet,
+    presentPaymentSheet,
+} from '@stripe/stripe-react-native';
+import * as RNLocalize from "react-native-localize";
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
+
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import CoinIcon from '../../../../components/icons/profile/coin-icon';
-import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import api from '../../../../utils/http';
-import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
-import { useTranslation } from 'react-i18next';
 import FortuneReportIcon from '../../../../components/icons/services/fortune-report/fortune-report-icon';
 
 import FortuneReportIcon1 from '../../../../components/icons/services/fortune-report/fortune-report-icon-1';
 import FortuneReportIcon2 from '../../../../components/icons/services/fortune-report/fortune-report-icon-2';
 import FortuneReportIcon3 from '../../../../components/icons/services/fortune-report/fortune-report-icon-3';
 import FortuneReportIcon4 from '../../../../components/icons/services/fortune-report/fortune-report-icon-4';
-import { scaleSize, scaleFont } from '../../../../utils/scale';
-import { getLocale } from '../../../../hooks/use-storage';
+import { scaleSize } from '../../../../utils/scale';
 import { CURRENCIES } from '../../../../constants/app';
 import { formatPrice } from '../../../../utils/formatter';
+import { getLocaleByCountryCode } from '../../../../utils/platform';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -40,18 +42,23 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [iconsReady, setIconsReady] = useState(false);
     const [currencySymbol, setCurrencySymbol] = useState('');
+    const [locale, setLocale] = useState('');
 
-    React.useEffect(() => {
+    useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
             setIconsReady(true);
         });
         return () => interaction && interaction.cancel && interaction.cancel();
     }, []);
 
-    React.useEffect(() => {
+
+    useEffect(() => {
         const fetchLocaleAndSetCurrency = async () => {
-            const locale = await getLocale();
-            const currency = CURRENCIES.find(c => c.key === locale) || CURRENCIES[0];
+            const countryCode = RNLocalize.getCountry();
+            const _locale = getLocaleByCountryCode(countryCode);
+
+            setLocale(_locale);
+            const currency = CURRENCIES.find(c => c.key === _locale) || CURRENCIES[0];
             setCurrencySymbol(currency.symbol);
         };
         fetchLocaleAndSetCurrency();
@@ -66,7 +73,6 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
 
     const shinySize = scaleSize(160);
     const iconSize = scaleSize(44);
-    const gridGap = scaleSize(14);
 
     const CARD_DATA = [
         {
@@ -95,51 +101,58 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
 
     const {
         cost,
-        creditType,
         loading: costLoading,
         setLoading: setCostLoading
     } = useServiceCost('transit_report');
-    const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-    const [showPollingModal, setShowPollingModal] = useState(false);
-    const [pollingJobId, setPollingJobId] = useState<string | null>(null);
 
-    const handleCancel = () => {
-        setShowPurchaseModal(false);
-    };
 
-    const handleContinue = async () => {
-        setCostLoading(true);
-        try {
-            const response = await api.post('/v1/affinity/transit-report', {});
-            setShowPurchaseModal(false);
-            // Expecting response.data.job_id
-            const jobId = response?.data?.job_id;
-            if (jobId) {
-                setPollingJobId(jobId);
-                setShowPollingModal(true);
-            } else {
-                Alert.alert('Error', 'No job_id returned from server.');
-            }
-        } catch (err) {
-            setShowPurchaseModal(false);
-        } finally {
-            setCostLoading(false);
+    const openPaymentSheet = async (clientSecret: string) => {
+        const { error: errorInit } = await initPaymentSheet({
+            paymentIntentClientSecret: clientSecret,
+            merchantDisplayName: 'Affinity AI',
+        });
+
+        if (errorInit) {
+            Alert.alert(t('topup.paymentFailed'), errorInit.message);
+        }
+
+        const { error } = await presentPaymentSheet();
+
+        if (error) {
+            console.log(error)
+            Alert.alert(t('topup.paymentFailed'), error.message);
+        } else {
+            Alert.alert(
+                t('topup.success'),
+                t('topup.paymentComplete'),
+                [
+                    {
+                        text: t('topup.ok'),
+                        onPress: () => navigation.navigate('Tabs', { screen: 'Profile' })
+                    }
+                ]
+            );
         }
     };
 
-    const handlePollingResult = (usageHistory: any) => {
-        setShowPollingModal(false);
-        navigation.navigate('FortuneReportResult', {
-            result: JSON.parse(usageHistory.response_data),
-            job_id: pollingJobId ?? ''
-        });
-        setPollingJobId(null);
-    };
+    const directPayment = async () => {
+        setCostLoading(true);
 
-    const handlePollingError = (error: any) => {
-        setShowPollingModal(false);
-        setPollingJobId(null);
-        Alert.alert('Error', 'Failed to fetch report status.');
+        try {
+            const response = await api.post('/v1/payments/direct', {
+                reportType: "transit_report",
+                locale,
+            });
+            console.log(response)
+
+            setCostLoading(false);
+            openPaymentSheet(response.data.client_secret)
+        } catch (err) {
+            setCostLoading(false);
+            console.log(err)
+        } finally {
+            setCostLoading(false);
+        }
     };
 
     return (
@@ -159,7 +172,8 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                             </AppText>
                         </View>
                     }
-                    onPress={() => setShowPurchaseModal(true)}
+                    loading={costLoading}
+                    onPress={directPayment}
                 />
             }
         >
@@ -197,26 +211,6 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 </View>
             )}
             <View style={styles.spacer} />
-            <PurchaseAlertModal
-                visible={showPurchaseModal}
-                onContinue={handleContinue}
-                onCancel={handleCancel}
-                service="transit_report"
-                loading={costLoading}
-            />
-            {pollingJobId && (
-                <PollingLoadingModal
-                    job_id={pollingJobId}
-                    visible={showPollingModal}
-                    message={t('fortuneReport.pollingMessage')}
-                    onResult={handlePollingResult}
-                    onError={handlePollingError}
-                    onClose={() => {
-                        setShowPollingModal(false);
-                        setPollingJobId(null);
-                    }}
-                />
-            )}
         </ScreenContainer>
     );
 };

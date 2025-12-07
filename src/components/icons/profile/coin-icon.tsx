@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 
-type CoinType = 'silver' | 'gold';
+type CoinType = 'silver' | 'gold' | 'white';
 
 interface CoinIconProps {
   size?: number;

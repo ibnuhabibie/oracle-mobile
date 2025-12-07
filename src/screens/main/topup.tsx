@@ -5,6 +5,7 @@ import {
     initPaymentSheet,
     presentPaymentSheet,
 } from '@stripe/stripe-react-native';
+import * as RNLocalize from "react-native-localize";
 
 
 import { MainNavigatorParamList } from '../../navigators/types';
@@ -20,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 import { useAsyncStorage } from '../../hooks/use-storage';
 
 import { formatPrice } from '../../utils/formatter';
+import { getLocaleByCountryCode } from '../../utils/platform';
 
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
@@ -235,11 +237,13 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
     const [selectedSubscription, setSelectedSubscription] = useState<number | null>(null);
-    const [packages, setPackages] = useState<PackageItem[]>([]);
     const [subscriptions, setSubscriptions] = useState<SubscriptionItem[]>([]);
-    const [loadingPackages, setLoadingPackages] = useState<boolean>(true);
     const [loadingSubscriptions, setLoadingSubscriptions] = useState<boolean>(true);
+
+    const [packages, setPackages] = useState<PackageItem[]>([]);
+    const [loadingPackages, setLoadingPackages] = useState<boolean>(true);
     const [errorPackages, setErrorPackages] = useState<string | null>(null);
+
     const [errorSubscriptions, setErrorSubscriptions] = useState<string | null>(null);
     const [processing, setProcessing] = useState<boolean>(false);
     const [userSubscriptionId, setUserSubscriptionId] = useState<number | null>(null);
@@ -247,7 +251,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
     const { getUserProfile, getLocale } = useAsyncStorage();
 
-    const fetchPackages = async (_locale) => {
+    const fetchPackages = async (_locale: string) => {
         console.log('_locale in fetchPackages', _locale);
         setLoadingPackages(true);
         setErrorPackages(null);
@@ -261,7 +265,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         }
     };
 
-    const fetchSubscriptions = async (_locale) => {
+    const fetchSubscriptions = async (_locale: string) => {
         console.log('_locale in fetchSubscriptions', _locale);
         setLoadingSubscriptions(true);
         setErrorSubscriptions(null);
@@ -277,14 +281,14 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
     useEffect(() => {
         const init = async () => {
-            // Get language from AsyncStorage
-            const _locale = await getLocale();
-            const newLocale = _locale.startsWith('zh') ? 'zh' : _locale;
-            setLocale(newLocale);
-            console.log('newLocale', newLocale);
+            const countryCode = RNLocalize.getCountry();
 
-            await fetchPackages(newLocale);
-            await fetchSubscriptions(newLocale);
+            const locale = getLocaleByCountryCode(countryCode);
+            console.log(countryCode, locale);
+            setLocale(locale);
+
+            // await fetchPackages(newLocale);
+            await fetchSubscriptions(locale);
             // Get user profile and subscription_id
             const profile = await getUserProfile();
             if (profile && typeof profile === 'object' && 'subscription_id' in profile) {
@@ -326,10 +330,10 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     };
 
     // Mutually exclusive selection handlers
-    const handleSelectPackage = (id: number) => {
-        setSelectedPackage(id);
-        setSelectedSubscription(null);
-    };
+    // const handleSelectPackage = (id: number) => {
+    //     setSelectedPackage(id);
+    //     setSelectedSubscription(null);
+    // };
 
     const handleSelectSubscription = (id: number) => {
         setSelectedSubscription(id);
@@ -346,7 +350,10 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 client_secret = res.data.client_secret;
                 // Alert.alert('Success', 'Top up successful!');
             } else if (selectedSubscription !== null) {
-                const res = await api.post('/v1/payments/subscribe', { subscription_id: selectedSubscription });
+                const res = await api.post('/v1/payments/subscribe', {
+                    subscription_id: selectedSubscription,
+                    locale: locale
+                });
                 client_secret = res.data.client_secret
                 // Alert.alert('Success', 'Subscription successful!');
             }
@@ -381,6 +388,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 />
             }
         >
+            {/* 
             <PackageCardList
                 packages={packages}
                 selectedPackage={selectedPackage}
@@ -389,6 +397,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 error={errorPackages}
                 locale={locale}
             />
+             */}
             {userSubscriptionId == null && (
                 <SubscriptionCardList
                     subscriptions={subscriptions}

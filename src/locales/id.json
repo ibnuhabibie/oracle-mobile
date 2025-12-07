@@ -253,8 +253,9 @@
     },
     "usageHistory": {
         "noHistoryFound": "Tidak ada riwayat penggunaan ditemukan.",
-        "details": "Pembelian Anda berhasil, lihat detailnya!"
-    },
+        "details": "Pembelian Anda berhasil, lihat detailnya!",
+        "paymentPending": "Pembayaran belum selesai. Silakan lengkapi pembayaran untuk melanjutkan transaksi."
+        },
     "affinityResult": {
         "title": "Tanya Affinity",
         "presentSituation": "Situasi Saat Ini",

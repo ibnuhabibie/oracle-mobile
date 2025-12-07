@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     StyleSheet,
-    Image,
     Alert,
-    Dimensions,
     ActivityIndicator,
     InteractionManager,
 } from 'react-native';
+import {
+    initPaymentSheet,
+    presentPaymentSheet,
+} from '@stripe/stripe-react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
+import * as RNLocalize from "react-native-localize";
+
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
@@ -18,21 +23,18 @@ import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 import RelationReportForm, { RelationReportFormValues } from './relation-report-form';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import CoinIcon from '../../../../components/icons/profile/coin-icon';
-import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import api from '../../../../utils/http';
-import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
-import { useTranslation } from 'react-i18next';
 import RelationReportIcon from '../../../../components/icons/services/relation-report/relation-report-icon';
 import RelationReportIcon1 from '../../../../components/icons/services/relation-report/relation-report-icon-1';
 import RelationReportIcon2 from '../../../../components/icons/services/relation-report/relation-report-icon-2';
 import RelationReportIcon3 from '../../../../components/icons/services/relation-report/relation-report-icon-3';
 import RelationReportIcon4 from '../../../../components/icons/services/relation-report/relation-report-icon-4';
 import RelationIcon from '../../../../components/icons/affinity/relation-icon';
-import { scaleSize, scaleFont } from '../../../../utils/scale';
+import { scaleSize } from '../../../../utils/scale';
 import { getLocale } from '../../../../hooks/use-storage';
 import { CURRENCIES } from '../../../../constants/app';
 import { formatPrice } from '../../../../utils/formatter';
+import { getLocaleByCountryCode } from '../../../../utils/platform';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -40,18 +42,22 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [iconsReady, setIconsReady] = useState(false);
     const [currencySymbol, setCurrencySymbol] = useState('');
+    const [locale, setLocale] = useState('');
 
-    React.useEffect(() => {
+    useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
             setIconsReady(true);
         });
         return () => interaction && interaction.cancel && interaction.cancel();
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchLocaleAndSetCurrency = async () => {
-            const locale = await getLocale();
-            const currency = CURRENCIES.find(c => c.key === locale) || CURRENCIES[0];
+            const countryCode = RNLocalize.getCountry();
+            const _locale = getLocaleByCountryCode(countryCode);
+
+            setLocale(_locale);
+            const currency = CURRENCIES.find(c => c.key === _locale) || CURRENCIES[0];
             setCurrencySymbol(currency.symbol);
         };
         fetchLocaleAndSetCurrency();
@@ -82,86 +88,92 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     ];
 
     const [showForm, setShowForm] = useState(false);
-    const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-    const [showPollingModal, setShowPollingModal] = useState(false);
-    const [pollingJobId, setPollingJobId] = useState<string | null>(null);
 
     const {
         cost,
-        creditType,
         loading: costLoading,
         setLoading: setCostLoading
     } = useServiceCost('relationship_report');
-    const [payload, setPayload] = useState<any>(null);
 
-    const handleContinue = async () => {
-        setCostLoading(true);
+    const openPaymentSheet = async (clientSecret: string) => {
+        const { error: errorInit } = await initPaymentSheet({
+            paymentIntentClientSecret: clientSecret,
+            merchantDisplayName: 'Affinity AI',
+        });
+
+        if (errorInit) {
+            Alert.alert(t('topup.paymentFailed'), errorInit.message);
+        }
+
+        const { error } = await presentPaymentSheet();
+
+        if (error) {
+            console.log(error)
+            Alert.alert(t('topup.paymentFailed'), error.message);
+        } else {
+            Alert.alert(
+                t('topup.success'),
+                t('topup.paymentComplete'),
+                [
+                    {
+                        text: t('topup.ok'),
+                        onPress: () => navigation.navigate('Tabs', { screen: 'Profile' })
+                    }
+                ]
+            );
+        }
+    };
+
+    const handleFormContinue = async (values: RelationReportFormValues) => {
         try {
-            const response = await api.post('/v1/affinity/relationship-report', payload);
-            setShowPurchaseModal(false);
-            setShowForm(false);
+            setCostLoading(true);
+            
+            const language = await getLocale();
+            const _locale = language?.startsWith('zh') ? 'name_zh' : `name_${language}`;
 
-            // Expecting response.data.job_id
-            const jobId = response?.data?.job_id;
-            if (jobId) {
-                setPollingJobId(jobId);
-                setShowPollingModal(true);
-            } else {
-                Alert.alert('Error', 'No job_id returned from server.');
+            const birthDateStr = values.birth_date instanceof Date
+                ? values.birth_date.toISOString().split('T')[0]
+                : values.birth_date;
+            const genderShort = values.gender === "Male" ? "M" : values.gender === "Female" ? "F" : values.gender;
+
+            const country = values.birth_country[_locale] || values.birth_country.name;
+            const city = values.birth_city[_locale] || values.birth_city.name;
+
+            const payload = {
+                name: values.full_name,
+                birth_date: birthDateStr,
+                gender: genderShort,
+                birth_location: `${country}, ${city}`,
+                lat: `${values.birth_city?.latitude}`,
+                lng: `${values.birth_city?.longitude}`
             }
+
+            console.log({
+                reportType: "relationship_report",
+                locale,
+                partner: payload
+            })
+
+            const response = await api.post('/v1/payments/direct', {
+                reportType: "relationship_report",
+                locale,
+                partner: payload
+            });
+            console.log(response)
+
+            setCostLoading(false);
+            openPaymentSheet(response.data.client_secret)
+            setShowForm(false);
         } catch (err) {
-            setShowPurchaseModal(false);
+            setCostLoading(false);
+            console.log(err)
         } finally {
             setCostLoading(false);
         }
     };
 
-    const handleCancel = () => {
-        setShowPurchaseModal(false);
-    };
-
-    const handleFormContinue = async (values: RelationReportFormValues) => {
-        setShowPurchaseModal(true);
-
-        const locale = language?.startsWith('zh') ? 'name_zh' : `name_${language}`;
-
-        const birthDateStr = values.birth_date instanceof Date
-            ? values.birth_date.toISOString().split('T')[0]
-            : values.birth_date;
-        const genderShort = values.gender === "Male" ? "M" : values.gender === "Female" ? "F" : values.gender;
-
-        const country = values.birth_country[locale] || values.birth_country.name;
-        const city = values.birth_city[locale] || values.birth_city.name;
-
-        setPayload({
-            name: values.full_name,
-            birth_date: birthDateStr,
-            gender: genderShort,
-            birth_location: `${country}, ${city}`,
-            lat: `${values.birth_city?.latitude}`,
-            lng: `${values.birth_city?.longitude}`
-        });
-    };
-
-    const handlePollingResult = (usageHistory: any) => {
-        setShowPollingModal(false);
-        navigation.navigate('RelationReportResult', {
-            result: JSON.parse(usageHistory.response_data),
-            love_profile: payload,
-            job_id: pollingJobId ?? ''
-        });
-        setPollingJobId(null);
-    };
-
-    const handlePollingError = (error: any) => {
-        setShowPollingModal(false);
-        setPollingJobId(null);
-        Alert.alert('Error', 'Failed to fetch report status.');
-    };
-
     const shinySize = scaleSize(140);
     const iconSize = scaleSize(44);
-    const gridGap = scaleSize(14);
 
     return (
         <ScreenContainer
@@ -182,12 +194,14 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                             </View>
                         }
                         variant="primary"
+                        loading={costLoading}
                         onPress={() => setShowForm(true)}
                     />
                 ) : (
                     <RelationReportForm
                         onSubmit={(values: RelationReportFormValues) => handleFormContinue(values)}
                         onCancel={() => setShowForm(false)}
+                        loading={costLoading}
                     />
                 )
             }
@@ -228,26 +242,6 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 </View>
             )}
             <View style={styles.spacer} />
-            <PurchaseAlertModal
-                visible={showPurchaseModal}
-                onContinue={handleContinue}
-                onCancel={handleCancel}
-                service="relationship_report"
-                loading={costLoading}
-            />
-            {pollingJobId && (
-                <PollingLoadingModal
-                    job_id={pollingJobId}
-                    visible={showPollingModal}
-                    message={t('relationReport.pollingMessage')}
-                    onResult={handlePollingResult}
-                    onError={handlePollingError}
-                    onClose={() => {
-                        setShowPollingModal(false);
-                        setPollingJobId(null);
-                    }}
-                />
-            )}
         </ScreenContainer>
     );
 };

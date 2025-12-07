@@ -253,7 +253,8 @@
     },
     "usageHistory": {
         "noHistoryFound": "未找到使用记录。",
-        "details": "您的购买已成功，查看详情！"
+        "details": "您的购买已成功，查看详情！",
+        "paymentPending": "支付未完成。请完成支付以继续交易。"
     },
     "affinityResult": {
         "title": "问 Affinity",

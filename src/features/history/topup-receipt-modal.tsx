@@ -82,14 +82,14 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                     {item.package?.name || item.subscription?.name || item.topup_type}
                                 </AppText>
                                 <AppText variant="body1" style={styles.modalItemPrice} color="neutral">
-                                    ${item.amount}
+                                    {item.currency_symbol}{item.amount}
                                 </AppText>
                             </View>
                             <View style={styles.modalRow}>
                                 <View style={{ flex: 1 }} />
                                 <AppText variant="body1" style={styles.modalTotalLabel} color="neutral">{t("topupReceiptModal.total")}</AppText>
                                 <AppText variant="body1" style={styles.modalTotalValue} color="neutral">
-                                    ${item.amount}
+                                    {item.currency_symbol}{item.amount}
                                 </AppText>
                             </View>
                             <View style={styles.modalSectionDivider} />

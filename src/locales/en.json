@@ -253,7 +253,8 @@
     },
     "usageHistory": {
         "noHistoryFound": "No usage history found.",
-        "details": "Your purchase was successful, see the details!"
+        "details": "Your purchase was successful, see the details!",
+        "paymentPending": "Payment is not completed. Please complete the payment to proceed with the transaction."
     },
     "affinityResult": {
         "title": "Ask Affinity",

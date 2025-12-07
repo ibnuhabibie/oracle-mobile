@@ -245,8 +245,9 @@
   },
   "usageHistory": {
     "noHistoryFound": "사용 내역이 없습니다.",
-    "details": "구매가 성공적으로 완료되었습니다. 자세히 확인하세요!"
-  },
+    "details": "구매가 성공적으로 완료되었습니다. 자세히 확인하세요!",
+    "paymentPending": "결제가 완료되지 않았습니다. 거래를 계속하려면 결제를 완료해주세요."
+      },
   "affinityResult": {
     "title": "애피니티 질문",
     "presentSituation": "현재 상황",

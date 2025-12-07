@@ -245,8 +245,9 @@
   },
   "usageHistory": {
     "noHistoryFound": "利用履歴が見つかりません。",
-    "details": "購入が成功しました。詳細をご覧ください！"
-  },
+    "details": "購入が成功しました。詳細をご覧ください！",
+    "paymentPending": "支払いが完了していません。取引を続行するには支払いを完了してください。"
+      },
   "affinityResult": {
     "title": "アフィニティに質問",
     "presentSituation": "現在の状況",

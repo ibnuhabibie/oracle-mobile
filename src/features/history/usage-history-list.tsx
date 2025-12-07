@@ -15,6 +15,8 @@ interface UsageItem {
     response_data: string;
     created_at: string;
     updated_at: string;
+    payment_status: 'pending' | 'completed' | 'failed' | 'refunded' | 'cancelled';
+    payment_type: 'direct' | 'credit';
     user: {
         user_id: number;
         full_name: string;
@@ -109,6 +111,12 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
 
     const renderUsageItem = ({ item }: { item: UsageItem }) => {
         const formattedDate = formatDateWithTime(item.created_at);
+        let details = t("usageHistory.details")
+        
+        if (item.payment_type == 'direct' && item.payment_status == 'pending') {
+            details = t("usageHistory.paymentPending")
+        }
+
         return (
             <Pressable
                 style={styles.pressable}
@@ -122,7 +130,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
                         {getServiceTypeLabel(item.service_type, t)}
                     </AppText>
                     <AppText variant="caption4" color="neutral">
-                        {t("usageHistory.details")}
+                        {details}
                     </AppText>
                 </View>
                 <View style={styles.dateContainer}>
