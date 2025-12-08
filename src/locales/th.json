@@ -459,7 +459,10 @@
         "title": "เติมเงิน",
         "noHistoryFound": "ไม่พบประวัติการเติมเงิน",
         "failedToLoadPackages": "ไม่สามารถโหลดแพ็กเกจ กรุณาลองใหม่อีกครั้งภายหลัง",
-        "failedToLoadSubscriptions": "ไม่สามารถโหลดการสมัครสมาชิก กรุณาลองใหม่อีกครั้งภายหลัง"
+        "failedToLoadSubscriptions": "ไม่สามารถโหลดการสมัครสมาชิก กรุณาลองใหม่อีกครั้งภายหลัง",
+        "activeSubscriptionTitle": "การสมัครสมาชิกของคุณ",
+        "activeSubscriptionSubtitle": "การสมัครสมาชิกของคุณกำลังใช้งานอยู่และจะต่ออายุอัตโนมัติ.",
+        "cancelSubscription": "ยกเลิกการสมัครสมาชิก"
     },
     "topupReceiptModal": {
         "receipt": "ใบเสร็จ",
@@ -482,5 +485,11 @@
         "you": "คุณ",
         "him": "เขา",
         "relationshipOutcome": "ผลลัพธ์ของความสัมพันธ์"
+    },
+    "directPayment": {
+        "paymentErrorTitle": "การชำระเงินล้มเหลว",
+        "paymentNotCompletedMessage": "คุณปิดหน้าต่างการชำระเงินก่อนทำรายการให้เสร็จสมบูรณ์ โปรดลองอีกครั้งเพื่อทำการชำระเงินให้เสร็จสิ้น.",
+        "paymentSuccessTitle": "ชำระเงินสำเร็จ",
+        "paymentSuccessMessage": "ขอบคุณ! การชำระเงินของคุณเสร็จสมบูรณ์แล้ว และรายงานของคุณกำลังถูกจัดเตรียม."
     }
 }

@@ -459,7 +459,10 @@
         "title": "Top Up",
         "noHistoryFound": "No top up history found.",
         "failedToLoadPackages": "Failed to load packages. Please try again later.",
-        "failedToLoadSubscriptions": "Failed to load subscriptions. Please try again later."
+        "failedToLoadSubscriptions": "Failed to load subscriptions. Please try again later.",
+        "activeSubscriptionTitle": "Your Active Subscription",
+        "activeSubscriptionSubtitle": "Your subscription is currently active and renews automatically.",
+        "cancelSubscription": "Cancel Subscription"
     },
     "topupReceiptModal": {
         "receipt": "Receipt",
@@ -482,5 +485,11 @@
         "you": "You",
         "him": "Him",
         "relationshipOutcome": "Relationship Outcome"
+    },
+    "directPayment": {
+        "paymentErrorTitle": "Payment Failed",
+        "paymentNotCompletedMessage": "You closed the payment window before finishing the transaction. Please try again to complete your payment.",
+        "paymentSuccessTitle": "Payment Successful",
+        "paymentSuccessMessage": "Thank you! Your payment has been processed. Your report is being prepared."
     }
 }

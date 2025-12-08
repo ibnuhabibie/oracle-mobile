@@ -37,7 +37,15 @@
       "金曜日",
       "土曜日"
     ],
-    "dayNamesShort": ["日", "月", "火", "水", "木", "金", "土"]
+    "dayNamesShort": [
+      "日",
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土"
+    ]
   },
   "login": {
     "intro": "親愛なる探求者",
@@ -247,7 +255,7 @@
     "noHistoryFound": "利用履歴が見つかりません。",
     "details": "購入が成功しました。詳細をご覧ください！",
     "paymentPending": "支払いが完了していません。取引を続行するには支払いを完了してください。"
-      },
+  },
   "affinityResult": {
     "title": "アフィニティに質問",
     "presentSituation": "現在の状況",
@@ -401,7 +409,7 @@
     "questionMinLength": "質問は10文字以上で入力してください",
     "purchaseButton": "{{cost}}で購入",
     "somethingWentWrong": "何か問題が発生しました"
-},
+  },
   "echo": {
     "title": "日記",
     "subtitle": "思いや感情を表現する安全な場所です。",
@@ -451,7 +459,10 @@
     "title": "チャージ",
     "noHistoryFound": "チャージ履歴が見つかりません。",
     "failedToLoadPackages": "パッケージの読み込みに失敗しました。後でもう一度お試しください。",
-    "failedToLoadSubscriptions": "サブスクリプションの読み込みに失敗しました。後でもう一度お試しください。"
+    "failedToLoadSubscriptions": "サブスクリプションの読み込みに失敗しました。後でもう一度お試しください。",
+    "activeSubscriptionTitle": "有効なサブスクリプション",
+    "activeSubscriptionSubtitle": "ご利用中のサブスクリプションは有効で、自動的に更新されます。",
+    "cancelSubscription": "サブスクリプションを解約"
   },
   "topupReceiptModal": {
     "receipt": "領収書",
@@ -465,14 +476,20 @@
     "totalPoints": "合計ポイント",
     "paymentNotCompleted": "支払いはまだ完了していません。処理中の場合や、支払いが完了していない場合があります。後でもう一度ご確認ください。",
     "continuePayment": "支払いを続行"
-},
-"session": {
+  },
+  "session": {
     "expiredTitle": "アクセス期限切れ",
     "expired": "セッションが期限切れです。再度ログインしてください。"
-},
-"profileDescription": {
+  },
+  "profileDescription": {
     "you": "あなた",
     "him": "彼",
     "relationshipOutcome": "関係の結果"
-}
+  },
+  "directPayment": {
+    "paymentErrorTitle": "支払いに失敗しました",
+    "paymentNotCompletedMessage": "取引を完了する前に決済ウィンドウを閉じました。もう一度お試しください。",
+    "paymentSuccessTitle": "支払いが成功しました",
+    "paymentSuccessMessage": "ありがとうございます！ お支払いは正常に処理され、レポートを準備しています。"
+  }
 }

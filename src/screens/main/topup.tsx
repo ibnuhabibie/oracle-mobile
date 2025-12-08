@@ -1,12 +1,12 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View, ActivityIndicator, Alert } from 'react-native';
+import { Pressable, StyleSheet, View, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 import {
     initPaymentSheet,
     presentPaymentSheet,
 } from '@stripe/stripe-react-native';
 import * as RNLocalize from "react-native-localize";
-
+import { useTranslation } from 'react-i18next';
 
 import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/screen-container';
@@ -17,11 +17,9 @@ import { AppButton } from '../../components/ui/app-button';
 import { COLORS } from '../../constants/colors';
 import CoinIcon from '../../components/icons/profile/coin-icon';
 import { scaleFont, scaleSize } from '../../utils/scale';
-import { useTranslation } from 'react-i18next';
 import { useAsyncStorage } from '../../hooks/use-storage';
-
-import { formatPrice } from '../../utils/formatter';
 import { getLocaleByCountryCode } from '../../utils/platform';
+import { getPricingVariant, getTranslateByKey } from '../../utils/string';
 
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
@@ -40,16 +38,6 @@ interface PricingVariantItem {
     stripe_price_id: string;
 }
 
-interface PackageItem {
-    package_id: number;
-    name: string;
-    description: string;
-    price: string;
-    credits: number;
-    is_active: boolean;
-    translations?: TranslationItem[];
-    pricing_variants?: PricingVariantItem[];
-}
 
 interface SubscriptionItem {
     subscription_id: number;
@@ -73,86 +61,6 @@ const RadioIndicator = ({ selected }: { selected: boolean }) => (
     </View>
 );
 
-// Package card list component
-interface PackageCardListProps {
-    packages: PackageItem[];
-    selectedPackage: number | null;
-    setSelectedPackage: (id: number) => void;
-    loading: boolean;
-    error: string | null;
-    locale: string;
-}
-
-const PackageCardList: FC<PackageCardListProps> = ({ packages, selectedPackage, setSelectedPackage, loading, error, locale }) => {
-    const { t } = useTranslation();
-    return (
-        <View style={{ marginBottom: scaleSize(18, 18, 24) }}>
-            <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('topup.ourPackages')}</AppText>
-            <AppText variant='caption1' style={styles.sectionDesc} color='neutral'>{t('topup.packagesDesc')}</AppText>
-            <View style={{ marginTop: scaleSize(8, 8, 12) }}>
-                {loading ? (
-                    <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: scaleSize(12, 12, 16) }} />
-                ) : error ? (
-                    <AppText style={{ color: 'red', marginVertical: scaleSize(12, 12, 16) }}>{t(error)}</AppText>
-                ) : (
-                    packages.map(pkg => (
-                        <Pressable
-                            key={pkg.package_id}
-                            style={[
-                                styles.card,
-                                selectedPackage === pkg.package_id && styles.cardSelected
-                            ]}
-                            onPress={() => setSelectedPackage(pkg.package_id)}
-                        >
-                            <RadioIndicator selected={selectedPackage === pkg.package_id} />
-                            <View style={{ flex: 1 }}>
-                                <AppText variant='body1' style={styles.cardTitle} color='white'>
-                                    {(() => {
-                                        if (Array.isArray(pkg.translations)) {
-                                            const nameTrans = pkg.translations.find((tr: TranslationItem) => tr.key === 'name' && tr.locale === locale);
-                                            return nameTrans?.value || pkg.name;
-                                        }
-                                        return pkg.name;
-                                    })()}
-                                </AppText>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
-                                    <AppText variant='caption1' color='neutral'>{t('topup.getCoins', { count: pkg.credits })} </AppText>
-                                    <Coin type='gold' />
-                                </View>
-                                {(() => {
-                                    if (Array.isArray(pkg.translations)) {
-                                        const descTrans = pkg.translations.find((tr: TranslationItem) => tr.key === 'description' && tr.locale === locale);
-                                        if (descTrans?.value) {
-                                            return <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{descTrans.value}</AppText>;
-                                        }
-                                    }
-                                    if (pkg.description) {
-                                        return <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{pkg.description}</AppText>;
-                                    }
-                                    return null;
-                                })()}
-                            </View>
-                            <AppText variant='subtitle1' color='primary' style={styles.cardPrice}>
-                                {(() => {
-                                    console.log('pkg.pricing_variants', pkg.pricing_variants, locale);
-
-                                    if (Array.isArray(pkg.pricing_variants)) {
-                                        const pricingVariant = pkg.pricing_variants.find((pv: PricingVariantItem) => pv.locale === locale);
-                                        if (pricingVariant) {
-                                            return formatPrice(parseFloat(pricingVariant.price), pricingVariant.currency_symbol);
-                                        }
-                                    }
-                                    return `$${parseFloat(pkg.price)}`;
-                                })()}
-                            </AppText>
-                        </Pressable>
-                    ))
-                )}
-            </View>
-        </View>
-    );
-};
-
 // Subscription card list component
 interface SubscriptionCardListProps {
     subscriptions: SubscriptionItem[];
@@ -163,8 +71,63 @@ interface SubscriptionCardListProps {
     locale: string;
 }
 
+const SubscriptionCard = ({ subscription, onPress, locale, selectedSubscription }) => {
+    const { t } = useTranslation();
+
+    const name = getTranslateByKey(subscription.translations, 'name', locale)
+    const description = getTranslateByKey(subscription.translations, 'description', locale)
+    const price = getPricingVariant(subscription.pricing_variants, locale)
+
+    return (
+        <Pressable
+            key={subscription.subscription_id}
+            style={[
+                styles.card,
+                selectedSubscription === subscription.subscription_id && styles.cardSelected
+            ]}
+            onPress={onPress}
+        >
+            {
+                onPress !== null && (<RadioIndicator selected={selectedSubscription === subscription.subscription_id} />)
+            }
+            <View style={{ flex: 1 }}>
+                <AppText variant='body1' style={styles.cardTitle} color='white'>
+                    {name}
+                </AppText>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
+                    <AppText variant='caption1' color='neutral'>{t('topup.getCoins', { count: subscription.credits })} </AppText>
+                    <Coin type='gold' />
+                </View>
+                <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{description}</AppText>
+            </View>
+            <AppText variant='subtitle1' color='primary' style={styles.cardPrice}>
+                {price}
+            </AppText>
+        </Pressable>
+    )
+}
+
 const SubscriptionCardList: FC<SubscriptionCardListProps> = ({ subscriptions, selectedSubscription, setSelectedSubscription, loading, error, locale }) => {
     const { t } = useTranslation();
+    const RenderItem = () => {
+        if (loading)
+            return <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: scaleSize(12, 12, 16) }} />
+
+        if (error)
+            return <AppText style={{ color: 'red', marginVertical: scaleSize(12, 12, 16) }}>{t(error)}</AppText>
+
+        return (
+            subscriptions.map(sub => {
+                return (
+                    <SubscriptionCard
+                        locale={locale}
+                        subscription={sub}
+                        onPress={() => setSelectedSubscription(sub.subscription_id)}
+                        selectedSubscription={selectedSubscription} />
+                )
+            })
+        )
+    }
     return (
         <View>
             <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>{t('topup.ourSubscriptions')}</AppText>
@@ -172,62 +135,7 @@ const SubscriptionCardList: FC<SubscriptionCardListProps> = ({ subscriptions, se
                 {t('topup.subscriptionsDesc')}
             </AppText>
             <View style={{ marginTop: scaleSize(8, 8, 12) }}>
-                {loading ? (
-                    <ActivityIndicator size="small" color="#D4A574" style={{ marginVertical: scaleSize(12, 12, 16) }} />
-                ) : error ? (
-                    <AppText style={{ color: 'red', marginVertical: scaleSize(12, 12, 16) }}>{t(error)}</AppText>
-                ) : (
-                    subscriptions.map(sub => (
-                        <Pressable
-                            key={sub.subscription_id}
-                            style={[
-                                styles.card,
-                                selectedSubscription === sub.subscription_id && styles.cardSelected
-                            ]}
-                            onPress={() => setSelectedSubscription(sub.subscription_id)}
-                        >
-                            <RadioIndicator selected={selectedSubscription === sub.subscription_id} />
-                            <View style={{ flex: 1 }}>
-                                <AppText variant='body1' style={styles.cardTitle} color='white'>
-                                    {(() => {
-                                        if (Array.isArray(sub.translations)) {
-                                            const nameTrans = sub.translations.find((tr: TranslationItem) => tr.key === 'name' && tr.locale === locale);
-                                            return nameTrans?.value || sub.name;
-                                        }
-                                        return sub.name;
-                                    })()}
-                                </AppText>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: scaleSize(2) }}>
-                                    <AppText variant='caption1' color='neutral'>{t('topup.getCoins', { count: sub.credits })} </AppText>
-                                    <Coin type='gold' />
-                                </View>
-                                {(() => {
-                                    if (Array.isArray(sub.translations)) {
-                                        const descTrans = sub.translations.find((tr: TranslationItem) => tr.key === 'description' && tr.locale === locale);
-                                        if (descTrans?.value) {
-                                            return <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{descTrans.value}</AppText>;
-                                        }
-                                    }
-                                    if (sub.description) {
-                                        return <AppText style={{ marginTop: scaleSize(2) }} color='neutral'>{sub.description}</AppText>;
-                                    }
-                                    return null;
-                                })()}
-                            </View>
-                            <AppText variant='subtitle1' color='primary' style={styles.cardPrice}>
-                                {(() => {
-                                    if (Array.isArray(sub.pricing_variants)) {
-                                        const pricingVariant = sub.pricing_variants.find((pv: PricingVariantItem) => pv.locale === locale);
-                                        if (pricingVariant) {
-                                            return formatPrice(parseFloat(pricingVariant.price), pricingVariant.currency_symbol);
-                                        }
-                                    }
-                                    return `$${parseFloat(sub.price)}`;
-                                })()}
-                            </AppText>
-                        </Pressable>
-                    ))
-                )}
+                <RenderItem />
             </View>
         </View>
     );
@@ -239,38 +147,19 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     const [selectedSubscription, setSelectedSubscription] = useState<number | null>(null);
     const [subscriptions, setSubscriptions] = useState<SubscriptionItem[]>([]);
     const [loadingSubscriptions, setLoadingSubscriptions] = useState<boolean>(true);
-
-    const [packages, setPackages] = useState<PackageItem[]>([]);
-    const [loadingPackages, setLoadingPackages] = useState<boolean>(true);
-    const [errorPackages, setErrorPackages] = useState<string | null>(null);
-
     const [errorSubscriptions, setErrorSubscriptions] = useState<string | null>(null);
+
     const [processing, setProcessing] = useState<boolean>(false);
     const [userSubscriptionId, setUserSubscriptionId] = useState<number | null>(null);
     const [locale, setLocale] = useState<string>('');
 
     const { getUserProfile, getLocale } = useAsyncStorage();
 
-    const fetchPackages = async (_locale: string) => {
-        console.log('_locale in fetchPackages', _locale);
-        setLoadingPackages(true);
-        setErrorPackages(null);
-        try {
-            const response = await api.get(`/v1/packages?locale=${_locale}`);
-            setPackages(response.data.rows || []);
-        } catch (err) {
-            setErrorPackages('topup.failedToLoadPackages');
-        } finally {
-            setLoadingPackages(false);
-        }
-    };
-
-    const fetchSubscriptions = async (_locale: string) => {
-        console.log('_locale in fetchSubscriptions', _locale);
+    const fetchSubscriptions = async () => {
         setLoadingSubscriptions(true);
         setErrorSubscriptions(null);
         try {
-            const response = await api.get(`/v1/subscriptions?locale=${_locale}`);
+            const response = await api.get(`/v1/subscriptions`);
             setSubscriptions(response.data.rows || []);
         } catch (err) {
             setErrorSubscriptions('topup.failedToLoadSubscriptions');
@@ -281,14 +170,11 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
     useEffect(() => {
         const init = async () => {
-            const countryCode = RNLocalize.getCountry();
-
-            const locale = getLocaleByCountryCode(countryCode);
-            console.log(countryCode, locale);
+            const locale = await getLocale();
             setLocale(locale);
 
             // await fetchPackages(newLocale);
-            await fetchSubscriptions(locale);
+            await fetchSubscriptions();
             // Get user profile and subscription_id
             const profile = await getUserProfile();
             if (profile && typeof profile === 'object' && 'subscription_id' in profile) {
@@ -322,7 +208,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 [
                     {
                         text: t('topup.ok'),
-                        onPress: () => navigation.navigate('Tabs', { screen: 'Profile' })
+                        onPress: () => navigation.navigate('Tabs' as any, { screen: 'Profile' })
                     }
                 ]
             );
@@ -350,9 +236,12 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 client_secret = res.data.client_secret;
                 // Alert.alert('Success', 'Top up successful!');
             } else if (selectedSubscription !== null) {
+                const countryCode = RNLocalize.getCountry();
+                const _locale = getLocaleByCountryCode(countryCode);
+
                 const res = await api.post('/v1/payments/subscribe', {
                     subscription_id: selectedSubscription,
-                    locale: locale
+                    locale: _locale
                 });
                 client_secret = res.data.client_secret
                 // Alert.alert('Success', 'Subscription successful!');
@@ -360,9 +249,92 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
             await openPaymentSheet(client_secret)
         } catch (err: any) {
-            Alert.alert(t('topup.error'), err?.response?.data?.message || t('topup.genericError'));
+            console.log(err, 'err')
+            Alert.alert(t('topup.error'), err?.meta?.message || t('topup.genericError'));
         } finally {
             setProcessing(false);
+        }
+    };
+
+    const handleCancelSubscription = async () => {
+        // try {
+        //     setProcessing(true);
+        //     await api.post(`/v1/subscriptions/${userSubscriptionId}/cancel`);
+        //     Alert.alert(
+        //         t('topup.success'),
+        //         t('topup.subscriptionCancelled'),
+        //         [
+        //             {
+        //                 text: t('topup.ok'),
+        //                 onPress: () => {
+        //                     setUserSubscriptionId(null);
+        //                     navigation.navigate('Tabs' as any, { screen: 'Profile' });
+        //                 }
+        //             }
+        //         ]
+        //     );
+        // } catch (err: any) {
+        //     Alert.alert(t('topup.error'), err?.response?.data?.message || t('topup.genericError'));
+        // } finally {
+        //     setProcessing(false);
+        // }
+    };
+
+    // Active subscription component
+    interface ActiveSubscriptionProps {
+        subscription: SubscriptionItem;
+        locale: string;
+        onCancelSubscription: () => void;
+        loading: boolean;
+    }
+
+    const ActiveSubscription: FC<ActiveSubscriptionProps> = ({ subscription, locale, onCancelSubscription, loading }) => {
+        const { t } = useTranslation();
+
+        return (
+            <View style={styles.activeSubscriptionContainer}>
+                <AppText variant='subtitle1' color='primary' style={styles.sectionTitle}>
+                    {t('topup.activeSubscriptionTitle')}
+                </AppText>
+                <AppText
+                    variant='caption1' style={[
+                        styles.sectionDesc, { marginBottom: 12 }
+                    ]}
+                    color='neutral'>
+                    {t('topup.activeSubscriptionSubtitle')}
+                </AppText>
+
+                <SubscriptionCard
+                    subscription={subscription}
+                    onPress={null}
+                    locale={locale} />
+
+                <AppButton title={t('topup.cancelSubscription')} />
+            </View>
+        );
+    };
+
+    const RenderListOrActiveSubscription = () => {
+        console.log(userSubscriptionId, 'userSubscriptionId')
+
+        if (userSubscriptionId == null) {
+            return <SubscriptionCardList
+                subscriptions={subscriptions}
+                selectedSubscription={selectedSubscription}
+                setSelectedSubscription={handleSelectSubscription}
+                loading={loadingSubscriptions}
+                error={errorSubscriptions}
+                locale={locale}
+            />;
+        } else {
+            // Find the active subscription
+            const activeSubscription = subscriptions.find(sub => sub.subscription_id === userSubscriptionId);
+            return <ActiveSubscription
+                subscription={activeSubscription}
+                locale={locale}
+                onCancelSubscription={handleCancelSubscription}
+                loading={processing}
+            />
         }
     };
 
@@ -388,26 +360,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 />
             }
         >
-            {/* 
-            <PackageCardList
-                packages={packages}
-                selectedPackage={selectedPackage}
-                setSelectedPackage={handleSelectPackage}
-                loading={loadingPackages}
-                error={errorPackages}
-                locale={locale}
-            />
-             */}
-            {userSubscriptionId == null && (
-                <SubscriptionCardList
-                    subscriptions={subscriptions}
-                    selectedSubscription={selectedSubscription}
-                    setSelectedSubscription={handleSelectSubscription}
-                    loading={loadingSubscriptions}
-                    error={errorSubscriptions}
-                    locale={locale}
-                />
-            )}
+            <RenderListOrActiveSubscription />
             <View style={{ height: scaleSize(60, 60, 80) }}></View>
         </ScreenContainer>
     );
@@ -475,6 +428,27 @@ const styles = StyleSheet.create({
         paddingVertical: scaleSize(2),
         marginLeft: scaleSize(6, 6, 8),
         fontSize: scaleFont(10, 8, 14),
+    },
+    // Active subscription styles
+    activeSubscriptionContainer: {
+        marginBottom: scaleSize(16, 16, 24),
+    },
+    activeSubscriptionHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: scaleSize(8, 8, 12),
+    },
+    cancelButton: {
+        padding: scaleSize(4, 4, 8),
+    },
+    cancelButtonText: {
+        color: COLORS.red,
+        fontWeight: '600',
+    },
+    activeSubscriptionContent: {
+        flex: 1,
+        alignItems: 'center'
     },
 });
 

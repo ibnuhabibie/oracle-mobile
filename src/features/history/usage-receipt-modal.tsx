@@ -13,6 +13,7 @@ import { AppButton } from "../../components/ui/app-button";
 import CloseIcon from "../../components/icons/close-icon";
 import { scaleFont, scaleSize } from "../../utils/scale";
 import { formatDateWithTime } from "../../utils/date";
+import { formatPrice } from "../../utils/formatter";
 
 interface UsageReceiptModalProps {
   visible: boolean;
@@ -187,7 +188,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           </View>
           <AppText variant="body1" style={styles.modalItemName} color="neutral">{getServiceTypeLabel(item.service_type)}</AppText>
           <View style={styles.modalItemPoints}>
-            <AppText color="white" variant='caption2'>{item.currency_symbol}{item.amount}</AppText>
+            <AppText color="white" variant='caption2'>{formatPrice(item.amount, item.currency_symbol)}</AppText>
           </View>
         </View>
         <View style={styles.modalSectionDivider} />

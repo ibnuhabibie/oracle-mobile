@@ -53,10 +53,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
 
     useEffect(() => {
         const fetchLocaleAndSetCurrency = async () => {
-            const countryCode = RNLocalize.getCountry();
-            const _locale = getLocaleByCountryCode(countryCode);
-
-            setLocale(_locale);
+            const _locale = await getLocale()
             const currency = CURRENCIES.find(c => c.key === _locale) || CURRENCIES[0];
             setCurrencySymbol(currency.symbol);
         };
@@ -102,24 +99,20 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         });
 
         if (errorInit) {
-            Alert.alert(t('topup.paymentFailed'), errorInit.message);
+            Alert.alert(t('directPayment.paymentErrorTitle'), errorInit.message);
         }
 
         const { error } = await presentPaymentSheet();
 
         if (error) {
             console.log(error)
-            Alert.alert(t('topup.paymentFailed'), error.message);
+            const message = error.code == 'Canceled' ? t('directPayment.paymentNotCompletedMessage') : error.localizedMessage;
+            Alert.alert(t('directPayment.paymentErrorTitle'), message);
         } else {
             Alert.alert(
-                t('topup.success'),
-                t('topup.paymentComplete'),
-                [
-                    {
-                        text: t('topup.ok'),
-                        onPress: () => navigation.navigate('Tabs', { screen: 'Profile' })
-                    }
-                ]
+                t('directPayment.paymentSuccessTitle'),
+                t('directPayment.paymentSuccessMessage'),
+                [{ text: t('topup.ok') }]
             );
         }
     };
@@ -127,7 +120,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const handleFormContinue = async (values: RelationReportFormValues) => {
         try {
             setCostLoading(true);
-            
+
             const language = await getLocale();
             const _locale = language?.startsWith('zh') ? 'name_zh' : `name_${language}`;
 
@@ -148,15 +141,12 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 lng: `${values.birth_city?.longitude}`
             }
 
-            console.log({
-                reportType: "relationship_report",
-                locale,
-                partner: payload
-            })
+            const countryCode = RNLocalize.getCountry();
+            const localeByCountry = getLocaleByCountryCode(countryCode);
 
             const response = await api.post('/v1/payments/direct', {
                 reportType: "relationship_report",
-                locale,
+                locale: localeByCountry,
                 partner: payload
             });
             console.log(response)

@@ -33,16 +33,14 @@ import { scaleSize } from '../../../../utils/scale';
 import { CURRENCIES } from '../../../../constants/app';
 import { formatPrice } from '../../../../utils/formatter';
 import { getLocaleByCountryCode } from '../../../../utils/platform';
+import { getLocale } from '../../../../hooks/use-storage';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
-
-
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [iconsReady, setIconsReady] = useState(false);
     const [currencySymbol, setCurrencySymbol] = useState('');
-    const [locale, setLocale] = useState('');
 
     useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
@@ -54,10 +52,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
 
     useEffect(() => {
         const fetchLocaleAndSetCurrency = async () => {
-            const countryCode = RNLocalize.getCountry();
-            const _locale = getLocaleByCountryCode(countryCode);
-
-            setLocale(_locale);
+            const _locale = await getLocale()
             const currency = CURRENCIES.find(c => c.key === _locale) || CURRENCIES[0];
             setCurrencySymbol(currency.symbol);
         };
@@ -113,35 +108,33 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         });
 
         if (errorInit) {
-            Alert.alert(t('topup.paymentFailed'), errorInit.message);
+            Alert.alert(t('directPayment.paymentErrorTitle'), errorInit.message);
         }
 
         const { error } = await presentPaymentSheet();
 
         if (error) {
             console.log(error)
-            Alert.alert(t('topup.paymentFailed'), error.message);
+            const message = error.code == 'Canceled' ? t('directPayment.paymentNotCompletedMessage') : error.localizedMessage;
+            Alert.alert(t('directPayment.paymentErrorTitle'), message);
         } else {
             Alert.alert(
-                t('topup.success'),
-                t('topup.paymentComplete'),
-                [
-                    {
-                        text: t('topup.ok'),
-                        onPress: () => navigation.navigate('Tabs', { screen: 'Profile' })
-                    }
-                ]
+                t('directPayment.paymentSuccessTitle'),
+                t('directPayment.paymentSuccessMessage'),
+                [{ text: t('topup.ok') }]
             );
         }
     };
 
     const directPayment = async () => {
         setCostLoading(true);
+        const countryCode = RNLocalize.getCountry();
+        const _locale = getLocaleByCountryCode(countryCode);
 
         try {
             const response = await api.post('/v1/payments/direct', {
                 reportType: "transit_report",
-                locale,
+                locale: _locale,
             });
             console.log(response)
 

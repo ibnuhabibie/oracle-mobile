@@ -255,7 +255,7 @@
         "noHistoryFound": "Tidak ada riwayat penggunaan ditemukan.",
         "details": "Pembelian Anda berhasil, lihat detailnya!",
         "paymentPending": "Pembayaran belum selesai. Silakan lengkapi pembayaran untuk melanjutkan transaksi."
-        },
+    },
     "affinityResult": {
         "title": "Tanya Affinity",
         "presentSituation": "Situasi Saat Ini",
@@ -459,7 +459,10 @@
         "title": "Isi Saldo",
         "noHistoryFound": "Tidak ada riwayat top up ditemukan.",
         "failedToLoadPackages": "Gagal memuat paket. Silakan coba lagi nanti.",
-        "failedToLoadSubscriptions": "Gagal memuat langganan. Silakan coba lagi nanti."
+        "failedToLoadSubscriptions": "Gagal memuat langganan. Silakan coba lagi nanti.",
+        "activeSubscriptionTitle": "Langganan Aktif Anda",
+        "activeSubscriptionSubtitle": "Status langganan Anda saat ini aktif dan diperpanjang secara otomatis.",
+        "cancelSubscription": "Hentikan Langganan"
     },
     "topupReceiptModal": {
         "receipt": "Struk",
@@ -482,5 +485,11 @@
         "you": "Anda",
         "him": "Dia",
         "relationshipOutcome": "Hasil Hubungan"
+    },
+    "directPayment": {
+        "paymentErrorTitle": "Pembayaran Gagal",
+        "paymentNotCompletedMessage": "Anda menutup jendela pembayaran sebelum menyelesaikan transaksi. Silakan coba kembali untuk menyelesaikan pembayaran.",
+        "paymentSuccessTitle": "Pembayaran Berhasil",
+        "paymentSuccessMessage": "Terima kasih! Pembayaran Anda telah berhasil diproses. Laporan Anda sedang dipersiapkan."
     }
 }

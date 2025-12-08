@@ -459,7 +459,10 @@
         "title": "充值",
         "noHistoryFound": "未找到充值历史。",
         "failedToLoadPackages": "加载套餐失败，请稍后再试。",
-        "failedToLoadSubscriptions": "加载订阅失败，请稍后再试。"
+        "failedToLoadSubscriptions": "加载订阅失败，请稍后再试。",
+        "activeSubscriptionTitle": "您的有效订阅",
+        "activeSubscriptionSubtitle": "您的订阅当前处于有效状态，并会自动续订。",
+        "cancelSubscription": "取消订阅"
     },
     "topupReceiptModal": {
         "receipt": "收据",
@@ -482,5 +485,11 @@
         "you": "你",
         "him": "他",
         "relationshipOutcome": "关系结果"
+    },
+    "directPayment": {
+        "paymentErrorTitle": "支付失败",
+        "paymentNotCompletedMessage": "您在完成付款前关闭了支付窗口。请重试以完成付款。",
+        "paymentSuccessTitle": "支付成功",
+        "paymentSuccessMessage": "感谢您！您的付款已成功处理，报告正在生成中。"
     }
 }

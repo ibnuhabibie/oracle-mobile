@@ -23,6 +23,8 @@ export const formatTime = (time: Date | null) => {
 // Helper function to format price based on currency
 export const formatPrice = (price: number, currencySymbol: string): string => {
   // For Indonesian Rupiah (Rp), format with dots as thousand separators
+  price = parseFloat(price)
+
   if (currencySymbol === 'Rp') {
     return `${currencySymbol}${price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
   }
