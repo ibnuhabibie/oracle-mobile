@@ -63,7 +63,7 @@
     },
     "registerForm": {
         "nameRequired": "กรุณากรอกชื่อ",
-        "nameMinLength": "ชื่ออย่างน้อย 3 ตัวอักษร",
+        "nameMinLength": "ชื่ออย่างน้อย 2 ตัวอักษร",
         "emailRequired": "กรุณากรอกอีเมล",
         "invalidEmailFormat": "รูปแบบอีเมลไม่ถูกต้อง",
         "passwordRequired": "กรุณากรอกรหัสผ่าน",
@@ -349,7 +349,7 @@
         "female": "หญิง",
         "continue": "ดำเนินการต่อ",
         "nameRequired": "กรุณากรอกชื่อ",
-        "nameMinLength": "ชื่ออย่างน้อย 3 ตัวอักษร"
+        "nameMinLength": "ชื่ออย่างน้อย 2 ตัวอักษร"
     },
     "passwordSettingForm": {
         "title": "ตั้งค่ารหัสผ่าน",
@@ -406,7 +406,7 @@
         "instructions": "1. ทำจิตใจให้สงบ\n2. คิดถึงคำถามที่ต้องการถาม\n3. พิมพ์คำถามของคุณ\n4. สูดลมหายใจลึก ๆ แล้วกดปุ่มถาม",
         "questionLabel": "พิมพ์คำถามของคุณ",
         "questionRequired": "กรุณากรอกคำถาม",
-        "questionMinLength": "คำถามอย่างน้อย 10 ตัวอักษร",
+        "questionMinLength": "คำถามอย่างน้อย 5 ตัวอักษร",
         "purchaseButton": "ซื้อในราคา {{cost}}",
         "somethingWentWrong": "เกิดข้อผิดพลาดบางอย่าง"
     },
@@ -452,7 +452,7 @@
         "ourPackages": "แพ็กเกจของเรา",
         "packagesDesc": "สามารถใช้ซื้อรายงานและถาม Affinity AI",
         "ourSubscriptions": "การสมัครสมาชิกของเรา",
-        "subscriptionsDesc": "สามารถใช้ใน Affinity AI และรีเซ็ตทุกต้นเดือน คุณจะได้รับโทเค็นเงิน 3 เหรียญฟรีทุกเดือน",
+        "subscriptionsDesc": "การสมัครสมาชิกจะต่ออายุอัตโนมัติทุกเดือน",
         "getCoins": "รับโทเค็น {{count}} เหรียญ",
         "processing": "กำลังดำเนินการ...",
         "continue": "ดำเนินการต่อ",

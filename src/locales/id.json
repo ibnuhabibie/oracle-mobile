@@ -63,7 +63,7 @@
     },
     "registerForm": {
         "nameRequired": "Nama wajib diisi",
-        "nameMinLength": "Nama minimal 3 karakter",
+        "nameMinLength": "Nama minimal 2 karakter",
         "emailRequired": "Email wajib diisi",
         "invalidEmailFormat": "Format email tidak valid",
         "passwordRequired": "Kata sandi wajib diisi",
@@ -349,7 +349,7 @@
         "female": "Perempuan",
         "continue": "Lanjutkan",
         "nameRequired": "Nama wajib diisi",
-        "nameMinLength": "Nama minimal 3 karakter"
+        "nameMinLength": "Nama minimal 2 karakter"
     },
     "passwordSettingForm": {
         "title": "Pengaturan Kata Sandi",
@@ -406,7 +406,7 @@
         "instructions": "1. Tenangkan pikiran Anda\n2. Pikirkan pertanyaan yang ingin diajukan\n3. Masukkan pertanyaan\n4. Tarik napas dan tekan tombol tanya",
         "questionLabel": "Ketik pertanyaan Anda",
         "questionRequired": "Pertanyaan wajib diisi",
-        "questionMinLength": "Pertanyaan minimal 10 karakter",
+        "questionMinLength": "Pertanyaan minimal 5 karakter",
         "purchaseButton": "Beli seharga {{cost}}",
         "somethingWentWrong": "Terjadi kesalahan"
     },
@@ -452,7 +452,7 @@
         "ourPackages": "Paket Kami",
         "packagesDesc": "Dapat digunakan untuk membeli Laporan dan Tanya Affinity AI",
         "ourSubscriptions": "Langganan Kami",
-        "subscriptionsDesc": "Dapat digunakan di Tanya Affinity AI dan direset setiap awal bulan. Anda akan menerima 3 token perak gratis setiap bulan.",
+        "subscriptionsDesc": "Langganan akan diperbarui secara otomatis setiap bulan.",
         "getCoins": "Dapatkan {{count}} Token",
         "processing": "Memproses...",
         "continue": "Lanjutkan",

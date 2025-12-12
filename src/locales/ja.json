@@ -63,7 +63,7 @@
   },
   "registerForm": {
     "nameRequired": "名前は必須です",
-    "nameMinLength": "名前は3文字以上で入力してください",
+    "nameMinLength": "名前は2文字以上で入力してください",
     "emailRequired": "メールアドレスは必須です",
     "invalidEmailFormat": "メールアドレスの形式が正しくありません",
     "passwordRequired": "パスワードは必須です",
@@ -349,7 +349,7 @@
     "female": "女性",
     "continue": "続行",
     "nameRequired": "名前は必須です",
-    "nameMinLength": "名前は3文字以上で入力してください"
+    "nameMinLength": "名前は2文字以上で入力してください"
   },
   "passwordSettingForm": {
     "title": "パスワード設定",
@@ -406,7 +406,7 @@
     "instructions": "1. 心を落ち着かせる\n2. 質問したいことを考える\n3. 質問を入力する\n4. 深呼吸して質問ボタンを押す",
     "questionLabel": "質問を入力してください",
     "questionRequired": "質問は必須です",
-    "questionMinLength": "質問は10文字以上で入力してください",
+    "questionMinLength": "質問は5文字以上で入力してください",
     "purchaseButton": "{{cost}}で購入",
     "somethingWentWrong": "何か問題が発生しました"
   },
@@ -452,7 +452,7 @@
     "ourPackages": "パッケージ一覧",
     "packagesDesc": "レポートやアフィニティAIの購入に利用できます",
     "ourSubscriptions": "サブスクリプション一覧",
-    "subscriptionsDesc": "アフィニティAIで利用でき、毎月初めにリセットされます。毎月3つの無料シルバートークンがもらえます。",
+    "subscriptionsDesc": "サブスクリプションは毎月自動的に更新されます。",
     "getCoins": "{{count}}トークンを取得",
     "processing": "処理中...",
     "continue": "続行",

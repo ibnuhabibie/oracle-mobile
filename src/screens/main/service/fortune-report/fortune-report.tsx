@@ -2,15 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     StyleSheet,
-    Alert,
     ActivityIndicator,
     InteractionManager,
 } from 'react-native';
-import {
-    initPaymentSheet,
-    presentPaymentSheet,
-} from '@stripe/stripe-react-native';
-import * as RNLocalize from "react-native-localize";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
@@ -22,41 +16,42 @@ import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import api from '../../../../utils/http';
 import FortuneReportIcon from '../../../../components/icons/services/fortune-report/fortune-report-icon';
-
 import FortuneReportIcon1 from '../../../../components/icons/services/fortune-report/fortune-report-icon-1';
 import FortuneReportIcon2 from '../../../../components/icons/services/fortune-report/fortune-report-icon-2';
 import FortuneReportIcon3 from '../../../../components/icons/services/fortune-report/fortune-report-icon-3';
 import FortuneReportIcon4 from '../../../../components/icons/services/fortune-report/fortune-report-icon-4';
 import { scaleSize } from '../../../../utils/scale';
-import { CURRENCIES } from '../../../../constants/app';
 import { formatPrice } from '../../../../utils/formatter';
-import { getLocaleByCountryCode } from '../../../../utils/platform';
-import { getLocale } from '../../../../hooks/use-storage';
+import { useDirectPayment } from '../../../../hooks/use-direct-payment';
+import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [iconsReady, setIconsReady] = useState(false);
-    const [currencySymbol, setCurrencySymbol] = useState('');
+    const {
+        cost,
+        loading: costLoading,
+        setLoading: setCostLoading,
+        currencySymbol,
+        locale
+    } = useServiceCost('transit_report');
+
+    const {
+        isProcessing,
+        processPayment,
+        showPolling,
+        setShowPolling,
+        topupNo
+    } = useDirectPayment();
 
     useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
             setIconsReady(true);
         });
         return () => interaction && interaction.cancel && interaction.cancel();
-    }, []);
-
-
-    useEffect(() => {
-        const fetchLocaleAndSetCurrency = async () => {
-            const _locale = await getLocale()
-            const currency = CURRENCIES.find(c => c.key === _locale) || CURRENCIES[0];
-            setCurrencySymbol(currency.symbol);
-        };
-        fetchLocaleAndSetCurrency();
     }, []);
 
     const fortuneYear = (() => {
@@ -92,57 +87,15 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         },
     ];
 
-    // (removed duplicate responsive variable declarations)
-
-    const {
-        cost,
-        loading: costLoading,
-        setLoading: setCostLoading
-    } = useServiceCost('transit_report');
-
-
-    const openPaymentSheet = async (clientSecret: string) => {
-        const { error: errorInit } = await initPaymentSheet({
-            paymentIntentClientSecret: clientSecret,
-            merchantDisplayName: 'Affinity AI',
-        });
-
-        if (errorInit) {
-            Alert.alert(t('directPayment.paymentErrorTitle'), errorInit.message);
-        }
-
-        const { error } = await presentPaymentSheet();
-
-        if (error) {
-            console.log(error)
-            const message = error.code == 'Canceled' ? t('directPayment.paymentNotCompletedMessage') : error.localizedMessage;
-            Alert.alert(t('directPayment.paymentErrorTitle'), message);
-        } else {
-            Alert.alert(
-                t('directPayment.paymentSuccessTitle'),
-                t('directPayment.paymentSuccessMessage'),
-                [{ text: t('topup.ok') }]
-            );
-        }
-    };
-
     const directPayment = async () => {
         setCostLoading(true);
-        const countryCode = RNLocalize.getCountry();
-        const _locale = getLocaleByCountryCode(countryCode);
-
         try {
-            const response = await api.post('/v1/payments/direct', {
+            await processPayment({
                 reportType: "transit_report",
-                locale: _locale,
+                locale: locale,
             });
-            console.log(response)
-
-            setCostLoading(false);
-            openPaymentSheet(response.data.client_secret)
         } catch (err) {
-            setCostLoading(false);
-            console.log(err)
+            console.log(err);
         } finally {
             setCostLoading(false);
         }
@@ -165,8 +118,9 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                             </AppText>
                         </View>
                     }
-                    loading={costLoading}
+                    variant="primary"
                     onPress={directPayment}
+                    loading={costLoading || isProcessing}
                 />
             }
         >
@@ -204,6 +158,20 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 </View>
             )}
             <View style={styles.spacer} />
+            <PollingLoadingModal
+                topupNo={topupNo}
+                visible={showPolling}
+                onResult={(data) => {
+                    console.log('data onresult', data)
+                    setShowPolling(false)
+                    navigation.navigate('FortuneReportResult', {
+                        result: JSON.parse(data.response_data),
+                        job_id: data.job_id
+                    })
+                }}
+                onClose={() => {
+                    setShowPolling(false)
+                }} />
         </ScreenContainer>
     );
 };

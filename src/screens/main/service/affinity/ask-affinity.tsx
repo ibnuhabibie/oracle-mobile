@@ -59,7 +59,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     question: {
       required: t('askAffinity.questionRequired'),
       minLength: {
-        value: 10,
+        value: 5,
         message: t('askAffinity.questionMinLength'),
       },
     },

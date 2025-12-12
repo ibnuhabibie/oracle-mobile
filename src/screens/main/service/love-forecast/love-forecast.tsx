@@ -3,15 +3,11 @@ import { InteractionManager } from "react-native";
 import {
   View,
   StyleSheet,
-  Alert,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import {
-  initPaymentSheet,
-  presentPaymentSheet,
-} from '@stripe/stripe-react-native';
 import * as RNLocalize from "react-native-localize";
 
 import { AppText } from '../../../../components/ui/app-text';
@@ -22,7 +18,7 @@ import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import api from '../../../../utils/http';
+import { useDirectPayment } from '../../../../hooks/use-direct-payment';
 import LoveReportIcon from '../../../../components/icons/services/love-report/love-report-icon';
 import LoveReportIcon1 from '../../../../components/icons/services/love-report/love-report-icon-1';
 import LoveReportIcon2 from '../../../../components/icons/services/love-report/love-report-icon-2';
@@ -34,9 +30,7 @@ import LoveReportIcon7 from '../../../../components/icons/services/love-report/l
 import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
 import { scaleSize } from '../../../../utils/scale';
 import { formatPrice } from '../../../../utils/formatter';
-import { CURRENCIES } from '../../../../constants/app';
-import { getLocaleByCountryCode } from '../../../../utils/platform';
-import { getLocale } from '../../../../hooks/use-storage';
+import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 
 type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveForecast'>;
 
@@ -45,23 +39,25 @@ type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveFor
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
   const { t } = useTranslation();
   const [iconsReady, setIconsReady] = useState(false);
-  const [currencySymbol, setCurrencySymbol] = useState('');
 
-  useEffect(() => {
-    const interaction = InteractionManager.runAfterInteractions(() => {
-      setIconsReady(true);
-    });
-    return () => interaction && interaction.cancel && interaction.cancel();
-  }, []);
+  const {
+    cost,
+    loading: costLoading,
+    setLoading: setCostLoading,
+    locale,
+    currencySymbol
+  } = useServiceCost('love_report');
 
-  useEffect(() => {
-    const fetchLocaleAndSetCurrency = async () => {
-      const _locale = await getLocale()
-      const currency = CURRENCIES.find(c => c.key === _locale) || CURRENCIES[0];
-      setCurrencySymbol(currency.symbol);
-    };
-    fetchLocaleAndSetCurrency();
-  }, []);
+  const {
+    isProcessing,
+    processPayment,
+    showPolling,
+    setShowPolling,
+    topupNo
+  } = useDirectPayment();
+
+  const shinySize = scaleSize(140);
+  const iconSize = scaleSize(44);
 
   const CARD_DATA = [
     {
@@ -98,61 +94,26 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
     },
   ];
 
-  const {
-    cost,
-    loading: costLoading,
-    setLoading: setCostLoading
-  } = useServiceCost('love_report');
-
-  const openPaymentSheet = async (clientSecret: string) => {
-    const { error: errorInit } = await initPaymentSheet({
-      paymentIntentClientSecret: clientSecret,
-      merchantDisplayName: 'Affinity AI',
+  useEffect(() => {
+    const interaction = InteractionManager.runAfterInteractions(() => {
+      setIconsReady(true);
     });
-
-    if (errorInit) {
-      Alert.alert(t('directPayment.paymentErrorTitle'), errorInit.message);
-    }
-
-    const { error } = await presentPaymentSheet();
-
-    if (error) {
-      console.log(error)
-      const message = error.code == 'Canceled' ? t('directPayment.paymentNotCompletedMessage') : error.localizedMessage;
-      Alert.alert(t('directPayment.paymentErrorTitle'), message);
-    } else {
-      Alert.alert(
-        t('directPayment.paymentSuccessTitle'),
-        t('directPayment.paymentSuccessMessage'),
-        [{ text: t('topup.ok') }]
-      );
-    }
-  };
+    return () => interaction && interaction.cancel && interaction.cancel();
+  }, []);
 
   const directPayment = async () => {
     setCostLoading(true);
-    const countryCode = RNLocalize.getCountry();
-    const _locale = getLocaleByCountryCode(countryCode);
-
     try {
-      const response = await api.post('/v1/payments/direct', {
+      await processPayment({
         reportType: "love_report",
-        locale: _locale,
+        locale: locale,
       });
-      console.log(response)
-
-      setCostLoading(false);
-      openPaymentSheet(response.data.client_secret)
     } catch (err) {
-      setCostLoading(false);
-      console.log(err)
+      console.log(err);
     } finally {
       setCostLoading(false);
     }
   };
-
-  const shinySize = scaleSize(140);
-  const iconSize = scaleSize(44);
 
   return (
     <ScreenContainer
@@ -173,7 +134,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
           }
           variant="primary"
           onPress={directPayment}
-          loading={costLoading}
+          loading={costLoading || isProcessing}
         />
       }
     >
@@ -210,6 +171,20 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
         </View>
       )}
       <View style={styles.spacer} />
+      <PollingLoadingModal
+        topupNo={topupNo}
+        visible={showPolling}
+        onResult={(data) => {
+          console.log('data onresult', data)
+          setShowPolling(false)
+          navigation.navigate('LoveReportResult', {
+            result: JSON.parse(data.response_data),
+            job_id: data.job_id
+          })
+        }}
+        onClose={() => {
+          setShowPolling(false)
+        }} />
     </ScreenContainer>
   );
 };

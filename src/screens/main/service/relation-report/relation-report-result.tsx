@@ -75,7 +75,7 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
             <>
                 {content.map((item, idx) => (
                     <ProfileItemCard
-                        key={item.order || idx}
+                        key={idx}
                         data={{
                             title: item.title,
                             description: Array.isArray(item.content) ? (

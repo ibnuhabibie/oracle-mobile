@@ -20,10 +20,10 @@ export const getLocaleByCountryCode = (countryCode: string) => {
     // Chinese regions
     CN: 'zh-CN',
     TW: 'zh-TW',
-    HK: 'zh-TW',
+    HK: 'zh-CN',
     MO: 'zh-TW',
-    SG: 'zh-CN',
-    MY: 'zh-CN',
+    SG: 'en',
+    MY: 'en',
     
     // Other supported languages
     ID: 'id',

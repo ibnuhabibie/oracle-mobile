@@ -63,7 +63,7 @@
   },
   "registerForm": {
     "nameRequired": "이름은 필수입니다",
-    "nameMinLength": "이름은 최소 3자 이상이어야 합니다",
+    "nameMinLength": "이름은 최소 2자 이상이어야 합니다",
     "emailRequired": "이메일은 필수입니다",
     "invalidEmailFormat": "이메일 형식이 올바르지 않습니다",
     "passwordRequired": "비밀번호는 필수입니다",
@@ -349,7 +349,7 @@
     "female": "여성",
     "continue": "계속",
     "nameRequired": "이름은 필수입니다",
-    "nameMinLength": "이름은 최소 3자 이상이어야 합니다"
+    "nameMinLength": "이름은 최소 2자 이상이어야 합니다"
   },
   "passwordSettingForm": {
     "title": "비밀번호 설정",
@@ -406,7 +406,7 @@
     "instructions": "1. 마음을 진정시키세요\n2. 질문하고 싶은 내용을 생각하세요\n3. 질문을 입력하세요\n4. 심호흡 후 질문 버튼을 누르세요",
     "questionLabel": "질문을 입력하세요",
     "questionRequired": "질문은 필수입니다",
-    "questionMinLength": "질문은 최소 10자 이상이어야 합니다",
+    "questionMinLength": "질문은 최소 5자 이상이어야 합니다",
     "purchaseButton": "{{cost}}에 구매",
     "somethingWentWrong": "문제가 발생했습니다"
   },
@@ -452,7 +452,7 @@
     "ourPackages": "패키지 목록",
     "packagesDesc": "리포트 및 애피니티 AI 구매에 사용할 수 있습니다",
     "ourSubscriptions": "구독 목록",
-    "subscriptionsDesc": "애피니티 AI에서 사용할 수 있으며 매월 초에 초기화됩니다. 매월 3개의 무료 실버 토큰이 지급됩니다.",
+    "subscriptionsDesc": "구독은 매달 자동으로 갱신됩니다.",
     "getCoins": "{{count}} 토큰 받기",
     "processing": "처리 중...",
     "continue": "계속",

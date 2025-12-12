@@ -21,11 +21,11 @@ export const serviceTypeTranslationKeys: Record<string, string> = {
 };
 
 export const CURRENCIES = [
-  {key: 'en', symbol: '$' },
-  {key: 'zh-CN', symbol: '¥' },
-  {key: 'zh-TW', symbol: 'NT$' },
-  {key: 'id', symbol: 'Rp' },
-  {key: 'ja', symbol: '¥' },
-  {key: 'ko', symbol: '₩' },
-  {key: 'th', symbol: '฿' },
+  { key: 'en', symbol: '$' },
+  { key: 'zh-CN', symbol: '¥' },
+  { key: 'zh-TW', symbol: 'NT$' },
+  { key: 'id', symbol: 'Rp' },
+  { key: 'ja', symbol: '¥' },
+  { key: 'ko', symbol: '₩' },
+  { key: 'th', symbol: '฿' },
 ]

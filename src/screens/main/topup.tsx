@@ -120,6 +120,7 @@ const SubscriptionCardList: FC<SubscriptionCardListProps> = ({ subscriptions, se
             subscriptions.map(sub => {
                 return (
                     <SubscriptionCard
+                        key={sub.id}
                         locale={locale}
                         subscription={sub}
                         onPress={() => setSelectedSubscription(sub.subscription_id)}
@@ -170,7 +171,11 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
     useEffect(() => {
         const init = async () => {
-            const locale = await getLocale();
+            const countryCode = RNLocalize.getCountry();
+            const locale = getLocaleByCountryCode(countryCode);
+
+            console.log(countryCode, locale, 'topup')
+            // const locale = await getLocale();
             setLocale(locale);
 
             // await fetchPackages(newLocale);
@@ -236,12 +241,9 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 client_secret = res.data.client_secret;
                 // Alert.alert('Success', 'Top up successful!');
             } else if (selectedSubscription !== null) {
-                const countryCode = RNLocalize.getCountry();
-                const _locale = getLocaleByCountryCode(countryCode);
-
                 const res = await api.post('/v1/payments/subscribe', {
                     subscription_id: selectedSubscription,
-                    locale: _locale
+                    locale: locale
                 });
                 client_secret = res.data.client_secret
                 // Alert.alert('Success', 'Subscription successful!');

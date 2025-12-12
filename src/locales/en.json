@@ -63,7 +63,7 @@
     },
     "registerForm": {
         "nameRequired": "Name is required",
-        "nameMinLength": "Name must be at least 3 characters",
+        "nameMinLength": "Name must be at least 2 characters",
         "emailRequired": "Email is required",
         "invalidEmailFormat": "Invalid email format",
         "passwordRequired": "Password is required",
@@ -349,7 +349,7 @@
         "female": "Female",
         "continue": "Continue",
         "nameRequired": "Name is required",
-        "nameMinLength": "Name must be at least 3 characters"
+        "nameMinLength": "Name must be at least 2 characters"
     },
     "passwordSettingForm": {
         "title": "Password Settings",
@@ -406,7 +406,7 @@
         "instructions": "1. Calm your mind\n2. Think about the question you want to ask\n3. Enter your question\n4. Take a deep breath and press the ask button",
         "questionLabel": "Type your question",
         "questionRequired": "Question is required",
-        "questionMinLength": "Question must be at least 10 characters",
+        "questionMinLength": "Question must be at least 5 characters",
         "purchaseButton": "Buy for {{cost}}",
         "somethingWentWrong": "Something went wrong"
     },
@@ -452,7 +452,7 @@
         "ourPackages": "Our Packages",
         "packagesDesc": "Can be used to purchase Reports and Ask Affinity AI",
         "ourSubscriptions": "Our Subscriptions",
-        "subscriptionsDesc": "Can be used in Ask Affinity AI and reset at the beginning of each month. You will receive 3 free silver tokens every month.",
+        "subscriptionsDesc": "Subscriptions renew automatically every month.",
         "getCoins": "Get {{count}} Tokens",
         "processing": "Processing...",
         "continue": "Continue",

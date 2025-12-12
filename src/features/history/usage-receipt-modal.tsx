@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Modal, SafeAreaView, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { initPaymentSheet, presentPaymentSheet } from '@stripe/stripe-react-native';
 
 import { AppText } from '../../components/ui/app-text';
 import CoinIcon from "../../components/icons/profile/coin-icon";
@@ -14,6 +13,8 @@ import CloseIcon from "../../components/icons/close-icon";
 import { scaleFont, scaleSize } from "../../utils/scale";
 import { formatDateWithTime } from "../../utils/date";
 import { formatPrice } from "../../utils/formatter";
+import { useDirectPayment } from "../../hooks/use-direct-payment";
+import PollingLoadingModal from "../../components/ui/polling-loading-modal";
 
 interface UsageReceiptModalProps {
   visible: boolean;
@@ -22,6 +23,7 @@ interface UsageReceiptModalProps {
     job_id: string;
     usage_history_id: string;
     created_at: string;
+    transaction_id: string;
     item_name: string;
     item_icon?: React.ReactNode;
     points: number;
@@ -46,14 +48,23 @@ interface UsageReceiptModalProps {
 
 const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose, item }) => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
+
+  const {
+    isProcessing,
+    setIsProcessing,
+    showPolling,
+    setShowPolling,
+    openPaymentSheet,
+  } = useDirectPayment();
 
   const getServiceTypeLabel = (type: string) =>
     t(serviceTypeTranslationKeys[type] || type);
 
-  const navigation = useNavigation()
-
-  const handleResult = () => {
-    let data = JSON.parse(item.response_data)
+  const handleResult = (response_data = null) => {
+    const response = typeof response_data == 'string' ? response_data : item.response_data;
+    console.log(response)
+    let data = JSON.parse(response)
     let payload = {}
     let pageName = ''
 
@@ -96,28 +107,16 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     navigation.navigate(pageName as any, payload as any)
   }
 
-  const handleContinuePayment = async (item) => {
+  const handleContinuePayment = async (item: any) => {
     if (!item?.payment_intent) return;
     try {
-      onClose()
-
-      const { error: initError } = await initPaymentSheet({
-        paymentIntentClientSecret: item.payment_intent,
-        merchantDisplayName: "OracleAI"
-      });
-
-      if (initError) {
-        // Optionally show error to user
-        return;
-      }
-      const { error: presentError } = await presentPaymentSheet();
-      if (presentError) {
-        // Optionally show error to user
-        return;
-      }
-      // Optionally handle success
+      setIsProcessing(true)
+      await openPaymentSheet(item.payment_intent)
+      setIsProcessing(false)
+      // Payment sheet is now handled by the useDirectPayment hook
+      // This is a placeholder for any additional logic needed
     } catch (err) {
-      // Optionally show error to user
+      console.log(err);
     }
   };
 
@@ -131,7 +130,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     )
   }
 
-  const CreditJournal = ({ item }) => {
+  const CreditJournal = ({ item }: { item: any }) => {
     return (
       <>
         <View style={styles.modalSectionDivider} />
@@ -177,7 +176,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     )
   }
 
-  const DirectDetail = ({ item }) => {
+  const DirectDetail = ({ item }: { item: any }) => {
     return (
       <>
         <View style={styles.modalSectionDivider} />
@@ -202,7 +201,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     )
   }
 
-  const PaymentStatus = ({ item }) => {
+  const PaymentStatus = ({ item }: { item: any }) => {
     const infoText = item.payment_status == 'pending' ? t("usageHistory.paymentPending") : 'Payment is completed but report is still on process generating. We will let you know when its ready';
     return (
       <View style={{ marginVertical: scaleSize(12, 12, 16) }}>
@@ -215,13 +214,14 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
               style={{ marginTop: 12, alignSelf: "center" }}
               onPress={() => handleContinuePayment(item)}
               title={t("topupReceiptModal.continuePayment")}
+              loading={isProcessing}
             /> : null
         }
       </View >
     )
   }
 
-  const DetailReceipt = ({ item }) => {
+  const DetailReceipt = ({ item }: { item: any }) => {
     if (item.payment_type == 'credit') return <CreditJournal item={item} />
 
 
@@ -265,6 +265,18 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           </TouchableWithoutFeedback>
         </View>
       </TouchableWithoutFeedback >
+      <PollingLoadingModal
+        topupNo={item?.transaction_id}
+        visible={showPolling}
+        onResult={(data: any) => {
+          console.log('data onresult', data)
+          setShowPolling(false)
+          handleResult(data.response_data)
+          // Handle result navigation if needed
+        }}
+        onClose={() => {
+          setShowPolling(false)
+        }} />
     </Modal >
   );
 };

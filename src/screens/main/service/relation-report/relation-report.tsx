@@ -2,17 +2,11 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     StyleSheet,
-    Alert,
     ActivityIndicator,
     InteractionManager,
 } from 'react-native';
-import {
-    initPaymentSheet,
-    presentPaymentSheet,
-} from '@stripe/stripe-react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
-import * as RNLocalize from "react-native-localize";
 
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -23,7 +17,6 @@ import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 import RelationReportForm, { RelationReportFormValues } from './relation-report-form';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import api from '../../../../utils/http';
 import RelationReportIcon from '../../../../components/icons/services/relation-report/relation-report-icon';
 import RelationReportIcon1 from '../../../../components/icons/services/relation-report/relation-report-icon-1';
 import RelationReportIcon2 from '../../../../components/icons/services/relation-report/relation-report-icon-2';
@@ -32,17 +25,30 @@ import RelationReportIcon4 from '../../../../components/icons/services/relation-
 import RelationIcon from '../../../../components/icons/affinity/relation-icon';
 import { scaleSize } from '../../../../utils/scale';
 import { getLocale } from '../../../../hooks/use-storage';
-import { CURRENCIES } from '../../../../constants/app';
 import { formatPrice } from '../../../../utils/formatter';
-import { getLocaleByCountryCode } from '../../../../utils/platform';
+import { useDirectPayment } from '../../../../hooks/use-direct-payment';
+import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [iconsReady, setIconsReady] = useState(false);
-    const [currencySymbol, setCurrencySymbol] = useState('');
-    const [locale, setLocale] = useState('');
+    const {
+        cost,
+        loading: costLoading,
+        setLoading: setCostLoading,
+        locale,
+        currencySymbol
+    } = useServiceCost('relationship_report');
+
+    const {
+        isProcessing,
+        processPayment,
+        showPolling,
+        setShowPolling,
+        topupNo
+    } = useDirectPayment();
 
     useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
@@ -50,16 +56,6 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         });
         return () => interaction && interaction.cancel && interaction.cancel();
     }, []);
-
-    useEffect(() => {
-        const fetchLocaleAndSetCurrency = async () => {
-            const _locale = await getLocale()
-            const currency = CURRENCIES.find(c => c.key === _locale) || CURRENCIES[0];
-            setCurrencySymbol(currency.symbol);
-        };
-        fetchLocaleAndSetCurrency();
-    }, []);
-
 
     const CARD_DATA = [
         {
@@ -86,41 +82,9 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
 
     const [showForm, setShowForm] = useState(false);
 
-    const {
-        cost,
-        loading: costLoading,
-        setLoading: setCostLoading
-    } = useServiceCost('relationship_report');
-
-    const openPaymentSheet = async (clientSecret: string) => {
-        const { error: errorInit } = await initPaymentSheet({
-            paymentIntentClientSecret: clientSecret,
-            merchantDisplayName: 'Affinity AI',
-        });
-
-        if (errorInit) {
-            Alert.alert(t('directPayment.paymentErrorTitle'), errorInit.message);
-        }
-
-        const { error } = await presentPaymentSheet();
-
-        if (error) {
-            console.log(error)
-            const message = error.code == 'Canceled' ? t('directPayment.paymentNotCompletedMessage') : error.localizedMessage;
-            Alert.alert(t('directPayment.paymentErrorTitle'), message);
-        } else {
-            Alert.alert(
-                t('directPayment.paymentSuccessTitle'),
-                t('directPayment.paymentSuccessMessage'),
-                [{ text: t('topup.ok') }]
-            );
-        }
-    };
-
     const handleFormContinue = async (values: RelationReportFormValues) => {
+        setCostLoading(true);
         try {
-            setCostLoading(true);
-
             const language = await getLocale();
             const _locale = language?.startsWith('zh') ? 'name_zh' : `name_${language}`;
 
@@ -129,34 +93,33 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 : values.birth_date;
             const genderShort = values.gender === "Male" ? "M" : values.gender === "Female" ? "F" : values.gender;
 
-            const country = values.birth_country[_locale] || values.birth_country.name;
-            const city = values.birth_city[_locale] || values.birth_city.name;
-
-            const payload = {
-                name: values.full_name,
-                birth_date: birthDateStr,
-                gender: genderShort,
-                birth_location: `${country}, ${city}`,
-                lat: `${values.birth_city?.latitude}`,
-                lng: `${values.birth_city?.longitude}`
+            if (!values.birth_country || !values.birth_city) {
+                throw new Error('Birth location is required');
             }
 
-            const countryCode = RNLocalize.getCountry();
-            const localeByCountry = getLocaleByCountryCode(countryCode);
+            const country = (values.birth_country as any)[_locale] || values.birth_country.name;
+            const city = (values.birth_city as any)[_locale] || values.birth_city.name;
 
-            const response = await api.post('/v1/payments/direct', {
+            const additionalData = {
+                partner: {
+                    name: values.full_name,
+                    birth_date: birthDateStr,
+                    gender: genderShort,
+                    birth_location: `${country}, ${city}`,
+                    lat: `${values.birth_city.latitude}`,
+                    lng: `${values.birth_city.longitude}`
+                }
+            };
+
+            await processPayment({
                 reportType: "relationship_report",
-                locale: localeByCountry,
-                partner: payload
+                locale: locale,
+                additionalData: additionalData
             });
-            console.log(response)
 
-            setCostLoading(false);
-            openPaymentSheet(response.data.client_secret)
             setShowForm(false);
         } catch (err) {
-            setCostLoading(false);
-            console.log(err)
+            console.log(err);
         } finally {
             setCostLoading(false);
         }
@@ -191,7 +154,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                     <RelationReportForm
                         onSubmit={(values: RelationReportFormValues) => handleFormContinue(values)}
                         onCancel={() => setShowForm(false)}
-                        loading={costLoading}
+                        loading={costLoading || isProcessing}
                     />
                 )
             }
@@ -232,6 +195,21 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 </View>
             )}
             <View style={styles.spacer} />
+            <PollingLoadingModal
+                topupNo={topupNo}
+                visible={showPolling}
+                onResult={(data) => {
+                    console.log('data onresult', data)
+                    setShowPolling(false)
+                    navigation.navigate('RelationReportResult', {
+                        result: JSON.parse(data.response_data),
+                        love_profile: null,
+                        job_id: data.job_id
+                    })
+                }}
+                onClose={() => {
+                    setShowPolling(false)
+                }} />
         </ScreenContainer>
     );
 };
