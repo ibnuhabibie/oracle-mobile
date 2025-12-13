@@ -101,7 +101,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                         <>
                                             <View style={styles.modalRow}>
                                                 <AppText variant="caption1" color="neutral">{t("topupReceiptModal.paymentMethod")}</AppText>
-                                                <AppText variant="caption1" color="white">{JSON.parse(item.payment_method).type}</AppText>
+                                                <AppText variant="caption1" color="white">{JSON.parse(item.payment_method)?.type}</AppText>
                                             </View>
                                             <View style={styles.modalSectionDivider} />
                                             <View style={styles.modalRow}>

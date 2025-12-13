@@ -120,7 +120,7 @@ const SubscriptionCardList: FC<SubscriptionCardListProps> = ({ subscriptions, se
             subscriptions.map(sub => {
                 return (
                     <SubscriptionCard
-                        key={sub.id}
+                        key={sub.subscription_id}
                         locale={locale}
                         subscription={sub}
                         onPress={() => setSelectedSubscription(sub.subscription_id)}
