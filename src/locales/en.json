@@ -462,7 +462,8 @@
         "failedToLoadSubscriptions": "Failed to load subscriptions. Please try again later.",
         "activeSubscriptionTitle": "Your Active Subscription",
         "activeSubscriptionSubtitle": "Your subscription is currently active and renews automatically.",
-        "cancelSubscription": "Cancel Subscription"
+        "cancelSubscription": "Cancel Subscription",
+        "subscriptionCancelled": "Subscription cancelled"
     },
     "topupReceiptModal": {
         "receipt": "Receipt",

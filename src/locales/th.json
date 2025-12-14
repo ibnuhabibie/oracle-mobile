@@ -462,7 +462,8 @@
         "failedToLoadSubscriptions": "ไม่สามารถโหลดการสมัครสมาชิก กรุณาลองใหม่อีกครั้งภายหลัง",
         "activeSubscriptionTitle": "การสมัครสมาชิกของคุณ",
         "activeSubscriptionSubtitle": "การสมัครสมาชิกของคุณกำลังใช้งานอยู่และจะต่ออายุอัตโนมัติ.",
-        "cancelSubscription": "ยกเลิกการสมัครสมาชิก"
+        "cancelSubscription": "ยกเลิกการสมัครสมาชิก",
+        "subscriptionCancelled": "การสมัครสมาชิกถูกยกเลิกแล้ว"
     },
     "topupReceiptModal": {
         "receipt": "ใบเสร็จ",

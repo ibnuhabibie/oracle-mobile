@@ -462,7 +462,8 @@
         "failedToLoadSubscriptions": "加载订阅失败，请稍后再试。",
         "activeSubscriptionTitle": "您的有效订阅",
         "activeSubscriptionSubtitle": "您的订阅当前处于有效状态，并会自动续订。",
-        "cancelSubscription": "取消订阅"
+        "cancelSubscription": "取消订阅",
+        "subscriptionCancelled": "订阅已取消"
     },
     "topupReceiptModal": {
         "receipt": "收据",

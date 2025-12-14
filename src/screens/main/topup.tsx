@@ -259,27 +259,27 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     };
 
     const handleCancelSubscription = async () => {
-        // try {
-        //     setProcessing(true);
-        //     await api.post(`/v1/subscriptions/${userSubscriptionId}/cancel`);
-        //     Alert.alert(
-        //         t('topup.success'),
-        //         t('topup.subscriptionCancelled'),
-        //         [
-        //             {
-        //                 text: t('topup.ok'),
-        //                 onPress: () => {
-        //                     setUserSubscriptionId(null);
-        //                     navigation.navigate('Tabs' as any, { screen: 'Profile' });
-        //                 }
-        //             }
-        //         ]
-        //     );
-        // } catch (err: any) {
-        //     Alert.alert(t('topup.error'), err?.response?.data?.message || t('topup.genericError'));
-        // } finally {
-        //     setProcessing(false);
-        // }
+        try {
+            setProcessing(true);
+            await api.post(`/v1/users/subscription/cancel`);
+            Alert.alert(
+                t('topup.success'),
+                t('topup.subscriptionCancelled'),
+                [
+                    {
+                        text: t('topup.ok'),
+                        onPress: () => {
+                            setUserSubscriptionId(null);
+                            navigation.navigate('Tabs' as any, { screen: 'Profile' });
+                        }
+                    }
+                ]
+            );
+        } catch (err: any) {
+            Alert.alert(t('topup.error'), err?.response?.data?.message || t('topup.genericError'));
+        } finally {
+            setProcessing(false);
+        }
     };
 
     // Active subscription component
@@ -311,7 +311,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                     onPress={null}
                     locale={locale} />
 
-                <AppButton title={t('topup.cancelSubscription')} />
+                <AppButton title={t('topup.cancelSubscription')} onPress={handleCancelSubscription} loading={processing} />
             </View>
         );
     };

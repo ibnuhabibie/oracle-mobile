@@ -462,7 +462,8 @@
     "failedToLoadSubscriptions": "サブスクリプションの読み込みに失敗しました。後でもう一度お試しください。",
     "activeSubscriptionTitle": "有効なサブスクリプション",
     "activeSubscriptionSubtitle": "ご利用中のサブスクリプションは有効で、自動的に更新されます。",
-    "cancelSubscription": "サブスクリプションを解約"
+    "cancelSubscription": "サブスクリプションを解約",
+    "subscriptionCancelled": "サブスクリプションがキャンセルされました"
   },
   "topupReceiptModal": {
     "receipt": "領収書",

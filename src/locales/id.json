@@ -462,7 +462,8 @@
         "failedToLoadSubscriptions": "Gagal memuat langganan. Silakan coba lagi nanti.",
         "activeSubscriptionTitle": "Langganan Aktif Anda",
         "activeSubscriptionSubtitle": "Status langganan Anda saat ini aktif dan diperpanjang secara otomatis.",
-        "cancelSubscription": "Hentikan Langganan"
+        "cancelSubscription": "Hentikan Langganan",
+        "subscriptionCancelled": "Langganan dibatalkan"
     },
     "topupReceiptModal": {
         "receipt": "Struk",
