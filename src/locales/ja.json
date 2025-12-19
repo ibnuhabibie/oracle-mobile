@@ -52,7 +52,8 @@
     "title": "ログイン",
     "subtitle": "宇宙がささやく。\nあなたに運命づけられたものを見つけましょう。",
     "footer": "アカウントをお持ちでないですか？",
-    "signupButtonText": "新規登録"
+    "signupButtonText": "新規登録",
+    "forgotPassword": "パスワードを忘れた場合"
   },
   "register": {
     "intro": "親愛なる探求者",
@@ -267,6 +268,7 @@
     "downloadPdf": "PDFとしてダウンロード"
   },
   "polling": {
+    "message": "お待ちください...",
     "info": "数分かかります。ウィンドウを閉じても大丈夫です。準備ができたらお知らせします。",
     "closeBtn": "閉じる"
   },
@@ -406,7 +408,7 @@
     "instructions": "1. 心を落ち着かせる\n2. 質問したいことを考える\n3. 質問を入力する\n4. 深呼吸して質問ボタンを押す",
     "questionLabel": "質問を入力してください",
     "questionRequired": "質問は必須です",
-    "questionMinLength": "質問は5文字以上で入力してください",
+    "questionMinLength": "質問は3文字以上で入力してください",
     "purchaseButton": "{{cost}}で購入",
     "somethingWentWrong": "何か問題が発生しました"
   },

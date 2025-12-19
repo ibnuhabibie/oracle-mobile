@@ -77,8 +77,6 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             await AsyncStorage.setItem('auth_token', res.data.token);
 
             await sync();
-
-            // navigation.navigate('Otp', { email: res.data.email });
             onSuccess(res.data.email)
         } catch (error) {
             console.log(error);

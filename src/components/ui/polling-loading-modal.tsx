@@ -19,7 +19,7 @@ type PollingLoadingModalProps = {
 const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
   topupNo,
   visible,
-  message = 'Please wait...',
+  message = 'message',
   onResult,
   onError,
   onClose,
@@ -65,7 +65,7 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
       <View style={styles.overlay}>
         <View style={styles.container}>
           <ActivityIndicator size="large" color={COLORS.neutral} />
-          <AppText variant="body1" style={styles.text} color='neutral'>{message}</AppText>
+          <AppText variant="body1" style={styles.text} color='neutral'>{t(`polling.${message}`)}</AppText>
           <AppText variant="caption1" style={styles.info} color='neutral'>
             {t('polling.info')}
           </AppText>

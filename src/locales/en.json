@@ -52,6 +52,7 @@
         "title": "Sign In",
         "subtitle": "The cosmos whispers.\nDiscover what is destined for you.",
         "footer": "Don't have an account?",
+        "forgotPassword": "Forgot Password?",
         "signupButtonText": "Sign Up"
     },
     "register": {
@@ -267,6 +268,7 @@
         "downloadPdf": "Download as PDF"
     },
     "polling": {
+        "message": "Please wait...",
         "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready.",
         "closeBtn": "Close"
     },
@@ -406,7 +408,7 @@
         "instructions": "1. Calm your mind\n2. Think about the question you want to ask\n3. Enter your question\n4. Take a deep breath and press the ask button",
         "questionLabel": "Type your question",
         "questionRequired": "Question is required",
-        "questionMinLength": "Question must be at least 5 characters",
+        "questionMinLength": "Question must be at least 3 characters",
         "purchaseButton": "Buy for {{cost}}",
         "somethingWentWrong": "Something went wrong"
     },

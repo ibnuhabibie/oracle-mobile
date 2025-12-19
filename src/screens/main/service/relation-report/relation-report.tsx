@@ -203,7 +203,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                     setShowPolling(false)
                     navigation.navigate('RelationReportResult', {
                         result: JSON.parse(data.response_data),
-                        love_profile: null,
+                        love_profile: data.request_data ? JSON.parse(data.request_data).partner : undefined,
                         job_id: data.job_id
                     })
                 }}

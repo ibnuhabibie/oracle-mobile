@@ -52,7 +52,8 @@
     "title": "로그인",
     "subtitle": "우주는 속삭입니다.\n당신에게 운명지어진 것을 발견하세요.",
     "footer": "계정이 없으신가요?",
-    "signupButtonText": "회원가입"
+    "signupButtonText": "회원가입",
+    "forgotPassword": "비밀번호를 잊으셨나요?"
   },
   "register": {
     "intro": "친애하는 탐색자",
@@ -267,6 +268,7 @@
     "downloadPdf": "PDF로 다운로드"
   },
   "polling": {
+    "message": "잠시만 기다려주세요...",
     "info": "몇 분 정도 소요됩니다. 창을 닫아도 괜찮아요. 준비되면 알려드릴게요.",
     "closeBtn": "닫기"
   },
@@ -406,7 +408,7 @@
     "instructions": "1. 마음을 진정시키세요\n2. 질문하고 싶은 내용을 생각하세요\n3. 질문을 입력하세요\n4. 심호흡 후 질문 버튼을 누르세요",
     "questionLabel": "질문을 입력하세요",
     "questionRequired": "질문은 필수입니다",
-    "questionMinLength": "질문은 최소 5자 이상이어야 합니다",
+    "questionMinLength": "질문은 최소 3자 이상이어야 합니다",
     "purchaseButton": "{{cost}}에 구매",
     "somethingWentWrong": "문제가 발생했습니다"
   },

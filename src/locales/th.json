@@ -52,7 +52,8 @@
         "title": "เข้าสู่ระบบ",
         "subtitle": "จักรวาลกำลังกระซิบ\nค้นพบสิ่งที่ถูกกำหนดไว้สำหรับคุณ",
         "footer": "ยังไม่มีบัญชีใช่ไหม?",
-        "signupButtonText": "สมัครสมาชิก"
+        "signupButtonText": "สมัครสมาชิก",
+        "forgotPassword": "ลืมรหัสผ่าน?"
     },
     "register": {
         "intro": "ถึงผู้แสวงหา",
@@ -267,6 +268,7 @@
         "downloadPdf": "ดาวน์โหลด PDF"
     },
     "polling": {
+        "message": "กรุณารอสักครู่...",
         "info": "ใช้เวลาสักครู่ คุณสามารถปิดหน้าต่างนี้ได้ - เราจะแจ้งเมื่อพร้อม",
         "closeBtn": "ปิด"
     },
@@ -311,7 +313,7 @@
         "birthDate": "วันเกิด",
         "birthDateLabel": "วันเกิด:",
         "birthTime": "เวลาเกิด",
-        "birthTimeLabel": "เวลาเกิด:",
+        "birthTimeLabel": "วันเกิด:",
         "birthTimeHelper": "ไม่แน่ใจเวลาเกิด? เลือกเวลาที่ใกล้เคียงที่สุด",
         "gender": "เพศ",
         "male": "ชาย",
@@ -375,7 +377,7 @@
         "editProfile": "แก้ไขโปรไฟล์",
         "passwordSettings": "ตั้งค่ารหัสผ่าน",
         "purchaseHistory": "ประวัติการซื้อ",
-        "othersSectionTitle": "อื่น ๆ",
+        "othersSectionTitle": "อื่น ๆ ",
         "aboutUs": "เกี่ยวกับเรา",
         "privacyPolicy": "นโยบายความเป็นส่วนตัว",
         "termsAndConditions": "ข้อกำหนดและเงื่อนไข",
@@ -406,7 +408,7 @@
         "instructions": "1. ทำจิตใจให้สงบ\n2. คิดถึงคำถามที่ต้องการถาม\n3. พิมพ์คำถามของคุณ\n4. สูดลมหายใจลึก ๆ แล้วกดปุ่มถาม",
         "questionLabel": "พิมพ์คำถามของคุณ",
         "questionRequired": "กรุณากรอกคำถาม",
-        "questionMinLength": "คำถามอย่างน้อย 5 ตัวอักษร",
+        "questionMinLength": "คำถามอย่างน้อย 3 ตัวอักษร",
         "purchaseButton": "ซื้อในราคา {{cost}}",
         "somethingWentWrong": "เกิดข้อผิดพลาดบางอย่าง"
     },
