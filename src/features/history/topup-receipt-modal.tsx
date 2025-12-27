@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, SafeAreaView, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Modal, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { AppText } from '../../components/ui/app-text';
 import { AppButton } from '../../components/ui/app-button';
 import { initPaymentSheet, presentPaymentSheet } from '@stripe/stripe-react-native';

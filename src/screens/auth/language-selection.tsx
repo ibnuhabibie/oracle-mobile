@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     gap: scaleSize(12),
   },
   button: {
-    marginTop: 'auto',
+    marginTop: scaleSize(24),
   },
 });
 

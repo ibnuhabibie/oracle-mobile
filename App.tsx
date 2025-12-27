@@ -8,16 +8,16 @@ import { getMessaging, onMessage } from '@react-native-firebase/messaging';
 import { getApp } from '@react-native-firebase/app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StripeProvider } from '@stripe/stripe-react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import RadialGradient from 'react-native-radial-gradient';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import MainNavigator from './src/navigators/main-navigator';
 import api from './src/utils/http';
 import { navigationRef, navigate } from './src/navigators/navigation-ref';
 import StarMeteorBackground from './src/components/star-meteor-background';
-import { Dimensions, StyleSheet, View } from 'react-native';
-import RadialGradient from 'react-native-radial-gradient';
 
 const { width, height } = Dimensions.get('window');
-
 
 enableScreens(true);
 
@@ -159,23 +159,32 @@ const App: React.FC = () => {
       const route = navigationRef?.getCurrentRoute?.();
       setCurrentRoute(route?.name);
     });
-    // Set initial route
-    const route = navigationRef?.getCurrentRoute?.();
-    setCurrentRoute(route?.name);
+
     return () => {
       if (unsubscribe) unsubscribe();
     };
   }, []);
+
+  const onNavigationReady = () => {
+    console.log('Navigation ready');
+    const route = navigationRef?.getCurrentRoute?.();
+    setCurrentRoute(route?.name);
+  };
 
   const appContent = (
     <GestureHandlerRootView>
       <StripeProvider
         publishableKey="pk_test_51PVG0tIYVaNsBhG4lSzSsK0Aytevy88pZWHAEyeRTOx8I8sJzF954qzrvsEIaHlnoKoixSZpm427IEptSgbKYGGF00A4eoUNga"
       >
-        <NavigationContainer ref={navigationRef} detachInactiveScreens={true}>
-          <MainNavigator />
-          {/* <FloatingPreviewButton /> */}
-        </NavigationContainer>
+        <SafeAreaProvider>
+          <NavigationContainer
+            ref={navigationRef}
+            detachInactiveScreens={true}
+            onReady={onNavigationReady}>
+            <MainNavigator />
+            {/* <FloatingPreviewButton /> */}
+          </NavigationContainer>
+        </SafeAreaProvider>
       </StripeProvider>
       <Toast />
     </GestureHandlerRootView>

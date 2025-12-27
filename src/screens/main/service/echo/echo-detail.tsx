@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 'auto',
+    height: '100%',
     borderRadius: scaleSize(12),
     backgroundColor: 'rgba(255,255,255,0.13)',
     borderWidth: scaleSize(1),

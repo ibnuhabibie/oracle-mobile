@@ -1,4 +1,4 @@
-package com.oracleapp
+package com.affinity.app
 
 import android.app.Application
 import com.facebook.react.PackageList
