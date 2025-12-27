@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     width: '100%',
     fontFamily: fontFamilies.ARCHIVO.light,
-    lineHeight: scaleSize(47),
+    lineHeight: scaleSize(16),
     paddingVertical: 0,
   },
   disabledText: {
