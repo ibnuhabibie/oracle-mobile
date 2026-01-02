@@ -49,7 +49,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
         center={[width / 2, height / 2]}
         radius={Math.max(width, height) / 1.2}
       />
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
         {header && <View style={styles.fixedHeader}>{header}</View>}
         {scrollable ? (
           <ScrollView

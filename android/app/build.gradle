@@ -78,9 +78,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.affinity.app"
+    namespace "com.theaffinity.app"
     defaultConfig {
-        applicationId "com.affinity.app"
+        applicationId "com.theaffinity.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

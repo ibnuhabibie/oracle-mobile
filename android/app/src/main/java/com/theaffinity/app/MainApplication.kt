@@ -1,4 +1,4 @@
-package com.affinity.app
+package com.theaffinity.app
 
 import android.app.Application
 import com.facebook.react.PackageList

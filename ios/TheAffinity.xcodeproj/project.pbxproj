@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1319D55FA715BF93C9201801 /* Pods_Affinity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CE7520DA841EF0A154DBA2 /* Pods_Affinity.framework */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		4DD1FD2D2EFF09F80099A25E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DD1FD2C2EFF09F80099A25E /* GoogleService-Info.plist */; };
+		4DA35D2B2F07B018008354E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DA35D2A2F07B018008354E1 /* GoogleService-Info.plist */; };
+		6F296757FC4FB665F31A7035 /* Pods_TheAffinity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148A44CCDFABD8ECA3FBFFDD /* Pods_TheAffinity.framework */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		7D4B5EB766D04353B7117062 /* ArchivoRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B3B0084B02D474ABB0A1BCD /* ArchivoRegular.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -18,18 +18,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		13B07F961A680F5B00A75B9A /* Affinity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Affinity.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Affinity/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Affinity/Info.plist; sourceTree = "<group>"; };
-		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Affinity/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		2C3CE0C57D28FF944CB49F6F /* Pods-Affinity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Affinity.release.xcconfig"; path = "Target Support Files/Pods-Affinity/Pods-Affinity.release.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* TheAffinity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheAffinity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TheAffinity/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TheAffinity/Info.plist; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = TheAffinity/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		148A44CCDFABD8ECA3FBFFDD /* Pods_TheAffinity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheAffinity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C3CE0C57D28FF944CB49F6F /* Pods-TheAffinity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheAffinity.release.xcconfig"; path = "Target Support Files/Pods-TheAffinity/Pods-TheAffinity.release.xcconfig"; sourceTree = "<group>"; };
 		409577AE0F404CD3933AACD9 /* ArchivoLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ArchivoLight.ttf; path = ../src/assets/fonts/ArchivoLight.ttf; sourceTree = "<group>"; };
-		4DD1FD2C2EFF09F80099A25E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4DA35D2A2F07B018008354E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B3B0084B02D474ABB0A1BCD /* ArchivoRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ArchivoRegular.ttf; path = ../src/assets/fonts/ArchivoRegular.ttf; sourceTree = "<group>"; };
-		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Affinity/AppDelegate.swift; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Affinity/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B5CE7520DA841EF0A154DBA2 /* Pods_Affinity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Affinity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD4E02A5228EF486991C8739 /* Pods-Affinity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Affinity.debug.xcconfig"; path = "Target Support Files/Pods-Affinity/Pods-Affinity.debug.xcconfig"; sourceTree = "<group>"; };
+		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TheAffinity/AppDelegate.swift; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TheAffinity/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CD4E02A5228EF486991C8739 /* Pods-TheAffinity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheAffinity.debug.xcconfig"; path = "Target Support Files/Pods-TheAffinity/Pods-TheAffinity.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1319D55FA715BF93C9201801 /* Pods_Affinity.framework in Frameworks */,
+				6F296757FC4FB665F31A7035 /* Pods_TheAffinity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +54,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* Affinity */ = {
+		13B07FAE1A68108700A75B9A /* TheAffinity */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -63,14 +63,14 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 			);
-			name = Affinity;
+			name = TheAffinity;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				B5CE7520DA841EF0A154DBA2 /* Pods_Affinity.framework */,
+				148A44CCDFABD8ECA3FBFFDD /* Pods_TheAffinity.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -85,13 +85,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				4DD1FD2C2EFF09F80099A25E /* GoogleService-Info.plist */,
-				13B07FAE1A68108700A75B9A /* Affinity */,
+				13B07FAE1A68108700A75B9A /* TheAffinity */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				045E7FF6A7B34F5AADD1DE8A /* Resources */,
+				4DA35D2A2F07B018008354E1 /* GoogleService-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -101,7 +101,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Affinity.app */,
+				13B07F961A680F5B00A75B9A /* TheAffinity.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,8 +109,8 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CD4E02A5228EF486991C8739 /* Pods-Affinity.debug.xcconfig */,
-				2C3CE0C57D28FF944CB49F6F /* Pods-Affinity.release.xcconfig */,
+				CD4E02A5228EF486991C8739 /* Pods-TheAffinity.debug.xcconfig */,
+				2C3CE0C57D28FF944CB49F6F /* Pods-TheAffinity.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -118,9 +118,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* Affinity */ = {
+		13B07F861A680F5B00A75B9A /* TheAffinity */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Affinity" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "TheAffinity" */;
 			buildPhases = (
 				39C8AC85EFB907C3CBF50FF5 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
@@ -135,9 +135,9 @@
 			);
 			dependencies = (
 			);
-			name = Affinity;
-			productName = Affinity;
-			productReference = 13B07F961A680F5B00A75B9A /* Affinity.app */;
+			name = TheAffinity;
+			productName = TheAffinity;
+			productReference = 13B07F961A680F5B00A75B9A /* TheAffinity.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -153,7 +153,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Affinity" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "TheAffinity" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -166,7 +166,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Affinity */,
+				13B07F861A680F5B00A75B9A /* TheAffinity */,
 			);
 		};
 /* End PBXProject section */
@@ -181,7 +181,7 @@
 				C9A04C6E3BE04697BF20D534 /* ArchivoLight.ttf in Resources */,
 				7D4B5EB766D04353B7117062 /* ArchivoRegular.ttf in Resources */,
 				F286EA9E1E09C0E3033F26B7 /* PrivacyInfo.xcprivacy in Resources */,
-				4DD1FD2D2EFF09F80099A25E /* GoogleService-Info.plist in Resources */,
+				4DA35D2B2F07B018008354E1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +232,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Affinity-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-TheAffinity-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -245,15 +245,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Affinity/Pods-Affinity-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TheAffinity/Pods-TheAffinity-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Affinity/Pods-Affinity-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TheAffinity/Pods-TheAffinity-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Affinity/Pods-Affinity-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TheAffinity/Pods-TheAffinity-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BDDD7E7D63E9FDC6DEC53436 /* [CP] Copy Pods Resources */ = {
@@ -262,15 +262,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Affinity/Pods-Affinity-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TheAffinity/Pods-TheAffinity-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Affinity/Pods-Affinity-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-TheAffinity/Pods-TheAffinity-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Affinity/Pods-Affinity-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TheAffinity/Pods-TheAffinity-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -289,15 +289,15 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD4E02A5228EF486991C8739 /* Pods-Affinity.debug.xcconfig */;
+			baseConfigurationReference = CD4E02A5228EF486991C8739 /* Pods-TheAffinity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6F36F9AL5N;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Affinity/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Affinity;
+				INFOPLIST_FILE = TheAffinity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TheAffinity;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -309,8 +309,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.affinity.app;
-				PRODUCT_NAME = Affinity;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theaffinity.app;
+				PRODUCT_NAME = TheAffinity;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -319,14 +319,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C3CE0C57D28FF944CB49F6F /* Pods-Affinity.release.xcconfig */;
+			baseConfigurationReference = 2C3CE0C57D28FF944CB49F6F /* Pods-TheAffinity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6F36F9AL5N;
-				INFOPLIST_FILE = Affinity/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Affinity;
+				INFOPLIST_FILE = TheAffinity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TheAffinity;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -338,8 +338,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.affinity.app;
-				PRODUCT_NAME = Affinity;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theaffinity.app;
+				PRODUCT_NAME = TheAffinity;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -427,7 +427,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -509,7 +512,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -520,7 +526,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Affinity" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "TheAffinity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -529,7 +535,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Affinity" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "TheAffinity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

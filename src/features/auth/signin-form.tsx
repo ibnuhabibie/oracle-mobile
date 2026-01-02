@@ -55,8 +55,8 @@ const SignInForm: React.FC<AuthFormProps> = ({onSuccess}) => {
     formState: {errors},
   } = useForm<LoginDTO>({
     defaultValues: {
-      email: 'john@example.com',
-      password: 'password123',
+      email: '',
+      password: '',
     },
   });
 

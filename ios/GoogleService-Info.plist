@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.affinity.app</string>
+	<string>com.theaffinity.app</string>
 	<key>PROJECT_ID</key>
 	<string>affinity-6ad69</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1060211516953:ios:0b4b9fbe1ad21a078eec88</string>
+	<string>1:1060211516953:ios:25a4a947b4d5086e8eec88</string>
 </dict>
 </plist>
