@@ -123,6 +123,7 @@ export class AppButton extends Component<CustomButtonProps> {
           onPress={onPress}
           activeOpacity={0.8}
           disabled={isDisabled}
+          style={{ width: '100%' }}
         >
           <LinearGradient
             colors={['#C68D14', '#F0AF24', '#C68D14']}

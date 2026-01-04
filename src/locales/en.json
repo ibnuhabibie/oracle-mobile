@@ -138,6 +138,22 @@
             "title": "Fortune Guidance",
             "subtitle": "WELCOME YOUR FUTURE"
         },
+        "myReport": {
+            "title": "My Reports",
+            "subtitle": "All Your Insights, In One Place"
+        },
+        "baziReport": {
+            "title": "My BaZi",
+            "subtitle": "Your Destiny Blueprint Revealed"
+        },
+        "astroReport": {
+            "title": "My Astro",
+            "subtitle": "Your Stars, Your Story"
+        },
+        "mbtiReport": {
+            "title": "My MBTI",
+            "subtitle": "Discover Your True Personality"
+        },
         "downloadPdf": "Download as PDF"
     },
     "home": {
@@ -376,7 +392,7 @@
         "profileSectionTitle": "Profile",
         "editProfile": "Edit Profile",
         "passwordSettings": "Password Settings",
-        "purchaseHistory": "Purchase History",
+        "purchaseHistory": "My Reports",
         "othersSectionTitle": "Others",
         "aboutUs": "About Us",
         "privacyPolicy": "Privacy Policy",
@@ -390,8 +406,8 @@
         "career": "Career"
     },
     "purchaseHistory": {
-        "title": "Purchase History",
-        "usageTab": "Purchase History",
+        "title": "My Reports",
+        "usageTab": "My Reports",
         "topupTab": "Top Up History"
     },
     "serviceLabel": {

@@ -138,6 +138,22 @@
             "title": "คำแนะนำโชคชะตา",
             "subtitle": "ต้อนรับอนาคตของคุณ"
         },
+        "myReport": {
+            "title": "รายงานของฉัน",
+            "subtitle": "ทุกข้อมูลเชิงลึกของคุณ ในที่เดียว"
+        },
+        "baziReport": {
+            "title": "ปาจื้อของฉัน",
+            "subtitle": "พิมพ์เขียวแห่งโชคชะตาของคุณถูกเปิดเผย"
+        },
+        "astroReport": {
+            "title": "โหราศาสตร์ของฉัน",
+            "subtitle": "ดวงดาวของคุณ เรื่องราวของคุณ"
+        },
+        "mbtiReport": {
+            "title": "MBTI ของฉัน",
+            "subtitle": "ค้นพบตัวตนที่แท้จริงของคุณ"
+        },
         "downloadPdf": "ดาวน์โหลด PDF"
     },
     "home": {
@@ -376,7 +392,7 @@
         "profileSectionTitle": "โปรไฟล์",
         "editProfile": "แก้ไขโปรไฟล์",
         "passwordSettings": "ตั้งค่ารหัสผ่าน",
-        "purchaseHistory": "ประวัติการซื้อ",
+        "purchaseHistory": "รายงานของฉัน",
         "othersSectionTitle": "อื่น ๆ ",
         "aboutUs": "เกี่ยวกับเรา",
         "privacyPolicy": "นโยบายความเป็นส่วนตัว",
@@ -390,8 +406,8 @@
         "career": "อาชีพ"
     },
     "purchaseHistory": {
-        "title": "ประวัติการซื้อ",
-        "usageTab": "ประวัติการซื้อ",
+        "title": "รายงานของฉัน",
+        "usageTab": "รายงานของฉัน",
         "topupTab": "ประวัติการเติมเงิน"
     },
     "serviceLabel": {

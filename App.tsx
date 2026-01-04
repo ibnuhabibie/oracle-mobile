@@ -24,7 +24,7 @@ enableScreens(true);
 const App: React.FC = () => {
 
   const handleNotif = async (notifData) => {
-    const response = await api.get(`/v1/usage-histories/${notifData.job_id}`);
+    const response = await api.get(`/v1/usage-histories/${notifData.trx_no}`);
     const item = response.data
 
     let data = JSON.parse(item.response_data)

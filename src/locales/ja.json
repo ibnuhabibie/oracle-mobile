@@ -138,6 +138,22 @@
       "title": "運勢ガイダンス",
       "subtitle": "未来を迎えましょう"
     },
+    "myReport": {
+      "title": "マイレポート",
+      "subtitle": "すべての洞察をひとつの場所に"
+    },
+    "baziReport": {
+      "title": "マイ八字",
+      "subtitle": "運命の設計図が明らかに"
+    },
+    "astroReport": {
+      "title": "マイ占星術",
+      "subtitle": "星が語る、あなたの物語"
+    },
+    "mbtiReport": {
+      "title": "マイMBTI",
+      "subtitle": "本当のあなたを見つけよう"
+    },
     "downloadPdf": "PDFとしてダウンロード"
   },
   "home": {
@@ -376,7 +392,7 @@
     "profileSectionTitle": "プロフィール",
     "editProfile": "プロフィール編集",
     "passwordSettings": "パスワード設定",
-    "purchaseHistory": "購入履歴",
+    "purchaseHistory": "マイレポート",
     "othersSectionTitle": "その他",
     "aboutUs": "私たちについて",
     "privacyPolicy": "プライバシーポリシー",
@@ -390,8 +406,8 @@
     "career": "キャリア"
   },
   "purchaseHistory": {
-    "title": "購入履歴",
-    "usageTab": "購入履歴",
+    "title": "マイレポート",
+    "usageTab": "マイレポート",
     "topupTab": "チャージ履歴"
   },
   "serviceLabel": {

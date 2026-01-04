@@ -138,6 +138,22 @@
             "title": "Panduan Keberuntungan",
             "subtitle": "SAMBUT MASA DEPANMU"
         },
+        "myReport": {
+            "title": "Laporan Saya",
+            "subtitle": "Semua Wawasan Anda, Dalam Satu Tempat"
+        },
+        "baziReport": {
+            "title": "BaZi Saya",
+            "subtitle": "Cetak Biru Takdir Anda Terungkap"
+        },
+        "astroReport": {
+            "title": "Astro Saya",
+            "subtitle": "Bintang Anda, Kisah Anda"
+        },
+        "mbtiReport": {
+            "title": "MBTI Saya",
+            "subtitle": "Temukan Kepribadian Sejati Anda"
+        },
         "downloadPdf": "Unduh sebagai PDF"
     },
     "home": {
@@ -376,7 +392,7 @@
         "profileSectionTitle": "Profil",
         "editProfile": "Edit Profil",
         "passwordSettings": "Pengaturan Kata Sandi",
-        "purchaseHistory": "Riwayat Pembelian",
+        "purchaseHistory": "Laporan Saya",
         "othersSectionTitle": "Lainnya",
         "aboutUs": "Tentang Kami",
         "privacyPolicy": "Kebijakan Privasi",
@@ -390,8 +406,8 @@
         "career": "Karier"
     },
     "purchaseHistory": {
-        "title": "Riwayat Pembelian",
-        "usageTab": "Riwayat Pembelian",
+        "title": "Laporan Saya",
+        "usageTab": "Laporan Saya",
         "topupTab": "Riwayat Top Up"
     },
     "serviceLabel": {

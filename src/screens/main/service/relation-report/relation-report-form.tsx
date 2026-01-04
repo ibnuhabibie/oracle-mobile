@@ -163,6 +163,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
               style={styles.textField}
               editable={false}
               rightIcon={<CalendarIcon size={15} />}
+              onPress={() => setShowDatePicker(true)}
             />
           </View>
         </Pressable>
@@ -171,9 +172,9 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
             <DateTimePicker
               value={watchedDate}
               mode="date"
-              display="default"
               onChange={onDateChange}
               maximumDate={new Date()}
+              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
             />
           )
         }

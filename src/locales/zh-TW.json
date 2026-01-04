@@ -138,6 +138,22 @@
             "title": "命运指引",
             "subtitle": "迎接你的未来"
         },
+        "myReport": {
+            "title": "我的報告",
+            "subtitle": "所有洞察，一站掌握"
+        },
+        "baziReport": {
+            "title": "我的八字",
+            "subtitle": "揭開你的命運藍圖"
+        },
+        "astroReport": {
+            "title": "我的星盤",
+            "subtitle": "你的星辰，你的故事"
+        },
+        "mbtiReport": {
+            "title": "我的 MBTI",
+            "subtitle": "探索真正的自己"
+        },
         "downloadPdf": "下载 PDF"
     },
     "home": {
@@ -376,7 +392,7 @@
         "profileSectionTitle": "个人资料",
         "editProfile": "编辑个人资料",
         "passwordSettings": "密码设置",
-        "purchaseHistory": "购买历史",
+        "purchaseHistory": "我的報告",
         "othersSectionTitle": "其他",
         "aboutUs": "关于我们",
         "privacyPolicy": "隐私政策",
@@ -390,8 +406,8 @@
         "career": "事业"
     },
     "purchaseHistory": {
-        "title": "购买历史",
-        "usageTab": "购买历史",
+        "title": "我的報告",
+        "usageTab": "我的報告",
         "topupTab": "充值历史"
     },
     "serviceLabel": {
