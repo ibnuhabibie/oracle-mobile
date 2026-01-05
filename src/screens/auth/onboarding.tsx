@@ -3,8 +3,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Pressable, StyleSheet, View, Alert } from 'react-native';
-import { scaleFont, scaleSize } from '../../utils/scale';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
+import { scaleFont, scaleSize } from '../../utils/scale';
 import CalendarIcon from '../../components/icons/auth/calendar-icon';
 import ClockIcon from '../../components/icons/auth/clock-icon';
 
@@ -152,14 +153,14 @@ const Onboarding: FC<{
     }
   };
 
-  const onDateChange = (event: any, selectedDate?: Date) => {
+  const onDateChange = (selectedDate?: Date) => {
     setShowDatePicker(false);
     if (selectedDate) {
       setValue('birth_date', selectedDate);
     }
   };
 
-  const onTimeChange = (event: any, selectedTime?: Date) => {
+  const onTimeChange = (selectedTime?: Date) => {
     setShowTimePicker(false);
     if (selectedTime) {
       setValue('birth_time', selectedTime);
@@ -169,19 +170,19 @@ const Onboarding: FC<{
   const selectCountry = async (country: Country) => {
     console.log('country', country)
     setValue('birth_country', country);
-    
+
     try {
       const response = await api.get(`/v1/configs/countries/${country.iso2}/cities`);
       const cities = response.data;
       setCities(cities);
-      
+
       if (cities.length > 0) {
         setValue('birth_city', cities[0]);
       }
     } catch (error) {
       console.error('Failed to fetch cities:', error);
     }
-    
+
     setShowCountryModal(false);
   };
 
@@ -245,7 +246,7 @@ const Onboarding: FC<{
               onPress={() => setShowCityModal(true)}
               text={(watchedCity as any)[labelDropdown] || watchedCity.name || t('onboarding.pleaseSelectOne')}
             />
-        )
+          )
         }
       </View>
 
@@ -258,7 +259,7 @@ const Onboarding: FC<{
       />
 
       {/* Date Picker */}
-      {showDatePicker && (
+      {/* {showDatePicker && (
         <DateTimePicker
           value={watchedDate}
           mode="date"
@@ -267,17 +268,31 @@ const Onboarding: FC<{
           maximumDate={new Date()}
           style={{ backgroundColor: COLORS.red }}
         />
-      )}
+      )} */}
+
+      <DateTimePickerModal
+        isVisible={showDatePicker}
+        mode="date"
+        onConfirm={onDateChange}
+        onCancel={() => setShowDatePicker(false)}
+      />
 
       {/* Time Picker */}
-      {showTimePicker && (
+      {/* {showTimePicker && (
         <DateTimePicker
           value={watchedTime}
           mode="time"
           display="default"
           onChange={onTimeChange}
         />
-      )}
+      )} */}
+
+      <DateTimePickerModal
+        isVisible={showTimePicker}
+        mode="time"
+        onConfirm={onTimeChange}
+        onCancel={() => setShowTimePicker(false)}
+      />
 
       {/* Country Modal */}
       {renderDropdownModal(

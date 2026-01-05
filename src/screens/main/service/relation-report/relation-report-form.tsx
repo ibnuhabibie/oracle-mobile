@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Platform, Pressable } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { AppText } from '../../../../components/ui/app-text';
 import { AppButton } from '../../../../components/ui/app-button';
 import { COLORS } from '../../../../constants/colors';
@@ -131,7 +132,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
     setShowCityModal(false);
   };
 
-  const onDateChange = (event: any, selectedDate?: Date) => {
+  const onDateChange = (selectedDate?: Date) => {
     setShowDatePicker(false);
     if (selectedDate) {
       setValue('birth_date', selectedDate);
@@ -167,7 +168,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
             />
           </View>
         </Pressable>
-        {
+        {/* {
           showDatePicker && (
             <DateTimePicker
               value={watchedDate}
@@ -177,7 +178,13 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
               display={Platform.OS === 'ios' ? 'spinner' : 'default'}
             />
           )
-        }
+        } */}
+        <DateTimePickerModal
+          isVisible={showDatePicker}
+          mode="date"
+          onConfirm={onDateChange}
+          onCancel={() => setShowDatePicker(false)}
+        />
       </View>
       {/* Country of Birth */}
       {
