@@ -25,6 +25,7 @@
 		148A44CCDFABD8ECA3FBFFDD /* Pods_TheAffinity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheAffinity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3CE0C57D28FF944CB49F6F /* Pods-TheAffinity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheAffinity.release.xcconfig"; path = "Target Support Files/Pods-TheAffinity/Pods-TheAffinity.release.xcconfig"; sourceTree = "<group>"; };
 		409577AE0F404CD3933AACD9 /* ArchivoLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ArchivoLight.ttf; path = ../src/assets/fonts/ArchivoLight.ttf; sourceTree = "<group>"; };
+		4D6FE1482F0C20C70069CFB3 /* TheAffinity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = TheAffinity.entitlements; path = TheAffinity/TheAffinity.entitlements; sourceTree = "<group>"; };
 		4DA35D2A2F07B018008354E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B3B0084B02D474ABB0A1BCD /* ArchivoRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ArchivoRegular.ttf; path = ../src/assets/fonts/ArchivoRegular.ttf; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TheAffinity/AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		13B07FAE1A68108700A75B9A /* TheAffinity */ = {
 			isa = PBXGroup;
 			children = (
+				4D6FE1482F0C20C70069CFB3 /* TheAffinity.entitlements */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -293,6 +295,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TheAffinity/TheAffinity.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6F36F9AL5N;
 				ENABLE_BITCODE = NO;
@@ -323,6 +326,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TheAffinity/TheAffinity.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6F36F9AL5N;
 				INFOPLIST_FILE = TheAffinity/Info.plist;
