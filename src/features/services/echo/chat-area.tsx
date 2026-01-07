@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
   chatArea: {
     flex: 1,
     position: 'relative',
-    marginBottom: scaleSize(70),
     // backgroundColor: 'blue'
   },
   chatContainer: {
