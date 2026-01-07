@@ -29,7 +29,6 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
 
   const [apiError, setApiError] = useState<string | null>(null);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-  const [keyboardVisible, setKeyboardVisible] = useState(false);
   const {
     cost,
     creditType,
@@ -101,95 +100,88 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
-      setKeyboardVisible(true);
-    });
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-      setKeyboardVisible(false);
-    });
 
-    return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
-    };
-  }, []);
 
   return (
-    <ScreenContainer fluid={true} scrollable={true}>
+    <ScreenContainer fluid={true} scrollable={false}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 16 : 64}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 42 : 0}
         style={styles.keyboardAvoidingView}
       >
-        <AppText style={styles.title} color="primary" variant="subtitle1">
-          {t('askAffinity.title')}
-        </AppText>
-        <AppText style={styles.subtitle} variant="caption1" color="white">
-          {t('askAffinity.subtitle')}
-        </AppText>
-        <Carousel
-          autoPlayInterval={2000}
-          data={carouselItems}
-          height={scaleSize(300)}
-          loop={true}
-          pagingEnabled={true}
-          snapEnabled={true}
-          width={screenWidth}
-          style={styles.carouselStyle}
-          mode="parallax"
-          modeConfig={{
-            parallaxScrollingScale: scaleSize(0.85, 0.85, 0.85),
-            parallaxScrollingOffset: scaleSize(220), // Fixed value instead of scaled
-          }}
-          onProgressChange={progress}
-          renderItem={
-            ({ item }) => (
-              <Image
-                source={item.image}
-                style={styles.carouselImage}
-                resizeMode="contain"
-              />
-            )
-          }
-        />
-        <View style={styles.infoCard}>
-          <AppText color="primary">{t('askAffinity.howToAskTitle')}</AppText>
-          <AppText style={styles.infoCardText} variant="caption3" color="white">
-            {t('askAffinity.instructions')}
-          </AppText>
-        </View>
-        <View style={[styles.formContainer, keyboardVisible && styles.formContainerAbsolute]}>
-          <AppText style={styles.formTitle} color="white">
-            {t('askAffinity.questionLabel')}
-          </AppText>
-          <AppInput
-            control={control}
-            name="question"
-            rules={formRules.question}
-            placeholder=""
-            errors={errors}
-          />
-          {apiError ? (
-            <AppText style={styles.apiErrorText}>{apiError}</AppText>
-          ) : null}
-          <AppButton
-            title={
-              <View style={styles.purchaseButtonContent}>
-                <AppText color="white" style={styles.purchaseButtonText}>
-                  {t('askAffinity.purchaseButton', { cost })}
-                </AppText>
-                <CoinIcon
-                  type={creditType === 'gold' ? 'white' : 'silver'}
-                  size={scaleSize(18)}
-                />
-              </View>
-            }
-            onPress={async () => {
-              const valid = await trigger('question');
-              if (valid) setShowPurchaseModal(true);
-            }}
-          />
+        <View style={{ flex: 1 }}>
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <AppText style={styles.title} color="primary" variant="subtitle1">
+              {t('askAffinity.title')}
+            </AppText>
+            <AppText style={styles.subtitle} variant="caption1" color="white">
+              {t('askAffinity.subtitle')}
+            </AppText>
+            <Carousel
+              autoPlayInterval={2000}
+              data={carouselItems}
+              height={scaleSize(300)}
+              loop={true}
+              pagingEnabled={true}
+              snapEnabled={true}
+              width={screenWidth}
+              style={styles.carouselStyle}
+              mode="parallax"
+              modeConfig={{
+                parallaxScrollingScale: scaleSize(0.85, 0.85, 0.85),
+                parallaxScrollingOffset: scaleSize(220), // Fixed value instead of scaled
+              }}
+              onProgressChange={progress}
+              renderItem={
+                ({ item }) => (
+                  <Image
+                    source={item.image}
+                    style={styles.carouselImage}
+                    resizeMode="contain"
+                  />
+                )
+              }
+            />
+            <View style={styles.infoCard}>
+              <AppText color="primary">{t('askAffinity.howToAskTitle')}</AppText>
+              <AppText style={styles.infoCardText} variant="caption3" color="white">
+                {t('askAffinity.instructions')}
+              </AppText>
+            </View>
+          </ScrollView>
+
+          <View style={styles.formContainer}>
+            <AppText style={styles.formTitle} color="white">
+              {t('askAffinity.questionLabel')}
+            </AppText>
+            <AppInput
+              control={control}
+              name="question"
+              rules={formRules.question}
+              placeholder=""
+              errors={errors}
+            />
+            {apiError ? (
+              <AppText style={styles.apiErrorText}>{apiError}</AppText>
+            ) : null}
+            <AppButton
+              title={
+                <View style={styles.purchaseButtonContent}>
+                  <AppText color="white" style={styles.purchaseButtonText}>
+                    {t('askAffinity.purchaseButton', { cost })}
+                  </AppText>
+                  <CoinIcon
+                    type={creditType === 'gold' ? 'white' : 'silver'}
+                    size={scaleSize(18)}
+                  />
+                </View>
+              }
+              onPress={async () => {
+                const valid = await trigger('question');
+                if (valid) setShowPurchaseModal(true);
+              }}
+            />
+          </View>
         </View>
 
         <PurchaseAlertModal
@@ -214,12 +206,6 @@ const styles = StyleSheet.create({
   formContainer: {
     padding: scaleSize(12),
     paddingTop: scaleSize(8),
-  },
-  formContainerAbsolute: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     backgroundColor: '#121010',
     borderTopLeftRadius: scaleSize(20),
     borderTopRightRadius: scaleSize(20),
