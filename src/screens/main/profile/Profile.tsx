@@ -342,10 +342,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  mbtiQuizTextContainer: {
-    flex: 1,
-    marginLeft: scaleSize(4),
-  },
+
   userCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
@@ -467,7 +464,13 @@ const styles = StyleSheet.create({
     gap: scaleSize(4, 4, 8),
     backgroundColor: 'rgba(255,255,255,0.14)',
   },
+  mbtiQuizTextContainer: {
+    // flex: 1,
+    marginLeft: scaleSize(4),
+  },
   mbtiQuizButton: {
+    flex: 1,
+    marginLeft: scaleSize(14),
     width: scaleSize(100, 80, 120),
   },
 });
