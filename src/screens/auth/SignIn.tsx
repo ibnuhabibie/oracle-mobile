@@ -1,14 +1,18 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Linking } from 'react-native';
 import { scaleFont, scaleSize } from '../../utils/scale';
 import { useTranslation } from 'react-i18next';
+
+import { ID_URL } from '@env';
+
 
 import ScreenContainer from '../../components/layouts/screen-container';
 
 import { MainNavigatorParamList } from '../../navigators/types';
 import SignInForm from '../../features/auth/signin-form';
 import { AppText } from '../../components/ui/app-text';
+import { getLocale } from '../../hooks/use-storage';
 
 type SignInProps = NativeStackScreenProps<MainNavigatorParamList, 'SignIn'>;
 
@@ -37,6 +41,17 @@ const SignIn: FC<SignInProps> = ({ navigation }) => {
     }
   };
 
+  const handleForgotPassword = async () => {
+    const locale = await getLocale();
+    const url = `${ID_URL}?locale=${locale}`;
+    const supported = await Linking.canOpenURL(url);
+    if (supported) {
+      await Linking.openURL(url);
+    } else {
+      console.warn("Can't open this URL:", url);
+    }
+  }
+
   return (
     <ScreenContainer style={{ marginTop: 44 }}>
       <AppText variant='subtitle2' color='primary' style={styles.intro}>{t('login.intro')}</AppText>
@@ -54,6 +69,9 @@ const SignIn: FC<SignInProps> = ({ navigation }) => {
           onPress={() => navigation.navigate('SignUp')}>
           {t('login.signupButtonText')}
         </AppText>
+      </AppText>
+      <AppText variant='body1' style={styles.footer} color='neutral' onPress={handleForgotPassword}>
+        {t('login.forgotPassword')}
       </AppText>
     </ScreenContainer>
   );

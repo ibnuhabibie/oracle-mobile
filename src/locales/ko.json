@@ -37,14 +37,23 @@
       "금요일",
       "토요일"
     ],
-    "dayNamesShort": ["일", "월", "화", "수", "목", "금", "토"]
+    "dayNamesShort": [
+      "일",
+      "월",
+      "화",
+      "수",
+      "목",
+      "금",
+      "토"
+    ]
   },
   "login": {
     "intro": "친애하는 탐색자",
     "title": "로그인",
     "subtitle": "우주는 속삭입니다.\n당신에게 운명지어진 것을 발견하세요.",
     "footer": "계정이 없으신가요?",
-    "signupButtonText": "회원가입"
+    "signupButtonText": "회원가입",
+    "forgotPassword": "비밀번호를 잊으셨나요?"
   },
   "register": {
     "intro": "친애하는 탐색자",
@@ -55,7 +64,7 @@
   },
   "registerForm": {
     "nameRequired": "이름은 필수입니다",
-    "nameMinLength": "이름은 최소 3자 이상이어야 합니다",
+    "nameMinLength": "이름은 최소 2자 이상이어야 합니다",
     "emailRequired": "이메일은 필수입니다",
     "invalidEmailFormat": "이메일 형식이 올바르지 않습니다",
     "passwordRequired": "비밀번호는 필수입니다",
@@ -128,6 +137,22 @@
     "fortune": {
       "title": "운세 안내",
       "subtitle": "미래를 맞이하세요"
+    },
+    "myReport": {
+      "title": "내 리포트",
+      "subtitle": "모든 인사이트를 한곳에서"
+    },
+    "baziReport": {
+      "title": "내 바지(BaZi)",
+      "subtitle": "당신의 운명 설계도가 공개됩니다"
+    },
+    "astroReport": {
+      "title": "내 점성술",
+      "subtitle": "별이 들려주는 당신의 이야기"
+    },
+    "mbtiReport": {
+      "title": "내 MBTI",
+      "subtitle": "진정한 성격을 발견하세요"
     },
     "downloadPdf": "PDF로 다운로드"
   },
@@ -245,7 +270,8 @@
   },
   "usageHistory": {
     "noHistoryFound": "사용 내역이 없습니다.",
-    "details": "구매가 성공적으로 완료되었습니다. 자세히 확인하세요!"
+    "details": "구매가 성공적으로 완료되었습니다. 자세히 확인하세요!",
+    "paymentPending": "결제가 완료되지 않았습니다. 거래를 계속하려면 결제를 완료해주세요."
   },
   "affinityResult": {
     "title": "애피니티 질문",
@@ -258,6 +284,7 @@
     "downloadPdf": "PDF로 다운로드"
   },
   "polling": {
+    "message": "잠시만 기다려주세요...",
     "info": "몇 분 정도 소요됩니다. 창을 닫아도 괜찮아요. 준비되면 알려드릴게요.",
     "closeBtn": "닫기"
   },
@@ -340,7 +367,7 @@
     "female": "여성",
     "continue": "계속",
     "nameRequired": "이름은 필수입니다",
-    "nameMinLength": "이름은 최소 3자 이상이어야 합니다"
+    "nameMinLength": "이름은 최소 2자 이상이어야 합니다"
   },
   "passwordSettingForm": {
     "title": "비밀번호 설정",
@@ -365,7 +392,7 @@
     "profileSectionTitle": "프로필",
     "editProfile": "프로필 수정",
     "passwordSettings": "비밀번호 설정",
-    "purchaseHistory": "구매 내역",
+    "purchaseHistory": "내 리포트",
     "othersSectionTitle": "기타",
     "aboutUs": "회사 소개",
     "privacyPolicy": "개인정보 처리방침",
@@ -379,8 +406,8 @@
     "career": "커리어"
   },
   "purchaseHistory": {
-    "title": "구매 내역",
-    "usageTab": "구매 내역",
+    "title": "내 리포트",
+    "usageTab": "내 리포트",
     "topupTab": "충전 내역"
   },
   "serviceLabel": {
@@ -397,10 +424,10 @@
     "instructions": "1. 마음을 진정시키세요\n2. 질문하고 싶은 내용을 생각하세요\n3. 질문을 입력하세요\n4. 심호흡 후 질문 버튼을 누르세요",
     "questionLabel": "질문을 입력하세요",
     "questionRequired": "질문은 필수입니다",
-    "questionMinLength": "질문은 최소 10자 이상이어야 합니다",
+    "questionMinLength": "질문은 최소 3자 이상이어야 합니다",
     "purchaseButton": "{{cost}}에 구매",
     "somethingWentWrong": "문제가 발생했습니다"
-},
+  },
   "echo": {
     "title": "일기",
     "subtitle": "생각과 감정을 표현할 수 있는 안전한 공간입니다.",
@@ -443,14 +470,18 @@
     "ourPackages": "패키지 목록",
     "packagesDesc": "리포트 및 애피니티 AI 구매에 사용할 수 있습니다",
     "ourSubscriptions": "구독 목록",
-    "subscriptionsDesc": "애피니티 AI에서 사용할 수 있으며 매월 초에 초기화됩니다. 매월 3개의 무료 실버 토큰이 지급됩니다.",
+    "subscriptionsDesc": "구독은 매달 자동으로 갱신됩니다.",
     "getCoins": "{{count}} 토큰 받기",
     "processing": "처리 중...",
     "continue": "계속",
     "title": "충전",
     "noHistoryFound": "충전 내역이 없습니다.",
     "failedToLoadPackages": "패키지 불러오기에 실패했습니다. 나중에 다시 시도해 주세요.",
-    "failedToLoadSubscriptions": "구독 불러오기에 실패했습니다. 나중에 다시 시도해 주세요."
+    "failedToLoadSubscriptions": "구독 불러오기에 실패했습니다. 나중에 다시 시도해 주세요.",
+    "activeSubscriptionTitle": "활성 구독",
+    "activeSubscriptionSubtitle": "현재 구독이 활성 상태이며 자동으로 갱신됩니다.",
+    "cancelSubscription": "구독 취소",
+    "subscriptionCancelled": "구독이 취소되었습니다"
   },
   "topupReceiptModal": {
     "receipt": "영수증",
@@ -464,14 +495,20 @@
     "totalPoints": "총 포인트",
     "paymentNotCompleted": "결제가 아직 완료되지 않았습니다. 처리 중이거나 결제가 완료되지 않았을 수 있습니다. 나중에 다시 확인하세요.",
     "continuePayment": "결제 계속"
-},
-"session": {
+  },
+  "session": {
     "expiredTitle": "접근 만료",
     "expired": "세션이 만료되었습니다. 다시 로그인해 주세요."
-},
-"profileDescription": {
+  },
+  "profileDescription": {
     "you": "당신",
     "him": "그",
     "relationshipOutcome": "관계 결과"
-}
+  },
+  "directPayment": {
+    "paymentErrorTitle": "결제 실패",
+    "paymentNotCompletedMessage": "결제를 완료하기 전에 창을 닫았습니다. 다시 시도하여 결제를 완료해주세요.",
+    "paymentSuccessTitle": "결제 성공",
+    "paymentSuccessMessage": "감사합니다! 결제가 정상적으로 처리되었으며 보고서를 준비 중입니다."
+  }
 }

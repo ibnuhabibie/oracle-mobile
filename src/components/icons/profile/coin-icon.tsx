@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 
-type CoinType = 'silver' | 'gold';
+type CoinType = 'silver' | 'gold' | 'white';
 
 interface CoinIconProps {
   size?: number;
@@ -17,6 +17,8 @@ const CoinIcon: React.FC<CoinIconProps> = ({
     resolvedColor = '#fff';
   } else if (type === 'gold') {
     resolvedColor = '#E0AE1E';
+  } else if (type === 'white') {
+    resolvedColor = '#FFFFFF';
   }
 
   return (

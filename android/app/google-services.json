@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1060211516953:android:708283ca8a416d7d8eec88",
+        "mobilesdk_app_id": "1:1060211516953:android:451e4ae9e5c4b76c8eec88",
         "android_client_info": {
-          "package_name": "com.oracleapp"
+          "package_name": "com.theaffinity.app"
         }
       },
       "oauth_client": [],

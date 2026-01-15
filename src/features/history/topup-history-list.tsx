@@ -9,12 +9,14 @@ import api from "../../utils/http";
 import { formatDateWithTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
 import { scaleFont, scaleSize } from "../../utils/scale";
+import { formatPrice } from "../../utils/formatter";
 
 interface TopUpItem {
     topup_history_id: number;
     user_id: number;
     package_id: number;
     subscription_id: number | null;
+    currency_symbol: string;
     topup_type: string;
     amount_paid: string;
     payment_status: string;
@@ -101,7 +103,7 @@ const TopupHistoryList: React.FC<TopupHistoryListProps> = ({ onItemPress }) => {
                         </AppText>
                         <CoinIcon size={scaleSize(14, 14, 19)} type={item.package ? 'silver' : 'gold'} />
                     </View>
-                    <AppText variant="caption4" color="neutral">{item.transaction_id} - ${item.amount}</AppText>
+                    <AppText variant="caption4" color="neutral">{item.transaction_id} - {formatPrice(item.amount, item.currency_symbol)}</AppText>
                 </View>
                 <View style={styles.dateContainer}>
                     <AppText variant="caption4" color="gray" >

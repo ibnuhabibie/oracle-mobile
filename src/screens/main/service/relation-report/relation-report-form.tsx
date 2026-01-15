@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Platform, Pressable } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { AppText } from '../../../../components/ui/app-text';
 import { AppButton } from '../../../../components/ui/app-button';
 import { COLORS } from '../../../../constants/colors';
@@ -11,7 +12,6 @@ import { DropdownButton, renderDropdownModal } from '../../../../components/widg
 import api from '../../../../utils/http';
 import { useTranslation } from 'react-i18next';
 import CalendarIcon from '../../../../components/icons/auth/calendar-icon';
-import { formatDate } from '../../../../utils/formatter';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -65,7 +65,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
     full_name: {
       required: t('relationReportForm.nameRequired'),
       minLength: {
-        value: 3,
+        value: 2,
         message: t('relationReportForm.nameMinLength')
       }
     },
@@ -132,7 +132,7 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
     setShowCityModal(false);
   };
 
-  const onDateChange = (event: any, selectedDate?: Date) => {
+  const onDateChange = (selectedDate?: Date) => {
     setShowDatePicker(false);
     if (selectedDate) {
       setValue('birth_date', selectedDate);
@@ -164,20 +164,27 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
               style={styles.textField}
               editable={false}
               rightIcon={<CalendarIcon size={15} />}
+              onPress={() => setShowDatePicker(true)}
             />
           </View>
         </Pressable>
-        {
+        {/* {
           showDatePicker && (
             <DateTimePicker
               value={watchedDate}
               mode="date"
-              display="default"
               onChange={onDateChange}
               maximumDate={new Date()}
+              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
             />
           )
-        }
+        } */}
+        <DateTimePickerModal
+          isVisible={showDatePicker}
+          mode="date"
+          onConfirm={onDateChange}
+          onCancel={() => setShowDatePicker(false)}
+        />
       </View>
       {/* Country of Birth */}
       {

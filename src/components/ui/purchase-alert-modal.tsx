@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { serviceTypeTranslationKeys } from '../../constants/app';
 import { useTranslation, Trans } from 'react-i18next';
 import { scaleSize } from '../../utils/scale';
+import { useServiceCost } from '../../hooks/use-service-cost';
 
 interface PurchaseAlertModalProps {
   visible: boolean;
@@ -27,11 +28,15 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const { sync } = useAsyncStorage();
-  const [internalLoading, setInternalLoading] = useState<boolean>(false);
   const [userCredit, setUserCredit] = useState<number>(0);
-  const [isSufficient, setIsSufficient] = useState<boolean>(false);
-  const [creditType, setCreditType] = useState<string>('');
-  const [cost, setCost] = useState<number>(0);
+  const [isSufficient, setIsSufficient] = useState<boolean>();
+
+  const {
+    cost,
+    creditType,
+    loading: internalLoading,
+    setLoading: setInternalLoading,
+  } = useServiceCost(service);
 
   // Use external loading if provided, else internal
   const effectiveLoading = loading !== undefined ? loading : internalLoading;
@@ -49,22 +54,10 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
           return;
         }
 
-        let key = service;
-        let creditType = 'silver';
-        let cost = getConfigValue(`${key}_cost_using_silver_credit`, data.config);
-
-        if (cost <= 0) {
-          cost = getConfigValue(`${key}_cost_using_gold_credit`, data.config);
-          creditType = 'gold';
-        }
-
-        let userCredit = creditType === 'silver' ? data.user?.silver_credits : data.user?.gold_credits;
+        let userCredit = data.user?.gold_credits;
         setUserCredit(userCredit ?? 0);
         const isSufficient = (userCredit ?? 0) >= cost;
         setIsSufficient(isSufficient);
-
-        setCost(cost);
-        setCreditType(creditType);
 
         setInternalLoading(false);
       } catch (error) {
@@ -122,7 +115,7 @@ const PurchaseAlertModal: React.FC<PurchaseAlertModalProps> = ({
                             values={{ cost, service: getServiceTypeLabel(service) }}
                           />
                         </AppText>
-                        <CoinIcon size={scaleSize(19)} type={creditType === 'silver' ? 'silver' : 'gold'} />
+                        {/* <CoinIcon size={scaleSize(19)} type={creditType === 'silver' ? 'silver' : 'gold'} /> */}
                       </View>
                       <PurchaseAlertCreditText
                         creditType={creditType}

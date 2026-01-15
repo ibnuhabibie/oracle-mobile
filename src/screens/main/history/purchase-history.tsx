@@ -33,8 +33,13 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
   );
 
   const handleShowReceipt = (item: any) => {
-    setSelectedItem(item);
-    setModalVisible(true);
+    console.log(item)
+    try {
+      setModalVisible(true);
+      setSelectedItem(item);
+    } catch (e) {
+      console.log(e, 'asdasd')
+    }
   };
 
   const handleShowUsageReceipt = (item: any) => {

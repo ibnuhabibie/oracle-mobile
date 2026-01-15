@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, SafeAreaView, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Modal, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { AppText } from '../../components/ui/app-text';
 import { AppButton } from '../../components/ui/app-button';
 import { initPaymentSheet, presentPaymentSheet } from '@stripe/stripe-react-native';
@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { COLORS } from "../../constants/colors";
 import CloseIcon from "../../components/icons/close-icon";
 import { scaleFont, scaleSize } from "../../utils/scale";
+import { formatPrice } from "../../utils/formatter";
 
 interface TopupReceiptModalProps {
     visible: boolean;
@@ -82,14 +83,14 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                     {item.package?.name || item.subscription?.name || item.topup_type}
                                 </AppText>
                                 <AppText variant="body1" style={styles.modalItemPrice} color="neutral">
-                                    ${item.amount}
+                                    {formatPrice(item.amount, item.currency_symbol)}
                                 </AppText>
                             </View>
                             <View style={styles.modalRow}>
                                 <View style={{ flex: 1 }} />
                                 <AppText variant="body1" style={styles.modalTotalLabel} color="neutral">{t("topupReceiptModal.total")}</AppText>
                                 <AppText variant="body1" style={styles.modalTotalValue} color="neutral">
-                                    ${item.amount}
+                                    {formatPrice(item.amount, item.currency_symbol)}
                                 </AppText>
                             </View>
                             <View style={styles.modalSectionDivider} />
@@ -100,7 +101,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                         <>
                                             <View style={styles.modalRow}>
                                                 <AppText variant="caption1" color="neutral">{t("topupReceiptModal.paymentMethod")}</AppText>
-                                                <AppText variant="caption1" color="white">{JSON.parse(item.payment_method).type}</AppText>
+                                                <AppText variant="caption1" color="white">{JSON.parse(item.payment_method)?.type}</AppText>
                                             </View>
                                             <View style={styles.modalSectionDivider} />
                                             <View style={styles.modalRow}>

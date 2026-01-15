@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Alert
+  Alert,
+  Keyboard
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from "react-i18next";
@@ -35,10 +36,7 @@ const FloatingFooter: React.FC<{
   const [input, setInput] = useState('');
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 16 : 0}
-    >
+    <View style={styles.footerContainer}>
       <View style={styles.adviceRow}>
         <AppText color='neutral'>{t('echoDetail.clickOn')}</AppText>
         <View style={styles.adviceIconContainer}>
@@ -57,13 +55,14 @@ const FloatingFooter: React.FC<{
         />
         <TouchableOpacity style={styles.sendButton} onPress={() => {
           if (!input.trim()) return;
+          Keyboard.dismiss();
           onSend(input);
           setInput('');
         }}>
           <SendIcon size={scaleSize(20)} />
         </TouchableOpacity>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 });
 /* -------------------------------------------------------------- */
@@ -80,7 +79,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
   const {
     loading: costLoading,
     setLoading: setCostLoading
-  } = useServiceCost('ask_affinity');
+  } = useServiceCost('secret_diary');
 
   const fetchData = useCallback(async () => {
     if (!id) return;
@@ -154,13 +153,24 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           </View>
         </>
       }
-      floatingFooter={<FloatingFooter onSend={handleSend} t={t} />}
+      fluid={true}
+      scrollable={false}
     >
-      <ChatArea
-        messages={messages}
-        lastMessage={lastMessage}
-        setModalVisible={setModalVisible}
-      />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 142 : 0}
+        style={{ flex: 1 }}
+      >
+        <View style={{ flex: 1, paddingHorizontal: scaleSize(16) }}>
+          <ChatArea
+            messages={messages}
+            lastMessage={lastMessage}
+            setModalVisible={setModalVisible}
+          />
+        </View>
+        <FloatingFooter onSend={handleSend} t={t} />
+      </KeyboardAvoidingView>
+
       <PurchaseAlertModal
         loading={costLoading}
         visible={modalVisible}
@@ -173,6 +183,13 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
+  footerContainer: {
+    backgroundColor: '#121010',
+    padding: scaleSize(14),
+    // Padding bottom for SafeArea is usually handled by ScreenContainer safe area view,
+    // but since we are inside it, we might need some padding if it's very bottom.
+    // However, KeybooardAvoidingView pushes it up.
+  },
   dateSeparator: {
     alignItems: 'center',
     paddingVertical: scaleSize(12),
@@ -188,7 +205,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 'auto',
+    height: '100%',
     borderRadius: scaleSize(12),
     backgroundColor: 'rgba(255,255,255,0.13)',
     borderWidth: scaleSize(1),

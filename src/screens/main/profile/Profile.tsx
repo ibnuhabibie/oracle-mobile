@@ -1,20 +1,20 @@
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import React, {FC, useEffect, useState} from 'react';
-import {useFocusEffect} from '@react-navigation/native';
-import {InteractionManager} from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import React, { FC, useEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { InteractionManager } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
-import {Platform, ToastAndroid} from 'react-native';
+import { Platform, ToastAndroid } from 'react-native';
 import Toast from 'react-native-toast-message';
-import {Pressable, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {scaleFont, scaleSize} from '../../../utils/scale';
+import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { scaleFont, scaleSize } from '../../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-import {APP_URL} from '@env';
+import { APP_URL } from '@env';
 
 import CoinIcon from '../../../components/icons/profile/coin-icon';
 import CommentUserIcon from '../../../components/icons/profile/comment-user-icon';
-import {getMbtiIconComponent} from '../../../features/mbti/mbti-profile-item';
+import { getMbtiIconComponent } from '../../../features/mbti/mbti-profile-item';
 import CopyIcon from '../../../components/icons/profile/copy-icon';
 import EyeIcon from '../../../components/icons/profile/eye-icon';
 import BuildingIcon from '../../../components/icons/profile/building-icon';
@@ -25,19 +25,19 @@ import ShieldIcon from '../../../components/icons/profile/shield-icon';
 import TermsIcon from '../../../components/icons/profile/terms-icon';
 
 import ScreenContainer from '../../../components/layouts/screen-container';
-import {COLORS} from '../../../constants/colors';
-import {fontFamilies} from '../../../constants/fonts';
-import {MainNavigatorParamList} from '../../../navigators/types';
+import { COLORS } from '../../../constants/colors';
+import { fontFamilies } from '../../../constants/fonts';
+import { MainNavigatorParamList } from '../../../navigators/types';
 import api from '../../../utils/http';
 import ProfileItem from '../../../features/profile/profile-item';
-import {useAsyncStorage} from '../../../hooks/use-storage';
-import {AppText} from '../../../components/ui/app-text';
-import {AppButton} from '../../../components/ui/app-button';
-import {ProfileIcon, useAffinityProfile} from './useAffinityProfile';
+import { useAsyncStorage } from '../../../hooks/use-storage';
+import { AppText } from '../../../components/ui/app-text';
+import { AppButton } from '../../../components/ui/app-button';
+import { ProfileIcon, useAffinityProfile } from './useAffinityProfile';
 
 type ProfileProps = BottomTabScreenProps<MainNavigatorParamList, 'Profile'>;
 
-const Profile: FC<ProfileProps> = ({navigation}) => {
+const Profile: FC<ProfileProps> = ({ navigation }) => {
   // ...
   const handleCopyReferralCode = () => {
     if (user?.referral_code) {
@@ -52,12 +52,12 @@ const Profile: FC<ProfileProps> = ({navigation}) => {
       }
     }
   };
-  const {t} = useTranslation();
-  const {getUserProfile, getAuthToken} = useAsyncStorage();
+  const { t } = useTranslation();
+  const { getUserProfile, getAuthToken } = useAsyncStorage();
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<any | null>(null);
 
-  const {sync} = useAsyncStorage();
+  const { sync } = useAsyncStorage();
 
   const init = async () => {
     console.log('init');
@@ -146,14 +146,14 @@ const Profile: FC<ProfileProps> = ({navigation}) => {
   } = useAffinityProfile();
 
   return (
-    <ScreenContainer style={{marginTop: scaleSize(44)}}>
+    <ScreenContainer style={{ marginTop: scaleSize(44) }}>
       {/* User Profile Card */}
       <View style={styles.userCard}>
         <View style={styles.userInfo}>
           <AppText
             variant="subtitle1"
             color="white"
-            style={{fontSize: scaleFont(16, 12, 20)}}>
+            style={{ fontSize: scaleFont(16, 12, 20) }}>
             {user?.full_name || t('profilePage.guest')}
           </AppText>
           <Pressable style={styles.userBadge} onPress={handleCopyReferralCode}>
@@ -225,13 +225,13 @@ const Profile: FC<ProfileProps> = ({navigation}) => {
             <AppText
               variant="caption1"
               color="neutral"
-              style={{fontSize: scaleFont(12, 10, 16)}}>
+              style={{ fontSize: scaleFont(12, 10, 16) }}>
               {t('profilePage.mbtiTitle')}
             </AppText>
             <AppText
               variant="tiny1"
               color="neutral"
-              style={{fontSize: scaleFont(10, 8, 14)}}>
+              style={{ fontSize: scaleFont(10, 8, 14) }}>
               {t('profilePage.mbtiSubtitle')}
             </AppText>
           </View>
@@ -274,7 +274,7 @@ const Profile: FC<ProfileProps> = ({navigation}) => {
             </AppText>
             <CoinIcon size={scaleSize(16, 14, 19)} type="gold" />
           </View>
-          <View style={styles.coinItem}>
+          <View style={[styles.coinItem, { display: 'none' }]}>
             <AppText
               color="white"
               style={styles.coinAmount}
@@ -342,10 +342,7 @@ const Profile: FC<ProfileProps> = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  mbtiQuizTextContainer: {
-    flex: 1,
-    marginLeft: scaleSize(4),
-  },
+
   userCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
@@ -467,7 +464,13 @@ const styles = StyleSheet.create({
     gap: scaleSize(4, 4, 8),
     backgroundColor: 'rgba(255,255,255,0.14)',
   },
+  mbtiQuizTextContainer: {
+    // flex: 1,
+    marginLeft: scaleSize(4),
+  },
   mbtiQuizButton: {
+    flex: 1,
+    marginLeft: scaleSize(14),
     width: scaleSize(100, 80, 120),
   },
 });

@@ -11,6 +11,7 @@ import { MainNavigatorParamList } from '../../navigators/types';
 import ScreenContainer from '../../components/layouts/screen-container';
 import ProfileDashboard from '../../features/profile/profile-dashboard';
 import { AppText } from '../../components/ui/app-text';
+import { useAffinityProfile } from './profile/useAffinityProfile';
 
 type HomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Home'>;
 
@@ -28,7 +29,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
     : Dimensions.get("screen");
 
   const carouselItems: Array<{
-    id: 'love' | 'fortune' | 'relation';
+    id: 'love' | 'fortune' | 'relation' | 'myReport' | 'baziReport' | 'astroReport' | 'mbtiReport';
     title: string;
     subtitle: string;
     path: keyof MainNavigatorParamList;
@@ -51,7 +52,35 @@ const Home: FC<HomeProps> = ({ navigation }) => {
         subtitle: t('carousel.fortune.subtitle'),
         path: 'FortuneReport'
       },
+      {
+        id: 'myReport',
+        title: t('carousel.myReport.title'),
+        subtitle: t('carousel.myReport.subtitle'),
+        path: 'PurchaseHistory'
+      },
+      {
+        id: 'baziReport',
+        title: t('carousel.baziReport.title'),
+        subtitle: t('carousel.baziReport.subtitle'),
+        path: 'BaziResults'
+      },
+      {
+        id: 'astroReport',
+        title: t('carousel.astroReport.title'),
+        subtitle: t('carousel.astroReport.subtitle'),
+        path: 'AstrologyResults'
+      },
+      {
+        id: 'mbtiReport',
+        title: t('carousel.mbtiReport.title'),
+        subtitle: t('carousel.mbtiReport.subtitle'),
+        path: 'MbtiQuiz'
+      },
     ];
+
+  const {
+    data: affinityProfile,
+  } = useAffinityProfile();
 
   return (
     <ScreenContainer style={{ padding: 0 }}>
@@ -82,7 +111,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
           onProgressChange={progress}
           renderItem={
             ({ item }) => (
-              <ServiceCard data={item} navigation={navigation} />
+              <ServiceCard data={item} navigation={navigation} navigationData={affinityProfile} />
             )
           }
         />

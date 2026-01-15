@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import {
+  Platform,
   StyleSheet,
   TextInput,
   TextInputProps,
@@ -16,6 +17,7 @@ interface TextFieldProps extends TextInputProps {
   variant?: TextFieldVariant;
   rightIcon?: React.ReactNode;
   containerStyle?: ViewStyle;
+  onPress?: () => void;
 }
 
 const TextField = forwardRef<TextInput, TextFieldProps>(
@@ -25,6 +27,7 @@ const TextField = forwardRef<TextInput, TextFieldProps>(
       editable = true,
       rightIcon,
       containerStyle,
+      onPress,
       ...props
     },
     ref,
@@ -56,6 +59,7 @@ const TextField = forwardRef<TextInput, TextFieldProps>(
           style={[styles.input, !editable && styles.disabledText]}
           editable={variant !== 'disabled'}
           placeholderTextColor="#999"
+          onPress={onPress}
         />
         {rightIcon && <View style={styles.icon}>{rightIcon}</View>}
       </View>
@@ -80,7 +84,7 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     width: '100%',
     fontFamily: fontFamilies.ARCHIVO.light,
-    lineHeight: scaleSize(47),
+    lineHeight: Platform.OS === 'ios' ? scaleFont(16) : scaleFont(24),
     paddingVertical: 0,
   },
   disabledText: {

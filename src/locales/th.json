@@ -52,7 +52,8 @@
         "title": "เข้าสู่ระบบ",
         "subtitle": "จักรวาลกำลังกระซิบ\nค้นพบสิ่งที่ถูกกำหนดไว้สำหรับคุณ",
         "footer": "ยังไม่มีบัญชีใช่ไหม?",
-        "signupButtonText": "สมัครสมาชิก"
+        "signupButtonText": "สมัครสมาชิก",
+        "forgotPassword": "ลืมรหัสผ่าน?"
     },
     "register": {
         "intro": "ถึงผู้แสวงหา",
@@ -63,7 +64,7 @@
     },
     "registerForm": {
         "nameRequired": "กรุณากรอกชื่อ",
-        "nameMinLength": "ชื่ออย่างน้อย 3 ตัวอักษร",
+        "nameMinLength": "ชื่ออย่างน้อย 2 ตัวอักษร",
         "emailRequired": "กรุณากรอกอีเมล",
         "invalidEmailFormat": "รูปแบบอีเมลไม่ถูกต้อง",
         "passwordRequired": "กรุณากรอกรหัสผ่าน",
@@ -136,6 +137,22 @@
         "fortune": {
             "title": "คำแนะนำโชคชะตา",
             "subtitle": "ต้อนรับอนาคตของคุณ"
+        },
+        "myReport": {
+            "title": "รายงานของฉัน",
+            "subtitle": "ทุกข้อมูลเชิงลึกของคุณ ในที่เดียว"
+        },
+        "baziReport": {
+            "title": "ปาจื้อของฉัน",
+            "subtitle": "พิมพ์เขียวแห่งโชคชะตาของคุณถูกเปิดเผย"
+        },
+        "astroReport": {
+            "title": "โหราศาสตร์ของฉัน",
+            "subtitle": "ดวงดาวของคุณ เรื่องราวของคุณ"
+        },
+        "mbtiReport": {
+            "title": "MBTI ของฉัน",
+            "subtitle": "ค้นพบตัวตนที่แท้จริงของคุณ"
         },
         "downloadPdf": "ดาวน์โหลด PDF"
     },
@@ -253,7 +270,8 @@
     },
     "usageHistory": {
         "noHistoryFound": "ไม่พบประวัติการใช้งาน",
-        "details": "การซื้อของคุณสำเร็จ ดูรายละเอียด!"
+        "details": "การซื้อของคุณสำเร็จ ดูรายละเอียด!",
+        "paymentPending": "การชำระเงินยังไม่เสร็จสิ้น กรุณาชำระเงินให้เสร็จสิ้นเพื่อดำเนินการต่อ"
     },
     "affinityResult": {
         "title": "ถาม Affinity",
@@ -266,6 +284,7 @@
         "downloadPdf": "ดาวน์โหลด PDF"
     },
     "polling": {
+        "message": "กรุณารอสักครู่...",
         "info": "ใช้เวลาสักครู่ คุณสามารถปิดหน้าต่างนี้ได้ - เราจะแจ้งเมื่อพร้อม",
         "closeBtn": "ปิด"
     },
@@ -310,7 +329,7 @@
         "birthDate": "วันเกิด",
         "birthDateLabel": "วันเกิด:",
         "birthTime": "เวลาเกิด",
-        "birthTimeLabel": "เวลาเกิด:",
+        "birthTimeLabel": "วันเกิด:",
         "birthTimeHelper": "ไม่แน่ใจเวลาเกิด? เลือกเวลาที่ใกล้เคียงที่สุด",
         "gender": "เพศ",
         "male": "ชาย",
@@ -348,7 +367,7 @@
         "female": "หญิง",
         "continue": "ดำเนินการต่อ",
         "nameRequired": "กรุณากรอกชื่อ",
-        "nameMinLength": "ชื่ออย่างน้อย 3 ตัวอักษร"
+        "nameMinLength": "ชื่ออย่างน้อย 2 ตัวอักษร"
     },
     "passwordSettingForm": {
         "title": "ตั้งค่ารหัสผ่าน",
@@ -373,8 +392,8 @@
         "profileSectionTitle": "โปรไฟล์",
         "editProfile": "แก้ไขโปรไฟล์",
         "passwordSettings": "ตั้งค่ารหัสผ่าน",
-        "purchaseHistory": "ประวัติการซื้อ",
-        "othersSectionTitle": "อื่น ๆ",
+        "purchaseHistory": "รายงานของฉัน",
+        "othersSectionTitle": "อื่น ๆ ",
         "aboutUs": "เกี่ยวกับเรา",
         "privacyPolicy": "นโยบายความเป็นส่วนตัว",
         "termsAndConditions": "ข้อกำหนดและเงื่อนไข",
@@ -387,8 +406,8 @@
         "career": "อาชีพ"
     },
     "purchaseHistory": {
-        "title": "ประวัติการซื้อ",
-        "usageTab": "ประวัติการซื้อ",
+        "title": "รายงานของฉัน",
+        "usageTab": "รายงานของฉัน",
         "topupTab": "ประวัติการเติมเงิน"
     },
     "serviceLabel": {
@@ -405,7 +424,7 @@
         "instructions": "1. ทำจิตใจให้สงบ\n2. คิดถึงคำถามที่ต้องการถาม\n3. พิมพ์คำถามของคุณ\n4. สูดลมหายใจลึก ๆ แล้วกดปุ่มถาม",
         "questionLabel": "พิมพ์คำถามของคุณ",
         "questionRequired": "กรุณากรอกคำถาม",
-        "questionMinLength": "คำถามอย่างน้อย 10 ตัวอักษร",
+        "questionMinLength": "คำถามอย่างน้อย 3 ตัวอักษร",
         "purchaseButton": "ซื้อในราคา {{cost}}",
         "somethingWentWrong": "เกิดข้อผิดพลาดบางอย่าง"
     },
@@ -451,14 +470,18 @@
         "ourPackages": "แพ็กเกจของเรา",
         "packagesDesc": "สามารถใช้ซื้อรายงานและถาม Affinity AI",
         "ourSubscriptions": "การสมัครสมาชิกของเรา",
-        "subscriptionsDesc": "สามารถใช้ใน Affinity AI และรีเซ็ตทุกต้นเดือน คุณจะได้รับโทเค็นเงิน 3 เหรียญฟรีทุกเดือน",
+        "subscriptionsDesc": "การสมัครสมาชิกจะต่ออายุอัตโนมัติทุกเดือน",
         "getCoins": "รับโทเค็น {{count}} เหรียญ",
         "processing": "กำลังดำเนินการ...",
         "continue": "ดำเนินการต่อ",
         "title": "เติมเงิน",
         "noHistoryFound": "ไม่พบประวัติการเติมเงิน",
         "failedToLoadPackages": "ไม่สามารถโหลดแพ็กเกจ กรุณาลองใหม่อีกครั้งภายหลัง",
-        "failedToLoadSubscriptions": "ไม่สามารถโหลดการสมัครสมาชิก กรุณาลองใหม่อีกครั้งภายหลัง"
+        "failedToLoadSubscriptions": "ไม่สามารถโหลดการสมัครสมาชิก กรุณาลองใหม่อีกครั้งภายหลัง",
+        "activeSubscriptionTitle": "การสมัครสมาชิกของคุณ",
+        "activeSubscriptionSubtitle": "การสมัครสมาชิกของคุณกำลังใช้งานอยู่และจะต่ออายุอัตโนมัติ.",
+        "cancelSubscription": "ยกเลิกการสมัครสมาชิก",
+        "subscriptionCancelled": "การสมัครสมาชิกถูกยกเลิกแล้ว"
     },
     "topupReceiptModal": {
         "receipt": "ใบเสร็จ",
@@ -481,5 +504,11 @@
         "you": "คุณ",
         "him": "เขา",
         "relationshipOutcome": "ผลลัพธ์ของความสัมพันธ์"
+    },
+    "directPayment": {
+        "paymentErrorTitle": "การชำระเงินล้มเหลว",
+        "paymentNotCompletedMessage": "คุณปิดหน้าต่างการชำระเงินก่อนทำรายการให้เสร็จสมบูรณ์ โปรดลองอีกครั้งเพื่อทำการชำระเงินให้เสร็จสิ้น.",
+        "paymentSuccessTitle": "ชำระเงินสำเร็จ",
+        "paymentSuccessMessage": "ขอบคุณ! การชำระเงินของคุณเสร็จสมบูรณ์แล้ว และรายงานของคุณกำลังถูกจัดเตรียม."
     }
 }

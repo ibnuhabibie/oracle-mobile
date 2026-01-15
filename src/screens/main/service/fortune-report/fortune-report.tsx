@@ -1,43 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     StyleSheet,
-    Alert,
-    Dimensions,
     ActivityIndicator,
     InteractionManager,
 } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
+
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppButton } from '../../../../components/ui/app-button';
 import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import CoinIcon from '../../../../components/icons/profile/coin-icon';
-import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
-import api from '../../../../utils/http';
-import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
-import { useTranslation } from 'react-i18next';
 import FortuneReportIcon from '../../../../components/icons/services/fortune-report/fortune-report-icon';
-
 import FortuneReportIcon1 from '../../../../components/icons/services/fortune-report/fortune-report-icon-1';
 import FortuneReportIcon2 from '../../../../components/icons/services/fortune-report/fortune-report-icon-2';
 import FortuneReportIcon3 from '../../../../components/icons/services/fortune-report/fortune-report-icon-3';
 import FortuneReportIcon4 from '../../../../components/icons/services/fortune-report/fortune-report-icon-4';
-import { scaleSize, scaleFont } from '../../../../utils/scale';
+import { scaleSize } from '../../../../utils/scale';
+import { formatPrice } from '../../../../utils/formatter';
+import { useDirectPayment } from '../../../../hooks/use-direct-payment';
+import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
-
-
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [iconsReady, setIconsReady] = useState(false);
+    const {
+        cost,
+        loading: costLoading,
+        setLoading: setCostLoading,
+        currencySymbol,
+        locale
+    } = useServiceCost('transit_report');
 
-    React.useEffect(() => {
+    const {
+        isProcessing,
+        processPayment,
+        showPolling,
+        setShowPolling,
+        topupNo
+    } = useDirectPayment();
+
+    useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
             setIconsReady(true);
         });
@@ -53,7 +63,6 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
 
     const shinySize = scaleSize(160);
     const iconSize = scaleSize(44);
-    const gridGap = scaleSize(14);
 
     const CARD_DATA = [
         {
@@ -78,55 +87,18 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         },
     ];
 
-    // (removed duplicate responsive variable declarations)
-
-    const {
-        cost,
-        creditType,
-        loading: costLoading,
-        setLoading: setCostLoading
-    } = useServiceCost('transit_report');
-    const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-    const [showPollingModal, setShowPollingModal] = useState(false);
-    const [pollingJobId, setPollingJobId] = useState<string | null>(null);
-
-    const handleCancel = () => {
-        setShowPurchaseModal(false);
-    };
-
-    const handleContinue = async () => {
+    const directPayment = async () => {
         setCostLoading(true);
         try {
-            const response = await api.post('/v1/affinity/transit-report', {});
-            setShowPurchaseModal(false);
-            // Expecting response.data.job_id
-            const jobId = response?.data?.job_id;
-            if (jobId) {
-                setPollingJobId(jobId);
-                setShowPollingModal(true);
-            } else {
-                Alert.alert('Error', 'No job_id returned from server.');
-            }
+            await processPayment({
+                reportType: "transit_report",
+                locale: locale,
+            });
         } catch (err) {
-            setShowPurchaseModal(false);
+            console.log(err);
         } finally {
             setCostLoading(false);
         }
-    };
-
-    const handlePollingResult = (usageHistory: any) => {
-        setShowPollingModal(false);
-        navigation.navigate('FortuneReportResult', {
-            result: JSON.parse(usageHistory.response_data),
-            job_id: pollingJobId ?? ''
-        });
-        setPollingJobId(null);
-    };
-
-    const handlePollingError = (error: any) => {
-        setShowPollingModal(false);
-        setPollingJobId(null);
-        Alert.alert('Error', 'Failed to fetch report status.');
     };
 
     return (
@@ -142,12 +114,13 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                     title={
                         <View style={styles.buttonRow}>
                             <AppText color='white' style={{ marginRight: scaleSize(4) }}>
-                                {t('fortuneReport.purchase', { cost })}
+                                {t('fortuneReport.purchase', { cost: formatPrice(cost, currencySymbol) })}
                             </AppText>
-                            <CoinIcon type={creditType === 'gold' ? 'gold' : 'silver'} size={scaleSize(18)} />
                         </View>
                     }
-                    onPress={() => setShowPurchaseModal(true)}
+                    variant="primary"
+                    onPress={directPayment}
+                    loading={costLoading || isProcessing}
                 />
             }
         >
@@ -185,26 +158,20 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                 </View>
             )}
             <View style={styles.spacer} />
-            <PurchaseAlertModal
-                visible={showPurchaseModal}
-                onContinue={handleContinue}
-                onCancel={handleCancel}
-                service="transit_report"
-                loading={costLoading}
-            />
-            {pollingJobId && (
-                <PollingLoadingModal
-                    job_id={pollingJobId}
-                    visible={showPollingModal}
-                    message={t('fortuneReport.pollingMessage')}
-                    onResult={handlePollingResult}
-                    onError={handlePollingError}
-                    onClose={() => {
-                        setShowPollingModal(false);
-                        setPollingJobId(null);
-                    }}
-                />
-            )}
+            <PollingLoadingModal
+                topupNo={topupNo}
+                visible={showPolling}
+                onResult={(data) => {
+                    console.log('data onresult', data)
+                    setShowPolling(false)
+                    navigation.navigate('FortuneReportResult', {
+                        result: JSON.parse(data.response_data),
+                        job_id: data.job_id
+                    })
+                }}
+                onClose={() => {
+                    setShowPolling(false)
+                }} />
         </ScreenContainer>
     );
 };

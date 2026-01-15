@@ -52,7 +52,8 @@
         "title": "Masuk",
         "subtitle": "Kosmos berbisik.\nTemukan apa yang ditakdirkan untukmu.",
         "footer": "Belum punya akun?",
-        "signupButtonText": "Daftar"
+        "signupButtonText": "Daftar",
+        "forgotPassword": "Lupa Password?"
     },
     "register": {
         "intro": "PENCARI YANG TERHORMAT",
@@ -63,7 +64,7 @@
     },
     "registerForm": {
         "nameRequired": "Nama wajib diisi",
-        "nameMinLength": "Nama minimal 3 karakter",
+        "nameMinLength": "Nama minimal 2 karakter",
         "emailRequired": "Email wajib diisi",
         "invalidEmailFormat": "Format email tidak valid",
         "passwordRequired": "Kata sandi wajib diisi",
@@ -136,6 +137,22 @@
         "fortune": {
             "title": "Panduan Keberuntungan",
             "subtitle": "SAMBUT MASA DEPANMU"
+        },
+        "myReport": {
+            "title": "Laporan Saya",
+            "subtitle": "Semua Wawasan Anda, Dalam Satu Tempat"
+        },
+        "baziReport": {
+            "title": "BaZi Saya",
+            "subtitle": "Cetak Biru Takdir Anda Terungkap"
+        },
+        "astroReport": {
+            "title": "Astro Saya",
+            "subtitle": "Bintang Anda, Kisah Anda"
+        },
+        "mbtiReport": {
+            "title": "MBTI Saya",
+            "subtitle": "Temukan Kepribadian Sejati Anda"
         },
         "downloadPdf": "Unduh sebagai PDF"
     },
@@ -253,7 +270,8 @@
     },
     "usageHistory": {
         "noHistoryFound": "Tidak ada riwayat penggunaan ditemukan.",
-        "details": "Pembelian Anda berhasil, lihat detailnya!"
+        "details": "Pembelian Anda berhasil, lihat detailnya!",
+        "paymentPending": "Pembayaran belum selesai. Silakan lengkapi pembayaran untuk melanjutkan transaksi."
     },
     "affinityResult": {
         "title": "Tanya Affinity",
@@ -266,6 +284,7 @@
         "downloadPdf": "Unduh sebagai PDF"
     },
     "polling": {
+        "message": "Harap tunggu...",
         "info": "Ini akan memakan waktu beberapa menit. Silakan tutup jendela ini - kami akan memberi tahu Anda saat sudah siap.",
         "closeBtn": "Tutup"
     },
@@ -348,7 +367,7 @@
         "female": "Perempuan",
         "continue": "Lanjutkan",
         "nameRequired": "Nama wajib diisi",
-        "nameMinLength": "Nama minimal 3 karakter"
+        "nameMinLength": "Nama minimal 2 karakter"
     },
     "passwordSettingForm": {
         "title": "Pengaturan Kata Sandi",
@@ -373,7 +392,7 @@
         "profileSectionTitle": "Profil",
         "editProfile": "Edit Profil",
         "passwordSettings": "Pengaturan Kata Sandi",
-        "purchaseHistory": "Riwayat Pembelian",
+        "purchaseHistory": "Laporan Saya",
         "othersSectionTitle": "Lainnya",
         "aboutUs": "Tentang Kami",
         "privacyPolicy": "Kebijakan Privasi",
@@ -387,8 +406,8 @@
         "career": "Karier"
     },
     "purchaseHistory": {
-        "title": "Riwayat Pembelian",
-        "usageTab": "Riwayat Pembelian",
+        "title": "Laporan Saya",
+        "usageTab": "Laporan Saya",
         "topupTab": "Riwayat Top Up"
     },
     "serviceLabel": {
@@ -405,7 +424,7 @@
         "instructions": "1. Tenangkan pikiran Anda\n2. Pikirkan pertanyaan yang ingin diajukan\n3. Masukkan pertanyaan\n4. Tarik napas dan tekan tombol tanya",
         "questionLabel": "Ketik pertanyaan Anda",
         "questionRequired": "Pertanyaan wajib diisi",
-        "questionMinLength": "Pertanyaan minimal 10 karakter",
+        "questionMinLength": "Pertanyaan minimal 3 karakter",
         "purchaseButton": "Beli seharga {{cost}}",
         "somethingWentWrong": "Terjadi kesalahan"
     },
@@ -451,14 +470,18 @@
         "ourPackages": "Paket Kami",
         "packagesDesc": "Dapat digunakan untuk membeli Laporan dan Tanya Affinity AI",
         "ourSubscriptions": "Langganan Kami",
-        "subscriptionsDesc": "Dapat digunakan di Tanya Affinity AI dan direset setiap awal bulan. Anda akan menerima 3 token perak gratis setiap bulan.",
+        "subscriptionsDesc": "Langganan akan diperbarui secara otomatis setiap bulan.",
         "getCoins": "Dapatkan {{count}} Token",
         "processing": "Memproses...",
         "continue": "Lanjutkan",
         "title": "Isi Saldo",
         "noHistoryFound": "Tidak ada riwayat top up ditemukan.",
         "failedToLoadPackages": "Gagal memuat paket. Silakan coba lagi nanti.",
-        "failedToLoadSubscriptions": "Gagal memuat langganan. Silakan coba lagi nanti."
+        "failedToLoadSubscriptions": "Gagal memuat langganan. Silakan coba lagi nanti.",
+        "activeSubscriptionTitle": "Langganan Aktif Anda",
+        "activeSubscriptionSubtitle": "Status langganan Anda saat ini aktif dan diperpanjang secara otomatis.",
+        "cancelSubscription": "Hentikan Langganan",
+        "subscriptionCancelled": "Langganan dibatalkan"
     },
     "topupReceiptModal": {
         "receipt": "Struk",
@@ -481,5 +504,11 @@
         "you": "Anda",
         "him": "Dia",
         "relationshipOutcome": "Hasil Hubungan"
+    },
+    "directPayment": {
+        "paymentErrorTitle": "Pembayaran Gagal",
+        "paymentNotCompletedMessage": "Anda menutup jendela pembayaran sebelum menyelesaikan transaksi. Silakan coba kembali untuk menyelesaikan pembayaran.",
+        "paymentSuccessTitle": "Pembayaran Berhasil",
+        "paymentSuccessMessage": "Terima kasih! Pembayaran Anda telah berhasil diproses. Laporan Anda sedang dipersiapkan."
     }
 }

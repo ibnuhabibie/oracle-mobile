@@ -78,7 +78,7 @@ const SignInForm: React.FC<AuthFormProps> = ({onSuccess}) => {
       try {
         await messaging().registerDeviceForRemoteMessages();
         fcmToken = await messaging().getToken();
-        console.log(fcmToken);
+        console.log(fcmToken, 'fcmToken');
       } catch (e) {
         console.log('Failed to get FCM token:', e);
       }

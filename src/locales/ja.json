@@ -37,14 +37,23 @@
       "金曜日",
       "土曜日"
     ],
-    "dayNamesShort": ["日", "月", "火", "水", "木", "金", "土"]
+    "dayNamesShort": [
+      "日",
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土"
+    ]
   },
   "login": {
     "intro": "親愛なる探求者",
     "title": "ログイン",
     "subtitle": "宇宙がささやく。\nあなたに運命づけられたものを見つけましょう。",
     "footer": "アカウントをお持ちでないですか？",
-    "signupButtonText": "新規登録"
+    "signupButtonText": "新規登録",
+    "forgotPassword": "パスワードを忘れた場合"
   },
   "register": {
     "intro": "親愛なる探求者",
@@ -55,7 +64,7 @@
   },
   "registerForm": {
     "nameRequired": "名前は必須です",
-    "nameMinLength": "名前は3文字以上で入力してください",
+    "nameMinLength": "名前は2文字以上で入力してください",
     "emailRequired": "メールアドレスは必須です",
     "invalidEmailFormat": "メールアドレスの形式が正しくありません",
     "passwordRequired": "パスワードは必須です",
@@ -128,6 +137,22 @@
     "fortune": {
       "title": "運勢ガイダンス",
       "subtitle": "未来を迎えましょう"
+    },
+    "myReport": {
+      "title": "マイレポート",
+      "subtitle": "すべての洞察をひとつの場所に"
+    },
+    "baziReport": {
+      "title": "マイ八字",
+      "subtitle": "運命の設計図が明らかに"
+    },
+    "astroReport": {
+      "title": "マイ占星術",
+      "subtitle": "星が語る、あなたの物語"
+    },
+    "mbtiReport": {
+      "title": "マイMBTI",
+      "subtitle": "本当のあなたを見つけよう"
     },
     "downloadPdf": "PDFとしてダウンロード"
   },
@@ -245,7 +270,8 @@
   },
   "usageHistory": {
     "noHistoryFound": "利用履歴が見つかりません。",
-    "details": "購入が成功しました。詳細をご覧ください！"
+    "details": "購入が成功しました。詳細をご覧ください！",
+    "paymentPending": "支払いが完了していません。取引を続行するには支払いを完了してください。"
   },
   "affinityResult": {
     "title": "アフィニティに質問",
@@ -258,6 +284,7 @@
     "downloadPdf": "PDFとしてダウンロード"
   },
   "polling": {
+    "message": "お待ちください...",
     "info": "数分かかります。ウィンドウを閉じても大丈夫です。準備ができたらお知らせします。",
     "closeBtn": "閉じる"
   },
@@ -340,7 +367,7 @@
     "female": "女性",
     "continue": "続行",
     "nameRequired": "名前は必須です",
-    "nameMinLength": "名前は3文字以上で入力してください"
+    "nameMinLength": "名前は2文字以上で入力してください"
   },
   "passwordSettingForm": {
     "title": "パスワード設定",
@@ -365,7 +392,7 @@
     "profileSectionTitle": "プロフィール",
     "editProfile": "プロフィール編集",
     "passwordSettings": "パスワード設定",
-    "purchaseHistory": "購入履歴",
+    "purchaseHistory": "マイレポート",
     "othersSectionTitle": "その他",
     "aboutUs": "私たちについて",
     "privacyPolicy": "プライバシーポリシー",
@@ -379,8 +406,8 @@
     "career": "キャリア"
   },
   "purchaseHistory": {
-    "title": "購入履歴",
-    "usageTab": "購入履歴",
+    "title": "マイレポート",
+    "usageTab": "マイレポート",
     "topupTab": "チャージ履歴"
   },
   "serviceLabel": {
@@ -397,10 +424,10 @@
     "instructions": "1. 心を落ち着かせる\n2. 質問したいことを考える\n3. 質問を入力する\n4. 深呼吸して質問ボタンを押す",
     "questionLabel": "質問を入力してください",
     "questionRequired": "質問は必須です",
-    "questionMinLength": "質問は10文字以上で入力してください",
+    "questionMinLength": "質問は3文字以上で入力してください",
     "purchaseButton": "{{cost}}で購入",
     "somethingWentWrong": "何か問題が発生しました"
-},
+  },
   "echo": {
     "title": "日記",
     "subtitle": "思いや感情を表現する安全な場所です。",
@@ -443,14 +470,18 @@
     "ourPackages": "パッケージ一覧",
     "packagesDesc": "レポートやアフィニティAIの購入に利用できます",
     "ourSubscriptions": "サブスクリプション一覧",
-    "subscriptionsDesc": "アフィニティAIで利用でき、毎月初めにリセットされます。毎月3つの無料シルバートークンがもらえます。",
+    "subscriptionsDesc": "サブスクリプションは毎月自動的に更新されます。",
     "getCoins": "{{count}}トークンを取得",
     "processing": "処理中...",
     "continue": "続行",
     "title": "チャージ",
     "noHistoryFound": "チャージ履歴が見つかりません。",
     "failedToLoadPackages": "パッケージの読み込みに失敗しました。後でもう一度お試しください。",
-    "failedToLoadSubscriptions": "サブスクリプションの読み込みに失敗しました。後でもう一度お試しください。"
+    "failedToLoadSubscriptions": "サブスクリプションの読み込みに失敗しました。後でもう一度お試しください。",
+    "activeSubscriptionTitle": "有効なサブスクリプション",
+    "activeSubscriptionSubtitle": "ご利用中のサブスクリプションは有効で、自動的に更新されます。",
+    "cancelSubscription": "サブスクリプションを解約",
+    "subscriptionCancelled": "サブスクリプションがキャンセルされました"
   },
   "topupReceiptModal": {
     "receipt": "領収書",
@@ -464,14 +495,20 @@
     "totalPoints": "合計ポイント",
     "paymentNotCompleted": "支払いはまだ完了していません。処理中の場合や、支払いが完了していない場合があります。後でもう一度ご確認ください。",
     "continuePayment": "支払いを続行"
-},
-"session": {
+  },
+  "session": {
     "expiredTitle": "アクセス期限切れ",
     "expired": "セッションが期限切れです。再度ログインしてください。"
-},
-"profileDescription": {
+  },
+  "profileDescription": {
     "you": "あなた",
     "him": "彼",
     "relationshipOutcome": "関係の結果"
-}
+  },
+  "directPayment": {
+    "paymentErrorTitle": "支払いに失敗しました",
+    "paymentNotCompletedMessage": "取引を完了する前に決済ウィンドウを閉じました。もう一度お試しください。",
+    "paymentSuccessTitle": "支払いが成功しました",
+    "paymentSuccessMessage": "ありがとうございます！ お支払いは正常に処理され、レポートを準備しています。"
+  }
 }

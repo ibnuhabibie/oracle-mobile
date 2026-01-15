@@ -40,7 +40,6 @@ export class AppButton extends Component<CustomButtonProps> {
     const { variant, size } = this.props;
 
     const base: ViewStyle = {
-      paddingHorizontal: scaleSize(20),
       height: size === 'big' ? scaleSize(47) : scaleSize(32),
       width: '100%',
       borderRadius: scaleSize(12),
@@ -120,18 +119,18 @@ export class AppButton extends Component<CustomButtonProps> {
 
     if (variant === 'primary') {
       return (
-        <LinearGradient
-          colors={['#C68D14', '#F0AF24', '#C68D14']}
-          start={{ x: 0, y: 0.5 }}
-          end={{ x: 1, y: 0.5 }}
-          locations={[0, 0.476, 0.9712]}
-          style={[this.getButtonStyle(), isDisabled && styles.disabled, style]}
+        <TouchableOpacity
+          onPress={onPress}
+          activeOpacity={0.8}
+          disabled={isDisabled}
+          style={{ width: '100%' }}
         >
-          <TouchableOpacity
-            style={[StyleSheet.absoluteFill, { justifyContent: 'center', alignItems: 'center' }]}
-            onPress={onPress}
-            activeOpacity={0.8}
-            disabled={isDisabled}
+          <LinearGradient
+            colors={['#C68D14', '#F0AF24', '#C68D14']}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            locations={[0, 0.476, 0.9712]}
+            style={[this.getButtonStyle(), isDisabled && styles.disabled, style]}
           >
             {loading ? (
               <ActivityIndicator color={this.getTextStyle().color || COLORS.white} />
@@ -140,8 +139,8 @@ export class AppButton extends Component<CustomButtonProps> {
             ) : (
               title
             )}
-          </TouchableOpacity>
-        </LinearGradient>
+          </LinearGradient>
+        </TouchableOpacity>
       );
     }
 

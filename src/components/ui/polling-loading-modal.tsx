@@ -7,7 +7,7 @@ import { scaleSize, scaleFont } from '../../utils/scale';
 import { useTranslation } from 'react-i18next';
 
 type PollingLoadingModalProps = {
-  job_id: string;
+  topupNo: string;
   visible: boolean;
   message?: string;
   onResult: (data: any) => void;
@@ -17,23 +17,24 @@ type PollingLoadingModalProps = {
 };
 
 const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
-  job_id,
+  topupNo,
   visible,
-  message = 'Please wait...',
+  message = 'message',
   onResult,
   onError,
   onClose,
-  pollIntervalMs = 1000,
+  pollIntervalMs = 2500,
 }) => {
   const intervalRef = useRef<number | null>(null);
   const isActive = useRef(false);
 
   useEffect(() => {
-    if (visible && job_id) {
+    if (visible && topupNo) {
       isActive.current = true;
       const poll = async () => {
         try {
-          const response = await api.get(`/v1/usage-histories/${job_id}`);
+          const response = await api.get(`/v1/usage-histories/${topupNo}`);
+          console.log('polling', topupNo, response)
           // Check if usage history exists and is ready (customize as needed)
           if (response && response.data.response_data) {
             isActive.current = false;
@@ -55,7 +56,7 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
       isActive.current = false;
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [visible, job_id, pollIntervalMs, onResult, onError]);
+  }, [visible, topupNo, pollIntervalMs, onResult, onError]);
 
   const { t } = useTranslation();
 
@@ -64,7 +65,7 @@ const PollingLoadingModal: React.FC<PollingLoadingModalProps> = ({
       <View style={styles.overlay}>
         <View style={styles.container}>
           <ActivityIndicator size="large" color={COLORS.neutral} />
-          <AppText variant="body1" style={styles.text} color='neutral'>{message}</AppText>
+          <AppText variant="body1" style={styles.text} color='neutral'>{t(`polling.${message}`)}</AppText>
           <AppText variant="caption1" style={styles.info} color='neutral'>
             {t('polling.info')}
           </AppText>

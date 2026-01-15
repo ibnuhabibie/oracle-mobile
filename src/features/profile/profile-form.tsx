@@ -4,6 +4,7 @@ import { Controller, set, useForm } from 'react-hook-form';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { AppText } from '../../components/ui/app-text';
 import { useTranslation } from "react-i18next";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import AppInput from '../../components/ui/app-input';
 import CalendarIcon from '../../components/icons/auth/calendar-icon';
@@ -198,14 +199,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         },
     };
 
-    const onDateChange = (event: any, selectedDate?: Date) => {
+    const onDateChange = (selectedDate?: Date) => {
         setShowDatePicker(false);
         if (selectedDate) {
             setValue('birth_date', selectedDate);
         }
     };
 
-    const onTimeChange = (event: any, selectedTime?: Date) => {
+    const onTimeChange = (selectedTime?: Date) => {
         setShowTimePicker(false);
         if (selectedTime) {
             setValue('birth_time', selectedTime);
@@ -366,7 +367,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
             />
 
             {/* Date Picker */}
-            {showDatePicker && (
+            {/* {showDatePicker && (
                 <DateTimePicker
                     value={watchedDate}
                     mode="date"
@@ -374,17 +375,31 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                     onChange={onDateChange}
                     maximumDate={new Date()}
                 />
-            )}
+            )} */}
+
+            <DateTimePickerModal
+                isVisible={showDatePicker}
+                mode="date"
+                onConfirm={onDateChange}
+                onCancel={() => setShowDatePicker(false)}
+            />
 
             {/* Time Picker */}
-            {showTimePicker && (
+            {/* {showTimePicker && (
                 <DateTimePicker
                     value={watchedTime}
                     mode="time"
                     display="default"
                     onChange={onTimeChange}
                 />
-            )}
+            )} */}
+
+            <DateTimePickerModal
+                isVisible={showTimePicker}
+                mode="time"
+                onConfirm={onTimeChange}
+                onCancel={() => setShowTimePicker(false)}
+            />
 
             {/* Country Modal */}
             {

@@ -1,6 +1,5 @@
-import React, {useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   View,
@@ -10,9 +9,10 @@ import {
   Platform,
   StatusBar,
 } from 'react-native';
-import {COLORS} from '../../constants/colors';
+import { COLORS } from '../../constants/colors';
 import RadialGradient from 'react-native-radial-gradient';
-import {scaleSize} from '../../utils/scale';
+import { scaleSize } from '../../utils/scale';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type ScreenContainerProps = {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ type ScreenContainerProps = {
   fluid?: boolean; // If true, removes default padding
 };
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const ScreenContainer: React.FC<ScreenContainerProps> = ({
   children,
@@ -42,21 +42,21 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   );
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <RadialGradient
         style={StyleSheet.absoluteFill}
         colors={['#161C41', '#161313']}
         center={[width / 2, height / 2]}
         radius={Math.max(width, height) / 1.2}
       />
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
         {header && <View style={styles.fixedHeader}>{header}</View>}
         {scrollable ? (
           <ScrollView
-            style={{backgroundColor: 'transparent'}}
+            style={{ backgroundColor: 'transparent' }}
             contentContainerStyle={[
               styles.scrollContainer,
-              {backgroundColor: 'transparent'},
+              { backgroundColor: 'transparent' },
             ]}
             keyboardShouldPersistTaps="handled">
             {content}
