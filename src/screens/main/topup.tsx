@@ -20,6 +20,7 @@ import { scaleFont, scaleSize } from '../../utils/scale';
 import { useAsyncStorage } from '../../hooks/use-storage';
 import { getLocaleByCountryCode } from '../../utils/platform';
 import { getPricingVariant, getTranslateByKey } from '../../utils/string';
+import Purchases from 'react-native-purchases';
 
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
@@ -46,6 +47,7 @@ interface SubscriptionItem {
     price: string;
     duration_months: number;
     credits: number;
+    rc_package_id: string;
     is_active: boolean;
     translations?: TranslationItem[];
     pricing_variants?: PricingVariantItem[];
@@ -64,8 +66,8 @@ const RadioIndicator = ({ selected }: { selected: boolean }) => (
 // Subscription card list component
 interface SubscriptionCardListProps {
     subscriptions: SubscriptionItem[];
-    selectedSubscription: number | null;
-    setSelectedSubscription: (id: number) => void;
+    selectedSubscription: SubscriptionItem | null;
+    setSelectedSubscription: (sub: SubscriptionItem) => void;
     loading: boolean;
     error: string | null;
     locale: string;
@@ -83,12 +85,12 @@ const SubscriptionCard = ({ subscription, onPress, locale, selectedSubscription 
             key={subscription.subscription_id}
             style={[
                 styles.card,
-                selectedSubscription === subscription.subscription_id && styles.cardSelected
+                selectedSubscription === subscription && styles.cardSelected
             ]}
             onPress={onPress}
         >
             {
-                onPress !== null && (<RadioIndicator selected={selectedSubscription === subscription.subscription_id} />)
+                onPress !== null && (<RadioIndicator selected={selectedSubscription === subscription} />)
             }
             <View style={{ flex: 1 }}>
                 <AppText variant='body1' style={styles.cardTitle} color='white'>
@@ -123,7 +125,7 @@ const SubscriptionCardList: FC<SubscriptionCardListProps> = ({ subscriptions, se
                         key={sub.subscription_id}
                         locale={locale}
                         subscription={sub}
-                        onPress={() => setSelectedSubscription(sub.subscription_id)}
+                        onPress={() => setSelectedSubscription(sub)}
                         selectedSubscription={selectedSubscription} />
                 )
             })
@@ -145,7 +147,7 @@ const SubscriptionCardList: FC<SubscriptionCardListProps> = ({ subscriptions, se
 const Topup: FC<TopupProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
-    const [selectedSubscription, setSelectedSubscription] = useState<number | null>(null);
+    const [selectedSubscription, setSelectedSubscription] = useState<SubscriptionItem | null>(null);
     const [subscriptions, setSubscriptions] = useState<SubscriptionItem[]>([]);
     const [loadingSubscriptions, setLoadingSubscriptions] = useState<boolean>(true);
     const [errorSubscriptions, setErrorSubscriptions] = useState<string | null>(null);
@@ -154,7 +156,11 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     const [userSubscriptionId, setUserSubscriptionId] = useState<number | null>(null);
     const [locale, setLocale] = useState<string>('');
 
-    const { getUserProfile, getLocale } = useAsyncStorage();
+    const [offering, setOffering] = useState<any>(null);
+
+    const OFFERING_ID = 'credits_subscription';
+
+    const { getUserProfile } = useAsyncStorage();
 
     const fetchSubscriptions = async () => {
         setLoadingSubscriptions(true);
@@ -169,8 +175,26 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         }
     };
 
+    const loadOfferings = async () => {
+        try {
+            const offerings = await Purchases.getOfferings();
+            const targetOffering = offerings.all[OFFERING_ID];
+
+            if (!targetOffering) {
+                throw new Error(`Offering "${OFFERING_ID}" not found`);
+            }
+
+            console.log('Loaded offerings:', targetOffering);
+            setOffering(targetOffering);
+        } catch (error) {
+            console.log('Error fetching offerings:', error);
+        }
+    }
+
     useEffect(() => {
         const init = async () => {
+            await loadOfferings();
+
             const countryCode = RNLocalize.getCountry();
             const locale = getLocaleByCountryCode(countryCode);
 
@@ -226,12 +250,48 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     //     setSelectedSubscription(null);
     // };
 
-    const handleSelectSubscription = (id: number) => {
-        setSelectedSubscription(id);
+    const handleSelectSubscription = (sub: SubscriptionItem) => {
+        setSelectedSubscription(sub);
         setSelectedPackage(null);
     };
 
     const handleContinue = async () => {
+        try {
+
+            const pkg = offering?.availablePackages.find(p => p.product.identifier === selectedSubscription?.rc_package_id);
+            console.log('handleContinue', selectedSubscription, pkg)
+
+            if (!pkg) {
+                Alert.alert(t('topup.error'), t('topup.selectSubscription'));
+                return;
+            }
+            const purchasePackage = await Purchases.purchasePackage(pkg);
+            console.log('purchasePackage', purchasePackage)
+
+            Alert.alert(
+                t('topup.success'),
+                t('topup.paymentComplete'),
+                [
+                    {
+                        text: t('topup.ok'),
+                        onPress: () => navigation.navigate('Tabs' as any, { screen: 'Profile' })
+                    }
+                ]
+            );
+
+        } catch (err: any) {
+
+            if (err.userCancelled) {
+                console.log('User cancelled the purchase');
+                return;
+            }
+
+            console.log(err, 'err')
+            Alert.alert(t('topup.error'), err?.message || t('topup.genericError'));
+        }
+    }
+
+    const handleContinueStripe = async () => {
         try {
             setProcessing(true);
             let client_secret = null
@@ -259,6 +319,20 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     };
 
     const handleCancelSubscription = async () => {
+        Alert.alert(
+            t('topup.manageSubscription'),
+            t('topup.manageSubscriptionDesc'),
+            [
+                { text: t('topup.cancel'), style: 'cancel' },
+                {
+                    text: t('topup.openStore'),
+                    onPress: () => Purchases.showManageSubscriptions(),
+                },
+            ]
+        );
+    }
+
+    const handleCancelStripeSubscription = async () => {
         try {
             setProcessing(true);
             await api.post(`/v1/users/subscription/cancel`);

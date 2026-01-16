@@ -34,6 +34,7 @@ import { useAsyncStorage } from '../../../hooks/use-storage';
 import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
 import { ProfileIcon, useAffinityProfile } from './useAffinityProfile';
+import Purchases from 'react-native-purchases';
 
 type ProfileProps = BottomTabScreenProps<MainNavigatorParamList, 'Profile'>;
 
@@ -128,9 +129,10 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   };
 
   const handleLogout = async () => {
-    console.log('Logout pressed');
+    console.log('Logout pressed', user);
     try {
       await api.post(`/v1/users/auth/logout`);
+      await Purchases.logOut();
       await AsyncStorage.removeItem('user_profile');
       await AsyncStorage.removeItem('auth_token');
       navigation.navigate('Welcome');

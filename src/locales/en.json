@@ -481,7 +481,11 @@
         "activeSubscriptionTitle": "Your Active Subscription",
         "activeSubscriptionSubtitle": "Your subscription is currently active and renews automatically.",
         "cancelSubscription": "Cancel Subscription",
-        "subscriptionCancelled": "Subscription cancelled"
+        "subscriptionCancelled": "Subscription cancelled",
+        "manageSubscription": "Manage Subscription",
+        "manageSubscriptionDesc": "You can manage your subscription in the App Store or Google Play Store.",
+        "openStore": "Open Store",
+        "cancel": "Cancel"
     },
     "topupReceiptModal": {
         "receipt": "Receipt",

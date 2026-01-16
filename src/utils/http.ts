@@ -47,9 +47,11 @@ api.interceptors.request.use(
 );
 
 import { navigationRef } from '../navigators/navigation-ref';
+import Purchases from 'react-native-purchases';
 
 async function handleLogoutAndRedirect() {
     try {
+        await Purchases.logOut();
         await AsyncStorage.removeItem('auth_token');
         await AsyncStorage.removeItem('user_profile');
         // Add any other cleanup if needed

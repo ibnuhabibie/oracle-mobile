@@ -18,3 +18,11 @@ export const getPricingVariant = (variants, locale) => {
 
     return '';
 }
+
+export function encryptId(id: string): string {
+    return id.toString(128);
+}
+
+export function decryptId(customerId: string): string {
+    return parseInt(customerId, 128).toString();
+}

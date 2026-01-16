@@ -12,10 +12,13 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 import RadialGradient from 'react-native-radial-gradient';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { REVENUECAT_KEY } from '@env';
+
 import MainNavigator from './src/navigators/main-navigator';
 import api from './src/utils/http';
 import { navigationRef, navigate } from './src/navigators/navigation-ref';
 import StarMeteorBackground from './src/components/star-meteor-background';
+import Purchases from 'react-native-purchases';
 
 const { width, height } = Dimensions.get('window');
 
@@ -66,7 +69,15 @@ const App: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log('triggered')
+    console.log('triggered');
+
+    Purchases.setLogLevel(Purchases.LOG_LEVEL.DEBUG);
+
+    if (REVENUECAT_KEY) {
+      Purchases.configure({ apiKey: REVENUECAT_KEY, useAmazon: false });
+    } else {
+      console.error('REVENUECAT_KEY is not set');
+    }
 
     const init = async () => {
       try {

@@ -1,18 +1,20 @@
-import {useEffect, useState} from 'react';
-import {useForm} from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert, StyleSheet, View, Platform} from 'react-native';
-import {scaleSize} from '../../utils/scale';
-import {useTranslation} from 'react-i18next';
+import { Alert, StyleSheet, View, Platform } from 'react-native';
+import { scaleSize } from '../../utils/scale';
+import { useTranslation } from 'react-i18next';
 import DeviceInfo from 'react-native-device-info';
 import messaging from '@react-native-firebase/messaging';
+import Purchases from 'react-native-purchases';
 
 import api from '../../utils/http';
-import {AppButton} from '../../components/ui/app-button';
+import { AppButton } from '../../components/ui/app-button';
 import AppInput from '../../components/ui/app-input';
 import PasswordToggle from '../../components/ui/password-toggle';
-import {useAsyncStorage} from '../../hooks/use-storage';
-import {COLORS} from '../../constants/colors';
+import { useAsyncStorage } from '../../hooks/use-storage';
+import { COLORS } from '../../constants/colors';
+import { decryptId, encryptId } from '../../utils/string';
 
 interface LoginDTO {
   email: string;
@@ -26,11 +28,11 @@ export interface AuthFormProps {
   onSuccess: (email: string) => void;
 }
 
-const SignInForm: React.FC<AuthFormProps> = ({onSuccess}) => {
+const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const {t} = useTranslation();
-  const {setAuthToken, sync} = useAsyncStorage();
+  const { t } = useTranslation();
+  const { setAuthToken, sync } = useAsyncStorage();
 
   const formRules = {
     email: {
@@ -52,7 +54,7 @@ const SignInForm: React.FC<AuthFormProps> = ({onSuccess}) => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm<LoginDTO>({
     defaultValues: {
       email: '',
@@ -102,6 +104,10 @@ const SignInForm: React.FC<AuthFormProps> = ({onSuccess}) => {
       await setAuthToken(res.data.token);
       await sync();
 
+      // Encrypt user_id before logging in to RevenueCat
+      const { customerInfo } = await Purchases.logIn(res.data.rc_customer_id);
+      console.log(customerInfo.originalAppUserId, customerInfo, 'rc_customer_id', res.data.rc_customer_id);
+
       onSuccess(res.data);
     } catch (error) {
       let message = '';
@@ -124,7 +130,7 @@ const SignInForm: React.FC<AuthFormProps> = ({onSuccess}) => {
 
   return (
     <View>
-      <View style={{flexDirection: 'column', gap: 12}}>
+      <View style={{ flexDirection: 'column', gap: 12 }}>
         <AppInput<LoginDTO>
           control={control}
           name="email"

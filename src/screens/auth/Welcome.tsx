@@ -8,6 +8,7 @@ import { MainNavigatorParamList } from '../../navigators/types';
 import { COLORS } from '../../constants/colors';
 import ScreenContainer from '../../components/layouts/screen-container';
 import { useAsyncStorage } from './../../hooks/use-storage';
+import Purchases from 'react-native-purchases';
 
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
@@ -40,6 +41,9 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
 
   const handleClick = async () => {
     try {
+      const customerInfo = await Purchases.getCustomerInfo();
+      console.log(customerInfo, 'customerInfo');
+
       const language = await AsyncStorage.getItem('language');
       const languageSelected = await AsyncStorage.getItem('language_selected');
       console.log(language, 'language');
