@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import * as RNLocalize from "react-native-localize";
 
 import { AppText } from '../../../../components/ui/app-text';
 import { COLORS } from '../../../../constants/colors';
@@ -18,7 +17,6 @@ import ShinyContainer from '../../../../components/widgets/shiny-container';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import Header from '../../../../components/ui/header';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import { useDirectPayment } from '../../../../hooks/use-direct-payment';
 import LoveReportIcon from '../../../../components/icons/services/love-report/love-report-icon';
 import LoveReportIcon1 from '../../../../components/icons/services/love-report/love-report-icon-1';
 import LoveReportIcon2 from '../../../../components/icons/services/love-report/love-report-icon-2';
@@ -31,6 +29,7 @@ import LoveReportIcon8 from '../../../../components/icons/services/love-report/l
 import { scaleSize } from '../../../../utils/scale';
 import { formatPrice } from '../../../../utils/formatter';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
+import { useRevenueCat } from '../../../../hooks/use-revenuecat';
 
 type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveForecast'>;
 
@@ -49,12 +48,12 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
   } = useServiceCost('love_report');
 
   const {
-    isProcessing,
-    processPayment,
+    loadOfferings,
+    pay,
+    topupNo,
     showPolling,
     setShowPolling,
-    topupNo
-  } = useDirectPayment();
+  } = useRevenueCat();
 
   const shinySize = scaleSize(140);
   const iconSize = scaleSize(44);
@@ -101,13 +100,30 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
     return () => interaction && interaction.cancel && interaction.cancel();
   }, []);
 
+  useEffect(() => {
+    const init = async () => {
+      await loadOfferings();
+    };
+
+    init();
+  }, []);
+
   const directPayment = async () => {
     setCostLoading(true);
     try {
-      await processPayment({
-        reportType: "love_report",
-        locale: locale,
-      });
+      await pay(
+        'love_forecast_pkg',
+        'love_report',
+        () => { console.log('Payment Success') },
+        (err) => {
+          Alert.alert(t('directPayment.paymentErrorTitle'), err?.message || t('topup.genericError'));
+        },
+        {
+          amount: cost,
+          currency: currencySymbol,
+          partner: null
+        }
+      );
     } catch (err) {
       console.log(err);
     } finally {
@@ -134,7 +150,7 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
           }
           variant="primary"
           onPress={directPayment}
-          loading={costLoading || isProcessing}
+          loading={costLoading}
         />
       }
     >

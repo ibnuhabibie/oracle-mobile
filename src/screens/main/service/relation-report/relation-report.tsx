@@ -4,6 +4,7 @@ import {
     StyleSheet,
     ActivityIndicator,
     InteractionManager,
+    Alert,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +29,7 @@ import { getLocale } from '../../../../hooks/use-storage';
 import { formatPrice } from '../../../../utils/formatter';
 import { useDirectPayment } from '../../../../hooks/use-direct-payment';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
+import { useRevenueCat } from '../../../../hooks/use-revenuecat';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 
@@ -43,18 +45,26 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     } = useServiceCost('relationship_report');
 
     const {
-        isProcessing,
-        processPayment,
+        loadOfferings,
+        pay,
+        topupNo,
         showPolling,
         setShowPolling,
-        topupNo
-    } = useDirectPayment();
+    } = useRevenueCat();
 
     useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
             setIconsReady(true);
         });
         return () => interaction && interaction.cancel && interaction.cancel();
+    }, []);
+
+    useEffect(() => {
+        const init = async () => {
+            await loadOfferings();
+        };
+
+        init();
     }, []);
 
     const CARD_DATA = [
@@ -111,11 +121,19 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                 }
             };
 
-            await processPayment({
-                reportType: "relationship_report",
-                locale: locale,
-                additionalData: additionalData
-            });
+            await pay(
+                'relationship_report_pkg',
+                'relationship_report',
+                () => { console.log('Payment Success') },
+                (err) => {
+                    Alert.alert(t('directPayment.paymentErrorTitle'), err?.message || t('topup.genericError'));
+                },
+                {
+                    amount: cost,
+                    currency: currencySymbol,
+                    partner: additionalData.partner
+                }
+            );
 
             setShowForm(false);
         } catch (err) {
@@ -154,7 +172,7 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
                     <RelationReportForm
                         onSubmit={(values: RelationReportFormValues) => handleFormContinue(values)}
                         onCancel={() => setShowForm(false)}
-                        loading={costLoading || isProcessing}
+                        loading={costLoading}
                     />
                 )
             }

@@ -4,6 +4,7 @@ import {
     StyleSheet,
     ActivityIndicator,
     InteractionManager,
+    Alert,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -23,8 +24,8 @@ import FortuneReportIcon3 from '../../../../components/icons/services/fortune-re
 import FortuneReportIcon4 from '../../../../components/icons/services/fortune-report/fortune-report-icon-4';
 import { scaleSize } from '../../../../utils/scale';
 import { formatPrice } from '../../../../utils/formatter';
-import { useDirectPayment } from '../../../../hooks/use-direct-payment';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
+import { useRevenueCat } from '../../../../hooks/use-revenuecat';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -40,18 +41,26 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     } = useServiceCost('transit_report');
 
     const {
-        isProcessing,
-        processPayment,
+        loadOfferings,
+        pay,
+        topupNo,
         showPolling,
         setShowPolling,
-        topupNo
-    } = useDirectPayment();
+    } = useRevenueCat();
 
     useEffect(() => {
         const interaction = InteractionManager.runAfterInteractions(() => {
             setIconsReady(true);
         });
         return () => interaction && interaction.cancel && interaction.cancel();
+    }, []);
+
+    useEffect(() => {
+        const init = async () => {
+            await loadOfferings();
+        };
+
+        init();
     }, []);
 
     const fortuneYear = (() => {
@@ -90,10 +99,19 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const directPayment = async () => {
         setCostLoading(true);
         try {
-            await processPayment({
-                reportType: "transit_report",
-                locale: locale,
-            });
+            await pay(
+                'transit_report_pkg',
+                'transit_report',
+                () => { console.log('Payment Success') },
+                (err) => {
+                    Alert.alert(t('directPayment.paymentErrorTitle'), err?.message || t('topup.genericError'));
+                },
+                {
+                    amount: cost,
+                    currency: currencySymbol,
+                    partner: null
+                }
+            );
         } catch (err) {
             console.log(err);
         } finally {
@@ -120,7 +138,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                     }
                     variant="primary"
                     onPress={directPayment}
-                    loading={costLoading || isProcessing}
+                    loading={costLoading}
                 />
             }
         >
