@@ -481,7 +481,9 @@
         "activeSubscriptionTitle": "การสมัครสมาชิกของคุณ",
         "activeSubscriptionSubtitle": "การสมัครสมาชิกของคุณกำลังใช้งานอยู่และจะต่ออายุอัตโนมัติ.",
         "cancelSubscription": "ยกเลิกการสมัครสมาชิก",
-        "subscriptionCancelled": "การสมัครสมาชิกถูกยกเลิกแล้ว"
+        "subscriptionCancelled": "การสมัครสมาชิกถูกยกเลิกแล้ว",
+        "restorePurchasesSuccess": "กู้คืนการซื้อเรียบร้อยแล้ว\nคุณซื้อ {{count}} ครั้ง",
+        "noPurchasesFound": "ไม่พบการซื้อที่จะกู้คืน"
     },
     "topupReceiptModal": {
         "receipt": "ใบเสร็จ",

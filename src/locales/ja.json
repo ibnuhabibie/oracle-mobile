@@ -481,7 +481,9 @@
     "activeSubscriptionTitle": "有効なサブスクリプション",
     "activeSubscriptionSubtitle": "ご利用中のサブスクリプションは有効で、自動的に更新されます。",
     "cancelSubscription": "サブスクリプションを解約",
-    "subscriptionCancelled": "サブスクリプションがキャンセルされました"
+        "subscriptionCancelled": "サブスクリプションがキャンセルされました",
+        "restorePurchasesSuccess": "購入の復元に成功しました。\n{{count}}回購入しました。",
+        "noPurchasesFound": "復元する購入が見つかりません"
   },
   "topupReceiptModal": {
     "receipt": "領収書",

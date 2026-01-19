@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
+import { Pressable, StyleSheet, View, ActivityIndicator, Alert, TouchableOpacity, Platform } from 'react-native';
 import {
     initPaymentSheet,
     presentPaymentSheet,
@@ -356,6 +356,46 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         }
     };
 
+    const handleRestorePurchases = async () => {
+        try {
+            setProcessing(true);
+            const purchaserInfo = await Purchases.restorePurchases();
+            console.log('Purchases restored:', purchaserInfo);
+
+            // Refresh user profile to get updated subscription status
+            const profile = await getUserProfile();
+            if (profile && typeof profile === 'object' && 'subscription_id' in profile) {
+                setUserSubscriptionId(
+                    typeof profile.subscription_id === 'number' ? profile.subscription_id : null
+                );
+            }
+
+            // Calculate total purchases count
+            const totalCount = purchaserInfo.allPurchasedProductIdentifiers?.length || 0;
+
+            // Use simplified message
+            const message = totalCount > 0
+                ? t('topup.restorePurchasesSuccess', { count: totalCount })
+                : t('topup.noPurchasesFound');
+
+            Alert.alert(
+                t('topup.success'),
+                message,
+                [
+                    {
+                        text: t('topup.ok'),
+                        onPress: () => navigation.navigate('Tabs' as any, { screen: 'Profile' })
+                    }
+                ]
+            );
+        } catch (err: any) {
+            console.log('Restore purchases error:', err);
+            Alert.alert(t('topup.error'), err?.message || t('topup.genericError'));
+        } finally {
+            setProcessing(false);
+        }
+    };
+
     // Active subscription component
     interface ActiveSubscriptionProps {
         subscription: SubscriptionItem;
@@ -383,7 +423,8 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                 <SubscriptionCard
                     subscription={subscription}
                     onPress={null}
-                    locale={locale} />
+                    locale={locale}
+                    selectedSubscription={null} />
 
                 <AppButton title={t('topup.cancelSubscription')} onPress={handleCancelSubscription} loading={processing} />
             </View>
@@ -405,12 +446,12 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         } else {
             // Find the active subscription
             const activeSubscription = subscriptions.find(sub => sub.subscription_id === userSubscriptionId);
-            return <ActiveSubscription
+            return activeSubscription ? <ActiveSubscription
                 subscription={activeSubscription}
                 locale={locale}
                 onCancelSubscription={handleCancelSubscription}
                 loading={processing}
-            />
+            /> : null;
         }
     };
 
@@ -418,16 +459,25 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         <ScreenContainer
             scrollable={true}
             floatingFooter={
-                (selectedPackage !== null || selectedSubscription !== null) && (
-                    <View style={{ backgroundColor: "#121010" }}>
+                <View style={{ backgroundColor: "#121010" }}>
+                    {(selectedPackage !== null || selectedSubscription !== null) && (
                         <AppButton
                             title={processing ? t("topup.processing") : t("topup.continue")}
                             variant="primary"
                             disabled={processing}
                             onPress={handleContinue}
                         />
-                    </View>
-                )
+                    )}
+                    {Platform.OS === 'ios' && (
+                        <AppButton
+                            title={t("topup.restorePurchases")}
+                            variant="outline"
+                            disabled={processing}
+                            onPress={handleRestorePurchases}
+                            style={{ marginTop: scaleSize(4) }}
+                        />
+                    )}
+                </View>
             }
             header={
                 <Header
@@ -525,6 +575,17 @@ const styles = StyleSheet.create({
     activeSubscriptionContent: {
         flex: 1,
         alignItems: 'center'
+    },
+    restoreButton: {
+        paddingVertical: scaleSize(12, 12, 16),
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    restoreButtonWithMargin: {
+        marginTop: scaleSize(8, 8, 12),
+    },
+    restoreButtonText: {
+        fontSize: scaleFont(14, 12, 16),
     },
 });
 

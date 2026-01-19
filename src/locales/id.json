@@ -481,7 +481,14 @@
         "activeSubscriptionTitle": "Langganan Aktif Anda",
         "activeSubscriptionSubtitle": "Status langganan Anda saat ini aktif dan diperpanjang secara otomatis.",
         "cancelSubscription": "Hentikan Langganan",
-        "subscriptionCancelled": "Langganan dibatalkan"
+        "subscriptionCancelled": "Langganan dibatalkan",
+        "manageSubscription": "Kelola Langganan",
+        "manageSubscriptionDesc": "Anda dapat mengelola langganan di App Store atau Google Play Store.",
+        "openStore": "Buka Toko",
+        "cancel": "Batal",
+        "restorePurchases": "Pulihkan Pembelian",
+        "restorePurchasesSuccess": "Berhasil memulihkan pembelian.\nAnda telah melakukan {{count}} pembelian.",
+        "noPurchasesFound": "Tidak ada pembelian yang ditemukan untuk dipulihkan"
     },
     "topupReceiptModal": {
         "receipt": "Struk",

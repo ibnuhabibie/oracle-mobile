@@ -485,7 +485,10 @@
         "manageSubscription": "Manage Subscription",
         "manageSubscriptionDesc": "You can manage your subscription in the App Store or Google Play Store.",
         "openStore": "Open Store",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "restorePurchases": "Restore Purchases",
+        "restorePurchasesSuccess": "Successfully restored purchases.\nYou have made {{count}} purchase(s).",
+        "noPurchasesFound": "No purchases found to restore"
     },
     "topupReceiptModal": {
         "receipt": "Receipt",

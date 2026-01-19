@@ -481,7 +481,9 @@
         "activeSubscriptionTitle": "您的有效订阅",
         "activeSubscriptionSubtitle": "您的订阅当前处于有效状态，并会自动续订。",
         "cancelSubscription": "取消订阅",
-        "subscriptionCancelled": "订阅已取消"
+        "subscriptionCancelled": "订阅已取消",
+        "restorePurchasesSuccess": "成功恢复购买\n您已购买 {{count}} 次",
+        "noPurchasesFound": "未找到可恢复的购买记录"
     },
     "topupReceiptModal": {
         "receipt": "收据",

@@ -481,7 +481,9 @@
     "activeSubscriptionTitle": "활성 구독",
     "activeSubscriptionSubtitle": "현재 구독이 활성 상태이며 자동으로 갱신됩니다.",
     "cancelSubscription": "구독 취소",
-    "subscriptionCancelled": "구독이 취소되었습니다"
+        "subscriptionCancelled": "구독이 취소되었습니다",
+        "restorePurchasesSuccess": "구매를 성공적으로 복원했습니다.\n{{count}}회 구매했습니다.",
+        "noPurchasesFound": "복원할 구매 내역을 찾을 수 없습니다"
   },
   "topupReceiptModal": {
     "receipt": "영수증",
