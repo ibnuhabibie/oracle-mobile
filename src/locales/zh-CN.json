@@ -284,7 +284,7 @@
         "downloadPdf": "下载 PDF"
     },
     "polling": {
-        "message": "请稍候...",
+        "message": "付款已完成，请稍候...",
         "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。",
         "closeBtn": "关闭"
     },
@@ -482,6 +482,11 @@
         "activeSubscriptionSubtitle": "您的订阅当前处于有效状态，并会自动续订。",
         "cancelSubscription": "取消订阅",
         "subscriptionCancelled": "订阅已取消",
+        "manageSubscription": "管理订阅",
+        "manageSubscriptionDesc": "您可以在 App Store 或 Google Play Store 中管理您的订阅。",
+        "openStore": "打开商店",
+        "cancel": "取消",
+        "restorePurchases": "恢复购买",
         "restorePurchasesSuccess": "成功恢复购买\n您已购买 {{count}} 次",
         "noPurchasesFound": "未找到可恢复的购买记录"
     },

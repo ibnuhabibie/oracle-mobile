@@ -284,7 +284,7 @@
         "downloadPdf": "Unduh sebagai PDF"
     },
     "polling": {
-        "message": "Harap tunggu...",
+        "message": "Pembayaran Selesai, Tunggu sebentar...",
         "info": "Ini akan memakan waktu beberapa menit. Silakan tutup jendela ini - kami akan memberi tahu Anda saat sudah siap.",
         "closeBtn": "Tutup"
     },
@@ -485,7 +485,7 @@
         "manageSubscription": "Kelola Langganan",
         "manageSubscriptionDesc": "Anda dapat mengelola langganan di App Store atau Google Play Store.",
         "openStore": "Buka Toko",
-        "cancel": "Batal",
+        "cancel": "Cancel",
         "restorePurchases": "Pulihkan Pembelian",
         "restorePurchasesSuccess": "Berhasil memulihkan pembelian.\nAnda telah melakukan {{count}} pembelian.",
         "noPurchasesFound": "Tidak ada pembelian yang ditemukan untuk dipulihkan"

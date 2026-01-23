@@ -284,7 +284,7 @@
         "downloadPdf": "ดาวน์โหลด PDF"
     },
     "polling": {
-        "message": "กรุณารอสักครู่...",
+        "message": "ชำระเงินเสร็จแล้ว กรุณารอสักครู่...",
         "info": "ใช้เวลาสักครู่ คุณสามารถปิดหน้าต่างนี้ได้ - เราจะแจ้งเมื่อพร้อม",
         "closeBtn": "ปิด"
     },
@@ -482,6 +482,11 @@
         "activeSubscriptionSubtitle": "การสมัครสมาชิกของคุณกำลังใช้งานอยู่และจะต่ออายุอัตโนมัติ.",
         "cancelSubscription": "ยกเลิกการสมัครสมาชิก",
         "subscriptionCancelled": "การสมัครสมาชิกถูกยกเลิกแล้ว",
+        "manageSubscription": "จัดการการสมัครสมาชิก",
+        "manageSubscriptionDesc": "คุณสามารถจัดการการสมัครสมาชิกใน App Store หรือ Google Play Store",
+        "openStore": "เปิดร้านค้า",
+        "cancel": "ยกเลิก",
+        "restorePurchases": "กู้คืนการซื้อ",
         "restorePurchasesSuccess": "กู้คืนการซื้อเรียบร้อยแล้ว\nคุณซื้อ {{count}} ครั้ง",
         "noPurchasesFound": "ไม่พบการซื้อที่จะกู้คืน"
     },

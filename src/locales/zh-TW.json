@@ -285,7 +285,7 @@
     },
     "polling": {
         "message": "请稍候...",
-        "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。",
+            "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。付款已完成，請稍候...",
         "closeBtn": "关闭"
     },
     "mbtiQuiz": {
@@ -482,6 +482,11 @@
         "activeSubscriptionSubtitle": "您的訂閱目前有效，並會自動續訂。",
         "cancelSubscription": "取消訂閱",
         "subscriptionCancelled": "訂閱已取消",
+        "manageSubscription": "管理訂閱",
+        "manageSubscriptionDesc": "您可以在 App Store 或 Google Play Store 中管理您的訂閱。",
+        "openStore": "打開商店",
+        "cancel": "取消",
+        "restorePurchases": "恢復購買",
         "restorePurchasesSuccess": "成功恢復購買\n您已購買 {{count}} 次",
         "noPurchasesFound": "未找到可恢復的購買記錄"
     },
