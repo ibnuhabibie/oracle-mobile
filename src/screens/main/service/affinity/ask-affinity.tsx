@@ -100,6 +100,9 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     }
   };
 
+  const carouselOffset = Platform.OS === 'ios' && Platform.isPad
+    ? 380
+    : 220;
 
 
   return (
@@ -129,7 +132,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
               mode="parallax"
               modeConfig={{
                 parallaxScrollingScale: scaleSize(0.85, 0.85, 0.85),
-                parallaxScrollingOffset: scaleSize(220), // Fixed value instead of scaled
+                parallaxScrollingOffset: scaleSize(carouselOffset), // Fixed value instead of scaled
               }}
               onProgressChange={progress}
               renderItem={

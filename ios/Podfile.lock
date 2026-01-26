@@ -70,6 +70,8 @@ PODS:
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
   - PromisesObjC (2.4.0)
+  - PurchasesHybridCommon (17.27.1):
+    - RevenueCat (= 5.54.1)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -2584,6 +2586,7 @@ PODS:
     - React-perflogger (= 0.82.1)
     - React-utils (= 0.82.1)
     - SocketRocket
+  - RevenueCat (5.54.1)
   - RNCAsyncStorage (2.2.0):
     - boost
     - DoubleConversion
@@ -2741,6 +2744,9 @@ PODS:
     - React-Core
     - RNNotifee/NotifeeCore (= 9.1.8)
   - RNNotifee/NotifeeCore (9.1.8):
+    - React-Core
+  - RNPurchases (9.7.0):
+    - PurchasesHybridCommon (= 17.27.1)
     - React-Core
   - RNReanimated (4.1.3):
     - boost
@@ -3257,6 +3263,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - "RNNotifee (from `../node_modules/@notifee/react-native`)"
+  - RNPurchases (from `../node_modules/react-native-purchases`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -3279,6 +3286,8 @@ SPEC REPOS:
     - GoogleUtilities
     - nanopb
     - PromisesObjC
+    - PurchasesHybridCommon
+    - RevenueCat
     - SocketRocket
     - Stripe
     - StripeApplePay
@@ -3463,6 +3472,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-localize"
   RNNotifee:
     :path: "../node_modules/@notifee/react-native"
+  RNPurchases:
+    :path: "../node_modules/react-native-purchases"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -3499,6 +3510,7 @@ SPEC CHECKSUMS:
   hermes-engine: 273e30e7fb618279934b0b95ffab60ecedb7acf5
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  PurchasesHybridCommon: 027f03312519c51056457eb2e4f7ee1c91b61b8f
   RCT-Folly: 59ec0ac1f2f39672a0c6e6cecdd39383b764646f
   RCTDeprecation: f17e2ebc07876ca9ab8eb6e4b0a4e4647497ae3a
   RCTRequired: e2c574c1b45231f7efb0834936bd609d75072b63
@@ -3567,6 +3579,7 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: cc2795efe30a023c3a505676b9c748b664b9c0a1
   ReactCodegen: c0e5f7e3efd6ea0918e2032a7ebfe61c3a780b6a
   ReactCommon: 6087cb6198592a8dc52a37c0f3761644fead5c88
+  RevenueCat: ecbba580fa453b0d4a0475449b904196d74ef678
   RNCAsyncStorage: 8857fb173af29664cb90897903902dc8533e36cc
   RNCClipboard: 4eea71d801c880175c12f6ab14332ca86fed935f
   RNDateTimePicker: 43859bb5aac34ab762639751fd6d9e46e87aee5e
@@ -3577,6 +3590,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 51688624c0a40b052755cd9b53b079368bc616d6
   RNLocalize: 66262eaaebf5b07bb236e40b788f6705555100c9
   RNNotifee: 4a6ee5c7deaf00e005050052d73ee6315dff7ec9
+  RNPurchases: 9d331ea4d521109686a4be571aaaec57564db1cd
   RNReanimated: c001acbdd8aac49995f6cc3da704d0cc9d70df7a
   RNScreens: de996b48c82245c0b68c677da3334c2061e2a951
   RNSVG: c9eb879f90cc3cd5f81d987f39eae35f3b108618

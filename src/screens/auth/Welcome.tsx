@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MainNavigatorParamList } from '../../navigators/types';
 import { COLORS } from '../../constants/colors';
 import ScreenContainer from '../../components/layouts/screen-container';
-import { useAsyncStorage } from './../../hooks/use-storage';
+import { useAsyncStorage } from '../../hooks/use-storage';
 import Purchases from 'react-native-purchases';
 
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;

@@ -78,6 +78,11 @@ const Home: FC<HomeProps> = ({ navigation }) => {
       },
     ];
 
+  const carouselOffset = Platform.OS === 'ios' && Platform.isPad
+    ? 280
+    : 190;
+
+
   const {
     data: affinityProfile,
   } = useAffinityProfile();
@@ -106,7 +111,7 @@ const Home: FC<HomeProps> = ({ navigation }) => {
           mode="parallax"
           modeConfig={{
             parallaxScrollingScale: 0.6,
-            parallaxScrollingOffset: scaleSize(190),
+            parallaxScrollingOffset: scaleSize(carouselOffset),
           }}
           onProgressChange={progress}
           renderItem={
