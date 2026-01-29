@@ -488,7 +488,8 @@
         "cancel": "取消",
         "restorePurchases": "恢复购买",
         "restorePurchasesSuccess": "成功恢复购买\n您已购买 {{count}} 次",
-        "noPurchasesFound": "未找到可恢复的购买记录"
+        "noPurchasesFound": "未找到可恢复的购买记录",
+        "selectSubscription": "所选套餐仍在商店审核中。"
     },
     "topupReceiptModal": {
         "receipt": "收据",

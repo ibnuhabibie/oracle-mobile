@@ -488,7 +488,8 @@
         "cancel": "ยกเลิก",
         "restorePurchases": "กู้คืนการซื้อ",
         "restorePurchasesSuccess": "กู้คืนการซื้อเรียบร้อยแล้ว\nคุณซื้อ {{count}} ครั้ง",
-        "noPurchasesFound": "ไม่พบการซื้อที่จะกู้คืน"
+        "noPurchasesFound": "ไม่พบการซื้อที่จะกู้คืน",
+        "selectSubscription": "แพ็กเกจที่เลือกยังอยู่ระหว่างการตรวจสอบโดยสโตร์"
     },
     "topupReceiptModal": {
         "receipt": "ใบเสร็จ",

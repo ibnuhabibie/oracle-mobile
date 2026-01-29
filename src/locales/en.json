@@ -488,7 +488,8 @@
         "cancel": "Cancel",
         "restorePurchases": "Restore Purchases",
         "restorePurchasesSuccess": "Successfully restored purchases.\nYou have made {{count}} purchase(s).",
-        "noPurchasesFound": "No purchases found to restore"
+        "noPurchasesFound": "No purchases found to restore",
+        "selectSubscription": "This subscription isn’t available yet."
     },
     "topupReceiptModal": {
         "receipt": "Receipt",
