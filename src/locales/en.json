@@ -298,6 +298,11 @@
         "downloadPdf": "Download as PDF",
         "downloadSuccess": "PDF downloaded successfully!",
         "downloadedTo": "File downloaded to: {{path}}",
+        "downloadPermissionTitle": "Storage Permission",
+        "downloadPermissionMessage": "App needs access to your storage to download the PDF.",
+        "downloadPermissionDenied": "Permission denied",
+        "downloadPermissionError": "Permission error",
+        "downloadFailed": "Download failed",
         "you": "You",
         "yourLoveInterest": "Your Love Interest"
     },

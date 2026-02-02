@@ -294,12 +294,17 @@
         "button": "立即查看"
     },
     "relationReportResult": {
-        "header": "关系匹配度",
-        "downloadPdf": "下载 PDF",
-        "downloadSuccess": "PDF 下载成功！",
-        "downloadedTo": "文件已下载至：{{path}}",
+        "header": "關係匹配度",
+        "downloadPdf": "下載 PDF",
+        "downloadSuccess": "PDF 下載成功！",
+        "downloadedTo": "文件已下載至：{{path}}",
+        "downloadPermissionTitle": "儲存空間權限",
+        "downloadPermissionMessage": "應用程式需要存取您的儲存空間以下載 PDF。",
+        "downloadPermissionDenied": "權限被拒絕",
+        "downloadPermissionError": "權限錯誤",
+        "downloadFailed": "下載失敗",
         "you": "你",
-        "yourLoveInterest": "你的伴侣"
+        "yourLoveInterest": "你的伴侶"
     },
     "loveReportResult": {
         "title": "12个月爱情预测",

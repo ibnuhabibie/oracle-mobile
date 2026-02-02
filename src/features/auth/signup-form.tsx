@@ -77,7 +77,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             await AsyncStorage.setItem('auth_token', res.data.token);
 
             await sync();
-            onSuccess(res.data.email)
+            onSuccess(res.data)
         } catch (error) {
             console.log(error);
             const errorMessage = error?.meta?.message || t('registerForm.registerFailedMessage');

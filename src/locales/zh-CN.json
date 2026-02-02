@@ -298,6 +298,11 @@
         "downloadPdf": "下载 PDF",
         "downloadSuccess": "PDF 下载成功！",
         "downloadedTo": "文件已下载至：{{path}}",
+        "downloadPermissionTitle": "存储权限",
+        "downloadPermissionMessage": "应用需要访问您的存储以下载 PDF。",
+        "downloadPermissionDenied": "权限被拒绝",
+        "downloadPermissionError": "权限错误",
+        "downloadFailed": "下载失败",
         "you": "你",
         "yourLoveInterest": "你的伴侣"
     },

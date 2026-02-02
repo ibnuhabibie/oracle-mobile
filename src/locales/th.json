@@ -298,6 +298,11 @@
         "downloadPdf": "ดาวน์โหลด PDF",
         "downloadSuccess": "ดาวน์โหลด PDF สำเร็จ!",
         "downloadedTo": "ไฟล์ถูกดาวน์โหลดไปที่: {{path}}",
+        "downloadPermissionTitle": "สิทธิ์พื้นที่จัดเก็บ",
+        "downloadPermissionMessage": "แอปจำเป็นต้องเข้าถึงพื้นที่จัดเก็บของคุณเพื่อดาวน์โหลด PDF",
+        "downloadPermissionDenied": "ปฏิเสธสิทธิ์",
+        "downloadPermissionError": "ข้อผิดพลาดเกี่ยวกับสิทธิ์",
+        "downloadFailed": "การดาวน์โหลดล้มเหลว",
         "you": "คุณ",
         "yourLoveInterest": "คู่รักของคุณ"
     },

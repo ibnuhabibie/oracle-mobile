@@ -298,6 +298,11 @@
     "downloadPdf": "PDFとしてダウンロード",
     "downloadSuccess": "PDFが正常にダウンロードされました！",
     "downloadedTo": "ファイルがダウンロードされました：{{path}}",
+    "downloadPermissionTitle": "ストレージ権限",
+    "downloadPermissionMessage": "PDFをダウンロードするためにストレージへのアクセスが必要です。",
+    "downloadPermissionDenied": "権限が拒否されました",
+    "downloadPermissionError": "権限エラー",
+    "downloadFailed": "ダウンロードに失敗しました",
     "you": "あなた",
     "yourLoveInterest": "お相手"
   },

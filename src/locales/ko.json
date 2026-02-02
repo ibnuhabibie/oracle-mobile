@@ -298,6 +298,11 @@
     "downloadPdf": "PDF로 다운로드",
     "downloadSuccess": "PDF가 성공적으로 다운로드되었습니다!",
     "downloadedTo": "파일이 다운로드되었습니다: {{path}}",
+    "downloadPermissionTitle": "저장소 권한",
+    "downloadPermissionMessage": "PDF를 다운로드하려면 저장소에 대한 액세스가 필요합니다.",
+    "downloadPermissionDenied": "권한이 거부되었습니다",
+    "downloadPermissionError": "권한 오류",
+    "downloadFailed": "다운로드 실패",
     "you": "나",
     "yourLoveInterest": "상대방"
   },

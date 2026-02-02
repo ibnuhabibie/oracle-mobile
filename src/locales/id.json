@@ -298,6 +298,11 @@
         "downloadPdf": "Unduh sebagai PDF",
         "downloadSuccess": "PDF berhasil diunduh!",
         "downloadedTo": "File diunduh ke: {{path}}",
+        "downloadPermissionTitle": "Izin Penyimpanan",
+        "downloadPermissionMessage": "Aplikasi membutuhkan akses ke penyimpanan Anda untuk mengunduh PDF.",
+        "downloadPermissionDenied": "Izin ditolak",
+        "downloadPermissionError": "Kesalahan izin",
+        "downloadFailed": "Pengunduhan gagal",
         "you": "Anda",
         "yourLoveInterest": "Orang yang Anda Sukai"
     },

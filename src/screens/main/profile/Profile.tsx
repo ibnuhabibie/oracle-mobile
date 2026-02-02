@@ -227,7 +227,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
             <AppText
               variant="caption1"
               color="neutral"
-              style={{ fontSize: scaleFont(12, 10, 16) }}>
+              style={{ fontSize: scaleFont(12, 10, 16), }}>
               {t('profilePage.mbtiTitle')}
             </AppText>
             <AppText
@@ -237,13 +237,15 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               {t('profilePage.mbtiSubtitle')}
             </AppText>
           </View>
-          <AppButton
-            style={styles.mbtiQuizButton}
-            variant="primary"
-            title={t('mbtiQuiz.button')}
-            size="small"
-            onPress={handleCompleteQuiz}
-          />
+          <View>
+            <AppButton
+              style={styles.mbtiQuizButton}
+              variant="primary"
+              title={t('mbtiQuiz.button')}
+              size="small"
+              onPress={handleCompleteQuiz}
+            />
+          </View>
         </View>
       )}
 
@@ -344,10 +346,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  mbtiQuizTextContainer: {
-    flex: 1,
-    marginLeft: scaleSize(4),
-  },
+
   userCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.14)',
     borderRadius: 16,
@@ -458,9 +457,13 @@ const styles = StyleSheet.create({
     marginLeft: scaleSize(8, 8, 12),
     fontSize: scaleFont(16, 12, 20),
   },
+  mbtiQuizTextContainer: {
+    marginLeft: scaleSize(4),
+    flexGrow: 1,
+  },
   mbtiQuizSection: {
     flexDirection: 'row',
-    padding: scaleSize(12, 8, 12),
+    padding: scaleSize(14, 8, 14),
     borderWidth: scaleSize(1),
     borderColor: COLORS.black,
     borderRadius: scaleSize(8, 8, 12),

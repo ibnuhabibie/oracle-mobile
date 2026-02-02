@@ -8,14 +8,16 @@ import ScreenContainer from '../../components/layouts/screen-container';
 import SignUpForm from '../../features/auth/signup-form';
 import { MainNavigatorParamList } from '../../navigators/types';
 import { AppText } from '../../components/ui/app-text';
+import Purchases from 'react-native-purchases';
 
 type SignUpProps = NativeStackScreenProps<MainNavigatorParamList, 'SignUp'>;
 
 const SignUp: FC<SignUpProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const onSuccess = (email: string) => {
-    navigation.navigate('OtpVerification', { email });
+  const onSuccess = async (data) => {
+    await Purchases.logIn(data.rc_customer_id);
+    navigation.navigate('OtpVerification', { email: data.email });
   };
 
   return (
