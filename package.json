@@ -31,6 +31,7 @@
     "react-i18next": "^15.5.2",
     "react-native": "^0.82.1",
     "react-native-base64": "^0.2.1",
+    "react-native-blob-util": "^0.24.6",
     "react-native-calendars": "^1.1312.1",
     "react-native-device-info": "^14.0.4",
     "react-native-dotenv": "^3.4.11",

@@ -10,6 +10,8 @@ import ProfileItemCard from '../../../../features/profile/report/profile-item-ca
 import { AppButton } from '../../../../components/ui/app-button';
 import { downloadPdf } from '../../../../utils/http';
 
+import { API_BASE_URL } from '@env';
+
 import FortuneReportIcon11 from '../../../../components/icons/services/fortune-report/fortune-report-icon-11';
 import FortuneReportIcon12 from '../../../../components/icons/services/fortune-report/fortune-report-icon-12';
 import FortuneReportIcon13 from '../../../../components/icons/services/fortune-report/fortune-report-icon-13';
@@ -31,6 +33,27 @@ const iconImages = [
 
 type FortuneReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReportResult'>;
 
+const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
+    if (!content) return null;
+
+    return (
+        <>
+            {content.map((item, idx) => (
+                <ProfileItemCard
+                    key={item.order || idx}
+                    data={{
+                        title: item.title,
+                        description: item.content,
+                        icon: iconImages[item.order - 1]
+                            ? React.createElement(iconImages[item.order - 1], { size: 65 })
+                            : undefined,
+                    }}
+                />
+            ))}
+        </>
+    );
+});
+
 const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, route }) => {
     const { result, job_id } = route.params;
     const { t } = useTranslation();
@@ -42,36 +65,13 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
         return () => interaction && interaction.cancel && interaction.cancel();
     }, []);
 
-    const CardList: FC<{ content: any[] }> = ({ content }) => {
-        if (!content) return null;
-
-        return (
-            <>
-                {content.map((item, idx) => (
-                    <ProfileItemCard
-                        key={item.order || idx}
-                        data={{
-                            title: item.title,
-                            description: item.content,
-                            icon: iconImages[item.order - 1]
-                                ? React.createElement(iconImages[item.order - 1], { size: 65 })
-                                : undefined,
-                        }}
-                    />
-                ))}
-            </>
-        );
-    };
-
     const handleDownload = async () => {
         setLoading(true);
-        setTimeout(async () => {
-            try {
-                await downloadPdf(job_id, t, true);
-            } finally {
-                setLoading(false);
-            }
-        }, 0);
+        try {
+            await downloadPdf(job_id, t, true);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

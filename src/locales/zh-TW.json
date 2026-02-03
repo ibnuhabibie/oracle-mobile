@@ -280,8 +280,12 @@
         "recommendedAction": "推荐行动"
     },
     "fortuneReportResult": {
-        "header": "命运报告 {{year}}",
-        "downloadPdf": "下载 PDF"
+        "header": "命運報告 {{year}}",
+        "downloadPdf": "下載 PDF",
+        "downloadComplete": "下載完成",
+        "savedTo": "已儲存到 {{path}}",
+        "downloadingPdf": "正在下載 PDF",
+        "couldNotOpenFolder": "我們無法自動開啟資料夾。請在下載資料夾中手動尋找。\n\n檔案名稱：{{fileName}}"
     },
     "polling": {
         "message": "请稍候...",

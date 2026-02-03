@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef, memo } from "react";
 import { FlatList, Pressable, View, ActivityIndicator } from "react-native";
 import { AppText } from '../../components/ui/app-text';
 import CommentsIcon from "../../components/icons/profile/comments-icon";
@@ -69,6 +69,46 @@ const styles = StyleSheet.create({
 
 const LIMIT = 10;
 
+// Memoized list item for better performance
+const UsageItem = memo(({ item, onPress }: { item: UsageItem; onPress: (item: UsageItem) => void }) => {
+    const { t } = useTranslation();
+    const formattedDate = formatDateWithTime(item.created_at);
+    let details = t("usageHistory.details")
+    
+    if (item.payment_type == 'direct' && item.payment_status == 'pending') {
+        details = t("usageHistory.paymentPending")
+    }
+
+    const getServiceTypeLabel = (type: string) =>
+        t(`serviceLabel.${type}`) || type;
+
+    const handlePress = useCallback(() => onPress(item), [item, onPress]);
+
+    return (
+        <Pressable
+            style={styles.pressable}
+            onPress={handlePress}
+        >
+            <View style={styles.iconContainer}>
+                <CommentsIcon size={scaleSize(16)} />
+            </View>
+            <View style={{ flex: 1 }}>
+                <AppText variant="body2" style={styles.serviceType} color="neutral">
+                    {getServiceTypeLabel(item.service_type)}
+                </AppText>
+                <AppText variant="caption4" color="neutral">
+                    {details}
+                </AppText>
+            </View>
+            <View style={styles.dateContainer}>
+                <AppText variant="caption4" color="gray">
+                    {formattedDate}
+                </AppText>
+            </View>
+        </Pressable>
+    );
+});
+
 const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
     const { t } = useTranslation();
     const [data, setData] = useState<UsageItem[]>([]);
@@ -78,7 +118,6 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
 
     // Fetch page (initial and paginated)
     const fetchPage = useCallback(async () => {
-        console.log('called')
         if (loading || endReached) return;
         setLoading(true);
         try {
@@ -100,7 +139,7 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
         } finally {
             setLoading(false);
         }
-    }, [offset, loading, endReached]);
+    }, [offset, loading, endReached, onItemPress]);
 
     // Initial load
     useEffect(() => {
@@ -109,63 +148,39 @@ const UsageHistoryList: React.FC<UsageHistoryListProps> = ({ onItemPress }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const renderUsageItem = ({ item }: { item: UsageItem }) => {
-        const formattedDate = formatDateWithTime(item.created_at);
-        let details = t("usageHistory.details")
-        
-        if (item.payment_type == 'direct' && item.payment_status == 'pending') {
-            details = t("usageHistory.paymentPending")
-        }
-
-        return (
-            <Pressable
-                style={styles.pressable}
-                onPress={() => onItemPress?.(item)}
-            >
-                <View style={styles.iconContainer}>
-                    <CommentsIcon size={scaleSize(16)} />
-                </View>
-                <View style={{ flex: 1 }}>
-                    <AppText variant="body2" style={styles.serviceType} color="neutral">
-                        {getServiceTypeLabel(item.service_type, t)}
-                    </AppText>
-                    <AppText variant="caption4" color="neutral">
-                        {details}
-                    </AppText>
-                </View>
-                <View style={styles.dateContainer}>
-                    <AppText variant="caption4" color="gray">
-                        {formattedDate}
-                    </AppText>
-                </View>
-            </Pressable>
-        );
-    };
-
-    const renderFooter = () => {
+    // Memoize footer component
+    const Footer = useCallback(() => {
         if (!loading || data.length === 0) return null;
         return (
             <View style={styles.loading}>
                 <ActivityIndicator size="small" />
             </View>
         );
-    };
+    }, [loading, data.length]);
+
+    // Memoize empty component
+    const EmptyComponent = useCallback(() => (
+        <View style={styles.empty}>
+            <AppText variant="caption2" color="gray">{t("usageHistory.noHistoryFound")}</AppText>
+        </View>
+    ), [t]);
+
+    // Safe press handler that handles undefined onItemPress
+    const handleItemPress = useCallback((item: UsageItem) => {
+        if (onItemPress) onItemPress(item);
+    }, [onItemPress]);
 
     return (
         <FlatList
             data={data}
-            renderItem={renderUsageItem}
+            renderItem={({ item }) => <UsageItem item={item} onPress={handleItemPress} />}
             keyExtractor={(item) => String(item.usage_history_id)}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.listContent}
-            ListEmptyComponent={
-                <View style={styles.empty}>
-                    <AppText variant="caption2" color="gray">{t("usageHistory.noHistoryFound")}</AppText>
-                </View>
-            }
+            ListEmptyComponent={EmptyComponent}
             onEndReached={fetchPage}
             onEndReachedThreshold={0.6}
-            ListFooterComponent={renderFooter}
+            ListFooterComponent={Footer}
         />
     );
 };

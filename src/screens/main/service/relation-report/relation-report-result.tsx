@@ -42,6 +42,49 @@ const iconImages = [
 
 type RelationReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReportResult'>;
 
+// Transform love_profile to UserProfile shape
+function loveProfileToUserProfile(love_profile: any) {
+    if (!love_profile) return {};
+    const [country, city] = (love_profile.birth_location || '').split(',').map((s: string) => s.trim());
+    return {
+        full_name: love_profile.name,
+        birth_date: love_profile.birth_date ? new Date(love_profile.birth_date) : undefined,
+        birth_time: undefined,
+        birth_country: country,
+        birth_city: city,
+        gender: love_profile.gender,
+    };
+}
+
+const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
+    if (!content) return null;
+    return (
+        <>
+            {content.map((item, idx) => (
+                <ProfileItemCard
+                    key={idx}
+                    data={{
+                        title: item.title,
+                        description: Array.isArray(item.content) ? (
+                            item.content.map((_content: any) => (
+                                <ProfileDescriptionCard data={_content} />
+                            ))
+                        ) : item.content,
+                        isDark: idx == 0,
+                        icon: idx == 0 ? (
+                            <AppText variant="display1" color="white" style={{ fontWeight: 'bold' }}>{item.score}</AppText>
+                        ) : (
+                            iconImages[item.order - 1]
+                                ? React.createElement(iconImages[item.order - 1], { size: 65 })
+                                : null
+                        ),
+                    }}
+                />
+            ))}
+        </>
+    );
+});
+
 const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation, route }) => {
     const { result, love_profile, job_id } = route.params;
     const { t } = useTranslation();
@@ -53,60 +96,15 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
         return () => interaction && interaction.cancel && interaction.cancel();
     }, []);
 
-    // Transform love_profile to UserProfile shape
-    function loveProfileToUserProfile(love_profile: any) {
-        if (!love_profile) return {};
-        const [country, city] = (love_profile.birth_location || '').split(',').map((s: string) => s.trim());
-        return {
-            full_name: love_profile.name,
-            birth_date: love_profile.birth_date ? new Date(love_profile.birth_date) : undefined,
-            birth_time: undefined,
-            birth_country: country,
-            birth_city: city,
-            gender: love_profile.gender,
-        };
-    }
-
     console.log(love_profile, 'love_profile')
-
-    const CardList: FC<{ content: any[] }> = ({ content }) => {
-        if (!content) return null;
-        return (
-            <>
-                {content.map((item, idx) => (
-                    <ProfileItemCard
-                        key={idx}
-                        data={{
-                            title: item.title,
-                            description: Array.isArray(item.content) ? (
-                                item.content.map((_content: any) => (
-                                    <ProfileDescriptionCard data={_content} />
-                                ))
-                            ) : item.content,
-                            isDark: idx == 0,
-                            icon: idx == 0 ? (
-                                <AppText variant="display1" color="white" style={{ fontWeight: 'bold' }}>{item.score}</AppText>
-                            ) : (
-                                iconImages[item.order - 1]
-                                    ? React.createElement(iconImages[item.order - 1], { size: 65 })
-                                    : null
-                            ),
-                        }}
-                    />
-                ))}
-            </>
-        );
-    };
 
     const handleDownload = async () => {
         setLoading(true);
-        setTimeout(async () => {
-            try {
-                await downloadPdf(job_id, t, true);
-            } finally {
-                setLoading(false);
-            }
-        }, 0);
+        try {
+            await downloadPdf(job_id, t, true);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

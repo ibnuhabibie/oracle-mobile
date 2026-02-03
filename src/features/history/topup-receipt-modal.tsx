@@ -60,7 +60,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                             <View style={styles.modalHeader}>
                                 <AppText variant="subtitle2" style={styles.modalTitle} color="primary">{t("topupReceiptModal.receipt")}</AppText>
                                 <TouchableOpacity onPress={onClose}>
-                                    <CloseIcon size={scaleSize(16, 14, 22)} />
+                                    <CloseIcon size={scaleSize(22)} />
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.modalRow}>

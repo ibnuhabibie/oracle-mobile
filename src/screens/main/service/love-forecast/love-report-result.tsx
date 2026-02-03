@@ -23,6 +23,40 @@ import { formatDateOnly } from '../../../../utils/date';
 
 type LoveReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveReportResult'>;
 
+const iconImages = [
+    LoveReportIcon1,
+    LoveReportIcon2,
+    LoveReportIcon3,
+    LoveReportIcon4,
+    LoveReportIcon5,
+    LoveReportIcon6,
+    LoveReportIcon7,
+    LoveReportIcon8,
+];
+
+const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
+    if (!content) return null;
+
+    return (
+        <>
+            {
+                content.map((item, idx) => (
+                    <ProfileItemCard
+                        key={item.order || idx}
+                        data={{
+                            title: item.title,
+                            description: item.content,
+                            icon: iconImages[item.order - 1]
+                                ? React.createElement(iconImages[item.order - 1], { size: 65 })
+                                : undefined,
+                        }}
+                    />
+                ))
+            }
+        </>
+    );
+});
+
 const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }) => {
     const { t } = useTranslation();
     const { result, job_id } = route.params;
@@ -37,17 +71,6 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
 
     console.log(result, job_id)
 
-    const iconImages = [
-        LoveReportIcon1,
-        LoveReportIcon2,
-        LoveReportIcon3,
-        LoveReportIcon4,
-        LoveReportIcon5,
-        LoveReportIcon6,
-        LoveReportIcon7,
-        LoveReportIcon8,
-    ];
-
     // Format date_range if present, else fallback
     React.useEffect(() => {
         const formatForecastRange = async () => {
@@ -59,42 +82,17 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
                 setForecastRange(`${startDate} - ${endDate}`);
             }
         };
-        
+
         formatForecastRange();
     }, [result]);
 
-    const CardList: FC<{ content: any[] }> = ({ content }) => {
-        if (!content) return null;
-
-        return (
-            <>
-                {
-                    content.map((item, idx) => (
-                        <ProfileItemCard
-                            key={item.order || idx}
-                            data={{
-                                title: item.title,
-                                description: item.content,
-                                icon: iconImages[item.order - 1]
-                                    ? React.createElement(iconImages[item.order - 1], { size: 65 })
-                                    : undefined,
-                            }}
-                        />
-                    ))
-                }
-            </>
-        );
-    };
-
     const handleDownload = async () => {
         setLoading(true);
-        setTimeout(async () => {
-            try {
-                await downloadPdf(job_id, t, true);
-            } finally {
-                setLoading(false);
-            }
-        }, 0);
+        try {
+            await downloadPdf(job_id, t, true);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

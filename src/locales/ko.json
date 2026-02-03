@@ -279,10 +279,14 @@
     "likelyOutcome": "예상 결과",
     "recommendedAction": "추천 행동"
   },
-  "fortuneReportResult": {
-    "header": "운세 리포트 {{year}}",
-    "downloadPdf": "PDF로 다운로드"
-  },
+    "fortuneReportResult": {
+        "header": "운세 리포트 {{year}}",
+        "downloadPdf": "PDF로 다운로드",
+        "downloadComplete": "다운로드 완료",
+        "savedTo": "{{path}}에 저장됨",
+        "downloadingPdf": "PDF 다운로드 중",
+        "couldNotOpenFolder": "폴더를 자동으로 열 수 없습니다. 다운로드 폴더에서 수동으로 찾아주세요.\n\n파일 이름: {{fileName}}"
+    },
     "polling": {
         "message": "결제 완료, 잠시만 기다려주세요...",
     "info": "몇 분 정도 소요됩니다. 창을 닫아도 괜찮아요. 준비되면 알려드릴게요.",

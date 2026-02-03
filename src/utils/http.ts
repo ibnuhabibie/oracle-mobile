@@ -5,9 +5,12 @@ import { API_BASE_URL } from '@env';
 // const API_BASE_URL = 'https://your-api-base-url.com';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ReactNativeBlobUtil from 'react-native-blob-util';
+
 import RNFS from 'react-native-fs';
 import { Platform, Alert, Linking, PermissionsAndroid, ToastAndroid } from 'react-native';
 import Base64 from 'react-native-base64';
+
 import i18n from '../locales/i18n';
 
 // Shared axios instance
@@ -108,36 +111,107 @@ export function arrayBufferToBase64(buffer: ArrayBuffer): string {
     return Base64.encode(binary);
 }
 
+const showFallback = (fileName) => {
+    Alert.alert(
+        i18n.t('fortuneReportResult.downloadComplete'),
+        i18n.t('fortuneReportResult.couldNotOpenFolder', { fileName }),
+    );
+};
+
+export const downloadPdf = async (job_id: string, t: Function, openAfterDownload: boolean = true) => {
+    const url = `${API_BASE_URL}/uploads/reports/${job_id}.pdf`;
+    const { fs, config } = ReactNativeBlobUtil;
+
+    const fileName = `Report-${Date.now()}.pdf`;
+    const dir =
+        Platform.OS === 'android'
+            ? fs.dirs.DownloadDir
+            : fs.dirs.DocumentDir;
+    const path = `${dir}/${fileName}`;
+
+    try {
+        await config({
+            fileCache: true,
+            path,
+            addAndroidDownloads: {
+                useDownloadManager: true,
+                notification: true,
+                mime: 'application/pdf',
+                title: fileName,
+                description: i18n.t('fortuneReportResult.downloadingPdf'),
+                path,
+            },
+        }).fetch('GET', url);
+
+        Alert.alert(
+            i18n.t('fortuneReportResult.downloadComplete'),
+            i18n.t('fortuneReportResult.savedTo', { path })
+        );
+    } catch (e) {
+        console.log('Download error', e);
+        Alert.alert(t('relationReportResult.downloadFailed'), e?.toString() || 'Download failed');
+    }
+};
+
 // Utility: Download PDF and optionally open it
-export async function downloadPdf(job_id: string, t: Function, openAfterDownload: boolean = true) {
+export async function oldDownloadPdf(job_id: string, t: Function, openAfterDownload: boolean = true) {
     try {
         const url = `${API_BASE_URL}/uploads/reports/${job_id}.pdf`;
         console.log(url)
         // Use axios.get directly for binary download to avoid interceptors
         const response = await axios.get(url, { responseType: 'arraybuffer' });
         const isIOS = Platform.OS === 'ios';
+        // For Android 10+, use app's document directory to avoid permission issues
+        // For older Android, still try DownloadDirectory with permission
         const fileDir = isIOS ? RNFS.DocumentDirectoryPath : RNFS.DownloadDirectoryPath;
         const filePath = `${fileDir}/${job_id}.pdf`;
+
+        console.log('[downloadPdf] File path:', filePath);
 
         // Android: request storage permission before writing file
         if (!isIOS) {
             try {
-                const granted = await PermissionsAndroid.request(
-                    PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-                    {
-                        title: t('relationReportResult.downloadPermissionTitle') || 'Storage Permission',
-                        message: t('relationReportResult.downloadPermissionMessage') || 'App needs access to your storage to download the PDF.',
-                        buttonNeutral: 'Ask Me Later',
-                        buttonNegative: 'Cancel',
-                        buttonPositive: 'OK',
+                const platformVersion = parseInt(Platform.Version as string, 10);
+                console.log('[downloadPdf] Platform version:', platformVersion);
+
+                // For Android 10+ (API 29+), use DocumentDirectoryPath which doesn't require permissions
+                // For Android 9 and below, request storage permission
+                if (platformVersion >= 29) {
+                    console.log('[downloadPdf] Android 10+ detected, using scoped storage');
+                } else {
+                    // Check if we need permission
+                    const hasPermission = await PermissionsAndroid.check(
+                        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+                    );
+
+                    console.log('[downloadPdf] Storage permission check:', hasPermission);
+
+                    if (!hasPermission) {
+                        const granted = await PermissionsAndroid.request(
+                            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                            {
+                                title: t('relationReportResult.downloadPermissionTitle'),
+                                message: t('relationReportResult.downloadPermissionMessage'),
+                                buttonNeutral: 'Ask Me Later',
+                                buttonNegative: 'Cancel',
+                                buttonPositive: 'OK',
+                            }
+                        );
+
+                        console.log('[downloadPdf] Permission request result:', granted);
+
+                        if (granted === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
+                            ToastAndroid.show(t('relationReportResult.downloadPermissionDenied'), ToastAndroid.LONG);
+                            throw new Error('Permission permanently denied');
+                        } else if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+                            ToastAndroid.show(t('relationReportResult.downloadPermissionDenied'), ToastAndroid.LONG);
+                            throw new Error('Permission denied');
+                        }
                     }
-                );
-                if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-                    ToastAndroid.show(t('relationReportResult.downloadPermissionDenied') || 'Permission denied', ToastAndroid.LONG);
-                    throw new Error('Permission denied');
                 }
             } catch (err) {
-                ToastAndroid.show(t('relationReportResult.downloadPermissionError') || 'Permission error', ToastAndroid.LONG);
+                console.error('[downloadPdf] Permission error:', err);
+                ToastAndroid.show(t('relationReportResult.downloadPermissionError'), ToastAndroid.LONG);
                 throw err;
             }
         }
@@ -145,23 +219,15 @@ export async function downloadPdf(job_id: string, t: Function, openAfterDownload
         const base64Data = arrayBufferToBase64(response.data);
         await RNFS.writeFile(filePath, base64Data, 'base64');
 
-        Alert.alert(
-            t('relationReportResult.downloadSuccess'),
-            t('relationReportResult.downloadedTo', { path: filePath })
-        );
-
         if (openAfterDownload) {
-            if (isIOS) {
-                // For iOS, Linking.openURL should work for PDFs
-                Linking.openURL(`file://${filePath}`);
-                // If you want to use a dedicated viewer, consider RNDocumentViewer
+            const supported = await Linking.canOpenURL(`file://${filePath}`);
+
+            if (supported) {
+                await Linking.openURL(`file://${filePath}`);
             } else {
-                // For Android, use react-native-open-file for best compatibility
-                // Uncomment the following lines after installing react-native-open-file:
-                // import OpenFile from 'react-native-open-file';
-                // OpenFile.openDoc([{ url: filePath, fileName: `relation-report-${job_id}.pdf`, fileType: 'pdf', cache: false }], (error, url) => {});
-                // If not installed, fallback to Linking.openURL (may not work on all devices)
-                Linking.openURL(`file://${filePath}`);
+                // Fallback if opening the directory fails
+                console.log('[downloadPdf] Cannot open file directly, showing fallback alert', supported, filePath);
+                showFallback(filePath);
             }
         }
 

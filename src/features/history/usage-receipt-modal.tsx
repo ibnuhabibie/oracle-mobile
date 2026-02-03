@@ -191,11 +191,11 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           </View>
         </View>
         <View style={styles.modalSectionDivider} />
-        <View style={styles.modalRow}>
+        {/* <View style={styles.modalRow}>
           <AppText variant="caption1" color="neutral">{t("topupReceiptModal.paymentMethod")}</AppText>
-          <AppText variant="caption1" color="white">{JSON.parse(item.payment_method).type}</AppText>
+          <AppText variant="caption1" color="white">{JSON.parse(item.payment_method).method}</AppText>
         </View>
-        <View style={styles.modalSectionDivider} />
+        <View style={styles.modalSectionDivider} /> */}
         <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: scaleSize(12, 12, 18) }} onPress={handleResult} />
       </>
     )
@@ -255,7 +255,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
               <View style={styles.modalHeader}>
                 <AppText variant="subtitle2" style={styles.modalTitle} color="primary">{t("usageReceiptModal.receipt")}</AppText>
                 <TouchableOpacity onPress={onClose}>
-                  <CloseIcon size={scaleSize(16, 14, 22)} />
+                  <CloseIcon size={scaleSize(22)} />
                 </TouchableOpacity>
               </View>
               {

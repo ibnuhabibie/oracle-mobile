@@ -108,8 +108,8 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
   return (
     <ScreenContainer fluid={true} scrollable={false}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 42 : 0}
+        behavior={'padding'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? scaleSize(42) : scaleSize(32)}
         style={styles.keyboardAvoidingView}
       >
         <View style={{ flex: 1 }}>

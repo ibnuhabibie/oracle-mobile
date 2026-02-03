@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useState, useCallback, useMemo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { AppText } from '../../../components/ui/app-text';
 
@@ -32,7 +32,8 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
     }, [])
   );
 
-  const handleShowReceipt = (item: any) => {
+  // Memoize handlers to prevent unnecessary re-renders
+  const handleShowReceipt = useCallback((item: any) => {
     console.log(item)
     try {
       setModalVisible(true);
@@ -40,12 +41,16 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
     } catch (e) {
       console.log(e, 'asdasd')
     }
-  };
+  }, []);
 
-  const handleShowUsageReceipt = (item: any) => {
+  const handleShowUsageReceipt = useCallback((item: any) => {
     setUsageSelectedItem(item);
     setUsageModalVisible(true);
-  };
+  }, []);
+
+  // Memoize modal close handlers
+  const handleCloseModal = useCallback(() => setModalVisible(false), []);
+  const handleCloseUsageModal = useCallback(() => setUsageModalVisible(false), []);
 
   return (
     <>
@@ -101,13 +106,13 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
 
         <TopupReceiptModal
           visible={modalVisible}
-          onClose={() => setModalVisible(false)}
+          onClose={handleCloseModal}
           item={selectedItem}
         />
 
         <UsageReceiptModal
           visible={usageModalVisible}
-          onClose={() => setUsageModalVisible(false)}
+          onClose={handleCloseUsageModal}
           item={usageSelectedItem}
         />
       </ScreenContainer>

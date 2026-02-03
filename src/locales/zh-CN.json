@@ -281,7 +281,11 @@
     },
     "fortuneReportResult": {
         "header": "命运报告 {{year}}",
-        "downloadPdf": "下载 PDF"
+        "downloadPdf": "下载 PDF",
+        "downloadComplete": "下载完成",
+        "savedTo": "已保存到 {{path}}",
+        "downloadingPdf": "正在下载 PDF",
+        "couldNotOpenFolder": "我们无法自动打开文件夹。请在下载文件夹中手动查找。\n\n文件名：{{fileName}}"
     },
     "polling": {
         "message": "付款已完成，请稍候...",

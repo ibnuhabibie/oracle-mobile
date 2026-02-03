@@ -281,7 +281,11 @@
     },
     "fortuneReportResult": {
         "header": "รายงานโชคชะตา {{year}}",
-        "downloadPdf": "ดาวน์โหลด PDF"
+        "downloadPdf": "ดาวน์โหลด PDF",
+        "downloadComplete": "ดาวน์โหลดเสร็จ",
+        "savedTo": "บันทึกไว้ที่ {{path}}",
+        "downloadingPdf": "กำลังดาวน์โหลด PDF",
+        "couldNotOpenFolder": "เราไม่สามารถเปิดโฟลเดอร์อัตโนมัติ โปรดค้นหาด้วยตัวเองในโฟลเดอร์ดาวน์โหลด\n\nชื่อไฟล์: {{fileName}}"
     },
     "polling": {
         "message": "ชำระเงินเสร็จแล้ว กรุณารอสักครู่...",

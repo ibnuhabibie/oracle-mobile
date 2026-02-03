@@ -281,7 +281,11 @@
     },
     "fortuneReportResult": {
         "header": "Fortune Report {{year}}",
-        "downloadPdf": "Download as PDF"
+        "downloadPdf": "Download as PDF",
+        "downloadComplete": "Download complete",
+        "savedTo": "Saved to {{path}}",
+        "downloadingPdf": "Downloading PDF",
+        "couldNotOpenFolder": "We couldn't open the folder automatically. Please find it manually in your Downloads folder.\n\nFile Name: {{fileName}}"
     },
     "polling": {
         "message": "Payment Completed, Please wait...",

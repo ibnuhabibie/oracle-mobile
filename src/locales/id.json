@@ -281,7 +281,11 @@
     },
     "fortuneReportResult": {
         "header": "Laporan Keberuntungan {{year}}",
-        "downloadPdf": "Unduh sebagai PDF"
+        "downloadPdf": "Unduh sebagai PDF",
+        "downloadComplete": "Unduhan selesai",
+        "savedTo": "Disimpan ke {{path}}",
+        "downloadingPdf": "Mengunduh PDF",
+        "couldNotOpenFolder": "Kami tidak dapat membuka folder secara otomatis. Silakan temukan secara manual di folder Unduhan.\n\nNama File: {{fileName}}"
     },
     "polling": {
         "message": "Pembayaran Selesai, Tunggu sebentar...",

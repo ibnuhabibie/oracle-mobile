@@ -157,8 +157,8 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
       scrollable={false}
     >
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 142 : 0}
+        behavior={'padding'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? scaleSize(142) : scaleSize(168)}
         style={{ flex: 1 }}
       >
         <View style={{ flex: 1, paddingHorizontal: scaleSize(16) }}>

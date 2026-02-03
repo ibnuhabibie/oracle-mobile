@@ -279,10 +279,14 @@
     "likelyOutcome": "予想される結果",
     "recommendedAction": "推奨される行動"
   },
-  "fortuneReportResult": {
-    "header": "運勢レポート{{year}}",
-    "downloadPdf": "PDFとしてダウンロード"
-  },
+    "fortuneReportResult": {
+        "header": "運勢レポート{{year}}",
+        "downloadPdf": "PDFとしてダウンロード",
+        "downloadComplete": "ダウンロード完了",
+        "savedTo": "{{path}}に保存されました",
+        "downloadingPdf": "PDFをダウンロード中",
+        "couldNotOpenFolder": "フォルダを自動的に開けませんでした。ダウンロードフォルダで手動で探してください。\n\nファイル名：{{fileName}}"
+    },
     "polling": {
         "message": "支払い完了しました。お待ちください...",
     "info": "数分かかります。ウィンドウを閉じても大丈夫です。準備ができたらお知らせします。",
