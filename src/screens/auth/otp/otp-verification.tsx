@@ -1,32 +1,29 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Alert, Keyboard, StyleSheet, View } from 'react-native';
-import { scaleFont, scaleSize } from '../../utils/scale';
+import { scaleFont, scaleSize } from '../../../utils/scale';
 import { useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
 
-import SMSIcon from '../../components/icons/auth/sms-icon';
-import ScreenContainer from '../../components/layouts/screen-container';
-import { AppButton } from '../../components/ui/app-button';
-import { AppText } from '../../components/ui/app-text';
-import ShinyContainer from '../../components/widgets/shiny-container';
-import { MainNavigatorParamList } from '../../navigators/types';
-import api from '../../utils/http';
-import { useOtpTimer } from '../../hooks/use-otp-timer';
-import { OtpInput } from '../../features/auth/otp-input';
-import type { OtpInputRef } from '../../features/auth/otp-input';
+import SMSIcon from '../../../components/icons/auth/sms-icon';
+import ScreenContainer from '../../../components/layouts/screen-container';
+import { AppButton } from '../../../components/ui/app-button';
+import { AppText } from '../../../components/ui/app-text';
+import ShinyContainer from '../../../components/widgets/shiny-container';
+import { MainNavigatorParamList } from '../../../navigators/types';
+import api from '../../../utils/http';
+import { useOtpTimer } from '../../../hooks/use-otp-timer';
+import { OtpInput } from './otp-input';
+import type { OtpInputRef, OtpVerificationParams } from './types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getErrorMessage } from '../../utils/error';
+import { getErrorMessage } from '../../../utils/error';
 
 type OtpVerificationProps = NativeStackScreenProps<MainNavigatorParamList, 'OtpVerification'>;
 
 const OtpVerification: FC<OtpVerificationProps> = ({ navigation }) => {
   const route = useRoute();
-  const { email, shouldResendOtp } = route.params as {
-    email: string;
-    shouldResendOtp?: boolean;
-  };
+  const { email, shouldResendOtp } = route.params as OtpVerificationParams;
 
   const { t } = useTranslation();
   const { formatted, start, timeLeft } = useOtpTimer(180);

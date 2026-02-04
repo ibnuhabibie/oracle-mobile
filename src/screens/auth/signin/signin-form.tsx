@@ -2,31 +2,20 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert, StyleSheet, View, Platform } from 'react-native';
-import { scaleSize } from '../../utils/scale';
+import { scaleSize } from '../../../utils/scale';
 import { useTranslation } from 'react-i18next';
 import DeviceInfo from 'react-native-device-info';
 import messaging from '@react-native-firebase/messaging';
 import Purchases from 'react-native-purchases';
 
-import api from '../../utils/http';
-import { AppButton } from '../../components/ui/app-button';
-import AppInput from '../../components/ui/app-input';
-import PasswordToggle from '../../components/ui/password-toggle';
-import { useAsyncStorage } from '../../hooks/use-storage';
-import { COLORS } from '../../constants/colors';
-import { decryptId, encryptId } from '../../utils/string';
-
-interface LoginDTO {
-  email: string;
-  password: string;
-  fcm_token?: string;
-  locale?: string;
-  additional_info?: any;
-}
-
-export interface AuthFormProps {
-  onSuccess: (email: string) => void;
-}
+import api from '../../../utils/http';
+import { AppButton } from '../../../components/ui/app-button';
+import AppInput from '../../../components/ui/app-input';
+import PasswordToggle from '../../../components/ui/password-toggle';
+import { useAsyncStorage } from '../../../hooks/use-storage';
+import { COLORS } from '../../../constants/colors';
+import { decryptId, encryptId } from '../../../utils/string';
+import { LoginDTO, AuthFormProps } from './types';
 
 const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);

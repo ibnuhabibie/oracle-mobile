@@ -1,16 +1,17 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { scaleFont, scaleSize } from '../../utils/scale';
 import { useTranslation } from 'react-i18next';
-
-import ScreenContainer from '../../components/layouts/screen-container';
-import { AppButton } from '../../components/ui/app-button';
-import { AppText } from '../../components/ui/app-text';
-import ShinyContainer from '../../components/widgets/shiny-container';
-import { MainNavigatorParamList } from '../../navigators/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import SMSIcon from '../../components/icons/auth/sms-icon';
+
+import ScreenContainer from '../../../components/layouts/screen-container';
+import { AppButton } from '../../../components/ui/app-button';
+import { AppText } from '../../../components/ui/app-text';
+import ShinyContainer from '../../../components/widgets/shiny-container';
+import SMSIcon from '../../../components/icons/auth/sms-icon';
+
+import { scaleFont, scaleSize } from '../../../utils/scale';
+import { MainNavigatorParamList } from '../../../navigators/types';
 
 type OtpSuccessProps = NativeStackScreenProps<MainNavigatorParamList, 'OtpSuccess'>;
 

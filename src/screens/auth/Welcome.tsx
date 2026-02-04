@@ -1,14 +1,13 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState, useEffect } from 'react';
-import { Animated, StyleSheet, View, BackHandler } from 'react-native';
+import React, { useState } from 'react';
+import { Animated, StyleSheet, View } from 'react-native';
 import Video from 'react-native-video';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Purchases from 'react-native-purchases';
 
 import { MainNavigatorParamList } from '../../navigators/types';
 import { COLORS } from '../../constants/colors';
-import ScreenContainer from '../../components/layouts/screen-container';
 import { useAsyncStorage } from '../../hooks/use-storage';
-import Purchases from 'react-native-purchases';
 
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 

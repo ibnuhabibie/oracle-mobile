@@ -10,12 +10,12 @@ import Onboarding from '../screens/auth/onboarding';
 import LanguageSelection from '../screens/auth/language-selection';
 import MbtiQuiz from '../screens/auth/mbti-quiz';
 import Welcome from '../screens/auth/welcome';
-import OtpSuccess from '../screens/auth/otp-success';
-import OtpVerification from '../screens/auth/otp-verification';
-import SignIn from '../screens/auth/signin';
-import SignUp from '../screens/auth/signup';
+import OtpSuccess from '../screens/auth/otp/otp-success';
+import OtpVerification from '../screens/auth/otp/otp-verification';
+import SignIn from '../screens/auth/signin/signin';
+import SignUp from '../screens/auth/signup/signup';
 
-import Home from '../screens/main/home';
+import Home from '../screens/main/home/home';
 import AstrologyResults from '../screens/main/profile/astrology-results';
 import BaziResults from '../screens/main/profile/bazi-results';
 import EditProfile from '../screens/main/profile/edit-profile';

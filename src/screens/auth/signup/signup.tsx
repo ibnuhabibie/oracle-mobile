@@ -1,21 +1,22 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
-import { scaleFont, scaleSize } from '../../utils/scale';
 import { useTranslation } from 'react-i18next';
-
-import ScreenContainer from '../../components/layouts/screen-container';
-import SignUpForm from '../../features/auth/signup-form';
-import { MainNavigatorParamList } from '../../navigators/types';
-import { AppText } from '../../components/ui/app-text';
 import Purchases from 'react-native-purchases';
+
+import ScreenContainer from '../../../components/layouts/screen-container';
+import SignUpForm from './signup-form';
+import { AppText } from '../../../components/ui/app-text';
+
+import { scaleFont, scaleSize } from '../../../utils/scale';
+import { MainNavigatorParamList } from '../../../navigators/types';
 
 type SignUpProps = NativeStackScreenProps<MainNavigatorParamList, 'SignUp'>;
 
 const SignUp: FC<SignUpProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const onSuccess = async (data) => {
+  const onSuccess = async (data: any) => {
     await Purchases.logIn(data.rc_customer_id);
     navigation.navigate('OtpVerification', { email: data.email });
   };
@@ -47,22 +48,22 @@ const styles = StyleSheet.create({
     letterSpacing: scaleSize(7),
     marginTop: scaleSize(26),
     textAlign: 'center',
-    fontSize: scaleFont(16), // assuming subtitle2 is around 16
+    fontSize: scaleFont(16),
   },
   title: {
     textAlign: 'center',
     marginBottom: scaleSize(6),
-    fontSize: scaleFont(28), // assuming largeTitle2 is around 28
+    fontSize: scaleFont(28),
   },
   subtitle: {
     textAlign: 'center',
     marginBottom: scaleSize(24),
-    fontSize: scaleFont(12), // assuming caption1 is around 12
+    fontSize: scaleFont(12),
   },
   footer: {
     textAlign: 'center',
     marginTop: scaleSize(16),
-    fontSize: scaleFont(14), // assuming body1 is around 14
+    fontSize: scaleFont(14),
   },
 });
 

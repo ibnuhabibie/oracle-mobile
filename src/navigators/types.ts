@@ -1,6 +1,6 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import type { DailyProfileData } from "../features/profile/profile-dashboard";
+import type { DailyProfileData } from "../screens/main/home/types";
 
 export type MainNavigatorParamList = {
     Welcome: undefined;

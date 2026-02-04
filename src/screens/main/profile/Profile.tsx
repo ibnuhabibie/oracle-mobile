@@ -148,7 +148,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   } = useAffinityProfile();
 
   return (
-    <ScreenContainer style={{ marginTop: scaleSize(44) }}>
+    <ScreenContainer>
       {/* User Profile Card */}
       <View style={styles.userCard}>
         <View style={styles.userInfo}>

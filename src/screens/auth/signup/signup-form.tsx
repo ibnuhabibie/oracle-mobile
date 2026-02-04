@@ -4,14 +4,16 @@ import { useForm } from "react-hook-form";
 import { Alert, StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import api from "../../utils/http";
-import { AppButton } from "../../components/ui/app-button";
-import { AuthFormProps } from "./signin-form";
-import AppInput from "../../components/ui/app-input";
-import PasswordToggle from "../../components/ui/password-toggle";
-import { useAsyncStorage } from "../../hooks/use-storage";
-import { COLORS } from "../../constants/colors";
-import { scaleSize } from "../../utils/scale";
+import { AppButton } from "../../../components/ui/app-button";
+import AppInput from "../../../components/ui/app-input";
+import PasswordToggle from "../../../components/ui/password-toggle";
+
+import { COLORS } from "../../../constants/colors";
+import { useAsyncStorage } from "../../../hooks/use-storage";
+import api from "../../../utils/http";
+import { scaleSize } from "../../../utils/scale";
+
+import { RegisterDTO, AuthFormProps } from "./types";
 
 const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +27,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
         handleSubmit,
         getValues,
         formState: { errors }
-    } = useForm({
+    } = useForm<RegisterDTO>({
         defaultValues: {
             full_name: '',
             email: '',
@@ -66,10 +68,10 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     };
 
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: RegisterDTO) => {
         setLoading(true);
         try {
-            const locale = await AsyncStorage.getItem('language');
+            const locale = await AsyncStorage.getItem('language') || 'en';
             data.locale = locale;
             console.log('Sign up data:', data);
 
@@ -90,7 +92,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
     return (
         <>
             <View style={{ flexDirection: 'column', gap: 12 }}>
-                <AppInput
+                <AppInput<RegisterDTO>
                     control={control}
                     name="full_name"
                     rules={formRules.full_name}
@@ -98,7 +100,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     errors={errors}
                     inputStyle={styles.appInput}
                 />
-                <AppInput
+                <AppInput<RegisterDTO>
                     control={control}
                     name="email"
                     rules={formRules.email}
@@ -107,7 +109,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     keyboardType="email-address"
                     inputStyle={styles.appInput}
                 />
-                <AppInput
+                <AppInput<RegisterDTO>
                     control={control}
                     name="password"
                     rules={formRules.password}
@@ -121,7 +123,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     }
                     inputStyle={styles.appInput}
                 />
-                <AppInput
+                <AppInput<RegisterDTO>
                     control={control}
                     name="confirm_password"
                     rules={formRules.confirm_password}
@@ -135,7 +137,7 @@ const SignUpForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                     }
                     inputStyle={styles.appInput}
                 />
-                <AppInput
+                <AppInput<RegisterDTO>
                     control={control}
                     name="referral_code"
                     placeholder={t('registerForm.referralCode')}

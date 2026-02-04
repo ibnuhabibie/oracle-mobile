@@ -4,12 +4,11 @@ import { ActivityIndicator, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { APP_URL } from '@env';
-import api from '../../utils/http';
-
 import ScreenContainer from '../../components/layouts/screen-container';
+
+import { APP_URL } from '@env';
 import { MainNavigatorParamList } from '../../navigators/types';
-import { Text } from 'react-native-svg';
+import api from '../../utils/http';
 import { COLORS } from '../../constants/colors';
 
 const MbtiQuiz: FC<{

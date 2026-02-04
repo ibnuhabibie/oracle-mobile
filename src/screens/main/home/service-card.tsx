@@ -1,29 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { scaleFont, scaleSize } from '../../utils/scale';
-import { AppText } from '../ui/app-text';
-import ShinyContainer from './shiny-container';
-import LoveReportIcon from '../icons/services/love-report/love-report-icon';
-import FortuneReportIcon from '../icons/services/fortune-report/fortune-report-icon';
-import RelationReportIcon from '../icons/services/relation-report/relation-report-icon';
-import { ProfileIcon } from '../../screens/main/profile/useAffinityProfile';
-import getMbtiIconComponent from '../../features/mbti/mbti-profile-item';
-import { COLORS } from '../../constants/colors';
-import { useAsyncStorage } from '../../hooks/use-storage';
-import RelationReportIcon1 from '../icons/services/relation-report/relation-report-icon-1';
 
-type ServiceCardData = {
-  id: 'love' | 'fortune' | 'relation' | 'myReport' | 'baziReport' | 'astroReport' | 'mbtiReport';
-  title: string;
-  subtitle: string;
-  path: string;
-};
+import { AppText } from '../../../components/ui/app-text';
+import ShinyContainer from '../../../components/widgets/shiny-container';
+import LoveReportIcon from '../../../components/icons/services/love-report/love-report-icon';
+import FortuneReportIcon from '../../../components/icons/services/fortune-report/fortune-report-icon';
+import RelationReportIcon from '../../../components/icons/services/relation-report/relation-report-icon';
+import RelationReportIcon1 from '../../../components/icons/services/relation-report/relation-report-icon-1';
 
-type ServiceCardProps = {
-  data: ServiceCardData;
-  navigation: any;
-  navigationData?: any;
-};
+import getMbtiIconComponent from '../../../features/mbti/mbti-profile-item';
+import { ProfileIcon } from '../../main/profile/useAffinityProfile';
+import { useAsyncStorage } from '../../../hooks/use-storage';
+import { scaleFont, scaleSize } from '../../../utils/scale';
+
+import type { ServiceCardProps } from './types';
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ data, navigation, navigationData }) => {
   const { id, title, subtitle, path } = data;

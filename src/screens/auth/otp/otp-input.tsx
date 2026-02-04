@@ -1,17 +1,9 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { View, TextInput, StyleSheet, TextInputProps, Dimensions } from 'react-native';
-import { AppText } from '../../components/ui/app-text';
-import { COLORS } from '../../constants/colors';
-import { scaleSize } from '../../utils/scale';
-
-type OtpInputProps = {
-    length?: number;
-    onChangeOtp?: (code: string) => void;
-    error?: string;
-    reset?: () => void;
-};
-
-export type OtpInputRef = { reset: () => void };
+import { AppText } from '../../../components/ui/app-text';
+import { COLORS } from '../../../constants/colors';
+import { scaleSize } from '../../../utils/scale';
+import { OtpInputProps, OtpInputRef } from './types';
 
 export const OtpInput: React.FC<OtpInputProps> = forwardRef<OtpInputRef, OtpInputProps>(({ length = 6, onChangeOtp, error }, ref) => {
     const [otp, setOtp] = useState<string[]>(Array(length).fill(''));
