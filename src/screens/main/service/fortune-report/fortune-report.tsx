@@ -10,22 +10,25 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
 import { AppText } from '../../../../components/ui/app-text';
-import { COLORS } from '../../../../constants/colors';
-import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppButton } from '../../../../components/ui/app-button';
-import ShinyContainer from '../../../../components/widgets/shiny-container';
-import ScreenContainer from '../../../../components/layouts/screen-container';
+import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 import Header from '../../../../components/ui/header';
-import { useServiceCost } from '../../../../hooks/use-service-cost';
 import FortuneReportIcon from '../../../../components/icons/services/fortune-report/fortune-report-icon';
 import FortuneReportIcon1 from '../../../../components/icons/services/fortune-report/fortune-report-icon-1';
 import FortuneReportIcon2 from '../../../../components/icons/services/fortune-report/fortune-report-icon-2';
 import FortuneReportIcon3 from '../../../../components/icons/services/fortune-report/fortune-report-icon-3';
 import FortuneReportIcon4 from '../../../../components/icons/services/fortune-report/fortune-report-icon-4';
+import ShinyContainer from '../../../../components/widgets/shiny-container';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+
+import { COLORS } from '../../../../constants/colors';
+import type { MainNavigatorParamList } from '../../../../navigators/types';
+
 import { scaleSize } from '../../../../utils/scale';
 import { formatPrice } from '../../../../utils/formatter';
-import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
 import { useRevenueCat } from '../../../../hooks/use-revenuecat';
+import { useServiceCost } from '../../../../hooks/use-service-cost';
+import { fortuneYear } from '../../../../utils/date';
 
 type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReport'>;
 
@@ -37,7 +40,6 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         loading: costLoading,
         setLoading: setCostLoading,
         currencySymbol,
-        locale
     } = useServiceCost('transit_report');
 
     const {
@@ -63,12 +65,7 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         init();
     }, []);
 
-    const fortuneYear = (() => {
-        const now = new Date();
-        const month = now.getMonth() + 1;
-        const year = now.getFullYear();
-        return month >= 7 ? year + 1 : year;
-    })();
+
 
     const shinySize = scaleSize(160);
     const iconSize = scaleSize(44);
@@ -154,27 +151,31 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
             </AppText>
             <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('fortuneReport.sectionTitle')}</AppText>
 
-            {iconsReady ? (
-                <View style={styles.grid}>
-                    {
-                        CARD_DATA.map((card, idx) => (
-                            <View key={idx} style={styles.card}>
-                                <View style={styles.cardIconWrapper}>
-                                    <ShinyContainer size={shinySize}>
-                                        {card.icon}
-                                    </ShinyContainer>
-                                </View>
-                                <AppText style={styles.cardLabel} variant='body1' color='white'>{card.title}</AppText>
-                                <AppText color='primary' variant='caption2'>{card.subtitle}</AppText>
-                            </View>
-                        ))
-                    }
-                </View>
-            ) : (
-                <View style={styles.activityIndicatorWrapper}>
-                    <ActivityIndicator size="large" color={COLORS.primary} />
-                </View>
-            )}
+            {
+                iconsReady ?
+                    (
+                        <View style={styles.grid}>
+                            {
+                                CARD_DATA.map((card, idx) => (
+                                    <View key={idx} style={styles.card}>
+                                        <View style={styles.cardIconWrapper}>
+                                            <ShinyContainer size={shinySize}>
+                                                {card.icon}
+                                            </ShinyContainer>
+                                        </View>
+                                        <AppText style={styles.cardLabel} variant='body1' color='white'>{card.title}</AppText>
+                                        <AppText color='primary' variant='caption2'>{card.subtitle}</AppText>
+                                    </View>
+                                ))
+                            }
+                        </View>
+                    ) :
+                    (
+                        <View style={styles.activityIndicatorWrapper}>
+                            <ActivityIndicator size="large" color={COLORS.primary} />
+                        </View>
+                    )
+            }
             <View style={styles.spacer} />
             <PollingLoadingModal
                 topupNo={topupNo}

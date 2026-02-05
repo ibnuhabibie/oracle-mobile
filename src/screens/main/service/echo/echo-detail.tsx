@@ -13,26 +13,31 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from "react-i18next";
 
 import { AppText } from '../../../../components/ui/app-text';
-import { COLORS } from '../../../../constants/colors';
-import { MainNavigatorParamList } from '../../../../navigators/types';
 import SendIcon from '../../../../components/icons/echo/send-icon';
-import api from '../../../../utils/http';
-import { formatDateWithDayname } from '../../../../utils/date';
-import { scaleSize, scaleFont } from '../../../../utils/scale';
-import ChatArea from '../../../../features/services/echo/chat-area';
+import ChatArea from './chat-area';
 import Header from '../../../../components/ui/header';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
-import { useServiceCost } from '../../../../hooks/use-service-cost';
 import AdviceIcon from '../../../../components/icons/echo/advice-icon';
+
+import api from '../../../../utils/http';
+import { formatDateWithDayname } from '../../../../utils/date';
+import { scaleSize, scaleFont } from '../../../../utils/scale';
+
+import { COLORS } from '../../../../constants/colors';
+import { MainNavigatorParamList } from '../../../../navigators/types';
+import { useServiceCost } from '../../../../hooks/use-service-cost';
+
+import type {
+  FloatingFooterProps,
+  Message,
+  SecretDiaryResponse,
+} from './types';
 
 type EchoDetailProps = NativeStackScreenProps<MainNavigatorParamList, 'EchoDetail'>;
 
 /* ------------------ Floating Footer Component ------------------ */
-const FloatingFooter: React.FC<{
-  onSend: (message: string) => void;
-  t: any;
-}> = React.memo(({ onSend, t }) => {
+const FloatingFooter: React.FC<FloatingFooterProps> = React.memo(({ onSend, t }) => {
   const [input, setInput] = useState('');
 
   return (
@@ -73,8 +78,8 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
   const date = route.params?.date;
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [messages, setMessages] = useState<any[]>([]);
-  const [lastMessage, setLastMessage] = useState<any>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [lastMessage, setLastMessage] = useState<Message | null>(null);
 
   const {
     loading: costLoading,
@@ -85,11 +90,16 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
     if (!id) return;
     try {
       const res = await api.get(`/v1/secret-diaries/${id}`);
-      const conversations = res.data.conversations;
+      const data = res.data as SecretDiaryResponse;
+      const conversations = data.conversations || [];
       const last_userChat = conversations
-        .filter((msg: any) => msg.type === "user")
-        .sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0];
-      setLastMessage(last_userChat);
+        .filter((msg: Message) => msg.type === "user")
+        .sort((a: Message, b: Message) => {
+          const timeA = a.created_at ? new Date(a.created_at).getTime() : 0;
+          const timeB = b.created_at ? new Date(b.created_at).getTime() : 0;
+          return timeB - timeA;
+        })[0];
+      setLastMessage(last_userChat || null);
       setMessages(conversations);
       setCostLoading(false);
     } catch (error) {
@@ -109,7 +119,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
       if (!id) {
         const res = await api.post('/v1/secret-diaries', {
           content: message,
-          diary_date: date.dateString
+          diary_date: date?.dateString
         });
         const newId = res?.data?.diary_id;
         if (newId) {
@@ -148,7 +158,7 @@ const EchoDetail: FC<EchoDetailProps> = ({ navigation, route }) => {
           />
           <View style={styles.dateSeparator}>
             <AppText variant='caption1' color='neutral' style={styles.dateSeparatorText}>
-              {formatDateWithDayname(date.dateString)}
+              {formatDateWithDayname(date?.dateString || '')}
             </AppText>
           </View>
         </>

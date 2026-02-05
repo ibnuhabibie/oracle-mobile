@@ -9,27 +9,29 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
-import { AppText } from '../../../../components/ui/app-text';
-import { COLORS } from '../../../../constants/colors';
-import { MainNavigatorParamList } from '../../../../navigators/types';
-import { AppButton } from '../../../../components/ui/app-button';
-import ShinyContainer from '../../../../components/widgets/shiny-container';
-import ScreenContainer from '../../../../components/layouts/screen-container';
-import Header from '../../../../components/ui/header';
-import RelationReportForm, { RelationReportFormValues } from './relation-report-form';
-import { useServiceCost } from '../../../../hooks/use-service-cost';
 import RelationReportIcon from '../../../../components/icons/services/relation-report/relation-report-icon';
 import RelationReportIcon1 from '../../../../components/icons/services/relation-report/relation-report-icon-1';
 import RelationReportIcon2 from '../../../../components/icons/services/relation-report/relation-report-icon-2';
 import RelationReportIcon3 from '../../../../components/icons/services/relation-report/relation-report-icon-3';
 import RelationReportIcon4 from '../../../../components/icons/services/relation-report/relation-report-icon-4';
 import RelationIcon from '../../../../components/icons/affinity/relation-icon';
-import { scaleSize } from '../../../../utils/scale';
-import { getLocale } from '../../../../hooks/use-storage';
-import { formatPrice } from '../../../../utils/formatter';
-import { useDirectPayment } from '../../../../hooks/use-direct-payment';
+
+import { AppText } from '../../../../components/ui/app-text';
+import { AppButton } from '../../../../components/ui/app-button';
+import Header from '../../../../components/ui/header';
 import PollingLoadingModal from '../../../../components/ui/polling-loading-modal';
+import ShinyContainer from '../../../../components/widgets/shiny-container';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+import RelationReportForm, { RelationReportFormValues } from './relation-report-form';
+
+import { COLORS } from '../../../../constants/colors';
+import { scaleSize } from '../../../../utils/scale';
+import { formatPrice } from '../../../../utils/formatter';
+import { useServiceCost } from '../../../../hooks/use-service-cost';
+import { getLocale } from '../../../../hooks/use-storage';
 import { useRevenueCat } from '../../../../hooks/use-revenuecat';
+
+import type { MainNavigatorParamList } from '../../../../navigators/types';
 
 type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReport'>;
 

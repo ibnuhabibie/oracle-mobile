@@ -8,8 +8,8 @@ import FortuneReportIcon from '../../../components/icons/services/fortune-report
 import RelationReportIcon from '../../../components/icons/services/relation-report/relation-report-icon';
 import RelationReportIcon1 from '../../../components/icons/services/relation-report/relation-report-icon-1';
 
-import getMbtiIconComponent from '../../../features/mbti/mbti-profile-item';
-import { ProfileIcon } from '../../main/profile/useAffinityProfile';
+import getMbtiIconComponent from '../profile/mbti/mbti-profile-item';
+import { ProfileIcon } from '../../../hooks/use-affinity-profile';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import { scaleFont, scaleSize } from '../../../utils/scale';
 

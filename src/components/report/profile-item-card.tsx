@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { AppText } from '../../../components/ui/app-text';
-import ShinyContainer from '../../../components/widgets/shiny-container';
-import { COLORS } from '../../../constants/colors';
-import { scaleFont, scaleSize } from '../../../utils/scale';
+import { AppText } from '../ui/app-text';
+import ShinyContainer from '../widgets/shiny-container';
+import { COLORS } from '../../constants/colors';
+import { scaleFont, scaleSize } from '../../utils/scale';
 
 type ProfileItemCardData = {
     isDark?: boolean;

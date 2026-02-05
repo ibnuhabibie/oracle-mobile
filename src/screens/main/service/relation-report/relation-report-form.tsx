@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Platform, Pressable } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { useForm } from 'react-hook-form';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
+
 import { AppText } from '../../../../components/ui/app-text';
 import { AppButton } from '../../../../components/ui/app-button';
-import { COLORS } from '../../../../constants/colors';
 import AppInput from '../../../../components/ui/app-input';
 import TextField from '../../../../components/ui/text-field';
 import { DropdownButton, renderDropdownModal } from '../../../../components/widgets/dropdown';
-import api from '../../../../utils/http';
-import { useTranslation } from 'react-i18next';
 import CalendarIcon from '../../../../components/icons/auth/calendar-icon';
+
+import { COLORS } from '../../../../constants/colors';
+import api from '../../../../utils/http';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Country {
   id: number;
@@ -168,17 +169,6 @@ export const RelationReportForm: React.FC<RelationReportFormProps> = ({ onSubmit
             />
           </View>
         </Pressable>
-        {/* {
-          showDatePicker && (
-            <DateTimePicker
-              value={watchedDate}
-              mode="date"
-              onChange={onDateChange}
-              maximumDate={new Date()}
-              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-            />
-          )
-        } */}
         <DateTimePickerModal
           isVisible={showDatePicker}
           mode="date"

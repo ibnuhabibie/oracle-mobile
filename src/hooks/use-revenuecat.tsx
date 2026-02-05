@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { set } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Alert } from "react-native";
 import Purchases from "react-native-purchases";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
+import { useState } from "react";
+import { Alert } from "react-native";
+
 import api from "../utils/http";
 
 export function useRevenueCat() {

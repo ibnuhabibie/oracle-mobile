@@ -2,10 +2,11 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect } from 'react';
 import { BackHandler } from 'react-native';
 
-import ScreenContainer from '../../../components/layouts/screen-container';
-import { MainNavigatorParamList } from '../../../navigators/types';
-import MBTIProfile from '../../../features/mbti/mbti-profile';
-import Header from '../../../components/ui/header';
+import Header from '../../../../components/ui/header';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+import MBTIProfile from './mbti-profile';
+
+import type { MainNavigatorParamList } from '../../../../navigators/types';
 
 type MbtiResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'MbtiResults'>;
 

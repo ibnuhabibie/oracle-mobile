@@ -7,21 +7,22 @@ import {
 } from '@stripe/stripe-react-native';
 import * as RNLocalize from "react-native-localize";
 import { useTranslation } from 'react-i18next';
-
-import { MainNavigatorParamList } from '../../navigators/types';
-import ScreenContainer from '../../components/layouts/screen-container';
-import Header from '../../components/ui/header';
-import { AppText } from '../../components/ui/app-text';
-import api from '../../utils/http';
-import { AppButton } from '../../components/ui/app-button';
-import { COLORS } from '../../constants/colors';
-import CoinIcon from '../../components/icons/profile/coin-icon';
-import { scaleFont, scaleSize } from '../../utils/scale';
-import { useAsyncStorage } from '../../hooks/use-storage';
-import { getLocaleByCountryCode } from '../../utils/platform';
-import { getPricingVariant, getTranslateByKey } from '../../utils/string';
 import Purchases from 'react-native-purchases';
 
+import Header from '../../components/ui/header';
+import { AppText } from '../../components/ui/app-text';
+import { AppButton } from '../../components/ui/app-button';
+import ScreenContainer from '../../components/layouts/screen-container';
+import CoinIcon from '../../components/icons/profile/coin-icon';
+
+import { COLORS } from '../../constants/colors';
+import api from '../../utils/http';
+import { scaleFont, scaleSize } from '../../utils/scale';
+import { getLocaleByCountryCode } from '../../utils/platform';
+import { getPricingVariant, getTranslateByKey } from '../../utils/string';
+import { useAsyncStorage } from '../../hooks/use-storage';
+
+import type { MainNavigatorParamList } from '../../navigators/types';
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
 
@@ -468,15 +469,17 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                             onPress={handleContinue}
                         />
                     )}
-                    {Platform.OS === 'ios' && (
-                        <AppButton
-                            title={t("topup.restorePurchases")}
-                            variant="outline"
-                            disabled={processing}
-                            onPress={handleRestorePurchases}
-                            style={{ marginTop: scaleSize(4) }}
-                        />
-                    )}
+                    {
+                        Platform.OS === 'ios' && (
+                            <AppButton
+                                title={t("topup.restorePurchases")}
+                                variant="outline"
+                                disabled={processing}
+                                onPress={handleRestorePurchases}
+                                style={{ marginTop: scaleSize(4) }}
+                            />
+                        )
+                    }
                 </View>
             }
             header={

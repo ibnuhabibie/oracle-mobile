@@ -1,28 +1,25 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useEffect, useState } from 'react';
-import { Dimensions, Image, StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
+import React, { FC, useState } from 'react';
+import { Dimensions, Image, StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import Carousel from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
 
-import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppText } from '../../../../components/ui/app-text';
 import AppInput from '../../../../components/ui/app-input';
 import { AppButton } from '../../../../components/ui/app-button';
+import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import CoinIcon from '../../../../components/icons/profile/coin-icon';
-import { COLORS } from '../../../../constants/colors';
 import ScreenContainer from '../../../../components/layouts/screen-container';
+
+import { scaleSize } from '../../../../utils/scale';
 import api from '../../../../utils/http';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
-import { rgbaColor } from 'react-native-reanimated/lib/typescript/Colors';
-import { scaleSize } from '../../../../utils/scale';
 
-type AskAffinityProps = NativeStackScreenProps<
-  MainNavigatorParamList,
-  'AskAffinity'
->;
+import type { MainNavigatorParamList } from '../../../../navigators/types';
+
+type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffinity'>;
 
 const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
   const { t } = useTranslation();
@@ -164,9 +161,14 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
               placeholder=""
               errors={errors}
             />
-            {apiError ? (
-              <AppText style={styles.apiErrorText}>{apiError}</AppText>
-            ) : null}
+            {
+              apiError ?
+                (
+                  <AppText style={styles.apiErrorText}>{apiError}</AppText>
+                )
+                :
+                null
+            }
             <AppButton
               title={
                 <View style={styles.purchaseButtonContent}>

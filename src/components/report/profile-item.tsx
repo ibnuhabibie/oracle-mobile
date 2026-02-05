@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, View } from "react-native";
-import { AppText } from "../../components/ui/app-text";
+import { AppText } from "../ui/app-text";
 import { scaleFont, scaleSize } from "../../utils/scale";
 
 // Add isLast prop

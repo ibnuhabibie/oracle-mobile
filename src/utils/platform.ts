@@ -1,13 +1,14 @@
 import { Platform } from 'react-native';
 import { LANGUAGES } from '../constants/app';
 
-export const isIOS = () => {
+export const isIOS = (): boolean => {
   return Platform.OS === 'ios';
 };
 
-export const getLocaleByCountryCode = (countryCode: string) => {
-  // Map country codes to supported app locales only
-  const localeMap: { [key: string]: string } = {
+/**
+ * Map of country codes to supported app locales
+ */
+const LOCALE_MAP: Record<string, string> = {
     // English speaking countries
     US: 'en',
     GB: 'en',
@@ -28,12 +29,13 @@ export const getLocaleByCountryCode = (countryCode: string) => {
     // Other supported languages
     ID: 'id',
     JP: 'ja',
-    KR: 'ko',
-    TH: 'th',
-  };
+  KR: 'ko',
+  TH: 'th',
+};
 
+export const getLocaleByCountryCode = (countryCode: string): string => {
   // Get locale from country code mapping
-  const locale = localeMap[countryCode];
+  const locale = LOCALE_MAP[countryCode];
   
   // Return valid locale or fallback to 'en'
   return locale || 'en';

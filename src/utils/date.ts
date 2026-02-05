@@ -8,11 +8,12 @@ import 'dayjs/locale/zh';
 
 // Get locale from use-storage.ts
 import { getLocale } from '../hooks/use-storage';
+import type { TimeOfBirthInput } from './types';
 
 /**
  * Format a time of birth to "hh:mm AM/PM" (e.g., "10:00 AM")
  */
-export const formatTimeOfBirth = (input: string | Date | { timeString: string }): string => {
+export const formatTimeOfBirth = (input: TimeOfBirthInput): string => {
     let _date: Date;
     if (typeof input === 'string') {
         _date = new Date(`1970-01-01T${input}`);
@@ -93,3 +94,10 @@ export const formatDateWithTime = async (input: string | Date, locale?: string):
 
     return _date.locale(normalizedLocale).format(`${dateFormat} HH:mm`);
 }
+
+export const fortuneYear = (() => {
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+    return month >= 7 ? year + 1 : year;
+})();

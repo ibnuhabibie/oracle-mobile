@@ -1,13 +1,8 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, Image, InteractionManager, ActivityIndicator } from 'react-native';
-import { AppText } from '../../../../components/ui/app-text';
-import ScreenContainer from '../../../../components/layouts/screen-container';
-import Header from '../../../../components/ui/header';
+import { View, StyleSheet, InteractionManager, ActivityIndicator } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MainNavigatorParamList } from '../../../../navigators/types';
-import ProfileItemCard from '../../../../features/profile/report/profile-item-card';
-import { AppButton } from '../../../../components/ui/app-button';
+
 import LoveReportIcon1 from '../../../../components/icons/services/love-report/love-report-icon-1';
 import LoveReportIcon2 from '../../../../components/icons/services/love-report/love-report-icon-2';
 import LoveReportIcon3 from '../../../../components/icons/services/love-report/love-report-icon-3';
@@ -16,10 +11,19 @@ import LoveReportIcon5 from '../../../../components/icons/services/love-report/l
 import LoveReportIcon6 from '../../../../components/icons/services/love-report/love-report-icon-6';
 import LoveReportIcon7 from '../../../../components/icons/services/love-report/love-report-icon-7';
 import LoveReportIcon8 from '../../../../components/icons/services/love-report/love-report-icon-8';
-import { downloadPdf } from '../../../../utils/http';
+
+import { AppText } from '../../../../components/ui/app-text';
+import Header from '../../../../components/ui/header';
+import { AppButton } from '../../../../components/ui/app-button';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+import ProfileItemCard from '../../../../components/report/profile-item-card';
+
 import { COLORS } from '../../../../constants/colors';
+import { downloadPdf } from '../../../../utils/http';
 import { scaleSize, scaleFont } from '../../../../utils/scale';
 import { formatDateOnly } from '../../../../utils/date';
+
+import type { MainNavigatorParamList } from '../../../../navigators/types';
 
 type LoveReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveReportResult'>;
 
@@ -112,17 +116,21 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
                 />
             }
         >
-            {!ready ? (
-                <ActivityIndicator size="large" style={styles.loadingIndicator} color={COLORS.primary} />
-            ) : (
-                <>
-                    <AppText variant='caption1' style={styles.forecastRange} color="neutral">
-                        {t('loveReportResult.forecastFor', { range: forecastRange })}
-                    </AppText>
-                    <CardList content={result?.content} />
-                    <View style={styles.spacer} />
-                </>
-            )}
+            {
+                !ready ?
+                    (
+                        <ActivityIndicator size="large" style={styles.loadingIndicator} color={COLORS.primary} />
+                    ) :
+                    (
+                        <>
+                            <AppText variant='caption1' style={styles.forecastRange} color="neutral">
+                                {t('loveReportResult.forecastFor', { range: forecastRange })}
+                            </AppText>
+                            <CardList content={result?.content} />
+                            <View style={styles.spacer} />
+                        </>
+                    )
+            }
         </ScreenContainer>
     );
 };

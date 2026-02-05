@@ -1,4 +1,7 @@
-export const formatDate = (date: Date | null) => {
+// Supported currency symbols
+export type CurrencySymbol = 'Rp' | '$' | '€' | '£' | '¥' | string;
+
+export const formatDate = (date: Date | null): string => {
   if (!date) {
     return '';
   }
@@ -9,7 +12,7 @@ export const formatDate = (date: Date | null) => {
   });
 };
 
-export const formatTime = (time: Date | null) => {
+export const formatTime = (time: Date | null): string => {
   if (!time) {
     return '';
   }
@@ -20,14 +23,19 @@ export const formatTime = (time: Date | null) => {
   });
 };
 
-// Helper function to format price based on currency
-export const formatPrice = (price: number, currencySymbol: string): string => {
+/**
+ * Helper function to format price based on currency
+ * @param price - The price value (number or string that can be parsed to number)
+ * @param currencySymbol - The currency symbol (e.g., 'Rp', '$', '€')
+ * @returns Formatted price string
+ */
+export const formatPrice = (price: number | string, currencySymbol: CurrencySymbol): string => {
   // For Indonesian Rupiah (Rp), format with dots as thousand separators
-  price = parseFloat(price)
+  const numericPrice = typeof price === 'string' ? parseFloat(price) : price;
 
   if (currencySymbol === 'Rp') {
-    return `${currencySymbol}${price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+    return `${currencySymbol}${numericPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
   }
   // For USD ($) and other currencies, format with 2 decimal places
-  return `${currencySymbol}${price.toFixed(2)}`;
+  return `${currencySymbol}${numericPrice.toFixed(2)}`;
 };

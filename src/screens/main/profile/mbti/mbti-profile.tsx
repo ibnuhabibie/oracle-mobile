@@ -1,21 +1,24 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, View, InteractionManager, ActivityIndicator } from "react-native";
-
-import { getMbtiIconComponent } from "./mbti-profile-item";
-import ShinyContainer from "../../components/widgets/shiny-container";
-import { AppText } from "../../components/ui/app-text";
-import { COLORS } from "../../constants/colors";
-import api from "../../utils/http";
-import StrengthIcon from "../../components/icons/mbti-result/strength-icon";
-import WeaknessIcon from "../../components/icons/mbti-result/weakness-icon";
-import RelationshipIcon from "../../components/icons/mbti-result/relationship-icon";
-import CareerIcon from "../../components/icons/mbti-result/career-icon";
-import { scaleFont, scaleSize } from "../../utils/scale";
+import { StyleSheet, View, InteractionManager, ActivityIndicator } from "react-native";
 import { useTranslation } from "react-i18next";
 
-const MBTIProfile: React.FC = () => {
+import { AppText } from "../../../../components/ui/app-text";
+import { getMbtiIconComponent } from "./mbti-profile-item";
+import ShinyContainer from "../../../../components/widgets/shiny-container";
+import StrengthIcon from "../../../../components/icons/mbti-result/strength-icon";
+import WeaknessIcon from "../../../../components/icons/mbti-result/weakness-icon";
+import RelationshipIcon from "../../../../components/icons/mbti-result/relationship-icon";
+import CareerIcon from "../../../../components/icons/mbti-result/career-icon";
+
+import { scaleSize } from "../../../../utils/scale";
+import api from "../../../../utils/http";
+import { COLORS } from "../../../../constants/colors";
+
+import type { MbtiProfile, MbtiProfileComponentProps } from './types';
+
+const MBTIProfile: React.FC<MbtiProfileComponentProps> = ({ profile: initialProfile }) => {
     const { t } = useTranslation();
-    const [profile, setProfile] = useState<any>(null);
+    const [profile, setProfile] = useState<MbtiProfile | null>(initialProfile || null);
     const [ready, setReady] = useState(false);
 
     React.useEffect(() => {

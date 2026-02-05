@@ -24,7 +24,12 @@ export type MainNavigatorParamList = {
     Echo: undefined;
     EchoDetail: {
         id?: string,
-        date: Date
+        date: {
+            dateString: string;
+            day: number;
+            month: number;
+            year: number;
+        }
     };
 
     LoveForecast: undefined;
@@ -53,7 +58,7 @@ export type MainNavigatorParamList = {
     PasswordSetting: undefined;
     PrivacyPolicy: undefined;
     PurchaseHistory: undefined;
-    MbtiResults: undefined;
+    MbtiResults: undefined; // Note: Component is now at src/screens/main/profile/mbti/mbti-results.tsx
     AstrologyResults: { profile_astro?: Record<string, any> };
     AffinityResults: { affinityResult: any; question: string };
     BaziResults: { profile_bazi: any };

@@ -14,7 +14,6 @@ import AppInput from '../../../components/ui/app-input';
 import PasswordToggle from '../../../components/ui/password-toggle';
 import { useAsyncStorage } from '../../../hooks/use-storage';
 import { COLORS } from '../../../constants/colors';
-import { decryptId, encryptId } from '../../../utils/string';
 import { LoginDTO, AuthFormProps } from './types';
 
 const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {

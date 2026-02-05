@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, ActivityIndicator, Image } from 'react-native';
-import { useAsyncStorage } from '../../../hooks/use-storage';
-import ShinyContainer from '../../../components/widgets/shiny-container';
+import { useAsyncStorage } from '../../hooks/use-storage';
+import ShinyContainer from '../widgets/shiny-container';
 import { useTranslation } from 'react-i18next';
-import { scaleFont, scaleSize } from '../../../utils/scale';
-import { ProfileIcon } from '../../../screens/main/profile/useAffinityProfile';
-import { formatDateOnly, formatTimeOfBirth } from '../../../utils/date';
-import { AppText } from '../../../components/ui/app-text';
-import api from '../../../utils/http';
+import { scaleFont, scaleSize } from '../../utils/scale';
+import { ProfileIcon } from '../../hooks/use-affinity-profile';
+import { formatDateOnly, formatTimeOfBirth } from '../../utils/date';
+import { AppText } from '../ui/app-text';
+import api from '../../utils/http';
 
 type UserProfile = {
     full_name?: string;

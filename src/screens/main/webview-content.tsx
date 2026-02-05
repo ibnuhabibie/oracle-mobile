@@ -5,9 +5,9 @@ import WebView from 'react-native-webview';
 import { useRoute } from '@react-navigation/native';
 import { useTranslation } from "react-i18next";
 
-import ScreenContainer from '../../components/layouts/screen-container';
-import { MainNavigatorParamList } from '../../navigators/types';
 import Header from '../../components/ui/header';
+import ScreenContainer from '../../components/layouts/screen-container';
+import type { MainNavigatorParamList } from '../../navigators/types';
 import { COLORS } from '../../constants/colors';
 
 type WebviewContentProps = NativeStackScreenProps<MainNavigatorParamList, 'WebviewContent'>;

@@ -8,34 +8,43 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from "react-i18next";
-import i18n from '../../../../locales/i18n';
-import { scaleSize } from '../../../../utils/scale';
-
-import { MainNavigatorParamList } from '../../../../navigators/types';
-import { AppText } from '../../../../components/ui/app-text';
-import { COLORS } from '../../../../constants/colors';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
+
+import { AppText } from '../../../../components/ui/app-text';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import CalendarIcon from '../../../../components/icons/echo/calendar-icon';
-import { formatDateOnly } from '../../../../utils/date';
 
+import i18n from '../../../../locales/i18n';
+import { scaleSize } from '../../../../utils/scale';
+import { formatDateOnly } from '../../../../utils/date';
+import { COLORS } from '../../../../constants/colors';
+
+import type { MainNavigatorParamList } from '../../../../navigators/types';
+import type {
+    DateData,
+    Diary,
+    FloatingAddButtonProps,
+    MarkedDates,
+    MonthData,
+    MonthRange,
+} from './types';
 
 type EchoProps = NativeStackScreenProps<MainNavigatorParamList, 'Echo'>;
 
 const Echo: FC<EchoProps> = ({ navigation }) => {
     const { t } = useTranslation();
 
-    const [diaries, setDiaries] = useState<any[]>([]);
+    const [diaries, setDiaries] = useState<Diary[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [selectedMonth, setSelectedMonth] = useState<{ year: number; month: number }>(() => {
+    const [selectedMonth, setSelectedMonth] = useState<MonthData>(() => {
         const now = new Date();
-        return { year: now.getFullYear(), month: now.getMonth() + 1 };
+        return { dateString: '', day: now.getDate(), month: now.getMonth() + 1, year: now.getFullYear() };
     });
-    const [markedDates, setMarkedDates] = useState<any>({});
+    const [markedDates, setMarkedDates] = useState<MarkedDates>({});
 
     // Helper to get first and last day of month as YYYY-MM-DD
-    const getMonthRange = (year: number, month: number) => {
+    const getMonthRange = (year: number, month: number): MonthRange => {
         const start = new Date(year, month - 1, 1);
         const end = new Date(year, month, 0);
         const pad = (n: number) => n.toString().padStart(2, '0');
@@ -56,10 +65,10 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
         api.get(`/v1/secret-diaries?limit=1000&offset=0&start_date=${start_date}&end_date=${end_date}`)
             .then((res: any) => {
                 if (res && Array.isArray(res.data) && res.data.length > 0) {
-                    setDiaries(res.data);
+                    setDiaries(res.data as Diary[]);
                     // Mark all diary dates
-                    const marks: any = {};
-                    res.data.forEach((d: any) => {
+                    const marks: MarkedDates = {};
+                    res.data.forEach((d: Diary) => {
                         marks[d.diary_date] = {
                             marked: true,
                             dotColor: COLORS.primary,
@@ -87,13 +96,15 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
         }, [fetchDiaries])
     );
 
-
-    const toDetail = (diary) => {
+    const toDetail = (diary: Diary) => {
         console.log('clicked', diary.diary_id)
         navigation.push('EchoDetail', {
             id: diary.diary_id,
             date: {
-                dateString: diary.diary_date
+                dateString: diary.diary_date,
+                day: new Date(diary.diary_date).getDate(),
+                month: new Date(diary.diary_date).getMonth() + 1,
+                year: new Date(diary.diary_date).getFullYear(),
             }
         })
     }
@@ -104,10 +115,16 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
         const pad = (n: number) => n.toString().padStart(2, '0');
         const todayStr = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
         const todayDiary = diaries.find(d => d.diary_date === todayStr);
+        const dateData: DateData = {
+            dateString: todayStr,
+            day: today.getDate(),
+            month: today.getMonth() + 1,
+            year: today.getFullYear(),
+        };
         if (todayDiary) {
-            navigation.push('EchoDetail', { id: todayDiary.diary_id, date: { dateString: todayStr } });
+            navigation.push('EchoDetail', { id: todayDiary.diary_id, date: dateData });
         } else {
-            navigation.push('EchoDetail', { date: { dateString: todayStr } });
+            navigation.push('EchoDetail', { date: dateData });
         }
     };
 
@@ -132,7 +149,7 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
             <Calendar
                 style={styles.calendar}
                 markedDates={markedDates}
-                onDayPress={day => {
+                onDayPress={(day: DateData) => {
                     const mark = markedDates[day.dateString];
                     if (mark && mark.diaryId) {
                         navigation.push('EchoDetail', { id: mark.diaryId, date: day });
@@ -141,8 +158,8 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                     //     navigation.push('EchoDetail', { date: day });
                     // }
                 }}
-                onMonthChange={monthObj => {
-                    setSelectedMonth({ year: monthObj.year, month: monthObj.month });
+                onMonthChange={(monthObj: MonthData) => {
+                    setSelectedMonth(monthObj);
                 }}
                 theme={
                     {
@@ -156,47 +173,44 @@ const Echo: FC<EchoProps> = ({ navigation }) => {
                         calendarBackground: 'transparent',
                         monthTextColor: COLORS.white,
                         dayTextColor: COLORS.white
-                        // backgroundColor: 'rgba(255,255,255,0.14)',
                     }
                 }
             />
             <View style={styles.diaryListContainer}>
                 <AppText color='neutral'>{t('echo.recentDiaries')}</AppText>
-                {
-                    loading ? (
-                        <AppText style={styles.loadingText}>{t('echo.loading')}</AppText>
-                    ) : error && error !== 'No diary found.' ? (
-                        <AppText style={styles.errorText}>{error}</AppText>
-                    ) : diaries && diaries.length > 0 ? (
-                        diaries.map((diary) => (
-                            <Pressable key={diary.diary_id} onPress={() => toDetail(diary)} style={styles.diaryItem}>
-                                <View style={styles.diaryIconContainer}>
-                                    <CalendarIcon size={scaleSize(20)} />
-                                </View>
-                                <View style={styles.diaryContentContainer}>
-                                    <AppText variant='caption1' color='light-gray'>
-                                        {formatDateOnly(diary.diary_date)}
-                                    </AppText>
-                                    <AppText variant='body1' color='neutral'>
-                                        {diary.content}
-                                    </AppText>
-                                </View>
-                            </Pressable>
-                        ))
-                    ) : (
-                        <View style={styles.emptyDiaryContainer}>
-                            <AppText variant='subtitle1' color='primary' style={styles.emptyDiaryTitle}>{t('echo.noDiariesYet')}</AppText>
-                            <AppText variant='caption1' style={styles.emptyDiaryDesc} color='gray'>
-                                {t('echo.startDiaryDesc')}
-                            </AppText>
-                        </View>
-                    )}
+                {loading && <AppText style={styles.loadingText}>{t('echo.loading')}</AppText>}
+                {error && error !== 'No diary found.' && <AppText style={styles.errorText}>{error}</AppText>}
+                {!loading && !error && diaries && diaries.length > 0 && (
+                    diaries.map((diary: Diary) => (
+                        <Pressable key={diary.diary_id} onPress={() => toDetail(diary)} style={styles.diaryItem}>
+                            <View style={styles.diaryIconContainer}>
+                                <CalendarIcon size={scaleSize(20)} />
+                            </View>
+                            <View style={styles.diaryContentContainer}>
+                                <AppText variant='caption1' color='light-gray'>
+                                    {formatDateOnly(diary.diary_date)}
+                                </AppText>
+                                <AppText variant='body1' color='neutral'>
+                                    {diary.content}
+                                </AppText>
+                            </View>
+                        </Pressable>
+                    ))
+                )}
+                {!loading && !error && (!diaries || diaries.length === 0) && (
+                    <View style={styles.emptyDiaryContainer}>
+                        <AppText variant='subtitle1' color='primary' style={styles.emptyDiaryTitle}>{t('echo.noDiariesYet')}</AppText>
+                        <AppText variant='caption1' style={styles.emptyDiaryDesc} color='gray'>
+                            {t('echo.startDiaryDesc')}
+                        </AppText>
+                    </View>
+                )}
             </View>
         </ScreenContainer>
     );
 };
 
-const FloatingAddButton = ({ onPress }) => (
+const FloatingAddButton: React.FC<FloatingAddButtonProps> = ({ onPress }) => (
     <TouchableOpacity style={styles.fab} onPress={onPress}>
         <AppText variant="largeTitle1" style={styles.fabIcon} color='black'>+</AppText>
     </TouchableOpacity>
@@ -242,7 +256,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: scaleSize(14),
         backgroundColor: 'rgba(255,255,255,0.13)'
-        // alignItems: 'center',
     },
     diaryIconContainer: {
         width: scaleSize(38),

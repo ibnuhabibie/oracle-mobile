@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { AppText } from "../../components/ui/app-text";
+import { AppText } from "../ui/app-text";
 import { COLORS } from "../../constants/colors";
 import { scaleSize } from "../../utils/scale";
 import { useTranslation } from 'react-i18next';

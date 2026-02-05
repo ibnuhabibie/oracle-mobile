@@ -1,17 +1,15 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, InteractionManager, ActivityIndicator } from 'react-native';
-import { AppText } from '../../../../components/ui/app-text';
-import ScreenContainer from '../../../../components/layouts/screen-container';
-import Header from '../../../../components/ui/header';
+import { View,InteractionManager, ActivityIndicator } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MainNavigatorParamList } from '../../../../navigators/types';
-import ProfileItemCard from '../../../../features/profile/report/profile-item-card';
-import ProfileDescriptionCard from '../../../../features/profile/profile-description-card';
-import ProfileCard from '../../../../features/profile/report/profile-card';
-import { COLORS } from '../../../../constants/colors';
+
+import { AppText } from '../../../../components/ui/app-text';
+import Header from '../../../../components/ui/header';
 import { AppButton } from '../../../../components/ui/app-button';
-import { downloadPdf } from '../../../../utils/http';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+import ProfileCard from '../../../../components/report/profile-card';
+import ProfileItemCard from '../../../../components/report/profile-item-card';
+import ProfileDescriptionCard from '../../../../components/report/profile-description-card';
 
 import RelationReportIcon11 from '../../../../components/icons/services/relation-report/relation-report-icon-11';
 import RelationReportIcon12 from '../../../../components/icons/services/relation-report/relation-report-icon-12';
@@ -24,6 +22,11 @@ import RelationReportIcon18 from '../../../../components/icons/services/relation
 import RelationReportIcon19 from '../../../../components/icons/services/relation-report/relation-report-icon-19';
 import RelationReportIcon20 from '../../../../components/icons/services/relation-report/relation-report-icon-20';
 import RelationReportIcon21 from '../../../../components/icons/services/relation-report/relation-report-icon-21';
+
+import { COLORS } from '../../../../constants/colors';
+import { downloadPdf } from '../../../../utils/http';
+
+import type { MainNavigatorParamList } from '../../../../navigators/types';
 
 const iconImages = [
     '',

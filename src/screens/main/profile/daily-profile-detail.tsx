@@ -1,21 +1,21 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { scaleFont, scaleSize } from "../../../utils/scale";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { COLORS } from "../../../constants/colors";
-import { AppText } from "../../../components/ui/app-text";
-import { fontFamilies } from "../../../constants/fonts";
-import CloseIcon from "../../../components/icons/close-icon";
-import CircularScore from "../../../components/widgets/circular-score";
-import ScreenContainer from "../../../components/layouts/screen-container";
-import Header from "../../../components/ui/header";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+
+import { AppText } from "../../../components/ui/app-text";
+import Header from "../../../components/ui/header";
+import ScreenContainer from "../../../components/layouts/screen-container";
+
 import WealthIcon from "../../../components/icons/daily-dashboard/wealth-icon";
 import LearningIcon from "../../../components/icons/daily-dashboard/learning-icon";
 import RelationIcon from "../../../components/icons/daily-dashboard/relation-icon";
 import CareerIcon from "../../../components/icons/daily-dashboard/career-icon";
-import { useEffect, useState } from "react";
+
 import { formatDateWithDayname } from "../../../utils/date";
+import { scaleFont, scaleSize } from "../../../utils/scale";
+import { COLORS } from "../../../constants/colors";
 
 function StarReview({ value }: { value?: number }) {
   // value: 0-100, 4 stars, each 25 points

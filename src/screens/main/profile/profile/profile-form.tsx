@@ -2,65 +2,31 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { Activity, useEffect, useState } from 'react';
 import { Controller, set, useForm } from 'react-hook-form';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
-import { AppText } from '../../components/ui/app-text';
 import { useTranslation } from "react-i18next";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-import AppInput from '../../components/ui/app-input';
-import CalendarIcon from '../../components/icons/auth/calendar-icon';
-import ClockIcon from '../../components/icons/auth/clock-icon';
-import TextField from '../../components/ui/text-field';
-import { DropdownButton, renderDropdownModal } from '../../components/widgets/dropdown';
-import { AppButton } from '../../components/ui/app-button';
-import { formatTime } from '../../utils/formatter';
-import api from '../../utils/http';
-import { COLORS } from '../../constants/colors';
-import { useAsyncStorage } from '../../hooks/use-storage';
-import { LANGUAGES } from '../../constants/app';
-import { scaleFont, scaleSize } from '../../utils/scale';
+import { AppText } from '../../../../components/ui/app-text';
+import AppInput from '../../../../components/ui/app-input';
+import TextField from '../../../../components/ui/text-field';
+import { AppButton } from '../../../../components/ui/app-button';
+import CalendarIcon from '../../../../components/icons/auth/calendar-icon';
+import ClockIcon from '../../../../components/icons/auth/clock-icon';
+import { DropdownButton, renderDropdownModal } from '../../../../components/widgets/dropdown';
 
-export interface City {
-    id: number;
-    name: string;
-    latitude: number;
-    longitude: number;
-}
+import { formatTime } from '../../../../utils/formatter';
+import api from '../../../../utils/http';
+import { scaleFont, scaleSize } from '../../../../utils/scale';
+import { LANGUAGES } from '../../../../constants/app';
+import { COLORS } from '../../../../constants/colors';
+import { useAsyncStorage } from '../../../../hooks/use-storage';
 
-export interface Country {
-    id: number;
-    name: string;
-    iso2: string;
-}
-
-interface Profile {
-    full_name: string;
-    email: string;
-    mobile_phone: string;
-    birth_date: string;
-    birth_time: string;
-    gender: 'Male' | 'Female';
-    birth_country: string;
-    birth_city: string;
-    birth_lat: string | number;
-    birth_lng: string | number;
-    locale: string;
-}
-
-export interface ProfileFormData {
-    full_name: string;
-    email: string;
-    mobile_phone: string;
-    birth_date: Date;
-    birth_time: Date;
-    gender: 'Male' | 'Female';
-    birth_country: Country | null;
-    birth_city: City | null;
-    language: string;
-}
-
-interface ProfileFormProps {
-    onSubmit: (data: ProfileFormData) => void;
-}
+import type {
+    City,
+    Country,
+    UserProfile,
+    ProfileFormData,
+    ProfileFormProps,
+} from './types';
 
 const ProfileForm: React.FC<ProfileFormProps> = ({
     onSubmit,
@@ -128,7 +94,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
         }
     };
     const init = async () => {
-        const profile = await getUserProfile() as Profile | null;
+        const profile = await getUserProfile() as UserProfile | null;
         console.log('profile', profile)
         if (!profile) return;
 
@@ -335,7 +301,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                             <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.countryOfBirth")}</AppText>
                             <DropdownButton
                                 onPress={() => setShowCountryModal(true)}
-                                text={watchedCountry[labelDropdown] || watchedCountry.name || t("profileForm.pleaseSelectOne")}
+                                text={(watchedCountry?.[labelDropdown] as string) || watchedCountry.name || t("profileForm.pleaseSelectOne")}
                             />
                         </>
                     )
@@ -347,7 +313,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                             <AppText variant="body2" style={styles.label} color='neutral'>{t("profileForm.cityOfBirth")}</AppText>
                             <DropdownButton
                                 onPress={() => setShowCityModal(true)}
-                                text={watchedCity[labelDropdown] || watchedCity.name || t("profileForm.pleaseSelectOne")}
+                                text={(watchedCity?.[labelDropdown] as string) || watchedCity.name || t("profileForm.pleaseSelectOne")}
                             />
                         </>
                     )
@@ -366,33 +332,12 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
                 onPress={handleSubmit(onSubmit)}
             />
 
-            {/* Date Picker */}
-            {/* {showDatePicker && (
-                <DateTimePicker
-                    value={watchedDate}
-                    mode="date"
-                    display="default"
-                    onChange={onDateChange}
-                    maximumDate={new Date()}
-                />
-            )} */}
-
             <DateTimePickerModal
                 isVisible={showDatePicker}
                 mode="date"
                 onConfirm={onDateChange}
                 onCancel={() => setShowDatePicker(false)}
             />
-
-            {/* Time Picker */}
-            {/* {showTimePicker && (
-                <DateTimePicker
-                    value={watchedTime}
-                    mode="time"
-                    display="default"
-                    onChange={onTimeChange}
-                />
-            )} */}
 
             <DateTimePickerModal
                 isVisible={showTimePicker}

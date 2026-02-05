@@ -6,35 +6,35 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import { Platform, ToastAndroid } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { scaleFont, scaleSize } from '../../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
+import Purchases from 'react-native-purchases';
+
+import CoinIcon from '../../../../components/icons/profile/coin-icon';
+import CommentUserIcon from '../../../../components/icons/profile/comment-user-icon';
+import CopyIcon from '../../../../components/icons/profile/copy-icon';
+import EyeIcon from '../../../../components/icons/profile/eye-icon';
+import BuildingIcon from '../../../../components/icons/profile/building-icon';
+import CartIcon from '../../../../components/icons/profile/cart-icon';
+import EditIcon from '../../../../components/icons/profile/edit-icon';
+import LogoutIcon from '../../../../components/icons/profile/logout-icon';
+import ShieldIcon from '../../../../components/icons/profile/shield-icon';
+import TermsIcon from '../../../../components/icons/profile/terms-icon';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+import ProfileItem from '../../../../components/report/profile-item';
+import { AppText } from '../../../../components/ui/app-text';
+import { AppButton } from '../../../../components/ui/app-button';
+import { getMbtiIconComponent } from '../mbti/mbti-profile-item';
 
 import { APP_URL } from '@env';
+import { COLORS } from '../../../../constants/colors';
+import { scaleFont, scaleSize } from '../../../../utils/scale';
+import api from '../../../../utils/http';
+import { useAsyncStorage } from '../../../../hooks/use-storage';
+import { ProfileIcon, useAffinityProfile } from '../../../../hooks/use-affinity-profile';
 
-import CoinIcon from '../../../components/icons/profile/coin-icon';
-import CommentUserIcon from '../../../components/icons/profile/comment-user-icon';
-import { getMbtiIconComponent } from '../../../features/mbti/mbti-profile-item';
-import CopyIcon from '../../../components/icons/profile/copy-icon';
-import EyeIcon from '../../../components/icons/profile/eye-icon';
-import BuildingIcon from '../../../components/icons/profile/building-icon';
-import CartIcon from '../../../components/icons/profile/cart-icon';
-import EditIcon from '../../../components/icons/profile/edit-icon';
-import LogoutIcon from '../../../components/icons/profile/logout-icon';
-import ShieldIcon from '../../../components/icons/profile/shield-icon';
-import TermsIcon from '../../../components/icons/profile/terms-icon';
-
-import ScreenContainer from '../../../components/layouts/screen-container';
-import { COLORS } from '../../../constants/colors';
-import { fontFamilies } from '../../../constants/fonts';
-import { MainNavigatorParamList } from '../../../navigators/types';
-import api from '../../../utils/http';
-import ProfileItem from '../../../features/profile/profile-item';
-import { useAsyncStorage } from '../../../hooks/use-storage';
-import { AppText } from '../../../components/ui/app-text';
-import { AppButton } from '../../../components/ui/app-button';
-import { ProfileIcon, useAffinityProfile } from './useAffinityProfile';
-import Purchases from 'react-native-purchases';
+import type { MainNavigatorParamList } from '../../../../navigators/types';
+import type { UserProfile } from './types';
 
 type ProfileProps = BottomTabScreenProps<MainNavigatorParamList, 'Profile'>;
 
@@ -56,7 +56,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   const { t } = useTranslation();
   const { getUserProfile, getAuthToken } = useAsyncStorage();
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<any | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
 
   const { sync } = useAsyncStorage();
 

@@ -9,7 +9,7 @@ import ServiceCard from './service-card';
 import ScreenContainer from '../../../components/layouts/screen-container';
 import ProfileDashboard from './profile-dashboard';
 import { AppText } from '../../../components/ui/app-text';
-import { useAffinityProfile } from '../profile/useAffinityProfile';
+import { useAffinityProfile } from '../../../hooks/use-affinity-profile';
 import { scaleFont, scaleSize } from '../../../utils/scale';
 
 import type { HomeProps, CarouselItem } from './types';
