@@ -23,13 +23,13 @@ import Home from '../screens/main/home/home';
 import DailyProfileDetail from '../screens/main/profile/daily-profile-detail';
 
 // Profile
-import Profile from '../screens/main/profile/profile';
+import Profile from '../screens/main/profile/profile/profile';
 import AstrologyResults from '../screens/main/profile/astrology-results';
 import BaziResults from '../screens/main/profile/bazi-results';
 import MbtiResults from '../screens/main/profile/mbti/mbti-results';
-import EditProfile from '../screens/main/profile/edit-profile';
+import EditProfile from '../screens/main/profile/profile/edit-profile';
 import PasswordSetting from '../screens/main/profile/password-setting';
-import Topup from '../screens/main/topup';
+import Topup from '../screens/main/topup/topup';
 import PurchaseHistory from '../screens/main/history/purchase-history';
 import WebviewContent from '../screens/main/webview-content';
 

@@ -1,5 +1,4 @@
-import DateTimePicker from '@react-native-community/datetimepicker';
-import React, { Activity, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, set, useForm } from 'react-hook-form';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { useTranslation } from "react-i18next";

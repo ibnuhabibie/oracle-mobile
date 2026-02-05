@@ -3,48 +3,22 @@ import { useTranslation } from "react-i18next";
 import { Modal, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { AppText } from '../../components/ui/app-text';
-import CoinIcon from "../../components/icons/profile/coin-icon";
-import CommentsIcon from "../../components/icons/profile/comments-icon";
-import { COLORS } from "../../constants/colors";
-import { serviceTypeTranslationKeys } from "../../constants/app";
-import { AppButton } from "../../components/ui/app-button";
-import CloseIcon from "../../components/icons/close-icon";
-import { scaleFont, scaleSize } from "../../utils/scale";
-import { formatDateWithTime } from "../../utils/date";
-import { formatPrice } from "../../utils/formatter";
-import { useDirectPayment } from "../../hooks/use-direct-payment";
-import PollingLoadingModal from "../../components/ui/polling-loading-modal";
+import { AppText } from '../../../components/ui/app-text';
+import CoinIcon from "../../../components/icons/profile/coin-icon";
+import { AppButton } from "../../../components/ui/app-button";
+import PollingLoadingModal from "../../../components/ui/polling-loading-modal";
+import CommentsIcon from "../../../components/icons/profile/comments-icon";
+import CloseIcon from "../../../components/icons/close-icon";
 
-interface UsageReceiptModalProps {
-  visible: boolean;
-  onClose: () => void;
-  item: {
-    job_id: string;
-    usage_history_id: string;
-    created_at: string;
-    transaction_id: string;
-    item_name: string;
-    item_icon?: React.ReactNode;
-    points: number;
-    previous_points: number;
-    points_used: number;
-    remaining_points: number;
-    payment_status: 'pending' | 'completed' | 'failed' | 'refunded' | 'cancelled';
-    payment_type: 'credit' | 'direct';
-    service_type: string;
-    response_data: string;
-    request_data?: string;
-    currency_symbol?: string;
-    amount?: string;
-    credit_journal?: {
-      credits_used: number;
-      credits_before: number;
-      credits_after: number;
-      credit_type: string;
-    };
-  };
-}
+import { COLORS } from "../../../constants/colors";
+import { serviceTypeTranslationKeys } from "../../../constants/app";
+
+import { scaleFont, scaleSize } from "../../../utils/scale";
+import { formatDateWithTime } from "../../../utils/date";
+import { formatPrice } from "../../../utils/formatter";
+import { useDirectPayment } from "../../../hooks/use-direct-payment";
+
+import type { UsageReceiptModalProps } from './types';
 
 const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose, item }) => {
   const { t } = useTranslation();
@@ -62,10 +36,11 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
     t(serviceTypeTranslationKeys[type] || type);
 
   const handleResult = (response_data = null) => {
+    if (!item) return;
     const response = typeof response_data == 'string' ? response_data : item.response_data;
     console.log(response)
     let data = JSON.parse(response)
-    let payload = {}
+    let payload: any = {}
     let pageName = ''
 
     if (item.service_type == 'personalized_love_forecast_12mth') {
@@ -104,7 +79,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
       }
     }
 
-    navigation.navigate(pageName as any, payload as any)
+    navigation.navigate(pageName as any, payload)
   }
 
   const handleContinuePayment = async (item: any) => {
@@ -169,7 +144,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
         </View>
         {
           item.response_data && (
-            <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: scaleSize(12, 12, 18) }} onPress={handleResult} />
+            <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: scaleSize(12, 12, 18) }} onPress={() => handleResult()} />
           )
         }
       </>
@@ -196,7 +171,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           <AppText variant="caption1" color="white">{JSON.parse(item.payment_method).method}</AppText>
         </View>
         <View style={styles.modalSectionDivider} /> */}
-        <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: scaleSize(12, 12, 18) }} onPress={handleResult} />
+        <AppButton title={t("usageReceiptModal.seeResults")} style={{ marginTop: scaleSize(12, 12, 18) }} onPress={() => handleResult()} />
       </>
     )
   }
@@ -230,6 +205,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
   }
 
   const DetailItem = () => {
+    if (!item) return null;
     return (
       <>
         <View style={styles.modalRow}>
@@ -266,7 +242,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
         </View>
       </TouchableWithoutFeedback >
       <PollingLoadingModal
-        topupNo={item?.transaction_id}
+        topupNo={item?.transaction_id || ''}
         visible={showPolling}
         onResult={(data: any) => {
           console.log('data onresult', data)

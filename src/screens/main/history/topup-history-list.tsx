@@ -1,50 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState, memo } from "react";
 import { FlatList, Pressable, View, ActivityIndicator } from "react-native";
-import { AppText } from '../../components/ui/app-text';
 import { StyleSheet } from "react-native";
-
-import CartIcon from "../../components/icons/profile/cart-icon";
-import CoinIcon from "../../components/icons/profile/coin-icon";
-import api from "../../utils/http";
-import { formatDateWithTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
-import { scaleFont, scaleSize } from "../../utils/scale";
-import { formatPrice } from "../../utils/formatter";
 
-interface TopUpItem {
-    topup_history_id: number;
-    user_id: number;
-    package_id: number;
-    subscription_id: number | null;
-    currency_symbol: string;
-    topup_type: string;
-    amount_paid: string;
-    amount: string;
-    payment_status: string;
-    payment_method: string;
-    transaction_id: string;
-    created_at: string;
-    updated_at: string;
-    user: {
-        user_id: number;
-        full_name: string;
-        email: string;
-    };
-    package: {
-        package_id: number;
-        name: string;
-        price: string;
-    } | null;
-    subscription: {
-        subscription_id: number;
-        name: string;
-        price: number;
-    } | null;
-}
+import { AppText } from '../../../components/ui/app-text';
+import CartIcon from "../../../components/icons/profile/cart-icon";
+import CoinIcon from "../../../components/icons/profile/coin-icon";
 
-interface TopupHistoryListProps {
-    onItemPress?: (item: TopUpItem) => void;
-}
+import api from "../../../utils/http";
+import { formatDateWithTime } from "../../../utils/date";
+import { scaleFont, scaleSize } from "../../../utils/scale";
+import { formatPrice } from "../../../utils/formatter";
+
+import type { TopUpItem, TopupHistoryListProps } from './types';
 
 const LIMIT = 10;
 
@@ -63,7 +31,7 @@ const TopupItem = memo(({ item, onPress }: { item: TopUpItem; onPress: (item: To
             <View style={styles.iconContainer}>
                 <CartIcon size={scaleSize(16)} />
             </View>
-            <View style={{ flex:1 }}>
+            <View style={{ flex: 1 }}>
                 <View style={styles.row}>
                     <AppText variant="body2" style={styles.packageName} color="neutral">
                         {item.package?.name || item.subscription?.name || item.topup_type}

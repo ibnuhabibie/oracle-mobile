@@ -1,32 +1,16 @@
 import React, { useCallback, useEffect, useState, useRef, memo } from "react";
 import { FlatList, Pressable, View, ActivityIndicator } from "react-native";
-import { AppText } from '../../components/ui/app-text';
-import CommentsIcon from "../../components/icons/profile/comments-icon";
-import api from "../../utils/http";
-import { formatDateWithTime } from "../../utils/date";
 import { StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
-import { scaleFont, scaleSize } from "../../utils/scale";
 
-interface UsageItem {
-    usage_history_id: number;
-    service_type: string;
-    request_data: string;
-    response_data: string;
-    created_at: string;
-    updated_at: string;
-    payment_status: 'pending' | 'completed' | 'failed' | 'refunded' | 'cancelled';
-    payment_type: 'direct' | 'credit';
-    user: {
-        user_id: number;
-        full_name: string;
-        email: string;
-    };
-}
+import { AppText } from '../../../components/ui/app-text';
+import CommentsIcon from "../../../components/icons/profile/comments-icon";
 
-interface UsageHistoryListProps {
-    onItemPress?: (item: UsageItem) => void;
-}
+import api from "../../../utils/http";
+import { formatDateWithTime } from "../../../utils/date";
+import { scaleFont, scaleSize } from "../../../utils/scale";
+
+import type { UsageItem, UsageHistoryListProps } from './types';
 
 const getServiceTypeLabel = (type: string, t: (key: string) => string) =>
     t(`serviceLabel.${type}`) || type;
@@ -74,7 +58,7 @@ const UsageItem = memo(({ item, onPress }: { item: UsageItem; onPress: (item: Us
     const { t } = useTranslation();
     const formattedDate = formatDateWithTime(item.created_at);
     let details = t("usageHistory.details")
-    
+
     if (item.payment_type == 'direct' && item.payment_status == 'pending') {
         details = t("usageHistory.paymentPending")
     }

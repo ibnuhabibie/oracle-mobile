@@ -1,21 +1,22 @@
 import React from "react";
 import { Modal, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { AppText } from '../../components/ui/app-text';
-import { AppButton } from '../../components/ui/app-button';
-import { initPaymentSheet, presentPaymentSheet } from '@stripe/stripe-react-native';
-import CoinIcon from "../../components/icons/profile/coin-icon";
-import { formatDateWithTime } from "../../utils/date";
 import { useTranslation } from "react-i18next";
-import { COLORS } from "../../constants/colors";
-import CloseIcon from "../../components/icons/close-icon";
-import { scaleFont, scaleSize } from "../../utils/scale";
-import { formatPrice } from "../../utils/formatter";
+import {
+    initPaymentSheet,
+    presentPaymentSheet,
+} from '@stripe/stripe-react-native';
 
-interface TopupReceiptModalProps {
-    visible: boolean;
-    onClose: () => void;
-    item: any;
-}
+import { AppText } from '../../../components/ui/app-text';
+import { AppButton } from '../../../components/ui/app-button';
+import CoinIcon from "../../../components/icons/profile/coin-icon";
+import CloseIcon from "../../../components/icons/close-icon";
+
+import { COLORS } from "../../../constants/colors";
+import { formatDateWithTime } from "../../../utils/date";
+import { scaleFont, scaleSize } from "../../../utils/scale";
+import { formatPrice } from "../../../utils/formatter";
+
+import type { TopupReceiptModalProps } from './types';
 
 const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose, item }) => {
     const { t } = useTranslation();

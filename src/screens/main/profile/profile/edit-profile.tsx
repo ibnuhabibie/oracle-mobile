@@ -4,12 +4,13 @@ import { Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import ScreenContainer from '../../../components/layouts/screen-container';
-import Header from '../../../components/ui/header';
-import ProfileForm from '../../../features/profile/profile-form';
-import api from '../../../utils/http';
-import type { ProfileFormData } from '../../../features/profile/profile-form';
-import { MainNavigatorParamList } from '../../../navigators/types';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+import Header from '../../../../components/ui/header';
+import ProfileForm from './profile-form';
+import api from '../../../../utils/http';
+
+import type { ProfileFormData } from './types';
+import { MainNavigatorParamList } from '../../../../navigators/types';
 
 type EditProfileProps = NativeStackScreenProps<
   MainNavigatorParamList,
