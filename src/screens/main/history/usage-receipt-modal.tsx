@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -16,21 +16,13 @@ import { serviceTypeTranslationKeys } from "../../../constants/app";
 import { scaleFont, scaleSize } from "../../../utils/scale";
 import { formatDateWithTime } from "../../../utils/date";
 import { formatPrice } from "../../../utils/formatter";
-import { useDirectPayment } from "../../../hooks/use-direct-payment";
 
 import type { UsageReceiptModalProps } from './types';
 
 const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose, item }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-
-  const {
-    isProcessing,
-    setIsProcessing,
-    showPolling,
-    setShowPolling,
-    openPaymentSheet,
-  } = useDirectPayment();
+  const [showPolling, setShowPolling] = useState(false);
 
   const getServiceTypeLabel = (type: string) =>
     t(serviceTypeTranslationKeys[type] || type);
@@ -81,19 +73,6 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
 
     navigation.navigate(pageName as any, payload)
   }
-
-  const handleContinuePayment = async (item: any) => {
-    if (!item?.payment_intent) return;
-    try {
-      setIsProcessing(true)
-      await openPaymentSheet(item.payment_intent)
-      setIsProcessing(false)
-      // Payment sheet is now handled by the useDirectPayment hook
-      // This is a placeholder for any additional logic needed
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const NoData = () => {
     return (
@@ -187,9 +166,8 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           item.payment_status == 'pending' ?
             <AppButton
               style={{ marginTop: 12, alignSelf: "center" }}
-              onPress={() => handleContinuePayment(item)}
+              onPress={() => {}}
               title={t("topupReceiptModal.continuePayment")}
-              loading={isProcessing}
             /> : null
         }
       </View >
@@ -271,7 +249,6 @@ const styles = StyleSheet.create({
     borderRadius: scaleSize(12, 12, 16),
     padding: scaleSize(14, 14, 20),
     width: "90%",
-    // maxWidth: scaleSize(240, 240, 340),
     elevation: 8,
   },
   modalHeader: {
