@@ -1,10 +1,6 @@
 import React from "react";
 import { Modal, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { useTranslation } from "react-i18next";
-import {
-    initPaymentSheet,
-    presentPaymentSheet,
-} from '@stripe/stripe-react-native';
 
 import { AppText } from '../../../components/ui/app-text';
 import { AppButton } from '../../../components/ui/app-button';
@@ -20,28 +16,6 @@ import type { TopupReceiptModalProps } from './types';
 
 const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose, item }) => {
     const { t } = useTranslation();
-
-    const handleContinuePayment = async () => {
-        if (!item?.payment_intent) return;
-        try {
-            const { error: initError } = await initPaymentSheet({
-                paymentIntentClientSecret: item.payment_intent,
-                merchantDisplayName: "OracleAI"
-            });
-            if (initError) {
-                // Optionally show error to user
-                return;
-            }
-            const { error: presentError } = await presentPaymentSheet();
-            if (presentError) {
-                // Optionally show error to user
-                return;
-            }
-            // Optionally handle success
-        } catch (err) {
-            // Optionally show error to user
-        }
-    };
 
     if (!item) {
         return null;
@@ -138,7 +112,7 @@ const TopupReceiptModal: React.FC<TopupReceiptModalProps> = ({ visible, onClose,
                                                     item.payment_status === "pending" && (
                                                         <AppButton
                                                             style={{ marginTop: 12, alignSelf: "center" }}
-                                                            onPress={handleContinuePayment}
+                                                            // onPress={handleContinuePayment}
                                                             title={t("topupReceiptModal.continuePayment")}
                                                         />
                                                     )

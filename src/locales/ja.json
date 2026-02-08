@@ -260,6 +260,7 @@
     "remainingPoints": "残りポイント",
     "seeResults": "結果を見る",
     "processing": "レポートはまだ処理中です。後でもう一度ご確認ください。",
+    "noData": "このトランザクションの詳細は利用できません",
     "serviceType": {
       "ask_any_question": "アフィニティに質問",
       "personalized_love_forecast_12mth": "恋愛予報",
@@ -279,16 +280,16 @@
     "likelyOutcome": "予想される結果",
     "recommendedAction": "推奨される行動"
   },
-    "fortuneReportResult": {
-        "header": "運勢レポート{{year}}",
-        "downloadPdf": "PDFとしてダウンロード",
-        "downloadComplete": "ダウンロード完了",
-        "savedTo": "{{path}}に保存されました",
-        "downloadingPdf": "PDFをダウンロード中",
-        "couldNotOpenFolder": "フォルダを自動的に開けませんでした。ダウンロードフォルダで手動で探してください。\n\nファイル名：{{fileName}}"
-    },
-    "polling": {
-        "message": "支払い完了しました。お待ちください...",
+  "fortuneReportResult": {
+    "header": "運勢レポート{{year}}",
+    "downloadPdf": "PDFとしてダウンロード",
+    "downloadComplete": "ダウンロード完了",
+    "savedTo": "{{path}}に保存されました",
+    "downloadingPdf": "PDFをダウンロード中",
+    "couldNotOpenFolder": "フォルダを自動的に開けませんでした。ダウンロードフォルダで手動で探してください。\n\nファイル名：{{fileName}}"
+  },
+  "polling": {
+    "message": "支払い完了しました。お待ちください...",
     "info": "数分かかります。ウィンドウを閉じても大丈夫です。準備ができたらお知らせします。",
     "closeBtn": "閉じる"
   },

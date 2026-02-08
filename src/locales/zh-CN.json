@@ -260,6 +260,7 @@
         "remainingPoints": "剩余积分",
         "seeResults": "查看结果",
         "processing": "报告仍在处理中，请稍后再查。",
+        "noData": "该服务无详细信息",
         "serviceType": {
             "ask_any_question": "问 Affinity",
             "personalized_love_forecast_12mth": "爱情预测",

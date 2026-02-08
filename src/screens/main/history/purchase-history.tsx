@@ -47,8 +47,10 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
   }, []);
 
   const handleShowUsageReceipt = useCallback((item: any) => {
-    setUsageSelectedItem(item);
     setUsageModalVisible(true);
+    requestAnimationFrame(() => {
+      setUsageSelectedItem(item);
+    });
   }, []);
 
   // Memoize modal close handlers
@@ -106,19 +108,18 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
               <TopupHistoryList onItemPress={handleShowReceipt} />
             )
         }
-
-        <TopupReceiptModal
-          visible={modalVisible}
-          onClose={handleCloseModal}
-          item={selectedItem}
-        />
-
-        <UsageReceiptModal
-          visible={usageModalVisible}
-          onClose={handleCloseUsageModal}
-          item={usageSelectedItem}
-        />
       </ScreenContainer>
+      <TopupReceiptModal
+        visible={modalVisible}
+        onClose={handleCloseModal}
+        item={selectedItem}
+      />
+
+      <UsageReceiptModal
+        visible={usageModalVisible}
+        onClose={handleCloseUsageModal}
+        item={usageSelectedItem}
+      />
     </>
   );
 };

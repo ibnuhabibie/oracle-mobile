@@ -260,6 +260,7 @@
         "remainingPoints": "คะแนนคงเหลือ",
         "seeResults": "ดูผลลัพธ์",
         "processing": "รายงานยังดำเนินการอยู่ กรุณาตรวจสอบอีกครั้งภายหลัง",
+        "noData": "ไม่มีรายละเอียดสำหรับธุรกรรมนี้",
         "serviceType": {
             "ask_any_question": "ถาม Affinity",
             "personalized_love_forecast_12mth": "พยากรณ์ความรัก",

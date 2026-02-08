@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Modal, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Modal, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { AppText } from '../../../components/ui/app-text';
@@ -22,7 +22,21 @@ import type { UsageReceiptModalProps } from './types';
 const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose, item }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const [showPolling, setShowPolling] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (visible) {
+      setReady(false);
+
+      const id = requestAnimationFrame(() => {
+        setReady(true);
+      });
+
+      return () => cancelAnimationFrame(id);
+    } else {
+      setReady(false);
+    }
+  }, [visible]);
 
   const getServiceTypeLabel = (type: string) =>
     t(serviceTypeTranslationKeys[type] || type);
@@ -166,7 +180,7 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
           item.payment_status == 'pending' ?
             <AppButton
               style={{ marginTop: 12, alignSelf: "center" }}
-              onPress={() => {}}
+              onPress={() => { }}
               title={t("topupReceiptModal.continuePayment")}
             /> : null
         }
@@ -201,6 +215,8 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
       transparent
       animationType="fade"
       onRequestClose={onClose}
+      hardwareAccelerated
+      statusBarTranslucent
     >
       <TouchableWithoutFeedback onPress={onClose}>
         <View style={styles.modalOverlay}>
@@ -213,29 +229,34 @@ const UsageReceiptModal: React.FC<UsageReceiptModalProps> = ({ visible, onClose,
                 </TouchableOpacity>
               </View>
               {
-                !item ? <NoData /> : <DetailItem />
+                !ready ?
+                  (
+                    <View style={styles.loadingContainer}>
+                      <ActivityIndicator size="large" />
+                    </View>
+                  )
+                  :
+                  !item ?
+                    (
+                      <NoData />
+                    )
+                    :
+                    (
+                      <DetailItem />
+                    )
               }
             </View>
           </TouchableWithoutFeedback>
         </View>
       </TouchableWithoutFeedback >
-      <PollingLoadingModal
-        topupNo={item?.transaction_id || ''}
-        visible={showPolling}
-        onResult={(data: any) => {
-          console.log('data onresult', data)
-          setShowPolling(false)
-          handleResult(data.response_data)
-          // Handle result navigation if needed
-        }}
-        onClose={() => {
-          setShowPolling(false)
-        }} />
     </Modal >
   );
 };
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+
+  },
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(30,30,30,0.8)',

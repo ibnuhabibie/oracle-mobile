@@ -260,6 +260,7 @@
         "remainingPoints": "Remaining Points",
         "seeResults": "See Results",
         "processing": "Report is still being processed. Please check back later.",
+        "noData": "No details available for this transaction",
         "serviceType": {
             "ask_any_question": "Ask Affinity",
             "personalized_love_forecast_12mth": "Love Forecast",
@@ -289,7 +290,7 @@
     },
     "polling": {
         "message": "Payment Completed, Please wait...",
-        "info": "It’ll take a few minutes. Feel free to close this window - we’ll ping you when it’s ready.",
+        "info": "It'll take a few minutes. Feel free to close this window - we'll ping you when it's ready.",
         "closeBtn": "Close"
     },
     "mbtiQuiz": {
@@ -498,7 +499,7 @@
         "restorePurchases": "Restore Purchases",
         "restorePurchasesSuccess": "Successfully restored purchases.\nYou have made {{count}} purchase(s).",
         "noPurchasesFound": "No purchases found to restore",
-        "selectSubscription": "This subscription isn’t available yet."
+        "selectSubscription": "This subscription isn't available yet."
     },
     "topupReceiptModal": {
         "receipt": "Receipt",
@@ -524,7 +525,7 @@
     },
     "directPayment": {
         "paymentErrorTitle": "Payment Failed",
-        "paymentNotCompletedMessage": "You closed the payment window before finishing the transaction. Please try again to complete your payment.",
+        "paymentNotCompletedMessage": "You closed payment window before finishing the transaction. Please try again to complete your payment.",
         "paymentSuccessTitle": "Payment Successful",
         "paymentSuccessMessage": "Thank you! Your payment has been processed. Your report is being prepared."
     }

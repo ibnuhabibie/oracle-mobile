@@ -260,6 +260,7 @@
         "remainingPoints": "剩余积分",
         "seeResults": "查看结果",
         "processing": "报告仍在处理中，请稍后再查。",
+        "noData": "該服務無詳細資料",
         "serviceType": {
             "ask_any_question": "问 Affinity",
             "personalized_love_forecast_12mth": "爱情预测",
@@ -289,7 +290,7 @@
     },
     "polling": {
         "message": "请稍候...",
-            "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。付款已完成，請稍候...",
+        "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。付款已完成，請稍候...",
         "closeBtn": "关闭"
     },
     "mbtiQuiz": {

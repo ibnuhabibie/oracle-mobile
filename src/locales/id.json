@@ -260,6 +260,7 @@
         "remainingPoints": "Poin Tersisa",
         "seeResults": "Lihat Hasil",
         "processing": "Laporan masih diproses. Silakan cek kembali nanti.",
+        "noData": "Tidak ada detail tersedia untuk transaksi ini",
         "serviceType": {
             "ask_any_question": "Tanya Affinity",
             "personalized_love_forecast_12mth": "Ramalan Cinta",
