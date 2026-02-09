@@ -499,7 +499,8 @@
         "restorePurchases": "恢復購買",
         "restorePurchasesSuccess": "成功恢復購買\n您已購買 {{count}} 次",
         "noPurchasesFound": "未找到可恢復的購買記錄",
-        "selectSubscription": "所選方案仍在商店審核中。"
+        "selectSubscription": "所選方案仍在商店審核中。",
+        "noReport": "報告目前無法使用。"
     },
     "topupReceiptModal": {
         "receipt": "收据",

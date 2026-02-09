@@ -499,7 +499,8 @@
         "restorePurchases": "Pulihkan Pembelian",
         "restorePurchasesSuccess": "Berhasil memulihkan pembelian.\nAnda telah melakukan {{count}} pembelian.",
         "noPurchasesFound": "Tidak ada pembelian yang ditemukan untuk dipulihkan",
-        "selectSubscription": "Paket yang dipilih masih dalam proses peninjauan oleh toko."
+        "selectSubscription": "Paket yang dipilih masih dalam proses peninjauan oleh toko.",
+        "noReport": "Laporan tidak tersedia saat ini."
     },
     "topupReceiptModal": {
         "receipt": "Struk",

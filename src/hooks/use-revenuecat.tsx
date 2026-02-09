@@ -11,9 +11,8 @@ export function useRevenueCat() {
     const [topupNo, setTopupNo] = useState<string>('');
     const [showPolling, setShowPolling] = useState<boolean>(false);
 
-    const loadOfferings = async () => {
+    const loadOfferings = async (OFFERING_ID = 'onetime_report') => {
         try {
-            const OFFERING_ID = 'onetime_report';
             const offerings = await Purchases.getOfferings();
             console.log('Fetched offerings:', offerings);
             const targetOffering = offerings.all[OFFERING_ID];
@@ -29,7 +28,7 @@ export function useRevenueCat() {
         }
     }
 
-    const _getPackageByIdentifier = (identifier: string) => {
+    const getPackageByIdentifier = (identifier: string) => {
         if (!offering) return null;
 
         return offering?.availablePackages.find(p => p.identifier === identifier) || null;
@@ -43,11 +42,11 @@ export function useRevenueCat() {
         data: any
     ) => {
         try {
-            const pkg = _getPackageByIdentifier(identifier);
+            const pkg = getPackageByIdentifier(identifier);
             console.log('handleContinue', pkg, identifier);
 
             if (!pkg) {
-                Alert.alert(t('topup.error'), t('topup.selectSubscription'));
+                Alert.alert(t('topup.error'), t('topup.noReport'));
                 return;
             }
             const purchasePackage = await Purchases.purchasePackage(pkg);
@@ -79,8 +78,10 @@ export function useRevenueCat() {
     return {
         loadOfferings,
         pay,
+        offering,
         topupNo,
         showPolling,
-        setShowPolling
+        setShowPolling,
+        getPackageByIdentifier
     };
 }

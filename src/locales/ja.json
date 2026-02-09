@@ -499,7 +499,8 @@
     "restorePurchases": "購入を復元",
     "restorePurchasesSuccess": "購入の復元に成功しました。\n{{count}}回購入しました。",
     "noPurchasesFound": "復元する購入が見つかりません",
-    "selectSubscription": "選択されたプランは現在、ストアによる審査中です。"
+    "selectSubscription": "選択されたプランは現在、ストアによる審査中です。",
+    "noReport": "レポートは現在ご利用いただけません。"
   },
   "topupReceiptModal": {
     "receipt": "領収書",

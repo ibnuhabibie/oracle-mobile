@@ -19,6 +19,7 @@ import type { MainNavigatorParamList } from '../../../navigators/types';
 import type {
     SubscriptionItem,
 } from './types';
+import { useRevenueCat } from '../../../hooks/use-revenuecat';
 
 type TopupProps = NativeStackScreenProps<MainNavigatorParamList, 'TopUp'>;
 
@@ -34,11 +35,17 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     const [userSubscriptionId, setUserSubscriptionId] = useState<number | null>(null);
     const [locale, setLocale] = useState<string>('');
 
-    const [offering, setOffering] = useState<any>(null);
+    // const [offering, setOffering] = useState<any>(null);
 
     const OFFERING_ID = 'credits_subscription';
 
     const { getUserProfile } = useAsyncStorage();
+
+    const {
+        offering,
+        loadOfferings,
+        getPackageByIdentifier
+    } = useRevenueCat();
 
     const fetchSubscriptions = async () => {
         setLoadingSubscriptions(true);
@@ -53,25 +60,9 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         }
     };
 
-    const loadOfferings = async () => {
-        try {
-            const offerings = await Purchases.getOfferings();
-            const targetOffering = offerings.all[OFFERING_ID];
-
-            if (!targetOffering) {
-                throw new Error(`Offering "${OFFERING_ID}" not found`);
-            }
-
-            console.log('Loaded offerings:', targetOffering);
-            setOffering(targetOffering);
-        } catch (error) {
-            console.log('Error fetching offerings:', error);
-        }
-    }
-
     useEffect(() => {
         const init = async () => {
-            await loadOfferings();
+            await loadOfferings(OFFERING_ID);
 
             const countryCode = RNLocalize.getCountry();
             const locale = getLocaleByCountryCode(countryCode);
@@ -100,8 +91,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
     const handleContinue = async () => {
         try {
-
-            const pkg = offering?.availablePackages.find((p: any) => p.product.identifier === selectedSubscription?.rc_package_id);
+            const pkg = getPackageByIdentifier(selectedSubscription?.subscription_id == 1 ? '$rc_annual' : '$rc_monthly');
             console.log('handleContinue', selectedSubscription, pkg)
 
             if (!pkg) {
