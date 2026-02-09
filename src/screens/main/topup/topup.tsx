@@ -91,7 +91,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
     const handleContinue = async () => {
         try {
-            const pkg = getPackageByIdentifier(selectedSubscription?.subscription_id == 1 ? '$rc_annual' : '$rc_monthly');
+            const pkg = getPackageByIdentifier(selectedSubscription?.subscription_id == 1 ? '$rc_monthly' : '$rc_annual');
             console.log('handleContinue', selectedSubscription, pkg)
 
             if (!pkg) {
