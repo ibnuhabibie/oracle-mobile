@@ -91,8 +91,17 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
 
     const handleContinue = async () => {
         try {
-            const pkg = getPackageByIdentifier(selectedSubscription?.subscription_id == 1 ? '$rc_monthly' : '$rc_annual');
-            console.log('handleContinue', selectedSubscription, pkg)
+            const identifier = selectedSubscription?.subscription_id == 1 ? '$rc_monthly' : '$rc_annual'
+            const pkg = getPackageByIdentifier(identifier);
+            console.log('handleContinue', selectedSubscription)
+            console.log('handleContinue', identifier);
+            console.log('--- PACKAGE ---')
+            console.log('Identifier:', pkg.identifier);
+            console.log('Package Type:', pkg.packageType);
+            console.log('Product ID:', pkg.product.identifier);
+            console.log('Product Type:', pkg.product.productType);
+            console.log('Price:', pkg.product.priceString);
+            console.log('Subscription Period:', pkg.product.subscriptionPeriod);
 
             if (!pkg) {
                 Alert.alert(t('topup.error'), t('topup.selectSubscription'));
