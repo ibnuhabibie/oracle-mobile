@@ -2927,6 +2927,36 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - RNSentry (8.1.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Sentry (= 9.4.1)
+    - SocketRocket
+    - Yoga
   - RNSVG (15.15.2):
     - boost
     - DoubleConversion
@@ -3101,6 +3131,9 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - Sentry (9.4.1):
+    - Sentry/Core (= 9.4.1)
+  - Sentry/Core (9.4.1)
   - SocketRocket (0.7.1)
   - SRSRadialGradient (1.2.1):
     - React
@@ -3198,6 +3231,7 @@ DEPENDENCIES:
   - RNPurchases (from `../node_modules/react-native-purchases`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNWorklets (from `../node_modules/react-native-worklets`)
@@ -3219,6 +3253,7 @@ SPEC REPOS:
     - PromisesObjC
     - PurchasesHybridCommon
     - RevenueCat
+    - Sentry
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -3403,6 +3438,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
@@ -3517,9 +3554,11 @@ SPEC CHECKSUMS:
   RNPurchases: 7c5b4d653dcfec1ad700d04db6ceee235d822038
   RNReanimated: 750484717cd4ec103523bab26e173798ea72a4cd
   RNScreens: 32d204189c8c164da3aef640b6d1d8721c25a86f
+  RNSentry: ce663110be66a09768cd019d0c383c45f4fb275d
   RNSVG: de85ddb16c081a218616e037f1f641b2afc84624
   RNVectorIcons: 96c832d9134dfee90ce0be7a1e0bf4c1e41a8d11
   RNWorklets: 9d423f16ed98eeaa4526f325b95ed0fe0226bf49
+  Sentry: 990a381d8592207a52e7be654b31a27738c3a6a8
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SRSRadialGradient: db3a6ea7d867854c9f4c3b0c5b3167332a65f8d8
   Yoga: 526f25666395d30c297d53154398ffd249eaf9e1

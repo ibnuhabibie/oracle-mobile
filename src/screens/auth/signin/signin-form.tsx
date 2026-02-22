@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import DeviceInfo from 'react-native-device-info';
 import messaging from '@react-native-firebase/messaging';
 import Purchases from 'react-native-purchases';
+import * as Sentry from '@sentry/react-native';
 
 import api from '../../../utils/http';
 import { AppButton } from '../../../components/ui/app-button';
