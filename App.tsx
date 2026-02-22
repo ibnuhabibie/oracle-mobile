@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Dimensions} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Purchases from 'react-native-purchases';
+import DeviceInfo from 'react-native-device-info';
 
 import {REVENUECAT_KEY} from '@env';
 
@@ -20,72 +21,121 @@ import * as Sentry from '@sentry/react-native';
 
 Sentry.init({
   dsn: 'https://9a9910632f674db864c3d61d51a0ffd4@o4510930949242880.ingest.de.sentry.io/4510930951471184',
-
-  // Adds more context data to events (IP address, cookies, user, etc.)
-  // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
   sendDefaultPii: true,
-
-  // Enable Logs
   enableLogs: true,
+  environment: __DEV__ ? 'development' : 'production',
+});
 
-  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
-  // spotlight: __DEV__,
+// Set device context for better debugging
+Sentry.setContext('device', {
+  os: DeviceInfo.getSystemName(),
+  osVersion: DeviceInfo.getSystemVersion(),
+  appVersion: DeviceInfo.getVersion(),
+  buildNumber: DeviceInfo.getBuildNumber(),
+  model: DeviceInfo.getModel(),
+  brand: DeviceInfo.getBrand(),
 });
 
 enableScreens(true);
 
 const App: React.FC = () => {
   const handleNotif = async notifData => {
-    const response = await api.get(`/v1/usage-histories/${notifData.trx_no}`);
-    const item = response.data;
+    try {
+      Sentry.addBreadcrumb({
+        category: 'notification',
+        message: `Handling notification: ${notifData.trx_no}`,
+        level: 'info',
+      });
 
-    let data = JSON.parse(item.response_data);
-    let payload = {};
-    let pageName = '';
+      const response = await api.get(`/v1/usage-histories/${notifData.trx_no}`);
+      const item = response.data;
 
-    if (item.service_type == 'personalized_love_forecast_12mth') {
-      pageName = 'LoveReportResult';
-      payload = {result: data, job_id: notifData.job_id};
-    } else if (item.service_type == 'ask_any_question') {
-      pageName = 'AffinityResults';
-      payload = {
-        question: data.question,
-        affinityResult: {data},
-      };
-    } else if (item.service_type == 'transit_report') {
-      pageName = 'FortuneReportResult';
-      payload = {result: data, job_id: notifData.job_id};
-    } else if (item.service_type == 'relationship_compatibility') {
-      pageName = 'RelationReportResult';
-      payload = {
-        result: data,
-        love_profile: JSON.parse(item.request_data).partner,
-        job_id: notifData.job_id,
-      };
-    } else if (item.service_type == 'ask_secret_diary') {
-      pageName = 'EchoDetail';
-      payload = {
-        id: data.id,
-        date: {
-          dateString: data.date,
-        },
-      };
+      let data = JSON.parse(item.response_data);
+      let payload = {};
+      let pageName = '';
+
+      if (item.service_type == 'personalized_love_forecast_12mth') {
+        pageName = 'LoveReportResult';
+        payload = {result: data, job_id: notifData.job_id};
+      } else if (item.service_type == 'ask_any_question') {
+        pageName = 'AffinityResults';
+        payload = {
+          question: data.question,
+          affinityResult: {data},
+        };
+      } else if (item.service_type == 'transit_report') {
+        pageName = 'FortuneReportResult';
+        payload = {result: data, job_id: notifData.job_id};
+      } else if (item.service_type == 'relationship_compatibility') {
+        pageName = 'RelationReportResult';
+        payload = {
+          result: data,
+          love_profile: JSON.parse(item.request_data).partner,
+          job_id: notifData.job_id,
+        };
+      } else if (item.service_type == 'ask_secret_diary') {
+        pageName = 'EchoDetail';
+        payload = {
+          id: data.id,
+          date: {
+            dateString: data.date,
+          },
+        };
+      }
+
+      console.log(pageName, payload);
+
+      navigate(pageName, payload);
+
+      Sentry.addBreadcrumb({
+        category: 'notification',
+        message: `Navigated to: ${pageName}`,
+        level: 'info',
+      });
+    } catch (error) {
+      Sentry.captureException(error);
+      Sentry.addBreadcrumb({
+        category: 'notification',
+        message: 'Notification handling failed',
+        level: 'error',
+      });
     }
-
-    console.log(pageName, payload);
-
-    navigate(pageName, payload);
   };
 
   useEffect(() => {
-    console.log('triggered');
+    console.log('App initialization started');
+    
+    Sentry.addBreadcrumb({
+      category: 'app',
+      message: 'App initialization started',
+      level: 'info',
+    });
 
     Purchases.setLogLevel(Purchases.LOG_LEVEL.DEBUG);
 
     if (REVENUECAT_KEY) {
-      Purchases.configure({apiKey: REVENUECAT_KEY, useAmazon: false});
+      try {
+        Purchases.configure({apiKey: REVENUECAT_KEY, useAmazon: false});
+        Sentry.addBreadcrumb({
+          category: 'revenuecat',
+          message: 'RevenueCat configured successfully',
+          level: 'info',
+        });
+      } catch (error) {
+        Sentry.captureException(error);
+        Sentry.addBreadcrumb({
+          category: 'revenuecat',
+          message: 'RevenueCat configuration failed',
+          level: 'error',
+        });
+      }
     } else {
       console.error('REVENUECAT_KEY is not set');
+      Sentry.addBreadcrumb({
+        category: 'revenuecat',
+        message: 'REVENUECAT_KEY is not set',
+        level: 'error',
+      });
     }
 
     const init = async () => {
@@ -95,6 +145,12 @@ const App: React.FC = () => {
           'Notification permission status:',
           settings.authorizationStatus,
         );
+        
+        Sentry.addBreadcrumb({
+          category: 'app',
+          message: 'Notifications initialized',
+          level: 'info',
+        });
 
         const dataString = await AsyncStorage.getItem('pendingNotificationTap');
         if (dataString) {
@@ -103,6 +159,7 @@ const App: React.FC = () => {
           await AsyncStorage.removeItem('pendingNotificationTap');
         }
       } catch (error) {
+        Sentry.captureException(error);
         console.log(error, 'app');
       }
     };
@@ -113,6 +170,11 @@ const App: React.FC = () => {
       console.log(initialNotification);
 
       if (initialNotification) {
+        Sentry.addBreadcrumb({
+          category: 'app',
+          message: 'App opened from quit state via notification',
+          level: 'info',
+        });
         console.log(
           'App opened from quit state via notification',
           initialNotification,
@@ -189,6 +251,12 @@ const App: React.FC = () => {
     const unsubscribe = navigationRef?.addListener?.('state', () => {
       const route = navigationRef?.getCurrentRoute?.();
       setCurrentRoute(route?.name);
+      
+      Sentry.addBreadcrumb({
+        category: 'navigation',
+        message: `Navigated to: ${route?.name}`,
+        level: 'info',
+      });
     });
 
     return () => {

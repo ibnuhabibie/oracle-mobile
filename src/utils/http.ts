@@ -11,6 +11,7 @@ import i18n from '../locales/i18n';
 import Purchases from 'react-native-purchases';
 import { navigationRef } from '../navigators/navigation-ref';
 import type { UserProfile, TranslationFunction, ApiErrorResponse } from './types';
+import * as Sentry from '@sentry/react-native';
 
 // If @env import fails, fallback to a hardcoded string:
 // const API_BASE_URL = 'https://your-api-base-url.com';
@@ -86,6 +87,20 @@ api.interceptors.response.use(
     console.error('[Axios Error]', error.message);
     console.error(error.config);
     console.error(error.code);
+    
+    Sentry.captureException(error);
+    Sentry.addBreadcrumb({
+      category: 'api',
+      message: `API Error: ${error.config?.url}`,
+      level: 'error',
+      data: {
+        url: error.config?.url,
+        method: error.config?.method,
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+      },
+    });
+    
     if (error.response) {
       console.error('[Response Error Data]', error.response.data);
       const errorData = error.response.data as Partial<ApiErrorResponse>;

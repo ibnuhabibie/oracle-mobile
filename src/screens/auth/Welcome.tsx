@@ -13,6 +13,7 @@ import { useAsyncStorage } from '../../hooks/use-storage';
 type WelcomeProps = NativeStackScreenProps<MainNavigatorParamList, 'Welcome'>;
 
 type UserProfile = {
+  user_id?: string;
   email: string;
   is_email_verified: boolean;
   birth_date?: string;
@@ -71,6 +72,14 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
         if (auth_token) {
           const profile = (await getUserProfile()) as UserProfile | null;
           console.log(profile, 'profile');
+
+          // Set user context for Sentry when we have profile
+          if (profile) {
+            Sentry.setUser({
+              id: profile.user_id,
+              email: profile.email,
+            });
+          }
 
           const isProfileCompleted = (profile: UserProfile) => {
             return (
@@ -153,19 +162,16 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   videoWrapper: {
-    flex: 1,
+    flex:1,
     width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: COLORS.black,
   },
   video: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
     width: '100%',
     height: '100%',
     backgroundColor: COLORS.black,
