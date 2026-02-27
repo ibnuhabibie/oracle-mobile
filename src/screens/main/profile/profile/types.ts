@@ -37,6 +37,7 @@ export interface UserProfile {
   referral_code?: string;
   gold_credits?: number;
   silver_credits?: number;
+  subscription_id?: number | null;
   [key: string]: unknown;
 }
 

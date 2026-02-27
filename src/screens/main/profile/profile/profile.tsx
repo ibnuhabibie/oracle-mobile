@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { InteractionManager } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { Platform, ToastAndroid } from 'react-native';
+import { Alert, Platform, ToastAndroid } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -57,6 +57,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   const { getUserProfile, getAuthToken } = useAsyncStorage();
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserProfile | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const { sync } = useAsyncStorage();
 
@@ -139,6 +140,80 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
     } catch (error) {
       console.error('Logout failed:', error);
     }
+  };
+
+  const handleDeleteAccount = async () => {
+    console.log('Delete Account pressed', user);
+
+    // Check if user has active subscription
+    if (user?.subscription_id) {
+      // Show alert to cancel subscription first
+      Alert.alert(
+        t('profilePage.dangerZone'),
+        t('profilePage.hasActiveSubscription'),
+        [
+          {
+            text: t('profilePage.cancel'),
+            style: 'cancel',
+          },
+        ]
+      );
+      return;
+    }
+
+    // Show confirmation dialog
+    Alert.alert(
+      t('profilePage.deleteAccount'),
+      t('profilePage.deleteAccountConfirm'),
+      [
+        {
+          text: t('profilePage.cancel'),
+          style: 'cancel',
+        },
+        {
+          text: t('profilePage.delete'),
+          style: 'destructive',
+          onPress: async () => {
+            setIsDeleting(true);
+            try {
+              await api.delete('/v1/users');
+
+              // Clear all local data
+              await Purchases.logOut();
+              await AsyncStorage.removeItem('user_profile');
+              await AsyncStorage.removeItem('auth_token');
+
+              // Show success message
+              if (Platform.OS === 'android') {
+                ToastAndroid.show(t('profilePage.deleteAccountSuccess'), ToastAndroid.LONG);
+              } else {
+                Toast.show({
+                  type: 'success',
+                  text1: t('profilePage.deleteAccountSuccess'),
+                });
+              }
+
+              // Navigate to Welcome screen
+              navigation.navigate('Welcome');
+            } catch (error) {
+              console.error('Delete account failed:', error);
+
+              // Show error message
+              if (Platform.OS === 'android') {
+                ToastAndroid.show(t('profilePage.deleteFailed'), ToastAndroid.LONG);
+              } else {
+                Toast.show({
+                  type: 'error',
+                  text1: t('profilePage.deleteFailed'),
+                });
+              }
+            } finally {
+              setIsDeleting(false);
+            }
+          },
+        },
+      ]
+    );
   };
 
   const {
@@ -237,15 +312,13 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
               {t('profilePage.mbtiSubtitle')}
             </AppText>
           </View>
-          <View>
-            <AppButton
-              style={styles.mbtiQuizButton}
-              variant="primary"
-              title={t('mbtiQuiz.button')}
-              size="small"
-              onPress={handleCompleteQuiz}
-            />
-          </View>
+          <AppButton
+            style={styles.mbtiQuizButton}
+            variant="primary"
+            title={t('mbtiQuiz.button')}
+            size="small"
+            onPress={handleCompleteQuiz}
+          />
         </View>
       )}
 
@@ -333,6 +406,23 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
           icon={<TermsIcon size={scaleSize(16, 14, 20)} />}
           onPress={() => handleContent('terms-conditions')}
           isLast
+        />
+      </View>
+
+      {/* Danger Zone Section */}
+      <View style={styles.section}>
+        <AppText variant="subtitle1" color="white" style={styles.dangerZoneTitle}>
+          {t('profilePage.dangerZone')}
+        </AppText>
+        <AppText variant="caption2" color="neutral" style={styles.dangerZoneSubtitle}>
+          {t('profilePage.dangerZoneSubtitle')}
+        </AppText>
+        <AppButton
+          style={styles.deleteButton}
+          variant="secondary"
+          title={isDeleting ? t('profilePage.deleting') : t('profilePage.deleteAccount')}
+          onPress={handleDeleteAccount}
+          disabled={isDeleting}
         />
       </View>
       <Pressable style={styles.logoutButton} onPress={handleLogout}>
@@ -474,6 +564,20 @@ const styles = StyleSheet.create({
   },
   mbtiQuizButton: {
     width: scaleSize(100, 80, 120),
+  },
+  dangerZoneTitle: {
+    fontSize: scaleFont(16, 12, 20),
+    color: COLORS.red,
+  },
+  dangerZoneSubtitle: {
+    marginBottom: scaleSize(16, 16, 20),
+    fontSize: scaleFont(12, 10, 14),
+  },
+  deleteButton: {
+    backgroundColor: 'rgba(235, 67, 53, 0.1)',
+    borderColor: COLORS.red,
+    borderWidth: 1,
+    marginBottom: scaleSize(8),
   },
 });
 

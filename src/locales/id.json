@@ -407,7 +407,17 @@
         "aboutUs": "Tentang Kami",
         "privacyPolicy": "Kebijakan Privasi",
         "termsAndConditions": "Syarat & Ketentuan",
-        "logout": "Keluar"
+        "logout": "Keluar",
+        "dangerZone": "Zona Bahaya",
+        "dangerZoneSubtitle": "Tindakan yang tidak dapat dibatalkan untuk akun Anda",
+        "deleteAccount": "Hapus Akun",
+        "deleteAccountConfirm": "Apakah Anda yakin ingin menghapus akun Anda? Tindakan ini tidak dapat dibatalkan.",
+        "deleteAccountSuccess": "Akun berhasil dihapus",
+        "hasActiveSubscription": "Anda memiliki langganan aktif. Harap batalkan langganan Anda sebelum menghapus akun.",
+        "deleteFailed": "Gagal menghapus akun. Silakan coba lagi.",
+        "deleting": "Menghapus...",
+        "delete": "Hapus",
+        "cancel": "Batal"
     },
     "mbtiProfile": {
         "strengths": "Kekuatan",

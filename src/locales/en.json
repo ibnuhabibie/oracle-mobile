@@ -407,7 +407,17 @@
         "aboutUs": "About Us",
         "privacyPolicy": "Privacy Policy",
         "termsAndConditions": "Terms & Conditions",
-        "logout": "Logout"
+        "logout": "Logout",
+        "dangerZone": "Danger Zone",
+        "dangerZoneSubtitle": "Irreversible actions for your account",
+        "deleteAccount": "Delete Account",
+        "deleteAccountConfirm": "Are you sure you want to delete your account? This action cannot be undone.",
+        "deleteAccountSuccess": "Account deleted successfully",
+        "hasActiveSubscription": "You have an active subscription. Please cancel your subscription before deleting your account.",
+        "deleteFailed": "Failed to delete account. Please try again.",
+        "deleting": "Deleting...",
+        "delete": "Delete",
+        "cancel": "Cancel"
     },
     "mbtiProfile": {
         "strengths": "Strengths",
