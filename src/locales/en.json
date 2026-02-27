@@ -503,14 +503,21 @@
         "cancelSubscription": "Cancel Subscription",
         "subscriptionCancelled": "Subscription cancelled",
         "manageSubscription": "Manage Subscription",
-        "manageSubscriptionDesc": "You can manage your subscription in the App Store or Google Play Store.",
+        "manageSubscriptionDesc": "You can manage your subscription in App Store or Google Play Store.",
         "openStore": "Open Store",
         "cancel": "Cancel",
         "restorePurchases": "Restore Purchases",
         "restorePurchasesSuccess": "Successfully restored purchases.\nYou have made {{count}} purchase(s).",
         "noPurchasesFound": "No purchases found to restore",
         "selectSubscription": "This subscription isn't available yet.",
-        "noReport": "Report not available right now."
+        "noReport": "Report not available right now.",
+        "disclaimerTextIOS": "Payment will be charged to your Apple ID account at confirmation of purchase.\n\nSubscription automatically renews unless cancelled at least 24 hours before the end of the current period.\n\nManage subscriptions in App Store settings.",
+        "disclaimerTextAndroid": "Payment will be charged to your Google Play account at confirmation of purchase.\n\nSubscription automatically renews unless cancelled at least 24 hours before the end of the current period.\n\nManage subscriptions in Google Play Store settings.",
+        "perMonth": "/ month",
+        "perYear": "/ year",
+        "perMonths": "/ {{count}} months",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfUse": "Terms of Use (EULA)"
     },
     "topupReceiptModal": {
         "receipt": "Receipt",

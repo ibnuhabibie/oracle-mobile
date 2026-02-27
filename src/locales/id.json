@@ -510,7 +510,14 @@
         "restorePurchasesSuccess": "Berhasil memulihkan pembelian.\nAnda telah melakukan {{count}} pembelian.",
         "noPurchasesFound": "Tidak ada pembelian yang ditemukan untuk dipulihkan",
         "selectSubscription": "Paket yang dipilih masih dalam proses peninjauan oleh toko.",
-        "noReport": "Laporan tidak tersedia saat ini."
+        "noReport": "Laporan tidak tersedia saat ini.",
+        "disclaimerTextIOS": "Pembayaran akan dikenakan ke akun Apple ID Anda saat konfirmasi pembelian.\n\nLangganan akan diperbarui secara otomatis kecuali dibatalkan setidaknya 24 jam sebelum akhir periode saat ini.\n\nKelola langganan di pengaturan App Store.",
+        "disclaimerTextAndroid": "Pembayaran akan dikenakan ke akun Google Play Anda saat konfirmasi pembelian.\n\nLangganan akan diperbarui secara otomatis kecuali dibatalkan setidaknya 24 jam sebelum akhir periode saat ini.\n\nKelola langganan di pengaturan Google Play Store.",
+        "perMonth": "/ bulan",
+        "perYear": "/ tahun",
+        "perMonths": "/ {{count}} bulan",
+        "privacyPolicy": "Kebijakan Privasi",
+        "termsOfUse": "Syarat & Ketentuan (EULA)"
     },
     "topupReceiptModal": {
         "receipt": "Struk",

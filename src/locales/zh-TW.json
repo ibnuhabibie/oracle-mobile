@@ -48,95 +48,95 @@
         ]
     },
     "login": {
-        "intro": "亲爱的探索者",
-        "title": "登录",
-        "subtitle": "宇宙在低语。\n发现属于你的命运。",
-        "footer": "还没有账号？",
-        "signupButtonText": "注册",
-        "forgotPassword": "忘記密碼?"
+        "intro": "親愛的探索者",
+        "title": "登入",
+        "subtitle": "宇宙在低語。\n發現屬於你的命運。",
+        "footer": "還沒有帳號？",
+        "signupButtonText": "註冊",
+        "forgotPassword": "忘記密碼？"
     },
     "register": {
-        "intro": "亲爱的探索者",
-        "title": "注册",
-        "subtitle": "宇宙在低语。\n加入并发现你的命运。",
-        "footer": "已有账号？",
-        "signinButtonText": "登录"
+        "intro": "親愛的探索者",
+        "title": "註冊",
+        "subtitle": "宇宙在低語。\n加入並發現你的命運。",
+        "footer": "已有帳號？",
+        "signinButtonText": "登入"
     },
     "registerForm": {
-        "nameRequired": "姓名为必填项",
-        "nameMinLength": "姓名至少需要2个字符",
-        "emailRequired": "邮箱为必填项",
-        "invalidEmailFormat": "邮箱格式无效",
-        "passwordRequired": "密码为必填项",
-        "passwordMinLength": "密码至少需要6个字符",
-        "confirmPasswordRequired": "请确认您的密码",
-        "passwordsDoNotMatch": "密码不匹配",
+        "nameRequired": "姓名為必填項",
+        "nameMinLength": "姓名至少需要2個字元",
+        "emailRequired": "電子郵件為必填項",
+        "invalidEmailFormat": "電子郵件格式無效",
+        "passwordRequired": "密碼為必填項",
+        "passwordMinLength": "密碼至少需要6個字元",
+        "confirmPasswordRequired": "請確認您的密碼",
+        "passwordsDoNotMatch": "密碼不匹配",
         "name": "姓名",
-        "email": "邮箱",
-        "password": "密码",
-        "confirmPassword": "确认密码",
-        "referralCode": "推荐码",
-        "createAccount": "创建账号",
-        "registerFailed": "注册失败",
-        "registerFailedMessage": "注册失败，请重试。"
+        "email": "電子郵件",
+        "password": "密碼",
+        "confirmPassword": "確認密碼",
+        "referralCode": "推薦碼",
+        "createAccount": "建立帳號",
+        "registerFailed": "註冊失敗",
+        "registerFailedMessage": "註冊失敗，請重試。"
     },
     "languageSelection": {
-        "heading": "请选择语言",
+        "heading": "請選擇語言",
         "next": "下一步"
     },
     "otpVerification": {
-        "title": "OTP 验证",
-        "sentMessage": "我们已通过邮箱发送 OTP 验证码至\n{{email}}，请输入验证码。",
-        "continue": "继续",
-        "didntReceiveCode": "没有收到验证码？",
-        "resend": "重新发送",
-        "success": "验证成功！",
-        "resentSuccessfully": "OTP 验证码已成功重新发送。",
-        "error": "错误",
-        "genericError": "发生错误，请重试。",
-        "fillAllFields": "请填写所有 OTP 字段。"
+        "title": "OTP 驗證",
+        "sentMessage": "我們已透過電子郵件發送 OTP 驗證碼至\n{{email}}，請輸入驗證碼。",
+        "continue": "繼續",
+        "didntReceiveCode": "沒有收到驗證碼？",
+        "resend": "重新發送",
+        "success": "驗證成功！",
+        "resentSuccessfully": "OTP 驗證碼已成功重新發送。",
+        "error": "錯誤",
+        "genericError": "發生錯誤，請重試。",
+        "fillAllFields": "請填寫所有 OTP 欄位。"
     },
     "otpSuccess": {
-        "title": "验证成功！",
-        "description": "您的账号已验证并可使用。",
-        "continue": "继续"
+        "title": "驗證成功！",
+        "description": "您的帳號已驗證並可使用。",
+        "continue": "繼續"
     },
     "loginForm": {
-        "emailRequired": "邮箱为必填项",
-        "invalidEmailFormat": "邮箱格式无效",
-        "passwordRequired": "密码为必填项",
-        "passwordMinLength": "密码至少需要6个字符",
-        "email": "邮箱",
-        "password": "密码",
-        "signIn": "登录",
-        "loginFailed": "登录失败"
+        "emailRequired": "電子郵件為必填項",
+        "invalidEmailFormat": "電子郵件格式無效",
+        "passwordRequired": "密碼為必填項",
+        "passwordMinLength": "密碼至少需要6個字元",
+        "email": "電子郵件",
+        "password": "密碼",
+        "signIn": "登入",
+        "loginFailed": "登入失敗"
     },
     "onboarding": {
-        "title": "自我介绍",
-        "subtitle": "介绍自己，让宇宙指引你！",
-        "helpText": "不确定出生时间？请选择最接近的时间。",
+        "title": "自我介紹",
+        "subtitle": "介紹自己，讓宇宙指引你！",
+        "helpText": "不確定出生時間？請選擇最接近的時間。",
         "birthDate": "出生日期：",
-        "birthTime": "出生时间：",
-        "selectCountry": "选择国家",
-        "selectCity": "选择城市",
-        "save": "保存",
-        "pleaseSelectOne": "请选择一个",
-        "allFieldsRequired": "所有字段均为必填项。",
-        "registerFailed": "注册失败",
-        "errorOccurred": "发生错误，请重试。"
+        "birthTime": "出生時間：",
+        "selectCountry": "選擇國家",
+        "selectCity": "選擇城市",
+        "save": "儲存",
+        "pleaseSelectOne": "請選擇一個",
+        "allFieldsRequired": "所有欄位均為必填項。",
+        "registerFailed": "註冊失敗",
+        "errorOccurred": "發生錯誤，請重試。"
     },
     "carousel": {
         "love": {
-            "title": "爱情是否延迟？",
-            "subtitle": "发现接下来会发生什么"
+            "title": "愛情是否延遲？",
+            "subtitle": "發現接下來會發生什麼"
         },
         "relation": {
-            "title": "关系洞察",
-            "subtitle": "发现你的连接"
+            "title": "關係洞察",
+            "subtitle": "發現你的連接"
         },
         "fortune": {
-            "title": "命运指引",
-            "subtitle": "迎接你的未来"
+            "title": "命運指引",
+            "subtitle": "迎接你的未來"
         },
         "myReport": {
             "title": "我的報告",
@@ -154,131 +154,131 @@
             "title": "我的 MBTI",
             "subtitle": "探索真正的自己"
         },
-        "downloadPdf": "下载 PDF"
+        "downloadPdf": "下載 PDF"
     },
     "home": {
-        "subtitle": "今天你想知道什么？"
+        "subtitle": "今天你想知道什麼？"
     },
     "loveForecast": {
-        "header": "12个月爱情预测",
-        "purchase": "购买，价格为 {{cost}}",
-        "title": "情感困惑？立即解决。",
-        "subtitle": "四个主要方向帮助你\n克服情感挑战。",
-        "description": "找到情感困惑的根源，发现你的爱情正确方向。一次性获得所有方面的答案：心态、爱情预测、如何找到爱情、未来展望。",
-        "sectionTitle": "你将发现：",
+        "header": "12個月愛情預測",
+        "purchase": "購買，價格為 {{cost}}",
+        "title": "情感困惑？立即解決。",
+        "subtitle": "四個主要方向幫助你\n克服情感挑戰。",
+        "description": "找到情感困惑的根源，發現你的愛情正確方向。一次性獲得所有方面的答案：心態、愛情預測、如何找到愛情、未來展望。",
+        "sectionTitle": "你將發現：",
         "cards": {
-            "intro": "介绍：你的爱情蓝图",
-            "lacking": "爱情中缺少什么？",
-            "lookout": "你在伴侣中寻找什么？",
-            "suits": "适合你的伴侣类型",
-            "outlook": "今年的爱情预测",
-            "where": "寻找爱情的地方",
-            "questions": "个人问题",
-            "conclusion": "结论：未来的爱情故事"
+            "intro": "介紹：你的愛情藍圖",
+            "lacking": "愛情中缺少什麼？",
+            "lookout": "你在伴侶中尋找什麼？",
+            "suits": "適合你的伴侶類型",
+            "outlook": "今年的愛情預測",
+            "where": "尋找愛情的地方",
+            "questions": "個人問題",
+            "conclusion": "結論：未來的愛情故事"
         },
-        "pollingMessage": "您的爱情报告正在处理中…",
-        "error": "错误",
-        "noJobId": "服务器未返回 job_id。",
-        "fetchStatusFailed": "获取报告状态失败。"
+        "pollingMessage": "您的愛情報告正在處理中…",
+        "error": "錯誤",
+        "noJobId": "伺服器未返回 job_id。",
+        "fetchStatusFailed": "取得報告狀態失敗。"
     },
     "relationReport": {
-        "header": "关系匹配度",
-        "purchase": "购买，价格为 {{cost}}",
-        "title": "好奇你们是否是完美情侣？\n现在就揭晓！",
-        "subtitle": "占星与八字结合，为你的爱情匹配度带来新视角。",
-        "description": "有些建议听起来像常识——比如改善沟通或心态——但都针对你的独特星盘和关系动态量身定制。影响远超想象。",
-        "loveInterestDetail": "你的伴侣详情",
-        "tellUsMore": "告诉我们更多关于他/她的信息！",
-        "pollingMessage": "您的关系报告正在处理中…",
+        "header": "關係匹配度",
+        "purchase": "購買，價格為 {{cost}}",
+        "title": "好奇你們是否是完美情侶？\n現在就揭曉！",
+        "subtitle": "占星與八字結合，為你的愛情匹配度帶來新視角。",
+        "description": "有些建議聽起來像常識——比如改善溝通或心態——但都針對你的獨特星盤和關係動態量身定製。影響遠超想像。",
+        "loveInterestDetail": "你的伴侶詳情",
+        "tellUsMore": "告訴我們更多關於他/她的資訊！",
+        "pollingMessage": "您的關係報告正在處理中…",
         "cards": {
-            "perspective": "你如何看待爱情？",
-            "seeYou": "你的伴侣如何看待你？",
-            "kindOfPerson": "他们喜欢什么类型的人？",
-            "traits": "他们的特质、偏好和不喜欢的是什么？"
+            "perspective": "你如何看待愛情？",
+            "seeYou": "你的伴侶如何看待你？",
+            "kindOfPerson": "他們喜歡什麼類型的人？",
+            "traits": "他們的特質、偏好和不喜歡的是什麼？"
         }
     },
     "fortuneReport": {
-        "header": "命运报告 {{year}}",
-        "purchase": "购买，价格为 {{cost}}",
-        "title": "好奇你的 {{year}}？现在查看你的命运预测！",
-        "subtitle": "命运预测结合规划，为你的 {{year}} 带来新视角。",
-        "description": "有些洞察看似简单——比如时机或决策——但都针对你的星盘和 {{year}} 的道路量身定制。指导真的很有帮助。",
-        "sectionTitle": "你能知道什么？",
-        "pollingMessage": "您的命运报告正在处理中…",
+        "header": "命運報告 {{year}}",
+        "purchase": "購買，價格為 {{cost}}",
+        "title": "好奇你的 {{year}}？現在查看你的命運預測！",
+        "subtitle": "命運預測結合規劃，為你的 {{year}} 帶來新視角。",
+        "description": "有些洞察看似簡單——比如時機或決策——但都針對你的星盤和 {{year}} 的道路量身定製。指導真的很有幫助。",
+        "sectionTitle": "你能知道什麼？",
+        "pollingMessage": "您的命運報告正在處理中…",
         "cards": {
             "health": {
                 "title": "健康",
-                "subtitle": "通过占星和八字分析您的健康状况，帮助您及时预防。"
+                "subtitle": "透過占星和八字分析您的健康狀況，幫助您及時預防。"
             },
             "finance": {
-                "title": "财务",
-                "subtitle": "通过占星和八字分析年度财帛宫趋势，寻找最佳财富时机。"
+                "title": "財務",
+                "subtitle": "透過占星和八字分析年度財帛宮趨勢，尋找最佳財富時機。"
             },
             "career": {
-                "title": "事业",
-                "subtitle": "通过占星和八字揭示您的事业运和挑战。"
+                "title": "事業",
+                "subtitle": "透過占星和八字揭示您的事業運和挑戰。"
             },
             "relationship": {
-                "title": "关系",
-                "subtitle": "通过占星和八字追踪年度爱情趋势。"
+                "title": "關係",
+                "subtitle": "透過占星和八字追蹤年度愛情趨勢。"
             }
         }
     },
     "purchaseAlert": {
-        "title": "购买提醒",
-        "costInfo": "向 {{service}} 提问将收取 {{cost}}，是否继续？",
-        "yourCredits": "您的 {{creditType}} 代币：{{userCredit}}",
-        "continue": "继续购买",
+        "title": "購買提醒",
+        "costInfo": "向 {{service}} 提問將收取 {{cost}}，是否繼續？",
+        "yourCredits": "您的 {{creditType}} 代幣：{{userCredit}}",
+        "continue": "繼續購買",
         "cancel": "取消",
-        "insufficient": "此报告需花费 {{cost}}\n您当前的 {{creditType}} 代币不足，请充值后继续。",
-        "purchaseCredits": "购买代币"
+        "insufficient": "此報告需花費 {{cost}}\n您目前的 {{creditType}} 代幣不足，請儲值後繼續。",
+        "purchaseCredits": "購買代幣"
     },
     "profileCard": {
-        "noProfileData": "未找到个人资料数据。",
+        "noProfileData": "未找到個人資料資料。",
         "name": "姓名",
         "dateOfBirth": "出生日期",
-        "timeOfBirth": "出生时间",
-        "countryOfBirth": "出生国家",
+        "timeOfBirth": "出生時間",
+        "countryOfBirth": "出生國家",
         "cityOfBirth": "出生城市",
-        "gender": "性别",
+        "gender": "性別",
         "male": "男",
         "female": "女",
         "you": "你"
     },
     "profile": {
-        "copiedToClipboard": "已复制到剪贴板"
+        "copiedToClipboard": "已複製到剪貼簿"
     },
     "chatArea": {
-        "geenieSays": "Geenie 说："
+        "geenieSays": "Geenie 說："
     },
     "usageReceiptModal": {
-        "receipt": "收据",
-        "datePurchased": "购买日期",
-        "orderItems": "订单项目",
-        "previousPoints": "之前积分",
-        "pointsUsed": "已用积分",
-        "remainingPoints": "剩余积分",
-        "seeResults": "查看结果",
-        "processing": "报告仍在处理中，请稍后再查。",
+        "receipt": "收據",
+        "datePurchased": "購買日期",
+        "orderItems": "訂單項目",
+        "previousPoints": "之前積分",
+        "pointsUsed": "已用積分",
+        "remainingPoints": "剩餘積分",
+        "seeResults": "查看結果",
+        "processing": "報告仍在處理中，請稍後再查。",
         "noData": "該服務無詳細資料",
         "serviceType": {
-            "ask_any_question": "问 Affinity",
-            "personalized_love_forecast_12mth": "爱情预测",
-            "transit_report": "命运报告",
-            "relationship_compatibility": "关系匹配度",
-            "ask_secret_diary": "Genie 建议"
+            "ask_any_question": "問 Affinity",
+            "personalized_love_forecast_12mth": "愛情預測",
+            "transit_report": "命運報告",
+            "relationship_compatibility": "關係匹配度",
+            "ask_secret_diary": "Genie 建議"
         }
     },
     "usageHistory": {
-        "noHistoryFound": "未找到使用记录。",
-        "details": "您的购买已成功，查看详情！",
-        "paymentPending": "支付未完成。请完成支付以继续交易。"
+        "noHistoryFound": "未找到使用記錄。",
+        "details": "您的購買已成功，查看詳情！",
+        "paymentPending": "支付未完成。請完成支付以繼續交易。"
     },
     "affinityResult": {
-        "title": "问 Affinity",
-        "presentSituation": "当前情况",
-        "likelyOutcome": "可能结果",
-        "recommendedAction": "推荐行动"
+        "title": "問 Affinity",
+        "presentSituation": "目前情況",
+        "likelyOutcome": "可能結果",
+        "recommendedAction": "推薦行動"
     },
     "fortuneReportResult": {
         "header": "命運報告 {{year}}",
@@ -289,20 +289,20 @@
         "couldNotOpenFolder": "我們無法自動開啟資料夾。請在下載資料夾中手動尋找。\n\n檔案名稱：{{fileName}}"
     },
     "polling": {
-        "message": "请稍候...",
-        "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。付款已完成，請稍候...",
-        "closeBtn": "关闭"
+        "message": "請稍候...",
+        "info": "大約需要幾分鐘。您可以關閉此視窗，準備好後我們會通知您。付款已完成，請稍候...",
+        "closeBtn": "關閉"
     },
     "mbtiQuiz": {
-        "title": "你的 MBTI 是什么？",
-        "subtitle": "快速测试，发现你的类型！",
+        "title": "你的 MBTI 是什麼？",
+        "subtitle": "快速測試，發現你的類型！",
         "button": "立即查看"
     },
     "relationReportResult": {
         "header": "關係匹配度",
         "downloadPdf": "下載 PDF",
         "downloadSuccess": "PDF 下載成功！",
-        "downloadedTo": "文件已下載至：{{path}}",
+        "downloadedTo": "檔案已下載至：{{path}}",
         "downloadPermissionTitle": "儲存空間權限",
         "downloadPermissionMessage": "應用程式需要存取您的儲存空間以下載 PDF。",
         "downloadPermissionDenied": "權限被拒絕",
@@ -312,100 +312,100 @@
         "yourLoveInterest": "你的伴侶"
     },
     "loveReportResult": {
-        "title": "12个月爱情预测",
-        "downloadPdf": "下载 PDF",
-        "forecastFor": "{{range}} 的预测"
+        "title": "12個月愛情預測",
+        "downloadPdf": "下載 PDF",
+        "forecastFor": "{{range}} 的預測"
     },
     "bottomBar": {
-        "home": "首页",
+        "home": "首頁",
         "echo": "Echo",
-        "askAffinity": "问 Affinity",
-        "profile": "个人资料"
+        "askAffinity": "問 Affinity",
+        "profile": "個人資料"
     },
     "baziResult": {
-        "title": "八字资料",
-        "emptyStateLabel": "未找到个人资料数据。"
+        "title": "八字資料",
+        "emptyStateLabel": "未找到個人資料資料。"
     },
     "astroResult": {
         "title": "占星",
-        "emptyStateLabel": "未找到个人资料数据。"
+        "emptyStateLabel": "未找到個人資料資料。"
     },
     "profileForm": {
         "fullName": "全名",
         "name": "姓名",
-        "emailAddress": "邮箱地址",
-        "email": "邮箱",
-        "phoneNumber": "电话号码",
+        "emailAddress": "電子郵件地址",
+        "email": "電子郵件",
+        "phoneNumber": "電話號碼",
         "birthDate": "出生日期",
         "birthDateLabel": "出生日期：",
-        "birthTime": "出生时间",
-        "birthTimeLabel": "出生时间：",
-        "birthTimeHelper": "不确定出生时间？请选择最接近的时间。",
-        "gender": "性别",
+        "birthTime": "出生時間",
+        "birthTimeLabel": "出生時間：",
+        "birthTimeHelper": "不確定出生時間？請選擇最接近的時間。",
+        "gender": "性別",
         "male": "男",
         "female": "女",
-        "countryOfBirth": "出生国家",
+        "countryOfBirth": "出生國家",
         "cityOfBirth": "出生城市",
-        "pleaseSelectOne": "请选择一个",
-        "language": "语言",
-        "save": "保存",
-        "selectCountry": "选择国家",
-        "selectCity": "选择城市",
-        "selectLanguage": "选择语言",
-        "nameRequired": "姓名为必填项",
-        "nameMinLength": "姓名至少需要2个字符",
-        "emailRequired": "邮箱为必填项",
-        "invalidEmailFormat": "邮箱格式无效",
-        "phoneNumberRequired": "电话号码为必填项",
-        "phoneNumberMinLength": "电话号码至少需要6个字符",
-        "dialogTitle": "更新个人资料",
-        "successMessage": "个人资料已成功更新。",
-        "okLabel": "确定"
+        "pleaseSelectOne": "請選擇一個",
+        "language": "語言",
+        "save": "儲存",
+        "selectCountry": "選擇國家",
+        "selectCity": "選擇城市",
+        "selectLanguage": "選擇語言",
+        "nameRequired": "姓名為必填項",
+        "nameMinLength": "姓名至少需要2個字元",
+        "emailRequired": "電子郵件為必填項",
+        "invalidEmailFormat": "電子郵件格式無效",
+        "phoneNumberRequired": "電話號碼為必填項",
+        "phoneNumberMinLength": "電話號碼至少需要6個字元",
+        "dialogTitle": "更新個人資料",
+        "successMessage": "個人資料已成功更新。",
+        "okLabel": "確定"
     },
     "relationReportForm": {
-        "formTitle": "填写你的伴侣详情",
+        "formTitle": "填寫你的伴侶詳情",
         "fullName": "全名",
         "birthDate": "出生日期",
         "birthDateLabel": "出生日期：",
-        "countryOfBirth": "出生国家",
+        "countryOfBirth": "出生國家",
         "cityOfBirth": "出生城市",
-        "pleaseSelectOne": "请选择一个",
-        "selectCountry": "选择国家",
-        "selectCity": "选择城市",
-        "gender": "性别",
+        "pleaseSelectOne": "請選擇一個",
+        "selectCountry": "選擇國家",
+        "selectCity": "選擇城市",
+        "gender": "性別",
         "male": "男",
         "female": "女",
-        "continue": "继续",
-        "nameRequired": "姓名为必填项",
-        "nameMinLength": "姓名至少需要2个字符"
+        "continue": "繼續",
+        "nameRequired": "姓名為必填項",
+        "nameMinLength": "姓名至少需要2個字元"
     },
     "passwordSettingForm": {
-        "title": "密码设置",
-        "currentPassword": "当前密码",
-        "newPassword": "新密码",
-        "confirmPassword": "确认密码",
-        "password": "密码",
-        "passwordRequired": "密码为必填项",
-        "passwordMinLength": "密码至少需要6个字符",
-        "passwordsDoNotMatch": "密码不匹配",
-        "loading": "加载中...",
-        "changePassword": "更改密码",
-        "passwordChangedSuccessfully": "密码更改成功",
-        "failedToChangePassword": "更改密码失败"
+        "title": "密碼設定",
+        "currentPassword": "目前密碼",
+        "newPassword": "新密碼",
+        "confirmPassword": "確認密碼",
+        "password": "密碼",
+        "passwordRequired": "密碼為必填項",
+        "passwordMinLength": "密碼至少需要6個字元",
+        "passwordsDoNotMatch": "密碼不匹配",
+        "loading": "載入中...",
+        "changePassword": "變更密碼",
+        "passwordChangedSuccessfully": "密碼變更成功",
+        "failedToChangePassword": "變更密碼失敗"
     },
     "profilePage": {
         "guest": "訪客",
-        "mbtiTitle": "你的MBTI是什麼？",
+        "mbtiTitle": "你的 MBTI 是什麼？",
         "mbtiSubtitle": "快速測試發現你的類型！",
         "yourCoins": "我的代幣",
         "buyCoins": "購買代幣",
         "profileSectionTitle": "個人資料",
         "editProfile": "編輯資料",
-        "passwordSettings": "密碼設置",
+        "passwordSettings": "密碼設定",
         "purchaseHistory": "我的報告",
         "othersSectionTitle": "其他",
         "aboutUs": "關於我們",
-        "privacyPolicy": "隱私政策",
+        "privacyPolicy": "隱私權政策",
         "termsAndConditions": "條款與條件",
         "logout": "登出",
         "dangerZone": "危險區域",
@@ -420,114 +420,121 @@
         "cancel": "取消"
     },
     "mbtiProfile": {
-        "strengths": "优势",
-        "weaknesses": "劣势",
-        "relationships": "关系",
-        "career": "事业"
+        "strengths": "優勢",
+        "weaknesses": "劣勢",
+        "relationships": "關係",
+        "career": "事業"
     },
     "purchaseHistory": {
         "title": "我的報告",
         "usageTab": "我的報告",
-        "topupTab": "充值历史"
+        "topupTab": "儲值歷史"
     },
     "serviceLabel": {
-        "ask_any_question": "问 Affinity",
-        "personalized_love_forecast_12mth": "爱情预测",
-        "transit_report": "命运报告",
-        "relationship_compatibility": "关系匹配度",
-        "ask_secret_diary": "Genie 建议"
+        "ask_any_question": "問 Affinity",
+        "personalized_love_forecast_12mth": "愛情預測",
+        "transit_report": "命運報告",
+        "relationship_compatibility": "關係匹配度",
+        "ask_secret_diary": "Genie 建議"
     },
     "askAffinity": {
-        "title": "问 Affinity",
-        "subtitle": "不知道该做什么？Affinity 随时为您提供帮助——随便问吧。",
-        "howToAskTitle": "如何提问？",
-        "instructions": "1. 让心情平静\n2. 想想你要问的问题\n3. 输入你的问题\n4. 深呼吸后点击提问按钮",
-        "questionLabel": "输入你的问题",
-        "questionRequired": "问题为必填项",
-        "questionMinLength": "问题至少需要3個字符",
-        "purchaseButton": "购买，价格为 {{cost}}",
-        "somethingWentWrong": "出错了"
+        "title": "問 Affinity",
+        "subtitle": "不知道該做什麼？Affinity 隨時為您提供幫助——隨便問吧。",
+        "howToAskTitle": "如何提問？",
+        "instructions": "1. 讓心情平靜\n2. 想想你要問的問題\n3. 輸入你的問題\n4. 深呼吸後點擊提問按鈕",
+        "questionLabel": "輸入你的問題",
+        "questionRequired": "問題為必填項",
+        "questionMinLength": "問題至少需要3個字元",
+        "purchaseButton": "購買，價格為 {{cost}}",
+        "somethingWentWrong": "出錯了"
     },
     "echo": {
-        "title": "日记",
-        "subtitle": "一个安全表达思想和感受的空间。",
-        "recentDiaries": "最新日记条目",
-        "loading": "加载中...",
-        "noDiariesYet": "还没有日记条目",
-        "startDiaryDesc": "开始你的第一篇日记，表达你的思想和感受。你的旅程从这里开始！"
+        "title": "日記",
+        "subtitle": "一個安全表達思想和感受的空間。",
+        "recentDiaries": "最新日記條目",
+        "loading": "載入中...",
+        "noDiariesYet": "還沒有日記條目",
+        "startDiaryDesc": "開始你的第一篇日記，表達你的思想和感受。你的旅程從這裡開始！"
     },
     "echoDetail": {
-        "title": "日记",
-        "clickOn": "点击",
-        "toGetGenieAdvice": "以获得 Genie 建议",
-        "inputPlaceholder": "随便说点什么...",
-        "errorTitle": "错误",
-        "failedToConsult": "咨询失败，请重试。"
+        "title": "日記",
+        "clickOn": "點擊",
+        "toGetGenieAdvice": "以獲得 Genie 建議",
+        "inputPlaceholder": "隨便說點什麼...",
+        "errorTitle": "錯誤",
+        "failedToConsult": "諮詢失敗，請重試。"
     },
     "dailyProfileDetail": {
-        "todayScore": "今日评分",
-        "wealth": "财富",
-        "learning": "学习",
-        "relation": "关系",
-        "career": "事业"
+        "todayScore": "今日評分",
+        "wealth": "財富",
+        "learning": "學習",
+        "relation": "關係",
+        "career": "事業"
     },
     "profileDashboard": {
-        "loading": "正在加载您的每日资料...",
-        "serviceUnavailable": "该服务即将上线。",
-        "checkBackLater": "请稍后再来访问您的每日资料仪表盘。",
-        "failedToLoadUserData": "加载用户数据失败，请稍后再试。",
+        "loading": "正在載入您的每日資料...",
+        "serviceUnavailable": "該服務即將上線。",
+        "checkBackLater": "請稍後再來訪問您的每日資料儀表板。",
+        "failedToLoadUserData": "載入使用者資料失敗，請稍後再試。",
         "goodDay": "祝你有美好的一天",
-        "guest": "访客",
-        "todayScore": "今日评分"
+        "guest": "訪客",
+        "todayScore": "今日評分"
     },
     "topup": {
-        "paymentFailed": "支付失败",
+        "paymentFailed": "支付失敗",
         "success": "成功",
         "paymentComplete": "支付完成！",
-        "ok": "确定",
-        "error": "错误",
-        "genericError": "发生错误，请重试。",
-        "ourPackages": "我们的套餐",
-        "packagesDesc": "可用于购买报告和 Affinity AI",
-        "ourSubscriptions": "我们的订阅",
+        "ok": "確定",
+        "error": "錯誤",
+        "genericError": "發生錯誤，請重試。",
+        "ourPackages": "我們的方案",
+        "packagesDesc": "可用於購買報告和 Affinity AI",
+        "ourSubscriptions": "我們的訂閱",
         "subscriptionsDesc": "訂閱會在每個月自動續訂。",
-        "getCoins": "获得 {{count}} 代币",
-        "processing": "处理中...",
-        "continue": "继续",
-        "title": "充值",
-        "noHistoryFound": "未找到充值历史。",
-        "failedToLoadPackages": "加载套餐失败，请稍后再试。",
-        "failedToLoadSubscriptions": "加载订阅失败，请稍后再试。",
+        "getCoins": "獲得 {{count}} 代幣",
+        "processing": "處理中...",
+        "continue": "繼續",
+        "title": "儲值",
+        "noHistoryFound": "未找到儲值歷史。",
+        "failedToLoadPackages": "載入方案失敗，請稍後再試。",
+        "failedToLoadSubscriptions": "載入訂閱失敗，請稍後再試。",
         "activeSubscriptionTitle": "您的有效訂閱",
         "activeSubscriptionSubtitle": "您的訂閱目前有效，並會自動續訂。",
         "cancelSubscription": "取消訂閱",
         "subscriptionCancelled": "訂閱已取消",
         "manageSubscription": "管理訂閱",
         "manageSubscriptionDesc": "您可以在 App Store 或 Google Play Store 中管理您的訂閱。",
-        "openStore": "打開商店",
+        "openStore": "開啟商店",
         "cancel": "取消",
         "restorePurchases": "恢復購買",
         "restorePurchasesSuccess": "成功恢復購買\n您已購買 {{count}} 次",
         "noPurchasesFound": "未找到可恢復的購買記錄",
         "selectSubscription": "所選方案仍在商店審核中。",
-        "noReport": "報告目前無法使用。"
+        "noReport": "報告目前無法使用。",
+        "disclaimerTextIOS": "購買確認時將從您的 Apple ID 帳戶扣款。\n\n除非在當前週期結束前至少 24 小時取消訂閱，否則訂閱將自動續訂。\n\n您可以在 App Store 設置中管理訂閱。",
+        "disclaimerTextAndroid": "購買確認時將從您的 Google Play 帳戶扣款。\n\n除非在當前週期結束前至少 24 小時取消訂閱，否則訂閱將自動續訂。\n\n您可以在 Google Play Store 設置中管理訂閱。",
+        "perMonth": "/ 月",
+        "perYear": "/ 年",
+        "perMonths": "/ {{count}} 個月",
+        "privacyPolicy": "隱私權政策",
+        "termsOfUse": "使用條款 (EULA)"
     },
     "topupReceiptModal": {
-        "receipt": "收据",
-        "orderNumber": "订单号",
-        "datePurchased": "购买日期",
-        "orderItems": "订单项目",
-        "total": "总计：",
+        "receipt": "收據",
+        "orderNumber": "訂單號",
+        "datePurchased": "購買日期",
+        "orderItems": "訂單項目",
+        "total": "總計：",
         "paymentMethod": "支付方式",
-        "previousPoints": "之前积分",
-        "pointsAdded": "新增积分",
-        "totalPoints": "总积分",
-        "paymentNotCompleted": "您的支付尚未完成，可能仍在处理中，或您尚未完成支付。请稍后再查。",
-        "continuePayment": "继续支付"
+        "previousPoints": "之前積分",
+        "pointsAdded": "新增積分",
+        "totalPoints": "總積分",
+        "paymentNotCompleted": "您的支付尚未完成，可能仍在處理中，或您尚未完成支付。請稍後再查。",
+        "continuePayment": "繼續支付"
     },
     "session": {
-        "expiredTitle": "訪問已過期",
-        "expired": "会话已过期。请重新登录。"
+        "expiredTitle": "存取已過期",
+        "expired": "工作階段已過期。請重新登入。"
     },
     "profileDescription": {
         "you": "你",

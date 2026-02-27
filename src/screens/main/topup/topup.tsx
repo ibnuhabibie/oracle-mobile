@@ -1,12 +1,14 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
-import { View, Alert, Platform } from 'react-native';
+import { View, Alert, Platform, TouchableOpacity, StyleSheet, Linking } from 'react-native';
 import * as RNLocalize from "react-native-localize";
 import { useTranslation } from 'react-i18next';
 import Purchases from 'react-native-purchases';
 
+import { PRIVACY_POLICY_URL, TERMS_URL } from '@env';
 import Header from '../../../components/ui/header';
 import { AppButton } from '../../../components/ui/app-button';
+import { AppText } from '../../../components/ui/app-text';
 import ScreenContainer from '../../../components/layouts/screen-container';
 
 import api from '../../../utils/http';
@@ -156,6 +158,15 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
         }
     };
 
+    const handleContent = async (type: 'privacy' | 'terms') => {
+        const url = type === 'privacy' ? PRIVACY_POLICY_URL : TERMS_URL;
+        try {
+            await Linking.openURL(url);
+        } catch (err) {
+            console.error('Failed to open URL:', err);
+        }
+    };
+
     const handleRestorePurchases = async () => {
         try {
             setProcessing(true);
@@ -232,9 +243,48 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
             }
         >
             <RenderListOrActiveSubscription />
-            <View style={{ height: scaleSize(60, 60, 80) }}></View>
+            <View style={styles.disclaimerContainer}>
+                <AppText variant="caption2" color="neutral" style={styles.disclaimerText}>
+                    {Platform.OS === 'ios' ? t('topup.disclaimerTextIOS') : t('topup.disclaimerTextAndroid')}
+                </AppText>
+                <View style={styles.linksContainer}>
+                    <TouchableOpacity onPress={() => handleContent('privacy')}>
+                        <AppText variant="caption2" color="primary">
+                            {t('topup.privacyPolicy')}
+                        </AppText>
+                    </TouchableOpacity>
+                    <AppText variant="caption2" color="neutral">
+                        |
+                    </AppText>
+                    <TouchableOpacity onPress={() => handleContent('terms')}>
+                        <AppText variant="caption2" color="primary">
+                            {t('topup.termsOfUse')}
+                        </AppText>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            {/* <View style={{ height: scaleSize(60, 60, 80) }}></View> */}
         </ScreenContainer>
     );
 };
+
+const styles = StyleSheet.create({
+    disclaimerContainer: {
+        position: 'absolute',
+        bottom: Platform.OS === 'ios' ? scaleSize(140) : scaleSize(115),
+        left: 0,
+        right: 0,
+        paddingHorizontal: scaleSize(16),
+    },
+    disclaimerText: {
+        textAlign: 'center',
+        marginBottom: scaleSize(8),
+    },
+    linksContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: scaleSize(16),
+    },
+});
 
 export default Topup;

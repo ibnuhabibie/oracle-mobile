@@ -510,7 +510,14 @@
     "restorePurchasesSuccess": "購入の復元に成功しました。\n{{count}}回購入しました。",
     "noPurchasesFound": "復元する購入が見つかりません",
     "selectSubscription": "選択されたプランは現在、ストアによる審査中です。",
-    "noReport": "レポートは現在ご利用いただけません。"
+    "noReport": "レポートは現在ご利用いただけません。",
+        "disclaimerTextIOS": "購入確定時にApple IDアカウントに請求されます。\n\n現在の期間終了の24時間以上前にキャンセルしない限り、サブスクリプションは自動的に更新されます。\n\nApp Storeの設定でサブスクリプションを管理できます。",
+        "disclaimerTextAndroid": "購入確定時にGoogle Playアカウントに請求されます。\n\n現在の期間終了の24時間以上前にキャンセルしない限り、サブスクリプションは自動的に更新されます。\n\nGoogle Play Storeの設定でサブスクリプションを管理できます。",
+    "perMonth": "/ 月",
+    "perYear": "/ 年",
+    "perMonths": "/ {{count}} ヶ月",
+    "privacyPolicy": "プライバシーポリシー",
+        "termsOfUse": "利用規約 (EULA)"
   },
   "topupReceiptModal": {
     "receipt": "領収書",

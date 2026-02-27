@@ -510,7 +510,14 @@
         "restorePurchasesSuccess": "成功恢复购买\n您已购买 {{count}} 次",
         "noPurchasesFound": "未找到可恢复的购买记录",
         "selectSubscription": "所选套餐仍在商店审核中。",
-        "noReport": "报告目前不可用。"
+        "noReport": "报告目前不可用。",
+        "disclaimerTextIOS": "购买确认时将从您的 Apple ID 账户扣款。\n\n除非在当前周期结束前至少 24 小时取消订阅，否则订阅将自动续订。\n\n您可以在 App Store 设置中管理订阅。",
+        "disclaimerTextAndroid": "购买确认时将从您的 Google Play 账户扣款。\n\n除非在当前周期结束前至少 24 小时取消订阅，否则订阅将自动续订。\n\n您可以在 Google Play Store 设置中管理订阅。",
+        "perMonth": "/ 月",
+        "perYear": "/ 年",
+        "perMonths": "/ {{count}} 个月",
+        "privacyPolicy": "隐私政策",
+        "termsOfUse": "使用条款 (EULA)"
     },
     "topupReceiptModal": {
         "receipt": "收据",

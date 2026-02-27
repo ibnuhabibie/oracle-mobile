@@ -114,9 +114,25 @@ export const SubscriptionCard: React.FC<SubscriptionCardProps> = ({ subscription
           {description}
         </AppText>
       </View>
-      <AppText variant="subtitle1" color="primary" style={styles.cardPrice}>
-        {price}
-      </AppText>
+      <View style={{ flexDirection: 'column', alignItems: 'flex-end' }}>
+        <AppText variant="subtitle1" color="primary" style={styles.cardPrice}>
+          {price}
+        </AppText>
+        <AppText variant="caption2" color="neutral">
+          {
+            (() => {
+              switch (subscription.duration_months) {
+                case 1:
+                  return t('topup.perMonth');
+                case 12:
+                  return t('topup.perYear');
+                default:
+                  return t('topup.perMonths', { count: subscription.duration_months });
+              }
+            })()
+          }
+        </AppText>
+      </View>
     </Pressable>
   );
 };
