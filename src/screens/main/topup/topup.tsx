@@ -5,7 +5,7 @@ import * as RNLocalize from "react-native-localize";
 import { useTranslation } from 'react-i18next';
 import Purchases from 'react-native-purchases';
 
-import { PRIVACY_POLICY_URL, TERMS_URL } from '@env';
+import { PRIVACY_POLICY_URL, TERMS_URL, APP_URL } from '@env';
 import Header from '../../../components/ui/header';
 import { AppButton } from '../../../components/ui/app-button';
 import { AppText } from '../../../components/ui/app-text';
@@ -159,11 +159,36 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
     };
 
     const handleContent = async (type: 'privacy' | 'terms') => {
-        const url = type === 'privacy' ? PRIVACY_POLICY_URL : TERMS_URL;
-        try {
-            await Linking.openURL(url);
-        } catch (err) {
-            console.error('Failed to open URL:', err);
+        // For iOS, open URL directly
+        // For Android, navigate to WebviewContent like in profile page
+        if (Platform.OS === 'ios') {
+            const url = type === 'privacy' ? PRIVACY_POLICY_URL : TERMS_URL;
+            try {
+                await Linking.openURL(url);
+            } catch (err) {
+                console.error('Failed to open URL:', err);
+            }
+        } else {
+            // Android: navigate to WebviewContent
+            const content = type === 'privacy' ? 'privacy-policy' : 'terms-conditions';
+            const title = type === 'privacy'
+                ? t('topup.privacyPolicy')
+                : t('topup.termsOfUse', { eulaSuffix: '' });
+
+            const token = await getUserProfile();
+            let authToken = null;
+            if (token && typeof token === 'object' && 'auth_token' in token) {
+                authToken = token.auth_token;
+            }
+
+            // Get language using getLocales() instead of getLanguage()
+            const locales = RNLocalize.getLocales();
+            const language = locales[0]?.languageCode || 'en';
+
+            navigation.navigate('WebviewContent', {
+                uri: `${APP_URL}/content/${content}?v=${Date.now()}&token=${authToken}&locale=${language}`,
+                title,
+            });
         }
     };
 
@@ -258,7 +283,7 @@ const Topup: FC<TopupProps> = ({ navigation }) => {
                     </AppText>
                     <TouchableOpacity onPress={() => handleContent('terms')}>
                         <AppText variant="caption2" color="primary">
-                            {t('topup.termsOfUse')}
+                            {t('topup.termsOfUse', { eulaSuffix: Platform.OS === 'ios' ? ' (EULA)' : '' })}
                         </AppText>
                     </TouchableOpacity>
                 </View>

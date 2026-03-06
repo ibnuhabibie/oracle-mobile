@@ -517,7 +517,7 @@
         "perYear": "/ 年",
         "perMonths": "/ {{count}} 个月",
         "privacyPolicy": "隐私政策",
-        "termsOfUse": "使用条款 (EULA)"
+        "termsOfUse": "使用条款{{eulaSuffix}}"
     },
     "topupReceiptModal": {
         "receipt": "收据",

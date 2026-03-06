@@ -517,7 +517,7 @@
         "perYear": "/ tahun",
         "perMonths": "/ {{count}} bulan",
         "privacyPolicy": "Kebijakan Privasi",
-        "termsOfUse": "Syarat & Ketentuan (EULA)"
+        "termsOfUse": "Syarat & Ketentuan{{eulaSuffix}}"
     },
     "topupReceiptModal": {
         "receipt": "Struk",

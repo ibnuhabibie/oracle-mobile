@@ -517,7 +517,7 @@
         "perYear": "/ year",
         "perMonths": "/ {{count}} months",
         "privacyPolicy": "Privacy Policy",
-        "termsOfUse": "Terms of Use (EULA)"
+        "termsOfUse": "Terms of Use{{eulaSuffix}}"
     },
     "topupReceiptModal": {
         "receipt": "Receipt",
