@@ -18,6 +18,7 @@ interface AppInputProps<TFieldValues extends FieldValues> {
     label?: string;
     inputStyle?: ViewStyle | TextStyle | (ViewStyle | TextStyle)[]; // For internal TextField styling
     errors: FieldErrors<TFieldValues>; // Pass the whole errors object to read specific errors
+    containerStyle?: ViewStyle; // Style for the container of the whole input component
 }
 
 // Re-export Text and TextField, assuming they are in the same directory, or import them directly.
@@ -34,6 +35,7 @@ function AppInput<TFieldValues extends FieldValues>({
     rightIcon,
     label,
     inputStyle,
+    containerStyle,
     errors, // Receive the errors object
     ...restProps // Capture any other props you might want to pass to TextField
 }: AppInputProps<TFieldValues>) {
@@ -41,7 +43,7 @@ function AppInput<TFieldValues extends FieldValues>({
     const fieldError = errors[name];
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, containerStyle]}>
             {label && <AppText style={styles.label}>{label}</AppText>}
             <Controller
                 control={control}

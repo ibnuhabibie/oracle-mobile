@@ -144,7 +144,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             />
             <View style={styles.infoCard}>
               <AppText color="primary">{t('askAffinity.howToAskTitle')}</AppText>
-              <AppText style={styles.infoCardText} variant="caption3" color="white">
+              <AppText style={styles.infoCardText} variant="caption1" color="white">
                 {t('askAffinity.instructions')}
               </AppText>
             </View>
@@ -160,6 +160,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
               rules={formRules.question}
               placeholder=""
               errors={errors}
+              containerStyle={{ marginBottom: scaleSize(6) }}
             />
             {
               apiError ?
@@ -208,13 +209,6 @@ const styles = StyleSheet.create({
   keyboardAvoidingView: {
     flex: 1,
   },
-  formContainer: {
-    padding: scaleSize(12),
-    paddingTop: scaleSize(8),
-    backgroundColor: '#121010',
-    borderTopLeftRadius: scaleSize(20),
-    borderTopRightRadius: scaleSize(20),
-  },
   title: {
     textAlign: 'center',
     letterSpacing: scaleSize(5),
@@ -237,9 +231,16 @@ const styles = StyleSheet.create({
   infoCardText: {
     lineHeight: scaleSize(24),
   },
+  formContainer: {
+    padding: scaleSize(12),
+    paddingTop: scaleSize(8),
+    backgroundColor: '#121010',
+    borderTopLeftRadius: scaleSize(20),
+    borderTopRightRadius: scaleSize(20),
+  },
   formTitle: {
     textAlign: 'center',
-    marginTop: scaleSize(14),
+    marginBottom: scaleSize(4),
   },
   apiErrorText: {
     color: 'red',
@@ -255,7 +256,8 @@ const styles = StyleSheet.create({
   },
   carouselStyle: {
     width: '100%',
-    marginBottom: scaleSize(20),
+    // marginBottom: scaleSize(20),
+    // backgroundColor: 'red'
   },
   carouselImage: {
     width: '100%',

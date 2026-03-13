@@ -60,8 +60,8 @@ const MBTIProfile: React.FC<MbtiProfileComponentProps> = ({ profile: initialProf
                                 })()}
                             </View>
                             <View style={styles.cardHeaderText}>
-                                <AppText variant='title3' color="neutral">{profile?.name}</AppText>
-                                <AppText variant='body1' color="neutral">{profile?.description}</AppText>
+                                <AppText variant='title3' color="primary">{profile?.name}</AppText>
+                                <AppText variant='caption1' color="neutral">{profile?.description}</AppText>
                             </View>
                         </View>
                     </View>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     iconPlaceholder: {
-        width: scaleSize(48, 40, 78),
+        width: scaleSize(54, 40, 84),
         height: scaleSize(54, 40, 84),
         borderRadius: scaleSize(6, 6, 8),
         backgroundColor: COLORS.primary,

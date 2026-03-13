@@ -163,8 +163,8 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
                                                 {card.icon}
                                             </ShinyContainer>
                                         </View>
-                                        <AppText style={styles.cardLabel} variant='body1' color='white'>{card.title}</AppText>
-                                        <AppText color='primary' variant='caption2'>{card.subtitle}</AppText>
+                                        <AppText style={styles.cardLabel} variant='body1' color='primary'>{card.title}</AppText>
+                                        <AppText color='white' variant='caption2'>{card.subtitle}</AppText>
                                     </View>
                                 ))
                             }

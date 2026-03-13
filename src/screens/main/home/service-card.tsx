@@ -75,10 +75,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ data, navigation, navigationD
           }
         </ShinyContainer>
         <View style={styles.textContainer}>
-          <AppText variant='largeTitle1' style={styles.cardTitle} color='white'>
+          <AppText variant='largeTitle1' style={styles.cardTitle} color='primary'>
             {title}
           </AppText>
-          <AppText variant='title3' style={styles.cardSubtitle} color='primary'>
+          <AppText variant='title3' style={styles.cardSubtitle} color='white'>
             {subtitle}
           </AppText>
         </View>

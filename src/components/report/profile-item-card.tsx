@@ -69,9 +69,7 @@ const styles = StyleSheet.create({
     },
     sectionDescription: {
         textAlign: 'center',
-        lineHeight: scaleSize(16, 16, 22),
         marginBottom: scaleSize(8, 8, 12),
-        fontSize: scaleFont(12, 10, 16),
     },
 });
 
