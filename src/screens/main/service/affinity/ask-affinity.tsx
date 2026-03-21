@@ -1,28 +1,25 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useEffect, useState } from 'react';
-import { Dimensions, Image, StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
+import React, { FC, useState } from 'react';
+import { Dimensions, Image, StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import Carousel from 'react-native-reanimated-carousel';
 import { useSharedValue } from 'react-native-reanimated';
 
-import { MainNavigatorParamList } from '../../../../navigators/types';
 import { AppText } from '../../../../components/ui/app-text';
 import AppInput from '../../../../components/ui/app-input';
 import { AppButton } from '../../../../components/ui/app-button';
+import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
 import CoinIcon from '../../../../components/icons/profile/coin-icon';
-import { COLORS } from '../../../../constants/colors';
 import ScreenContainer from '../../../../components/layouts/screen-container';
+
+import { scaleSize } from '../../../../utils/scale';
 import api from '../../../../utils/http';
 import { useServiceCost } from '../../../../hooks/use-service-cost';
-import PurchaseAlertModal from '../../../../components/ui/purchase-alert-modal';
-import { rgbaColor } from 'react-native-reanimated/lib/typescript/Colors';
-import { scaleSize } from '../../../../utils/scale';
 
-type AskAffinityProps = NativeStackScreenProps<
-  MainNavigatorParamList,
-  'AskAffinity'
->;
+import type { MainNavigatorParamList } from '../../../../navigators/types';
+
+type AskAffinityProps = NativeStackScreenProps<MainNavigatorParamList, 'AskAffinity'>;
 
 const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
   const { t } = useTranslation();
@@ -100,13 +97,16 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
     }
   };
 
+  const carouselOffset = Platform.OS === 'ios' && Platform.isPad
+    ? 380
+    : 220;
 
 
   return (
     <ScreenContainer fluid={true} scrollable={false}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 42 : 0}
+        behavior={'padding'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? scaleSize(42) : scaleSize(32)}
         style={styles.keyboardAvoidingView}
       >
         <View style={{ flex: 1 }}>
@@ -129,7 +129,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
               mode="parallax"
               modeConfig={{
                 parallaxScrollingScale: scaleSize(0.85, 0.85, 0.85),
-                parallaxScrollingOffset: scaleSize(220), // Fixed value instead of scaled
+                parallaxScrollingOffset: scaleSize(carouselOffset), // Fixed value instead of scaled
               }}
               onProgressChange={progress}
               renderItem={
@@ -144,7 +144,7 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
             />
             <View style={styles.infoCard}>
               <AppText color="primary">{t('askAffinity.howToAskTitle')}</AppText>
-              <AppText style={styles.infoCardText} variant="caption3" color="white">
+              <AppText style={styles.infoCardText} variant="caption1" color="white">
                 {t('askAffinity.instructions')}
               </AppText>
             </View>
@@ -160,10 +160,16 @@ const AskAffinity: FC<AskAffinityProps> = ({ navigation }) => {
               rules={formRules.question}
               placeholder=""
               errors={errors}
+              containerStyle={{ marginBottom: scaleSize(6) }}
             />
-            {apiError ? (
-              <AppText style={styles.apiErrorText}>{apiError}</AppText>
-            ) : null}
+            {
+              apiError ?
+                (
+                  <AppText style={styles.apiErrorText}>{apiError}</AppText>
+                )
+                :
+                null
+            }
             <AppButton
               title={
                 <View style={styles.purchaseButtonContent}>
@@ -203,13 +209,6 @@ const styles = StyleSheet.create({
   keyboardAvoidingView: {
     flex: 1,
   },
-  formContainer: {
-    padding: scaleSize(12),
-    paddingTop: scaleSize(8),
-    backgroundColor: '#121010',
-    borderTopLeftRadius: scaleSize(20),
-    borderTopRightRadius: scaleSize(20),
-  },
   title: {
     textAlign: 'center',
     letterSpacing: scaleSize(5),
@@ -232,9 +231,16 @@ const styles = StyleSheet.create({
   infoCardText: {
     lineHeight: scaleSize(24),
   },
+  formContainer: {
+    padding: scaleSize(12),
+    paddingTop: scaleSize(8),
+    backgroundColor: '#121010',
+    borderTopLeftRadius: scaleSize(20),
+    borderTopRightRadius: scaleSize(20),
+  },
   formTitle: {
     textAlign: 'center',
-    marginTop: scaleSize(14),
+    marginBottom: scaleSize(4),
   },
   apiErrorText: {
     color: 'red',
@@ -250,7 +256,8 @@ const styles = StyleSheet.create({
   },
   carouselStyle: {
     width: '100%',
-    marginBottom: scaleSize(20),
+    // marginBottom: scaleSize(20),
+    // backgroundColor: 'red'
   },
   carouselImage: {
     width: '100%',

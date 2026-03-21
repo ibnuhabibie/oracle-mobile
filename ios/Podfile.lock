@@ -70,6 +70,8 @@ PODS:
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
   - PromisesObjC (2.4.0)
+  - PurchasesHybridCommon (17.31.0):
+    - RevenueCat (= 5.57.0)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1844,6 +1846,34 @@ PODS:
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
     - SocketRocket
+  - react-native-blob-util (0.24.6):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
   - react-native-safe-area-context (5.6.2):
     - boost
     - DoubleConversion
@@ -1931,7 +1961,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-video (6.17.0):
+  - react-native-video (6.19.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -1949,7 +1979,7 @@ PODS:
     - React-graphics
     - React-ImageManager
     - React-jsi
-    - react-native-video/Video (= 6.17.0)
+    - react-native-video/Video (= 6.19.0)
     - React-NativeModulesApple
     - React-RCTFabric
     - React-renderercss
@@ -1960,7 +1990,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-video/Fabric (6.17.0):
+  - react-native-video/Fabric (6.19.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -1988,7 +2018,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-video/Video (6.17.0):
+  - react-native-video/Video (6.19.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2584,6 +2614,7 @@ PODS:
     - React-perflogger (= 0.82.1)
     - React-utils (= 0.82.1)
     - SocketRocket
+  - RevenueCat (5.57.0)
   - RNCAsyncStorage (2.2.0):
     - boost
     - DoubleConversion
@@ -2640,7 +2671,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - RNDateTimePicker (8.5.1):
+  - RNDateTimePicker (8.6.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2680,7 +2711,7 @@ PODS:
     - RNFBApp
   - RNFS (2.20.0):
     - React-Core
-  - RNGestureHandler (2.29.0):
+  - RNGestureHandler (2.30.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2709,7 +2740,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - RNLocalize (3.6.0):
+  - RNLocalize (3.6.1):
     - boost
     - DoubleConversion
     - fast_float
@@ -2742,7 +2773,10 @@ PODS:
     - RNNotifee/NotifeeCore (= 9.1.8)
   - RNNotifee/NotifeeCore (9.1.8):
     - React-Core
-  - RNReanimated (4.1.3):
+  - RNPurchases (9.7.6):
+    - PurchasesHybridCommon (= 17.31.0)
+    - React-Core
+  - RNReanimated (4.2.1):
     - boost
     - DoubleConversion
     - fast_float
@@ -2769,11 +2803,11 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 4.1.3)
+    - RNReanimated/reanimated (= 4.2.1)
     - RNWorklets
     - SocketRocket
     - Yoga
-  - RNReanimated/reanimated (4.1.3):
+  - RNReanimated/reanimated (4.2.1):
     - boost
     - DoubleConversion
     - fast_float
@@ -2800,11 +2834,11 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated/apple (= 4.1.3)
+    - RNReanimated/reanimated/apple (= 4.2.1)
     - RNWorklets
     - SocketRocket
     - Yoga
-  - RNReanimated/reanimated/apple (4.1.3):
+  - RNReanimated/reanimated/apple (4.2.1):
     - boost
     - DoubleConversion
     - fast_float
@@ -2834,7 +2868,7 @@ PODS:
     - RNWorklets
     - SocketRocket
     - Yoga
-  - RNScreens (4.18.0):
+  - RNScreens (4.23.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2861,10 +2895,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNScreens/common (= 4.18.0)
+    - RNScreens/common (= 4.23.0)
     - SocketRocket
     - Yoga
-  - RNScreens/common (4.18.0):
+  - RNScreens/common (4.23.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2893,7 +2927,37 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - RNSVG (15.14.0):
+  - RNSentry (8.1.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Sentry (= 9.4.1)
+    - SocketRocket
+    - Yoga
+  - RNSVG (15.15.2):
     - boost
     - DoubleConversion
     - fast_float
@@ -2919,10 +2983,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNSVG/common (= 15.14.0)
+    - RNSVG/common (= 15.15.2)
     - SocketRocket
     - Yoga
-  - RNSVG/common (15.14.0):
+  - RNSVG/common (15.15.2):
     - boost
     - DoubleConversion
     - fast_float
@@ -2978,7 +3042,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - RNWorklets (0.6.1):
+  - RNWorklets (0.7.2):
     - boost
     - DoubleConversion
     - fast_float
@@ -3005,10 +3069,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNWorklets/worklets (= 0.6.1)
+    - RNWorklets/worklets (= 0.7.2)
     - SocketRocket
     - Yoga
-  - RNWorklets/worklets (0.6.1):
+  - RNWorklets/worklets (0.7.2):
     - boost
     - DoubleConversion
     - fast_float
@@ -3035,10 +3099,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNWorklets/worklets/apple (= 0.6.1)
+    - RNWorklets/worklets/apple (= 0.7.2)
     - SocketRocket
     - Yoga
-  - RNWorklets/worklets/apple (0.6.1):
+  - RNWorklets/worklets/apple (0.7.2):
     - boost
     - DoubleConversion
     - fast_float
@@ -3067,106 +3131,12 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - Sentry (9.4.1):
+    - Sentry/Core (= 9.4.1)
+  - Sentry/Core (9.4.1)
   - SocketRocket (0.7.1)
   - SRSRadialGradient (1.2.1):
     - React
-  - Stripe (24.24.4):
-    - StripeApplePay (= 24.24.4)
-    - StripeCore (= 24.24.4)
-    - StripePayments (= 24.24.4)
-    - StripePaymentsUI (= 24.24.4)
-    - StripeUICore (= 24.24.4)
-  - stripe-react-native (0.55.1):
-    - boost
-    - DoubleConversion
-    - fast_float
-    - fmt
-    - glog
-    - hermes-engine
-    - RCT-Folly
-    - RCT-Folly/Fabric
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-jsi
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - SocketRocket
-    - Stripe (~> 24.24.0)
-    - stripe-react-native/NewArch (= 0.55.1)
-    - StripeApplePay (~> 24.24.0)
-    - StripeFinancialConnections (~> 24.24.0)
-    - StripePayments (~> 24.24.0)
-    - StripePaymentSheet (~> 24.24.0)
-    - StripePaymentsUI (~> 24.24.0)
-    - Yoga
-  - stripe-react-native/NewArch (0.55.1):
-    - boost
-    - DoubleConversion
-    - fast_float
-    - fmt
-    - glog
-    - hermes-engine
-    - RCT-Folly
-    - RCT-Folly/Fabric
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-jsi
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - SocketRocket
-    - Stripe (~> 24.24.0)
-    - StripeApplePay (~> 24.24.0)
-    - StripeFinancialConnections (~> 24.24.0)
-    - StripePayments (~> 24.24.0)
-    - StripePaymentSheet (~> 24.24.0)
-    - StripePaymentsUI (~> 24.24.0)
-    - Yoga
-  - StripeApplePay (24.24.4):
-    - StripeCore (= 24.24.4)
-  - StripeCore (24.24.4)
-  - StripeFinancialConnections (24.24.4):
-    - StripeCore (= 24.24.4)
-    - StripeUICore (= 24.24.4)
-  - StripePayments (24.24.4):
-    - StripeCore (= 24.24.4)
-    - StripePayments/Stripe3DS2 (= 24.24.4)
-  - StripePayments/Stripe3DS2 (24.24.4):
-    - StripeCore (= 24.24.4)
-  - StripePaymentSheet (24.24.4):
-    - StripeApplePay (= 24.24.4)
-    - StripeCore (= 24.24.4)
-    - StripePayments (= 24.24.4)
-    - StripePaymentsUI (= 24.24.4)
-  - StripePaymentsUI (24.24.4):
-    - StripeCore (= 24.24.4)
-    - StripePayments (= 24.24.4)
-    - StripeUICore (= 24.24.4)
-  - StripeUICore (24.24.4):
-    - StripeCore (= 24.24.4)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -3212,6 +3182,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
+  - react-native-blob-util (from `../node_modules/react-native-blob-util`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -3257,14 +3228,15 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - "RNNotifee (from `../node_modules/@notifee/react-native`)"
+  - RNPurchases (from `../node_modules/react-native-purchases`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNWorklets (from `../node_modules/react-native-worklets`)
   - SocketRocket (~> 0.7.1)
   - SRSRadialGradient (from `../node_modules/react-native-radial-gradient`)
-  - "stripe-react-native (from `../node_modules/@stripe/stripe-react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -3279,15 +3251,10 @@ SPEC REPOS:
     - GoogleUtilities
     - nanopb
     - PromisesObjC
+    - PurchasesHybridCommon
+    - RevenueCat
+    - Sentry
     - SocketRocket
-    - Stripe
-    - StripeApplePay
-    - StripeCore
-    - StripeFinancialConnections
-    - StripePayments
-    - StripePaymentSheet
-    - StripePaymentsUI
-    - StripeUICore
 
 EXTERNAL SOURCES:
   boost:
@@ -3373,6 +3340,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   React-microtasksnativemodule:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
+  react-native-blob-util:
+    :path: "../node_modules/react-native-blob-util"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-video:
@@ -3463,10 +3432,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-localize"
   RNNotifee:
     :path: "../node_modules/@notifee/react-native"
+  RNPurchases:
+    :path: "../node_modules/react-native-purchases"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
@@ -3475,8 +3448,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-worklets"
   SRSRadialGradient:
     :path: "../node_modules/react-native-radial-gradient"
-  stripe-react-native:
-    :path: "../node_modules/@stripe/stripe-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -3499,6 +3470,7 @@ SPEC CHECKSUMS:
   hermes-engine: 273e30e7fb618279934b0b95ffab60ecedb7acf5
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  PurchasesHybridCommon: 21a11c5d66c8a52cf9aede45cecc2efe1551b98b
   RCT-Folly: 59ec0ac1f2f39672a0c6e6cecdd39383b764646f
   RCTDeprecation: f17e2ebc07876ca9ab8eb6e4b0a4e4647497ae3a
   RCTRequired: e2c574c1b45231f7efb0834936bd609d75072b63
@@ -3532,8 +3504,9 @@ SPEC CHECKSUMS:
   React-logger: fceaaedb9c715923a1900af68a7534e9b3a601a1
   React-Mapbuffer: 60a42c90f1db2c852d5e06577f3d3d5d3233d45b
   React-microtasksnativemodule: 044e6549d565f0a5f23b01cf3ed745541cb980e0
+  react-native-blob-util: 47e1f9921e259861309aaf402a61226829fb4de5
   react-native-safe-area-context: fea29ae0275beaa22f72d0a8be1eb0ab09c3feae
-  react-native-video: 201e71d168053580319a4741e1ef44380cdcb06f
+  react-native-video: d7c758820331cdbccbc4388d7533680ab2a44320
   react-native-webview: 5887b6094417c75a9bee446261f89c32adf6b602
   React-NativeModulesApple: a4af348fce12730a7bc424559e8207b35e6ac046
   React-oscompat: 95875e81f5d4b3c7b2c888d5bd2c9d83450d8bdb
@@ -3567,34 +3540,29 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: cc2795efe30a023c3a505676b9c748b664b9c0a1
   ReactCodegen: c0e5f7e3efd6ea0918e2032a7ebfe61c3a780b6a
   ReactCommon: 6087cb6198592a8dc52a37c0f3761644fead5c88
+  RevenueCat: 2d8aa56c68fa8e92c0d669e5e797c4a93e284f20
   RNCAsyncStorage: 8857fb173af29664cb90897903902dc8533e36cc
   RNCClipboard: 4eea71d801c880175c12f6ab14332ca86fed935f
-  RNDateTimePicker: 43859bb5aac34ab762639751fd6d9e46e87aee5e
+  RNDateTimePicker: 239dc0c70f94e440d815763d3bace9c4ea73ae27
   RNDeviceInfo: 8b6fa8379062949dd79a009cf3d6b02a9c03ca59
   RNFBApp: 2c88b4fc4bcecf25ff9077abde08f4b1cbaff4c6
   RNFBMessaging: 67ede2b8c07a00902f24dd5819b2c75901a75669
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
-  RNGestureHandler: 51688624c0a40b052755cd9b53b079368bc616d6
-  RNLocalize: 66262eaaebf5b07bb236e40b788f6705555100c9
+  RNGestureHandler: 31d3156498c22e0aa71ff546731580512a7aef81
+  RNLocalize: 1f585c9f1c4ede63f44b1618d2b3ec711cd49983
   RNNotifee: 4a6ee5c7deaf00e005050052d73ee6315dff7ec9
-  RNReanimated: c001acbdd8aac49995f6cc3da704d0cc9d70df7a
-  RNScreens: de996b48c82245c0b68c677da3334c2061e2a951
-  RNSVG: c9eb879f90cc3cd5f81d987f39eae35f3b108618
+  RNPurchases: 7c5b4d653dcfec1ad700d04db6ceee235d822038
+  RNReanimated: 750484717cd4ec103523bab26e173798ea72a4cd
+  RNScreens: 32d204189c8c164da3aef640b6d1d8721c25a86f
+  RNSentry: ce663110be66a09768cd019d0c383c45f4fb275d
+  RNSVG: de85ddb16c081a218616e037f1f641b2afc84624
   RNVectorIcons: 96c832d9134dfee90ce0be7a1e0bf4c1e41a8d11
-  RNWorklets: daa0a3e7946a9c4042f3a962c87a12dc5bc0badd
+  RNWorklets: 9d423f16ed98eeaa4526f325b95ed0fe0226bf49
+  Sentry: 990a381d8592207a52e7be654b31a27738c3a6a8
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SRSRadialGradient: db3a6ea7d867854c9f4c3b0c5b3167332a65f8d8
-  Stripe: 376c3c637adc25fe2c766f9a5e133f43f71343ba
-  stripe-react-native: 40832e990a4493e094245fa0ed3d5c9419f74292
-  StripeApplePay: 49f323f7156b584af5d60120cffb5df4e6553439
-  StripeCore: 66da672b7afadfeed89c3d0d44fbbcfce533c955
-  StripeFinancialConnections: 552dde09eef8a67efb8429bc67c975fbb76f477f
-  StripePayments: 4bd8a8307e174592f6428b3797fe465a78856d28
-  StripePaymentSheet: 286ec3ccdc29c5e42af7afb8018078998b32e041
-  StripePaymentsUI: 7ba68d8867d2ff4f8fa51a096e8d7831e23aafff
-  StripeUICore: b9a93a422dd1f3c5d4e791a5cd0dc09808f3699f
   Yoga: 526f25666395d30c297d53154398ffd249eaf9e1
 
-PODFILE CHECKSUM: 2432594ca3e178db31fd572ab98b97a338a7c876
+PODFILE CHECKSUM: 28277bc415a32b780bb0184ad3b71544ae180ac5
 
 COCOAPODS: 1.16.2

@@ -1,17 +1,15 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, InteractionManager, ActivityIndicator } from 'react-native';
-import { AppText } from '../../../../components/ui/app-text';
-import ScreenContainer from '../../../../components/layouts/screen-container';
-import Header from '../../../../components/ui/header';
+import { View,InteractionManager, ActivityIndicator } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MainNavigatorParamList } from '../../../../navigators/types';
-import ProfileItemCard from '../../../../features/profile/report/profile-item-card';
-import ProfileDescriptionCard from '../../../../features/profile/profile-description-card';
-import ProfileCard from '../../../../features/profile/report/profile-card';
-import { COLORS } from '../../../../constants/colors';
+
+import { AppText } from '../../../../components/ui/app-text';
+import Header from '../../../../components/ui/header';
 import { AppButton } from '../../../../components/ui/app-button';
-import { downloadPdf } from '../../../../utils/http';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+import ProfileCard from '../../../../components/report/profile-card';
+import ProfileItemCard from '../../../../components/report/profile-item-card';
+import ProfileDescriptionCard from '../../../../components/report/profile-description-card';
 
 import RelationReportIcon11 from '../../../../components/icons/services/relation-report/relation-report-icon-11';
 import RelationReportIcon12 from '../../../../components/icons/services/relation-report/relation-report-icon-12';
@@ -24,6 +22,11 @@ import RelationReportIcon18 from '../../../../components/icons/services/relation
 import RelationReportIcon19 from '../../../../components/icons/services/relation-report/relation-report-icon-19';
 import RelationReportIcon20 from '../../../../components/icons/services/relation-report/relation-report-icon-20';
 import RelationReportIcon21 from '../../../../components/icons/services/relation-report/relation-report-icon-21';
+
+import { COLORS } from '../../../../constants/colors';
+import { downloadPdf } from '../../../../utils/http';
+
+import type { MainNavigatorParamList } from '../../../../navigators/types';
 
 const iconImages = [
     '',
@@ -42,6 +45,49 @@ const iconImages = [
 
 type RelationReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'RelationReportResult'>;
 
+// Transform love_profile to UserProfile shape
+function loveProfileToUserProfile(love_profile: any) {
+    if (!love_profile) return {};
+    const [country, city] = (love_profile.birth_location || '').split(',').map((s: string) => s.trim());
+    return {
+        full_name: love_profile.name,
+        birth_date: love_profile.birth_date ? new Date(love_profile.birth_date) : undefined,
+        birth_time: undefined,
+        birth_country: country,
+        birth_city: city,
+        gender: love_profile.gender,
+    };
+}
+
+const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
+    if (!content) return null;
+    return (
+        <>
+            {content.map((item, idx) => (
+                <ProfileItemCard
+                    key={idx}
+                    data={{
+                        title: item.title,
+                        description: Array.isArray(item.content) ? (
+                            item.content.map((_content: any) => (
+                                <ProfileDescriptionCard data={_content} />
+                            ))
+                        ) : item.content,
+                        isDark: idx == 0,
+                        icon: idx == 0 ? (
+                            <AppText variant="display1" color="white" style={{ fontWeight: 'bold' }}>{item.score}</AppText>
+                        ) : (
+                            iconImages[item.order - 1]
+                                ? React.createElement(iconImages[item.order - 1], { size: 65 })
+                                : null
+                        ),
+                    }}
+                />
+            ))}
+        </>
+    );
+});
+
 const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation, route }) => {
     const { result, love_profile, job_id } = route.params;
     const { t } = useTranslation();
@@ -53,60 +99,15 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
         return () => interaction && interaction.cancel && interaction.cancel();
     }, []);
 
-    // Transform love_profile to UserProfile shape
-    function loveProfileToUserProfile(love_profile: any) {
-        if (!love_profile) return {};
-        const [country, city] = (love_profile.birth_location || '').split(',').map((s: string) => s.trim());
-        return {
-            full_name: love_profile.name,
-            birth_date: love_profile.birth_date ? new Date(love_profile.birth_date) : undefined,
-            birth_time: undefined,
-            birth_country: country,
-            birth_city: city,
-            gender: love_profile.gender,
-        };
-    }
-
     console.log(love_profile, 'love_profile')
-
-    const CardList: FC<{ content: any[] }> = ({ content }) => {
-        if (!content) return null;
-        return (
-            <>
-                {content.map((item, idx) => (
-                    <ProfileItemCard
-                        key={idx}
-                        data={{
-                            title: item.title,
-                            description: Array.isArray(item.content) ? (
-                                item.content.map((_content: any) => (
-                                    <ProfileDescriptionCard data={_content} />
-                                ))
-                            ) : item.content,
-                            isDark: idx == 0,
-                            icon: idx == 0 ? (
-                                <AppText variant="display1" color="white" style={{ fontWeight: 'bold' }}>{item.score}</AppText>
-                            ) : (
-                                iconImages[item.order - 1]
-                                    ? React.createElement(iconImages[item.order - 1], { size: 65 })
-                                    : null
-                            ),
-                        }}
-                    />
-                ))}
-            </>
-        );
-    };
 
     const handleDownload = async () => {
         setLoading(true);
-        setTimeout(async () => {
-            try {
-                await downloadPdf(job_id, t, true);
-            } finally {
-                setLoading(false);
-            }
-        }, 0);
+        try {
+            await downloadPdf(job_id, t, true);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

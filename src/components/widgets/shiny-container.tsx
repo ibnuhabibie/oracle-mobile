@@ -19,7 +19,18 @@ const ShinyContainer: React.FC<{
         zIndex: 1,
       }}
     >
-      <ShinyCircle size={size} />
+      {/* <ShinyCircle size={size} /> */}
+      <Image
+        source={require('../../assets/images/shiny-circle.png')}
+        style={{
+          width: size,
+          height: size,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+        }}
+        resizeMode="contain"
+      />
     </View>
     <View
       style={{

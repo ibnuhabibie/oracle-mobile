@@ -5,16 +5,16 @@ import {
     View,
     Image
 } from 'react-native';
-import { scaleSize } from '../../../../utils/scale';
-
-import { MainNavigatorParamList } from '../../../../navigators/types';
-import ScreenContainer from '../../../../components/layouts/screen-container';
-import { fontFamilies } from '../../../../constants/fonts';
-import { AppText } from '../../../../components/ui/app-text';
-import { COLORS } from '../../../../constants/colors';
-import ShinyContainer from '../../../../components/widgets/shiny-container';
 import { useTranslation } from 'react-i18next';
+
+import { AppText } from '../../../../components/ui/app-text';
 import Header from '../../../../components/ui/header';
+import ScreenContainer from '../../../../components/layouts/screen-container';
+
+import { scaleSize } from '../../../../utils/scale';
+import { COLORS } from '../../../../constants/colors';
+
+import type { MainNavigatorParamList } from '../../../../navigators/types';
 
 type AffinityResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AffinityResults'>;
 
@@ -127,16 +127,21 @@ const AffinityResults: FC<AffinityResultsProps> = ({ navigation, route }) => {
                 <AppText variant='subtitle1' color='primary' style={styles.resultTitle}>
                     {sectionLabel}
                 </AppText>
-                {card.card_name ? (
-                    <Image
-                        source={getTarotImage(card.card)}
-                        style={[
-                            styles.tarotImage,
-                            card.orientation === 'reversed' ? styles.reversedImage : null
-                        ]}
-                        resizeMode="contain"
-                    />
-                ) : null}
+                {
+                    card.card_name ?
+                        (
+                            <Image
+                                source={getTarotImage(card.card)}
+                                style={[
+                                    styles.tarotImage,
+                                    card.orientation === 'reversed' ? styles.reversedImage : null
+                                ]}
+                                resizeMode="contain"
+                            />
+                        )
+                        :
+                        null
+                }
                 <AppText variant='subtitle1' color='primary' style={styles.resultTitle}>
                     {card.card_name} {card.orientation ? `(${card.orientation})` : ''}
                 </AppText>

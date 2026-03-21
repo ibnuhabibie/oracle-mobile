@@ -260,6 +260,7 @@
         "remainingPoints": "剩余积分",
         "seeResults": "查看结果",
         "processing": "报告仍在处理中，请稍后再查。",
+        "noData": "该服务无详细信息",
         "serviceType": {
             "ask_any_question": "问 Affinity",
             "personalized_love_forecast_12mth": "爱情预测",
@@ -281,10 +282,14 @@
     },
     "fortuneReportResult": {
         "header": "命运报告 {{year}}",
-        "downloadPdf": "下载 PDF"
+        "downloadPdf": "下载 PDF",
+        "downloadComplete": "下载完成",
+        "savedTo": "已保存到 {{path}}",
+        "downloadingPdf": "正在下载 PDF",
+        "couldNotOpenFolder": "我们无法自动打开文件夹。请在下载文件夹中手动查找。\n\n文件名：{{fileName}}"
     },
     "polling": {
-        "message": "请稍候...",
+        "message": "付款已完成，请稍候...",
         "info": "大约需要几分钟。您可以关闭此窗口，准备好后我们会通知您。",
         "closeBtn": "关闭"
     },
@@ -298,6 +303,11 @@
         "downloadPdf": "下载 PDF",
         "downloadSuccess": "PDF 下载成功！",
         "downloadedTo": "文件已下载至：{{path}}",
+        "downloadPermissionTitle": "存储权限",
+        "downloadPermissionMessage": "应用需要访问您的存储以下载 PDF。",
+        "downloadPermissionDenied": "权限被拒绝",
+        "downloadPermissionError": "权限错误",
+        "downloadFailed": "下载失败",
         "you": "你",
         "yourLoveInterest": "你的伴侣"
     },
@@ -385,19 +395,29 @@
     },
     "profilePage": {
         "guest": "访客",
-        "mbtiTitle": "你的 MBTI 是什么？",
-        "mbtiSubtitle": "快速测试，发现你的类型！",
-        "yourCoins": "你的代币",
+        "mbtiTitle": "你的MBTI是什么？",
+        "mbtiSubtitle": "快速测试发现你的类型！",
+        "yourCoins": "我的代币",
         "buyCoins": "购买代币",
         "profileSectionTitle": "个人资料",
-        "editProfile": "编辑个人资料",
+        "editProfile": "编辑资料",
         "passwordSettings": "密码设置",
         "purchaseHistory": "我的报告",
         "othersSectionTitle": "其他",
         "aboutUs": "关于我们",
         "privacyPolicy": "隐私政策",
         "termsAndConditions": "条款与条件",
-        "logout": "退出登录"
+        "logout": "退出登录",
+        "dangerZone": "危险区域",
+        "dangerZoneSubtitle": "对您账户不可逆转的操作",
+        "deleteAccount": "删除账户",
+        "deleteAccountConfirm": "确定要删除您的账户吗？此操作无法撤销。",
+        "deleteAccountSuccess": "账户删除成功",
+        "hasActiveSubscription": "您有有效订阅。删除账户前请先取消订阅。",
+        "deleteFailed": "删除账户失败，请重试。",
+        "deleting": "删除中...",
+        "delete": "删除",
+        "cancel": "取消"
     },
     "mbtiProfile": {
         "strengths": "优势",
@@ -481,7 +501,23 @@
         "activeSubscriptionTitle": "您的有效订阅",
         "activeSubscriptionSubtitle": "您的订阅当前处于有效状态，并会自动续订。",
         "cancelSubscription": "取消订阅",
-        "subscriptionCancelled": "订阅已取消"
+        "subscriptionCancelled": "订阅已取消",
+        "manageSubscription": "管理订阅",
+        "manageSubscriptionDesc": "您可以在 App Store 或 Google Play Store 中管理您的订阅。",
+        "openStore": "打开商店",
+        "cancel": "取消",
+        "restorePurchases": "恢复购买",
+        "restorePurchasesSuccess": "成功恢复购买\n您已购买 {{count}} 次",
+        "noPurchasesFound": "未找到可恢复的购买记录",
+        "selectSubscription": "所选套餐仍在商店审核中。",
+        "noReport": "报告目前不可用。",
+        "disclaimerTextIOS": "购买确认时将从您的 Apple ID 账户扣款。\n\n除非在当前周期结束前至少 24 小时取消订阅，否则订阅将自动续订。\n\n您可以在 App Store 设置中管理订阅。",
+        "disclaimerTextAndroid": "购买确认时将从您的 Google Play 账户扣款。\n\n除非在当前周期结束前至少 24 小时取消订阅，否则订阅将自动续订。\n\n您可以在 Google Play Store 设置中管理订阅。",
+        "perMonth": "/ 月",
+        "perYear": "/ 年",
+        "perMonths": "/ {{count}} 个月",
+        "privacyPolicy": "隐私政策",
+        "termsOfUse": "使用条款{{eulaSuffix}}"
     },
     "topupReceiptModal": {
         "receipt": "收据",

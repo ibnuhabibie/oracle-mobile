@@ -260,6 +260,7 @@
     "remainingPoints": "残りポイント",
     "seeResults": "結果を見る",
     "processing": "レポートはまだ処理中です。後でもう一度ご確認ください。",
+    "noData": "このトランザクションの詳細は利用できません",
     "serviceType": {
       "ask_any_question": "アフィニティに質問",
       "personalized_love_forecast_12mth": "恋愛予報",
@@ -281,10 +282,14 @@
   },
   "fortuneReportResult": {
     "header": "運勢レポート{{year}}",
-    "downloadPdf": "PDFとしてダウンロード"
+    "downloadPdf": "PDFとしてダウンロード",
+    "downloadComplete": "ダウンロード完了",
+    "savedTo": "{{path}}に保存されました",
+    "downloadingPdf": "PDFをダウンロード中",
+    "couldNotOpenFolder": "フォルダを自動的に開けませんでした。ダウンロードフォルダで手動で探してください。\n\nファイル名：{{fileName}}"
   },
   "polling": {
-    "message": "お待ちください...",
+    "message": "支払い完了しました。お待ちください...",
     "info": "数分かかります。ウィンドウを閉じても大丈夫です。準備ができたらお知らせします。",
     "closeBtn": "閉じる"
   },
@@ -298,6 +303,11 @@
     "downloadPdf": "PDFとしてダウンロード",
     "downloadSuccess": "PDFが正常にダウンロードされました！",
     "downloadedTo": "ファイルがダウンロードされました：{{path}}",
+    "downloadPermissionTitle": "ストレージ権限",
+    "downloadPermissionMessage": "PDFをダウンロードするためにストレージへのアクセスが必要です。",
+    "downloadPermissionDenied": "権限が拒否されました",
+    "downloadPermissionError": "権限エラー",
+    "downloadFailed": "ダウンロードに失敗しました",
     "you": "あなた",
     "yourLoveInterest": "お相手"
   },
@@ -397,7 +407,17 @@
     "aboutUs": "私たちについて",
     "privacyPolicy": "プライバシーポリシー",
     "termsAndConditions": "利用規約",
-    "logout": "ログアウト"
+    "logout": "ログアウト",
+    "dangerZone": "危険ゾーン",
+    "dangerZoneSubtitle": "アカウントに関する取り消せない操作",
+    "deleteAccount": "アカウント削除",
+    "deleteAccountConfirm": "アカウントを削除してもよろしいですか？この操作は取り消せません。",
+    "deleteAccountSuccess": "アカウントが正常に削除されました",
+    "hasActiveSubscription": "有効なサブスクリプションがあります。アカウントを削除する前に、サブスクリプションをキャンセルしてください。",
+    "deleteFailed": "アカウントの削除に失敗しました。もう一度お試しください。",
+    "deleting": "削除中...",
+    "delete": "削除",
+    "cancel": "キャンセル"
   },
   "mbtiProfile": {
     "strengths": "強み",
@@ -481,7 +501,23 @@
     "activeSubscriptionTitle": "有効なサブスクリプション",
     "activeSubscriptionSubtitle": "ご利用中のサブスクリプションは有効で、自動的に更新されます。",
     "cancelSubscription": "サブスクリプションを解約",
-    "subscriptionCancelled": "サブスクリプションがキャンセルされました"
+    "subscriptionCancelled": "サブスクリプションがキャンセルされました",
+    "manageSubscription": "サブスクリプションを管理",
+    "manageSubscriptionDesc": "App StoreまたはGoogle Play Storeでサブスクリプションを管理できます。",
+    "openStore": "ストアを開く",
+    "cancel": "キャンセル",
+    "restorePurchases": "購入を復元",
+    "restorePurchasesSuccess": "購入の復元に成功しました。\n{{count}}回購入しました。",
+    "noPurchasesFound": "復元する購入が見つかりません",
+    "selectSubscription": "選択されたプランは現在、ストアによる審査中です。",
+    "noReport": "レポートは現在ご利用いただけません。",
+    "disclaimerTextIOS": "購入確定時にApple IDアカウントに請求されます。\n\n現在の期間終了の24時間以上前にキャンセルしない限り、サブスクリプションは自動的に更新されます。\n\nApp Storeの設定でサブスクリプションを管理できます。",
+    "disclaimerTextAndroid": "購入確定時にGoogle Playアカウントに請求されます。\n\n現在の期間終了の24時間以上前にキャンセルしない限り、サブスクリプションは自動的に更新されます。\n\nGoogle Play Storeの設定でサブスクリプションを管理できます。",
+    "perMonth": "/ 月",
+    "perYear": "/ 年",
+    "perMonths": "/ {{count}} ヶ月",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfUse": "利用規約{{eulaSuffix}}"
   },
   "topupReceiptModal": {
     "receipt": "領収書",

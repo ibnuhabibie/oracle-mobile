@@ -1,6 +1,5 @@
-
-// Async storage hooks for managing auth token and user profile
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import api from '../utils/http';
 
 const STORAGE_KEYS = {

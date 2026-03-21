@@ -1,50 +1,60 @@
-import { createBottomTabNavigator, BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import HomeIcon from '../components/icons/home-icon';
 import ProfileIcon from '../components/icons/profile/profile-icon';
 import EchoIcon from '../components/icons/echo/echo-icon';
+import AskAffinityIcon from '../components/icons/ask-affinity/ask-affinity-icon';
 
+// Auth
 import Onboarding from '../screens/auth/onboarding';
 import LanguageSelection from '../screens/auth/language-selection';
 import MbtiQuiz from '../screens/auth/mbti-quiz';
 import Welcome from '../screens/auth/welcome';
-import OtpSuccess from '../screens/auth/otp-success';
-import OtpVerification from '../screens/auth/otp-verification';
-import SignIn from '../screens/auth/signin';
-import SignUp from '../screens/auth/signup';
+import OtpSuccess from '../screens/auth/otp/otp-success';
+import OtpVerification from '../screens/auth/otp/otp-verification';
+import SignIn from '../screens/auth/signin/signin';
+import SignUp from '../screens/auth/signup/signup';
 
-import Home from '../screens/main/home';
-import AstrologyResults from '../screens/main/profile/astrology-results';
-import BaziResults from '../screens/main/profile/bazi-results';
-import EditProfile from '../screens/main/profile/edit-profile';
-import MbtiResults from '../screens/main/profile/mbti-results';
-import PasswordSetting from '../screens/main/profile/password-setting';
-import Profile from '../screens/main/profile/profile';
-import PurchaseHistory from '../screens/main/history/purchase-history';
+// Home
+import Home from '../screens/main/home/home';
 import DailyProfileDetail from '../screens/main/profile/daily-profile-detail';
 
-import ComponentGallery from '../screens/dev/component-gallery';
-import AskAffinityIcon from '../components/icons/ask-affinity/ask-affinity-icon';
+// Profile
+import Profile from '../screens/main/profile/profile/profile';
+import AstrologyResults from '../screens/main/profile/astrology-results';
+import BaziResults from '../screens/main/profile/bazi-results';
+import MbtiResults from '../screens/main/profile/mbti/mbti-results';
+import EditProfile from '../screens/main/profile/profile/edit-profile';
+import PasswordSetting from '../screens/main/profile/password-setting';
+import Topup from '../screens/main/topup/topup';
+import PurchaseHistory from '../screens/main/history/purchase-history';
 import WebviewContent from '../screens/main/webview-content';
+
+// Service
 import AskAffinity from '../screens/main/service/affinity/ask-affinity';
 import AffinityResults from '../screens/main/service/affinity/affinity-results';
 import Echo from '../screens/main/service/echo/echo';
 import EchoDetail from '../screens/main/service/echo/echo-detail';
-import LoveForecast from '../screens/main/service/love-forecast/love-forecast';
-import RelationReport from '../screens/main/service/relation-report/relation-report';
-import FortuneReport from '../screens/main/service/fortune-report/fortune-report';
-import Topup from '../screens/main/topup';
+
+// Report
+import LoveForecast from '../screens/main/service/love-forecast/love-report';
 import LoveReportResult from '../screens/main/service/love-forecast/love-report-result';
+import FortuneReport from '../screens/main/service/fortune-report/fortune-report';
 import FortuneReportResult from '../screens/main/service/fortune-report/fortune-report-result';
+import RelationReport from '../screens/main/service/relation-report/relation-report';
 import RelationReportResult from '../screens/main/service/relation-report/relation-report-result';
+
+import ComponentGallery from '../screens/dev/component-gallery';
+
 import { COLORS } from '../constants/colors';
 import StarMeteorBackground from '../components/star-meteor-background';
+
 import type { MainNavigatorParamList } from './types';
 
 import { scaleFont, scaleSize } from '../utils/scale';
-import { useTranslation } from 'react-i18next';
 
 const Tab = createBottomTabNavigator<MainNavigatorParamList>();
 const Stack = createNativeStackNavigator<MainNavigatorParamList>();

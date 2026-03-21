@@ -1,14 +1,13 @@
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC, useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Pressable, StyleSheet, View, Alert } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
-import { scaleFont, scaleSize } from '../../utils/scale';
 import CalendarIcon from '../../components/icons/auth/calendar-icon';
 import ClockIcon from '../../components/icons/auth/clock-icon';
-
 import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
 import TextField from '../../components/ui/text-field';
@@ -16,14 +15,14 @@ import {
   DropdownButton,
   renderDropdownModal,
 } from '../../components/widgets/dropdown';
-import { fontFamilies } from '../../constants/fonts';
-import { formatDate, formatTime } from '../../utils/formatter';
-import { MainNavigatorParamList } from '../../navigators/types';
-import api from '../../utils/http';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppText } from '../../components/ui/app-text';
+
+import { scaleFont, scaleSize } from '../../utils/scale';
+import { formatTime } from '../../utils/formatter';
+import api from '../../utils/http';
+
+import { MainNavigatorParamList } from '../../navigators/types';
 import { COLORS } from '../../constants/colors';
-import { useTranslation } from 'react-i18next';
 
 interface Country {
   id: number;
@@ -258,34 +257,12 @@ const Onboarding: FC<{
         loading={loading}
       />
 
-      {/* Date Picker */}
-      {/* {showDatePicker && (
-        <DateTimePicker
-          value={watchedDate}
-          mode="date"
-          display="default"
-          onChange={onDateChange}
-          maximumDate={new Date()}
-          style={{ backgroundColor: COLORS.red }}
-        />
-      )} */}
-
       <DateTimePickerModal
         isVisible={showDatePicker}
         mode="date"
         onConfirm={onDateChange}
         onCancel={() => setShowDatePicker(false)}
       />
-
-      {/* Time Picker */}
-      {/* {showTimePicker && (
-        <DateTimePicker
-          value={watchedTime}
-          mode="time"
-          display="default"
-          onChange={onTimeChange}
-        />
-      )} */}
 
       <DateTimePickerModal
         isVisible={showTimePicker}
@@ -329,12 +306,12 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: scaleSize(8),
-    fontSize: scaleFont(22), // assuming title3
+    fontSize: scaleFont(22),
   },
   subtitle: {
     textAlign: 'center',
     marginBottom: scaleSize(32),
-    fontSize: scaleFont(12), // assuming caption1
+    fontSize: scaleFont(12),
   },
   formContainer: {
     width: '100%',
@@ -352,7 +329,7 @@ const styles = StyleSheet.create({
   helpText: {
     color: COLORS['light-gray'],
     marginTop: scaleSize(8),
-    fontSize: scaleFont(10), // assuming caption4/tiny
+    fontSize: scaleFont(10),
   },
   saveButton: {
     width: '100%',

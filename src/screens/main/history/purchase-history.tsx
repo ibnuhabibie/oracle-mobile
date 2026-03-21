@@ -1,25 +1,28 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useState, useCallback, useMemo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { AppText } from '../../../components/ui/app-text';
-
-import ScreenContainer from '../../../components/layouts/screen-container';
-import Header from '../../../components/ui/header';
 import { useTranslation } from 'react-i18next';
-import { MainNavigatorParamList } from '../../../navigators/types';
-import TopupHistoryList from '../../../features/history/topup-history-list';
-import UsageHistoryList from '../../../features/history/usage-history-list';
-import TopupReceiptModal from '../../../features/history/topup-receipt-modal';
-import UsageReceiptModal from '../../../features/history/usage-receipt-modal';
+import { useFocusEffect } from '@react-navigation/native';
+
+import { AppText } from '../../../components/ui/app-text';
+import Header from '../../../components/ui/header';
+import ScreenContainer from '../../../components/layouts/screen-container';
+import TopupHistoryList from './topup-history-list';
+import UsageHistoryList from './usage-history-list';
+import TopupReceiptModal from './topup-receipt-modal';
+import UsageReceiptModal from './usage-receipt-modal';
+
 import { COLORS } from '../../../constants/colors';
 import { scaleFont, scaleSize } from '../../../utils/scale';
-import { useFocusEffect } from '@react-navigation/native';
+
+import type { MainNavigatorParamList } from '../../../navigators/types';
+import type { PurchaseHistoryTab } from './types';
 
 type PurchaseHistoryProps = NativeStackScreenProps<MainNavigatorParamList, 'PurchaseHistory'>;
 
 const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<'history' | 'topup'>('history');
+  const [activeTab, setActiveTab] = useState<PurchaseHistoryTab>('history');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
 
@@ -32,7 +35,8 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
     }, [])
   );
 
-  const handleShowReceipt = (item: any) => {
+  // Memoize handlers to prevent unnecessary re-renders
+  const handleShowReceipt = useCallback((item: any) => {
     console.log(item)
     try {
       setModalVisible(true);
@@ -40,12 +44,18 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
     } catch (e) {
       console.log(e, 'asdasd')
     }
-  };
+  }, []);
 
-  const handleShowUsageReceipt = (item: any) => {
-    setUsageSelectedItem(item);
+  const handleShowUsageReceipt = useCallback((item: any) => {
     setUsageModalVisible(true);
-  };
+    requestAnimationFrame(() => {
+      setUsageSelectedItem(item);
+    });
+  }, []);
+
+  // Memoize modal close handlers
+  const handleCloseModal = useCallback(() => setModalVisible(false), []);
+  const handleCloseUsageModal = useCallback(() => setUsageModalVisible(false), []);
 
   return (
     <>
@@ -98,19 +108,18 @@ const PurchaseHistory: FC<PurchaseHistoryProps> = ({ navigation }) => {
               <TopupHistoryList onItemPress={handleShowReceipt} />
             )
         }
-
-        <TopupReceiptModal
-          visible={modalVisible}
-          onClose={() => setModalVisible(false)}
-          item={selectedItem}
-        />
-
-        <UsageReceiptModal
-          visible={usageModalVisible}
-          onClose={() => setUsageModalVisible(false)}
-          item={usageSelectedItem}
-        />
       </ScreenContainer>
+      <TopupReceiptModal
+        visible={modalVisible}
+        onClose={handleCloseModal}
+        item={selectedItem}
+      />
+
+      <UsageReceiptModal
+        visible={usageModalVisible}
+        onClose={handleCloseUsageModal}
+        item={usageSelectedItem}
+      />
     </>
   );
 };

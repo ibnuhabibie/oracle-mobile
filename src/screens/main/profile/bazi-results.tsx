@@ -5,22 +5,26 @@ import {
   InteractionManager,
   ActivityIndicator
 } from 'react-native';
-import { AppText } from '../../../components/ui/app-text';
-import { scaleFont, scaleSize } from '../../../utils/scale';
 import { useTranslation } from 'react-i18next';
 
-import ScreenContainer from '../../../components/layouts/screen-container';
+import { AppText } from '../../../components/ui/app-text';
 import Header from '../../../components/ui/header';
-import { MainNavigatorParamList } from '../../../navigators/types';
-import ProfileCard from '../../../features/profile/report/profile-card';
-import ProfileItemCard from '../../../features/profile/report/profile-item-card';
-import { iconMap, ProfileIcon } from './useAffinityProfile';
+import ScreenContainer from '../../../components/layouts/screen-container';
+import ProfileCard from '../../../components/report/profile-card';
+import ProfileItemCard from '../../../components/report/profile-item-card';
+
 import BaziResultIcon1 from '../../../components/icons/bazi-result/bazi-result-icon-1';
 import BaziResultIcon2 from '../../../components/icons/bazi-result/bazi-result-icon-2';
 import BaziResultIcon3 from '../../../components/icons/bazi-result/bazi-result-icon-3';
 import BaziResultIcon4 from '../../../components/icons/bazi-result/bazi-result-icon-4';
 import BaziResultIcon5 from '../../../components/icons/bazi-result/bazi-result-icon-5';
+
+import { ProfileIcon } from '../../../hooks/use-affinity-profile';
+
 import { COLORS } from '../../../constants/colors';
+import { scaleSize } from '../../../utils/scale';
+
+import type { MainNavigatorParamList } from '../../../navigators/types';
 
 type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'BaziResults'>;
 
@@ -95,14 +99,19 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
         />
       }
     >
-      {ready ? (
-        <>
-          <ProfileCard iconKey={profile?.day_master?.icon} cardTitle={t('profileCard.you')} />
-          <BaziCardList profile={profile} iconImages={iconImages} />
-        </>
-      ) : (
-        <ActivityIndicator size="large" style={{ margin: scaleSize(32) }} color={COLORS.primary} />
-      )}
+      {
+        ready ?
+          (
+            <>
+              <ProfileCard iconKey={profile?.day_master?.icon} cardTitle={t('profileCard.you')} />
+              <BaziCardList profile={profile} iconImages={iconImages} />
+            </>
+          )
+          :
+          (
+            <ActivityIndicator size="large" style={{ margin: scaleSize(32) }} color={COLORS.primary} />
+          )
+      }
     </ScreenContainer>
   );
 };

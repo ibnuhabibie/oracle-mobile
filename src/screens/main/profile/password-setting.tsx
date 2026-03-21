@@ -1,31 +1,24 @@
 import React, { FC, useState } from 'react';
 import {
   View,
-  TextInput,
-  Button,
-  Text,
   StyleSheet,
-  TouchableOpacity,
-  Pressable,
   Alert,
 } from 'react-native';
-import { scaleFont, scaleSize } from '../../../utils/scale';
-
+import { scaleSize } from '../../../utils/scale';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MainNavigatorParamList } from '../../../navigators/types';
-import ArrowIcon from '../../../components/icons/arrow-icon';
-import ScreenContainer from '../../../components/layouts/screen-container';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import Header from '../../../components/ui/header';
 import PasswordToggle from '../../../components/ui/password-toggle';
 import AppInput from '../../../components/ui/app-input';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 import { AppText } from '../../../components/ui/app-text';
-import api from '../../../utils/http';
 import { AppButton } from '../../../components/ui/app-button';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { fontFamilies } from '../../../constants/fonts';
-import { COLORS } from '../../../constants/colors';
+import ScreenContainer from '../../../components/layouts/screen-container';
+
+import api from '../../../utils/http';
+import type { MainNavigatorParamList } from '../../../navigators/types';
 
 type PasswordSettingProps = NativeStackScreenProps<MainNavigatorParamList, 'PasswordSetting'>;
 

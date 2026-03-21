@@ -2,18 +2,16 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Image,
   InteractionManager,
   ActivityIndicator,
 } from 'react-native';
-import { AppText } from '../../../components/ui/app-text';
-import { scaleFont, scaleSize } from '../../../utils/scale';
 
-import ScreenContainer from '../../../components/layouts/screen-container';
+import { AppText } from '../../../components/ui/app-text';
 import Header from '../../../components/ui/header';
-import { MainNavigatorParamList } from '../../../navigators/types';
-import ProfileCard from '../../../features/profile/report/profile-card';
-import ProfileItemCard from '../../../features/profile/report/profile-item-card';
+import ScreenContainer from '../../../components/layouts/screen-container';
+import ProfileCard from '../../../components/report/profile-card';
+import ProfileItemCard from '../../../components/report/profile-item-card';
+
 import Ascendant from '../../../components/icons/planet/ascendant';
 import Chiron from '../../../components/icons/planet/chiron';
 import Jupiter from '../../../components/icons/planet/jupiter';
@@ -27,7 +25,10 @@ import Saturn from '../../../components/icons/planet/saturn';
 import Sun from '../../../components/icons/planet/sun';
 import Uranus from '../../../components/icons/planet/uranus';
 import Venus from '../../../components/icons/planet/venus';
+
 import { COLORS } from '../../../constants/colors';
+import { scaleSize } from '../../../utils/scale';
+import type { MainNavigatorParamList } from '../../../navigators/types';
 
 type AstrologyResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
 
@@ -118,14 +119,18 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
         />
       }
     >
-      {ready ? (
-        <>
-          <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle={t('profileCard.you')} />
-          <AstrologyCardList profile={profile} />
-        </>
-      ) : (
-        <ActivityIndicator size="large" style={{ margin: scaleSize(32) }} color={COLORS.primary} />
-      )}
+      {
+        ready ?
+          (
+            <>
+              <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle={t('profileCard.you')} />
+              <AstrologyCardList profile={profile} />
+            </>
+          ) :
+          (
+            <ActivityIndicator size="large" style={{ margin: scaleSize(32) }} color={COLORS.primary} />
+          )
+      }
     </ScreenContainer>
   );
 };

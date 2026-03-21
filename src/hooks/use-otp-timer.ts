@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 export function useOtpTimer(durationInSeconds: number = 60) {
     const [timeLeft, setTimeLeft] = useState(durationInSeconds);
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const timerRef = useRef<number | null>(null);
 
     const start = () => {
         setTimeLeft(durationInSeconds);

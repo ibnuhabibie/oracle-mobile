@@ -23,6 +23,7 @@ react {
     //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
     //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
     // debuggableVariants = ["liteDebug", "prodDebug"]
+    debuggableVariants = []
 
     /* Bundling */
     //   A list containing the node command and its flags. Default is just 'node'.
@@ -53,6 +54,7 @@ react {
 
     /* Autolinking */
     autolinkLibrariesWithApp()
+
 }
 
 /**
@@ -73,6 +75,7 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+apply from: new File(["node", "--print", "require.resolve('@sentry/react-native/package.json')"].execute().text.trim(), "../sentry.gradle")
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -83,7 +86,7 @@ android {
         applicationId "com.theaffinity.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 11
         versionName "1.0"
 
         // ndk {
@@ -128,6 +131,15 @@ android {
             universalApk true // Do NOT create the fat universal APK
         }
     }
+
+    packagingOptions {
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/x86_64/libjsc.so'
+        pickFirst 'lib/arm64-v8a/libjsc.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+    }
 }
 
 dependencies {
@@ -141,3 +153,7 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+project.ext.react = [
+    bundleInDebug: true, // Add this line
+]

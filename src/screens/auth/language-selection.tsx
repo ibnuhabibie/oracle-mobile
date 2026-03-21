@@ -3,17 +3,19 @@ import React, { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, View } from 'react-native';
 import * as RNLocalize from "react-native-localize";
-import { scaleFont, scaleSize } from '../../utils/scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 import ScreenContainer from '../../components/layouts/screen-container';
 import { AppButton } from '../../components/ui/app-button';
-import { MainNavigatorParamList } from '../../navigators/types';
-import i18n from '../../locales/i18n';
-import { LANGUAGES } from '../../constants/app';
 import { AppText } from '../../components/ui/app-text';
 import SelectableItem from '../../components/ui/selectable-item';
-import { useTranslation } from 'react-i18next';
+
+import { MainNavigatorParamList } from '../../navigators/types';
+
+import { LANGUAGES } from '../../constants/app';
+import i18n from '../../locales/i18n';
+import { scaleFont, scaleSize } from '../../utils/scale';
 
 type LanguageSelectionProps = NativeStackScreenProps<MainNavigatorParamList, 'LanguageSelection'>;
 
@@ -29,7 +31,6 @@ const getDeviceLanguage = () => {
 const LanguageSelection: FC<LanguageSelectionProps> = ({ navigation }) => {
   // Use device language for initial selection
   const deviceLangCode = getDeviceLanguage();
-  console.log(deviceLangCode, 'deviceLangCode')
   const deviceLang = LANGUAGES.find(l => l.key === deviceLangCode) ? deviceLangCode : 'en';
 
   const { control, handleSubmit, setValue } = useForm({
