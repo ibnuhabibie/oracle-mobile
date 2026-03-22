@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1060211516953",
-    "project_id": "affinity-6ad69",
-    "storage_bucket": "affinity-6ad69.firebasestorage.app"
+    "project_number": "130179734774",
+    "project_id": "the-affinity-app",
+    "storage_bucket": "the-affinity-app.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1060211516953:android:451e4ae9e5c4b76c8eec88",
+        "mobilesdk_app_id": "1:130179734774:android:3030b489c25b7fca7de0d7",
         "android_client_info": {
-          "package_name": "com.theaffinity.app"
+          "package_name": "com.lifewithaffinity.app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD-Y5iJ10s53XjiDwxePz57gUGihLXZqok"
+          "current_key": "AIzaSyAyUyVLUVo1bZsZhWhyDclAkYBWLIgP-II"
         }
       ],
       "services": {

@@ -34,7 +34,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>The Affinity uses the camera to allow users to upload photos and scan content when needed.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UIAppFonts</key>

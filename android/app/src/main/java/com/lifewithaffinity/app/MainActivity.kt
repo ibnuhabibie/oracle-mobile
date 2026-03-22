@@ -1,4 +1,4 @@
-package com.theaffinity.app
+package com.lifewithaffinity.app
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
