@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAACpI70A3_layk0uzXJguucko1JLiTiHM</string>
+	<string>AIzaSyDKM6m-X4KPEp-LMIja_xU3o-cWkGcfGZA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1060211516953</string>
+	<string>130179734774</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.theaffinity.app</string>
+	<string>com.lifewithaffinity.app</string>
 	<key>PROJECT_ID</key>
-	<string>affinity-6ad69</string>
+	<string>the-affinity-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>affinity-6ad69.firebasestorage.app</string>
+	<string>the-affinity-app.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1060211516953:ios:25a4a947b4d5086e8eec88</string>
+	<string>1:130179734774:ios:43d397480e5c21e57de0d7</string>
 </dict>
 </plist>

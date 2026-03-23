@@ -421,6 +421,7 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
           title={isDeleting ? t('profilePage.deleting') : t('profilePage.deleteAccount')}
           onPress={handleDeleteAccount}
           disabled={isDeleting}
+          size='small'
         />
       </View>
       <Pressable style={styles.logoutButton} onPress={handleLogout}>
