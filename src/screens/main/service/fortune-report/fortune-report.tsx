@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
     View,
     StyleSheet,
-    ActivityIndicator,
-    InteractionManager,
     Alert,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -34,7 +32,6 @@ type FortuneReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Fortun
 
 const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
-    const [iconsReady, setIconsReady] = useState(false);
     const {
         cost,
         loading: costLoading,
@@ -49,13 +46,6 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
         showPolling,
         setShowPolling,
     } = useRevenueCat();
-
-    useEffect(() => {
-        const interaction = InteractionManager.runAfterInteractions(() => {
-            setIconsReady(true);
-        });
-        return () => interaction && interaction.cancel && interaction.cancel();
-    }, []);
 
     useEffect(() => {
         const init = async () => {
@@ -151,31 +141,22 @@ const FortuneReport: React.FC<FortuneReportProps> = ({ navigation }) => {
             </AppText>
             <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('fortuneReport.sectionTitle')}</AppText>
 
-            {
-                iconsReady ?
-                    (
-                        <View style={styles.grid}>
-                            {
-                                CARD_DATA.map((card, idx) => (
-                                    <View key={idx} style={styles.card}>
-                                        <View style={styles.cardIconWrapper}>
-                                            <ShinyContainer size={shinySize}>
-                                                {card.icon}
-                                            </ShinyContainer>
-                                        </View>
-                                        <AppText style={styles.cardLabel} variant='body1' color='primary'>{card.title}</AppText>
-                                        <AppText color='white' variant='caption2'>{card.subtitle}</AppText>
-                                    </View>
-                                ))
-                            }
+            <View style={styles.grid}>
+                {
+                    CARD_DATA.map((card, idx) => (
+                        <View key={idx} style={styles.card}>
+                            <View style={styles.cardIconWrapper}>
+                                <ShinyContainer size={shinySize}>
+                                    {card.icon}
+                                </ShinyContainer>
+                            </View>
+                            <AppText style={styles.cardLabel} variant='body1' color='primary'>{card.title}</AppText>
+                            <AppText color='white' variant='caption2'>{card.subtitle}</AppText>
                         </View>
-                    ) :
-                    (
-                        <View style={styles.activityIndicatorWrapper}>
-                            <ActivityIndicator size="large" color={COLORS.primary} />
-                        </View>
-                    )
-            }
+                    ))
+                }
+            </View>
+
             <View style={styles.spacer} />
             <PollingLoadingModal
                 topupNo={topupNo}

@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert, StyleSheet, View, Platform } from 'react-native';
 import { scaleSize } from '../../../utils/scale';
 import { useTranslation } from 'react-i18next';
 import DeviceInfo from 'react-native-device-info';
-import messaging from '@react-native-firebase/messaging';
+import { registerDeviceForRemoteMessages, getMessaging, getToken } from '@react-native-firebase/messaging';
 import Purchases from 'react-native-purchases';
-import * as Sentry from '@sentry/react-native';
+import { getApp } from '@react-native-firebase/app';
 
 import api from '../../../utils/http';
 import { AppButton } from '../../../components/ui/app-button';
@@ -67,8 +67,10 @@ const SignInForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
       // Get FCM token
       let fcmToken = '';
       try {
-        await messaging().registerDeviceForRemoteMessages();
-        fcmToken = await messaging().getToken();
+        const app = getApp();
+        const messaging = getMessaging(app);
+        await registerDeviceForRemoteMessages(messaging);
+        fcmToken = await getToken(messaging);
         console.log(fcmToken, 'fcmToken');
       } catch (e) {
         console.log('Failed to get FCM token:', e);
@@ -165,7 +167,6 @@ const styles = StyleSheet.create({
   appInput: {
     borderColor: COLORS['light-gray'],
     color: COLORS.red,
-    // If you add fontSize, padding, margin here, use scaleFont/scaleSize
   },
 });
 

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, View, InteractionManager, ActivityIndicator } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { AppText } from "../../../../components/ui/app-text";
@@ -21,20 +21,20 @@ const MBTIProfile: React.FC<MbtiProfileComponentProps> = ({ profile: initialProf
     const [profile, setProfile] = useState<MbtiProfile | null>(initialProfile || null);
     const [ready, setReady] = useState(false);
 
-    React.useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const res = await api.get('/v1/users/mbti-profile');
-                setProfile(res.data);
-                console.log(res.data);
-            } catch (error) {
-                console.error('Error fetching MBTI profile:', error);
-            }
-        };
+    const fetchProfile = async () => {
+        try {
+            const res = await api.get('/v1/users/mbti-profile');
+            setProfile(res.data);
+            console.log(res.data);
+        } catch (error) {
+            console.error('Error fetching MBTI profile:', error);
+        } finally {
+            setReady(true)
+        }
+    };
+
+    useEffect(() => {
         fetchProfile();
-        InteractionManager.runAfterInteractions(() => {
-            setReady(true);
-        });
     }, []);
 
     if (!ready) {

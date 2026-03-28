@@ -1,17 +1,17 @@
-import axios from 'axios';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - @env module types are handled by react-native-config
 import { API_BASE_URL } from '@env';
+
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReactNativeBlobUtil from 'react-native-blob-util';
-import RNFS from 'react-native-fs';
-import { Platform, Alert, Linking, PermissionsAndroid, ToastAndroid } from 'react-native';
-import Base64 from 'react-native-base64';
-import i18n from '../locales/i18n';
+import { Platform, Alert, ToastAndroid } from 'react-native';
 import Purchases from 'react-native-purchases';
+import * as Sentry from '@sentry/react-native';
+
+import i18n from '../locales/i18n';
 import { navigationRef } from '../navigators/navigation-ref';
 import type { UserProfile, TranslationFunction, ApiErrorResponse } from './types';
-import * as Sentry from '@sentry/react-native';
 
 // If @env import fails, fallback to a hardcoded string:
 // const API_BASE_URL = 'https://your-api-base-url.com';
@@ -87,7 +87,7 @@ api.interceptors.response.use(
     console.error('[Axios Error]', error.message);
     console.error(error.config);
     console.error(error.code);
-    
+
     Sentry.captureException(error);
     Sentry.addBreadcrumb({
       category: 'api',
@@ -100,7 +100,7 @@ api.interceptors.response.use(
         statusText: error.response?.statusText,
       },
     });
-    
+
     if (error.response) {
       console.error('[Response Error Data]', error.response.data);
       const errorData = error.response.data as Partial<ApiErrorResponse>;
@@ -114,24 +114,6 @@ api.interceptors.response.use(
     return Promise.reject(error.response?.data);
   },
 );
-
-// Utility: arrayBuffer to base64
-export function arrayBufferToBase64(buffer: ArrayBuffer): string {
-  let binary = '';
-  const bytes = new Uint8Array(buffer);
-  const len = bytes.byteLength;
-  for (let i = 0; i < len; i++) {
-    binary += String.fromCharCode(bytes[i]);
-  }
-  return Base64.encode(binary);
-}
-
-const showFallback = (fileName: string): void => {
-  Alert.alert(
-    i18n.t('fortuneReportResult.downloadComplete'),
-    i18n.t('fortuneReportResult.couldNotOpenFolder', { fileName }),
-  );
-};
 
 export const downloadPdf = async (
   job_id: string,
@@ -172,110 +154,5 @@ export const downloadPdf = async (
     Alert.alert(t('relationReportResult.downloadFailed'), errorMessage);
   }
 };
-
-// Utility: Download PDF and optionally open it
-export async function oldDownloadPdf(
-  job_id: string,
-  t: TranslationFunction,
-  openAfterDownload: boolean = true,
-): Promise<string> {
-  try {
-    const url = `${API_BASE_URL}/uploads/reports/${job_id}.pdf`;
-    console.log(url);
-    // Use axios.get directly for binary download to avoid interceptors
-    const response = await axios.get(url, { responseType: 'arraybuffer' });
-    const isIOS = Platform.OS === 'ios';
-    // For Android 10+, use app's document directory to avoid permission issues
-    // For older Android, still try DownloadDirectory with permission
-    const fileDir = isIOS ? RNFS.DocumentDirectoryPath : RNFS.DownloadDirectoryPath;
-    const filePath = `${fileDir}/${job_id}.pdf`;
-
-    console.log('[downloadPdf] File path:', filePath);
-
-    // Android: request storage permission before writing file
-    if (!isIOS) {
-      try {
-        const platformVersion = parseInt(Platform.Version as string, 10);
-        console.log('[downloadPdf] Platform version:', platformVersion);
-
-        // For Android 10+ (API 29+), use DocumentDirectoryPath which doesn't require permissions
-        // For Android 9 and below, request storage permission
-        if (platformVersion >= 29) {
-          console.log('[downloadPdf] Android 10+ detected, using scoped storage');
-        } else {
-          // Check if we need permission
-          const hasPermission = await PermissionsAndroid.check(
-            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-          );
-
-          console.log('[downloadPdf] Storage permission check:', hasPermission);
-
-          if (!hasPermission) {
-            const granted = await PermissionsAndroid.request(
-              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-              {
-                title: t('relationReportResult.downloadPermissionTitle'),
-                message: t('relationReportResult.downloadPermissionMessage'),
-                buttonNeutral: 'Ask Me Later',
-                buttonNegative: 'Cancel',
-                buttonPositive: 'OK',
-              },
-            );
-
-            console.log('[downloadPdf] Permission request result:', granted);
-
-            if (granted === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
-              ToastAndroid.show(
-                t('relationReportResult.downloadPermissionDenied'),
-                ToastAndroid.LONG,
-              );
-              throw new Error('Permission permanently denied');
-            } else if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-              ToastAndroid.show(
-                t('relationReportResult.downloadPermissionDenied'),
-                ToastAndroid.LONG,
-              );
-              throw new Error('Permission denied');
-            }
-          }
-        }
-      } catch (err) {
-        console.error('[downloadPdf] Permission error:', err);
-        ToastAndroid.show(
-          t('relationReportResult.downloadPermissionError'),
-          ToastAndroid.LONG,
-        );
-        throw err;
-      }
-    }
-
-    const base64Data = arrayBufferToBase64(response.data);
-    await RNFS.writeFile(filePath, base64Data, 'base64');
-
-    if (openAfterDownload) {
-      const supported = await Linking.canOpenURL(`file://${filePath}`);
-
-      if (supported) {
-        await Linking.openURL(`file://${filePath}`);
-      } else {
-        // Fallback if opening the directory fails
-        console.log(
-          '[downloadPdf] Cannot open file directly, showing fallback alert',
-          supported,
-          filePath,
-        );
-        showFallback(filePath);
-      }
-    }
-
-    return filePath;
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.toString() : 'Download failed';
-    Alert.alert(t('relationReportResult.downloadFailed'), errorMessage);
-    console.log(error);
-    throw error;
-  }
-}
 
 export default api;

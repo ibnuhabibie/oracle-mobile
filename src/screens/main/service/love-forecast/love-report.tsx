@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { InteractionManager } from "react-native";
 import {
   View,
   StyleSheet,
-  ActivityIndicator,
   Alert,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -38,7 +36,6 @@ type LoveForecastProps = NativeStackScreenProps<MainNavigatorParamList, 'LoveFor
 
 const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
   const { t } = useTranslation();
-  const [iconsReady, setIconsReady] = useState(false);
 
   const {
     cost,
@@ -92,13 +89,6 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
       label: t('loveForecast.cards.conclusion')
     },
   ];
-
-  useEffect(() => {
-    const interaction = InteractionManager.runAfterInteractions(() => {
-      setIconsReady(true);
-    });
-    return () => interaction && interaction.cancel && interaction.cancel();
-  }, []);
 
   useEffect(() => {
     const init = async () => {
@@ -166,30 +156,21 @@ const LoveForecast: React.FC<LoveForecastProps> = ({ navigation }) => {
       </AppText>
       <AppText style={styles.sectionTitle} variant='subtitle1' color='primary'>{t('loveForecast.sectionTitle')}</AppText>
 
-      {
-        iconsReady ?
-          (
-            <View style={[styles.grid]}>
-              {
-                CARD_DATA.map((card, idx) => (
-                  <View key={idx} style={styles.card}>
-                    <View style={styles.cardIconWrapper}>
-                      <ShinyContainer size={scaleSize(shinySize)}>
-                        {React.createElement(card.icon, { size: scaleSize(iconSize), color: 'white' })}
-                      </ShinyContainer>
-                    </View>
-                    <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
-                  </View>
-                ))
-              }
+      <View style={[styles.grid]}>
+        {
+          CARD_DATA.map((card, idx) => (
+            <View key={idx} style={styles.card}>
+              <View style={styles.cardIconWrapper}>
+                <ShinyContainer size={scaleSize(shinySize)}>
+                  {React.createElement(card.icon, { size: scaleSize(iconSize), color: 'white' })}
+                </ShinyContainer>
+              </View>
+              <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
             </View>
-          ) :
-          (
-            <View style={styles.activityIndicatorWrapper}>
-              <ActivityIndicator size="large" color={COLORS.primary} />
-            </View>
-          )
-      }
+          ))
+        }
+      </View>
+
       <View style={styles.spacer} />
       <PollingLoadingModal
         topupNo={topupNo}

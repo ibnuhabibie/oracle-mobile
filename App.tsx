@@ -1,26 +1,26 @@
-import {NavigationContainer} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import Toast from 'react-native-toast-message';
-import {enableScreens} from 'react-native-screens';
-import notifee, {EventType} from '@notifee/react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {getMessaging, onMessage} from '@react-native-firebase/messaging';
-import {getApp} from '@react-native-firebase/app';
+import { enableScreens } from 'react-native-screens';
+import notifee, { EventType } from '@notifee/react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { getMessaging, onMessage } from '@react-native-firebase/messaging';
+import { getApp } from '@react-native-firebase/app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Dimensions} from 'react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { Dimensions } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Purchases from 'react-native-purchases';
 import DeviceInfo from 'react-native-device-info';
 
-import {REVENUECAT_KEY} from '@env';
+import { REVENUECAT_KEY } from '@env';
 
 import MainNavigator from './src/navigators/main-navigator';
 import api from './src/utils/http';
-import {navigationRef, navigate} from './src/navigators/navigation-ref';
+import { navigationRef, navigate } from './src/navigators/navigation-ref';
 import * as Sentry from '@sentry/react-native';
 
 Sentry.init({
-  dsn: 'https://9a9910632f674db864c3d61d51a0ffd4@o4510930949242880.ingest.de.sentry.io/4510930951471184',
+  dsn: 'https://5e16b526ab1ba0a33b7a0b3509714ae1@o4511123101188096.ingest.us.sentry.io/4511123114885120',
   sendDefaultPii: true,
   enableLogs: true,
   environment: __DEV__ ? 'development' : 'production',
@@ -56,16 +56,16 @@ const App: React.FC = () => {
 
       if (item.service_type == 'personalized_love_forecast_12mth') {
         pageName = 'LoveReportResult';
-        payload = {result: data, job_id: notifData.job_id};
+        payload = { result: data, job_id: notifData.job_id };
       } else if (item.service_type == 'ask_any_question') {
         pageName = 'AffinityResults';
         payload = {
           question: data.question,
-          affinityResult: {data},
+          affinityResult: { data },
         };
       } else if (item.service_type == 'transit_report') {
         pageName = 'FortuneReportResult';
-        payload = {result: data, job_id: notifData.job_id};
+        payload = { result: data, job_id: notifData.job_id };
       } else if (item.service_type == 'relationship_compatibility') {
         pageName = 'RelationReportResult';
         payload = {
@@ -104,7 +104,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log('App initialization started');
-    
+
     Sentry.addBreadcrumb({
       category: 'app',
       message: 'App initialization started',
@@ -115,7 +115,7 @@ const App: React.FC = () => {
 
     if (REVENUECAT_KEY) {
       try {
-        Purchases.configure({apiKey: REVENUECAT_KEY, useAmazon: false});
+        Purchases.configure({ apiKey: REVENUECAT_KEY, useAmazon: false });
         Sentry.addBreadcrumb({
           category: 'revenuecat',
           message: 'RevenueCat configured successfully',
@@ -145,7 +145,7 @@ const App: React.FC = () => {
           'Notification permission status:',
           settings.authorizationStatus,
         );
-        
+
         Sentry.addBreadcrumb({
           category: 'app',
           message: 'Notifications initialized',
@@ -179,7 +179,7 @@ const App: React.FC = () => {
           'App opened from quit state via notification',
           initialNotification,
         );
-        const {data} = initialNotification.notification;
+        const { data } = initialNotification.notification;
         handleNotif(data);
       }
     });
@@ -187,7 +187,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const unsubscribeNotifee = notifee.onForegroundEvent(
-      async ({type, detail}) => {
+      async ({ type, detail }) => {
         if (type === EventType.PRESS) {
           console.log('User tapped notification (FOREGROUND):', detail);
 
@@ -226,7 +226,7 @@ const App: React.FC = () => {
             body,
             android: {
               channelId: 'default',
-              pressAction: {id: 'default'},
+              pressAction: { id: 'default' },
             },
             data: remoteMessage.data,
           });
@@ -251,7 +251,7 @@ const App: React.FC = () => {
     const unsubscribe = navigationRef?.addListener?.('state', () => {
       const route = navigationRef?.getCurrentRoute?.();
       setCurrentRoute(route?.name);
-      
+
       Sentry.addBreadcrumb({
         category: 'navigation',
         message: `Navigated to: ${route?.name}`,

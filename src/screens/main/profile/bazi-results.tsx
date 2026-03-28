@@ -1,10 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
-import {
-  Image,
-  InteractionManager,
-  ActivityIndicator
-} from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { AppText } from '../../../components/ui/app-text';
@@ -21,7 +16,6 @@ import BaziResultIcon5 from '../../../components/icons/bazi-result/bazi-result-i
 
 import { ProfileIcon } from '../../../hooks/use-affinity-profile';
 
-import { COLORS } from '../../../constants/colors';
 import { scaleSize } from '../../../utils/scale';
 
 import type { MainNavigatorParamList } from '../../../navigators/types';
@@ -31,14 +25,6 @@ type BaziResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'BaziResu
 const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const profile = route.params?.profile_bazi;
-  const [ready, setReady] = React.useState(false);
-
-  React.useEffect(() => {
-    const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
-    return () => interaction && interaction.cancel && interaction.cancel();
-  }, []);
-
-  console.log(profile, 'profile')
 
   // Static icon components for indices 1-5
   const iconImages = [
@@ -99,19 +85,8 @@ const BaziResults: FC<BaziResultsProps> = ({ navigation, route }) => {
         />
       }
     >
-      {
-        ready ?
-          (
-            <>
-              <ProfileCard iconKey={profile?.day_master?.icon} cardTitle={t('profileCard.you')} />
-              <BaziCardList profile={profile} iconImages={iconImages} />
-            </>
-          )
-          :
-          (
-            <ActivityIndicator size="large" style={{ margin: scaleSize(32) }} color={COLORS.primary} />
-          )
-      }
+      <ProfileCard iconKey={profile?.day_master?.icon} cardTitle={t('profileCard.you')} />
+      <BaziCardList profile={profile} iconImages={iconImages} />
     </ScreenContainer>
   );
 };

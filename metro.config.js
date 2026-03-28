@@ -1,6 +1,6 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
-const {withSentryConfig} = require('@sentry/react-native/metro');
+const { withSentryConfig } = require('@sentry/react-native/metro');
 
 /**
  * Metro configuration
@@ -12,6 +12,6 @@ const config = {
   resetCache: true,
 };
 
-module.exports = withSentryConfig(
+module.exports = withSentryConfig(withSentryConfig(
   mergeConfig(getDefaultConfig(__dirname), config),
-);
+));

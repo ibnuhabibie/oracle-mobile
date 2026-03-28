@@ -1,9 +1,8 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { InteractionManager } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { Alert, Platform, ToastAndroid } from 'react-native';
+import { Alert, Button, Platform, ToastAndroid } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -70,21 +69,10 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   };
 
   useFocusEffect(
-    React.useCallback(() => {
-      const task = InteractionManager.runAfterInteractions(() => {
-        init();
-      });
-      return () => task.cancel();
+    useCallback(() => {
+      init()
     }, []),
   );
-
-  useEffect(() => {
-    const getToken = async () => {
-      const token = await AsyncStorage.getItem('auth_token');
-      setToken(token || '');
-    };
-    getToken();
-  }, []);
 
   const handleEditProfile = () => {
     console.log('Edit Profile pressed');
@@ -215,8 +203,6 @@ const Profile: FC<ProfileProps> = ({ navigation }) => {
   };
 
   const {
-    loading: profileLoading,
-    error: profileError,
     data: affinityProfile,
   } = useAffinityProfile();
 

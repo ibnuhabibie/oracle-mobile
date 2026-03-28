@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, InteractionManager, ActivityIndicator } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import LoveReportIcon1 from '../../../../components/icons/services/love-report/love-report-icon-1';
@@ -18,9 +18,8 @@ import { AppButton } from '../../../../components/ui/app-button';
 import ScreenContainer from '../../../../components/layouts/screen-container';
 import ProfileItemCard from '../../../../components/report/profile-item-card';
 
-import { COLORS } from '../../../../constants/colors';
 import { downloadPdf } from '../../../../utils/http';
-import { scaleSize, scaleFont } from '../../../../utils/scale';
+import { scaleSize } from '../../../../utils/scale';
 import { formatDateOnly } from '../../../../utils/date';
 
 import type { MainNavigatorParamList } from '../../../../navigators/types';
@@ -64,29 +63,23 @@ const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
 const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }) => {
     const { t } = useTranslation();
     const { result, job_id } = route.params;
-    const [loading, setLoading] = React.useState(false);
-    const [ready, setReady] = React.useState(false);
-    const [forecastRange, setForecastRange] = React.useState('');
-
-    React.useEffect(() => {
-        const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
-        return () => interaction && interaction.cancel && interaction.cancel();
-    }, []);
+    const [loading, setLoading] = useState(false);
+    const [forecastRange, setForecastRange] = useState('');
 
     console.log(result, job_id)
 
-    // Format date_range if present, else fallback
-    React.useEffect(() => {
-        const formatForecastRange = async () => {
-            const dateRangeRaw = result?.result?.date_range || result?.date_range;
-            if (dateRangeRaw && typeof dateRangeRaw === 'string' && dateRangeRaw.includes(':')) {
-                const [start, end] = dateRangeRaw.split(':');
-                const startDate = await formatDateOnly(start);
-                const endDate = await formatDateOnly(end);
-                setForecastRange(`${startDate} - ${endDate}`);
-            }
-        };
+    const formatForecastRange = async () => {
+        const dateRangeRaw = result?.result?.date_range || result?.date_range;
+        if (dateRangeRaw && typeof dateRangeRaw === 'string' && dateRangeRaw.includes(':')) {
+            const [start, end] = dateRangeRaw.split(':');
+            const startDate = await formatDateOnly(start);
+            const endDate = await formatDateOnly(end);
+            setForecastRange(`${startDate} - ${endDate}`);
+        }
+    };
 
+    // Format date_range if present, else fallback
+    useEffect(() => {
         formatForecastRange();
     }, [result]);
 
@@ -116,21 +109,11 @@ const LoveReportResult: React.FC<LoveReportResultProps> = ({ navigation, route }
                 />
             }
         >
-            {
-                !ready ?
-                    (
-                        <ActivityIndicator size="large" style={styles.loadingIndicator} color={COLORS.primary} />
-                    ) :
-                    (
-                        <>
-                            <AppText variant='caption1' style={styles.forecastRange} color="neutral">
-                                {t('loveReportResult.forecastFor', { range: forecastRange })}
-                            </AppText>
-                            <CardList content={result?.content} />
-                            <View style={styles.spacer} />
-                        </>
-                    )
-            }
+            <AppText variant='caption1' style={styles.forecastRange} color="neutral">
+                {t('loveReportResult.forecastFor', { range: forecastRange })}
+            </AppText>
+            <CardList content={result?.content} />
+            <View style={styles.spacer} />
         </ScreenContainer>
     );
 };

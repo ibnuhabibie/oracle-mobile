@@ -1,10 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useMemo } from 'react';
+import React, { createElement, FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  InteractionManager,
-  ActivityIndicator,
-} from 'react-native';
 
 import { AppText } from '../../../components/ui/app-text';
 import Header from '../../../components/ui/header';
@@ -26,19 +22,13 @@ import Sun from '../../../components/icons/planet/sun';
 import Uranus from '../../../components/icons/planet/uranus';
 import Venus from '../../../components/icons/planet/venus';
 
-import { COLORS } from '../../../constants/colors';
 import { scaleSize } from '../../../utils/scale';
 import type { MainNavigatorParamList } from '../../../navigators/types';
 
 type AstrologyResultsProps = NativeStackScreenProps<MainNavigatorParamList, 'AstrologyResults'>;
 
 const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
-  const [ready, setReady] = React.useState(false);
   const { t } = useTranslation();
-  React.useEffect(() => {
-    const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
-    return () => interaction && interaction.cancel && interaction.cancel();
-  }, []);
 
   // Get profile_astro from route params
   const profile = useMemo(() => {
@@ -92,7 +82,7 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
                 subtitle: `${item.subtitle}`,
                 description: item.description,
                 icon: (
-                  React.createElement(iconSource, { size: scaleSize(100, 60, 140) })
+                  createElement(iconSource, { size: scaleSize(100, 60, 140) })
                 ),
               }}
             />
@@ -119,18 +109,8 @@ const AstrologyResults: FC<AstrologyResultsProps> = ({ navigation, route }) => {
         />
       }
     >
-      {
-        ready ?
-          (
-            <>
-              <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle={t('profileCard.you')} />
-              <AstrologyCardList profile={profile} />
-            </>
-          ) :
-          (
-            <ActivityIndicator size="large" style={{ margin: scaleSize(32) }} color={COLORS.primary} />
-          )
-      }
+      <ProfileCard iconKey={profile?.sun?.zodiac || ""} cardTitle={t('profileCard.you')} />
+      <AstrologyCardList profile={profile} />
     </ScreenContainer>
   );
 };

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     StyleSheet,
-    ActivityIndicator,
-    InteractionManager,
     Alert,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -37,7 +35,6 @@ type RelationReportProps = NativeStackScreenProps<MainNavigatorParamList, 'Relat
 
 const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
     const { t } = useTranslation();
-    const [iconsReady, setIconsReady] = useState(false);
     const {
         cost,
         loading: costLoading,
@@ -53,13 +50,6 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
         showPolling,
         setShowPolling,
     } = useRevenueCat();
-
-    useEffect(() => {
-        const interaction = InteractionManager.runAfterInteractions(() => {
-            setIconsReady(true);
-        });
-        return () => interaction && interaction.cancel && interaction.cancel();
-    }, []);
 
     useEffect(() => {
         const init = async () => {
@@ -192,28 +182,23 @@ const RelationReport: React.FC<RelationReportProps> = ({ navigation }) => {
             {/* <AppText variant='subtitle1' style={{ textAlign: 'center' }} color='neutral'>{t('relationReport.loveInterestDetail')}</AppText> */}
             <AppText style={styles.sectionTitle} variant='caption2' color='primary'>{t('relationReport.tellUsMore')}</AppText>
 
-            {iconsReady ? (
-                <View style={styles.grid}>
-                    {
-                        CARD_DATA.map((card, idx) => (
-                            <View key={idx} style={styles.card}>
-                                <View style={styles.cardIconWrapper}>
-                                    <ShinyContainer size={shinySize}>
-                                        {card.iconKey === 'relation'
-                                            ? <RelationIcon size={iconSize} />
-                                            : React.createElement(card.icon, { size: iconSize })}
-                                    </ShinyContainer>
-                                </View>
-                                <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
+            <View style={styles.grid}>
+                {
+                    CARD_DATA.map((card, idx) => (
+                        <View key={idx} style={styles.card}>
+                            <View style={styles.cardIconWrapper}>
+                                <ShinyContainer size={shinySize}>
+                                    {card.iconKey === 'relation'
+                                        ? <RelationIcon size={iconSize} />
+                                        : React.createElement(card.icon, { size: iconSize })}
+                                </ShinyContainer>
                             </View>
-                        ))
-                    }
-                </View>
-            ) : (
-                <View style={styles.activityIndicatorWrapper}>
-                    <ActivityIndicator size="large" color={COLORS.primary} />
-                </View>
-            )}
+                            <AppText style={styles.cardLabel} color='white'>{card.label}</AppText>
+                        </View>
+                    ))
+                }
+            </View>
+
             <View style={styles.spacer} />
             <PollingLoadingModal
                 topupNo={topupNo}

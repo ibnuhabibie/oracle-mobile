@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { createElement, FC, memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, InteractionManager, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import FortuneReportIcon11 from '../../../../components/icons/services/fortune-report/fortune-report-icon-11';
@@ -32,7 +32,7 @@ const iconImages = [
 
 type FortuneReportResultProps = NativeStackScreenProps<MainNavigatorParamList, 'FortuneReportResult'>;
 
-const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
+const CardList: FC<{ content: any[] }> = memo(({ content }) => {
     if (!content) return null;
 
     return (
@@ -45,7 +45,7 @@ const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
                             title: item.title,
                             description: item.content,
                             icon: iconImages[item.order - 1]
-                                ? React.createElement(iconImages[item.order - 1], { size: 65 })
+                                ? createElement(iconImages[item.order - 1], { size: 65 })
                                 : undefined,
                         }}
                     />
@@ -55,16 +55,10 @@ const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
     );
 });
 
-const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, route }) => {
+const FortuneReportResult: FC<FortuneReportResultProps> = ({ navigation, route }) => {
     const { result, job_id } = route.params;
     const { t } = useTranslation();
-    const [loading, setLoading] = React.useState(false);
-    const [ready, setReady] = React.useState(false);
-
-    React.useEffect(() => {
-        const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
-        return () => interaction && interaction.cancel && interaction.cancel();
-    }, []);
+    const [loading, setLoading] = useState(false);
 
     const handleDownload = async () => {
         setLoading(true);
@@ -92,18 +86,8 @@ const FortuneReportResult: React.FC<FortuneReportResultProps> = ({ navigation, r
                 />
             }
         >
-            {
-                !ready ?
-                    (
-                        <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
-                    ) :
-                    (
-                        <>
-                            <CardList content={result?.content} />
-                            <View style={{ height: 60 }} />
-                        </>
-                    )
-            }
+            <CardList content={result?.content} />
+            <View style={{ height: 60 }} />
         </ScreenContainer>
     );
 };

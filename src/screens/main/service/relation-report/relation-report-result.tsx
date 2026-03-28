@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { createElement, FC, memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View,InteractionManager, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { AppText } from '../../../../components/ui/app-text';
@@ -23,7 +23,6 @@ import RelationReportIcon19 from '../../../../components/icons/services/relation
 import RelationReportIcon20 from '../../../../components/icons/services/relation-report/relation-report-icon-20';
 import RelationReportIcon21 from '../../../../components/icons/services/relation-report/relation-report-icon-21';
 
-import { COLORS } from '../../../../constants/colors';
 import { downloadPdf } from '../../../../utils/http';
 
 import type { MainNavigatorParamList } from '../../../../navigators/types';
@@ -59,7 +58,7 @@ function loveProfileToUserProfile(love_profile: any) {
     };
 }
 
-const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
+const CardList: FC<{ content: any[] }> = memo(({ content }) => {
     if (!content) return null;
     return (
         <>
@@ -78,7 +77,7 @@ const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
                             <AppText variant="display1" color="white" style={{ fontWeight: 'bold' }}>{item.score}</AppText>
                         ) : (
                             iconImages[item.order - 1]
-                                ? React.createElement(iconImages[item.order - 1], { size: 65 })
+                                ? createElement(iconImages[item.order - 1], { size: 65 })
                                 : null
                         ),
                     }}
@@ -88,16 +87,10 @@ const CardList: FC<{ content: any[] }> = React.memo(({ content }) => {
     );
 });
 
-const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation, route }) => {
+const RelationReportResult: FC<RelationReportResultProps> = ({ navigation, route }) => {
     const { result, love_profile, job_id } = route.params;
     const { t } = useTranslation();
-    const [loading, setLoading] = React.useState(false);
-    const [ready, setReady] = React.useState(false);
-
-    React.useEffect(() => {
-        const interaction = InteractionManager.runAfterInteractions(() => setReady(true));
-        return () => interaction && interaction.cancel && interaction.cancel();
-    }, []);
+    const [loading, setLoading] = useState(false);
 
     console.log(love_profile, 'love_profile')
 
@@ -127,20 +120,14 @@ const RelationReportResult: React.FC<RelationReportResultProps> = ({ navigation,
                 />
             }
         >
-            {!ready ? (
-                <ActivityIndicator size="large" style={{ margin: 32 }} color={COLORS.primary} />
-            ) : (
-                <>
-                    <ProfileCard cardTitle={t('relationReportResult.you')} iconKey={'relation'} />
-                    <ProfileCard
-                        cardTitle={t('relationReportResult.yourLoveInterest')}
-                        iconKey={'relation'}
-                        profileData={loveProfileToUserProfile(love_profile)}
-                    />
-                    <CardList content={result?.content} />
-                    <View style={{ height: 60 }} />
-                </>
-            )}
+            <ProfileCard cardTitle={t('relationReportResult.you')} iconKey={'relation'} />
+            <ProfileCard
+                cardTitle={t('relationReportResult.yourLoveInterest')}
+                iconKey={'relation'}
+                profileData={loveProfileToUserProfile(love_profile)}
+            />
+            <CardList content={result?.content} />
+            <View style={{ height: 60 }} />
         </ScreenContainer>
     );
 };
