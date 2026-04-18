@@ -48,17 +48,17 @@
         ]
     },
     "login": {
-        "intro": "DEAR SEEKER",
+        "intro": "WELCOME BACK",
         "title": "Sign In",
-        "subtitle": "The cosmos whispers.\nDiscover what is destined for you.",
+        "subtitle": "Continue your personal insight journey.",
         "footer": "Don't have an account?",
         "forgotPassword": "Forgot Password?",
         "signupButtonText": "Sign Up"
     },
     "register": {
-        "intro": "DEAR SEEKER",
+        "intro": "WELCOME",
         "title": "Sign Up",
-        "subtitle": "The cosmos whispers.\nJoin & discover your destiny.",
+        "subtitle": "Begin your personal insight journey.",
         "footer": "Already have an account?",
         "signinButtonText": "Sign In"
     },
@@ -113,124 +113,124 @@
     },
     "onboarding": {
         "title": "Introduce Yourself",
-        "subtitle": "Introduce yourself and let the universe guide you!",
+        "subtitle": "Enter your details to build your personal profile.",
         "helpText": "Not sure about your birth time? Choose the closest estimate.",
         "birthDate": "Date of Birth:",
         "birthTime": "Time of Birth:",
         "selectCountry": "Select Country",
         "selectCity": "Select City",
-        "save": "Save",
+        "save": "Continue",
         "pleaseSelectOne": "Please select one",
         "allFieldsRequired": "All fields are required.",
         "registerFailed": "Registration Failed",
         "errorOccurred": "An error occurred. Please try again."
     },
     "carousel": {
-        "love": {
-            "title": "Is Love Delayed?",
-            "subtitle": "DISCOVER WHAT WILL HAPPEN NEXT"
-        },
-        "relation": {
-            "title": "Relationship Insights",
-            "subtitle": "DISCOVER YOUR CONNECTION"
-        },
-        "fortune": {
-            "title": "Fortune Guidance",
-            "subtitle": "WELCOME YOUR FUTURE"
-        },
-        "myReport": {
-            "title": "My Reports",
-            "subtitle": "All Your Insights, In One Place"
-        },
         "baziReport": {
-            "title": "My BaZi",
-            "subtitle": "Your Destiny Blueprint Revealed"
+            "title": "MY BAZI",
+            "subtitle": "Explore your BaZi profile"
         },
         "astroReport": {
-            "title": "My Astro",
-            "subtitle": "Your Stars, Your Story"
+            "title": "MY ASTRO",
+            "subtitle": "Explore your astrology profile"
         },
         "mbtiReport": {
-            "title": "My MBTI",
-            "subtitle": "Discover Your True Personality"
+            "title": "MY MBTI",
+            "subtitle": "Explore your personality insights"
+        },
+        "relation": {
+            "title": "RELATIONSHIP INSIGHTS",
+            "subtitle": "Explore relationship dynamics"
+        },
+        "fortune": {
+            "title": "YEARLY GUIDANCE",
+            "subtitle": "Explore your year ahead"
+        },
+        "love": {
+            "title": "RELATIONSHIP PATTERN INSIGHT",
+            "subtitle": "Understand current themes in your love life"
+        },
+        "myReport": {
+            "title": "MY REPORTS",
+            "subtitle": "All Your Insights, In One Place"
         },
         "downloadPdf": "Download as PDF"
     },
     "home": {
-        "subtitle": "WHAT DO YOU WANT TO KNOW TODAY?"
+        "subtitle": "Explore Your Insights Today"
     },
     "loveForecast": {
-        "header": "12-Month Love Forecast",
-        "purchase": "Buy for {{cost}}",
-        "title": "EMOTIONALLY CONFUSED? RESOLVE IT NOW.",
-        "subtitle": "Four main directions to help you\novercome emotional challenges.",
-        "description": "Find the root of your emotional confusion and discover the right direction for your love life. Get answers to all aspects at once: mindset, love forecast, how to find love, and future outlook.",
-        "sectionTitle": "WHAT YOU WILL DISCOVER:",
+        "header": "Relationship Outlook",
+        "purchase": "Unlock Full Report",
+        "title": "PATTERNS, OPPORTUNITIES, AND GROWTH AT A GLANCE",
+        "subtitle": "Explore your relationship themes for the next 12 months.",
+        "description": "This report helps you explore how your profile may shape relationship patterns, emotional needs, opportunities, and areas for growth over the coming months.",
+        "sectionTitle": "What's included",
         "cards": {
-            "intro": "Introduction: Your Love Blueprint",
-            "lacking": "What is lacking in love?",
-            "lookout": "What are you looking for in a partner",
-            "suits": "Types of partners suitable for you",
-            "outlook": "Love forecast for this year",
-            "where": "Where to find love",
-            "questions": "Personal questions",
-            "conclusion": "Conclusion: Love story ahead"
+            "intro": "Introduction: Your Relationship Profile",
+            "lacking": "Growth Areas in Relationships",
+            "lookout": "Partner Preferences",
+            "suits": "Compatible Partner Traits",
+            "outlook": "Relationship Themes This Year",
+            "where": "Relationship Opportunities",
+            "questions": "Personal Reflection Questions",
+            "conclusion": "Overall Relationship Summary"
         },
-        "pollingMessage": "Your love report is being processed…",
+        "pollingMessage": "Your relationship outlook report is being processed…",
         "error": "Error",
         "noJobId": "job_id was not returned from the server.",
         "fetchStatusFailed": "Failed to fetch report status."
     },
     "relationReport": {
         "header": "Relationship Compatibility",
-        "purchase": "Buy for {{cost}}",
-        "title": "Curious if you're the perfect couple?\nFind out now!",
-        "subtitle": "Astrology meets Bazi for a new perspective on your love compatibility.",
-        "description": "Some tips may sound like common sense—like improving communication or mindset—but all are tailored to your unique chart and relationship dynamics. The impact is greater than it seems.",
+        "purchase": "Unlock Compatibility Report",
+        "title": "EXPLORE RELATIONSHIP COMPATIBILITY",
+        "subtitle": "Understand communication patterns, emotional needs, and shared dynamics through astrology and BaZi.",
+        "description": "This report helps you explore strengths, challenges, and relationship patterns based on both profiles.",
         "loveInterestDetail": "Your Love Interest's Details",
         "tellUsMore": "Tell us more about them!",
-        "pollingMessage": "Your relationship report is being processed…",
+        "pollingMessage": "Your relationship compatibility report is being processed…",
         "cards": {
-            "perspective": "How do you view love?",
-            "seeYou": "How does your love interest see you?",
-            "kindOfPerson": "What kind of person do they like?",
-            "traits": "What are their traits, preferences, and dislikes?"
+            "perspective": "Your Relationship Perspective",
+            "seeYou": "How the Other Person May See You",
+            "kindOfPerson": "Preferred Partner Traits",
+            "traits": "Their Traits and Preferences"
         }
     },
     "fortuneReport": {
-        "header": "Fortune Report {{year}}",
-        "purchase": "Buy for {{cost}}",
-        "title": "Curious about your {{year}}? See your fortune forecast now!",
-        "subtitle": "Fortune forecast meets planning for a new perspective on your {{year}}.",
-        "description": "Some insights may seem simple—like timing or decision-making—but are personalized for your chart and path in {{year}}. Their guidance can make a real difference.",
-        "sectionTitle": "What can you know?",
-        "pollingMessage": "Your fortune report is being processed…",
+        "header": "Yearly Guidance {{year}}",
+        "purchase": "Unlock Full Report",
+        "title": "EXPLORE YOUR KEY THEMES FOR THE YEAR AHEAD",
+        "subtitle": "Review your yearly themes across wellbeing, relationships, career, and personal growth.",
+        "description": "This report combines multiple profile systems to help you reflect on timing, priorities, growth areas, and major themes for the year ahead.",
+        "sectionTitle": "What's Included",
+        "pollingMessage": "Your yearly guidance report is being processed…",
         "cards": {
             "health": {
                 "title": "Health",
-                "subtitle": "Using Astro and Bazi, analyze your health condition to help you take timely precautions."
+                "subtitle": "Review wellbeing themes and areas to pay attention to over the year ahead."
             },
             "finance": {
                 "title": "Finance",
-                "subtitle": "Using Astro and Bazi, analyze annual Wealth Palace trends to find the best timing for wealth opportunities."
+                "subtitle": "Explore financial themes, priorities, and timing considerations for the year ahead."
             },
             "career": {
                 "title": "Career",
-                "subtitle": "Using Astro and Bazi, reveal your career luck and challenges through your Career Palace stars."
+                "subtitle": "Review career themes, challenges, and areas of growth for the year ahead."
             },
             "relationship": {
                 "title": "Relationship",
-                "subtitle": "Using Astro and Bazi, track annual love trends through your Marriage Palace."
+                "subtitle": "Explore relationship themes, patterns, and areas of focus for the year ahead."
             }
         }
     },
     "purchaseAlert": {
-        "title": "PURCHASE ALERT",
-        "costInfo": "To use {{service}}, a cost of {{cost}} will be charged. Continue?",
-        "yourCredits": "Your {{creditType}} tokens: {{userCredit}}",
-        "continue": "Continue Purchase",
+        "title": "Unlock Guided Service",
+        "costInfo": "Using this {{service}} will cost {{cost}} token. Continue?",
+        "yourCredits": "Available tokens: {{userCredit}}",
+        "continue": "Continue",
         "cancel": "Cancel",
-        "insufficient": "This report will cost {{cost}}\nYour current {{creditType}} tokens are insufficient. Please top up to continue.",
+        "insufficient": "This {{service}} will cost {{cost}}\nYour current {{creditType}} tokens are insufficient. Please top up to continue.",
         "purchaseCredits": "Buy Credits"
     },
     "profileCard": {
@@ -249,7 +249,7 @@
         "copiedToClipboard": "Copied to clipboard"
     },
     "chatArea": {
-        "geenieSays": "Geenie says:"
+        "geenieSays": "Echo says:"
     },
     "usageReceiptModal": {
         "receipt": "RECEIPT",
@@ -262,26 +262,26 @@
         "processing": "Report is still being processed. Please check back later.",
         "noData": "No details available for this transaction",
         "serviceType": {
-            "ask_any_question": "Ask Affinity",
-            "personalized_love_forecast_12mth": "Love Forecast",
-            "transit_report": "Fortune Report",
+            "ask_any_question": "Guided Questions",
+            "personalized_love_forecast_12mth": "Relationship Outlook",
+            "transit_report": "Yearly Guidance",
             "relationship_compatibility": "Relationship Compatibility",
-            "ask_secret_diary": "Genie Advice"
+            "ask_secret_diary": "Guided Reflection"
         }
     },
     "usageHistory": {
         "noHistoryFound": "No usage history found.",
-        "details": "Your purchase was successful, see the details!",
+        "details": "View report details.",
         "paymentPending": "Payment is not completed. Please complete the payment to proceed with the transaction."
     },
     "affinityResult": {
         "title": "Ask Affinity",
-        "presentSituation": "Present Situation",
-        "likelyOutcome": "Likely Outcome",
-        "recommendedAction": "Recommended Action"
+        "presentSituation": "Current Theme",
+        "likelyOutcome": "Key Insight",
+        "recommendedAction": "Suggested Next Step"
     },
     "fortuneReportResult": {
-        "header": "Fortune Report {{year}}",
+        "header": "Yearly Guidance {{year}}",
         "downloadPdf": "Download as PDF",
         "downloadComplete": "Download complete",
         "savedTo": "Saved to {{path}}",
@@ -309,12 +309,12 @@
         "downloadPermissionError": "Permission error",
         "downloadFailed": "Download failed",
         "you": "You",
-        "yourLoveInterest": "Your Love Interest"
+        "yourLoveInterest": "Partner Profile"
     },
     "loveReportResult": {
-        "title": "12-Month Love Forecast",
+        "title": "Relationship Outlook",
         "downloadPdf": "Download as PDF",
-        "forecastFor": "Forecast for {{range}}"
+        "forecastFor": "Outlook for {{range}}"
     },
     "bottomBar": {
         "home": "Home",
@@ -323,11 +323,11 @@
         "profile": "Profile"
     },
     "baziResult": {
-        "title": "BaZi Profile",
+        "title": "BaZi Profile Insights",
         "emptyStateLabel": "No profile data found."
     },
     "astroResult": {
-        "title": "Astrology",
+        "title": "Astrology Profile Insights",
         "emptyStateLabel": "No profile data found."
     },
     "profileForm": {
@@ -397,16 +397,16 @@
         "guest": "Guest",
         "mbtiTitle": "What's Your MBTI?",
         "mbtiSubtitle": "A quick test to find your type!",
-        "yourCoins": "Your Tokens",
-        "buyCoins": "Buy Tokens",
+        "yourCoins": "Available Tokens",
+        "buyCoins": "Get Tokens",
         "profileSectionTitle": "Profile",
         "editProfile": "Edit Profile",
         "passwordSettings": "Password Settings",
         "purchaseHistory": "My Reports",
         "othersSectionTitle": "Others",
-        "aboutUs": "About Us",
+        "aboutUs": "About",
         "privacyPolicy": "Privacy Policy",
-        "termsAndConditions": "Terms & Conditions",
+        "termsAndConditions": "Terms of Use",
         "logout": "Logout",
         "dangerZone": "Danger Zone",
         "dangerZoneSubtitle": "Irreversible actions for your account",
@@ -428,44 +428,44 @@
     "purchaseHistory": {
         "title": "My Reports",
         "usageTab": "My Reports",
-        "topupTab": "Top Up History"
+        "topupTab": "Purchase History"
     },
     "serviceLabel": {
-        "ask_any_question": "Ask Affinity",
-        "personalized_love_forecast_12mth": "Love Forecast",
-        "transit_report": "Fortune Report",
+        "ask_any_question": "Guided Questions",
+        "personalized_love_forecast_12mth": "Relationship Outlook",
+        "transit_report": "Yearly Guidance",
         "relationship_compatibility": "Relationship Compatibility",
-        "ask_secret_diary": "Genie Advice"
+        "ask_secret_diary": "Guided Reflection"
     },
     "askAffinity": {
         "title": "Ask Affinity",
-        "subtitle": "Confused about what to do? Affinity is ready to help — ask anything.",
-        "howToAskTitle": "How to ask?",
-        "instructions": "1. Calm your mind\n2. Think about the question you want to ask\n3. Enter your question\n4. Take a deep breath and press the ask button",
-        "questionLabel": "Type your question",
+        "subtitle": "Ask a question and receive a profile-based guided interpretation.",
+        "howToAskTitle": "How it works:",
+        "instructions": "1. Enter your question\n2. Focus on one topic\n3. Receive a guided interpretation\n4. Reflect on suggested next steps",
+        "questionLabel": "Enter your question",
         "questionRequired": "Question is required",
         "questionMinLength": "Question must be at least 3 characters",
-        "purchaseButton": "Buy for {{cost}}",
+        "purchaseButton": "Get Insight",
         "somethingWentWrong": "Something went wrong"
     },
     "echo": {
-        "title": "Diary",
-        "subtitle": "A safe space to express your thoughts and feelings.",
-        "recentDiaries": "Latest Diary Entries",
+        "title": "Reflection Journal",
+        "subtitle": "A private space for reflection, emotional check-ins, and personal notes",
+        "recentDiaries": "Recent Entries",
         "loading": "Loading...",
-        "noDiariesYet": "No diary entries yet",
-        "startDiaryDesc": "Start your first diary entry to express your thoughts and feelings. Your journey begins here!"
+        "noDiariesYet": "No entries yet",
+        "startDiaryDesc": "Start your first entry to express your thoughts and feelings. Your journey begins here!"
     },
     "echoDetail": {
-        "title": "Diary",
-        "clickOn": "Click",
-        "toGetGenieAdvice": "to get Genie advice",
-        "inputPlaceholder": "Tell us anything...",
+        "title": "Reflection Journal",
+        "clickOn": "Tap",
+        "toGetGenieAdvice": "for a guided reflection",
+        "inputPlaceholder": "Write your thoughts…",
         "errorTitle": "Error",
         "failedToConsult": "Failed to consult. Please try again."
     },
     "dailyProfileDetail": {
-        "todayScore": "TODAY'S SCORE",
+        "todayScore": "Today's Overview",
         "wealth": "Wealth",
         "learning": "Learning",
         "relation": "Relationship",
@@ -478,7 +478,7 @@
         "failedToLoadUserData": "Failed to load user data. Please try again later.",
         "goodDay": "Good Day",
         "guest": "Guest",
-        "todayScore": "Today's Score"
+        "todayScore": "Today's Overview"
     },
     "topup": {
         "paymentFailed": "Payment failed",

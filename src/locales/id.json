@@ -48,17 +48,17 @@
         ]
     },
     "login": {
-        "intro": "PENCARI YANG TERHORMAT",
+        "intro": "SELAMAT DATANG KEMBALI",
         "title": "Masuk",
-        "subtitle": "Kosmos berbisik.\nTemukan apa yang ditakdirkan untukmu.",
+        "subtitle": "Lanjutkan perjalanan wawasan pribadi Anda.",
         "footer": "Belum punya akun?",
         "signupButtonText": "Daftar",
         "forgotPassword": "Lupa Password?"
     },
     "register": {
-        "intro": "PENCARI YANG TERHORMAT",
+        "intro": "SELAMAT DATANG",
         "title": "Daftar",
-        "subtitle": "Kosmos berbisik.\nBergabung & temukan takdirmu.",
+        "subtitle": "Mulai perjalanan wawasan pribadi Anda.",
         "footer": "Sudah punya akun?",
         "signinButtonText": "Masuk"
     },
@@ -113,13 +113,13 @@
     },
     "onboarding": {
         "title": "Perkenalkan diri Anda",
-        "subtitle": "Perkenalkan diri Anda dan biarkan semesta membimbing Anda!",
+        "subtitle": "Masukkan detail Anda untuk membangun profil pribadi Anda.",
         "helpText": "Tidak yakin dengan waktu lahir Anda? Pilih perkiraan terdekat.",
         "birthDate": "Tanggal Lahir:",
         "birthTime": "Waktu Lahir:",
         "selectCountry": "Pilih Negara",
         "selectCity": "Pilih Kota",
-        "save": "Simpan",
+        "save": "Lanjutkan",
         "pleaseSelectOne": "Silakan pilih salah satu",
         "allFieldsRequired": "Semua kolom wajib diisi.",
         "registerFailed": "Pendaftaran Gagal",
@@ -127,16 +127,16 @@
     },
     "carousel": {
         "love": {
-            "title": "Cinta Sedang Tertunda?",
-            "subtitle": "TEMUKAN APA YANG AKAN TERJADI SELANJUTNYA"
+            "title": "WAWASAN POLA HUBUNGAN",
+            "subtitle": "Pahami tema terkini dalam kehidupan cinta Anda"
         },
         "relation": {
             "title": "Wawasan Hubungan",
-            "subtitle": "TEMUKAN KONEKSI ANDA"
+            "subtitle": "Jelajahi dinamika hubungan"
         },
         "fortune": {
-            "title": "Panduan Keberuntungan",
-            "subtitle": "SAMBUT MASA DEPANMU"
+            "title": "PANDUAN TAHUNAN",
+            "subtitle": "Jelajahi tahun Anda ke depan"
         },
         "myReport": {
             "title": "Laporan Saya",
@@ -144,93 +144,93 @@
         },
         "baziReport": {
             "title": "BaZi Saya",
-            "subtitle": "Cetak Biru Takdir Anda Terungkap"
+            "subtitle": "Jelajahi profil BaZi Anda"
         },
         "astroReport": {
             "title": "Astro Saya",
-            "subtitle": "Bintang Anda, Kisah Anda"
+            "subtitle": "Jelajahi profil astrologi Anda"
         },
         "mbtiReport": {
             "title": "MBTI Saya",
-            "subtitle": "Temukan Kepribadian Sejati Anda"
+            "subtitle": "Jelajahi wawasan kepribadian Anda"
         },
         "downloadPdf": "Unduh sebagai PDF"
     },
     "home": {
-        "subtitle": "APA YANG INGIN ANDA KETAHUI HARI INI?"
+        "subtitle": "Jelajahi Wawasan Anda Hari Ini"
     },
     "loveForecast": {
-        "header": "Ramalan Cinta 12 Bulan Mendatang",
-        "purchase": "Beli seharga {{cost}}",
-        "title": "BINGUNG SECARA EMOSIONAL? SELESAIKAN SEKARANG JUGA.",
-        "subtitle": "Empat arahan utama untuk membantumu\nmengatasi tantangan emosional.",
-        "description": "Temukan akar kebingungan emosionalmu dan temukan arah yang tepat untuk kehidupan cintamu. Dapatkan jawaban untuk semua aspek sekaligus: pola pikir, ramalan cinta, cara menemukan cinta, dan gambaran masa depan.",
-        "sectionTitle": "APA YANG AKAN ANDA TEMUKAN:",
+        "header": "Prospek Hubungan",
+        "purchase": "Buka Laporan Lengkap",
+        "title": "POLA, PELUANG, DAN PERTUMBUHAN SEKILAS",
+        "subtitle": "Jelajahi tema hubungan Anda untuk 12 bulan ke depan.",
+        "description": "Laporan ini membantu Anda menjelajahi bagaimana profil Anda dapat membentuk pola hubungan, kebutuhan emosional, peluang, dan area pertumbuhan selama bulan-bulan mendatang.",
+        "sectionTitle": "Yang termasuk",
         "cards": {
-            "intro": "Pendahuluan: Cetak Biru Cintamu",
-            "lacking": "Apa yang kurang dalam cinta?",
-            "lookout": "Apa yang kamu cari pada pasangan",
-            "suits": "Tipe pasangan yang cocok untukmu",
-            "outlook": "Ramalan cinta tahun ini",
-            "where": "Di mana menemukan cinta",
-            "questions": "Pertanyaan personal",
-            "conclusion": "Penutup: Kisah cinta ke depan"
+            "intro": "Pendahuluan: Profil Hubungan Anda",
+            "lacking": "Area Pertumbuhan dalam Hubungan",
+            "lookout": "Preferensi Pasangan",
+            "suits": "Sifat Pasangan yang Cocok",
+            "outlook": "Tema Hubungan Tahun Ini",
+            "where": "Peluang Hubungan",
+            "questions": "Pertanyaan Refleksi Pribadi",
+            "conclusion": "Ringkasan Hubungan Keseluruhan"
         },
-        "pollingMessage": "Laporan cinta Anda sedang diproses…",
+        "pollingMessage": "Laporan prospek hubungan Anda sedang diproses…",
         "error": "Kesalahan",
         "noJobId": "job_id tidak dikembalikan dari server.",
         "fetchStatusFailed": "Gagal mengambil status laporan."
     },
     "relationReport": {
         "header": "Kecocokan Hubungan",
-        "purchase": "Beli seharga {{cost}}",
-        "title": "Penasaran apakah kalian pasangan sempurna\nCari tahu sekarang!",
-        "subtitle": "Astrologi bertemu Bazi untuk sudut pandang baru tentang kecocokan cinta Anda.",
-        "description": "Beberapa tips mungkin terdengar seperti akal sehat—seperti meningkatkan komunikasi atau pola pikir—tetapi semuanya disesuaikan dengan bagan unik dan dinamika hubungan Anda. Dampaknya lebih besar dari yang terlihat.",
+        "purchase": "Buka Laporan Kecocokan",
+        "title": "JELAJAHI KECOCOKAN HUBUNGAN",
+        "subtitle": "Pahami pola komunikasi, kebutuhan emosional, dan dinamika bersama melalui astrologi dan BaZi.",
+        "description": "Laporan ini membantu Anda menjelajahi kekuatan, tantangan, dan pola hubungan berdasarkan kedua profil.",
         "loveInterestDetail": "Detail Orang yang Anda Sukai",
         "tellUsMore": "Ceritakan lebih banyak tentang mereka!",
-        "pollingMessage": "Laporan hubungan Anda sedang diproses…",
+        "pollingMessage": "Laporan kecocokan hubungan Anda sedang diproses…",
         "cards": {
-            "perspective": "Bagaimana pandangan Anda tentang cinta?",
-            "seeYou": "Bagaimana orang yang Anda sukai melihat Anda?",
-            "kindOfPerson": "Orang seperti apa yang dia sukai?",
-            "traits": "Apa sifat, preferensi, dan hal yang tidak disukai?"
+            "perspective": "Perspektif Hubungan Anda",
+            "seeYou": "Bagaimana Mereka Mungkin Melihat Anda",
+            "kindOfPerson": "Sifat Pasangan yang Diinginkan",
+            "traits": "Sifat dan Preferensi Mereka"
         }
     },
     "fortuneReport": {
-        "header": "Laporan Keberuntungan {{year}}",
-        "purchase": "Beli seharga {{cost}}",
-        "title": "Penasaran dengan tahun {{year}} Anda? Lihat ramalan keberuntunganmu sekarang!",
-        "subtitle": "Ramalan keberuntungan bertemu perencanaan untuk sudut pandang baru di {{year}} Anda.",
-        "description": "Beberapa wawasan mungkin tampak sederhana—seperti waktu atau pengambilan keputusan—tetapi dipersonalisasi untuk bagan dan jalur {{year}} Anda. Panduan mereka dapat membuat perbedaan nyata.",
-        "sectionTitle": "Apa yang bisa Anda ketahui?",
-        "pollingMessage": "Laporan keberuntungan Anda sedang diproses…",
+        "header": "Panduan Tahunan {{year}}",
+        "purchase": "Buka Laporan Lengkap",
+        "title": "JELAJAHI TEMA UTAMA TAHUN MENDATANG ANDA",
+        "subtitle": "Tinjau tema tahunan Anda di bidang kesejahteraan, hubungan, karier, dan pertumbuhan pribadi.",
+        "description": "Laporan ini menggabungkan beberapa sistem profil untuk membantu Anda merefleksikan waktu, prioritas, area pertumbuhan, dan tema utama untuk tahun mendatang.",
+        "sectionTitle": "Yang Termasuk",
+        "pollingMessage": "Laporan panduan tahunan Anda sedang diproses…",
         "cards": {
             "health": {
                 "title": "Kesehatan",
-                "subtitle": "Menggunakan Astro dan Bazi, analisis kondisi kesehatan Anda untuk membantu Anda mengambil tindakan pencegahan tepat waktu."
+                "subtitle": "Tinjau tema kesejahteraan dan area yang perlu diperhatikan sepanjang tahun mendatang."
             },
             "finance": {
                 "title": "Keuangan",
-                "subtitle": "Menggunakan Astro dan Bazi, analisis tren Istana Kekayaan tahunan untuk menemukan waktu terbaik peluang kekayaan."
+                "subtitle": "Jelajahi tema keuangan, prioritas, dan pertimbangan waktu untuk tahun mendatang."
             },
             "career": {
                 "title": "Karier",
-                "subtitle": "Menggunakan Astro dan Bazi, ungkap keberuntungan dan tantangan karier Anda melalui bintang Istana Karier Anda."
+                "subtitle": "Tinjau tema, tantangan, dan area pertumbuhan karier untuk tahun mendatang."
             },
             "relationship": {
                 "title": "Hubungan",
-                "subtitle": "Menggunakan Astro dan Bazi, lacak tren cinta tahunan melalui Istana Pernikahan Anda."
+                "subtitle": "Jelajahi tema, pola, dan area fokus hubungan untuk tahun mendatang."
             }
         }
     },
     "purchaseAlert": {
-        "title": "PERINGATAN PEMBELIAN",
-        "costInfo": "Untuk menggunakan {{service}}, akan dikenakan biaya {{cost}} Lanjutkan?",
-        "yourCredits": "Token {{creditType}} Anda: {{userCredit}}",
-        "continue": "Lanjutkan Pembelian",
+        "title": "Buka Layanan Terpandu",
+        "costInfo": "Menggunakan {{service}} ini akan dikenakan biaya {{cost}} token. Lanjutkan?",
+        "yourCredits": "Token tersedia: {{userCredit}}",
+        "continue": "Lanjutkan",
         "cancel": "Batal",
-        "insufficient": "Laporan ini akan dikenakan biaya {{cost}}\nToken {{creditType}} Anda saat ini tidak mencukupi. Silakan isi ulang untuk melanjutkan.",
+        "insufficient": "{{service}} ini akan dikenakan biaya {{cost}}\nToken {{creditType}} Anda saat ini tidak mencukupi. Silakan isi ulang untuk melanjutkan.",
         "purchaseCredits": "Beli Kredit"
     },
     "profileCard": {
@@ -249,7 +249,7 @@
         "copiedToClipboard": "Disalin ke clipboard"
     },
     "chatArea": {
-        "geenieSays": "Geenie berkata:"
+        "geenieSays": "Echo berkata:"
     },
     "usageReceiptModal": {
         "receipt": "STRUK",
@@ -262,26 +262,26 @@
         "processing": "Laporan masih diproses. Silakan cek kembali nanti.",
         "noData": "Tidak ada detail tersedia untuk transaksi ini",
         "serviceType": {
-            "ask_any_question": "Tanya Affinity",
-            "personalized_love_forecast_12mth": "Ramalan Cinta",
-            "transit_report": "Laporan Keberuntungan",
+            "ask_any_question": "Pertanyaan Terpandu",
+            "personalized_love_forecast_12mth": "Prospek Hubungan",
+            "transit_report": "Panduan Tahunan",
             "relationship_compatibility": "Kecocokan Hubungan",
-            "ask_secret_diary": "Genie Saran"
+            "ask_secret_diary": "Refleksi Terpandu"
         }
     },
     "usageHistory": {
         "noHistoryFound": "Tidak ada riwayat penggunaan ditemukan.",
-        "details": "Pembelian Anda berhasil, lihat detailnya!",
+        "details": "Lihat detail laporan.",
         "paymentPending": "Pembayaran belum selesai. Silakan lengkapi pembayaran untuk melanjutkan transaksi."
     },
     "affinityResult": {
         "title": "Tanya Affinity",
-        "presentSituation": "Situasi Saat Ini",
-        "likelyOutcome": "Hasil yang Mungkin",
-        "recommendedAction": "Tindakan yang Disarankan"
+        "presentSituation": "Tema Saat Ini",
+        "likelyOutcome": "Wawasan Utama",
+        "recommendedAction": "Langkah Selanjutnya yang Disarankan"
     },
     "fortuneReportResult": {
-        "header": "Laporan Keberuntungan {{year}}",
+        "header": "Panduan Tahunan {{year}}",
         "downloadPdf": "Unduh sebagai PDF",
         "downloadComplete": "Unduhan selesai",
         "savedTo": "Disimpan ke {{path}}",
@@ -309,12 +309,12 @@
         "downloadPermissionError": "Kesalahan izin",
         "downloadFailed": "Pengunduhan gagal",
         "you": "Anda",
-        "yourLoveInterest": "Orang yang Anda Sukai"
+        "yourLoveInterest": "Profil Pasangan"
     },
     "loveReportResult": {
-        "title": "Ramalan Cinta 12 Bulan Mendatang",
+        "title": "Prospek Hubungan",
         "downloadPdf": "Unduh sebagai PDF",
-        "forecastFor": "Ramalan untuk {{range}}"
+        "forecastFor": "Prospek untuk {{range}}"
     },
     "bottomBar": {
         "home": "Beranda",
@@ -323,11 +323,11 @@
         "profile": "Profil"
     },
     "baziResult": {
-        "title": "Profil BaZi",
+        "title": "Wawasan Profil BaZi",
         "emptyStateLabel": "Data profil tidak ditemukan."
     },
     "astroResult": {
-        "title": "Astrologi",
+        "title": "Wawasan Profil Astrologi",
         "emptyStateLabel": "Data profil tidak ditemukan."
     },
     "profileForm": {
@@ -397,16 +397,16 @@
         "guest": "Tamu",
         "mbtiTitle": "Apa MBTI Anda?",
         "mbtiSubtitle": "Tes singkat untuk mengetahui tipe Anda!",
-        "yourCoins": "Token Anda",
-        "buyCoins": "Beli Token",
+        "yourCoins": "Token Tersedia",
+        "buyCoins": "Dapatkan Token",
         "profileSectionTitle": "Profil",
         "editProfile": "Edit Profil",
         "passwordSettings": "Pengaturan Kata Sandi",
         "purchaseHistory": "Laporan Saya",
         "othersSectionTitle": "Lainnya",
-        "aboutUs": "Tentang Kami",
+        "aboutUs": "Tentang",
         "privacyPolicy": "Kebijakan Privasi",
-        "termsAndConditions": "Syarat & Ketentuan",
+        "termsAndConditions": "Ketentuan Penggunaan",
         "logout": "Keluar",
         "dangerZone": "Zona Bahaya",
         "dangerZoneSubtitle": "Tindakan yang tidak dapat dibatalkan untuk akun Anda",
@@ -428,44 +428,44 @@
     "purchaseHistory": {
         "title": "Laporan Saya",
         "usageTab": "Laporan Saya",
-        "topupTab": "Riwayat Top Up"
+        "topupTab": "Riwayat Pembelian"
     },
     "serviceLabel": {
-        "ask_any_question": "Tanya Affinity",
-        "personalized_love_forecast_12mth": "Ramalan Cinta",
-        "transit_report": "Laporan Keberuntungan",
+        "ask_any_question": "Pertanyaan Terpandu",
+        "personalized_love_forecast_12mth": "Prospek Hubungan",
+        "transit_report": "Panduan Tahunan",
         "relationship_compatibility": "Kecocokan Hubungan",
-        "ask_secret_diary": "Genie Saran"
+        "ask_secret_diary": "Refleksi Terpandu"
     },
     "askAffinity": {
         "title": "Tanya Affinity",
-        "subtitle": "Bingung harus apa? Affinity siap membantu — tanya apa saja.",
-        "howToAskTitle": "Bagaimana cara bertanya?",
-        "instructions": "1. Tenangkan pikiran Anda\n2. Pikirkan pertanyaan yang ingin diajukan\n3. Masukkan pertanyaan\n4. Tarik napas dan tekan tombol tanya",
-        "questionLabel": "Ketik pertanyaan Anda",
+        "subtitle": "Ajukan pertanyaan dan dapatkan interpretasi terpandu berdasarkan profil Anda.",
+        "howToAskTitle": "Cara kerjanya:",
+        "instructions": "1. Masukkan pertanyaan Anda\n2. Fokus pada satu topik\n3. Terima interpretasi terpandu\n4. Renungkan langkah selanjutnya yang disarankan",
+        "questionLabel": "Masukkan pertanyaan Anda",
         "questionRequired": "Pertanyaan wajib diisi",
         "questionMinLength": "Pertanyaan minimal 3 karakter",
-        "purchaseButton": "Beli seharga {{cost}}",
+        "purchaseButton": "Dapatkan Wawasan",
         "somethingWentWrong": "Terjadi kesalahan"
     },
     "echo": {
-        "title": "Diari",
-        "subtitle": "Ruang aman untuk mengekspresikan pikiran dan perasaan Anda.",
-        "recentDiaries": "Catatan Harian Terbaru",
+        "title": "Jurnal Refleksi",
+        "subtitle": "Ruang pribadi untuk refleksi, pemeriksaan emosi, dan catatan pribadi",
+        "recentDiaries": "Entri Terbaru",
         "loading": "Memuat...",
-        "noDiariesYet": "Belum ada entri diari",
-        "startDiaryDesc": "Mulai catatan harian pertamamu untuk mengekspresikan pikiran dan perasaan. Perjalananmu dimulai di sini!"
+        "noDiariesYet": "Belum ada entri",
+        "startDiaryDesc": "Mulai entri pertama Anda untuk mengungkapkan pikiran dan perasaan. Perjalanan Anda dimulai di sini!"
     },
     "echoDetail": {
-        "title": "Diari",
-        "clickOn": "Klik",
-        "toGetGenieAdvice": "untuk mendapatkan saran Genie",
-        "inputPlaceholder": "Ceritakan apa saja...",
+        "title": "Jurnal Refleksi",
+        "clickOn": "Ketuk",
+        "toGetGenieAdvice": "untuk refleksi terpandu",
+        "inputPlaceholder": "Tulis pikiran Anda…",
         "errorTitle": "Kesalahan",
         "failedToConsult": "Gagal berkonsultasi. Silakan coba lagi."
     },
     "dailyProfileDetail": {
-        "todayScore": "SKOR HARI INI",
+        "todayScore": "Ringkasan Hari Ini",
         "wealth": "Kekayaan",
         "learning": "Belajar",
         "relation": "Hubungan",
@@ -478,7 +478,7 @@
         "failedToLoadUserData": "Gagal memuat data pengguna. Silakan coba lagi nanti.",
         "goodDay": "Selamat Hari",
         "guest": "Tamu",
-        "todayScore": "Skor Hari Ini"
+        "todayScore": "Ringkasan Hari Ini"
     },
     "topup": {
         "paymentFailed": "Pembayaran gagal",

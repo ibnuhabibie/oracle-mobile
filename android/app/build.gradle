@@ -60,7 +60,7 @@ react {
 /**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
 
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
@@ -86,7 +86,7 @@ android {
         applicationId "com.lifewithaffinity.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 11
+        versionCode 12
         versionName "1.0"
 
         // ndk {
@@ -156,4 +156,8 @@ dependencies {
 
 project.ext.react = [
     bundleInDebug: true, // Add this line
+]
+
+project.ext.sentryCli = [
+    autoUpload: false
 ]

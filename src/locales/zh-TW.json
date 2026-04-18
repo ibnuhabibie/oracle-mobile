@@ -48,17 +48,17 @@
         ]
     },
     "login": {
-        "intro": "親愛的探索者",
+        "intro": "歡迎回來",
         "title": "登入",
-        "subtitle": "宇宙在低語。\n發現屬於你的命運。",
+        "subtitle": "繼續你的個人洞察之旅。",
         "footer": "還沒有帳號？",
         "signupButtonText": "註冊",
         "forgotPassword": "忘記密碼？"
     },
     "register": {
-        "intro": "親愛的探索者",
+        "intro": "歡迎",
         "title": "註冊",
-        "subtitle": "宇宙在低語。\n加入並發現你的命運。",
+        "subtitle": "開始你的個人洞察之旅。",
         "footer": "已有帳號？",
         "signinButtonText": "登入"
     },
@@ -113,13 +113,13 @@
     },
     "onboarding": {
         "title": "自我介紹",
-        "subtitle": "介紹自己，讓宇宙指引你！",
+        "subtitle": "輸入你的資料，建立你的個人檔案。",
         "helpText": "不確定出生時間？請選擇最接近的時間。",
         "birthDate": "出生日期：",
         "birthTime": "出生時間：",
         "selectCountry": "選擇國家",
         "selectCity": "選擇城市",
-        "save": "儲存",
+        "save": "繼續",
         "pleaseSelectOne": "請選擇一個",
         "allFieldsRequired": "所有欄位均為必填項。",
         "registerFailed": "註冊失敗",
@@ -127,16 +127,16 @@
     },
     "carousel": {
         "love": {
-            "title": "愛情是否延遲？",
-            "subtitle": "發現接下來會發生什麼"
+            "title": "關係模式洞察",
+            "subtitle": "了解你感情生活中的當前主題"
         },
         "relation": {
             "title": "關係洞察",
-            "subtitle": "發現你的連接"
+            "subtitle": "探索關係動態"
         },
         "fortune": {
-            "title": "命運指引",
-            "subtitle": "迎接你的未來"
+            "title": "年度指引",
+            "subtitle": "探索你的未來一年"
         },
         "myReport": {
             "title": "我的報告",
@@ -144,93 +144,93 @@
         },
         "baziReport": {
             "title": "我的八字",
-            "subtitle": "揭開你的命運藍圖"
+            "subtitle": "探索你的八字資料"
         },
         "astroReport": {
             "title": "我的星盤",
-            "subtitle": "你的星辰，你的故事"
+            "subtitle": "探索你的占星資料"
         },
         "mbtiReport": {
             "title": "我的 MBTI",
-            "subtitle": "探索真正的自己"
+            "subtitle": "探索你的性格洞察"
         },
         "downloadPdf": "下載 PDF"
     },
     "home": {
-        "subtitle": "今天你想知道什麼？"
+        "subtitle": "今日探索你的洞察"
     },
     "loveForecast": {
-        "header": "12個月愛情預測",
-        "purchase": "購買，價格為 {{cost}}",
-        "title": "情感困惑？立即解決。",
-        "subtitle": "四個主要方向幫助你\n克服情感挑戰。",
-        "description": "找到情感困惑的根源，發現你的愛情正確方向。一次性獲得所有方面的答案：心態、愛情預測、如何找到愛情、未來展望。",
-        "sectionTitle": "你將發現：",
+        "header": "關係展望",
+        "purchase": "解鎖完整報告",
+        "title": "模式、機遇與成長，一目了然",
+        "subtitle": "探索你未來12個月的關係主題。",
+        "description": "此報告幫助你探索個人資料如何影響未來幾個月的關係模式、情感需求、機遇與成長領域。",
+        "sectionTitle": "包含內容",
         "cards": {
-            "intro": "介紹：你的愛情藍圖",
-            "lacking": "愛情中缺少什麼？",
-            "lookout": "你在伴侶中尋找什麼？",
-            "suits": "適合你的伴侶類型",
-            "outlook": "今年的愛情預測",
-            "where": "尋找愛情的地方",
-            "questions": "個人問題",
-            "conclusion": "結論：未來的愛情故事"
+            "intro": "介紹：你的關係資料",
+            "lacking": "關係中的成長領域",
+            "lookout": "伴侶偏好",
+            "suits": "契合的伴侶特質",
+            "outlook": "今年的關係主題",
+            "where": "關係機遇",
+            "questions": "個人反思問題",
+            "conclusion": "整體關係總結"
         },
-        "pollingMessage": "您的愛情報告正在處理中…",
+        "pollingMessage": "您的關係展望報告正在處理中…",
         "error": "錯誤",
         "noJobId": "伺服器未返回 job_id。",
         "fetchStatusFailed": "取得報告狀態失敗。"
     },
     "relationReport": {
         "header": "關係匹配度",
-        "purchase": "購買，價格為 {{cost}}",
-        "title": "好奇你們是否是完美情侶？\n現在就揭曉！",
-        "subtitle": "占星與八字結合，為你的愛情匹配度帶來新視角。",
-        "description": "有些建議聽起來像常識——比如改善溝通或心態——但都針對你的獨特星盤和關係動態量身定製。影響遠超想像。",
+        "purchase": "解鎖契合度報告",
+        "title": "探索關係契合度",
+        "subtitle": "透過占星與八字，了解溝通模式、情感需求與彼此的互動關係。",
+        "description": "此報告幫助你基於雙方資料探索關係中的優勢、挑戰與互動模式。",
         "loveInterestDetail": "你的伴侶詳情",
         "tellUsMore": "告訴我們更多關於他/她的資訊！",
-        "pollingMessage": "您的關係報告正在處理中…",
+        "pollingMessage": "您的關係契合度報告正在處理中…",
         "cards": {
-            "perspective": "你如何看待愛情？",
-            "seeYou": "你的伴侶如何看待你？",
-            "kindOfPerson": "他們喜歡什麼類型的人？",
-            "traits": "他們的特質、偏好和不喜歡的是什麼？"
+            "perspective": "你的關係視角",
+            "seeYou": "對方眼中的你",
+            "kindOfPerson": "理想伴侶的特質",
+            "traits": "對方的特質與偏好"
         }
     },
     "fortuneReport": {
-        "header": "命運報告 {{year}}",
-        "purchase": "購買，價格為 {{cost}}",
-        "title": "好奇你的 {{year}}？現在查看你的命運預測！",
-        "subtitle": "命運預測結合規劃，為你的 {{year}} 帶來新視角。",
-        "description": "有些洞察看似簡單——比如時機或決策——但都針對你的星盤和 {{year}} 的道路量身定製。指導真的很有幫助。",
-        "sectionTitle": "你能知道什麼？",
-        "pollingMessage": "您的命運報告正在處理中…",
+        "header": "{{year}} 年度指引",
+        "purchase": "解鎖完整報告",
+        "title": "探索來年的核心主題",
+        "subtitle": "回顧你在身心健康、關係、職涯與個人成長各方面的年度主題。",
+        "description": "本報告整合多種命理系統，幫助你回顧未來一年的時機、優先事項、成長領域與主要主題。",
+        "sectionTitle": "包含內容",
+        "pollingMessage": "您的年度指引報告正在處理中…",
         "cards": {
             "health": {
                 "title": "健康",
-                "subtitle": "透過占星和八字分析您的健康狀況，幫助您及時預防。"
+                "subtitle": "回顧未來一年的身心健康主題與需要關注的方面。"
             },
             "finance": {
                 "title": "財務",
-                "subtitle": "透過占星和八字分析年度財帛宮趨勢，尋找最佳財富時機。"
+                "subtitle": "探索未來一年的財務主題、優先事項與時機考量。"
             },
             "career": {
                 "title": "事業",
-                "subtitle": "透過占星和八字揭示您的事業運和挑戰。"
+                "subtitle": "回顧未來一年的職涯主題、挑戰與成長方向。"
             },
             "relationship": {
                 "title": "關係",
-                "subtitle": "透過占星和八字追蹤年度愛情趨勢。"
+                "subtitle": "探索未來一年的關係主題、模式與關注重點。"
             }
         }
     },
     "purchaseAlert": {
-        "title": "購買提醒",
-        "costInfo": "向 {{service}} 提問將收取 {{cost}}，是否繼續？",
-        "yourCredits": "您的 {{creditType}} 代幣：{{userCredit}}",
-        "continue": "繼續購買",
+        "title": "解鎖引導服務",
+        "costInfo": "使用此{{service}}將消耗 {{cost}} 個代幣。是否繼續？",
+        "yourCredits": "可用代幣：{{userCredit}}",
+        "continue": "繼續",
         "cancel": "取消",
-        "insufficient": "此報告需花費 {{cost}}\n您目前的 {{creditType}} 代幣不足，請儲值後繼續。",
+        "insufficient": "此{{service}}需花費 {{cost}}\n您目前的 {{creditType}} 代幣不足，請儲值後繼續。",
         "purchaseCredits": "購買代幣"
     },
     "profileCard": {
@@ -249,7 +249,7 @@
         "copiedToClipboard": "已複製到剪貼簿"
     },
     "chatArea": {
-        "geenieSays": "Geenie 說："
+        "geenieSays": "Echo 說："
     },
     "usageReceiptModal": {
         "receipt": "收據",
@@ -262,26 +262,26 @@
         "processing": "報告仍在處理中，請稍後再查。",
         "noData": "該服務無詳細資料",
         "serviceType": {
-            "ask_any_question": "問 Affinity",
-            "personalized_love_forecast_12mth": "愛情預測",
-            "transit_report": "命運報告",
+            "ask_any_question": "引導式提問",
+            "personalized_love_forecast_12mth": "關係展望",
+            "transit_report": "年度指引",
             "relationship_compatibility": "關係匹配度",
-            "ask_secret_diary": "Genie 建議"
+            "ask_secret_diary": "引導式反思"
         }
     },
     "usageHistory": {
         "noHistoryFound": "未找到使用記錄。",
-        "details": "您的購買已成功，查看詳情！",
+        "details": "查看報告詳情",
         "paymentPending": "支付未完成。請完成支付以繼續交易。"
     },
     "affinityResult": {
         "title": "問 Affinity",
-        "presentSituation": "目前情況",
-        "likelyOutcome": "可能結果",
-        "recommendedAction": "推薦行動"
+        "presentSituation": "目前主題",
+        "likelyOutcome": "核心洞察",
+        "recommendedAction": "建議的下一步"
     },
     "fortuneReportResult": {
-        "header": "命運報告 {{year}}",
+        "header": "{{year}} 年度指引",
         "downloadPdf": "下載 PDF",
         "downloadComplete": "下載完成",
         "savedTo": "已儲存到 {{path}}",
@@ -309,12 +309,12 @@
         "downloadPermissionError": "權限錯誤",
         "downloadFailed": "下載失敗",
         "you": "你",
-        "yourLoveInterest": "你的伴侶"
+        "yourLoveInterest": "伴侶資料"
     },
     "loveReportResult": {
-        "title": "12個月愛情預測",
+        "title": "關係展望",
         "downloadPdf": "下載 PDF",
-        "forecastFor": "{{range}} 的預測"
+        "forecastFor": "{{range}} 展望"
     },
     "bottomBar": {
         "home": "首頁",
@@ -323,11 +323,11 @@
         "profile": "個人資料"
     },
     "baziResult": {
-        "title": "八字資料",
+        "title": "八字資料解析",
         "emptyStateLabel": "未找到個人資料資料。"
     },
     "astroResult": {
-        "title": "占星",
+        "title": "占星資料解析",
         "emptyStateLabel": "未找到個人資料資料。"
     },
     "profileForm": {
@@ -397,16 +397,16 @@
         "guest": "訪客",
         "mbtiTitle": "你的 MBTI 是什麼？",
         "mbtiSubtitle": "快速測試發現你的類型！",
-        "yourCoins": "我的代幣",
-        "buyCoins": "購買代幣",
+        "yourCoins": "可用代幣",
+        "buyCoins": "獲取代幣",
         "profileSectionTitle": "個人資料",
         "editProfile": "編輯資料",
         "passwordSettings": "密碼設定",
         "purchaseHistory": "我的報告",
         "othersSectionTitle": "其他",
-        "aboutUs": "關於我們",
+        "aboutUs": "關於",
         "privacyPolicy": "隱私權政策",
-        "termsAndConditions": "條款與條件",
+        "termsAndConditions": "使用條款",
         "logout": "登出",
         "dangerZone": "危險區域",
         "dangerZoneSubtitle": "對您帳戶不可逆轉的操作",
@@ -428,44 +428,44 @@
     "purchaseHistory": {
         "title": "我的報告",
         "usageTab": "我的報告",
-        "topupTab": "儲值歷史"
+        "topupTab": "購買紀錄"
     },
     "serviceLabel": {
-        "ask_any_question": "問 Affinity",
-        "personalized_love_forecast_12mth": "愛情預測",
-        "transit_report": "命運報告",
+        "ask_any_question": "引導式提問",
+        "personalized_love_forecast_12mth": "關係展望",
+        "transit_report": "年度指引",
         "relationship_compatibility": "關係匹配度",
-        "ask_secret_diary": "Genie 建議"
+        "ask_secret_diary": "引導式反思"
     },
     "askAffinity": {
         "title": "問 Affinity",
-        "subtitle": "不知道該做什麼？Affinity 隨時為您提供幫助——隨便問吧。",
-        "howToAskTitle": "如何提問？",
-        "instructions": "1. 讓心情平靜\n2. 想想你要問的問題\n3. 輸入你的問題\n4. 深呼吸後點擊提問按鈕",
+        "subtitle": "提出問題，獲得基於個人資料的引導式解讀。",
+        "howToAskTitle": "使用方法：",
+        "instructions": "1. 輸入你的問題\n2. 聚焦於一個主題\n3. 接收引導式解讀\n4. 反思建議的下一步",
         "questionLabel": "輸入你的問題",
         "questionRequired": "問題為必填項",
         "questionMinLength": "問題至少需要3個字元",
-        "purchaseButton": "購買，價格為 {{cost}}",
+        "purchaseButton": "獲取洞察",
         "somethingWentWrong": "出錯了"
     },
     "echo": {
-        "title": "日記",
-        "subtitle": "一個安全表達思想和感受的空間。",
-        "recentDiaries": "最新日記條目",
+        "title": "反思日記",
+        "subtitle": "一個用於反思、情緒記錄與個人筆記的私密空間",
+        "recentDiaries": "最近的記錄",
         "loading": "載入中...",
-        "noDiariesYet": "還沒有日記條目",
-        "startDiaryDesc": "開始你的第一篇日記，表達你的思想和感受。你的旅程從這裡開始！"
+        "noDiariesYet": "尚無記錄",
+        "startDiaryDesc": "開始你的第一篇記錄，表達你的想法和感受。你的旅程從這裡開始！"
     },
     "echoDetail": {
-        "title": "日記",
-        "clickOn": "點擊",
-        "toGetGenieAdvice": "以獲得 Genie 建議",
-        "inputPlaceholder": "隨便說點什麼...",
+        "title": "反思日記",
+        "clickOn": "點按",
+        "toGetGenieAdvice": "進行引導式反思",
+        "inputPlaceholder": "寫下你的想法…",
         "errorTitle": "錯誤",
         "failedToConsult": "諮詢失敗，請重試。"
     },
     "dailyProfileDetail": {
-        "todayScore": "今日評分",
+        "todayScore": "今日概覽",
         "wealth": "財富",
         "learning": "學習",
         "relation": "關係",
@@ -478,7 +478,7 @@
         "failedToLoadUserData": "載入使用者資料失敗，請稍後再試。",
         "goodDay": "祝你有美好的一天",
         "guest": "訪客",
-        "todayScore": "今日評分"
+        "todayScore": "今日概覽"
     },
     "topup": {
         "paymentFailed": "支付失敗",
