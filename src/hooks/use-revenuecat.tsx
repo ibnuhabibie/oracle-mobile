@@ -44,6 +44,8 @@ export function useRevenueCat() {
     const getPackageByIdentifier = (identifier: string) => {
         if (!offering) return null;
 
+        console.log('offering', offering);
+
         return offering?.availablePackages.find(p => p.identifier === identifier) || null;
     }
 
