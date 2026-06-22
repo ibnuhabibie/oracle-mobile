@@ -92,10 +92,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.08)',
     borderRadius: scaleSize(12),
     flex: 1,
-    paddingTop: scaleSize(32),
+    paddingTop: scaleSize(12),
   },
   textContainer: {
-    marginTop: scaleSize(24),
+    // marginTop: scaleSize(24),
     padding: scaleSize(16),
   },
   cardTitle: {
