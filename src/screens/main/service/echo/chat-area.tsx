@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
   },
   avatarText: {
     fontWeight: 'bold',
+    fontSize: scaleSize(13),
   },
   aiIconCircle: {
     width: scaleSize(32),
